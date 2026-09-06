@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ชีทสรุป · หลักการกระทำ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+</head>
+<body>
+
+<h1>ชีทสรุป · หลักการกระทำ</h1>
+<p class="meta">อ้างอิงจาก <a href="../lessons/0001-action-principle.html">บทที่ 1</a> ·
+ออกแบบมาให้พิมพ์แล้วแปะข้างโต๊ะ</p>
+
+<h2>สูตรที่ต้องจำได้โดยไม่ต้องเปิด</h2>
+
+<table>
+  <tr><th style="width:38%">การกระทำ</th>
+      <td>$S[q] = \displaystyle\int_{t_1}^{t_2} L\,dt$</td></tr>
+  <tr><th>ลากรองเจียน (กลศาสตร์)</th>
+      <td>$L = T - V$ &nbsp; <strong>ลบ</strong> ไม่ใช่บวก</td></tr>
+  <tr><th>หลักการ</th>
+      <td>$\delta S = 0$ &nbsp; — เส้นทางจริงทำให้ $S$ นิ่งต่อการบิดทุกรูปแบบ</td></tr>
+  <tr><th>สมการออยเลอร์–ลากรองจ์</th>
+      <td>$\dfrac{d}{dt}\!\left(\dfrac{\partial L}{\partial \dot q}\right) - \dfrac{\partial L}{\partial q} = 0$</td></tr>
+</table>
+
+<h2>ขั้นตอนใช้งาน — จากโจทย์ถึงสมการการเคลื่อนที่</h2>
+
+<table>
+  <tr><th style="width:6%">1</th><td>เลือกพิกัด $q$ ให้เหมาะกับรูปทรงของปัญหา (มุม ระยะ อะไรก็ได้)</td></tr>
+  <tr><th>2</th><td>เขียน $T$ และ $V$ ในพิกัดนั้น</td></tr>
+  <tr><th>3</th><td>ตั้ง $L = T - V$</td></tr>
+  <tr><th>4</th><td>หา $\dfrac{\partial L}{\partial \dot q}$ แล้ว $\dfrac{d}{dt}$ ของมัน</td></tr>
+  <tr><th>5</th><td>หา $\dfrac{\partial L}{\partial q}$</td></tr>
+  <tr><th>6</th><td>เอาสองอันมาลบกันให้เท่ากับศูนย์ — ได้สมการการเคลื่อนที่</td></tr>
+</table>
+
+<div class="key">
+  <p style="margin:0"><strong>ทางลัดที่ใช้ได้ทันที:</strong> ถ้า $L$ ไม่มีตัวแปร $q$ ปรากฏเลย
+  (มีแต่ $\dot q$) แสดงว่า $\dfrac{\partial L}{\partial q} = 0$ ⇒
+  $\dfrac{\partial L}{\partial \dot q}$ เป็นค่าคงที่ตลอดการเคลื่อนที่ —
+  <strong>ได้กฎอนุรักษ์มาฟรี ๆ</strong> · เรียก $q$ แบบนี้ว่า <em>พิกัดวัฏจักร</em> (cyclic coordinate)</p>
+</div>
+
+<h2>ตัวอย่างที่ตรวจแล้ว</h2>
+
+<table>
+  <tr><th style="width:30%">ระบบ</th><th>$L$</th><th>ผลลัพธ์</th></tr>
+  <tr><td>ตกอิสระ</td><td>$\tfrac12 m\dot y^2 - mgy$</td><td>$\ddot y = -g$</td></tr>
+  <tr><td>ลูกตุ้ม ยาว $l$</td><td>$\tfrac12 m l^2\dot\theta^2 + mgl\cos\theta$</td>
+      <td>$\ddot\theta = -\dfrac{g}{l}\sin\theta$</td></tr>
+  <tr><td>อนุภาคอิสระ</td><td>$\tfrac12 m\dot y^2$</td><td>ความเร็วคงที่</td></tr>
+</table>
+
+<p class="src">ทั้งสามแถวคำนวณด้วย <code>sympy</code> ไม่ได้คัดลอกจากตำรา —
+รันซ้ำได้ที่ <code>scripts/verify/0001_action.py</code></p>
+
+<h2>สัญลักษณ์ที่จะเจอใน paper</h2>
+
+<table>
+  <tr><th style="width:22%">$S$</th><td>การกระทำ — ตัวเลขตัวเดียวที่ได้จากทั้งเส้นทาง</td></tr>
+  <tr><th>$L$</th><td>ลากรองเจียน — ปริมาณที่อยู่ในอินทิกรัล</td></tr>
+  <tr><th>$\mathcal{L}$</th><td>ตัว L เขียนสวย = <em>ความหนาแน่น</em>ลากรองเจียน ใช้กับสนาม
+      ($L = \int \mathcal{L}\, d^3x$) — <strong>คนละตัวกับ $L$</strong> ยังไม่ต้องใช้ตอนนี้</td></tr>
+  <tr><th>$\delta$</th><td>การแปรผัน — “บิดเส้นทางนิดหนึ่งแล้วดูว่าอะไรเปลี่ยน”</td></tr>
+  <tr><th>$q,\ \dot q$</th><td>พิกัดทั่วไปและอนุพันธ์เวลาของมัน · จุดข้างบน = $d/dt$ เสมอ</td></tr>
+  <tr><th>$S[q]$</th><td>วงเล็บ<em>เหลี่ยม</em> = ฟังก์ชันนัล (กินฟังก์ชันทั้งเส้น ไม่ใช่ตัวเลข)</td></tr>
+  <tr><th>$\int d^4x$</th><td>อินทิเกรตทั่วกาลอวกาศ (เวลา 1 + ที่ว่าง 3) — เจอในทฤษฎีสนาม</td></tr>
+</table>
+
+<div class="warn">
+  <strong>convention ที่ต่างกันระหว่างตำรา</strong> — ตัวที่เจอบ่อยและทำให้เทียบสูตรข้ามเล่มพัง:
+  บางเล่มนิยาม $L = T - V$ บางเล่มใส่เครื่องหมายรวมไว้ต่างกันในทฤษฎีสนาม ·
+  ค่าคงที่หน้า action ของสัมพัทธภาพทั่วไป ($16\pi G$ หรือ $8\pi G$ หรือ $=1$) ·
+  <strong>เปิดตำราเล่มไหน ให้หา convention ของเล่มนั้นก่อนเสมอ</strong> ปกติอยู่บทแรกหรือภาคผนวก
+</div>
+
+<div class="ask">
+  ชีทนี้จะโตขึ้นเรื่อย ๆ ตามบทเรียน · ตรงไหนอ่านแล้วยังไม่แน่ใจ <strong>ถามได้เลย</strong>
+  <div class="nav">
+    <a href="../lessons/0001-action-principle.html">← บทที่ 1</a>
+    <a href="../MISSION.md">🎯 Mission</a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -75,6 +75,13 @@ table { border-collapse: collapse; width: 100%; font-size: .93rem; margin: 1.5re
 th, td { border-bottom: 1px solid var(--rule); padding: .5rem .6rem; text-align: left; vertical-align: top; }
 th { font-family: -apple-system, "Segoe UI", sans-serif; font-size: .85rem; }
 
+/* จอแคบ: ตารางต้องเลื่อนในกล่องของตัวเอง ไม่ใช่ดันทั้งหน้าให้เลื่อนแนวนอน
+   (ตารางตัวเลข 6 คอลัมน์กว้าง 463px บนจอ 375px — วัดแล้วเกิดจริงในบทที่ 1)
+   ไม่ใส่ nowrap เพราะตารางที่ช่องเป็นประโยคไทยต้องตัดบรรทัดได้ตามปกติ */
+@media (max-width: 640px) {
+  table { display: block; overflow-x: auto; }
+}
+
 code, pre { font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: .88em; }
 pre { background: var(--key-bg); padding: 1rem; overflow-x: auto; border-radius: 4px; }
 

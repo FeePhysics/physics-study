@@ -28,6 +28,13 @@ def check(f: pathlib.Path, html: str):
     if html.count('$$') % 2:
         bad("$$ ไม่เป็นคู่")
 
+    # ── $ ห้ามอยู่ใน <svg> ────────────────────────────────
+    # renderMathInElement ไม่เดินเข้าไปใน SVG ⇒ $...$ ตรงนั้นขึ้นเป็น LaTeX ดิบบนจอ
+    # โดยไม่มี error อะไรฟ้อง · ใช้ยูนิโคด (α β θ − ⁻¹) แทน
+    for svg in re.findall(r'<svg.*?</svg>', html, flags=re.S):
+        if '$' in svg:
+            bad("มี $ อยู่ใน <svg> — KaTeX ไม่เรนเดอร์ในนั้น จะขึ้น LaTeX ดิบ")
+
     # ── ไฟล์ที่ลิงก์ต้องมีอยู่จริง ─────────────────────────
     for rel in re.findall(r'(?:href|src)="((?!https?:|#|mailto:)[^"]+)"', html):
         target = (f.parent / rel.split('#')[0]).resolve()
