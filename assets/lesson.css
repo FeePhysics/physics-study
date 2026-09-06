@@ -1,0 +1,116 @@
+/* lesson.css — stylesheet ร่วมของทุกบทเรียน
+   ทุกบทเรียนต้อง <link> ไฟล์นี้ เพื่อให้ทั้ง workspace ดูเป็นคอร์สเดียวกัน
+   ไม่ใช่กองไฟล์ที่ไม่เกี่ยวกัน · แก้ที่นี่ที่เดียว ทุกบทเปลี่ยนตาม */
+
+:root {
+  --ink:      #1a1a1a;
+  --ink-soft: #55524d;
+  --bg:       #fdfcf9;   /* off-white อ่านนาน ๆ ไม่ล้าตาเท่าขาวล้วน */
+  --rule:     #ddd8cf;
+  --accent:   #8b3a2f;   /* หัวข้อ + ลิงก์ */
+  --key-bg:   #f3efe6;
+  --warn-bg:  #fdf3e7;
+  --warn-bar: #c9772a;
+  --ok:       #2d6a4f;
+  --no:       #a4303f;
+  --measure:  34em;      /* ~66 ตัวอักษร — ยาวกว่านี้ตาหาต้นบรรทัดถัดไปไม่เจอ */
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ink: #e8e4dc; --ink-soft: #a29c92; --bg: #14130f; --rule: #34312a;
+    --accent: #e08a75; --key-bg: #1e1c17; --warn-bg: #241d13; --warn-bar: #d9924a;
+    --ok: #6fbf95; --no: #e08292;
+  }
+}
+
+html { font-size: 17px; }
+body {
+  margin: 0 auto; padding: 3rem 1.5rem 6rem; max-width: var(--measure);
+  background: var(--bg); color: var(--ink);
+  font-family: Georgia, "Sarabun", "TH Sarabun New", serif;
+  line-height: 1.65; text-rendering: optimizeLegibility;
+}
+
+h1, h2, h3 { font-family: -apple-system, "Segoe UI", "Sarabun", sans-serif; line-height: 1.25; }
+h1 { font-size: 1.9rem; margin: 0 0 .3rem; }
+h2 { font-size: 1.25rem; margin: 2.6rem 0 .6rem; color: var(--accent); }
+h3 { font-size: 1.05rem; margin: 1.8rem 0 .4rem; }
+
+.meta {           /* บรรทัดใต้ชื่อบท: เลขบท · เวลาที่ใช้ · ข้อต่อจากบทไหน */
+  font-family: -apple-system, "Segoe UI", sans-serif; font-size: .82rem;
+  color: var(--ink-soft); border-bottom: 1px solid var(--rule);
+  padding-bottom: 1.2rem; margin-bottom: 2rem;
+}
+
+a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+
+/* กล่องแนวคิดหลัก — บทหนึ่งควรมีไม่เกินหนึ่งกล่อง ไม่งั้นก็ไม่ใช่แนวคิด "หลัก" */
+.key {
+  background: var(--key-bg); border-left: 3px solid var(--accent);
+  padding: 1rem 1.2rem; margin: 1.8rem 0; border-radius: 0 3px 3px 0;
+}
+.key > :first-child { margin-top: 0; } .key > :last-child { margin-bottom: 0; }
+
+/* กับดัก — convention ที่ต่างกันระหว่างตำรา, เครื่องหมาย, factor 2π */
+.warn {
+  background: var(--warn-bg); border-left: 3px solid var(--warn-bar);
+  padding: 1rem 1.2rem; margin: 1.8rem 0; border-radius: 0 3px 3px 0;
+  font-size: .95rem;
+}
+.warn::before { content: "⚠️ "; }
+
+/* ที่มา — ทุกข้ออ้างต้องมี ไม่งั้นบทเรียนเชื่อไม่ได้ */
+.src { font-size: .85rem; color: var(--ink-soft); }
+.src::before { content: "— ที่มา: "; }
+
+figure { margin: 2rem 0; }
+figure img, figure svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+figcaption { font-size: .85rem; color: var(--ink-soft); margin-top: .6rem; text-align: center; }
+
+/* บล็อกสมการที่ต้องเลื่อนได้บนมือถือ — KaTeX ไม่ตัดบรรทัดให้ */
+.eq { overflow-x: auto; padding: .3rem 0; }
+
+table { border-collapse: collapse; width: 100%; font-size: .93rem; margin: 1.5rem 0; }
+th, td { border-bottom: 1px solid var(--rule); padding: .5rem .6rem; text-align: left; vertical-align: top; }
+th { font-family: -apple-system, "Segoe UI", sans-serif; font-size: .85rem; }
+
+code, pre { font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: .88em; }
+pre { background: var(--key-bg); padding: 1rem; overflow-x: auto; border-radius: 4px; }
+
+/* ── แบบฝึก (ดู quiz.js) ─────────────────────────────────── */
+.quiz { border: 1px solid var(--rule); border-radius: 5px; padding: 1.2rem; margin: 2rem 0; }
+.quiz h3 { margin-top: 0; }
+.quiz .choices { display: grid; gap: .5rem; margin: .9rem 0 0; }
+.quiz button {
+  font: inherit; font-size: .95rem; text-align: left; cursor: pointer;
+  background: var(--bg); color: var(--ink); border: 1px solid var(--rule);
+  border-radius: 4px; padding: .6rem .8rem;
+}
+.quiz button:hover:not([disabled]) { border-color: var(--accent); }
+.quiz button.right { border-color: var(--ok); color: var(--ok); }
+.quiz button.wrong { border-color: var(--no); color: var(--no); }
+.quiz .fb { margin-top: .9rem; font-size: .93rem; display: none; }
+.quiz .fb.show { display: block; }
+
+/* ท้ายบท: เตือนว่าถามครูได้ — สกิลกำหนดให้ทุกบทต้องมี */
+.ask {
+  margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
+  font-size: .9rem; color: var(--ink-soft);
+}
+.nav { margin-top: 1.5rem; font-size: .9rem; display: flex; gap: 1.2rem; flex-wrap: wrap; }
+
+/* ── พิมพ์ลงกระดาษ ────────────────────────────────────────
+   บทเรียนถูกปรินต์จริง ⇒ ต้องอ่านออกขาวดำ และลิงก์ต้องเห็น URL */
+@media print {
+  html { font-size: 11pt; }
+  body { max-width: none; padding: 0; background: #fff; color: #000; }
+  h2 { color: #000; }
+  a { color: #000; text-decoration: none; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; word-break: break-all; }
+  .key, .warn { border-left-width: 2px; background: none; border: 1px solid #999; }
+  .quiz button { border: 1px solid #999; }
+  .nav { display: none; }
+  h2, h3 { break-after: avoid; }
+  .key, .warn, .quiz, figure, table { break-inside: avoid; }
+}
