@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ชีทสรุป · หลักการกระทำ</title>
+<title>ชีทสรุป · ภาษาของ paper</title>
 <link rel="stylesheet" href="../assets/lesson.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
@@ -13,9 +13,9 @@
 </head>
 <body>
 
-<h1>ชีทสรุป · หลักการกระทำ</h1>
-<p class="meta">อ้างอิงจาก <a href="../lessons/0001-action-principle.html">บทที่ 1</a> ·
-ออกแบบมาให้พิมพ์แล้วแปะข้างโต๊ะ</p>
+<h1>ชีทสรุป · ภาษาของ paper</h1>
+<p class="meta">บทที่ 1–3 · ออกแบบมาให้พิมพ์แล้วแปะข้างโต๊ะ</p>
+<div class="warn">ชีทนี้มีเฉพาะสิ่งที่<strong>สอนไปแล้ว</strong>เท่านั้น — ไม่ใช่ที่เพิ่มเนื้อหาใหม่ (เคยพลาดมาแล้วตอนใส่พิกัดวัฏจักรลงชีทก่อนที่บทเรียนจะสอน)</div>
 
 <h2>สูตรที่ต้องจำได้โดยไม่ต้องเปิด</h2>
 
@@ -56,10 +56,68 @@
   <tr><td>ลูกตุ้ม ยาว $l$</td><td>$\tfrac12 m l^2\dot\theta^2 + mgl\cos\theta$</td>
       <td>$\ddot\theta = -\dfrac{g}{l}\sin\theta$</td></tr>
   <tr><td>อนุภาคอิสระ</td><td>$\tfrac12 m\dot y^2$</td><td>ความเร็วคงที่</td></tr>
+  <tr><td>สปริง</td><td>$\tfrac12 m\dot q^2 - \tfrac12 kq^2$</td><td>$H=T+V$ อนุรักษ์</td></tr>
+  <tr><td>สนามสเกลาร์</td><td>$\tfrac12(\partial\phi)^2 - \tfrac12 m^2\phi^2$</td><td>ไคลน์–กอร์ดอน</td></tr>
 </table>
 
 <p class="src">ทั้งสามแถวคำนวณด้วย <code>sympy</code> ไม่ได้คัดลอกจากตำรา —
 รันซ้ำได้ที่ <code>scripts/verify/0001_action.py</code></p>
+
+<h2>สมมาตร → กฎอนุรักษ์ (บทที่ 2)</h2>
+
+<div class="key">
+  <p style="margin:0"><strong>ทฤษฎีบทเนอเธอร์</strong> — ทุกสมมาตรต่อเนื่องของการกระทำ
+  มีปริมาณอนุรักษ์คู่กันหนึ่งตัว · วิธีใช้จริง: <strong>ดูว่าตัวแปรไหนหายไปจาก $L$</strong></p>
+</div>
+
+<table>
+  <tr><th style="width:44%">$L$ ไม่มี $q$ (พิกัดวัฏจักร)</th><td>$\partial L/\partial\dot q$ คงที่</td></tr>
+  <tr><td>$L$ ไม่มี $x$</td><td>โมเมนตัม $m\dot x$ คงที่</td></tr>
+  <tr><td>$L$ ไม่มี $\theta$</td><td>โมเมนตัมเชิงมุม $mr^2\dot\theta$ คงที่</td></tr>
+  <tr><td>$L$ ไม่มี $t$ โผล่ตรง ๆ</td><td>พลังงาน $H$ คงที่</td></tr>
+</table>
+
+<table>
+  <tr><th style="width:44%">$H = \sum_i \dot q_i \dfrac{\partial L}{\partial \dot q_i} - L$</th>
+      <td>สำหรับ $L=\tfrac12 m\dot q^2 - V$ ได้ $H = T+V$ พอดี</td></tr>
+  <tr><th>$\dfrac{dH}{dt} = -\dfrac{\partial L}{\partial t}$</th>
+      <td>อ่านได้ทันทีว่าพลังงานอนุรักษ์ไหม โดยไม่ต้องแก้สมการ</td></tr>
+</table>
+
+<div class="warn">
+  <strong>$\partial$ ไม่ใช่ $d$</strong> — $\partial L/\partial t$ นับเฉพาะ $t$ ที่โผล่
+  <em>ตรง ๆ</em> ในสูตร ไม่นับที่ซ่อนใน $q(t)$ · $dL/dt$ นับหมด ·
+  ค่า $S$ เดี่ยว ๆ ไม่มีความหมายทางกายภาพ (ย้ายจุดอ้างอิง $V$ ค่าก็เปลี่ยน) —
+  ที่มีความหมายคือ<strong>ผลต่างระหว่างเส้นทาง</strong>
+</div>
+
+<h2>ดัชนีและเมตริก (บทที่ 3)</h2>
+
+<table>
+  <tr><th style="width:30%">$x^\mu = (t,x,y,z)$</th><td>$\mu,\nu$ วิ่ง 0–3 (รวมเวลา) · $i,j$ วิ่ง 1–3 (ที่ว่าง)</td></tr>
+  <tr><th>$g_{\mu\nu} = \mathrm{diag}(-1,1,1,1)$</th><td>เมตริก · กดดัชนี $v_\mu = g_{\mu\nu}v^\nu$ (ช่องเวลาเปลี่ยนเครื่องหมาย)</td></tr>
+  <tr><th>ดัชนีซ้ำ บน+ล่าง</th><td>รวมอัตโนมัติ ไม่ต้องเขียน $\sum$ (กฎของไอน์สไตน์)</td></tr>
+  <tr><th>นับดัชนีที่เหลือ</th><td>0 = สเกลาร์ · 1 = เวกเตอร์ · 2 = เทนเซอร์ · <strong>สองข้างสมการต้องเท่ากัน</strong></td></tr>
+  <tr><th>$\Delta s^2 &lt; 0$</th><td>timelike — เป็นเหตุเป็นผลกันได้</td></tr>
+  <tr><th>$\Delta s^2 = 0$</th><td>null — แสงถึงพอดี</td></tr>
+  <tr><th>$\Delta s^2 &gt; 0$</th><td>spacelike — ส่งผลถึงกันไม่ได้</td></tr>
+</table>
+
+<h2>หน่วยธรรมชาติ $\hbar=c=1$ (บทที่ 3)</h2>
+
+<table>
+  <tr><th style="width:30%">ความยาว = เวลา = $1/$มวล</th><td>ทุกปริมาณเขียนเป็น $(\text{มวล})^n$ ได้</td></tr>
+  <tr><th>$S$ ไร้มิติ</th><td>$[d^4x]=M^{-4} \Rightarrow [\mathcal{L}]=M^4$</td></tr>
+  <tr><th>$[\phi] = M$</th><td>สนามสเกลาร์ · $[\partial]=M$ · $[m]=M$</td></tr>
+  <tr><th>ใช้ตรวจสูตร</th><td>ทุกพจน์ใน $\mathcal{L}$ ต้องได้ $M^4$ เท่ากัน ไม่ตรง = เขียนผิด</td></tr>
+</table>
+
+<div class="key">
+  <p style="margin-bottom:.5rem"><strong>อ่าน Lagrangian ของสนามสเกลาร์</strong></p>
+  <div class="eq">$$ \mathcal{L} = \tfrac12 \partial_\mu\phi\,\partial^\mu\phi - \tfrac12 m^2\phi^2 \;\longrightarrow\; \ddot\phi - \nabla^2\phi + m^2\phi = 0 $$</div>
+  <p style="margin-bottom:0">จลน์ลบศักย์เหมือนเดิม · $\mathcal{L}$ ตัวเขียนสวย = ความหนาแน่น
+  ($L=\int\mathcal{L}\,d^3x$) · $m=0$ ⇒ สมการคลื่นธรรมดา</p>
+</div>
 
 <h2>สัญลักษณ์ที่จะเจอใน paper</h2>
 
@@ -71,7 +129,9 @@
   <tr><th>$\delta$</th><td>การแปรผัน — “บิดเส้นทางนิดหนึ่งแล้วดูว่าอะไรเปลี่ยน”</td></tr>
   <tr><th>$q,\ \dot q$</th><td>พิกัดทั่วไปและอนุพันธ์เวลาของมัน · จุดข้างบน = $d/dt$ เสมอ</td></tr>
   <tr><th>$S[q]$</th><td>วงเล็บ<em>เหลี่ยม</em> = ฟังก์ชันนัล (กินฟังก์ชันทั้งเส้น ไม่ใช่ตัวเลข)</td></tr>
-  <tr><th>$\int d^4x$</th><td>อินทิเกรตทั่วกาลอวกาศ (เวลา 1 + ที่ว่าง 3) — เจอในทฤษฎีสนาม</td></tr>
+  <tr><th>$\int d^4x$</th><td>อินทิเกรตทั่วกาลอวกาศ (เวลา 1 + ที่ว่าง 3)</td></tr>
+  <tr><th>$T^{\mu\nu}$</th><td>เทนเซอร์พลังงาน–โมเมนตัม — ของที่เนอเธอร์ให้มาจากสมมาตรการเลื่อน</td></tr>
+  <tr><th>Noether current $j^\mu$</th><td>ปริมาณอนุรักษ์ฉบับทฤษฎีสนาม · รวมทั่วที่ว่างได้ Noether charge $Q$</td></tr>
 </table>
 
 <div class="warn">
@@ -84,7 +144,9 @@
 <div class="ask">
   ชีทนี้จะโตขึ้นเรื่อย ๆ ตามบทเรียน · ตรงไหนอ่านแล้วยังไม่แน่ใจ <strong>ถามได้เลย</strong>
   <div class="nav">
-    <a href="../lessons/0001-action-principle.html">← บทที่ 1</a>
+    <a href="../lessons/0001-action-principle.html">บทที่ 1</a>
+    <a href="../lessons/0003-noether.html">บทที่ 2</a>
+    <a href="../lessons/0004-indices.html">บทที่ 3</a>
     <a href="../MISSION.md">🎯 Mission</a>
   </div>
 </div>
