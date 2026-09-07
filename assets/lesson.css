@@ -158,3 +158,22 @@ pre { background: var(--panel); padding: 1rem; overflow-x: auto; }
   h2, h3 { break-after: avoid; }
   .key, .warn, .quiz, figure, table { break-inside: avoid; }
 }
+
+/* ── ตัวนับคะแนนของชุดฝึก (ดู quiz.js · ใช้เมื่อหน้ามี <div id="score">) ──
+   เกาะบนสุดของจอเพื่อให้เห็นความคืบหน้าตลอดโดยไม่ต้องเลื่อนกลับ */
+#score {
+  position: sticky; top: 0; z-index: 5;
+  background: var(--paper); border-bottom: 1px solid var(--rule);
+  padding: .7rem 0 .6rem; margin-bottom: .5rem;
+}
+.score-bar { height: 3px; background: var(--rule); overflow: hidden; }
+.score-bar > span { display: block; height: 100%; background: var(--accent);
+                    transition: width .25s ease; }
+.score-text { font-size: .85rem; color: var(--ink-soft); margin-top: .5rem;
+              font-variant-numeric: tabular-nums; }
+.score-text b { color: var(--ink); font-weight: 600; }
+#again { font: inherit; font-size: .85rem; margin-top: .5rem; cursor: pointer;
+         background: var(--paper); color: var(--accent);
+         border: 1px solid var(--rule); padding: .4rem .8rem; }
+#again:hover { border-color: var(--accent); }
+@media print { #score { position: static; } #again { display: none; } }
