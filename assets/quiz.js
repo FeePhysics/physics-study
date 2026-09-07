@@ -36,7 +36,9 @@
       '<p class="score-text">ทำแล้ว <b>' + done.length + '</b> จาก ' + all.length +
       ' ข้อ · ถูก <b>' + ok.length + '</b></p>' +
       (done.length === all.length && all.length
-        ? '<button type="button" id="again">↻ เริ่มใหม่ทั้งชุด</button>' : '');
+        ? '<div class="score-btns">' +
+          '<button type="button" id="copy">📋 คัดลอกผล</button>' +
+          '<button type="button" id="again">↻ เริ่มใหม่ทั้งชุด</button></div>' : '');
   }
 
   document.addEventListener('click', function (e) {
@@ -60,6 +62,26 @@
       return;
     }
 
+    /* คัดลอกผลเป็นข้อความสั้น ๆ ให้วางกลับไปบอกครูได้ในคลิกเดียว
+       — ไม่งั้นต้องไล่ถามว่าผิดข้อไหน ซึ่งเป็นงานที่ไม่ควรตกเป็นของผู้เรียน */
+    if (e.target.id === 'copy') {
+      var all = [].slice.call(document.querySelectorAll('.quiz'));
+      var wrong = [];
+      all.forEach(function (q, i) { if (q.dataset.result === 'wrong') wrong.push(i + 1); });
+      var text = 'ถูก ' + (all.length - wrong.length) + '/' + all.length +
+                 (wrong.length ? ' · ผิดข้อ ' + wrong.join(', ') : ' · ถูกหมด');
+
+      var done = function () {
+        e.target.textContent = '✓ คัดลอกแล้ว';
+        setTimeout(function () { e.target.textContent = '📋 คัดลอกผล'; }, 2000);
+      };
+      // navigator.clipboard ใช้ไม่ได้บน http และในบาง iframe ⇒ ต้องมีทางสำรอง
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(done, function () { fallback(text, done); });
+      } else { fallback(text, done); }
+      return;
+    }
+
     if (e.target.id === 'again') {                     // ล้างทั้งชุดเพื่อทำซ้ำ
       document.querySelectorAll('.quiz').forEach(function (q) {
         delete q.dataset.result;
@@ -73,6 +95,14 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   });
+
+  function fallback(text, ok) {
+    var ta = document.createElement('textarea');
+    ta.value = text; ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta); ta.select();
+    try { document.execCommand('copy'); ok(); } catch (err) { window.prompt('คัดลอกข้อความนี้:', text); }
+    document.body.removeChild(ta);
+  }
 
   document.addEventListener('DOMContentLoaded', board);
   if (document.readyState !== 'loading') board();

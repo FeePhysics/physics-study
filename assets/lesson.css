@@ -177,3 +177,8 @@ pre { background: var(--panel); padding: 1rem; overflow-x: auto; }
          border: 1px solid var(--rule); padding: .4rem .8rem; }
 #again:hover { border-color: var(--accent); }
 @media print { #score { position: static; } #again { display: none; } }
+.score-btns { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .5rem; }
+#copy { font: inherit; font-size: .85rem; cursor: pointer; background: var(--accent);
+        color: var(--paper); border: 1px solid var(--accent); padding: .4rem .8rem; }
+#copy:hover { opacity: .88; }
+@media print { .score-btns { display: none; } }
