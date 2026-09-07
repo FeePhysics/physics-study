@@ -67,6 +67,13 @@ python -c "import sympy; print(sympy.__version__)"
 | `assets/lesson.css` | stylesheet ร่วมของทุกบท — Tufte-ish · dark mode · **print styles** (บทเรียนถูกปรินต์จริง) |
 | `assets/quiz.js` | แบบฝึกที่ให้ feedback ทันที · แค่วาง markup ไม่ต้องเขียน JS เพิ่ม |
 | `assets/_template.html` | โครงบทเรียน — ก๊อปไปเป็น `lessons/NNNN-*.html` แล้วเติมเนื้อ |
+| `scripts/build_standalone.py` | แปลงบทเป็น**ไฟล์เดียวจบ** — ฝัง CSS+JS และแปลง LaTeX เป็น **MathML** ⇒ เปิดที่ไหนก็ได้โดยไม่ต้องมี CDN |
+
+**ส่งบทเรียนให้แบต้องส่งฉบับ `build/` เสมอ** — ไฟล์ใน `lessons/` ลิงก์
+`../assets/lesson.css` แบบ relative ⇒ ดาวน์โหลดไฟล์เดียวไปเปิดจะไม่มีสไตล์
+และ quiz ไม่ทำงาน (เกิดจริงมาแล้ว) · `build/artifact-*.html` คือฉบับสำหรับ
+publish เป็น Artifact (ไม่มีแท็ก html/head/body เพราะตัวห่อถูกใส่ให้ตอน publish)
+· `build/` ไม่เข้า git — สร้างใหม่ทับทุกครั้ง **ห้ามแก้ไฟล์ในนั้นโดยตรง**
 
 **สร้างของใหม่ที่บทถัดไปอาจใช้ซ้ำ → เขียนเป็น component ใน `assets/`** อย่า inline
 ลงบทเรียนเดียว (กฎของสกิล: *"Reuse is the default, not the exception"*)
@@ -94,8 +101,14 @@ python3 scripts/check_layout.py     # เปิดเบราว์เซอร
 
 ## ⚠️ ข้อจำกัดของ Claude Code บนคลาวด์ (วัดแล้ว 2026-09-06)
 
-**egress proxy บล็อก CDN ทุกเจ้า** — `cdn.jsdelivr.net` และ `cdnjs.cloudflare.com`
-ตอบ `connect_rejected` ⇒ **สมการไม่เรนเดอร์ในคลาวด์เสมอ ไม่ว่าบทเรียนจะถูกหรือผิด**
+**egress proxy บล็อกแทบทุกโดเมน** — CDN (`cdn.jsdelivr.net`, `cdnjs.cloudflare.com`)
+และแหล่งอ้างอิงทั้งหมดที่ลองแล้ว (`wikipedia.org` · `arxiv.org` · `ocw.mit.edu` ·
+`feynmanlectures.caltech.edu` · `theoreticalminimum.com`) ⇒ **ในคลาวด์ทำได้แค่
+ค้นหา อ่านหน้าเว็บไม่ได้ และสมการไม่เรนเดอร์**
+
+⇒ **บทเรียนต้องยืนบนเนื้อหาที่พิสูจน์เองได้** (คำนวณด้วย sympy แล้วตรวจซ้ำอีกวิธี)
+ไม่ใช่บนการอ้างข้อความที่ยืนยันไม่ได้ · เก็บสคริปต์พิสูจน์ไว้ที่ `scripts/verify/`
+· ฉบับ `build/` แปลงสมการเป็น MathML ⇒ **อ่านได้แม้ไม่มี CDN**
 
 ⇒ กฎบ้าน "ตรวจบนเบราว์เซอร์จริง KaTeX error 0" ทำในคลาวด์ไม่ได้ · ที่ทำได้คือ
 `check_lessons.py` แล้ว **ให้แบเปิดไฟล์บนเครื่องตัวเองยืนยันอีกชั้น** ·

@@ -1,122 +1,159 @@
 /* lesson.css — stylesheet ร่วมของทุกบทเรียน
    ทุกบทเรียนต้อง <link> ไฟล์นี้ เพื่อให้ทั้ง workspace ดูเป็นคอร์สเดียวกัน
-   ไม่ใช่กองไฟล์ที่ไม่เกี่ยวกัน · แก้ที่นี่ที่เดียว ทุกบทเปลี่ยนตาม */
+   แก้ที่นี่ที่เดียว ทุกบทเปลี่ยนตาม
+
+   ทิศทางการออกแบบ: หน้า preprint — สิ่งที่ mission บอกว่าปลายทางคือ "อ่าน paper
+   ได้เอง" ⇒ ให้บทเรียนหน้าตาใกล้กับของจริงตั้งแต่วันแรก · กระดาษขาว หมึกอมน้ำเงิน
+   ลิงก์สีน้ำเงินแบบ hyperref เลขสมการในวงเล็บชิดขวา */
 
 :root {
-  --ink:      #1a1a1a;
-  --ink-soft: #55524d;
-  --bg:       #fdfcf9;   /* off-white อ่านนาน ๆ ไม่ล้าตาเท่าขาวล้วน */
-  --rule:     #ddd8cf;
-  --accent:   #8b3a2f;   /* หัวข้อ + ลิงก์ */
-  --key-bg:   #f3efe6;
-  --warn-bg:  #fdf3e7;
-  --warn-bar: #c9772a;
-  --ok:       #2d6a4f;
-  --no:       #a4303f;
-  --measure:  34em;      /* ~66 ตัวอักษร — ยาวกว่านี้ตาหาต้นบรรทัดถัดไปไม่เจอ */
+  --paper:     #ffffff;
+  --panel:     #f4f6fa;   /* พื้นกล่อง — เทาอมน้ำเงินตามสีลิงก์ ไม่ใช่เทากลาง */
+  --ink:       #14171c;   /* หมึกพิมพ์ ไม่ใช่ดำสนิท */
+  --ink-soft:  #5b6472;
+  --rule:      #dde2ea;
+  --accent:    #1a4fa0;   /* น้ำเงินแบบ \href ของ LaTeX */
+  --flag:      #a8420a;   /* กับดัก/ข้อควรระวัง — semantic แยกจาก accent */
+  --flag-bg:   #fdf5ef;
+  --ok:        #1c6b4a;
+  --no:        #b02a37;
+  --measure:   34rem;     /* ~65 ตัวอักษร */
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --ink: #e8e4dc; --ink-soft: #a29c92; --bg: #14130f; --rule: #34312a;
-    --accent: #e08a75; --key-bg: #1e1c17; --warn-bg: #241d13; --warn-bar: #d9924a;
-    --ok: #6fbf95; --no: #e08292;
+  :root:not([data-theme="light"]) {
+    --paper: #0f1216; --panel: #171c23; --ink: #e3e8ef; --ink-soft: #98a2b3;
+    --rule: #2a313b; --accent: #82aef2; --flag: #e39a63; --flag-bg: #1e1813;
+    --ok: #63c496; --no: #ef8a95;
   }
 }
-
-html { font-size: 17px; }
-body {
-  margin: 0 auto; padding: 3rem 1.5rem 6rem; max-width: var(--measure);
-  background: var(--bg); color: var(--ink);
-  font-family: Georgia, "Sarabun", "TH Sarabun New", serif;
-  line-height: 1.65; text-rendering: optimizeLegibility;
+:root[data-theme="dark"] {
+  --paper: #0f1216; --panel: #171c23; --ink: #e3e8ef; --ink-soft: #98a2b3;
+  --rule: #2a313b; --accent: #82aef2; --flag: #e39a63; --flag-bg: #1e1813;
+  --ok: #63c496; --no: #ef8a95;
 }
 
-h1, h2, h3 { font-family: -apple-system, "Segoe UI", "Sarabun", sans-serif; line-height: 1.25; }
-h1 { font-size: 1.9rem; margin: 0 0 .3rem; }
-h2 { font-size: 1.25rem; margin: 2.6rem 0 .6rem; color: var(--accent); }
-h3 { font-size: 1.05rem; margin: 1.8rem 0 .4rem; }
+html { font-size: 17px; -webkit-text-size-adjust: 100%; }
 
-.meta {           /* บรรทัดใต้ชื่อบท: เลขบท · เวลาที่ใช้ · ข้อต่อจากบทไหน */
-  font-family: -apple-system, "Segoe UI", sans-serif; font-size: .82rem;
-  color: var(--ink-soft); border-bottom: 1px solid var(--rule);
-  padding-bottom: 1.2rem; margin-bottom: 2rem;
+body {
+  margin: 0 auto; padding: 3.5rem 1.5rem 6rem; max-width: var(--measure);
+  background: var(--paper); color: var(--ink);
+  font-family: "Sarabun", "TH Sarabun New", system-ui, sans-serif;
+  font-size: 1rem; line-height: 1.72;
+}
+body > * + * { margin-top: 1.15rem; }
+
+/* หัวข้อและอังกฤษใช้ serif — เนื้อไทยใช้ Sarabun ที่อ่านยาว ๆ สบายกว่า */
+h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; line-height: 1.2;
+             text-wrap: balance; margin: 0; }
+h1 { font-size: 2.05rem; font-weight: 600; letter-spacing: -.01em; }
+h2 { font-size: 1.3rem;  font-weight: 600; margin-top: 1.6rem;
+     padding-bottom: .35rem; border-bottom: 1px solid var(--rule); }
+h3 { font-size: 1.02rem; font-weight: 600; }
+p, ul, ol, table, figure { margin: 0; }
+ul, ol { padding-left: 1.3rem; display: flex; flex-direction: column; gap: .5rem; }
+
+.meta {
+  font-family: "IBM Plex Mono", ui-monospace, monospace;
+  font-size: .78rem; letter-spacing: .02em; color: var(--ink-soft);
+  text-transform: none; margin-top: -.7rem;
 }
 
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+strong { font-weight: 600; }
+.nowrap { white-space: nowrap; }
 
-/* กล่องแนวคิดหลัก — บทหนึ่งควรมีไม่เกินหนึ่งกล่อง ไม่งั้นก็ไม่ใช่แนวคิด "หลัก" */
-.key {
-  background: var(--key-bg); border-left: 3px solid var(--accent);
-  padding: 1rem 1.2rem; margin: 1.8rem 0; border-radius: 0 3px 3px 0;
+/* ── สมการ ─────────────────────────────────────────────
+   รับได้ทั้ง KaTeX (ไฟล์ในรีโป) และ MathML (ฉบับไฟล์เดียว) */
+.eq {
+  overflow-x: auto; padding: .5rem 0; text-align: center;
+  font-size: 1.06rem;
 }
-.key > :first-child { margin-top: 0; } .key > :last-child { margin-bottom: 0; }
+.eq math { font-size: 1.18em; }
+math { font-family: "Source Serif 4", "Latin Modern Math", "STIX Two Math", serif; }
 
-/* กับดัก — convention ที่ต่างกันระหว่างตำรา, เครื่องหมาย, factor 2π */
-.warn {
-  background: var(--warn-bg); border-left: 3px solid var(--warn-bar);
-  padding: 1rem 1.2rem; margin: 1.8rem 0; border-radius: 0 3px 3px 0;
-  font-size: .95rem;
+/* เลขสมการชิดขวาในวงเล็บ — ธรรมเนียมของ paper ฟิสิกส์ */
+.eq[data-eqno] { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; }
+.eq[data-eqno]::after {
+  content: "(" attr(data-eqno) ")";
+  font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--ink-soft);
 }
-.warn::before { content: "⚠️ "; }
 
-/* ที่มา — ทุกข้ออ้างต้องมี ไม่งั้นบทเรียนเชื่อไม่ได้ */
+/* ── กล่อง ─────────────────────────────────────────────
+   เส้นบาง ไม่ใช่การ์ดมน — หน้า preprint ไม่มีการ์ด */
+.key, .warn { padding: 1rem 1.15rem; }
+.key > * + *, .warn > * + * { margin-top: .7rem; }
+.key  { background: var(--panel); border-left: 2px solid var(--accent); }
+.warn { background: var(--flag-bg); border-left: 2px solid var(--flag); font-size: .95rem; }
+.warn::before {
+  content: "ข้อควรระวัง"; font-family: "IBM Plex Mono", monospace;
+  font-size: .7rem; letter-spacing: .09em; color: var(--flag);
+}
+
 .src { font-size: .85rem; color: var(--ink-soft); }
 .src::before { content: "— ที่มา: "; }
 
-figure { margin: 2rem 0; }
-figure img, figure svg { max-width: 100%; height: auto; display: block; margin: 0 auto; }
-figcaption { font-size: .85rem; color: var(--ink-soft); margin-top: .6rem; text-align: center; }
+figure { display: flex; flex-direction: column; gap: .6rem; margin: 1rem 0; }
+figure svg, figure img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+figcaption { font-size: .85rem; color: var(--ink-soft); text-align: center; }
 
-/* บล็อกสมการที่ต้องเลื่อนได้บนมือถือ — KaTeX ไม่ตัดบรรทัดให้ */
-.eq { overflow-x: auto; padding: .3rem 0; }
+/* ── ตาราง ────────────────────────────────────────────
+   ตัวเลขต้องเรียงหลักตรงกัน · เส้นแนวนอนอย่างเดียวแบบตารางใน paper */
+table { border-collapse: collapse; width: 100%; font-size: .93rem;
+        font-variant-numeric: tabular-nums; }
+th, td { border-bottom: 1px solid var(--rule); padding: .55rem .6rem;
+         text-align: left; vertical-align: top; }
+thead th, tr:first-child th { border-bottom-width: 1.5px; }
+th { font-weight: 600; }
 
-table { border-collapse: collapse; width: 100%; font-size: .93rem; margin: 1.5rem 0; }
-th, td { border-bottom: 1px solid var(--rule); padding: .5rem .6rem; text-align: left; vertical-align: top; }
-th { font-family: -apple-system, "Segoe UI", sans-serif; font-size: .85rem; }
+code, pre { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .87em; }
+pre { background: var(--panel); padding: 1rem; overflow-x: auto; }
 
-/* จอแคบ: ตารางต้องเลื่อนในกล่องของตัวเอง ไม่ใช่ดันทั้งหน้าให้เลื่อนแนวนอน
+/* จอแคบ: ตารางเลื่อนในกล่องตัวเอง ไม่ใช่ดันทั้งหน้าให้เลื่อนแนวนอน
    (ตารางตัวเลข 6 คอลัมน์กว้าง 463px บนจอ 375px — วัดแล้วเกิดจริงในบทที่ 1)
-   ไม่ใส่ nowrap เพราะตารางที่ช่องเป็นประโยคไทยต้องตัดบรรทัดได้ตามปกติ */
+   ไม่ใส่ nowrap เพราะช่องที่เป็นประโยคไทยต้องตัดบรรทัดได้ */
 @media (max-width: 640px) {
+  html { font-size: 16px; }
+  body { padding: 2.5rem 1.1rem 4rem; }
   table { display: block; overflow-x: auto; }
 }
 
-code, pre { font-family: ui-monospace, "SF Mono", Consolas, monospace; font-size: .88em; }
-pre { background: var(--key-bg); padding: 1rem; overflow-x: auto; border-radius: 4px; }
-
-/* ── แบบฝึก (ดู quiz.js) ─────────────────────────────────── */
-.quiz { border: 1px solid var(--rule); border-radius: 5px; padding: 1.2rem; margin: 2rem 0; }
-.quiz h3 { margin-top: 0; }
-.quiz .choices { display: grid; gap: .5rem; margin: .9rem 0 0; }
+/* ── แบบฝึก (ดู quiz.js) ──────────────────────────────── */
+.quiz { border: 1px solid var(--rule); padding: 1.15rem;
+        display: flex; flex-direction: column; gap: .85rem; }
+.quiz .choices { display: flex; flex-direction: column; gap: .5rem; }
 .quiz button {
-  font: inherit; font-size: .95rem; text-align: left; cursor: pointer;
-  background: var(--bg); color: var(--ink); border: 1px solid var(--rule);
-  border-radius: 4px; padding: .6rem .8rem;
+  font: inherit; font-size: .95rem; line-height: 1.5; text-align: left; cursor: pointer;
+  background: var(--paper); color: var(--ink); border: 1px solid var(--rule);
+  padding: .65rem .8rem; transition: border-color .12s;
 }
 .quiz button:hover:not([disabled]) { border-color: var(--accent); }
-.quiz button.right { border-color: var(--ok); color: var(--ok); }
+.quiz button[disabled] { cursor: default; }
+.quiz button.right { border-color: var(--ok); color: var(--ok); font-weight: 600; }
 .quiz button.wrong { border-color: var(--no); color: var(--no); }
-.quiz .fb { margin-top: .9rem; font-size: .93rem; display: none; }
+.quiz .fb { font-size: .92rem; display: none; padding-left: .8rem;
+            border-left: 2px solid var(--rule); }
 .quiz .fb.show { display: block; }
 
-/* ท้ายบท: เตือนว่าถามครูได้ — สกิลกำหนดให้ทุกบทต้องมี */
-.ask {
-  margin-top: 3.5rem; padding-top: 1.2rem; border-top: 1px solid var(--rule);
-  font-size: .9rem; color: var(--ink-soft);
-}
-.nav { margin-top: 1.5rem; font-size: .9rem; display: flex; gap: 1.2rem; flex-wrap: wrap; }
+.ask { margin-top: 2rem; padding-top: 1.1rem; border-top: 1px solid var(--rule);
+       font-size: .9rem; color: var(--ink-soft); }
+.ask > * + * { margin-top: .9rem; }
+.nav { display: flex; gap: 1.2rem; flex-wrap: wrap; font-size: .88rem; }
 
-/* ── พิมพ์ลงกระดาษ ────────────────────────────────────────
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+
+/* ── พิมพ์ลงกระดาษ ────────────────────────────────────
    บทเรียนถูกปรินต์จริง ⇒ ต้องอ่านออกขาวดำ และลิงก์ต้องเห็น URL */
 @media print {
-  html { font-size: 11pt; }
-  body { max-width: none; padding: 0; background: #fff; color: #000; }
-  h2 { color: #000; }
+  html { font-size: 10.5pt; }
+  body { max-width: none; padding: 0; background: #fff; color: #000; display: block; }
+  body > * + * { margin-top: 1rem; }
   a { color: #000; text-decoration: none; }
-  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .8em; word-break: break-all; }
-  .key, .warn { border-left-width: 2px; background: none; border: 1px solid #999; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: .78em; word-break: break-all; }
+  .key, .warn { background: none; border: 1px solid #999; border-left-width: 2px; }
   .quiz button { border: 1px solid #999; }
+  .quiz .fb { display: block; }
   .nav { display: none; }
   h2, h3 { break-after: avoid; }
   .key, .warn, .quiz, figure, table { break-inside: avoid; }
