@@ -182,3 +182,24 @@ pre { background: var(--panel); padding: 1rem; overflow-x: auto; }
         color: var(--paper); border: 1px solid var(--accent); padding: .4rem .8rem; }
 #copy:hover { opacity: .88; }
 @media print { .score-btns { display: none; } }
+
+/* ── ช่องพิมพ์คำตอบเอง (.quiz[data-open] · ดู quiz.js) ──
+   ปรนัยเดาถูกได้ ⇒ ข้อที่ต้องพิสูจน์ว่าคำนวณเป็นจริงใช้ช่องพิมพ์แทน */
+.ans { display: flex; gap: .5rem; flex-wrap: wrap; }
+.ans input {
+  font: inherit; font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .95rem;
+  flex: 1 1 12rem; min-width: 0; padding: .6rem .7rem;
+  background: var(--paper); color: var(--ink); border: 1px solid var(--rule);
+}
+.ans input.right { border-color: var(--ok); color: var(--ok); font-weight: 600; }
+.ans input.wrong { border-color: var(--no); color: var(--no); }
+.ans input:read-only { background: var(--panel); }
+.ans button {
+  font: inherit; font-size: .9rem; cursor: pointer; padding: .6rem 1.1rem;
+  background: var(--accent); color: var(--paper); border: 1px solid var(--accent);
+}
+.ans button[disabled] { background: var(--panel); color: var(--ink-soft);
+                        border-color: var(--rule); cursor: default; }
+.ans-key { font-family: "IBM Plex Mono", monospace; font-size: .88rem;
+           color: var(--ok); margin-top: .6rem; }
+.hint { font-size: .85em; color: var(--ink-soft); font-weight: 400; }

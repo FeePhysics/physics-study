@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ชุดฝึกลงมือ · การแปรผัน</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>ชุดฝึกลงมือ · การแปรผัน</h1>
+<p class="meta">ต่อจากบทที่ 4 · 10 ข้อ · <strong>พิมพ์คำตอบเอง ไม่มีตัวเลือก</strong></p>
+
+<div class="key">
+  <p style="margin:0"><strong>ทำไมเปลี่ยนรูปแบบ</strong> — แบรายงานเองว่าบทที่ 4 ได้เต็ม
+  “เพราะเดาถูกหลายข้อ” · ปรนัยสามตัวเลือกเดาสุ่มถูก 33% ตัดทิ้งได้หนึ่งตัวก็เหลือ 50% ⇒
+  <em>คะแนนเต็มไม่ได้พิสูจน์ว่าคำนวณเป็น</em> · ชุดนี้ต้องลงมือทำจริงแล้วพิมพ์ผลลัพธ์ —
+  เดาไม่ได้เลย</p>
+</div>
+
+<p>เตรียมกระดาษกับปากกาไว้ · ทุกข้อคำนวณด้วยมือได้ในไม่เกินสองสามบรรทัด ·
+ตอบผิดจะเห็นเฉลยพร้อมคำอธิบายทันที</p>
+
+<div id="score"></div>
+
+<h2>ส่วนที่ 1 · ใช้สมการออยเลอร์–ลากรองจ์</h2>
+
+<div class="quiz" data-open data-answer="-k*y/m" data-alt="-ky/m|-(k/m)y|-(k/m)*y|-k/m*y|-y*k/m">
+  <h3>สปริง $L = \tfrac12 m\dot y^2 - \tfrac12 k y^2$ · หา $\ddot y$ &nbsp;<span class="hint">(ตอบเป็นนิพจน์ของ $k, m, y$)</span></h3>
+  <div class="ans"><input type="text" placeholder="เช่น  -k*y/m" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\partial L/\partial\dot y = m\dot y \Rightarrow \frac{d}{dt}(m\dot y) = m\ddot y$ ·
+  $\partial L/\partial y = -ky$ · แทนใน EL: $m\ddot y + ky = 0$ ⇒ $\ddot y = -\frac{k}{m}y$ ·
+  นี่คือการสั่นฮาร์มอนิกอย่างง่ายที่แบสอน — ออกมาจากหลักการกระทำ</p>
+</div>
+
+<div class="quiz" data-open data-answer="0" data-alt="ศูนย์|zero">
+  <h3>$L = \tfrac12 m\dot y^2 + b\dot y$ &nbsp;โดย $b$ เป็นค่าคงที่ · หา $\ddot y$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb"><strong>คำตอบคือ $0$ — พจน์ $b\dot y$ ไม่มีผลเลย</strong> ·
+  $\partial L/\partial\dot y = m\dot y + b$ แต่ $b$ เป็นค่าคงที่ ⇒ $\frac{d}{dt}$ ของมันเป็นศูนย์ ·
+  $\partial L/\partial y = 0$ ⇒ เหลือ $m\ddot y = 0$ ·
+  <em>เหตุผลลึกกว่านั้น:</em> $b\dot y = \frac{d}{dt}(by)$ เป็นอนุพันธ์แท้ ⇒ อินทิเกรตแล้ว
+  กลายเป็นพจน์ขอบล้วน ⇒ ไม่แตะสมการการเคลื่อนที่ · <strong>$\mathcal{L}$ ที่ต่างกันด้วย
+  อนุพันธ์แท้ให้ฟิสิกส์เดียวกัน</strong> — ข้อเท็จจริงที่ paper ใช้ตลอดเวลาเวลาจัดรูป $\mathcal{L}$</p>
+</div>
+
+<div class="quiz" data-open data-answer="lambda*phi^3/6" data-alt="λφ^3/6|lambda*phi**3/6|(lambda/6)phi^3|lambda/6*phi^3|(λ/6)φ^3">
+  <h3>$\mathcal{L} = \tfrac12(\partial\phi)^2 - \tfrac12 m^2\phi^2 - \frac{\lambda}{4!}\phi^4$ ·
+  EL ให้ $\;\ddot\phi - \nabla^2\phi + m^2\phi + \;?\; = 0$ &nbsp;<span class="hint">(พจน์ที่หายไป)</span></h3>
+  <div class="ans"><input type="text" placeholder="เช่น  lambda*phi^3/6" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\frac{\partial}{\partial\phi}\!\left(\frac{\lambda}{24}\phi^4\right) = \frac{\lambda}{6}\phi^3$
+  ($4! = 24$) · เครื่องหมายลบใน $\mathcal{L}$ กับลบใน EL หักกัน ⇒ ได้ $+\frac{\lambda}{6}\phi^3$ ·
+  <em>นี่คือทฤษฎี $\phi^4$</em> — ตัวอย่างแรกของสนามที่<strong>มีอันตรกิริยากับตัวเอง</strong>
+  (ไคลน์–กอร์ดอนเป็นสมการเชิงเส้น ⇒ คลื่นเดินผ่านกันเฉย ๆ · พจน์ $\phi^3$ ทำให้มันชนกันได้)
+  · ตัวหาร $4!$ ใส่ไว้เพื่อให้พจน์นี้ออกมาสวย</p>
+</div>
+
+<h2>ส่วนที่ 2 · พจน์ขอบ</h2>
+
+<div class="quiz" data-open data-answer="0" data-alt="ศูนย์|zero">
+  <h3>$y(t) = 5t(2-t)$, $\eta(t) = t^2(2-t)$, ช่วง $t\in[0,2]$, $m=1$ ·
+  หาพจน์ขอบ $\big[m\dot y\,\eta\big]_0^2$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">ไม่ต้องคำนวณ $\dot y$ เลยก็ได้ — $\eta(0) = 0$ และ $\eta(2) = 4(0) = 0$ ⇒
+  ทั้งสองปลายเป็นศูนย์ ⇒ พจน์ขอบเป็น $0$ · <strong>ดูที่ $\eta$ ที่ปลายก่อนเสมอ</strong>
+  ถ้าเป็นศูนย์ทั้งคู่ก็จบ ไม่ต้องแตะ $\dot y$</p>
+</div>
+
+<div class="quiz" data-open data-answer="0" data-alt="ศูนย์|zero">
+  <h3>$\eta(t) = t(2-t)^2$ · หาค่า $\eta(2)$ &nbsp;<span class="hint">(ใช้ตัดสินว่า $\eta$ ตัวนี้ใช้แปรผันได้ไหม)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\eta(2) = 2\cdot(0)^2 = 0$ · และ $\eta(0) = 0$ ด้วย ⇒ <strong>ใช้ได้</strong> ·
+  เกณฑ์เดียวของการบิดที่ยอมรับได้คือปลายทั้งสองเป็นศูนย์ — รูปร่างระหว่างนั้นอิสระเต็มที่</p>
+</div>
+
+<h2>ส่วนที่ 3 · บทตั้งหลัก — ที่ที่เดาแล้วพลาดแน่</h2>
+
+<div class="quiz" data-open data-answer="0" data-alt="ศูนย์|zero">
+  <h3>คำนวณ $\displaystyle\int_0^2 t(2-t)\,(t-1)\,dt$ &nbsp;<span class="hint">(กระจายแล้วอินทิเกรตตรง ๆ)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb"><strong>ได้ $0$ พอดี</strong> — ทั้งที่ $f = t-1$ ไม่ใช่ศูนย์เลย ·
+  เหตุผล: $t(2-t)$ สมมาตรรอบ $t=1$ ส่วน $(t-1)$ ปฏิสมมาตรรอบจุดเดียวกัน ⇒ ครึ่งซ้ายกับ
+  ครึ่งขวาหักล้างกันหมด · <strong>นี่คือเหตุผลที่บทตั้งหลักต้องพูดว่า “ทุก $\eta$”</strong> —
+  ทดสอบด้วยการบิดตัวเดียวแล้วได้ศูนย์ ยังสรุปอะไรไม่ได้</p>
+</div>
+
+<div class="quiz" data-open data-answer="4/15" data-alt="0.2667|0.267|0.26667|0.2666667">
+  <h3>คราวนี้ $\displaystyle\int_0^2 t(2-t)(t-1)\cdot(t-1)\,dt$ &nbsp;<span class="hint">(เศษส่วน หรือทศนิยม 3 ตำแหน่ง)</span></h3>
+  <div class="ans"><input type="text" placeholder="เช่น  4/15 หรือ 0.267" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$= \frac{4}{15} \approx 0.267 \neq 0$ · ต่างจากข้อที่แล้วตรงที่ $\eta$ ถูกเลือกให้
+  <strong>มีเครื่องหมายตามหลัง $f$ ทุกจุด</strong> ($(t-1)$ คูณเข้าไป) ⇒ ตัวถูกอินทิเกรตเป็นบวก
+  เกือบทั้งช่วง ⇒ หักล้างกันไม่ได้ · <em>เจอ $\eta$ แบบนี้แม้ตัวเดียวก็พอ</em> ที่จะสรุปว่า
+  $f \neq 0$ ⇒ ถ้าอินทิกรัลต้องเป็นศูนย์สำหรับทุก $\eta$ จริง ๆ แล้ว $f$ ต้องเป็นศูนย์</p>
+</div>
+
+<h2>ส่วนที่ 4 · แปรผันด้วยมือ</h2>
+
+<div class="quiz" data-open data-answer="0" data-alt="ศูนย์|zero">
+  <h3>$m=1$, $g=10$ · เส้นทาง $y = 5t(2-t) + \varepsilon\,t(2-t)$ ·
+  หา $\left.\frac{dS}{d\varepsilon}\right|_{0}$ &nbsp;<span class="hint">(คิดก่อนคำนวณ — $5t(2-t)$ คือเส้นทางอะไร)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$5t(2-t)$ คือ<strong>เส้นทางจริง</strong>ของบทที่ 1 ⇒ มันทำให้ $S$ นิ่งอยู่แล้ว ⇒
+  อนุพันธ์เป็น $0$ โดยไม่ต้องคำนวณ · คำนวณเต็ม ๆ ได้ $S(\varepsilon) = -\frac{100}{3} + \frac43\varepsilon^2$
+  ⇒ ไม่มีพจน์ $\varepsilon$ เชิงเส้น ⇒ อนุพันธ์ที่ $0$ เป็นศูนย์ ✓</p>
+</div>
+
+<div class="quiz" data-open data-answer="-8/3" data-alt="-2.667|-2.6667|-2.67|-2.66667">
+  <h3>คราวนี้เส้นทางตั้งต้นผิด: $y = 4t(2-t) + \varepsilon\,t(2-t)$ (สูงสุด 4 ม. ไม่ใช่ 5) ·
+  $\left.\frac{dS}{d\varepsilon}\right|_{0}$ เป็นเท่าไร</h3>
+  <div class="ans"><input type="text" placeholder="เช่น  -8/3 หรือ -2.667" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$= -\frac{8}{3} \approx -2.67 \neq 0$ ⇒ <strong>ไม่ใช่เส้นทางจริง</strong> ·
+  เครื่องหมายลบบอกทิศทางด้วย: เพิ่ม $\varepsilon$ แล้ว $S$ ลดลง ⇒ ต้องโป่งขึ้นอีก ⇒
+  เส้นทางจริงสูงกว่า 4 เมตร (และเรารู้ว่าคือ 5) · <em>อนุพันธ์นี้คือเข็มทิศที่ชี้ไปยัง
+  เส้นทางจริง</em> ไม่ใช่แค่ตัวบอกถูก/ผิด</p>
+</div>
+
+<h2>ส่วนที่ 5 · นับมิติ</h2>
+
+<div class="quiz" data-open data-answer="1" data-alt="m|m^1|m1">
+  <h3>ในหน่วย $\hbar=c=1$ · พจน์ $g\,\phi^3$ อยู่ใน $\mathcal{L}$ · ค่าคงที่ $g$ มีมิติเชิงมวลเท่าไร
+  <span class="hint">(ตอบเป็นเลขยกกำลัง เช่น 0, 1, 2)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$[\mathcal{L}] = M^4$ และ $[\phi] = M$ ⇒ $[g]\cdot M^3 = M^4$ ⇒ $[g] = M^1$ ⇒ ตอบ <strong>1</strong> ·
+  เทียบกับ $\lambda\phi^4$ ที่ได้ $[\lambda] = M^0$ (ไร้มิติ) · <em>เกร็ด:</em> ค่าคงที่คู่ควบ
+  ที่มีมิติเป็นบวกแบบนี้บอกว่าอันตรกิริยาแรงที่พลังงานต่ำและอ่อนลงที่พลังงานสูง —
+  ตรงข้ามกับกรณีไร้มิติ · นับมิติอย่างเดียวก็รู้พฤติกรรมคร่าว ๆ ของทฤษฎีแล้ว</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา ·
+  <strong>ข้อไหนที่ต้องเปิดดูเฉลยถึงจะเข้าใจ บอกมาด้วยได้</strong> — มีค่ากว่าคะแนนรวม ·
+  ต่อจากนี้ชุดฝึกจะเป็นแบบพิมพ์เองทั้งหมด ปรนัยเก็บไว้ใช้เฉพาะข้อที่วัดความเข้าใจเชิงแนวคิด
+  ซึ่งเขียนเป็นตัวเลขไม่ได้
+  <div class="nav">
+    <a href="./0005-variation.html">← บทที่ 4</a>
+    <a href="./0006-maxwell.html">บทที่ 5</a>
+    <a href="../reference/0001-action-cheatsheet.html">📎 ชีทสรุป</a>
+  </div>
+</div>
+
+</body>
+</html>

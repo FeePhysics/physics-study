@@ -48,6 +48,23 @@ with sync_playwright() as p:
             if width == 1200:                       # ทดสอบ quiz ครั้งเดียวพอ
                 for i in range(page.locator(".quiz").count()):
                     quiz = page.locator(".quiz").nth(i)
+
+                    if quiz.get_attribute("data-open") is not None:
+                        # แบบพิมพ์เอง: ยิงเฉลยของตัวเองเข้าไป ต้องได้ right
+                        # (จับกรณีเฉลยที่ normalizer อ่านไม่ตรงกับตัวเอง — เกิดได้จริง
+                        #  เมื่อเฉลยมีวงเล็บหรือเครื่องหมายคูณที่ถูก normalize ทิ้ง)
+                        key = quiz.get_attribute("data-answer")
+                        quiz.locator(".ans input").fill(key)
+                        quiz.locator(".ans button").click()
+                        page.wait_for_timeout(120)
+                        st = quiz.evaluate("q => ({res: q.dataset.result,"
+                                           " marked: q.querySelector('.ans input').classList.contains('right'),"
+                                           " fb: !!q.querySelector('.fb.show'),"
+                                           " locked: q.querySelector('.ans button').disabled})")
+                        if not (st["res"] == "right" and st["marked"] and st["fb"] and st["locked"]):
+                            problems.append(f"{rel}: quiz[data-open] #{i+1} เฉลยของตัวเองไม่ผ่าน — {st}")
+                        continue
+
                     ans = int(quiz.get_attribute("data-answer"))
                     n = quiz.locator("button").count()
                     pick = (ans + 1) % n            # จงใจตอบผิด

@@ -18,6 +18,22 @@
    ตัวนับคะแนน (ไม่บังคับ) — วาง <div id="score"></div> ไว้ที่ไหนก็ได้ในหน้า
    แล้วมันจะอัปเดตเอง พร้อมปุ่มเริ่มใหม่เมื่อทำครบ
 
+   ── แบบพิมพ์คำตอบเอง (ไม่มีตัวเลือกให้เดา) ──────────────
+
+     <div class="quiz" data-open data-answer="-k*y/m" data-alt="-(k/m)y">
+       <h3>คำถาม…</h3>
+       <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ"><button>ตรวจ</button></div>
+       <p class="fb">อธิบาย…</p>
+     </div>
+
+   ปรนัยเดาถูกได้ 33–50% ⇒ คะแนนเต็มไม่ได้พิสูจน์ว่าเข้าใจ (ผู้เรียนรายงานเองว่า
+   "ตอบถูกเพราะเดา") · แบบพิมพ์เองตัดช่องนั้นทิ้งทั้งหมด
+
+   การตรวจยืดหยุ่นเรื่อง *รูปแบบ* แต่ไม่ยืดหยุ่นเรื่อง *ค่า*:
+   ตัวเลขเทียบเชิงค่า (รับ 4/15 · 0.2667 · .267) · นิพจน์ตัด * และช่องว่างก่อนเทียบ
+   · `data-alt` ใส่รูปแบบอื่นที่ยอมรับได้ คั่นด้วย |
+   · พิมพ์อะไรที่อ่านไม่ออกเลย = **ไม่นับผิด** บอกให้ลองใหม่
+
    ⚠️ กฎเนื้อหาที่ CSS/JS บังคับให้ไม่ได้ (สกิลกำหนด แต่คนเขียนต้องคุมเอง):
       ทุกตัวเลือกต้องยาวเท่ากัน — จำนวนคำและจำนวนอักขระ
       ตัวเลือกที่ยาวกว่าเพื่อน = เฉลยที่มองเห็นได้โดยไม่ต้องคิด */
@@ -41,7 +57,65 @@
           '<button type="button" id="again">↻ เริ่มใหม่ทั้งชุด</button></div>' : '');
   }
 
+  /* ── ตรวจคำตอบที่พิมพ์เอง ───────────────────────────── */
+  function norm(v) {
+    return String(v).trim().toLowerCase()
+      .replace(/[−–—]/g, '-')          // ขีดยูนิโคด → ลบธรรมดา
+      .replace(/\*\*/g, '^')
+      .replace(/[\s*·]/g, '')          // ช่องว่างและเครื่องหมายคูณไม่สำคัญ
+      .replace(/[()]/g, '');
+  }
+  function num(v) {                     // อ่านเป็นตัวเลข รับเศษส่วน a/b
+    var s = norm(v), m = s.match(/^(-?\d*\.?\d+)\/(-?\d*\.?\d+)$/);
+    if (m) return parseFloat(m[1]) / parseFloat(m[2]);
+    return /^-?\d*\.?\d+$/.test(s) ? parseFloat(s) : null;
+  }
+  function judge(quiz, typed) {
+    if (!typed.trim()) return 'empty';
+    var keys = [quiz.dataset.answer].concat((quiz.dataset.alt || '').split('|').filter(Boolean));
+    var got = num(typed);
+    for (var i = 0; i < keys.length; i++) {
+      var want = num(keys[i]);
+      if (got !== null && want !== null) {
+        // ยอมให้ปัดเศษได้ 0.5% — โจทย์บอกว่าตอบเป็นทศนิยมก็ได้ แล้ว 4/15 → 0.2666
+        // ต่างจากค่าจริง 6.7e-5 ซึ่งเกิน tolerance แบบสัมบูรณ์ที่แคบไป
+        var tol = Math.max(1e-9, Math.abs(want) * 5e-3);
+        if (Math.abs(got - want) <= tol) return 'right';
+      }
+      else if (norm(typed) === norm(keys[i])) return 'right';
+    }
+    return 'wrong';
+  }
+
   document.addEventListener('click', function (e) {
+    var ansBtn = e.target.closest('.quiz[data-open] .ans button');
+    if (ansBtn) {
+      var q = ansBtn.closest('.quiz');
+      if (q.dataset.result) return;
+      var input = q.querySelector('.ans input');
+      var verdict = judge(q, input.value);
+
+      if (verdict === 'empty') {        // ยังไม่ได้ตอบ ≠ ตอบผิด
+        input.focus();
+        input.placeholder = 'พิมพ์คำตอบก่อนกดตรวจ';
+        return;
+      }
+      input.readOnly = true;
+      input.classList.add(verdict);
+      ansBtn.disabled = true;
+      var fb = q.querySelector('.fb');
+      if (fb) fb.classList.add('show');
+      if (verdict === 'wrong') {
+        var key = document.createElement('p');
+        key.className = 'ans-key';
+        key.textContent = 'คำตอบ: ' + q.dataset.answer;
+        fb.parentNode.insertBefore(key, fb);
+      }
+      q.dataset.result = verdict;
+      board();
+      return;
+    }
+
     var btn = e.target.closest('.quiz .choices button');
     if (btn) {
       var quiz = btn.closest('.quiz');
@@ -83,6 +157,12 @@
     }
 
     if (e.target.id === 'again') {                     // ล้างทั้งชุดเพื่อทำซ้ำ
+      document.querySelectorAll('.ans-key').forEach(function (n) { n.remove(); });
+      document.querySelectorAll('.quiz[data-open]').forEach(function (q) {
+        var i = q.querySelector('.ans input');
+        i.value = ''; i.readOnly = false; i.classList.remove('right', 'wrong');
+        q.querySelector('.ans button').disabled = false;
+      });
       document.querySelectorAll('.quiz').forEach(function (q) {
         delete q.dataset.result;
         q.querySelectorAll('.choices button').forEach(function (b) {
@@ -103,6 +183,13 @@
     try { document.execCommand('copy'); ok(); } catch (err) { window.prompt('คัดลอกข้อความนี้:', text); }
     document.body.removeChild(ta);
   }
+
+  document.addEventListener('keydown', function (e) {   // กด Enter = กดตรวจ
+    if (e.key === 'Enter' && e.target.matches('.quiz[data-open] .ans input')) {
+      e.preventDefault();
+      e.target.parentNode.querySelector('button').click();
+    }
+  });
 
   document.addEventListener('DOMContentLoaded', board);
   if (document.readyState !== 'loading') board();
