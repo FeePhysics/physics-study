@@ -26,6 +26,25 @@
        <p class="fb">อธิบาย…</p>
      </div>
 
+   ── โจทย์ไล่ขั้น (หลายช่องในข้อเดียว) ───────────────────
+
+     <div class="quiz" data-steps>
+       <h3>โจทย์…</h3>
+       <ol class="steps">
+         <li data-answer="m*v"><p>ขั้น 1 · …</p>
+           <div class="ans"><input type="text"><button>ตรวจ</button></div>
+           <p class="fb">…</p></li>
+         <li data-answer="m*a">…</li>
+       </ol>
+       <p class="fb">สรุปทั้งโจทย์</p>
+     </div>
+
+   ขั้นถัดไปเปิดเมื่อขั้นก่อนหน้าถูก **หรือผิด** — ผิดแล้วเห็นเฉลยขั้นนั้นทันที
+   แล้วเดินต่อได้ เพราะขั้นถัดไปต้องใช้ผลของขั้นนี้ · ทั้งข้อนับว่าถูกเมื่อถูกครบทุกขั้น
+
+   มีไว้เพราะคะแนนรายข้อบอกแค่ "ผิด" แต่ไม่บอกว่า **หลุดตรงขั้นไหน** ซึ่งเป็นสิ่งเดียว
+   ที่บอกได้ว่าต้องซ่อมอะไร
+
    ปรนัยเดาถูกได้ 33–50% ⇒ คะแนนเต็มไม่ได้พิสูจน์ว่าเข้าใจ (ผู้เรียนรายงานเองว่า
    "ตอบถูกเพราะเดา") · แบบพิมพ์เองตัดช่องนั้นทิ้งทั้งหมด
 
@@ -70,9 +89,9 @@
     if (m) return parseFloat(m[1]) / parseFloat(m[2]);
     return /^-?\d*\.?\d+$/.test(s) ? parseFloat(s) : null;
   }
-  function judge(quiz, typed) {
+  function judge(el, typed) {          // el = .quiz หรือ <li> ของขั้น — ขอแค่มี data-answer
     if (!typed.trim()) return 'empty';
-    var keys = [quiz.dataset.answer].concat((quiz.dataset.alt || '').split('|').filter(Boolean));
+    var keys = [el.dataset.answer].concat((el.dataset.alt || '').split('|').filter(Boolean));
     var got = num(typed);
     for (var i = 0; i < keys.length; i++) {
       var want = num(keys[i]);
@@ -87,7 +106,58 @@
     return 'wrong';
   }
 
+  /* ── โจทย์ไล่ขั้น ─────────────────────────────────────── */
+  function openStep(li) {
+    if (li) { li.classList.add('open'); var i = li.querySelector('input'); if (i) i.focus(); }
+  }
+  function finishStep(li, verdict) {
+    var input = li.querySelector('input');
+    input.readOnly = true;
+    input.classList.add(verdict);
+    li.querySelector('.ans button').disabled = true;
+    li.dataset.result = verdict;
+    var fb = li.querySelector('.fb');
+    if (fb) fb.classList.add('show');
+    if (verdict === 'wrong') {
+      var key = document.createElement('p');
+      key.className = 'ans-key';
+      key.textContent = 'ขั้นนี้ตอบ: ' + li.dataset.answer;
+      li.insertBefore(key, fb || null);
+    }
+
+    var quiz = li.closest('.quiz');
+    var steps = [].slice.call(quiz.querySelectorAll('.steps > li'));
+    var next = steps[steps.indexOf(li) + 1];
+    if (next) { openStep(next); return; }
+
+    // ขั้นสุดท้ายจบแล้ว → สรุปทั้งข้อ
+    var ok = steps.filter(function (s) { return s.dataset.result === 'right'; }).length;
+    quiz.dataset.result = (ok === steps.length) ? 'right' : 'wrong';
+    var tally = document.createElement('p');
+    tally.className = 'step-tally ' + quiz.dataset.result;
+    tally.textContent = (ok === steps.length)
+      ? '✓ ถูกครบทั้ง ' + steps.length + ' ขั้น'
+      : 'ผ่าน ' + ok + ' จาก ' + steps.length + ' ขั้น';
+    quiz.insertBefore(tally, quiz.querySelector(':scope > .fb') || null);
+    var qfb = quiz.querySelector(':scope > .fb');
+    if (qfb) qfb.classList.add('show');
+    board();
+  }
+
   document.addEventListener('click', function (e) {
+    var stepBtn = e.target.closest('.quiz[data-steps] .steps > li .ans button');
+    if (stepBtn) {
+      var li = stepBtn.closest('li');
+      if (li.dataset.result) return;
+      var input = li.querySelector('input');
+      var verdict = judge(li, input.value);
+      if (verdict === 'empty') {
+        input.focus(); input.placeholder = 'พิมพ์คำตอบก่อนกดตรวจ'; return;
+      }
+      finishStep(li, verdict);
+      return;
+    }
+
     var ansBtn = e.target.closest('.quiz[data-open] .ans button');
     if (ansBtn) {
       var q = ansBtn.closest('.quiz');
@@ -157,7 +227,17 @@
     }
 
     if (e.target.id === 'again') {                     // ล้างทั้งชุดเพื่อทำซ้ำ
-      document.querySelectorAll('.ans-key').forEach(function (n) { n.remove(); });
+      document.querySelectorAll('.ans-key, .step-tally').forEach(function (n) { n.remove(); });
+      document.querySelectorAll('.quiz[data-steps]').forEach(function (q) {
+        q.querySelectorAll('.steps > li').forEach(function (li, i) {
+          delete li.dataset.result;
+          li.classList.toggle('open', i === 0);
+          var inp = li.querySelector('input');
+          inp.value = ''; inp.readOnly = false; inp.classList.remove('right', 'wrong');
+          li.querySelector('.ans button').disabled = false;
+          var fb = li.querySelector('.fb'); if (fb) fb.classList.remove('show');
+        });
+      });
       document.querySelectorAll('.quiz[data-open]').forEach(function (q) {
         var i = q.querySelector('.ans input');
         i.value = ''; i.readOnly = false; i.classList.remove('right', 'wrong');
@@ -185,12 +265,17 @@
   }
 
   document.addEventListener('keydown', function (e) {   // กด Enter = กดตรวจ
-    if (e.key === 'Enter' && e.target.matches('.quiz[data-open] .ans input')) {
+    if (e.key === 'Enter' && e.target.matches('.quiz[data-open] .ans input, .quiz[data-steps] .ans input')) {
       e.preventDefault();
       e.target.parentNode.querySelector('button').click();
     }
   });
 
-  document.addEventListener('DOMContentLoaded', board);
-  if (document.readyState !== 'loading') board();
+  function initSteps() {              // เปิดเฉพาะขั้นแรกของทุกข้อ
+    document.querySelectorAll('.quiz[data-steps] .steps > li:first-child')
+      .forEach(function (li) { li.classList.add('open'); });
+  }
+
+  document.addEventListener('DOMContentLoaded', function () { initSteps(); board(); });
+  if (document.readyState !== 'loading') { initSteps(); board(); }
 })();

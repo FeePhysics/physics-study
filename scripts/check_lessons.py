@@ -55,6 +55,23 @@ def check(f: pathlib.Path, html: str):
     for m in re.finditer(r'<div class="quiz"([^>]*)>(.*?)</div>\s*(?=<h|<div class="ask"|</body)',
                          html, flags=re.S):
         attrs, block = m.group(1), m.group(2)
+
+        if 'data-steps' in attrs:
+            # โจทย์ไล่ขั้น: เฉลยอยู่ที่ <li> แต่ละขั้น ไม่ใช่ที่ตัว .quiz
+            steps = re.findall(r'<li ([^>]*)>(.*?)</li>', block, flags=re.S)
+            if len(steps) < 2:
+                bad("quiz[data-steps] มีขั้นเดียว — ใช้ data-open แทน")
+            for j, (sa, sb) in enumerate(steps, 1):
+                if not re.search(r'data-answer="[^"]+"', sa):
+                    bad(f"quiz[data-steps] ขั้นที่ {j} ไม่มี data-answer")
+                if '<input' not in sb or '<button' not in sb:
+                    bad(f"quiz[data-steps] ขั้นที่ {j} ไม่มีช่องกรอกหรือปุ่มตรวจ")
+                if 'class="fb"' not in sb:
+                    bad(f"quiz[data-steps] ขั้นที่ {j} ไม่มี .fb — ผิดแล้วไม่รู้ว่าผิดตรงไหน")
+            if 'class="choices"' in block:
+                bad("quiz[data-steps] มี .choices ปนอยู่ด้วย")
+            continue
+
         am = re.search(r'data-answer="([^"]*)"', attrs)
         if not am:
             bad("quiz ไม่มี data-answer — ตอบแล้วไม่มีอะไรเกิดขึ้น")

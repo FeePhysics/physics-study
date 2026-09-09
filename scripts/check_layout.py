@@ -49,6 +49,24 @@ with sync_playwright() as p:
                 for i in range(page.locator(".quiz").count()):
                     quiz = page.locator(".quiz").nth(i)
 
+                    if quiz.get_attribute("data-steps") is not None:
+                        # ไล่ขั้น: ยิงเฉลยของทุกขั้น ต้องผ่านหมดและทั้งข้อต้อง right
+                        n_steps = quiz.locator(".steps > li").count()
+                        for j in range(n_steps):
+                            li = quiz.locator(".steps > li").nth(j)
+                            li.locator(".ans input").fill(li.get_attribute("data-answer"))
+                            li.locator(".ans button").click()
+                            page.wait_for_timeout(100)
+                            if li.get_attribute("data-result") != "right":
+                                problems.append(f"{rel}: ข้อ #{i+1} ขั้นที่ {j+1}"
+                                                " เฉลยของตัวเองไม่ผ่าน")
+                        st = quiz.evaluate("q => ({res: q.dataset.result,"
+                                           " tally: !!q.querySelector('.step-tally'),"
+                                           " fb: !!q.querySelector(':scope > .fb.show')})")
+                        if not (st["res"] == "right" and st["tally"] and st["fb"]):
+                            problems.append(f"{rel}: quiz[data-steps] #{i+1} สรุปทั้งข้อไม่ถูก — {st}")
+                        continue
+
                     if quiz.get_attribute("data-open") is not None:
                         # แบบพิมพ์เอง: ยิงเฉลยของตัวเองเข้าไป ต้องได้ right
                         # (จับกรณีเฉลยที่ normalizer อ่านไม่ตรงกับตัวเอง — เกิดได้จริง

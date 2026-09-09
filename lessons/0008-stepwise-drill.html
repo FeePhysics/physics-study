@@ -1,0 +1,208 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ไล่ขั้น · การแปรผัน</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>ไล่ขั้น · การแปรผัน</h1>
+<p class="meta">4 โจทย์ · 15 ขั้นย่อย · ตอบทีละขั้น เห็นทันทีว่าหลุดตรงไหน</p>
+
+<div class="key">
+  <p><strong>ผลของชุดที่แล้วบอกอะไร</strong> — ถูก 6/10 ผิดข้อ 1, 4, 8, 9 ·
+  สี่ข้อนั้นไม่ได้กระจายมั่ว มันมีอย่างเดียวที่เหมือนกัน:</p>
+  <p style="margin-bottom:0"><strong>ทุกข้อที่ผิดคือข้อที่ต้องเดินหลายขั้นต่อกันเอง</strong>
+  ส่วนหกข้อที่ถูกคือข้อที่ตอบได้ด้วยการทำ<em>ขั้นเดียว</em> (อนุพันธ์ของ $\phi^4$ ·
+  แทนค่า $\eta(2)$ · อินทิเกรตพหุนาม · นับมิติ) ⇒ <em>ชิ้นส่วนมีครบแล้ว
+  ที่ยังไม่ติดคือการต่อชิ้นส่วนเอง</em></p>
+</div>
+
+<p>ชุดนี้จึงไม่ถามผลลัพธ์สุดท้าย แต่ให้เดิน<strong>ทีละขั้น</strong> · ตอบผิดขั้นไหน
+เห็นเฉลยของขั้นนั้นทันทีแล้วไปต่อได้ (ขั้นถัดไปต้องใช้ผลของขั้นก่อน) ·
+ทำแบบนี้จะรู้ว่าที่พลาดคือ <em>ขั้นไหน</em> ไม่ใช่แค่ "ทั้งข้อผิด"</p>
+
+<div class="warn">
+  <strong>วิธีพิมพ์</strong> — จุดบนหัวพิมพ์ไม่ได้ ⇒ ใช้ <code>v</code> แทน $\dot y$
+  และ <code>a</code> แทน $\ddot y$ · คูณใช้ <code>*</code> หรือเขียนติดกันก็ได้
+  (<code>m*v</code> = <code>mv</code>)
+</div>
+
+<div id="score"></div>
+
+<h2>โจทย์ที่ 1 · กางสมการออยเลอร์–ลากรองจ์</h2>
+
+<div class="quiz" data-steps>
+  <h3>สปริง $\;L = \tfrac12 m v^2 - \tfrac12 k y^2\;$ · หา $a$</h3>
+  <ol class="steps">
+    <li data-answer="m*v" data-alt="v*m|mv">
+      <p><strong>ขั้น 1</strong> — หา $\dfrac{\partial L}{\partial v}$
+      <span class="hint">(อนุพันธ์เทียบ $v$ โดยถือ $y$ เป็นค่าคงที่)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  m*v" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12 m v^2$ อนุพันธ์เทียบ $v$ ได้ $mv$ · พจน์ $-\tfrac12 ky^2$
+      ไม่มี $v$ ⇒ หายไป · <em>ปริมาณนี้มีชื่อว่า <strong>โมเมนตัมคอนจูเกต</strong></em>
+      และมันคือสิ่งที่ทฤษฎีบทเนอเธอร์บอกว่าคงที่เมื่อ $L$ ไม่มี $y$</p>
+    </li>
+    <li data-answer="m*a" data-alt="a*m|ma">
+      <p><strong>ขั้น 2</strong> — หา $\dfrac{d}{dt}$ ของผลลัพธ์ขั้น 1</p>
+      <div class="ans"><input type="text" placeholder="เช่น  m*a" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{d}{dt}(mv) = m\dot v = ma$ · $m$ เป็นค่าคงที่จึงออกมานอกอนุพันธ์ได้
+      · <strong>นี่คือพจน์ที่กลายเป็น "มวลคูณความเร่ง" ในกฎของนิวตัน</strong></p>
+    </li>
+    <li data-answer="-k*y" data-alt="-ky|-y*k">
+      <p><strong>ขั้น 3</strong> — หา $\dfrac{\partial L}{\partial y}$
+      <span class="hint">(คราวนี้เทียบ $y$ โดยถือ $v$ เป็นค่าคงที่)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  -k*y" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-\tfrac12 ky^2$ อนุพันธ์เทียบ $y$ ได้ $-ky$ · พจน์ $\tfrac12 mv^2$
+      ไม่มี $y$ ⇒ หายไป · <strong>เครื่องหมายลบตัวนี้มาจาก $-V$ ใน $L = T-V$</strong>
+      และมันคือแรงสปริง (ดึงกลับ)</p>
+    </li>
+    <li data-answer="-k*y/m" data-alt="-ky/m|-(k/m)y|-k/m*y|-y*k/m">
+      <p><strong>ขั้น 4</strong> — ประกอบเป็น
+      $\;\frac{d}{dt}\!\left(\frac{\partial L}{\partial v}\right) - \frac{\partial L}{\partial y} = 0\;$
+      แล้วแก้หา $a$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  -k*y/m" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$ma - (-ky) = 0 \Rightarrow ma + ky = 0 \Rightarrow a = -\frac{k}{m}y$ ·
+      <strong>จุดที่พลาดกันมากที่สุดคือเครื่องหมายตรงนี้</strong> — สมการมี<em>ลบ</em>
+      อยู่แล้ว พอ $\partial L/\partial y$ เป็นลบด้วย ลบสองตัวชนกันได้บวก</p>
+    </li>
+  </ol>
+  <p class="fb">$a = -\frac{k}{m}y$ คือการสั่นฮาร์มอนิกอย่างง่าย — ความเร่งแปรผันตรงข้าม
+  กับการกระจัด · <strong>สี่ขั้นนี้คือกระบวนการเดียวกันทุกครั้ง ไม่ว่า $L$ จะหน้าตายังไง</strong>
+  รวมถึง $\mathcal{L}$ ของสนามในบทที่ 3 ด้วย</p>
+</div>
+
+<h2>โจทย์ที่ 2 · พจน์ขอบหายเมื่อไร</h2>
+
+<div class="quiz" data-steps>
+  <h3>$y(t) = 5t(2-t)$, $m=1$, ช่วง $[0,2]$ · หาพจน์ขอบ $\big[\dot y\,\eta\big]_0^2$ ของ $\eta = t^2(2-t)$</h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์">
+      <p><strong>ขั้น 1</strong> — หา $\eta(0)$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0^2(2-0) = 0$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์">
+      <p><strong>ขั้น 2</strong> — หา $\eta(2)$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2^2(2-2) = 4 \cdot 0 = 0$ · ตัวประกอบ $(2-t)$ ทำให้เป็นศูนย์ที่ปลายขวา</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์">
+      <p><strong>ขั้น 3</strong> — สรุปว่า $\big[\dot y\,\eta\big]_0^2$ เท่ากับเท่าไร
+      <span class="hint">(ยังไม่ต้องคำนวณ $\dot y$ เลย)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\dot y(2)\cdot\eta(2) - \dot y(0)\cdot\eta(0) = \dot y(2)\cdot 0 - \dot y(0)\cdot 0 = 0$
+      · <strong>อะไรก็ตามคูณศูนย์ได้ศูนย์</strong> ⇒ ไม่ต้องรู้ค่า $\dot y$ เลย ·
+      <em>นี่คือขั้นที่พลาดในชุดที่แล้ว</em> — รู้ว่า $\eta$ ที่ปลายเป็นศูนย์ (ตอบข้อ 5 ถูก)
+      แต่ไม่ได้เชื่อมโยงว่ามันทำให้พจน์ขอบหายไป</p>
+    </li>
+    <li data-answer="-20" data-alt="−20">
+      <p><strong>ขั้น 4</strong> — เปลี่ยนเป็น $\eta = t$ (ปลายขวาไม่เป็นศูนย์แล้ว) ·
+      $\dot y = 10-10t$ · หาพจน์ขอบใหม่</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\dot y(2)\cdot 2 - \dot y(0)\cdot 0 = (10-20)(2) - 0 = -20$ ·
+      <strong>ไม่เป็นศูนย์</strong> ⇒ ถ้าไม่ตรึงปลาย พจน์นี้ค้างอยู่ในสมการ และสิ่งที่ได้
+      จะไม่ใช่ออยเลอร์–ลากรองจ์</p>
+    </li>
+  </ol>
+  <p class="fb">เกณฑ์ทั้งหมดอยู่ที่ <strong>$\eta$ ที่ปลายทั้งสองข้าง</strong> —
+  เป็นศูนย์ทั้งคู่เมื่อไหร่ พจน์ขอบหายทันทีโดยไม่ต้องแตะ $\dot y$ เลย</p>
+</div>
+
+<h2>โจทย์ที่ 3 · แปรผันด้วยมือจนเห็นตัวเลข</h2>
+
+<div class="quiz" data-steps>
+  <h3>$m=1$, $g=10$ · เส้นทาง $y_\varepsilon = 4t(2-t) + \varepsilon\,t(2-t)$ ·
+  กาง $S(\varepsilon)$ แล้วอ่านคำตอบจากมัน</h3>
+  <ol class="steps">
+    <li data-answer="-32" data-alt="−32">
+      <p><strong>ขั้น 1</strong> — หา $S(0)$ &nbsp;<span class="hint">(ใส่ $\varepsilon=0$
+      แล้วอินทิเกรต $\int_0^2\left(\tfrac12\dot y^2 - 10y\right)dt$ · $\dot y = 8-8t$)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\int_0^2 \tfrac12(8-8t)^2 dt = \frac{64}{3}$ &nbsp;และ&nbsp;
+      $\int_0^2 10(8t-4t^2)dt = \frac{160}{3}$ ⇒ $S(0) = \frac{64-160}{3} = -32$</p>
+    </li>
+    <li data-answer="-8/3" data-alt="-2.667|-2.6667|−8/3">
+      <p><strong>ขั้น 2</strong> — กระจาย $S(\varepsilon)$ แล้วหา<strong>สัมประสิทธิ์ของ
+      $\varepsilon$</strong> (พจน์เชิงเส้น)</p>
+      <div class="ans"><input type="text" placeholder="เช่น  -8/3" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">พจน์เชิงเส้นมาจาก $\int_0^2\!\left(\dot y_0\dot\eta - 10\eta\right)dt$
+      โดย $\dot\eta = 2-2t$ ⇒ $\int_0^2 (8-8t)(2-2t)dt = \frac{32}{3}$ และ
+      $\int_0^2 10(2t-t^2)dt = \frac{40}{3}$ ⇒ $\frac{32-40}{3} = -\frac83$</p>
+    </li>
+    <li data-answer="-8/3" data-alt="-2.667|-2.6667|−8/3">
+      <p><strong>ขั้น 3</strong> — แล้ว $\left.\dfrac{dS}{d\varepsilon}\right|_{0}$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><strong>เท่ากับสัมประสิทธิ์ของ $\varepsilon$ พอดี</strong> —
+      $S(\varepsilon) = A + B\varepsilon + C\varepsilon^2$ ⇒ $\frac{dS}{d\varepsilon} = B + 2C\varepsilon$
+      ⇒ ที่ $\varepsilon=0$ เหลือแค่ $B$ · <em>ไม่ต้องอนุพันธ์อะไรเลยถ้ากางเป็นพหุนามแล้ว</em></p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์">
+      <p><strong>ขั้น 4</strong> — คราวนี้เปลี่ยนเส้นทางตั้งต้นเป็น $5t(2-t)$ (เส้นทางจริง) ·
+      สัมประสิทธิ์ของ $\varepsilon$ จะเป็นเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$S(\varepsilon) = -\frac{100}{3} + \frac43\varepsilon^2$ ⇒
+      <strong>ไม่มีพจน์ $\varepsilon$ เลย</strong> ⇒ สัมประสิทธิ์เป็น $0$ ⇒ $\delta S = 0$ ·
+      เทียบกัน: เส้นทางผิดได้ $-\frac83$ (ยังลดได้อีก) · เส้นทางจริงได้ $0$ (นิ่งแล้ว)</p>
+    </li>
+  </ol>
+  <p class="fb"><strong>กลไกทั้งหมดของบทที่ 1 อยู่ในสี่ขั้นนี้</strong> — กาง $S$ เป็นพหุนาม
+  ของ $\varepsilon$ แล้วดูพจน์เชิงเส้น · มีพจน์นั้น = ยังไม่ใช่เส้นทางจริง · ไม่มี = ใช่</p>
+</div>
+
+<h2>โจทย์ที่ 4 · ทำไมบางพจน์ถึงไม่มีผลเลย</h2>
+
+<div class="quiz" data-steps>
+  <h3>$L = \tfrac12 mv^2 + bv$ &nbsp;($b$ คงที่) · ไล่ดูว่าทำไม $bv$ ถึงหายไป</h3>
+  <ol class="steps">
+    <li data-answer="m*v+b" data-alt="mv+b|b+m*v|b+mv|m*v + b">
+      <p><strong>ขั้น 1</strong> — หา $\dfrac{\partial L}{\partial v}$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  m*v+b" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$mv + b$ · พจน์ $bv$ อนุพันธ์เทียบ $v$ ได้ $b$ · <strong>ยังอยู่ในสมการตรงนี้</strong></p>
+    </li>
+    <li data-answer="m*a" data-alt="a*m|ma">
+      <p><strong>ขั้น 2</strong> — หา $\dfrac{d}{dt}(mv+b)$
+      <span class="hint">($b$ เป็นค่าคงที่ ไม่ขึ้นกับเวลา)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  m*a" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$ma + 0 = ma$ · <strong>ตรงนี้เองที่ $b$ หายไป</strong> —
+      อนุพันธ์ของค่าคงที่เป็นศูนย์เสมอ</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์">
+      <p><strong>ขั้น 3</strong> — หา $\dfrac{\partial L}{\partial y}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$L$ ไม่มี $y$ โผล่เลย ⇒ $0$ · (บทที่ 2 เรียก $y$ แบบนี้ว่า
+      <strong>พิกัดวัฏจักร</strong> ⇒ $mv+b$ อนุรักษ์)</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์">
+      <p><strong>ขั้น 4</strong> — ประกอบแล้วแก้หา $a$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$ma - 0 = 0 \Rightarrow a = 0$ — เหมือนกับตอนที่ไม่มีพจน์ $bv$ เลย</p>
+    </li>
+  </ol>
+  <p class="fb">เหตุผลลึกกว่านั้น: $bv = \frac{d}{dt}(by)$ เป็น<strong>อนุพันธ์แท้</strong>
+  ⇒ อินทิเกรตแล้วกลายเป็นพจน์ขอบล้วน ซึ่งหายไปเพราะปลายตรึง (โจทย์ที่ 2) ⇒
+  ไม่แตะสมการการเคลื่อนที่เลย · <strong>paper ใช้ข้อเท็จจริงนี้ตลอดเวลาเพื่อจัดรูป
+  $\mathcal{L}$ ให้สวยขึ้นโดยไม่เปลี่ยนฟิสิกส์</strong> — เวลาเจอประโยค
+  “<em>up to a total derivative</em>” นั่นคือเรื่องนี้</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา — และบอกด้วยว่า<strong>ขั้นไหน</strong>
+  ที่ยังงง (ไม่ใช่แค่ข้อไหน) · ตอนนี้ระบบบอกได้ถึงระดับขั้นแล้ว
+  <div class="nav">
+    <a href="./0007-variation-drill.html">← ชุดฝึกที่แล้ว</a>
+    <a href="./0005-variation.html">บทที่ 4</a>
+    <a href="../reference/0001-action-cheatsheet.html">📎 ชีทสรุป</a>
+  </div>
+</div>
+
+</body>
+</html>
