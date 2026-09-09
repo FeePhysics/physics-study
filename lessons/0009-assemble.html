@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ตั้งอินทิกรัลให้เป็น</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>ตั้งอินทิกรัลให้เป็น</h1>
+<p class="meta">บทเสริม · ~12 นาที · ประกอบนิพจน์ก่อนอินทิเกรต</p>
+
+<div class="key">
+  <p><strong>ผลรอบที่แล้วชี้ตรงจุดมาก</strong> — โจทย์ที่ 1, 2, 4 ถูก<em>ครบทุกขั้น</em>
+  แต่โจทย์ที่ 3 ผิด<em>ทั้งสี่ขั้น</em></p>
+  <p style="margin-bottom:0">สามข้อที่ถูกกับข้อที่พลาดต่างกันอยู่อย่างเดียว:
+  <strong>ข้อ 3 เป็นข้อเดียวที่ต้องประกอบนิพจน์ขึ้นมาเองก่อนจะอินทิเกรตได้</strong>
+  ที่เหลือทำอนุพันธ์ย่อยหรือแทนค่าล้วน ๆ</p>
+</div>
+
+<p>และนี่เป็นรอยรั่วของหลักสูตรอีกครั้ง — <strong>บทที่ 1 โชว์ผลลัพธ์
+$S(\alpha) = -\frac{100}{3} + \frac{\pi^2}{8}\alpha^2$ ให้ดูเลย ไม่เคยแสดงว่าประกอบมันขึ้นมายังไง</strong>
+· ทั้งหลักสูตรจึงไม่เคยฝึกขั้นตอนนี้แม้แต่ครั้งเดียว ทั้งที่มันเป็นขั้นแรกของทุกอย่าง</p>
+
+<h2>สามบรรทัดที่ทำซ้ำได้ทุกครั้ง</h2>
+
+<table>
+  <tr><th style="width:16%">บรรทัด 1</th><td>จาก $y(t)$ หา $\dot y(t)$ &nbsp;— อนุพันธ์ธรรมดา</td></tr>
+  <tr><th>บรรทัด 2</th><td>ประกอบ $T = \tfrac12 m\dot y^2$ และ $V = mgy$ &nbsp;<strong>แยกกันคนละก้อน</strong></td></tr>
+  <tr><th>บรรทัด 3</th><td>$S = \displaystyle\int T\,dt - \int V\,dt$ &nbsp;— อินทิเกรตทีละก้อนแล้วค่อยลบ</td></tr>
+</table>
+
+<div class="warn">
+  <strong>อย่ากระจาย $T-V$ ให้เป็นพหุนามก้อนเดียวก่อนอินทิเกรต</strong> ·
+  ทำแบบนั้นได้ตัวเลขถูกเหมือนกัน แต่เลขกลางทางเยอะและตรวจย้อนไม่ได้ว่าพลาดตรงไหน ·
+  แยกสองก้อนแล้วถ้าผลออกมาผิด จะรู้ทันทีว่าพังที่ $T$ หรือที่ $V$
+</div>
+
+<h2>ตัวอย่างเต็ม — ทำให้ดูหนึ่งรอบ</h2>
+
+<p>$y = 4t(2-t)$, &nbsp;$m=1$, &nbsp;$g=10$, &nbsp;ช่วง $[0,2]$</p>
+
+<table>
+  <tr><th style="width:22%">$y$</th><td>$8t - 4t^2$</td></tr>
+  <tr><th>$\dot y$</th><td>$8 - 8t$</td></tr>
+  <tr><th>$T = \tfrac12\dot y^2$</th><td>$\tfrac12(8-8t)^2 = 32t^2 - 64t + 32$</td></tr>
+  <tr><th>$V = 10y$</th><td>$80t - 40t^2$</td></tr>
+  <tr><th>$\int_0^2 T\,dt$</th><td>$\left[\tfrac{32}{3}t^3 - 32t^2 + 32t\right]_0^2 = \tfrac{256}{3} - 128 + 64 = \tfrac{64}{3}$</td></tr>
+  <tr><th>$\int_0^2 V\,dt$</th><td>$\left[40t^2 - \tfrac{40}{3}t^3\right]_0^2 = 160 - \tfrac{320}{3} = \tfrac{160}{3}$</td></tr>
+  <tr><th>$S$</th><td>$\tfrac{64}{3} - \tfrac{160}{3} = -\tfrac{96}{3} = -32$</td></tr>
+</table>
+
+<h2>แล้วพจน์ $\varepsilon$ มาจากไหน</h2>
+
+<p>ตอนใส่การบิด $y_\varepsilon = y_0 + \varepsilon\eta$ สิ่งเดียวที่ต้องระวังคือ
+<strong>กำลังสองของผลบวก</strong>:</p>
+
+<div class="eq" data-eqno="1">$$ (\dot y_0 + \varepsilon\dot\eta)^2 = \underbrace{\dot y_0^2}_{\varepsilon^0} + \underbrace{2\dot y_0\dot\eta}_{\times\,\varepsilon} + \underbrace{\dot\eta^2}_{\times\,\varepsilon^2} $$</div>
+
+<p>พจน์กลาง — <strong>ตัวคูณไขว้</strong> — คือที่มาของพจน์เชิงเส้นทั้งหมด ·
+คูณ $\tfrac12$ เข้าไปแล้วเหลือ $\dot y_0\dot\eta$ พอดี ⇒</p>
+
+<div class="key">
+  <div class="eq">$$ \text{สัมประสิทธิ์ของ }\varepsilon \;=\; \int_0^2 \dot y_0\,\dot\eta\;dt \;-\; \int_0^2 mg\,\eta\;dt $$</div>
+  <p style="margin-bottom:0">สองอินทิกรัลเท่านั้น · ไม่ต้องกาง $S(\varepsilon)$ ทั้งก้อน
+  ไม่ต้องยกกำลังสองอะไรยาว ๆ</p>
+</div>
+
+<h2>ลองเอง — ไต่จากง่ายมาก</h2>
+<div id="score"></div>
+
+<p class="hint">พิมพ์ยกกำลังด้วย <code>^</code> หรือ <code>**</code> · คูณจะใส่ <code>*</code>
+หรือเขียนติดกันก็ได้ (<code>4t^2</code> = <code>4*t**2</code>)</p>
+
+<div class="quiz" data-steps>
+  <h3>โจทย์ A · $y = t^2$, &nbsp;$m = 2$, &nbsp;ไม่มีแรงโน้มถ่วง ($g=0$), &nbsp;ช่วง $[0,1]$</h3>
+  <ol class="steps">
+    <li data-answer="2t" data-alt="2*t">
+      <p><strong>ขั้น 1</strong> — หา $\dot y$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  2t" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">อนุพันธ์ของ $t^2$ คือ $2t$</p>
+    </li>
+    <li data-answer="4t^2" data-alt="4*t^2|4t**2|4*t**2">
+      <p><strong>ขั้น 2</strong> — ประกอบ $T = \tfrac12 m\dot y^2$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  4t^2" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12 \cdot 2 \cdot (2t)^2 = 1 \cdot 4t^2 = 4t^2$ ·
+      <strong>ยกกำลังสองทั้ง $2t$ ไม่ใช่แค่ $t$</strong> — ตรงนี้พลาดกันบ่อย</p>
+    </li>
+    <li data-answer="4/3" data-alt="1.333|1.3333">
+      <p><strong>ขั้น 3</strong> — หา $S = \displaystyle\int_0^1 T\,dt$ &nbsp;<span class="hint">($V=0$ จึงไม่มีอะไรลบ)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  4/3" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\int_0^1 4t^2 dt = \left[\tfrac43 t^3\right]_0^1 = \tfrac43$</p>
+    </li>
+  </ol>
+  <p class="fb">สามบรรทัดครบแล้ว — $y \to \dot y \to T \to \int$ · ที่เหลือคือเพิ่ม $V$ เข้ามา</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>โจทย์ B · เหมือนเดิมแต่ใส่แรงโน้มถ่วง &nbsp;$y=t^2$, $m=2$, $g=10$, ช่วง $[0,1]$</h3>
+  <ol class="steps">
+    <li data-answer="20t^2" data-alt="20*t^2|20t**2|20*t**2">
+      <p><strong>ขั้น 1</strong> — ประกอบ $V = mgy$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  20t^2" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 10 \times t^2 = 20t^2$</p>
+    </li>
+    <li data-answer="20/3" data-alt="6.667|6.6667">
+      <p><strong>ขั้น 2</strong> — หา $\displaystyle\int_0^1 V\,dt$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  20/3" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\int_0^1 20t^2 dt = \left[\tfrac{20}{3}t^3\right]_0^1 = \tfrac{20}{3}$</p>
+    </li>
+    <li data-answer="-16/3" data-alt="-5.333|-5.3333|−16/3">
+      <p><strong>ขั้น 3</strong> — หา $S = \int T\,dt - \int V\,dt$
+      &nbsp;<span class="hint">($\int T\,dt = \tfrac43$ จากโจทย์ A)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  -16/3" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac43 - \tfrac{20}{3} = -\tfrac{16}{3}$ ·
+      <strong>ติดลบเพราะ $V$ ใหญ่กว่า $T$</strong> — ปกติ ไม่ได้ผิด (บทที่ 2 เคลียร์เรื่องนี้ไปแล้ว)</p>
+    </li>
+  </ol>
+  <p class="fb">สังเกตว่า<strong>ไม่ได้กระจาย $T-V$ เลยสักครั้ง</strong> — อินทิเกรตแยกก้อน
+  แล้วลบตอนท้าย · ถ้าเลขผิดจะรู้ทันทีว่าพังก้อนไหน</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>โจทย์ C · ของจริงจากบทที่ 1 &nbsp;$y = 4t(2-t)$, $m=1$, $g=10$, ช่วง $[0,2]$</h3>
+  <ol class="steps">
+    <li data-answer="8-8t" data-alt="8-8*t|-8t+8|8 - 8t">
+      <p><strong>ขั้น 1</strong> — หา $\dot y$ &nbsp;<span class="hint">(กระจาย $y$ ก่อนก็ได้: $8t-4t^2$)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  8-8t" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{d}{dt}(8t - 4t^2) = 8 - 8t$</p>
+    </li>
+    <li data-answer="64/3" data-alt="21.33|21.333">
+      <p><strong>ขั้น 2</strong> — หา $\displaystyle\int_0^2 \tfrac12\dot y^2\,dt$
+      &nbsp;<span class="hint">($\tfrac12(8-8t)^2 = 32t^2-64t+32$)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  64/3" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\left[\tfrac{32}{3}t^3 - 32t^2 + 32t\right]_0^2 = \tfrac{256}{3} - 128 + 64 = \tfrac{64}{3}$</p>
+    </li>
+    <li data-answer="160/3" data-alt="53.33|53.333">
+      <p><strong>ขั้น 3</strong> — หา $\displaystyle\int_0^2 10y\,dt$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  160/3" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\int_0^2 (80t - 40t^2)dt = 160 - \tfrac{320}{3} = \tfrac{160}{3}$</p>
+    </li>
+    <li data-answer="-32" data-alt="−32">
+      <p><strong>ขั้น 4</strong> — หา $S$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac{64}{3} - \tfrac{160}{3} = -\tfrac{96}{3} = -32$ ·
+      <strong>นี่คือขั้นที่ 1 ของโจทย์ที่พลาดรอบก่อน</strong> — ตอนนี้มาถึงด้วยการเดินสามบรรทัดเดิม</p>
+    </li>
+  </ol>
+  <p class="fb">เลขเยอะขึ้นแต่<strong>กระบวนการไม่เปลี่ยนเลย</strong>จากโจทย์ A ที่ $y=t^2$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>โจทย์ D · ใส่การบิด &nbsp;$y_\varepsilon = 4t(2-t) + \varepsilon\,t(2-t)$ · หาสัมประสิทธิ์ของ $\varepsilon$</h3>
+  <ol class="steps">
+    <li data-answer="2-2t" data-alt="2-2*t|-2t+2|2 - 2t">
+      <p><strong>ขั้น 1</strong> — หา $\dot\eta$ &nbsp;โดย $\eta = t(2-t) = 2t - t^2$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  2-2t" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{d}{dt}(2t - t^2) = 2 - 2t$</p>
+    </li>
+    <li data-answer="32/3" data-alt="10.67|10.667">
+      <p><strong>ขั้น 2</strong> — หา $\displaystyle\int_0^2 \dot y_0\,\dot\eta\;dt$
+      &nbsp;<span class="hint">($\dot y_0 = 8-8t$ จากโจทย์ C · คูณกันได้ $16t^2-32t+16$)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  32/3" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\int_0^2 (16t^2 - 32t + 16)dt = \tfrac{128}{3} - 64 + 32 = \tfrac{32}{3}$ ·
+      <strong>นี่คือครึ่งหนึ่งของตัวคูณไขว้ $2\dot y_0\dot\eta$ ที่คูณ $\tfrac12$ แล้ว</strong></p>
+    </li>
+    <li data-answer="40/3" data-alt="13.33|13.333">
+      <p><strong>ขั้น 3</strong> — หา $\displaystyle\int_0^2 10\,\eta\;dt$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  40/3" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\int_0^2 (20t - 10t^2)dt = 40 - \tfrac{80}{3} = \tfrac{40}{3}$</p>
+    </li>
+    <li data-answer="-8/3" data-alt="-2.667|-2.6667|−8/3">
+      <p><strong>ขั้น 4</strong> — เอาสองอันมาลบกันตามสูตรในกล่องข้างบน</p>
+      <div class="ans"><input type="text" placeholder="เช่น  -8/3" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac{32}{3} - \tfrac{40}{3} = -\tfrac83$ ·
+      <strong>ไม่เป็นศูนย์ ⇒ $4t(2-t)$ ไม่ใช่เส้นทางจริง</strong> ·
+      ลองเปลี่ยนตัวเลข 4 เป็น 5 แล้วทำซ้ำ: ขั้น 2 จะได้ $\tfrac{40}{3}$ ซึ่งหักกับขั้น 3 พอดี ⇒ ได้ 0</p>
+    </li>
+  </ol>
+  <p class="fb"><strong>สองอินทิกรัลเท่านั้น</strong> — ไม่ต้องกาง $S(\varepsilon)$ ทั้งก้อน
+  ไม่ต้องยกกำลังสองอะไรยาว ๆ · นี่คือทั้งหมดของขั้นที่ 2 ที่พลาดรอบก่อน</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา — <strong>ตอนนี้มันบอกเลขขั้นมาด้วยแล้ว</strong>
+  ("ผิดข้อ 3 (ขั้น 2)") ไม่ต้องไล่ถามอีก · รอบที่แล้วมันรายงานแค่ระดับข้อ
+  ทั้งที่ระบบรู้ถึงระดับขั้น — เป็นข้อบกพร่องของผมเอง แก้แล้ว
+  <div class="nav">
+    <a href="./0008-stepwise-drill.html">← ไล่ขั้นชุดแรก</a>
+    <a href="./0001-action-principle.html">บทที่ 1</a>
+    <a href="../reference/0001-action-cheatsheet.html">📎 ชีทสรุป</a>
+  </div>
+</div>
+
+</body>
+</html>

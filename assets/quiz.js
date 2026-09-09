@@ -211,9 +211,17 @@
     if (e.target.id === 'copy') {
       var all = [].slice.call(document.querySelectorAll('.quiz'));
       var wrong = [];
-      all.forEach(function (q, i) { if (q.dataset.result === 'wrong') wrong.push(i + 1); });
+      all.forEach(function (q, i) {
+        if (q.dataset.result !== 'wrong') return;
+        // โจทย์ไล่ขั้น: บอกด้วยว่าหลุดขั้นไหน ไม่งั้นข้อมูลที่ละเอียดกว่าถูกทิ้งตอนคัดลอก
+        var bad = [];
+        q.querySelectorAll('.steps > li').forEach(function (li, j) {
+          if (li.dataset.result === 'wrong') bad.push(j + 1);
+        });
+        wrong.push((i + 1) + (bad.length ? ' (ขั้น ' + bad.join(', ') + ')' : ''));
+      });
       var text = 'ถูก ' + (all.length - wrong.length) + '/' + all.length +
-                 (wrong.length ? ' · ผิดข้อ ' + wrong.join(', ') : ' · ถูกหมด');
+                 (wrong.length ? ' · ผิดข้อ ' + wrong.join(' · ') : ' · ถูกหมด');
 
       var done = function () {
         e.target.textContent = '✓ คัดลอกแล้ว';
