@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ทดสอบรวม · ระบบที่ไม่เคยเจอ</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>ทดสอบรวม · ระบบที่ไม่เคยเจอ</h1>
+<p class="meta">8 ข้อ · ครอบบทที่ 1–4 · ไม่บอกว่าข้อไหนใช้เครื่องมืออะไร</p>
+
+<div class="key">
+  <p><strong>ชุดนี้ต่างจากทุกชุดที่ผ่านมา</strong> — ระบบในโจทย์<em>ใหม่ทั้งหมด</em>
+  (สปริงแนวดิ่ง · ลูกปัดบนลวดโค้ง · สองอนุภาคเชื่อมสปริง · พิกัดเชิงขั้ว) และ
+  <strong>ไม่มีข้อไหนบอกว่าต้องใช้เครื่องมือไหน</strong></p>
+  <p style="margin-bottom:0">การเลือกเครื่องมือเองเป็นส่วนหนึ่งของสิ่งที่วัด —
+  เพราะ paper ก็ไม่เคยบอก · ทำได้ 4/4 กับเลขชุดใหม่ของแบบเดิมยังไม่พอ
+  ที่ต้องพิสูจน์คือ <em>เจอของที่ไม่เคยเห็นแล้วยังเดินได้</em></p>
+</div>
+
+<p class="hint">พิมพ์ <code>v</code> แทน $\dot y$ (หรือ $\dot x$) · <code>a</code> แทนความเร่ง ·
+<code>w</code> แทน $\dot\theta$ · ยกกำลังใช้ <code>^</code></p>
+
+<div id="score"></div>
+
+<h2>ส่วนที่ 1 · ระบบใหม่ — เดินให้ครบขั้น</h2>
+
+<div class="quiz" data-steps>
+  <h3>โจทย์ A · <strong>สปริงแนวดิ่ง</strong> — มวลห้อยกับสปริง มีทั้งแรงสปริงและแรงโน้มถ่วง
+  $$ L = \tfrac12 m v^2 - \tfrac12 k y^2 - mgy $$</h3>
+  <ol class="steps">
+    <li data-answer="m*v" data-alt="mv|v*m">
+      <p><strong>ขั้น 1</strong> — หา $\dfrac{\partial L}{\partial v}$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  m*v" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">มีพจน์เดียวที่มี $v$ ⇒ $mv$ · สองพจน์ที่เหลือหายไป</p>
+    </li>
+    <li data-answer="-k*y-m*g" data-alt="-ky-mg|-m*g-k*y|-mg-ky|-(k*y+m*g)|-k*y-g*m">
+      <p><strong>ขั้น 2</strong> — หา $\dfrac{\partial L}{\partial y}$
+      &nbsp;<span class="hint">(คราวนี้มีสองพจน์ที่มี $y$)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  -k*y-m*g" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-\tfrac12 ky^2 \to -ky$ &nbsp;และ&nbsp; $-mgy \to -mg$ ⇒ รวมได้ $-ky - mg$ ·
+      <strong>ทั้งสองพจน์เป็นลบ เพราะทั้งคู่มาจากฝั่ง $-V$</strong></p>
+    </li>
+    <li data-answer="-k*y/m-g" data-alt="-ky/m-g|-g-k*y/m|-g-ky/m|-(k/m)y-g">
+      <p><strong>ขั้น 3</strong> — ประกอบสมการแล้วแก้หา $a$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  -k*y/m-g" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$ma - (-ky - mg) = 0 \Rightarrow ma + ky + mg = 0 \Rightarrow a = -\frac{k}{m}y - g$</p>
+    </li>
+    <li data-answer="-m*g/k" data-alt="-mg/k|-g*m/k">
+      <p><strong>ขั้น 4</strong> — <strong>จุดสมดุล</strong>คือตำแหน่งที่ $a=0$ · หา $y$ ที่จุดนั้น</p>
+      <div class="ans"><input type="text" placeholder="เช่น  -m*g/k" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-\frac{k}{m}y - g = 0 \Rightarrow y = -\frac{mg}{k}$ ·
+      <strong>ติดลบ = ห้อยต่ำกว่าจุดที่สปริงยาวปกติ</strong> ซึ่งตรงกับของจริง ·
+      <em>สังเกตว่าเราได้ข้อมูลทางกายภาพจากสมการโดยไม่ต้องแก้สมการการเคลื่อนที่เลย</em></p>
+    </li>
+  </ol>
+  <p class="fb">ระบบใหม่ แต่สี่ขั้นเดิมทุกประการ · สิ่งเดียวที่ต่างคือ
+  $\partial L/\partial y$ มีสองพจน์แทนที่จะมีพจน์เดียว</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>โจทย์ B · <strong>ลูกปัดร้อยบนลวดรูปพาราโบลา</strong> $y = ax^2$ ·
+  ลูกปัดไถลไปตามลวดได้อย่างเดียว ⇒ มีองศาอิสระตัวเดียวคือ $x$ &nbsp;<span class="hint">(ข้อท้าทาย)</span></h3>
+  <ol class="steps">
+    <li data-answer="2*a*x*v" data-alt="2axv|2*a*x*v|2xav|2*x*a*v">
+      <p><strong>ขั้น 1</strong> — ลูกปัดอยู่บนลวดเสมอ ⇒ $y = ax^2$ ตลอดเวลา ·
+      หา $\dot y$ ในรูปของ $x$ และ $v$ &nbsp;<span class="hint">(กฎลูกโซ่)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  2*a*x*v" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{d}{dt}(ax^2) = 2ax\cdot\frac{dx}{dt} = 2axv$ ·
+      <strong>นี่คือหัวใจของข้อนี้</strong> — เงื่อนไขบังคับ (ลูกปัดต้องอยู่บนลวด)
+      ทำให้ $\dot y$ ไม่เป็นอิสระ แต่ผูกกับ $x$ และ $v$</p>
+    </li>
+    <li data-answer="1+4*a^2*x^2" data-alt="1+4a^2x^2|1+4*a**2*x**2|4*a^2*x^2+1|1+4a²x²">
+      <p><strong>ขั้น 2</strong> — พลังงานจลน์คือ $T = \tfrac12 m(v^2 + \dot y^2)$ ·
+      จัดรูปเป็น $T = \tfrac12 m\,(\;?\;)\,v^2$ · ในวงเล็บคืออะไร</p>
+      <div class="ans"><input type="text" placeholder="เช่น  1+4*a^2*x^2" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$v^2 + (2axv)^2 = v^2 + 4a^2x^2v^2 = (1 + 4a^2x^2)v^2$ ·
+      <strong>สัมประสิทธิ์ของ $v^2$ ขึ้นกับ $x$ เอง</strong> — ต่างจากทุกระบบที่ผ่านมา
+      ซึ่งเป็นค่าคงที่ · ลวดชันตรงไหน ลูกปัดต้องขยับ $y$ มากตรงนั้น</p>
+    </li>
+    <li data-answer="2*m*g*a*x" data-alt="2mgax|2*a*g*m*x|2agmx|2*m*a*g*x">
+      <p><strong>ขั้น 3</strong> — $V = mgy = mgax^2$ · หา $\dfrac{\partial V}{\partial x}$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  2*m*g*a*x" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{\partial}{\partial x}(mgax^2) = 2mgax$ · เป็นแรงดึงกลับที่แปรผันตรงกับ $x$
+      — <strong>เหมือนสปริง</strong> ทั้งที่ไม่มีสปริงสักตัว</p>
+    </li>
+  </ol>
+  <p class="fb">ที่ใกล้จุดต่ำสุด ($x$ เล็ก) พจน์ $4a^2x^2$ เล็กจนตัดทิ้งได้ ⇒
+  $T \approx \tfrac12 mv^2$ และ $V = mgax^2$ ⇒ <strong>กลายเป็นสปริงที่มี
+  $k_{\text{effective}} = 2mga$ พอดี</strong> · นี่คือวิธีที่ฟิสิกส์หา "การสั่นเล็ก ๆ"
+  ของระบบอะไรก็ได้ — และมันโผล่มาเองจากการเขียน $L$</p>
+</div>
+
+<h2>ส่วนที่ 2 · ผสมข้ามบท</h2>
+
+<div class="quiz" data-open data-answer="m*r^2*w" data-alt="m*r**2*w|mr^2w|m*w*r^2|r^2*m*w">
+  <h3>อนุภาคอิสระในพิกัดเชิงขั้ว $\;L = \tfrac12 m(\dot r^2 + r^2\dot\theta^2)\;$ ·
+  มีปริมาณหนึ่งที่คงที่ตลอดการเคลื่อนที่ — เขียนมันออกมา
+  <span class="hint">(ใช้ <code>w</code> แทน $\dot\theta$)</span></h3>
+  <div class="ans"><input type="text" placeholder="เช่น  m*r^2*w" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\theta$ ไม่โผล่ใน $L$ เลย (มีแต่ $\dot\theta$) ⇒ พิกัดวัฏจักร ⇒
+  $\partial L/\partial\dot\theta = mr^2\dot\theta$ คงที่ = <strong>โมเมนตัมเชิงมุม</strong> ·
+  <em>ข้อนี้ไม่ได้บอกว่าให้ใช้เนอเธอร์ — ต้องเห็นเองว่าตัวแปรตัวหนึ่งหายไปจากสูตร</em></p>
+</div>
+
+<div class="quiz" data-open data-answer="-2" data-alt="−2|m^-2|-2 (M^-2)">
+  <h3>ในหน่วย $\hbar=c=1$ · พจน์ $\lambda\phi^6$ อยู่ใน $\mathcal{L}$ · มิติเชิงมวลของ $\lambda$
+  เป็นเท่าไร <span class="hint">(ตอบเป็นเลขยกกำลัง)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$[\mathcal{L}]=M^4$ · $[\phi]=M$ ⇒ $[\lambda]\cdot M^6 = M^4$ ⇒ $[\lambda]=M^{-2}$ ⇒ ตอบ $-2$ ·
+  <strong>ค่าติดลบครั้งแรกที่เจอ</strong> · เทียบกัน: $\phi^4$ ได้ 0 (ไร้มิติ) · $\phi^3$ ได้ $+1$ ·
+  $\phi^6$ ได้ $-2$ · <em>ค่าคงที่คู่ควบที่มีมิติเป็นลบเป็นสัญญาณว่าทฤษฎีนั้น
+  renormalizable ไม่ได้</em> — ทฤษฎีใช้ได้เฉพาะที่พลังงานต่ำ</p>
+</div>
+
+<div class="quiz" data-open data-answer="0" data-alt="ศูนย์">
+  <h3>อนุภาคอิสระ $m=2$ ไม่มีแรงใด ๆ · เส้นทาง $y_\varepsilon = 3t + \varepsilon\,t(1-t)$ ·
+  ช่วง $[0,1]$ · หาสัมประสิทธิ์ของ $\varepsilon$ ใน $S(\varepsilon)$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\dot y_0 = 3$ (คงที่) · $\dot\eta = 1-2t$ · ไม่มี $V$ ⇒ เหลือแค่
+  $\int_0^1 m\,\dot y_0\dot\eta\,dt = 2\cdot 3\int_0^1(1-2t)dt = 6(1-1) = 0$ ·
+  <strong>เป็นศูนย์ ⇒ $y=3t$ คือเส้นทางจริง</strong> ซึ่งถูกแล้ว — อนุภาคอิสระเดินด้วย
+  ความเร็วคงที่ (บทที่ 1) · <em>สังเกตว่า $\int_0^1\dot\eta\,dt = \eta(1)-\eta(0) = 0$
+  โดยอัตโนมัติ เพราะปลายตรึง ⇒ ไม่ต้องอินทิเกรตเลยก็ได้</em></p>
+</div>
+
+<div class="quiz" data-open data-answer="m*v1+m*v2" data-alt="m(v1+v2)|m*(v1+v2)|mv1+mv2|m*v2+m*v1">
+  <h3>อนุภาคสองตัวมวล $m$ เท่ากัน เชื่อมด้วยสปริง
+  $\;L = \tfrac12 m(v_1^2 + v_2^2) - \tfrac12 k(x_1-x_2)^2\;$ ·
+  เลื่อนทั้งระบบไปทางขวาแล้ว $L$ ไม่เปลี่ยน (เพราะขึ้นกับ $x_1-x_2$ เท่านั้น) ·
+  ปริมาณที่อนุรักษ์คืออะไร</h3>
+  <div class="ans"><input type="text" placeholder="เช่น  m*v1+m*v2" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">สมมาตรการเลื่อน ⇒ <strong>โมเมนตัมรวม</strong> $mv_1 + mv_2$ คงที่
+  (ตรวจด้วย <code>sympy</code> แล้วว่า $\frac{d}{dt}$ ของมันเป็นศูนย์จริงเมื่อใช้สมการการเคลื่อนที่) ·
+  <em>โมเมนตัมของแต่ละตัวไม่คงที่</em> — สปริงโยนโมเมนตัมไปมาระหว่างสองตัว แต่ผลรวมไม่หายไปไหน</p>
+</div>
+
+<h2>ส่วนที่ 3 · ตัดสินโดยไม่ต้องคำนวณ</h2>
+
+<div class="quiz" data-answer="1">
+  <h3>สปริงที่<strong>อ่อนลง</strong>เรื่อย ๆ ตามเวลา $\;L = \tfrac12 mv^2 - \tfrac12 k e^{-\omega t} y^2\;$ ·
+  พลังงานของระบบนี้เป็นอย่างไร</h3>
+  <div class="choices">
+    <button>คงที่ เพราะไม่มีแรงเสียดทานหรือสิ่งใดมาดูดพลังงานออกจากระบบนี้เลย</button>
+    <button>ไม่คงที่ และลดลง เพราะสปริงเก็บพลังงานศักย์ได้น้อยลงเรื่อย ๆ ตามเวลา</button>
+    <button>ไม่คงที่ และเพิ่มขึ้น เพราะการที่สปริงอ่อนลงปล่อยพลังงานเข้าสู่ระบบ</button>
+  </div>
+  <p class="fb"><strong>ข้อที่สองถูก</strong> — $t$ โผล่ใน $\mathcal{L}$ ตรง ๆ ⇒ ไม่มีสมมาตรเวลา
+  ⇒ พลังงานไม่อนุรักษ์ (บทที่ 2) · ทิศทางอ่านจาก $\frac{dH}{dt} = -\frac{\partial L}{\partial t}$:
+  ตรวจแล้วได้ $-\frac{k\omega}{2}q^2e^{-\omega t} < 0$ ⇒ <strong>ลดลง</strong> ·
+  ข้อแรกเป็นความเข้าใจผิดที่พบบ่อย — <em>พลังงานอนุรักษ์ไม่ใช่กฎสากล มันคือค่าตอบแทน
+  ของสมมาตรเวลา</em> ซึ่งระบบนี้ไม่มี</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <h3>$\mathcal{L}_1 = \tfrac12 m v^2 - mgy$ &nbsp;กับ&nbsp; $\mathcal{L}_2 = \tfrac12 m v^2 - mgy + \dfrac{d}{dt}(3y^2)$ ·
+  สองอันนี้ให้ฟิสิกส์เหมือนกันหรือต่างกัน</h3>
+  <div class="choices">
+    <button>ต่างกัน เพราะพจน์ที่เพิ่มมามี $y$ อยู่ด้วย จึงต้องไปปรากฏในสมการที่ได้</button>
+    <button>ต่างกัน เพราะทุกพจน์ที่เติมลงไปใน $L$ ย่อมเปลี่ยนค่าการกระทำที่คำนวณได้</button>
+    <button>เหมือนกัน เพราะพจน์ที่เพิ่มเป็นอนุพันธ์แท้ อินทิเกรตแล้วเหลือแต่ค่าที่ปลาย</button>
+  </div>
+  <p class="fb"><strong>ข้อที่สามถูก</strong> — $\int_{t_1}^{t_2}\frac{d}{dt}(3y^2)dt = \left[3y^2\right]_{t_1}^{t_2}$
+  ซึ่งขึ้นกับ<em>ปลายทางเท่านั้น</em> · ปลายถูกตรึงไว้แล้ว ⇒ ค่านี้เท่ากันสำหรับทุกเส้นทางที่แข่งกัน
+  ⇒ <strong>บวกค่าคงที่ตัวเดียวกันให้ทุกเส้นทาง ⇒ เส้นที่ชนะยังชนะอยู่</strong> ·
+  ข้อที่สองถูกครึ่งเดียว: $S$ เปลี่ยนจริง แต่ $\delta S$ ไม่เปลี่ยน — และนั่นคือสิ่งที่ตัดสินฟิสิกส์ ·
+  <em>paper เรียกเรื่องนี้ว่า</em> “up to a total derivative”</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา (บอกเลขขั้นให้ด้วยแล้ว) ·
+  <strong>ชุดนี้ยากกว่าทุกชุดที่ผ่านมาโดยตั้งใจ</strong> — ผิดหลายข้อไม่ได้แปลว่าถอยหลัง
+  แต่แปลว่าเจอขอบของสิ่งที่ติดจริง ซึ่งเป็นสิ่งเดียวที่บอกได้ว่าต้องไปทางไหนต่อ
+  <div class="nav">
+    <a href="./0009-assemble.html">← ตั้งอินทิกรัล</a>
+    <a href="./0006-maxwell.html">บทที่ 5</a>
+    <a href="../reference/0001-action-cheatsheet.html">📎 ชีทสรุป</a>
+  </div>
+</div>
+
+</body>
+</html>
