@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>เขียนปริมาณอนุรักษ์ออกมาเอง</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>เขียนปริมาณอนุรักษ์ออกมาเอง</h1>
+<p class="meta">บทเสริม · ~14 นาที · เนอเธอร์ฉบับที่ใช้ได้จริง</p>
+
+<div class="key">
+  <p><strong>5/8 · ผิดข้อ 3, 5, 6</strong> — ข้อ 1 กับ 2 (รวมลูกปัดบนลวดซึ่งเป็นข้อท้าทาย)
+  ผ่านครบทุกขั้น และข้อเชิงแนวคิดผ่านหมด</p>
+  <p style="margin-bottom:0"><strong>ข้อ 3 กับ 6 เป็นเรื่องเดียวกัน: ให้เขียนปริมาณ
+  อนุรักษ์ออกมาเป็นสูตร</strong> · ข้อ 7 (พลังงานอนุรักษ์ไหม) ถูก ⇒ แนวคิดเนอเธอร์ติดแล้ว
+  ที่ยังไม่ติดคือ<em>เขียนตัวปริมาณออกมา</em></p>
+</div>
+
+<p>และรอยรั่วของผมอีกครั้ง — <strong>quiz ของบทที่ 2 ทั้งสี่ข้อเป็นปรนัย</strong>
+จึงไม่เคยมีที่ไหนให้เขียนสูตรเอง · แต่ข้อ 6 หนักกว่านั้น:</p>
+
+<h2>ข้อ 6 ใช้กฎของบทที่ 2 ไม่ได้เลย</h2>
+
+<p>บทที่ 2 สอนว่า <em>"ตัวแปรไหนหายไปจาก $L$ ⇒ $\partial L/\partial\dot q$ ของตัวนั้นคงที่"</em>
+· ลองใช้กับสองอนุภาคเชื่อมสปริง $\;L = \tfrac12 m(v_1^2 + v_2^2) - \tfrac12 k(x_1-x_2)^2$</p>
+
+<table>
+  <tr><th style="width:26%">$\partial L/\partial x_1$</th><td>$k(x_2 - x_1)$ &nbsp;— <strong>ไม่เป็นศูนย์</strong></td></tr>
+  <tr><th>$\partial L/\partial x_2$</th><td>$k(x_1 - x_2)$ &nbsp;— <strong>ไม่เป็นศูนย์</strong></td></tr>
+  <tr><th>ผลรวม</th><td>$0$ &nbsp;— <strong>ตรงนี้เอง</strong></td></tr>
+</table>
+
+<p><strong>ไม่มีพิกัดวัฏจักรสักตัวในระบบนี้</strong> ⇒ กฎที่เรียนมาใช้ไม่ได้ ·
+สิ่งที่เป็นศูนย์คือ<em>ผลรวม</em> และนั่นสะท้อนสมมาตรที่โจทย์บอกไว้แล้ว:
+เลื่อน<strong>ทั้งสองตัวพร้อมกัน</strong> $L$ ไม่เปลี่ยน (เพราะขึ้นกับ $x_1-x_2$ เท่านั้น)</p>
+
+<h2>กฎเดียวที่ครอบทั้งสองแบบ</h2>
+
+<div class="key">
+  <p>สมมาตรคือ “ขยับตัวแปรแต่ละตัวไปทางไหนบ้างแล้ว $L$ ไม่เปลี่ยน” ·
+  เรียกทิศที่ $q_i$ ขยับว่า $\delta q_i$ ⇒</p>
+  <div class="eq" data-eqno="1">$$ Q \;=\; \sum_i \frac{\partial L}{\partial \dot q_i}\,\delta q_i \qquad\text{คงที่เสมอ} $$</div>
+  <p style="margin-bottom:0">อ่านว่า: <strong>เอาโมเมนตัมคอนจูเกตของแต่ละตัว
+  คูณด้วยทิศที่ตัวนั้นขยับ แล้วบวกกันให้หมด</strong></p>
+</div>
+
+<table>
+  <tr><th style="width:30%">สมมาตร</th><th>$\delta q_i$</th><th>ได้ $Q$</th></tr>
+  <tr><td>$\theta$ หายไปจาก $L$</td><td>$\delta\theta = 1$ · ตัวอื่น $0$</td><td>$\partial L/\partial\dot\theta$ ตัวเดียว</td></tr>
+  <tr><td>เลื่อนสองตัวพร้อมกัน</td><td>$\delta x_1 = \delta x_2 = 1$</td><td>$\dfrac{\partial L}{\partial v_1} + \dfrac{\partial L}{\partial v_2}$</td></tr>
+  <tr><td>เลื่อน $N$ ตัวพร้อมกัน</td><td>ทุกตัวเป็น $1$</td><td>ผลรวมของโมเมนตัมทั้งหมด</td></tr>
+</table>
+
+<p><strong>พิกัดวัฏจักรเป็นแค่กรณีที่ง่ายที่สุด</strong> — มีตัวเดียวขยับ ตัวอื่นอยู่นิ่ง ·
+สมมาตรจริงในฟิสิกส์ส่วนใหญ่เป็นแบบที่สอง (เลื่อนทั้งระบบ หมุนทั้งระบบ) ซึ่ง
+<em>ไม่มีตัวแปรไหนหายไปจาก $L$ เลย</em></p>
+
+<div class="warn">
+  <strong>วิธีตรวจว่ามีสมมาตรไหมโดยไม่ต้องเดา</strong> — ลองบวก
+  $\sum_i \frac{\partial L}{\partial q_i}\delta q_i$ ดู · ได้ศูนย์เมื่อไหร่แปลว่ามีสมมาตรนั้นจริง
+  และ $Q$ จากสมการ (1) คงที่ทันที · สองอนุภาคข้างบนคือ $k(x_2-x_1) + k(x_1-x_2) = 0$ พอดี
+</div>
+
+<h2>ทางลัดของข้อ 5</h2>
+
+<p>ข้อ 5 ให้หาสัมประสิทธิ์ของ $\varepsilon$ เมื่อ $y_0 = 3t$, $m=2$, ไม่มี $V$ ·
+สูตรจากบทก่อนคือ $\int m\dot y_0\dot\eta\,dt$ · แต่ <strong>$\dot y_0 = 3$ เป็นค่าคงที่</strong>
+⇒ ดึงออกนอกอินทิกรัลได้:</p>
+
+<div class="eq" data-eqno="2">$$ \int_0^1 m\,\dot y_0\,\dot\eta\;dt \;=\; m\dot y_0\int_0^1 \dot\eta\;dt \;=\; m\dot y_0\Big[\eta\Big]_0^1 \;=\; 0 $$</div>
+
+<p>เป็นศูนย์เพราะ <strong>$\eta$ ที่ปลายทั้งสองเป็นศูนย์</strong> (กติกาตั้งแต่บทที่ 1) ·
+ไม่ต้องอินทิเกรตอะไรเลย · และผลนี้ไม่ขึ้นกับ $m$ หรือค่าของ $\dot y_0$ ⇒</p>
+
+<div class="key">
+  <p style="margin:0"><strong>เส้นตรงเป็นเส้นทางจริงของอนุภาคอิสระเสมอ</strong> —
+  พิสูจน์ได้ในบรรทัดเดียวโดยไม่ต้องคำนวณเลขสักตัว (ตรวจแล้วกับสามชุดตัวเลขที่ต่างกัน
+  ได้ศูนย์ทุกชุด)</p>
+</div>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="hint">ใช้ <code>v1 v2 v3</code> แทนความเร็ว · <code>w</code> แทน $\dot\theta$ ·
+<code>wp</code> แทน $\dot\phi$ · ยกกำลังใช้ <code>^</code></p>
+
+<div class="quiz" data-steps>
+  <h3>โจทย์ A · สองอนุภาค<strong>มวลต่างกัน</strong> เชื่อมสปริง
+  $$ L = \tfrac12 m v_1^2 + \tfrac12 M v_2^2 - \tfrac12 k(x_1-x_2)^2 $$</h3>
+  <ol class="steps">
+    <li data-answer="m*v1" data-alt="mv1|v1*m">
+      <p><strong>ขั้น 1</strong> — หา $\dfrac{\partial L}{\partial v_1}$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  m*v1" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$mv_1$ — โมเมนตัมคอนจูเกตของตัวที่หนึ่ง</p>
+    </li>
+    <li data-answer="M*v2" data-alt="Mv2|v2*M|m2*v2">
+      <p><strong>ขั้น 2</strong> — หา $\dfrac{\partial L}{\partial v_2}$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  M*v2" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$Mv_2$ — <strong>มวลของตัวมันเอง ไม่ใช่ $m$</strong></p>
+    </li>
+    <li data-answer="m*v1+M*v2" data-alt="mv1+Mv2|M*v2+m*v1|Mv2+mv1">
+      <p><strong>ขั้น 3</strong> — เลื่อนทั้งสองตัวพร้อมกัน ($\delta x_1 = \delta x_2 = 1$) ·
+      ใช้สมการ (1) เขียนปริมาณที่อนุรักษ์</p>
+      <div class="ans"><input type="text" placeholder="เช่น  m*v1+M*v2" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$mv_1 + Mv_2$ = <strong>โมเมนตัมรวม</strong> ·
+      ตรวจด้วย <code>sympy</code> แล้วว่า $\frac{d}{dt}$ ของมันเป็นศูนย์จริงเมื่อใช้
+      สมการการเคลื่อนที่ · <em>โมเมนตัมของแต่ละตัวไม่คงที่</em> — สปริงโยนไปมา แต่ผลรวมไม่หาย</p>
+    </li>
+  </ol>
+  <p class="fb">มวลต่างกันไม่เปลี่ยนวิธีเลย — แค่โมเมนตัมของแต่ละตัวใช้มวลของตัวเอง</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>โจทย์ B · อนุภาคอิสระ $m=5$, &nbsp;$y_0 = 2t$, &nbsp;$\eta = t(1-t)$, &nbsp;ช่วง $[0,1]$</h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์">
+      <p><strong>ขั้น 1</strong> — หา $\displaystyle\int_0^1 \dot\eta\,dt$
+      &nbsp;<span class="hint">(ใช้ทฤษฎีบทหลักของแคลคูลัส อย่าเพิ่งกระจาย)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\big[\eta\big]_0^1 = \eta(1) - \eta(0) = 0 - 0 = 0$ ·
+      <strong>เป็นศูนย์เพราะปลายตรึง</strong> ไม่ใช่เพราะตัวเลขบังเอิญ</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์">
+      <p><strong>ขั้น 2</strong> — $\dot y_0 = 2$ เป็นค่าคงที่ · หาสัมประสิทธิ์ของ $\varepsilon$
+      &nbsp;<span class="hint">(ไม่มี $V$ ในระบบนี้)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\int m\dot y_0\dot\eta\,dt = m\dot y_0\int\dot\eta\,dt = 5 \cdot 2 \cdot 0 = 0$ ·
+      <strong>ค่า $m$ กับ $\dot y_0$ ไม่สำคัญเลย</strong> เพราะคูณกับศูนย์</p>
+    </li>
+    <li data-answer="1" data-alt="ใช่|หนึ่ง">
+      <p><strong>ขั้น 3</strong> — แล้ว $y_0 = 2t$ เป็นเส้นทางจริงหรือไม่ ·
+      พิมพ์ <code>1</code> ถ้าใช่ · <code>2</code> ถ้าไม่ใช่</p>
+      <div class="ans"><input type="text" placeholder="1 หรือ 2" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><strong>ใช่</strong> — สัมประสิทธิ์ของ $\varepsilon$ เป็นศูนย์ ⇒
+      $\delta S = 0$ ⇒ เป็นเส้นทางจริง · อนุภาคอิสระเดินเป็นเส้นตรงด้วยความเร็วคงที่
+      ตรงกับกฎข้อที่ 1 ของนิวตัน · <em>และเราพิสูจน์มันได้โดยไม่ต้องคำนวณอินทิกรัลสักตัว</em></p>
+    </li>
+  </ol>
+  <p class="fb">ผลนี้ไม่ขึ้นกับ $m$ และไม่ขึ้นกับความชัน ⇒ <strong>เส้นตรงชนะเสมอ</strong>
+  สำหรับอนุภาคอิสระ</p>
+</div>
+
+<h2>เขียนออกมาเอง — ไม่มีตัวเลือกให้เลือก</h2>
+
+<div class="quiz" data-open data-answer="m*r^2*w" data-alt="m*r**2*w|mr^2w|m*w*r^2|r^2*m*w">
+  <h3>$L = \tfrac12 m(\dot r^2 + r^2\dot\theta^2)$ · เขียนปริมาณที่อนุรักษ์</h3>
+  <div class="ans"><input type="text" placeholder="เช่น  m*r^2*w" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\theta$ ไม่โผล่ ⇒ พิกัดวัฏจักร ⇒ $\dfrac{\partial L}{\partial\dot\theta}
+  = m r^2\dot\theta$ · <strong>วิธีหา: มองหาพจน์ที่มี $\dot\theta$ แล้วอนุพันธ์เทียบ $\dot\theta$</strong>
+  — $\tfrac12 m r^2\dot\theta^2$ อนุพันธ์ได้ $mr^2\dot\theta$ (เลข 2 จากกำลังสองตัดกับ $\tfrac12$)</p>
+</div>
+
+<div class="quiz" data-open data-answer="m*l^2*sin(th)^2*wp" data-alt="m*l**2*sin(th)**2*wp|ml^2sin(th)^2wp|m*l^2*(sin(th))^2*wp">
+  <h3>ลูกตุ้มทรงกลม $\;L = \tfrac12 m l^2(\dot\theta^2 + \sin^2\!\theta\,\dot\phi^2) + mgl\cos\theta\;$ ·
+  เขียนปริมาณที่อนุรักษ์ <span class="hint">(ใช้ <code>th</code> แทน $\theta$ · <code>wp</code> แทน $\dot\phi$)</span></h3>
+  <div class="ans"><input type="text" placeholder="เช่น  m*l^2*sin(th)^2*wp" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\phi$ ไม่โผล่เลย (มีแต่ $\dot\phi$) ⇒ พิกัดวัฏจักร ⇒
+  $\dfrac{\partial L}{\partial\dot\phi} = m l^2\sin^2\!\theta\,\dot\phi$ ·
+  <strong>$\theta$ ยังอยู่ในคำตอบ</strong> เพราะมันไม่ใช่พิกัดวัฏจักร ($\cos\theta$ โผล่อยู่) —
+  ปริมาณทั้งก้อนคงที่ ทั้งที่ $\theta$ กับ $\dot\phi$ แต่ละตัวเปลี่ยนไปมา</p>
+</div>
+
+<div class="quiz" data-open data-answer="m*v1+m*v2+m*v3" data-alt="m(v1+v2+v3)|m*(v1+v2+v3)|mv1+mv2+mv3">
+  <h3>อนุภาคสามตัวมวล $m$ เท่ากัน เชื่อมกันเป็นลูกโซ่ด้วยสปริง ·
+  $L$ ขึ้นกับผลต่าง $(x_1-x_2)$ และ $(x_2-x_3)$ เท่านั้น · เขียนปริมาณที่อนุรักษ์</h3>
+  <div class="ans"><input type="text" placeholder="เช่น  m*v1+m*v2+m*v3" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">เลื่อนทั้งสามตัวพร้อมกันแล้วผลต่างไม่เปลี่ยน ⇒ $L$ ไม่เปลี่ยน ·
+  $\delta x_i = 1$ ทุกตัว ⇒ $Q = mv_1 + mv_2 + mv_3$ ·
+  <strong>กฎเดิมขยายไปกี่ตัวก็ได้</strong> — และนี่คือที่มาของกฎอนุรักษ์โมเมนตัม
+  สำหรับระบบใด ๆ ที่แรงภายในขึ้นกับระยะห่างเท่านั้น</p>
+</div>
+
+<div class="quiz" data-open data-answer="2" data-alt="สอง|2 ตัว">
+  <h3>อนุภาคในสนามที่ $V$ ขึ้นกับ $z$ เท่านั้น $\;L = \tfrac12 m(v_x^2+v_y^2+v_z^2) - V(z)\;$ ·
+  <strong>มีปริมาณอนุรักษ์กี่ตัวจากสมมาตรการเลื่อน</strong> <span class="hint">(ตอบเป็นจำนวน)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb"><strong>2 ตัว</strong> — $x$ กับ $y$ ไม่โผล่ใน $L$ เลย ⇒ $mv_x$ และ $mv_y$
+  คงที่ทั้งคู่ · ส่วน $z$ โผล่อยู่ใน $V(z)$ ⇒ $mv_z$ ไม่คงที่ (ถูกแล้ว มีแรงในแนวนั้น) ·
+  <em>สมมาตรที่หายไปหนึ่งทิศ ทำให้กฎอนุรักษ์หายไปหนึ่งข้อพอดี</em></p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> — <strong>ตอนนี้มันเก็บคำตอบที่พิมพ์ผิดมาด้วยแล้ว</strong>
+  ("ผิดข้อ 3 (ตอบ m*r*w)") · คำตอบที่ผิดบอกได้ว่าเข้าใจผิดแบบไหน ซึ่งเลขข้ออย่างเดียวบอกไม่ได้
+  <div class="nav">
+    <a href="./0010-transfer-test.html">← ทดสอบรวม</a>
+    <a href="./0003-noether.html">บทที่ 2</a>
+    <a href="../reference/0001-action-cheatsheet.html">📎 ชีทสรุป</a>
+  </div>
+</div>
+
+</body>
+</html>

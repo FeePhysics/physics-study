@@ -216,9 +216,15 @@
         // โจทย์ไล่ขั้น: บอกด้วยว่าหลุดขั้นไหน ไม่งั้นข้อมูลที่ละเอียดกว่าถูกทิ้งตอนคัดลอก
         var bad = [];
         q.querySelectorAll('.steps > li').forEach(function (li, j) {
-          if (li.dataset.result === 'wrong') bad.push(j + 1);
+          if (li.dataset.result !== 'wrong') return;
+          var v = li.querySelector('.ans input');
+          bad.push((j + 1) + (v && v.value.trim() ? ': ' + v.value.trim() : ''));
         });
-        wrong.push((i + 1) + (bad.length ? ' (ขั้น ' + bad.join(', ') + ')' : ''));
+        if (bad.length) { wrong.push((i + 1) + ' (ขั้น ' + bad.join(' · ขั้น ') + ')'); return; }
+
+        // ข้อคำตอบเปิด: คำตอบที่พิมพ์ผิดบอกได้มากกว่าเลขข้อ ว่าเข้าใจผิดแบบไหน
+        var typed = q.querySelector('.ans input');
+        wrong.push((i + 1) + (typed && typed.value.trim() ? ' (ตอบ ' + typed.value.trim() + ')' : ''));
       });
       var text = 'ถูก ' + (all.length - wrong.length) + '/' + all.length +
                  (wrong.length ? ' · ผิดข้อ ' + wrong.join(' · ') : ' · ถูกหมด');
