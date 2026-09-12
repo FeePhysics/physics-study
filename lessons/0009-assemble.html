@@ -68,9 +68,19 @@ $S(\alpha) = -\frac{100}{3} + \frac{\pi^2}{8}\alpha^2$ ให้ดูเลย 
 คูณ $\tfrac12$ เข้าไปแล้วเหลือ $\dot y_0\dot\eta$ พอดี ⇒</p>
 
 <div class="key">
-  <div class="eq">$$ \text{สัมประสิทธิ์ของ }\varepsilon \;=\; \int_0^2 \dot y_0\,\dot\eta\;dt \;-\; \int_0^2 mg\,\eta\;dt $$</div>
+  <div class="eq" data-eqno="2">$$ \text{สัมประสิทธิ์ของ }\varepsilon \;=\; \int_a^b m\,\dot y_0\,\dot\eta\;dt \;-\; \int_a^b V'(y_0)\,\eta\;dt $$</div>
   <p style="margin-bottom:0">สองอินทิกรัลเท่านั้น · ไม่ต้องกาง $S(\varepsilon)$ ทั้งก้อน
   ไม่ต้องยกกำลังสองอะไรยาว ๆ</p>
+</div>
+
+<div class="warn">
+  <strong>$m$ อยู่ในพจน์แรกด้วย อย่าให้มันหายไป</strong> — ตัวอย่างข้างบนใช้
+  $T = \tfrac12\dot y^2$ ซึ่งแปลว่า $m = 1$ พอดี ตัว $m$ เลย<em>มองไม่เห็น</em> ·
+  พอเจอโจทย์ที่ $m \neq 1$ แล้วจำสูตรมาแบบไม่มี $m$ จะได้เลขผิดทันที ·
+  ตรวจแล้วด้วย <code>sympy</code> (<code>0012_epsilon_general.py</code>): $y_0 = t^2$,
+  $\eta = t(1-t)$, $m = 5$, $V = mgy$, $g = 10$ ⇒ ค่าจริง $-10$ ·
+  สูตรที่ตกตัว $m$ ให้ $-\tfrac{26}{3}$
+  <div class="eq">$$ V = mgy \;\Rightarrow\; V'(y_0) = mg \;\Rightarrow\; \text{สัมประสิทธิ์} = \int m\,\dot y_0\,\dot\eta\;dt \;-\; \int m g\,\eta\;dt $$</div>
 </div>
 
 <h2>ลองเอง — ไต่จากง่ายมาก</h2>

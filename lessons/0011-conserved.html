@@ -73,8 +73,14 @@
 <h2>ทางลัดของข้อ 5</h2>
 
 <p>ข้อ 5 ให้หาสัมประสิทธิ์ของ $\varepsilon$ เมื่อ $y_0 = 3t$, $m=2$, ไม่มี $V$ ·
-สูตรจากบทก่อนคือ $\int m\dot y_0\dot\eta\,dt$ · แต่ <strong>$\dot y_0 = 3$ เป็นค่าคงที่</strong>
-⇒ ดึงออกนอกอินทิกรัลได้:</p>
+<strong>สูตรนี้ไม่ต้องจำ กางเองได้ในบรรทัดเดียว</strong> — ใส่ $y = y_0 + \varepsilon\eta$
+ลงใน $\tfrac12 m\dot y^2$ แล้วดูตัวคูณไขว้:</p>
+
+<div class="eq">$$ \tfrac12 m(\dot y_0 + \varepsilon\dot\eta)^2 = \tfrac12 m\dot y_0^2 \;+\; \varepsilon\,\underbrace{m\,\dot y_0\dot\eta}_{\text{ตัวคูณไขว้}} \;+\; \tfrac12\varepsilon^2 m\dot\eta^2 $$</div>
+
+<p>⇒ สัมประสิทธิ์ของ $\varepsilon$ คือ $\int m\dot y_0\dot\eta\,dt$ ·
+<strong>$m$ อยู่ในนั้นด้วยเสมอ</strong> (บท 3 เขียนตัวอย่างที่ $m=1$ ไว้ ตัว $m$ เลยมองไม่เห็น) ·
+ทีนี้ <strong>$\dot y_0 = 3$ เป็นค่าคงที่</strong> ⇒ ดึงออกนอกอินทิกรัลได้:</p>
 
 <div class="eq" data-eqno="2">$$ \int_0^1 m\,\dot y_0\,\dot\eta\;dt \;=\; m\dot y_0\int_0^1 \dot\eta\;dt \;=\; m\dot y_0\Big[\eta\Big]_0^1 \;=\; 0 $$</div>
 
@@ -130,8 +136,10 @@
       <strong>เป็นศูนย์เพราะปลายตรึง</strong> ไม่ใช่เพราะตัวเลขบังเอิญ</p>
     </li>
     <li data-answer="0" data-alt="ศูนย์">
-      <p><strong>ขั้น 2</strong> — $\dot y_0 = 2$ เป็นค่าคงที่ · หาสัมประสิทธิ์ของ $\varepsilon$
-      &nbsp;<span class="hint">(ไม่มี $V$ ในระบบนี้)</span></p>
+      <p><strong>ขั้น 2</strong> — ไม่มี $V$ ⇒ สัมประสิทธิ์ของ $\varepsilon$ คือ
+      $\displaystyle\int_0^1 m\,\dot y_0\,\dot\eta\;dt$ ล้วน ๆ · ที่นี่ $m = 5$ และ
+      $\dot y_0 = 2$ <strong>เป็นค่าคงที่ทั้งคู่</strong> ⇒ ดึงออกนอกอินทิกรัลได้
+      &nbsp;<span class="hint">(แล้วข้างในเหลือ $\int\dot\eta\,dt$ ซึ่งคือขั้น 1 พอดี)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$\int m\dot y_0\dot\eta\,dt = m\dot y_0\int\dot\eta\,dt = 5 \cdot 2 \cdot 0 = 0$ ·
       <strong>ค่า $m$ กับ $\dot y_0$ ไม่สำคัญเลย</strong> เพราะคูณกับศูนย์</p>
