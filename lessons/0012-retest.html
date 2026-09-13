@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>กวาดทั้งห้าบท</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>กวาดทั้งห้าบท</h1>
+<p class="meta">ทดสอบ · 8 ข้อ · ~30 นาที · ไม่บอกว่าข้อไหนใช้เครื่องมือไหน</p>
+
+<div class="key">
+  <p style="margin:0">ระบบทุกระบบในชุดนี้<strong>ไม่เคยโผล่ในบทไหนมาก่อน</strong> และ
+  <strong>ไม่มีข้อไหนบอกว่าต้องใช้กฎอะไร</strong> — การเลือกเครื่องมือเองคือครึ่งหนึ่ง
+  ของสิ่งที่วัด · ตอบไม่ได้ให้พิมพ์ <code>ไม่รู้</code> ตรง ๆ
+  มันบอกอะไรคนละอย่างกับการตอบผิด และผมอยากได้ข้อมูลนั้น</p>
+</div>
+
+<div class="warn">
+  <strong>ทุกคำตอบในชุดนี้ตรวจด้วย <code>sympy</code> มาแล้วทั้งหมด</strong>
+  (<code>scripts/verify/0013_retest.py</code>) — รวมทั้งการตรวจซ้ำว่า
+  <em>ตัวลวงหลักของแต่ละข้อให้คำตอบคนละค่ากับเฉลยจริง</em> ⇒ ข้อที่ตอบถูก
+  แปลว่าเดินถูกทาง ไม่ใช่บังเอิญเลขตรงกัน
+</div>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="hint">ใช้ <code>v</code> · <code>v1 v2 v3</code> แทนความเร็ว ·
+ยกกำลังใช้ <code>^</code> · เศษส่วนพิมพ์ <code>26/3</code> หรือทศนิยมก็ได้
+(คลาดได้ไม่เกิน 0.5%)</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · รอกแขวนมวลสองข้าง &nbsp;$m_1 = 3$, $m_2 = 1$, $g = 10$ ·
+  ให้ $x$ คือระยะที่ข้างหนักหย่อนลง
+  $$ L = 2\dot x^2 + 20x $$</h3>
+  <ol class="steps">
+    <li data-answer="4*v" data-alt="4v|v*4|4*xdot">
+      <p><strong>ขั้น 1</strong> — หา $\dfrac{\partial L}{\partial \dot x}$
+      &nbsp;<span class="hint">(ใช้ <code>v</code> แทน $\dot x$)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  4*v" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4v$ — โมเมนตัมคอนจูเกตของระบบทั้งก้อน
+      (มวลรวมสองข้างเคลื่อนที่ด้วยความเร็วเดียวกันเพราะเชือกไม่ยืด)</p>
+    </li>
+    <li data-answer="20" data-alt="+20">
+      <p><strong>ขั้น 2</strong> — หา $\dfrac{\partial L}{\partial x}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$20$ — ค่าคงที่ · <strong>ไม่เป็นศูนย์ ⇒ $x$ ไม่ใช่พิกัดวัฏจักร</strong>
+      ⇒ โมเมนตัมของระบบนี้ <em>ไม่</em> อนุรักษ์ (มีแรงโน้มถ่วงดึงอยู่)</p>
+    </li>
+    <li data-answer="5" data-alt="5.0">
+      <p><strong>ขั้น 3</strong> — ใช้สมการออยเลอร์–ลากรองจ์หา<strong>ความเร่ง</strong></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{d}{dt}(4v) = 20 \Rightarrow 4a = 20 \Rightarrow a = 5$ ·
+      ตรงกับสูตรรอกมาตรฐาน $\dfrac{(m_1-m_2)g}{m_1+m_2} = \dfrac{2\cdot 10}{4} = 5$
+      <strong>ซึ่งเราไม่ได้ใช้เลย</strong> — ได้มาจากการเดิน EL ล้วน ๆ
+      (ตรวจแล้วทั้งสองทางด้วย <code>sympy</code>)</p>
+    </li>
+  </ol>
+  <p class="fb">แรงตึงเชือกไม่โผล่ที่ไหนเลยตลอดทาง — <strong>นั่นคือสิ่งที่วิธีลากรองจ์ซื้อให้</strong>
+  แรงบังคับที่ไม่ทำงานหายไปเองโดยไม่ต้องเขียนสมการของมัน</p>
+</div>
+
+<div class="quiz" data-open data-answer="26/3" data-alt="8.667|8.6667|8.67|8.666">
+  <h3>ข้อ 2 · อนุภาคมวล $m = 4$ ไม่มีแรงใด ๆ เดินตามเส้นทาง $y = 3t - t^2$ ·
+  หา $S$ บนช่วง $[0,1]$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\dot y = 3-2t$ ⇒ $T = \tfrac12\cdot 4\cdot(3-2t)^2 = 2(3-2t)^2 = 8t^2-24t+18$ ·
+  ไม่มี $V$ ⇒ $S = \int_0^1 T\,dt = \tfrac83 - 12 + 18 = \tfrac{26}{3}$ ·
+  <strong>$m=4$ ต้องเข้าไปคูณจริง</strong> — วัดทั้งสองทางพลาดแล้ว:
+  ลืม $\tfrac12 m$ ทั้งก้อนได้ $\tfrac{13}{3}$ · เผลอใช้ $m=1$ ได้ $\tfrac{13}{6}$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · $m = 3$, &nbsp;$V = mgy$ โดย $g = 10$ ·
+  เส้นทางที่จะตรวจคือ $y_\varepsilon = t^2 + \varepsilon\,t(1-t)$ &nbsp;ช่วง $[0,1]$</h3>
+  <ol class="steps">
+    <li data-answer="1-2t" data-alt="1-2*t|-2t+1|1 - 2t">
+      <p><strong>ขั้น 1</strong> — หา $\dot\eta$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  1-2t" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\eta = t - t^2 \Rightarrow \dot\eta = 1 - 2t$</p>
+    </li>
+    <li data-answer="-1" data-alt="−1|-1.0">
+      <p><strong>ขั้น 2</strong> — หา $\displaystyle\int_0^1 m\,\dot y_0\,\dot\eta\;dt$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3\int_0^1 2t(1-2t)\,dt = 3\int_0^1(2t-4t^2)dt = 3\left(1-\tfrac43\right) = -1$ ·
+      <strong>ตัว $m=3$ อยู่ในพจน์นี้ด้วย</strong> — ตกไปแล้วได้ $-\tfrac13$
+      และคำตอบสุดท้ายจะกลายเป็น $-\tfrac{16}{3}$ แทนที่จะเป็น $-6$ (วัดแล้ว)</p>
+    </li>
+    <li data-answer="5" data-alt="5.0">
+      <p><strong>ขั้น 3</strong> — หา $\displaystyle\int_0^1 m g\,\eta\;dt$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$30\int_0^1(t-t^2)dt = 30\left(\tfrac12-\tfrac13\right) = 30\cdot\tfrac16 = 5$</p>
+    </li>
+    <li data-answer="-6" data-alt="−6|-6.0">
+      <p><strong>ขั้น 4</strong> — หาสัมประสิทธิ์ของ $\varepsilon$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-1 - 5 = -6$ · <strong>ไม่เป็นศูนย์ ⇒ $y_0 = t^2$ ไม่ใช่เส้นทางจริง</strong> ·
+      กางแอ็กชันเต็มก้อนด้วย <code>sympy</code> แล้วหยิบสัมประสิทธิ์ $\varepsilon$ ออกมา
+      ได้ $-6$ ตรงกัน — <em>คนละทางกับการใช้สูตรลัด</em></p>
+    </li>
+  </ol>
+  <p class="fb">สองอินทิกรัลเท่านั้น และ <strong>$m$ อยู่ในทั้งสองพจน์</strong> —
+  ตัวอย่างในบทที่ 3 ใช้ $m=1$ ตัว $m$ เลยมองไม่เห็น ข้อนี้จึงตั้ง $m=3$ โดยตั้งใจ</p>
+</div>
+
+<div class="quiz" data-open data-answer="m*v1+m*v2" data-alt="m(v1+v2)|m*(v1+v2)|mv1+mv2|m*v2+m*v1|mv2+mv1">
+  <h3>ข้อ 4 · อนุภาคสามตัวมวล $m$ เท่ากันบนเส้นตรง
+  $$ L = \tfrac12 m(v_1^2+v_2^2+v_3^2) - \tfrac12 k(x_1-x_2)^2 - \tfrac12 K x_3^2 $$
+  เขียนปริมาณที่อนุรักษ์ <strong>ที่มาจากสมมาตรการเลื่อน</strong>
+  <span class="hint">(พลังงานก็อนุรักษ์ในระบบนี้ แต่ไม่ใช่ตัวที่ถาม)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$m v_1 + m v_2$ — <strong>ไม่รวมตัวที่สาม</strong> ·
+  เลื่อนเฉพาะตัว 1 กับ 2 ($\delta x_1 = \delta x_2 = 1$, $\delta x_3 = 0$) แล้ว $L$ ไม่เปลี่ยน
+  เพราะสองตัวนั้นโผล่แค่ในผลต่าง · แต่ $x_3$ ผูกกับสปริงที่ยึดกับพื้น ขยับแล้ว $L$ เปลี่ยน
+  ⇒ $\delta x_3$ ต้องเป็น $0$
+  <br><strong>ตรวจแล้วด้วย <code>sympy</code>:</strong> $\frac{d}{dt}(mv_1+mv_2) = 0$ จริงเมื่อใช้
+  สมการการเคลื่อนที่ · ส่วน $m(v_1+v_2+v_3)$ ให้ $\frac{d}{dt} = -Kx_3 \neq 0$ —
+  <em>ตัวลวงตัวนี้ผิดจริง ไม่ใช่แค่เขียนเกิน</em> ·
+  และเลื่อน<em>เฉพาะตัวเดียว</em> ก็ไม่ได้เหมือนกัน — ได้ $k(x_2-x_1) \neq 0$ (ตรวจแล้ว)
+  ⇒ ชุด $\delta q$ ที่ใช้ได้มีแบบเดียว</p>
+</div>
+
+<div class="quiz" data-open data-answer="-16" data-alt="−16|-16.0">
+  <h3>ข้อ 5 · $v^\mu = (5,\,1,\,2,\,2)$ · หา $v^\mu v_\mu$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$v_\mu = (-5,\,1,\,2,\,2)$ ⇒ $v^\mu v_\mu = -25+1+4+4 = -16$ ·
+  <strong>ติดลบ ⇒ เป็นช่วงแบบเวลา</strong> (อนุภาคที่มีมวลเดินทางแบบนี้ได้) ·
+  ตอบ $34$ แปลว่าบวกทุกช่องแบบพีทาโกรัส ซึ่งเป็นเรขาคณิตคนละอันกับกาลอวกาศ</p>
+</div>
+
+<div class="quiz" data-open data-answer="1" data-alt="หนึ่ง|1 ตัว">
+  <h3>ข้อ 6 · นิพจน์ $\;T^{\mu}{}_{\nu\rho\sigma}\;g^{\rho\sigma}\;v^{\nu}\;$
+  เหลือดัชนีอิสระกี่ตัว <span class="hint">(ตอบเป็นจำนวน)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb"><strong>1 ตัว</strong> — $\rho$ กับ $\sigma$ โผล่ล่างที่ $T$ บนที่ $g$ ⇒ ถูกรวมทิ้ง ·
+  $\nu$ โผล่ล่างที่ $T$ บนที่ $v$ ⇒ ถูกรวมทิ้ง · เหลือ $\mu$ ตัวเดียว
+  ⇒ <strong>ของก้อนนี้เป็นเวกเตอร์</strong> ⇒ เอาไปวางเท่ากับสเกลาร์หรือเทนเซอร์อันดับสองไม่ได้
+  — นี่คือการตรวจงานตัวเองที่ทำได้ก่อนคำนวณอะไรเลย</p>
+</div>
+
+<div class="quiz" data-open data-answer="-2" data-alt="−2|-2.0|M^-2|M^(-2)">
+  <h3>ข้อ 7 · ในหน่วย $\hbar = c = 1$ ถ้า $\mathcal{L}$ มีพจน์ $\;g\,\phi^6\;$
+  ค่าคงที่ $g$ มีมิติเชิงมวลเท่าไร <span class="hint">(ตอบเลขยกกำลัง)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$[\mathcal{L}] = M^4$ และ $[\phi] = M$ ⇒ $[g]\cdot M^6 = M^4$ ⇒ $[g] = M^{-2}$
+  ⇒ ตอบ $-2$
+  <br><strong>และเลขติดลบนี้มีความหมายที่เจอทุกวันใน paper</strong> — ค่าคงที่ที่มิติติดลบ
+  แปลว่าทฤษฎีนี้ใช้ได้แค่ถึงพลังงานระดับหนึ่งแล้วพัง (non-renormalizable) ·
+  แรงโน้มถ่วงเป็นแบบนี้ และนั่นคือเหตุผลทั้งหมดที่มีคนทำ quantum gravity อยู่</p>
+</div>
+
+<div class="quiz" data-open data-answer="6" data-alt="หก|6 ตัว">
+  <h3>ข้อ 8 · ใน 4 มิติ $F_{\mu\nu}$ มีองค์ประกอบ<strong>อิสระ</strong>กี่ตัว
+  <span class="hint">(ตอบเป็นจำนวน · ใช้สมบัติของมันเอง ไม่ต้องท่อง)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb"><strong>6 ตัว</strong> — ตาราง $4\times4$ มี 16 ช่อง ·
+  ปฏิสมมาตร ⇒ แนวทแยง 4 ช่องเป็นศูนย์ · เหลือ 12 ช่องที่จับคู่กันเอง
+  ($F_{\mu\nu} = -F_{\nu\mu}$) ⇒ อิสระจริง $12/2 = 6$
+  <br>และ 6 ตัวนี้คือ $\vec E$ สามตัว $+$ $\vec B$ สามตัวพอดี —
+  <strong>จำนวนสนามที่วัดได้จริงถูกกำหนดโดยรูปร่างของวัตถุทางคณิตศาสตร์</strong>
+  ไม่ใช่โดยการทดลอง · สร้างเมทริกซ์ปฏิสมมาตรจริงใน <code>sympy</code> แล้วนับ ได้ 6</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา — มันเก็บทั้งเลขข้อ เลขขั้น
+  และ<strong>คำตอบที่พิมพ์</strong> · ข้อไหนพิมพ์ <code>ไม่รู้</code> ผมจะรู้ทันที
+  ว่าต้องกลับไปซ่อม<em>หลักสูตร</em> ไม่ใช่ให้ทำซ้ำ
+  <div class="nav">
+    <a href="./0011-conserved.html">← เขียนปริมาณอนุรักษ์เอง</a>
+    <a href="./0001-action-principle.html">บทที่ 1</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>
