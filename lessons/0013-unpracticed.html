@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>กฎที่เคยพูดผ่าน ๆ</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>กฎที่เคยพูดผ่าน ๆ</h1>
+<p class="meta">บทซ่อม · ~18 นาที · สี่อย่างที่ถูกพูดแต่ไม่เคยถูกฝึก</p>
+
+<div class="key">
+  <p><strong>ผลรอบนี้ชี้ตรงจุดที่สุดในบรรดาทุกรอบ</strong> — ผมนับข้อฝึกทั้งหมด
+  ที่เคยทำมา <strong>104 ข้อ/ขั้น</strong> แล้วค้นว่าแต่ละปฏิบัติการเคยถูกฝึกกี่ครั้ง:</p>
+  <table>
+    <tr><th style="width:62%">ปฏิบัติการ</th><th>เคยฝึกกี่ข้อ</th><th>ผลรอบนี้</th></tr>
+    <tr><td>กระจาย $V$ รอบ $y_0$ (พจน์ $V$ ในสัมประสิทธิ์ $\varepsilon$)</td><td><strong>0</strong></td><td>ข้อ 3 ✗</td></tr>
+    <tr><td>ตรวจว่าสมมาตรจริงไหม <em>ก่อน</em> เขียนคำตอบ</td><td><strong>0</strong></td><td>ข้อ 4 ✗</td></tr>
+    <tr><td>คำนวณ $v^\mu v_\mu$ ออกมาเป็นตัวเลข</td><td><strong>0</strong></td><td>ข้อ 5 ✗</td></tr>
+    <tr><td>ใช้ปฏิสมมาตรของ $F_{\mu\nu}$ นับอะไรสักอย่าง</td><td><strong>0</strong></td><td>ข้อ 8 ✗</td></tr>
+  </table>
+  <p style="margin-bottom:0">ข้อที่ผ่าน (1, 2, 6, 7) เป็นข้อที่เคยมีแบบฝึกรองรับทุกข้อ ·
+  <strong>กฎที่ถูกเขียนไว้ในเนื้อบทแต่ไม่มีข้อไหนบังคับให้ใช้ ไม่ติดเลยสักข้อ</strong>
+  — นั่นเป็นข้อบกพร่องของการออกแบบหลักสูตร ไม่ใช่ของการอ่าน</p>
+</div>
+
+<h2>ก่อนอื่น: $\eta$ คืออะไร</h2>
+
+<p><strong>คำถามนี้ถูกแล้วที่จะถาม และผมไม่เคยตอบให้ชัดสักครั้ง</strong> — ไล่ดูโจทย์
+ทุกข้อที่เคยใช้ $\eta$ มา <strong>7 ข้อ มีแค่ข้อเดียวที่บอกว่า $\eta$ คืออะไร</strong>
+อีก 6 ข้อปล่อยให้อ่านเอาเองจากนิพจน์</p>
+
+<div class="key">
+  <p style="margin:0">$\eta(t)$ คือ <strong>รูปร่างของการบิด</strong> — เส้นที่เอาไปบวกเพิ่ม
+  เข้ากับเส้นทางที่กำลังตรวจ · เขียนเส้นที่บิดแล้วว่า</p>
+  <div class="eq" data-eqno="1">$$ y_\varepsilon(t) \;=\; \underbrace{y_0(t)}_{\text{เส้นที่ตรวจ}} \;+\; \varepsilon\,\underbrace{\eta(t)}_{\text{รูปร่างการบิด}} $$</div>
+  <p style="margin-bottom:0"><strong>$\eta$ คือก้อนที่คูณอยู่กับ $\varepsilon$ — อ่านออกจาก
+  นิพจน์ได้ตรง ๆ</strong> · $\varepsilon$ คุมว่าบิดแรงแค่ไหน $\eta$ คุมว่าบิดเป็นรูปอะไร</p>
+</div>
+
+<p>เงื่อนไขเดียวของมันคือ <strong>$\eta$ ต้องเป็นศูนย์ที่ปลายทั้งสอง</strong> —
+เพราะจุดเริ่มกับจุดจบถูกตรึงไว้ ไม่ใช่สิ่งที่เราจะไปเปลี่ยน ·
+$t(1-t)$ บนช่วง $[0,1]$ เป็นศูนย์ที่ $t=0$ และ $t=1$ พอดี ⇒ ใช้ได้</p>
+
+<h2>“ต้องท่องไหม” — ไม่ต้อง มีสูตรเดียวและมันมาจากกฎลูกโซ่</h2>
+
+<p>ที่ผ่านมาผมยกสูตรมาให้ทีละแบบ (<em>ไม่มี $V$ ใช้อันนี้ · มี $V$ ใช้อันนั้น</em>)
+ซึ่งทำให้หน้าตาเหมือนของที่ต้องจำ · <strong>ความจริงมีสูตรเดียว และกางเองได้</strong></p>
+
+<p>เอา $y_\varepsilon = y_0 + \varepsilon\eta$ ใส่เข้าไปใน $L$ แล้วกระจายรอบ $\varepsilon = 0$
+ด้วยกฎลูกโซ่ธรรมดา — $L$ ขึ้นกับสองช่อง ($y$ กับ $\dot y$) จึงได้สองพจน์:</p>
+
+<div class="key">
+  <div class="eq" data-eqno="2">$$ \text{สัมประสิทธิ์ของ }\varepsilon \;=\; \int_a^b \left[\;\frac{\partial L}{\partial y}\,\eta \;+\; \frac{\partial L}{\partial \dot y}\,\dot\eta\;\right] dt $$</div>
+  <p style="margin-bottom:0">แค่นี้ · ใช้ได้กับ <strong>$L$ อะไรก็ได้</strong> —
+  สปริง แรงโน้มถ่วง ไม่มีแรงเลย หรืออะไรที่ยังไม่เคยเจอ ·
+  <strong>ไม่มีเคสพิเศษให้จำ</strong></p>
+</div>
+
+<p>ลองกับ $\;L = \tfrac12 m\dot y^2 - V(y)\;$ ดู:</p>
+
+<table>
+  <tr><th style="width:30%">$\dfrac{\partial L}{\partial \dot y}$</th><td>$m\dot y$ &nbsp;— โมเมนตัม</td></tr>
+  <tr><th>$\dfrac{\partial L}{\partial y}$</th><td>$-V'(y)$ &nbsp;— <strong>ติดลบมาเอง</strong> เพราะ $V$ อยู่หลังเครื่องหมายลบใน $L$</td></tr>
+</table>
+
+<div class="warn">
+  <strong>เครื่องหมายลบไม่ต้องจำ และไม่ต้องใส่เอง</strong> — มันอยู่ใน
+  $\partial L/\partial y$ อยู่แล้ว · รอบที่แล้วผมตั้งขั้นให้หา
+  $\int mg\,\eta\,dt$ ซึ่งเป็นรูปที่ <em>ดึงลบออกไปไว้ข้างนอก</em>
+  แล้วแบตอบ $-5$ · <strong>ในรูปกฎลูกโซ่ $-5$ คือค่าที่ถูกของพจน์นั้นพอดี</strong>
+  (ตรวจแล้ว: $\int_0^1(\partial L/\partial y)\,\eta\,dt = -5$) —
+  สัญชาตญาณไม่ได้ผิด รูปที่ผมเขียนต่างหากที่ย้ายลบไปไว้ผิดที่
+</div>
+
+<p><strong>และสมการออยเลอร์–ลากรองจ์ก็คือสมการ (2) ตัวเดิม</strong> — แยกส่วนพจน์หลัง
+เพื่อย้าย $\dot\eta$ ให้กลายเป็น $\eta$ แล้วดึง $\eta$ ออกเป็นตัวร่วม:</p>
+
+<div class="eq" data-eqno="3">$$ \int_a^b \eta\left[\frac{\partial L}{\partial y} - \frac{d}{dt}\frac{\partial L}{\partial \dot y}\right]dt \;=\; 0 \quad\text{สำหรับ }\eta\text{ ทุกแบบ} \;\;\Longrightarrow\;\; \frac{\partial L}{\partial y} - \frac{d}{dt}\frac{\partial L}{\partial \dot y} = 0 $$</div>
+
+<p>⇒ <strong>“หาสัมประสิทธิ์ของ $\varepsilon$” กับ “ใช้สมการ EL” เป็นเรื่องเดียวกัน</strong>
+ไม่ใช่สองเครื่องมือ · สิ่งเดียวที่ต้องรู้จริง ๆ คือหา $\partial L/\partial y$ กับ
+$\partial L/\partial\dot y$ ให้เป็น ซึ่งแบทำได้อยู่แล้ว (ข้อ 1 รอบที่แล้วผ่านครบทุกขั้น)</p>
+
+<h2>สมมาตรต้องตรวจ ไม่ใช่เดาจากหน้าตา</h2>
+
+<p>บทก่อนเขียนวิธีตรวจไว้ในกล่องเล็ก ๆ แล้วไม่เคยมีข้อไหนบังคับให้ใช้ ·
+<strong>ทุกตัวอย่างที่เคยทำมี สมมาตรที่ใช้ได้เสมอ</strong> ⇒ ไม่เคยมีเหตุผลให้ตรวจ</p>
+
+<div class="key">
+  <p style="margin:0"><strong>ลำดับที่ถูกต้องคือตรวจก่อน เขียนทีหลัง</strong> —
+  เดา $\delta q_i$ มาชุดหนึ่ง แล้วบวก</p>
+  <div class="eq" data-eqno="4">$$ \sum_i \frac{\partial L}{\partial q_i}\,\delta q_i \;=\; 0\;? $$</div>
+  <p style="margin-bottom:0">ได้ศูนย์ ⇒ เป็นสมมาตรจริง ⇒ ค่อยเขียน
+  $Q = \sum_i (\partial L/\partial\dot q_i)\,\delta q_i$ ·
+  <strong>ไม่ได้ศูนย์ ⇒ ชุดนั้นใช้ไม่ได้ ต้องเปลี่ยน $\delta q$ หรือไม่มีเลยก็ได้</strong></p>
+</div>
+
+<p>ข้อ 4 รอบที่แล้วมีสปริงยึด $x_3$ ไว้กับพื้น ⇒ ขยับ $x_3$ แล้ว $L$ เปลี่ยน ⇒
+$\delta x_3$ ต้องเป็น $0$ · การตรวจใช้เวลาสิบวินาทีและมันจะฟ้องทันที
+(วัดแล้ว: ชุด “เลื่อนทั้งสามตัว” ให้ $-Kx_3 \neq 0$)</p>
+
+<h2>เมตริกต้องลงมือคำนวณจริง</h2>
+
+<p>บทที่ 3 สอนกฎครบ แต่ quiz ของมันถามแต่ <em>ชนิด</em> ของผลลัพธ์
+(“ได้ของแบบไหนออกมา” · “$\lambda$ มีมิติเท่าไร”) — <strong>ไม่เคยให้คำนวณค่าสักครั้ง</strong>
+· รอบนี้จึงผ่านข้อ 6 กับ 7 (ระดับชนิด) แต่ไม่ผ่านข้อ 5 (ระดับค่า)</p>
+
+<div class="key">
+  <div class="eq" data-eqno="5">$$ v^\mu v_\mu \;=\; -(v^0)^2 + (v^1)^2 + (v^2)^2 + (v^3)^2 $$</div>
+  <p style="margin-bottom:0"><strong>ช่องเวลาเข้ามาด้วยเครื่องหมายลบ</strong> ·
+  บวกทุกช่องแบบพีทาโกรัส (ซึ่งให้ $34$ ในข้อนั้น) คือเรขาคณิตของห้องเรียน
+  ไม่ใช่ของกาลอวกาศ</p>
+</div>
+
+<table>
+  <tr><th style="width:34%">ผลเป็นลบ</th><td>ช่วงแบบเวลา — อนุภาคที่มีมวลเดินทางแบบนี้ได้</td></tr>
+  <tr><th>ผลเป็นศูนย์</th><td>ช่วงแบบแสง — แสงเดินบนเส้นนี้</td></tr>
+  <tr><th>ผลเป็นบวก</th><td>ช่วงแบบอวกาศ — ไม่มีอะไรเดินทางถึงกันได้</td></tr>
+</table>
+
+<h2>ปฏิสมมาตรเป็นเครื่องมือนับ ไม่ใช่คำบรรยาย</h2>
+
+<p>บทที่ 5 เขียนว่า $F_{\mu\nu} = -F_{\nu\mu}$ แล้วผ่านไปเลย ·
+มันไม่ใช่ข้อสังเกตประดับ — <strong>มันเป็นเครื่องมือที่นับของได้</strong></p>
+
+<div class="key">
+  <p style="margin:0">ตาราง $D \times D$ มี $D^2$ ช่อง · ปฏิสมมาตรบังคับสองอย่าง:</p>
+  <p style="margin-bottom:0">แนวทแยงเป็นศูนย์ ($F_{\mu\mu} = -F_{\mu\mu}$) ⇒ ตัด $D$ ช่อง ·
+  ที่เหลือจับคู่กันเอง ⇒ หารสอง ⇒
+  <strong>$\dfrac{D(D-1)}{2}$</strong> · ใน 4 มิติได้ $6$ — ตอบ $16$ คือยังไม่ได้ใช้
+  ปฏิสมมาตรเลย</p>
+</div>
+
+<p>และ $6$ ตัวนั้นคือ $\vec E$ สามตัว $+$ $\vec B$ สามตัวพอดี —
+<strong>จำนวนสนามที่วัดได้ในธรรมชาติถูกกำหนดโดยรูปร่างของวัตถุทางคณิตศาสตร์</strong>
+(สร้างเมทริกซ์ปฏิสมมาตรจริงใน <code>sympy</code> ที่ $D = 3, 4, 5$ แล้วนับ ได้ $3, 6, 10$)</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="hint">ใช้ <code>t</code> เป็นตัวแปรเวลา · <code>v1 v2 v3</code> แทนความเร็ว ·
+ยกกำลังใช้ <code>^</code> · เศษส่วนพิมพ์ <code>-1/2</code> หรือทศนิยมก็ได้</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · อ่าน $\eta$ ออกจากนิพจน์ &nbsp;
+  $y_\varepsilon = t^3 + \varepsilon\,t(2-t)$ &nbsp;ช่วง $[0,2]$</h3>
+  <ol class="steps">
+    <li data-answer="2t-t^2" data-alt="2*t-t^2|2t-t**2|-t^2+2t|t(2-t)|t*(2-t)|2*t-t**2">
+      <p><strong>ขั้น 1</strong> — $\eta$ คืออะไร</p>
+      <div class="ans"><input type="text" placeholder="เช่น  2t-t^2" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\eta = t(2-t) = 2t - t^2$ — <strong>ก้อนที่คูณอยู่กับ $\varepsilon$</strong> ·
+      ส่วน $t^3$ คือ $y_0$ ซึ่งเป็นเส้นที่กำลังถูกตรวจ ไม่ใช่การบิด</p>
+    </li>
+    <li data-answer="2-2t" data-alt="2-2*t|-2t+2|2 - 2t">
+      <p><strong>ขั้น 2</strong> — หา $\dot\eta$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{d}{dt}(2t-t^2) = 2-2t$ ·
+      ตรวจปลายตรึง: $\eta(0) = 0$ และ $\eta(2) = 0$ ✓ ⇒ เป็นการบิดที่ใช้ได้</p>
+    </li>
+  </ol>
+  <p class="fb">ขั้นนี้คือสิ่งเดียวที่ขวางอยู่ตอนข้อ 3 รอบที่แล้ว —
+  <strong>ไม่ใช่เรื่องฟิสิกส์เลย เป็นเรื่องอ่านสัญกรณ์ที่ผมไม่เคยอธิบาย</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · โจทย์เดิมที่พลาด — คราวนี้เดินด้วยสมการ (2) ·
+  $\;L = \tfrac12 m\dot y^2 - mgy\;$ โดย $m = 3$, $g = 10$ ·
+  $y_0 = t^2$, &nbsp;$\eta = t(1-t)$, &nbsp;ช่วง $[0,1]$</h3>
+  <ol class="steps">
+    <li data-answer="6t" data-alt="6*t|6 t">
+      <p><strong>ขั้น 1</strong> — หา $\dfrac{\partial L}{\partial \dot y}$ แล้วแทน $y_0$ ลงไป</p>
+      <div class="ans"><input type="text" placeholder="เช่น  6t" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\partial L/\partial\dot y = m\dot y = 3\dot y$ · และ $\dot y_0 = 2t$ ⇒ $6t$</p>
+    </li>
+    <li data-answer="-30" data-alt="−30|-30.0">
+      <p><strong>ขั้น 2</strong> — หา $\dfrac{\partial L}{\partial y}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-mg = -30$ · <strong>ลบมาเอง</strong> — ไม่ได้ใส่เพิ่ม
+      มันมาจาก $L = T - V$ ตรง ๆ</p>
+    </li>
+    <li data-answer="-5" data-alt="−5|-5.0">
+      <p><strong>ขั้น 3</strong> — หา $\displaystyle\int_0^1 \frac{\partial L}{\partial y}\,\eta\;dt$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-30\int_0^1(t-t^2)dt = -30\cdot\tfrac16 = -5$ ·
+      <strong>นี่คือเลขที่แบตอบไปรอบที่แล้วเป๊ะ</strong> — ถูกแล้ว ผมเขียนขั้นนั้นในรูป
+      ที่ย้ายลบออกไปข้างนอกเอง</p>
+    </li>
+    <li data-answer="-1" data-alt="−1|-1.0">
+      <p><strong>ขั้น 4</strong> — หา $\displaystyle\int_0^1 \frac{\partial L}{\partial \dot y}\,\dot\eta\;dt$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\dot\eta = 1-2t$ ⇒ $\int_0^1 6t(1-2t)dt = 6\left(\tfrac12-\tfrac23\right) = -1$</p>
+    </li>
+    <li data-answer="-6" data-alt="−6|-6.0">
+      <p><strong>ขั้น 5</strong> — สัมประสิทธิ์ของ $\varepsilon$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-5 + (-1) = -6$ · <strong>บวกกัน ไม่ใช่ลบกัน</strong> เพราะลบอยู่ในพจน์แรกแล้ว ·
+      ไม่เป็นศูนย์ ⇒ $y_0 = t^2$ ไม่ใช่เส้นทางจริง ·
+      กางแอ็กชันเต็มก้อนด้วย <code>sympy</code> ได้ $-6$ ตรงกัน</p>
+    </li>
+  </ol>
+  <p class="fb"><strong>ห้าขั้นนี้ไม่มีขั้นไหนต้องจำสูตร</strong> — มีแต่อนุพันธ์ย่อยสองตัว
+  กับอินทิกรัลสองตัว · และมันคือเครื่องมือตัวเดียวกับที่ข้อ 1 รอบที่แล้วใช้ผ่านฉลุย</p>
+</div>
+
+<div class="quiz" data-open data-answer="-1/2" data-alt="-0.5|−1/2|−0.5|-.5">
+  <h3>ข้อ 3 · $V$ คนละแบบ — สปริง &nbsp;$\;L = \tfrac12 m\dot y^2 - \tfrac12 k y^2\;$
+  โดย $m = 2$, $k = 6$ · $y_0 = t$, &nbsp;$\eta = t(1-t)$, &nbsp;ช่วง $[0,1]$ ·
+  หาสัมประสิทธิ์ของ $\varepsilon$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\partial L/\partial\dot y = 2\dot y = 2$ (เพราะ $\dot y_0 = 1$) ·
+  $\partial L/\partial y = -ky = -6t$
+  <br>$\int_0^1(-6t)(t-t^2)dt = -6\left(\tfrac13-\tfrac14\right) = -\tfrac12$ &nbsp;·&nbsp;
+  $\int_0^1 2(1-2t)dt = 0$ &nbsp;⇒&nbsp; รวม $= -\tfrac12$
+  <br><strong>สูตรไม่เปลี่ยนเลยแม้ $V$ จะคนละหน้าตา</strong> — เปลี่ยนแค่ค่าที่แทนเข้าไป
+  (ตรวจสองทางด้วย <code>sympy</code> ตรงกัน)</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · ลูกโซ่สามอนุภาค ไม่มีอะไรยึดพื้น
+  $$ L = \tfrac12 m(v_1^2+v_2^2+v_3^2) - \tfrac12 k(x_1-x_2)^2 - \tfrac12 K(x_2-x_3)^2 $$</h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์">
+      <p><strong>ขั้น 1</strong> — ลองชุด $\delta x_1 = \delta x_2 = \delta x_3 = 1$ ·
+      หา $\displaystyle\sum_i \frac{\partial L}{\partial x_i}\delta x_i$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — ทุกพจน์ของ $V$ เป็นผลต่าง เลื่อนพร้อมกันแล้วผลต่างไม่ขยับ ·
+      <strong>ตรวจแล้วว่าเป็นสมมาตรจริง ⇒ เขียนคำตอบต่อได้</strong></p>
+    </li>
+    <li data-answer="m*v1+m*v2+m*v3" data-alt="m(v1+v2+v3)|m*(v1+v2+v3)|mv1+mv2+mv3">
+      <p><strong>ขั้น 2</strong> — เขียนปริมาณที่อนุรักษ์</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$mv_1+mv_2+mv_3$ · <strong>คราวนี้ “บวกทั้งสามตัว” ถูกจริง</strong> —
+      ต่างกับข้อ 4 รอบที่แล้วตรงที่ระบบนี้ไม่มีอะไรยึดกับพื้น ·
+      สิ่งที่บอกความต่างคือขั้น 1 ไม่ใช่หน้าตาของ $L$</p>
+    </li>
+  </ol>
+  <p class="fb">ตรวจด้วย <code>sympy</code> แล้วว่า $\frac{d}{dt}$ ของมันเป็นศูนย์จริง</p>
+</div>
+
+<div class="quiz" data-open data-answer="0" data-alt="ศูนย์|ไม่มี">
+  <h3>ข้อ 5 · คราวนี้มีสปริงยึด $x_1$ ไว้กับพื้น
+  $$ L = \tfrac12 m(v_1^2+v_2^2) - \tfrac12 k(x_1-x_2)^2 - \tfrac12 C x_1^2 $$
+  <strong>มีปริมาณอนุรักษ์จากสมมาตรการเลื่อนกี่ตัว</strong>
+  <span class="hint">(ตอบเป็นจำนวน)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb"><strong>$0$ ตัว</strong> — ลองครบทั้งสามชุดแล้วไม่มีชุดไหนผ่าน (วัดด้วย <code>sympy</code>):
+  <br>เลื่อนทั้งคู่ ⇒ $-Cx_1$ &nbsp;·&nbsp; เฉพาะตัว 1 ⇒ $-Cx_1 - k(x_1-x_2)$ &nbsp;·&nbsp;
+  เฉพาะตัว 2 ⇒ $k(x_1-x_2)$ — <strong>ไม่มีอันไหนเป็นศูนย์</strong>
+  <br>สปริงที่ยึดกับพื้น<strong>เลือกตำแหน่งหนึ่งในอวกาศให้พิเศษ</strong> ⇒ สมมาตรการเลื่อนหายทั้งหมด
+  ⇒ โมเมนตัมไม่อนุรักษ์ · <em>พลังงานยังอนุรักษ์อยู่</em> เพราะ $L$ ไม่มี $t$ โผล่ตรง ๆ
+  แต่นั่นมาจากสมมาตรคนละตัว</p>
+</div>
+
+<div class="quiz" data-open data-answer="28" data-alt="+28|28.0">
+  <h3>ข้อ 6 · $v^\mu = (1,\,2,\,3,\,4)$ · หา $v^\mu v_\mu$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$-1 + 4 + 9 + 16 = 28$ · <strong>บวก ⇒ ช่วงแบบอวกาศ</strong> —
+  สองเหตุการณ์ที่ห่างกันแบบนี้ส่งสัญญาณถึงกันไม่ได้เลย ไม่ว่าเร็วแค่ไหน</p>
+</div>
+
+<div class="quiz" data-open data-answer="-2" data-alt="−2|-2.0">
+  <h3>ข้อ 7 · $A^\mu = (2,\,1,\,0,\,0)$ และ $B^\mu = (3,\,4,\,0,\,0)$ · หา $A_\mu B^\mu$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">กดดัชนีก่อน: $A_\mu = (-2,\,1,\,0,\,0)$ ⇒ $A_\mu B^\mu = (-2)(3) + (1)(4) = -2$ ·
+  <strong>กดตัวใดตัวหนึ่งพอ</strong> — กดทั้งคู่จะได้เครื่องหมายกลับมาเป็นบวกและผิด</p>
+</div>
+
+<div class="quiz" data-open data-answer="0" data-alt="ศูนย์|0.0">
+  <h3>ข้อ 8 · $v^\mu = (3,\,1,\,2,\,2)$ · หา $v^\mu v_\mu$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$-9 + 1 + 4 + 4 = 0$ · <strong>ศูนย์ ⇒ ช่วงแบบแสง</strong> ·
+  เวกเตอร์ที่ไม่ใช่ศูนย์แต่มีความยาวเป็นศูนย์ — เป็นไปไม่ได้ในเรขาคณิตของห้องเรียน
+  แต่เป็นเรื่องปกติในกาลอวกาศ และเป็นเส้นที่แสงเดิน</p>
+</div>
+
+<div class="quiz" data-open data-answer="10" data-alt="สิบ|10 ตัว">
+  <h3>ข้อ 9 · ถ้ากาลอวกาศมี $5$ มิติ &nbsp;$F_{\mu\nu}$ จะมีองค์ประกอบอิสระกี่ตัว</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\dfrac{D(D-1)}{2} = \dfrac{5\cdot 4}{2} = 10$ ·
+  ($25$ ช่อง $-$ แนวทแยง $5$ ช่อง $= 20$ แล้วจับคู่กันเอง ⇒ $10$)
+  <br><strong>ทฤษฎีที่มีมิติเกินสี่คือขนมปังประจำวันของ <code>hep-th</code></strong> —
+  การนับแบบนี้เป็นสิ่งแรกที่ต้องทำได้เวลาอ่าน paper ที่เล่นกับมิติพิเศษ
+  (สร้างเมทริกซ์จริงใน <code>sympy</code> ที่ $D=3,4,5$ แล้วนับ ได้ $3, 6, 10$)</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · <strong>คำถามแบบ “ต้องท่องไหม”
+  มีค่ากว่าคำตอบที่ถูก</strong> — มันชี้ว่าผมยกของมาให้จำ แทนที่จะแสดงว่ามันมาจากไหน
+  ถามแบบนั้นได้ทุกครั้งที่รู้สึก
+  <div class="nav">
+    <a href="./0012-retest.html">← กวาดทั้งห้าบท</a>
+    <a href="./0005-variation.html">บทที่ 4 · การแปรผัน</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>
