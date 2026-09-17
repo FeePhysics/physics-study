@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ตรวจทีละตัวแล้วค่อยบวก</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>ตรวจทีละตัวแล้วค่อยบวก</h1>
+<p class="meta">บทฝึก · ~15 นาที · ปฏิบัติการเดียว ฝึกจนติด</p>
+
+<div class="key">
+  <p><strong>7/9 · และสองข้อที่พลาดเป็นเรื่องเดียวกัน</strong> — อีกเจ็ดข้อผ่านหมด
+  รวมทั้งกฎลูกโซ่ห้าขั้น ($\varepsilon$), $\eta$, $V$ คนละแบบ, เมตริกเป็นตัวเลข
+  และการนับด้วยปฏิสมมาตร · <strong>สี่ปฏิบัติการที่เคยเป็นศูนย์ ปิดไปแล้วสามอัน</strong></p>
+  <p style="margin-bottom:0">ที่เหลือคือตัวตรวจสมมาตร และผลรอบนี้บอกชัดว่าติดตรงไหน</p>
+</div>
+
+<h2>คำตอบที่ให้มาบอกอะไร</h2>
+
+<p>ข้อ 4 ตอบ $Kx_2 - Kx_3$ ทั้งสองขั้น · ผมเอาไปเทียบด้วย <code>sympy</code>:</p>
+
+<table>
+  <tr><th style="width:30%">$\partial L/\partial x_3$</th><td>$Kx_2 - Kx_3$ &nbsp;— <strong>ตรงกับที่ตอบเป๊ะ</strong></td></tr>
+  <tr><th>ผลรวมทั้งสามตัว</th><td>$0$ &nbsp;— ไม่ตรง</td></tr>
+</table>
+
+<div class="key">
+  <p style="margin:0"><strong>อนุพันธ์ย่อยไม่ได้ผิดเลย — ตัวที่สามถูกทุกตัวอักษร</strong> ·
+  ขั้นที่หายไปคือ <strong>“แล้วบวกอีกสองตัวเข้าไปด้วย”</strong> ·
+  และนั่นเป็นเพราะผมเขียนตัวตรวจเป็น $\sum_i$ แล้วให้ตอบทั้งก้อนในช่องเดียว
+  <em>โดยไม่เคยมีข้อไหนให้ลงมือทีละตัวมาก่อนเลยสักครั้ง</em></p>
+</div>
+
+<p>ข้อ 5 ตอบ $2$ — ซึ่งเป็น<strong>จำนวนอนุภาคในระบบ</strong> ·
+เมื่อตัวตรวจยังใช้ไม่เป็น สิ่งที่เหลือให้นับก็มีแต่จำนวนอนุภาค
+⇒ สองข้อนี้เป็นอาการเดียวกัน ไม่ใช่สองเรื่อง</p>
+
+<h2>$\sum_i$ ตัวนี้แปลว่าอะไร</h2>
+
+<div class="warn">
+  <strong>$i$ ตรงนี้ไม่ใช่ดัชนีกาลอวกาศแบบบทที่ 3</strong> — มันคือ
+  <strong>หมายเลขของตัวแปรอิสระในระบบ</strong> (อนุภาคที่ 1, 2, 3 หรือแกน $x,y,z$) ·
+  และที่นี่ต้อง<em>เขียน</em> $\textstyle\sum$ จริง ๆ ไม่ใช่กฎรวมของไอน์สไตน์ที่ละไว้ได้
+</div>
+
+<p>กางออกมาให้เห็นเลยดีกว่า — <strong>สองตัวแปรก็สองพจน์ สามตัวแปรก็สามพจน์</strong>:</p>
+
+<div class="eq" data-eqno="1">$$ \sum_i \frac{\partial L}{\partial x_i}\,\delta x_i \;=\; \frac{\partial L}{\partial x_1}\delta x_1 \;+\; \frac{\partial L}{\partial x_2}\delta x_2 \;+\; \frac{\partial L}{\partial x_3}\delta x_3 $$</div>
+
+<h2>สามบรรทัดที่ทำซ้ำได้ทุกครั้ง</h2>
+
+<table>
+  <tr><th style="width:16%">บรรทัด 1</th><td>หา $\partial L/\partial x_i$ <strong>ทีละตัว</strong> — เขียนลงกระดาษให้ครบทุกตัว</td></tr>
+  <tr><th>บรรทัด 2</th><td>คูณด้วย $\delta x_i$ ของตัวนั้น แล้ว<strong>บวกให้หมด</strong></td></tr>
+  <tr><th>บรรทัด 3</th><td>ได้ศูนย์ ⇒ เป็นสมมาตร ⇒ เขียน $Q = \sum_i (\partial L/\partial \dot x_i)\,\delta x_i$ <br>ไม่ได้ศูนย์ ⇒ ชุด $\delta x$ นั้นใช้ไม่ได้ ลองชุดอื่น</td></tr>
+</table>
+
+<div class="key">
+  <p style="margin:0"><strong>พจน์ที่เกิดจากสปริงระหว่างคู่จะหักล้างกันเองเสมอ</strong>
+  (แรงกิริยา-ปฏิกิริยา) — ที่เหลือรอดจากการบวกคือ<em>พจน์ที่ยึดกับพื้น</em> ·
+  ⇒ มองหาพจน์ที่ผูกกับตำแหน่งสัมบูรณ์ ไม่ใช่ผลต่าง แล้วจะเดาผลลัพธ์ได้ก่อนคำนวณ</p>
+</div>
+
+<div class="warn">
+  <strong>จำนวนปริมาณอนุรักษ์ไม่เท่ากับจำนวนอนุภาค</strong> —
+  สามอนุภาคเชื่อมกันให้โมเมนตัมรวมแค่ <em>ตัวเดียว</em> ไม่ใช่สามตัว ·
+  และถ้ามีอะไรยึดกับพื้น ก็เป็น <em>ศูนย์</em> ตัวได้ ทั้งที่มีอนุภาคตั้งหลายตัว
+</div>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="hint">พิมพ์อนุพันธ์แบบ<strong>กระจายแล้ว</strong> เช่น <code>4*x2-4*x1</code> ·
+ความเร็วใช้ <code>v1 v2 v3</code> · <code>vx</code> แทน $\dot x$</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · สองอนุภาคเชื่อมสปริง ไม่มีอะไรยึดพื้น
+  $$ L = \tfrac12 m(v_1^2+v_2^2) - \tfrac12\cdot 4\,(x_1-x_2)^2 $$</h3>
+  <ol class="steps">
+    <li data-answer="4*x2-4*x1" data-alt="-4*x1+4*x2|4x2-4x1|-4x1+4x2|4*(x2-x1)|4(x2-x1)">
+      <p><strong>ขั้น 1</strong> — หา $\dfrac{\partial L}{\partial x_1}$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  4*x2-4*x1" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-\tfrac12\cdot4\cdot2(x_1-x_2) = -4(x_1-x_2) = 4x_2-4x_1$</p>
+    </li>
+    <li data-answer="4*x1-4*x2" data-alt="-4*x2+4*x1|4x1-4x2|-4x2+4x1|4*(x1-x2)|4(x1-x2)">
+      <p><strong>ขั้น 2</strong> — หา $\dfrac{\partial L}{\partial x_2}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4x_1-4x_2$ — <strong>ตรงข้ามกับตัวแรกพอดี</strong> นี่คือแรงกิริยา-ปฏิกิริยา</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์">
+      <p><strong>ขั้น 3</strong> — ชุด $\delta x_1 = \delta x_2 = 1$ ·
+      บวกสองพจน์เข้าด้วยกัน</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(4x_2-4x_1) + (4x_1-4x_2) = 0$ ⇒ <strong>เป็นสมมาตรจริง</strong> ⇒ เขียน $Q$ ต่อได้</p>
+    </li>
+    <li data-answer="m*v1+m*v2" data-alt="m(v1+v2)|m*(v1+v2)|mv1+mv2|m*v2+m*v1">
+      <p><strong>ขั้น 4</strong> — เขียน $Q$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$mv_1+mv_2$ — โมเมนตัมรวม · <strong>สองอนุภาค แต่ได้ปริมาณอนุรักษ์ตัวเดียว</strong></p>
+    </li>
+  </ol>
+  <p class="fb">สี่ขั้นนี้คือทั้งหมดของกระบวนการ — ที่เหลือในหน้านี้คือระบบเดิมเปลี่ยนรายละเอียด</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · เหมือนเดิม แต่<strong>เพิ่มสปริงยึด $x_1$ ไว้กับพื้น</strong>
+  $$ L = \tfrac12 m(v_1^2+v_2^2) - \tfrac12\cdot 4\,(x_1-x_2)^2 - \tfrac12\cdot 6\,x_1^2 $$</h3>
+  <ol class="steps">
+    <li data-answer="-10*x1+4*x2" data-alt="4*x2-10*x1|-10x1+4x2|4x2-10x1|4*(x2-x1)-6*x1|-6*x1+4*x2-4*x1">
+      <p><strong>ขั้น 1</strong> — หา $\dfrac{\partial L}{\partial x_1}$
+      &nbsp;<span class="hint">(คราวนี้มีสองพจน์มาเกี่ยว)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4x_2-4x_1$ จากสปริงคู่ &nbsp;$-\;6x_1$ จากสปริงที่ยึดพื้น &nbsp;$= -10x_1+4x_2$</p>
+    </li>
+    <li data-answer="4*x1-4*x2" data-alt="-4*x2+4*x1|4x1-4x2|-4x2+4x1|4*(x1-x2)|4(x1-x2)">
+      <p><strong>ขั้น 2</strong> — หา $\dfrac{\partial L}{\partial x_2}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4x_1-4x_2$ — เหมือนข้อ 1 เพราะสปริงที่ยึดพื้นไม่แตะตัวที่สอง</p>
+    </li>
+    <li data-answer="-6*x1" data-alt="-6x1|−6*x1|−6x1">
+      <p><strong>ขั้น 3</strong> — บวกสองพจน์ (ชุด $\delta x_1 = \delta x_2 = 1$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(-10x_1+4x_2) + (4x_1-4x_2) = -6x_1$ ·
+      <strong>พจน์สปริงคู่หักกันหมดเหมือนเดิม เหลือแต่พจน์ที่ยึดพื้น</strong> ⇒ ไม่เป็นศูนย์ ⇒ ชุดนี้ใช้ไม่ได้</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|ไม่มี">
+      <p><strong>ขั้น 4</strong> — ลองชุดอื่นครบแล้ว (เลื่อนเฉพาะตัว 1 · เฉพาะตัว 2)
+      ก็ไม่เป็นศูนย์ทั้งคู่ · <strong>ระบบนี้มีปริมาณอนุรักษ์จากการเลื่อนกี่ตัว</strong></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><strong>$0$ ตัว</strong> — สปริงที่ยึดพื้นเลือกตำแหน่งหนึ่งในอวกาศให้พิเศษ
+      ⇒ ขยับระบบทั้งก้อนแล้วฟิสิกส์เปลี่ยน ⇒ ไม่มีสมมาตรการเลื่อนเหลือเลย ·
+      <em>มีสองอนุภาคแต่ได้ศูนย์</em> — จำนวนอนุภาคไม่ได้บอกอะไรเลย</p>
+    </li>
+  </ol>
+  <p class="fb">เทียบข้อ 1 กับข้อ 2: ต่างกันแค่พจน์เดียว แต่คำตอบต่างกันคนละขั้ว —
+  <strong>สิ่งเดียวที่แยกสองข้อนี้ออกจากกันคือขั้น 3</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · ลูกโซ่สามอนุภาค — ข้อเดิมที่พลาด
+  $$ L = \tfrac12 m(v_1^2+v_2^2+v_3^2) - \tfrac12\cdot 4\,(x_1-x_2)^2 - \tfrac12\cdot 2\,(x_2-x_3)^2 $$</h3>
+  <ol class="steps">
+    <li data-answer="4*x2-4*x1" data-alt="-4*x1+4*x2|4x2-4x1|-4x1+4x2|4*(x2-x1)|4(x2-x1)">
+      <p><strong>ขั้น 1</strong> — หา $\dfrac{\partial L}{\partial x_1}$
+      &nbsp;<span class="hint">($x_1$ โผล่ในพจน์เดียว)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4x_2-4x_1$ — ตัวปลายแตะสปริงเส้นเดียว</p>
+    </li>
+    <li data-answer="4*x1-6*x2+2*x3" data-alt="4x1-6x2+2x3|4*(x1-x2)+2*(x3-x2)|4*x1-6*x2+2*x3 ">
+      <p><strong>ขั้น 2</strong> — หา $\dfrac{\partial L}{\partial x_2}$
+      &nbsp;<span class="hint">($x_2$ โผล่ทั้งสองพจน์ — ตัวกลาง)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4(x_1-x_2)$ จากสปริงซ้าย $+\;2(x_3-x_2)$ จากสปริงขวา $=4x_1-6x_2+2x_3$</p>
+    </li>
+    <li data-answer="2*x2-2*x3" data-alt="-2*x3+2*x2|2x2-2x3|-2x3+2x2|2*(x2-x3)|2(x2-x3)">
+      <p><strong>ขั้น 3</strong> — หา $\dfrac{\partial L}{\partial x_3}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2x_2-2x_3$ · <strong>ตัวนี้แบตอบถูกอยู่แล้วรอบที่แล้ว</strong> —
+      สิ่งที่ขาดคือไม่ได้เอาอีกสองตัวมาบวกด้วย</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์">
+      <p><strong>ขั้น 4</strong> — บวก<strong>ทั้งสามพจน์</strong> (ชุด $\delta x_i = 1$ ทุกตัว)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(4x_2-4x_1)+(4x_1-6x_2+2x_3)+(2x_2-2x_3)$ — ไล่ทีละตัวแปร:
+      $x_1$ ได้ $-4+4=0$ · $x_2$ ได้ $4-6+2=0$ · $x_3$ ได้ $2-2=0$ ⇒ <strong>$0$</strong>
+      ⇒ เป็นสมมาตรจริง</p>
+    </li>
+    <li data-answer="m*v1+m*v2+m*v3" data-alt="m(v1+v2+v3)|m*(v1+v2+v3)|mv1+mv2+mv3">
+      <p><strong>ขั้น 5</strong> — เขียน $Q$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$mv_1+mv_2+mv_3$ · <strong>สามอนุภาค ปริมาณอนุรักษ์ตัวเดียว</strong></p>
+    </li>
+  </ol>
+  <p class="fb">ตรวจด้วย <code>sympy</code> แล้วทั้งอนุพันธ์รายตัวและผลรวม</p>
+</div>
+
+<div class="quiz" data-open data-answer="m*v1+m*v2" data-alt="m(v1+v2)|m*(v1+v2)|mv1+mv2|m*v2+m*v1">
+  <h3>ข้อ 4 · สามอนุภาค แต่ตัวที่สามถูกยึดกับพื้น
+  $$ L = \tfrac12 m(v_1^2+v_2^2+v_3^2) - \tfrac12\cdot 4\,(x_1-x_2)^2 - \tfrac12\cdot 6\,x_3^2 $$
+  เขียนปริมาณที่อนุรักษ์จากสมมาตรการเลื่อน</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$mv_1 + mv_2$ · ไล่ตรวจตามสามบรรทัด:
+  $\partial L/\partial x_1 = 4x_2-4x_1$ · $\partial L/\partial x_2 = 4x_1-4x_2$ ·
+  $\partial L/\partial x_3 = -6x_3$
+  <br>ชุด $(1,1,1)$ ⇒ ได้ $-6x_3 \neq 0$ ✗ &nbsp;·&nbsp; ชุด $(1,1,0)$ ⇒ ได้ $0$ ✓
+  <br><strong>ตัวที่สามไม่เข้าร่วม</strong> เพราะมันถูกยึดไว้ ·
+  ตัว 1 กับ 2 ยังเลื่อนพร้อมกันได้อิสระ (ตรวจแล้วทั้งสองชุดด้วย <code>sympy</code>)</p>
+</div>
+
+<div class="quiz" data-open data-answer="m*vx" data-alt="mvx|vx*m|m*v_x|m vx">
+  <h3>ข้อ 5 · อนุภาคเดียวบนระนาบ &nbsp;$\;L = \tfrac12 m(v_x^2+v_y^2) - V(y)\;$ ·
+  เขียนปริมาณที่อนุรักษ์จากสมมาตรการเลื่อน</h3>
+  <div class="ans"><input type="text" placeholder="เช่น  m*vx" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$mv_x$ · $\partial L/\partial x = 0$ (ไม่มี $x$ ใน $L$ เลย) ⇒ ชุด $(\delta x, \delta y) = (1,0)$
+  ให้ศูนย์ ✓ &nbsp;·&nbsp; แต่ $\partial L/\partial y = -V'(y) \neq 0$ ⇒ ชุด $(0,1)$ ใช้ไม่ได้
+  <br><strong>สมมาตรหายไปเฉพาะทิศที่ $V$ มองเห็น</strong> — เลื่อนตามแนว $x$ ยังฟรี
+  ⇒ โมเมนตัมแนว $x$ อนุรักษ์ แนว $y$ ไม่อนุรักษ์ · นี่คือระนาบเอียงหรือสนามโน้มถ่วงสม่ำเสมอ</p>
+</div>
+
+<div class="quiz" data-open data-answer="1" data-alt="หนึ่ง|1 ตัว">
+  <h3>ข้อ 6 · อนุภาคในสามมิติ &nbsp;$\;L = \tfrac12 m(v_x^2+v_y^2+v_z^2) - V(x,\,y)\;$
+  โดย $V$ ขึ้นกับ $x$ และ $y$ แต่<strong>ไม่ขึ้นกับ $z$</strong> ·
+  มีปริมาณอนุรักษ์จากสมมาตรการเลื่อนกี่ตัว <span class="hint">(ตอบเป็นจำนวน)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb"><strong>$1$ ตัว</strong> — ไล่ทีละแกน: แนว $x$ ได้ $-\partial V/\partial x \neq 0$ ✗ ·
+  แนว $y$ ได้ $-\partial V/\partial y \neq 0$ ✗ · แนว $z$ ได้ $0$ ✓
+  <br>⇒ เหลือ $mv_z$ ตัวเดียว · <strong>สามมิติ ไม่ได้แปลว่าสามตัว</strong> —
+  นับจากจำนวนทิศที่ $V$ มองไม่เห็น</p>
+</div>
+
+<div class="quiz" data-open data-answer="0" data-alt="ศูนย์|ไม่มี">
+  <h3>ข้อ 7 · ลูกโซ่<strong>สี่</strong>อนุภาค และปลายด้านหนึ่งถูกยึดกับพื้น
+  $$ L = \tfrac12 m\textstyle\sum_{i=1}^{4} v_i^2 \;-\; 2\big[(x_1-x_2)^2+(x_2-x_3)^2+(x_3-x_4)^2\big] \;-\; 3x_1^2 $$
+  มีปริมาณอนุรักษ์จากสมมาตรการเลื่อนกี่ตัว <span class="hint">(ตอบเป็นจำนวน)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb"><strong>$0$ ตัว</strong> — พจน์สปริงคู่หักล้างกันเองหมดเหมือนเดิม
+  เหลือ $-6x_1$ จากพจน์ที่ยึดพื้น ⇒ ชุด "เลื่อนทั้งสี่" ไม่ผ่าน
+  <br>ไล่ครบ<strong>ทั้ง 15 ชุด</strong>ของ $\delta x$ ที่เป็นไปได้ด้วย <code>sympy</code> —
+  ไม่มีชุดไหนให้ศูนย์เลยสักชุด
+  <br><strong>สี่อนุภาคก็ยังได้ศูนย์</strong> ตราบใดที่มีอะไรสักอย่างยึดกับพื้น ·
+  ขนาดของระบบไม่เกี่ยวเลย</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา ·
+  <strong>ถ้าข้อ 1–3 ผ่านครบทั้งขั้น แปลว่าตัวตรวจติดแล้ว</strong> —
+  ที่เหลือคือของเดิมเปลี่ยนขนาด
+  <div class="nav">
+    <a href="./0013-unpracticed.html">← กฎที่เคยพูดผ่าน ๆ</a>
+    <a href="./0003-noether.html">บทที่ 2 · เนอเธอร์</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>
