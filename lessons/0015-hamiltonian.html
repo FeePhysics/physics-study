@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 6 · วงเล็บที่กลายเป็นควอนตัม</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 6 · วงเล็บที่กลายเป็นควอนตัม</h1>
+<p class="meta">บทเรียน · ~25 นาที · แฮมิลโทเนียนและวงเล็บปัวซง</p>
+
+<div class="key">
+  <p><strong>7/7 · ตัวตรวจสมมาตรติดแล้ว</strong> — สี่ปฏิบัติการที่เคยถูกฝึก $0$ ครั้ง
+  ปิดครบทั้งสี่ · บทที่ 1–5 กับบทเสริมทั้งหมดจบแล้วจริง</p>
+  <p style="margin-bottom:0"><strong>บทนี้เขียนตามกฎใหม่ที่ได้จากรอบก่อน: ทุกกฎที่เขียนลงไป
+  มีข้อฝึกคู่กันหมด</strong> — ไม่มีกฎไหนที่พูดแล้วปล่อยผ่าน</p>
+</div>
+
+<h2>① ตัวเอกของบทนี้ แบคำนวณมันมาสิบกว่ารอบแล้ว</h2>
+
+<p>ทุกครั้งที่หา $\partial L/\partial\dot q$ — โจทย์รอก โจทย์สปริง ลูกตุ้มทรงกลม
+ลูกโซ่สามอนุภาค — <strong>นั่นคือ $p$</strong> ตัวเดียวกับที่บทนี้ทั้งบทวางอยู่บนมัน</p>
+
+<div class="key">
+  <div class="eq" data-eqno="1">$$ p_i \;\equiv\; \frac{\partial L}{\partial \dot q_i} \qquad\text{“โมเมนตัมคอนจูเกต”} $$</div>
+  <p style="margin-bottom:0">บทที่ 2 ใช้มันเขียนปริมาณอนุรักษ์ · <strong>บทนี้จะเลื่อนมันขึ้นมาเป็น
+  ตัวแปรหลัก</strong> แทนที่ $\dot q$ ไปเลย</p>
+</div>
+
+<p>ทำไมต้องเปลี่ยน — เพราะ $\dot q$ เป็น<em>อนุพันธ์</em>ของ $q$ (ผูกกันอยู่)
+แต่ $p$ กับ $q$ <strong>เป็นอิสระต่อกัน</strong> · ระบบที่มี $n$ พิกัดจึงอยู่ในพื้นที่
+$2n$ มิติเรียกว่า <strong>พื้นที่เฟส</strong> ซึ่งเป็นเวทีที่กลศาสตร์สถิติ ทฤษฎีความอลวน
+และควอนตัม เล่นอยู่ทั้งหมด</p>
+
+<h2>② การแปลงเลอฌ็องดร์ — และขั้นที่คนพลาดกันทุกคน</h2>
+
+<div class="key">
+  <div class="eq" data-eqno="2">$$ H \;=\; \sum_i p_i\,\dot q_i \;-\; L $$</div>
+</div>
+
+<div class="warn">
+  <strong>ยังไม่จบแค่แทนสูตร</strong> — ผลลัพธ์ต้องเป็นฟังก์ชันของ $(q, p)$ <em>ล้วน</em> ·
+  ⇒ ต้องเอาสมการ (1) มา<strong>เขียน $\dot q$ กลับด้วย $p$</strong> แล้วแทนเข้าไปให้
+  $\dot q$ หายหมด · <strong>เหลือ $\dot q$ ค้างอยู่แม้ตัวเดียว = ยังไม่ใช่ $H$</strong>
+  <br>นี่คือขั้นที่ต้องลงมือจริง ไม่ใช่ขั้นเปลี่ยนสัญลักษณ์ — ข้อ 1 ข้างล่างแยกมันเป็นขั้นของตัวเอง
+</div>
+
+<p>ลองกับออสซิลเลเตอร์ $m = 2$, $k = 8$ &nbsp;($L = \dot y^2 - 4y^2$):</p>
+
+<table>
+  <tr><th style="width:26%">หา $p$</th><td>$p = \partial L/\partial\dot y = 2\dot y$</td></tr>
+  <tr><th>เขียน $\dot y$ กลับ</th><td>$\dot y = p/2$ &nbsp;<strong>← ขั้นที่ห้ามข้าม</strong></td></tr>
+  <tr><th>แทนลงสมการ (2)</th><td>$H = p\cdot\tfrac{p}{2} - \left[\tfrac{p^2}{4} - 4y^2\right] = \dfrac{p^2}{4} + 4y^2$</td></tr>
+</table>
+
+<p>สังเกตเครื่องหมาย: $L = T - V$ แต่ <strong>$H = T + V$</strong> ⇒ สำหรับระบบแบบนี้
+$H$ คือ<strong>พลังงานรวม</strong> · การลบใน (2) พลิกเครื่องหมายของ $V$ กลับมา
+(ตรวจแล้วด้วย <code>sympy</code> — ทำเลอฌ็องดร์จริงแล้วเทียบกับ $T+V$)</p>
+
+<h2>③ สมการแฮมิลตัน — หนึ่งสมการอันดับสอง กลายเป็นสองสมการอันดับหนึ่ง</h2>
+
+<div class="key">
+  <div class="eq" data-eqno="3">$$ \dot q_i \;=\; \frac{\partial H}{\partial p_i} \qquad\qquad \dot p_i \;=\; -\,\frac{\partial H}{\partial q_i} $$</div>
+  <p style="margin-bottom:0"><strong>สมมาตรเกือบสมบูรณ์ ต่างกันแค่เครื่องหมายลบ</strong> ·
+  และเป็นอนุพันธ์อันดับ <em>หนึ่ง</em> ทั้งคู่ — ต่างจาก EL ที่เป็นอันดับสอง</p>
+</div>
+
+<p>ตรวจแล้วว่าให้สมการการเคลื่อนที่เดียวกับ EL เป๊ะ (<code>sympy</code>) —
+<strong>ไม่ใช่ฟิสิกส์ใหม่ เป็นการจัดของใหม่</strong> · แต่การจัดใหม่นี้เปิดประตูสองบาน
+ที่ EL เปิดไม่ได้: พื้นที่เฟส และวงเล็บปัวซง</p>
+
+<h2>④ พิกัดวัฏจักรพูดง่ายขึ้นมาก</h2>
+
+<p>บทที่ 2: “ตัวแปรไหนหายไปจาก $L$ ⇒ $\partial L/\partial\dot q$ ของมันคงที่”
+· ในภาษาใหม่มันกลายเป็น<strong>บรรทัดเดียวที่อ่านออกทันที</strong>:</p>
+
+<div class="eq" data-eqno="4">$$ \frac{\partial H}{\partial q} = 0 \quad\Longrightarrow\quad \dot p = 0 \quad\Longrightarrow\quad p \text{ คงที่} $$</div>
+
+<p>ไม่ต้องอ้อมผ่านอะไรเลย — <strong>สมการ (3) บอกตรง ๆ ว่า $\dot p$ คือลบอนุพันธ์นั้น</strong> ·
+พิกัดเชิงขั้วของอนุภาคอิสระให้ $H = \dfrac{p_r^2}{2m} + \dfrac{p_\theta^2}{2mr^2}$
+ซึ่ง<strong>ไม่มี $\theta$ โผล่เลย</strong> ⇒ $p_\theta$ คงที่ (โมเมนตัมเชิงมุม)</p>
+
+<h2>⑤ วงเล็บปัวซง — เครื่องมือที่ทำให้ทุกอย่างเป็นสูตรเดียว</h2>
+
+<div class="key">
+  <div class="eq" data-eqno="5">$$ \{A,\,B\} \;=\; \sum_i\left(\frac{\partial A}{\partial q_i}\frac{\partial B}{\partial p_i} \;-\; \frac{\partial A}{\partial p_i}\frac{\partial B}{\partial q_i}\right) $$</div>
+  <p style="margin-bottom:0">เอาสองปริมาณใดก็ได้บนพื้นที่เฟสมาเข้าเครื่อง ได้ปริมาณใหม่ออกมา</p>
+</div>
+
+<p>ของที่ได้มาฟรีทันที — <strong>ทุกอย่างในบทนี้ยุบเหลือสูตรเดียว</strong>:</p>
+
+<table>
+  <tr><th style="width:34%">$\{q,\,H\}$</th><td>$= \partial H/\partial p = \dot q$ &nbsp;— สมการแฮมิลตันข้อแรก</td></tr>
+  <tr><th>$\{p,\,H\}$</th><td>$= -\partial H/\partial q = \dot p$ &nbsp;— ข้อที่สอง</td></tr>
+  <tr><th>$\{q,\,p\}$</th><td>$= 1$ &nbsp;— ความสัมพันธ์พื้นฐานของคู่คอนจูเกต</td></tr>
+</table>
+
+<div class="key">
+  <div class="eq" data-eqno="6">$$ \frac{dA}{dt} \;=\; \{A,\,H\} \qquad\text{(เมื่อ } A \text{ ไม่มี } t \text{ โผล่ตรง ๆ)} $$</div>
+  <p style="margin-bottom:0"><strong>$\{A,H\} = 0 \iff A$ อนุรักษ์</strong> —
+  ทฤษฎีบทเนอเธอร์ทั้งบทยุบเหลือประโยคเดียว</p>
+</div>
+
+<p>และมันให้ผลเดียวกับที่ได้มาก่อนหน้านี้จริง ๆ — ตรวจแล้วกับสองอนุภาคเชื่อมสปริง:
+$\{P_1+P_2,\,H\} = 0$ แต่ $\{P_1,\,H\} = k(x_2-x_1) \neq 0$ ·
+<strong>ตรงกับคำตอบที่ได้จากเนอเธอร์ทุกประการ</strong> คนละภาษา ฟิสิกส์เดียวกัน
+· $\{H,H\} = 0$ เสมอโดยโครงสร้าง ⇒ พลังงานอนุรักษ์เป็นผลพลอยได้ฟรี</p>
+
+<h2>⑥ สะพานข้ามไปควอนตัม — บรรทัดเดียว</h2>
+
+<p>นี่คือเหตุผลที่บทนี้อยู่ในหลักสูตรที่ปลายทางคือ <code>hep-th</code></p>
+
+<div class="key">
+  <div class="eq" data-eqno="7">$$ \{A,\,B\} \;\longrightarrow\; \frac{1}{i\hbar}\,[\hat A,\,\hat B] \qquad\Longrightarrow\qquad \{q,p\} = 1 \;\longrightarrow\; [\hat q,\hat p] = i\hbar $$</div>
+  <p style="margin-bottom:0"><strong>ความสัมพันธ์การสลับที่แบบบัญญัติ</strong> —
+  ประโยคที่ขึ้นต้นตำราควอนตัมทุกเล่ม · มันไม่ได้ตกลงมาจากฟ้า
+  <em>มันคือวงเล็บปัวซงที่เพิ่งคำนวณไปเมื่อกี้</em></p>
+</div>
+
+<p>และสมการ (6) กลายเป็น $\;i\hbar\,\dfrac{d\hat A}{dt} = [\hat A,\hat H]\;$ —
+<strong>สมการไฮเซนแบร์ก</strong> · ส่วนหลักความไม่แน่นอนตามมาจาก
+$[\hat q,\hat p] \neq 0$ โดยตรง <strong>⇒ ความไม่แน่นอนสืบสายกลับมาถึงข้อเท็จจริงที่ว่า
+$q$ กับ $p$ เป็นคู่คอนจูเกตกันในกลศาสตร์คลาสสิก</strong></p>
+
+<div class="warn">
+  <strong>ที่บทนี้ยังไม่แตะโดยตั้งใจ</strong> — กรณีที่ $H \neq$ พลังงาน (เกิดเมื่อเงื่อนไข
+  บังคับขึ้นกับเวลา) · การแปลงแบบบัญญัติ · และทฤษฎีบทลียูวิลล์ ·
+  ทั้งสามเรื่องมีกฎที่ต้องฝึกจริงถึงจะใช้เป็น <strong>จึงไม่เขียนทิ้งไว้เฉย ๆ ในบทนี้</strong>
+  ตามกฎที่ได้จากรอบก่อน
+</div>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="hint">ใช้ <code>v</code> แทน $\dot y$ · <code>p</code> แทนโมเมนตัม ·
+<code>w</code> แทน $\dot\theta$ · ยกกำลังใช้ <code>^</code></p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · เลอฌ็องดร์ทีละขั้น &nbsp;$L = \dot y^2 - 4y^2$ &nbsp;($m=2$, $k=8$)</h3>
+  <ol class="steps">
+    <li data-answer="2*v" data-alt="2v|v*2|2 v">
+      <p><strong>ขั้น 1</strong> — หา $p = \dfrac{\partial L}{\partial\dot y}$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  2*v" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\partial(\dot y^2)/\partial\dot y = 2\dot y$ ⇒ $p = 2v$ ·
+      <strong>นี่คือปฏิบัติการเดิมที่ทำมาสิบกว่ารอบแล้ว</strong></p>
+    </li>
+    <li data-answer="p/2" data-alt="0.5*p|0.5p|p*0.5|(1/2)*p|1/2*p">
+      <p><strong>ขั้น 2</strong> — เขียน $\dot y$ กลับด้วย $p$
+      &nbsp;<span class="hint">(ขั้นที่ห้ามข้าม)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$p = 2\dot y \Rightarrow \dot y = p/2$ · ต้องมีขั้นนี้ ไม่งั้น $H$ จะยังมี $\dot y$ ค้าง
+      และ<strong>ของที่มี $\dot y$ ค้างไม่ใช่ $H$</strong></p>
+    </li>
+    <li data-answer="p^2/4+4*y^2" data-alt="p**2/4+4*y**2|p^2/4+4y^2|4*y^2+p^2/4|4y^2+p^2/4|0.25*p^2+4*y^2|1/4*p^2+4*y^2">
+      <p><strong>ขั้น 3</strong> — หา $H = p\dot y - L$ &nbsp;<span class="hint">(ต้องไม่มี $v$ เหลือ)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  p^2/4+4*y^2" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$p\cdot\tfrac p2 = \tfrac{p^2}{2}$ &nbsp;·&nbsp; $L$ เขียนด้วย $p$ ได้ $\tfrac{p^2}{4}-4y^2$
+      <br>$H = \tfrac{p^2}{2} - \tfrac{p^2}{4} + 4y^2 = \tfrac{p^2}{4}+4y^2$ ·
+      <strong>$= T + V$</strong> — เครื่องหมายของ $V$ พลิกกลับมาเพราะการลบใน (2)</p>
+    </li>
+  </ol>
+  <p class="fb">สามขั้นนี้คือทั้งหมดของการแปลงเลอฌ็องดร์ · ตรวจด้วย <code>sympy</code> แล้ว
+  ทั้งสามขั้นและยืนยันว่า $H$ ไม่มี $v$ เหลือจริง</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · สมการแฮมิลตันจาก $H = \dfrac{p^2}{4} + 4y^2$</h3>
+  <ol class="steps">
+    <li data-answer="p/2" data-alt="0.5*p|0.5p|p*0.5|(1/2)*p|1/2*p">
+      <p><strong>ขั้น 1</strong> — หา $\dot y = \dfrac{\partial H}{\partial p}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$p/2$ — <strong>ตรงกับขั้น 2 ของข้อ 1 พอดี</strong> ซึ่งต้องเป็นอย่างนั้น
+      เพราะมันคือนิยามของ $p$ อ่านย้อนกลับ</p>
+    </li>
+    <li data-answer="-8*y" data-alt="-8y|−8y|−8*y|-8.0*y">
+      <p><strong>ขั้น 2</strong> — หา $\dot p = -\dfrac{\partial H}{\partial y}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-\partial(4y^2)/\partial y = -8y$ · <strong>นี่คือกฎของฮุก</strong> ($F = -ky$ กับ $k=8$)
+      — โผล่มาจากการหาอนุพันธ์เฉย ๆ ไม่ได้ใส่เข้าไป</p>
+    </li>
+  </ol>
+  <p class="fb">สองสมการอันดับหนึ่งนี้ให้การเคลื่อนที่เดียวกับ EL อันดับสอง —
+  ตรวจด้วย <code>sympy</code> แล้วว่าตรงกันเป๊ะ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · อนุภาคอิสระในพิกัดเชิงขั้ว &nbsp;$L = \tfrac12 m(\dot r^2 + r^2\dot\theta^2)$</h3>
+  <ol class="steps">
+    <li data-answer="m*r^2*w" data-alt="m*r**2*w|mr^2w|m*w*r^2|r^2*m*w|m*r^2*w ">
+      <p><strong>ขั้น 1</strong> — หา $p_\theta$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  m*r^2*w" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$m r^2\dot\theta$ — <strong>ตัวเดียวกับที่เคยตอบในบทปริมาณอนุรักษ์</strong></p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์">
+      <p><strong>ขั้น 2</strong> — $H = \dfrac{p_r^2}{2m} + \dfrac{p_\theta^2}{2mr^2}$ ·
+      หา $\dfrac{\partial H}{\partial\theta}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>$\theta$ ไม่โผล่ใน $H$ เลยแม้แต่ตัวเดียว</strong>
+      (มีแต่ $r$ กับโมเมนตัม) ⇒ อ่านออกด้วยตาโดยไม่ต้องคำนวณ</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์">
+      <p><strong>ขั้น 3</strong> — แล้ว $\dot p_\theta$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\dot p_\theta = -\partial H/\partial\theta = 0$ ⇒
+      <strong>โมเมนตัมเชิงมุมคงที่</strong> · เทียบกับบทที่ 2 ที่ต้องอ้อมผ่านสมการ EL —
+      ที่นี่อ่านจาก $H$ ได้ตรง ๆ</p>
+    </li>
+  </ol>
+  <p class="fb">ตรวจด้วย <code>sympy</code> แล้ว รวมทั้งทำเลอฌ็องดร์จริงเพื่อยืนยันรูปของ $H$
+  ไม่ได้พิมพ์ไว้เอง</p>
+</div>
+
+<div class="quiz" data-open data-answer="p/2" data-alt="0.5*p|0.5p|p*0.5|(1/2)*p|1/2*p">
+  <h3>ข้อ 4 · $H = \dfrac{p^2}{4}+4y^2$ · หา $\{y,\,H\}$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\{y,H\} = \frac{\partial y}{\partial y}\frac{\partial H}{\partial p} - \frac{\partial y}{\partial p}\frac{\partial H}{\partial y}
+  = 1\cdot\tfrac p2 - 0 = \tfrac p2$
+  <br><strong>ตรงกับ $\dot y$ ของข้อ 2 พอดี</strong> — สมการแฮมิลตันข้อแรกเป็นแค่กรณีหนึ่ง
+  ของสมการ (6)</p>
+</div>
+
+<div class="quiz" data-open data-answer="-8*y" data-alt="-8y|−8y|−8*y|-8.0*y">
+  <h3>ข้อ 5 · $H$ ตัวเดิม · หา $\{p,\,H\}$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\{p,H\} = 0\cdot\tfrac p2 - 1\cdot 8y = -8y$ ·
+  <strong>ตรงกับ $\dot p$ ของข้อ 2</strong> ⇒ สมการแฮมิลตัน<em>ทั้งสองข้อ</em>
+  ยุบเข้าไปอยู่ในสูตรเดียว</p>
+</div>
+
+<div class="quiz" data-open data-answer="1" data-alt="หนึ่ง|1.0">
+  <h3>ข้อ 6 · หา $\{q,\,p\}$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\frac{\partial q}{\partial q}\frac{\partial p}{\partial p} - \frac{\partial q}{\partial p}\frac{\partial p}{\partial q} = 1\cdot1 - 0\cdot0 = 1$
+  <br><strong>เลข $1$ ตัวนี้คือทั้งหมดที่กลายเป็น $[\hat q,\hat p] = i\hbar$</strong> —
+  หลักความไม่แน่นอนสืบสายกลับมาถึงบรรทัดนี้</p>
+</div>
+
+<div class="quiz" data-open data-answer="-3" data-alt="−3|-3.0">
+  <h3>ข้อ 7 · คราวนี้ $H = \dfrac{p^2}{4} + 3q$ &nbsp;(แรงคงที่) · หา $\{p,\,H\}$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$-\partial H/\partial q = -3$ ·
+  <strong>ไม่เป็นศูนย์ ⇒ โมเมนตัมไม่อนุรักษ์</strong> ซึ่งถูกแล้ว มีแรงคงที่ดึงอยู่ ·
+  เทียบกับข้อ 6: วงเล็บเป็นเครื่องตรวจการอนุรักษ์ที่ใช้ได้กับปริมาณใดก็ได้
+  โดยไม่ต้องหาสมมาตรก่อน</p>
+</div>
+
+<div class="quiz" data-open data-answer="0" data-alt="ศูนย์">
+  <h3>ข้อ 8 · หา $\{H,\,H\}$ &nbsp;<span class="hint">(ดูรูปของสมการ (5) ให้ดี)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$0$ — สองพจน์ในสมการ (5) เหมือนกันเป๊ะแล้วลบกัน ⇒ ศูนย์<strong>โดยโครงสร้าง</strong>
+  ไม่ว่า $H$ จะเป็นอะไร
+  <br>⇒ ตามสมการ (6) แปลว่า $\dfrac{dH}{dt} = 0$ ⇒ <strong>พลังงานอนุรักษ์ได้มาฟรี</strong>
+  ทุกระบบที่ $H$ ไม่มี $t$ โผล่ตรง ๆ · บทที่ 2 ต้องพิสูจน์เรื่องนี้เป็นหน้า</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · บทนี้เป็นบทแรกที่เขียนโดยบังคับตัวเอง
+  ว่า<strong>ทุกกฎต้องมีข้อฝึกคู่กัน</strong> — ถ้ายังมีข้อไหนที่รู้สึกว่า “มาจากไหนไม่รู้”
+  บอกได้เลย นั่นแปลว่ายังมีกฎที่หลุดออกมาโดยไม่มีที่ฝึก
+  <div class="nav">
+    <a href="./0014-symcheck.html">← ตรวจทีละตัว</a>
+    <a href="./0006-maxwell.html">บทที่ 5 · แมกซ์เวลล์</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>
