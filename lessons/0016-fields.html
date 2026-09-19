@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 7 · จากอนุภาคไปสนาม</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 7 · จากอนุภาคไปสนาม</h1>
+<p class="meta">บทเรียน · ~25 นาที · สมการไคลน์–กอร์ดอน และที่มาของ $E^2 = p^2 + m^2$</p>
+
+<div class="key">
+  <p><strong>8/8 รวดตั้งแต่รอบแรก</strong> — บทที่ 6 เป็นบทแรกที่ไม่ต้องซ่อมเลย
+  และเป็นบทแรกที่เขียนโดยบังคับกฎ “ทุกกฎมีข้อฝึกคู่กัน”</p>
+  <p style="margin-bottom:0"><strong>แต่ผมไปนับแล้วเจอของค้างก้อนใหญ่</strong> —
+  ทฤษฎีสนามถูก<em>พูดถึง</em>ใน <strong>9 บท</strong> ($\mathcal{L}$ · $d^4x$ ·
+  ไคลน์–กอร์ดอน · สมการ EL ของสนาม) แต่จากข้อฝึกสะสม <strong>149 รายการ</strong>
+  มี <strong>0 ข้อ</strong> ที่ให้ลงมือทำจริง · บทนี้คือการปิดช่องนั้น</p>
+</div>
+
+<h2>① พจนานุกรมสองคอลัมน์</h2>
+
+<p>ทุกอย่างที่ทำมาหกบทใช้ได้ต่อทันที — <strong>เปลี่ยนแค่สองคำ</strong></p>
+
+<table>
+  <tr><th style="width:38%">กลศาสตร์ (ที่ทำมา)</th><th>ทฤษฎีสนาม</th></tr>
+  <tr><td>$q(t)$ — เลขหนึ่งตัวต่อเวลาหนึ่งค่า</td><td>$\phi(t,x,y,z)$ — เลขหนึ่งตัว<strong>ทุกจุดในกาลอวกาศ</strong></td></tr>
+  <tr><td>$\dot q = dq/dt$</td><td>$\partial_\mu\phi$ — อนุพันธ์<strong>ทั้งสี่ทิศ</strong></td></tr>
+  <tr><td>$S = \int L\,dt$</td><td>$S = \int \mathcal{L}\,d^4x$</td></tr>
+  <tr><td>$\dfrac{d}{dt}\dfrac{\partial L}{\partial\dot q} - \dfrac{\partial L}{\partial q} = 0$</td>
+      <td>$\partial_\mu\!\left(\dfrac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}\right) - \dfrac{\partial\mathcal{L}}{\partial\phi} = 0$</td></tr>
+</table>
+
+<div class="key">
+  <p style="margin:0"><strong>$d/dt$ กลายเป็น $\partial_\mu$ (รวมสี่ทิศ) · $q$ กลายเป็น $\phi$</strong>
+  — จบ · ไม่มีกฎใหม่เลยแม้แต่ข้อเดียว · ตัว $\mathcal{L}$ เรียกว่า
+  <strong>ความหนาแน่นลากรองจ์</strong> เพราะต้องอินทิเกรตทั่วที่ว่างก่อนถึงจะได้ $L$</p>
+</div>
+
+<h2>② เครื่องหมายคือจุดที่พลาดง่ายที่สุดของทั้งบท</h2>
+
+<p>workspace นี้ใช้ $g_{\mu\nu} = \mathrm{diag}(-1,+1,+1,+1)$ มาตั้งแต่บทที่ 3 ·
+กฎการหดดัชนีที่ฝึกไปแล้วให้ผลนี้ทันที:</p>
+
+<div class="eq" data-eqno="1">$$ \partial_\mu\phi\,\partial^\mu\phi \;=\; -\,\dot\phi^2 \;+\; |\nabla\phi|^2 $$</div>
+
+<div class="warn">
+  <strong>พจน์จลน์ต้องเป็นบวก ⇒ ต้องใส่ลบหน้าก้อนนี้</strong>
+  <div class="eq" data-eqno="2">$$ \mathcal{L} \;=\; -\tfrac12\,\partial_\mu\phi\,\partial^\mu\phi \;-\; \tfrac12 m^2\phi^2 \;=\; \underbrace{\tfrac12\dot\phi^2}_{T} \;-\; \underbrace{\tfrac12|\nabla\phi|^2 - \tfrac12 m^2\phi^2}_{V\text{ (ติดลบทั้งคู่)}} $$</div>
+  เขียน $+\tfrac12\partial_\mu\phi\partial^\mu\phi$ แทน จะได้ <strong>พจน์จลน์ติดลบ</strong>
+  ซึ่งผิด (ตรวจด้วย <code>sympy</code> แล้วทั้งสองทาง) ·
+  ⚠️ <strong>ตำราที่ใช้ $(+,-,-,-)$ จะเขียนกลับด้าน</strong> — เวลาอ่าน paper
+  ให้ดู signature ที่เขาประกาศไว้ก่อนเสมอ ไม่ใช่จำเครื่องหมาย
+</div>
+
+<p>ตัวย่อที่ paper ใช้ตลอด — <strong>กล่องดาล็องแบร์</strong>:</p>
+
+<div class="eq" data-eqno="3">$$ \Box \;\equiv\; \partial_\mu\partial^\mu \;=\; -\,\partial_t^2 \,+\, \nabla^2 $$</div>
+
+<h2>③ เดินสมการ EL แล้วได้อะไร</h2>
+
+<p>ใส่ $\mathcal{L}$ จากสมการ (2) ลงในสมการ EL ของสนาม — ขั้นตอนเดียวกับที่ทำมาทุกบท:</p>
+
+<table>
+  <tr><th style="width:34%">$\dfrac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}$</th><td>$-\,\partial^\mu\phi$</td></tr>
+  <tr><th>$\dfrac{\partial\mathcal{L}}{\partial\phi}$</th><td>$-\,m^2\phi$</td></tr>
+  <tr><th>ประกอบเข้าสมการ</th><td>$-\Box\phi + m^2\phi = 0$</td></tr>
+</table>
+
+<div class="key">
+  <div class="eq" data-eqno="4">$$ \Box\phi \;=\; m^2\phi \qquad\Longleftrightarrow\qquad \ddot\phi \;=\; \nabla^2\phi \;-\; m^2\phi $$</div>
+  <p style="margin-bottom:0"><strong>สมการไคลน์–กอร์ดอน</strong> — สมการสนามควอนตัมที่ง่ายที่สุด
+  และเป็นบรรทัดแรกของตำรา QFT แทบทุกเล่ม · <em>เราไม่ได้สมมติมัน เราได้มันมาจาก
+  $\mathcal{L}$ สองพจน์</em> (ตรวจครบทุกองค์ประกอบด้วย <code>sympy</code>)</p>
+</div>
+
+<h2>④ ผลตอบแทน — มวลใน $\mathcal{L}$ คือมวลนิ่งจริง ๆ</h2>
+
+<p>แทนคลื่นระนาบ $\phi = \cos(\omega t - \vec k\cdot\vec x)$ ลงในสมการ (4):</p>
+
+<div class="eq" data-eqno="5">$$ \omega^2 \;=\; k^2 + m^2 \qquad\xrightarrow{\;\hbar=c=1\;}\qquad E^2 \;=\; p^2 + m^2 $$</div>
+
+<div class="key">
+  <p style="margin:0"><strong>สูตรพลังงาน-โมเมนตัมของไอน์สไตน์ ตกลงมาจากลากรองจ์</strong> ·
+  เลข $m$ ที่เราเขียนลงไปใน (2) เฉย ๆ กลายเป็น<strong>มวลนิ่งของอนุภาค</strong>
+  โดยไม่ได้สมมติอะไรเพิ่ม — ในหน่วย $\hbar = c = 1$ ที่บทที่ 3 ปูไว้
+  $\omega$ <em>คือ</em> พลังงาน และ $k$ <em>คือ</em> โมเมนตัม</p>
+</div>
+
+<p>ตั้ง $m = 0$ ⇒ $\omega = |k|$ ⇒ <strong>ความเร็ว $\omega/|k| = 1 = c$</strong> ·
+นี่คือเหตุผลที่บทที่ 5 บอกว่าโฟตอนไร้มวลต้องเดินด้วยความเร็วแสง —
+<em>ตอนนี้เห็นกลไกแล้วว่ามันมาจากไหน</em></p>
+
+<div class="warn">
+  <strong>และมันเข้ากันกับบทที่ 5 จริง</strong> — ตรวจแล้วว่า
+  $-\tfrac14 F_{\mu\nu}F^{\mu\nu} = \tfrac12(E^2 - B^2)$ ซึ่งเป็นรูป $T - V$ เหมือนกัน ·
+  $F$ มีสองดัชนี การพลิกเครื่องหมายสองครั้งหักล้างกันเอง ⇒
+  <strong>$-\tfrac14 F^2$ เขียนเหมือนกันทั้งสอง signature</strong> ต่างจากพจน์ของ $\phi$
+</div>
+
+<div class="warn">
+  <strong>ที่บทนี้ยังไม่แตะโดยตั้งใจ</strong> — กระแสอนุรักษ์ $j^\mu$ กับ
+  เทนเซอร์ความเค้น-พลังงาน $T^{\mu\nu}$ (ตัวที่นั่งอยู่ขวามือของสมการไอน์สไตน์) ·
+  ทั้งสองมีกฎที่ต้องฝึกจริงหลายข้อ <strong>จึงเก็บไว้เป็นบทของตัวเองตามกฎบ้าน</strong>
+</div>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="hint">ข้อฝึกใช้ <strong>1+1 มิติ</strong> ($t$ กับ $x$) เพื่อให้พิมพ์ได้ ·
+<code>pt</code> แทน $\partial_t\phi$ · <code>px</code> แทน $\partial_x\phi$ ·
+<code>phi</code> แทน $\phi$ · ยกกำลังใช้ <code>^</code></p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · สนาม $\phi = 3t + 2x$ &nbsp;(ไม่ขึ้นกับ $y,z$)</h3>
+  <ol class="steps">
+    <li data-answer="3" data-alt="3.0">
+      <p><strong>ขั้น 1</strong> — หา $\partial_t\phi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3$ — อนุพันธ์ธรรมดาเทียบ $t$</p>
+    </li>
+    <li data-answer="2" data-alt="2.0">
+      <p><strong>ขั้น 2</strong> — หา $\partial_x\phi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$</p>
+    </li>
+    <li data-answer="-5" data-alt="−5|-5.0">
+      <p><strong>ขั้น 3</strong> — หา $\partial_\mu\phi\,\partial^\mu\phi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-(3)^2 + (2)^2 = -9 + 4 = -5$ ·
+      <strong>ช่องเวลาติดลบ</strong> — กฎเดียวกับ $v^\mu v_\mu$ ที่ฝึกไปแล้ว
+      แค่เปลี่ยนจากเวกเตอร์เป็นอนุพันธ์ของสนาม · ตอบ $13$ แปลว่าบวกทุกช่อง</p>
+    </li>
+  </ol>
+  <p class="fb">ติดลบ ⇒ ถ้านี่เป็นเส้นทางของอนุภาค มันจะเป็นช่วงแบบเวลา</p>
+</div>
+
+<div class="quiz" data-open data-answer="6*x-2" data-alt="-2+6*x|6x-2|-2+6x|6*x - 2">
+  <h3>ข้อ 2 · หา $\Box\phi$ เมื่อ $\phi = t^2 + x^3$ &nbsp;(ไม่ขึ้นกับ $y,z$)</h3>
+  <div class="ans"><input type="text" placeholder="เช่น  6*x-2" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\Box = -\partial_t^2 + \partial_x^2$ ⇒ $-\,\partial_t^2(t^2) + \partial_x^2(x^3) = -2 + 6x$ ·
+  <strong>เครื่องหมายลบอยู่หน้าพจน์เวลาเท่านั้น</strong> ·
+  ตอบ $2+6x$ แปลว่าลืมลบ · ตอบ $6x$ แปลว่าลืมพจน์เวลาไปเลย</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · เดินสมการ EL ของสนาม ใน 1+1 มิติ
+  $$ \mathcal{L} = \tfrac12\,\texttt{pt}^2 - \tfrac12\,\texttt{px}^2 - \tfrac12 m^2\,\texttt{phi}^2 $$</h3>
+  <ol class="steps">
+    <li data-answer="pt" data-alt="1*pt|pt*1">
+      <p><strong>ขั้น 1</strong> — หา $\dfrac{\partial\mathcal{L}}{\partial\,\texttt{pt}}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\texttt{pt}$ — อนุพันธ์ของ $\tfrac12 u^2$ คือ $u$ (เลข 2 ตัดกับ $\tfrac12$)</p>
+    </li>
+    <li data-answer="-px" data-alt="-1*px|−px|-px*1">
+      <p><strong>ขั้น 2</strong> — หา $\dfrac{\partial\mathcal{L}}{\partial\,\texttt{px}}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-\texttt{px}$ — <strong>ติดลบเพราะพจน์ที่ว่างอยู่ฝั่ง $V$</strong>
+      นี่คือที่เมตริกเข้ามามีผลจริง</p>
+    </li>
+    <li data-answer="-m^2*phi" data-alt="-m**2*phi|-m^2phi|−m^2*phi|-phi*m^2|-m^2 phi">
+      <p><strong>ขั้น 3</strong> — หา $\dfrac{\partial\mathcal{L}}{\partial\,\texttt{phi}}$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  -m^2*phi" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-m^2\phi$ · <strong>นี่คือพจน์ที่ไม่ใช่อนุพันธ์</strong>
+      จึงไปอยู่ฝั่ง $\partial\mathcal{L}/\partial\phi$ ของสมการ EL</p>
+    </li>
+    <li data-answer="m^2" data-alt="m**2|m^2*1|msquared|m*m">
+      <p><strong>ขั้น 4</strong> — ประกอบตาม EL:
+      $\partial_t(\text{ขั้น 1}) + \partial_x(\text{ขั้น 2}) - (\text{ขั้น 3}) = 0$ ·
+      ได้รูป $\;\partial_t^2\phi - \partial_x^2\phi + c\,\phi = 0\;$ · $c$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\partial_t(\texttt{pt}) = \partial_t^2\phi$ ·
+      $\partial_x(-\texttt{px}) = -\partial_x^2\phi$ · ลบขั้น 3 ได้ $+m^2\phi$
+      ⇒ $c = m^2$ · <strong>นี่คือสมการไคลน์–กอร์ดอนที่เพิ่งประกอบขึ้นมาเอง</strong></p>
+    </li>
+  </ol>
+  <p class="fb">ทั้งสี่ขั้นเป็นกระบวนการเดียวกับที่ทำกับอนุภาคมาหกบท —
+  <strong>ต่างแค่ $d/dt$ กลายเป็น $\partial_t$ กับ $\partial_x$ สองตัว</strong></p>
+</div>
+
+<div class="quiz" data-open data-answer="k^2+m^2" data-alt="k**2+m**2|m^2+k^2|m**2+k**2|k^2 + m^2">
+  <h3>ข้อ 4 · จาก $\;\partial_t^2\phi - \partial_x^2\phi + m^2\phi = 0\;$ ·
+  แทน $\phi = \cos(\omega t - kx)$ แล้วหา $\omega^2$</h3>
+  <div class="ans"><input type="text" placeholder="เช่น  k^2+m^2" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\partial_t^2\phi = -\omega^2\phi$ &nbsp;·&nbsp; $\partial_x^2\phi = -k^2\phi$
+  ⇒ $(-\omega^2 + k^2 + m^2)\phi = 0$ ⇒ $\omega^2 = k^2+m^2$
+  <br><strong>ในหน่วย $\hbar=c=1$ นี่คือ $E^2 = p^2 + m^2$</strong> —
+  สูตรของไอน์สไตน์ที่ตกลงมาจากลากรองจ์สองพจน์</p>
+</div>
+
+<div class="quiz" data-open data-answer="5" data-alt="5.0">
+  <h3>ข้อ 5 · อนุภาคมวล $m = 3$ · โมเมนตัม $k = 4$ · หา $\omega$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\omega^2 = 16 + 9 = 25$ ⇒ $\omega = 5$ ·
+  <strong>พลังงานรวมมากกว่าทั้งมวลนิ่งและโมเมนตัม แต่ไม่เท่ากับผลบวกของทั้งสอง</strong>
+  ($3+4 = 7 \neq 5$) — มันเป็นสามเหลี่ยมมุมฉาก ไม่ใช่การบวกตรง ๆ</p>
+</div>
+
+<div class="quiz" data-open data-answer="1" data-alt="หนึ่ง|1.0|c">
+  <h3>ข้อ 6 · ตั้ง $m = 0$ · ความเร็วของคลื่น $\omega/k$ เท่ากับเท่าไร</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\omega^2 = k^2$ ⇒ $\omega/k = 1$ · <strong>และ $1$ ในหน่วยนี้คือ $c$</strong>
+  <br>⇒ <strong>ไร้มวล ⟺ เดินด้วยความเร็วแสง</strong> · บทที่ 5 บอกว่าสมมาตรเกจ
+  บังคับให้โฟตอนไร้มวล · บทนี้บอกว่าไร้มวลแปลว่าอะไรในทางกายภาพ ·
+  สังเกตด้วยว่าความเร็วไม่ขึ้นกับ $k$ เลย — คลื่นทุกความถี่เดินเท่ากัน</p>
+</div>
+
+<div class="quiz" data-open data-answer="8" data-alt="8.0">
+  <h3>ข้อ 7 · เช็คย้อนไปบทที่ 5 · บริเวณที่มีสนามไฟฟ้า $E = 4$ และไม่มีสนามแม่เหล็ก
+  ($B = 0$) · ค่าของ $-\tfrac14 F_{\mu\nu}F^{\mu\nu}$ เท่ากับเท่าไร
+  <span class="hint">(ตรวจแล้วว่า $-\tfrac14 F^2 = \tfrac12(E^2-B^2)$)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\tfrac12(16 - 0) = 8$ · <strong>รูป $T - V$ เหมือนกันเป๊ะ</strong> —
+  สนามไฟฟ้าเล่นบทพลังงานจลน์ สนามแม่เหล็กเล่นบทพลังงานศักย์
+  <br>ลากรองจ์ของแม่เหล็กไฟฟ้ากับของสนามสเกลาร์จึงเป็นของชนิดเดียวกัน
+  ต่างกันแค่ $\phi$ มีหนึ่งช่อง ส่วน $A_\mu$ มีสี่ช่อง</p>
+</div>
+
+<div class="quiz" data-open data-answer="4" data-alt="สี่|4.0|M^4">
+  <h3>ข้อ 8 · ใน $S = \int d^4x\,\mathcal{L}$ &nbsp;($\hbar=c=1$) ·
+  $\mathcal{L}$ มีมิติเชิงมวลเท่าไร <span class="hint">(ตอบเลขยกกำลัง)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$S$ ไร้มิติ และ $[d^4x] = M^{-4}$ ⇒ $[\mathcal{L}] = M^{4}$ ⇒ ตอบ $4$
+  <br><strong>ลองใช้กับสมการ (2) ดู:</strong> $[\phi] = M$ ⇒ $[m^2\phi^2] = M^4$ ✓ ·
+  $[\partial] = M$ ⇒ $[(\partial\phi)^2] = M^4$ ✓ — <em>สองพจน์ตรงกัน ⇒ ลากรองจ์นี้
+  สอดคล้องกันเองโดยไม่ต้องคำนวณอะไรเลย</em></p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · <strong>ถึงตรงนี้แล้วสิ่งที่ขาด
+  ก่อนอ่าน paper ได้จริง ๆ เหลือไม่กี่อย่าง</strong> — $T^{\mu\nu}$ กับกระแสอนุรักษ์
+  เป็นสองอันถัดไป
+  <div class="nav">
+    <a href="./0015-hamiltonian.html">← บทที่ 6 · แฮมิลโทเนียน</a>
+    <a href="./0004-indices.html">บทที่ 3 · ดัชนี</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>
