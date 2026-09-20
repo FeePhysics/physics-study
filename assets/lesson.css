@@ -73,8 +73,19 @@ strong { font-weight: 600; }
 .eq math { font-size: 1.18em; }
 math { font-family: "Source Serif 4", "Latin Modern Math", "STIX Two Math", serif; }
 
-/* เลขสมการชิดขวาในวงเล็บ — ธรรมเนียมของ paper ฟิสิกส์ */
-.eq[data-eqno] { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 1rem; }
+/* สมการ inline ที่ยาวกว่าบรรทัด (เช่น Σ_i ∂L/∂x_i δx_i ในหัวข้อ) ตัดบรรทัดไม่ได้
+   ⇒ มันดัน **ทั้งหน้า** ให้กว้างเกินจอ · ให้มันเลื่อนในกล่องตัวเองแทน
+   วัดแล้วบนจอ 375px: 0014 กว้าง 487px · 0013 กว้าง 390px ⇒ เหลือ 375 ทั้งคู่หลังแก้
+   (เจอตอนแก้ check_layout.py ให้ไปตรวจ build/ — ประตูเดิมตรวจ lessons/ ซึ่ง KaTeX
+    โหลดไม่ได้ จึงมองไม่เห็นการล้นของสมการที่เรนเดอร์แล้ว) */
+math { max-width: 100%; overflow-x: auto; }
+
+/* เลขสมการชิดขวาในวงเล็บ — ธรรมเนียมของ paper ฟิสิกส์
+   ⚠️ ต้องเป็น minmax(0,1fr) ไม่ใช่ 1fr — ช่องกริดมี min-width:auto โดยปริยาย
+   ⇒ สมการยาวจะดันคอลัมน์ให้กว้างกว่าจอแทนที่จะเลื่อนในกล่องตัวเอง
+   (วัดแล้ว: สมการ F²  กว้าง 429px บนจอ 375px แล้ว overflow-x ของ .eq ไม่ทำงาน) */
+.eq[data-eqno] { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 1rem; }
+.eq[data-eqno] > math { display: block; max-width: 100%; overflow-x: auto; }
 .eq[data-eqno]::after {
   content: "(" attr(data-eqno) ")";
   font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--ink-soft);

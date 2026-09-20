@@ -9,8 +9,7 @@
   2. ไม่มี JavaScript error
   3. quiz ทุกอันคลิกแล้วทำงาน: ปุ่มล็อก · เฉลยแสดง · ติดคลาสถูก/ผิดตรงตาม data-answer
 
-⚠️ ตรวจการเรนเดอร์สมการไม่ได้ — CDN ถูก proxy บล็อกในคลาวด์ (ดู CLAUDE.md)
-   ต้องเปิดไฟล์บนเครื่องยืนยันอีกชั้น
+ตรวจ build/ ซึ่งเป็น MathML ฝังในไฟล์ ⇒ เห็นการจัดวางสมการจริง ไม่ต้องใช้ CDN
 
     pip install playwright        # ครั้งเดียว · อย่ารัน playwright install
     python3 scripts/check_layout.py
@@ -26,9 +25,16 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 CHROME = "/opt/pw-browsers/chromium"
 problems = []
 
-files = sorted((ROOT / "lessons").glob("*.html")) + sorted((ROOT / "reference").glob("*.html"))
+# ⚠️ ตรวจ build/ ไม่ใช่ lessons/ — build/ คือไฟล์ที่ถูก publish จริง และเป็นฉบับที่
+#    ฝัง CSS/JS + แปลง LaTeX เป็น MathML แล้ว ⇒ **ไม่ต้องพึ่ง CDN ที่ถูกบล็อก**
+#    เปิด lessons/ แทนจะได้หน้าที่ KaTeX ไม่ทำงาน แล้ววัดความกว้างของ LaTeX ดิบ
+#    ⇒ ทั้งรายงานผิด (ตาราง $...$ ยาว ๆ ล้นทั้งที่ของจริงไม่ล้น — เกิดจริงในบท 0017)
+#    และมองไม่เห็นการล้นจริงของฉบับที่ผู้เรียนเปิด
+#    · `check_build_fresh.py` การันตีอยู่แล้วว่า build/ ตรงกับ lessons/
+files = sorted((ROOT / "build").glob("*.html"))
+files = [f for f in files if not f.name.startswith("artifact-")]
 if not files:
-    sys.exit("ยังไม่มีบทเรียนให้ตรวจ")
+    sys.exit("ยังไม่ได้สร้าง build/ — รัน: python3 scripts/build_standalone.py --all")
 
 with sync_playwright() as p:
     browser = p.chromium.launch(executable_path=CHROME)

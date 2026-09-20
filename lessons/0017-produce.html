@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ผลิตเอง ไม่ใช่รับมา</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>ผลิตเอง ไม่ใช่รับมา</h1>
+<p class="meta">บทซ่อม · ~20 นาที · สามข้อที่พลาดมีรูปร่างเดียวกัน</p>
+
+<div class="key">
+  <p><strong>ข้อ 7 ที่ตอบ “ไม่รู้” ชี้ถูกที่สุด</strong> — ผมเขียน
+  $-\tfrac14 F^2 = \tfrac12(E^2-B^2)$ ไว้ในกล่องเตือนด้วยคำว่า
+  <em>“ตรวจแล้วว่า…”</em> ซึ่งเป็นการรายงานว่า<strong>ผม</strong>ตรวจมาแล้ว
+  ไม่ใช่การสอนว่ามันมาจากไหน · แล้วเอามาถามในข้อสอบ</p>
+  <p style="margin-bottom:0">ไปนับดูก็เจอว่าทั้งสามข้อที่พลาดมีรูปร่างเดียวกัน:
+  <strong>เป็นข้อเท็จจริงที่ถูก “ให้ไว้” ซ้ำ ๆ แต่ไม่เคยถูก “ถามเอา”</strong></p>
+</div>
+
+<table>
+  <tr><th style="width:42%">ข้อเท็จจริง</th><th>ให้ไว้</th><th>ถามเอา</th></tr>
+  <tr><td>$[\mathcal{L}] = M^4$</td><td><strong>6 ครั้ง</strong> (5 บท)</td><td><strong>0</strong></td></tr>
+  <tr><td>$-\tfrac14 F^2 = \tfrac12(E^2-B^2)$</td><td>6 ครั้ง</td><td>0 จนถึงข้อสอบ</td></tr>
+  <tr><td>ลบหน้าพจน์ที่ว่าง</td><td>ในเนื้อบท</td><td>1 (ข้อสอบเอง)</td></tr>
+</table>
+
+<div class="warn">
+  <strong>$[\mathcal{L}] = M^4$ เป็นตัวอย่างที่ชัดที่สุด</strong> — ทุกข้อนับมิติที่เคยทำ
+  ($\lambda\phi^4 \to 0$ · $g\phi^6 \to -2$) <em>ใช้มันเป็นวัตถุดิบ</em> และทำถูกหมด ·
+  แต่ไม่เคยมีข้อไหนให้ผลิตตัวมันออกมา ⇒ ตอบ $0$ (ซึ่งคือมิติของ $S$ อันเป็นขั้นแรก
+  ของการหามัน) เป็นเรื่องที่คาดได้
+  <br><strong>กฎบ้านข้อ 7 ยังไม่พอ</strong> — “มีข้อฝึกคู่กัน” ต้องแปลว่า
+  <strong>ผู้เรียนต้องเป็นคนผลิตมันออกมา</strong> ไม่ใช่แค่ใช้มันเป็นวัตถุดิบ
+</div>
+
+<h2>① ลบตัวเดียวที่แยกเวลาออกจากที่ว่าง</h2>
+
+<p>ข้อ 3 ขั้น 1 ($\texttt{pt}$) ถูก · ขั้น 3 ($-m^2\phi$) ถูก · ขั้น 4 ถูก ·
+<strong>พลาดเฉพาะขั้น 2</strong> ซึ่งอยู่ติดกับขั้น 1 และหน้าตาเหมือนกันเกือบทุกตัวอักษร:</p>
+
+<table>
+  <tr><th style="width:34%">$\tfrac12\,\texttt{pt}^2$</th><td>$\partial/\partial\texttt{pt} = +\,\texttt{pt}$</td></tr>
+  <tr><th>$-\tfrac12\,\texttt{px}^2$</th><td>$\partial/\partial\texttt{px} = -\,\texttt{px}$ &nbsp;<strong>← ลบมาจากตัว $\mathcal{L}$ เอง</strong></td></tr>
+</table>
+
+<div class="key">
+  <p style="margin:0">ลบตัวนี้ไม่ใช่รายละเอียดปลีกย่อย — <strong>มันคือสิ่งเดียวที่เมตริกทำ</strong> ·
+  เอาออกเมื่อไหร่ สมการไคลน์–กอร์ดอนกลายเป็น $\ddot\phi = -\nabla^2\phi - m^2\phi$
+  ซึ่ง<em>ไม่มีคลื่นเดินทาง</em>เลย — ฟิสิกส์คนละเรื่องกันทันที</p>
+</div>
+
+<p>ข้อฝึกข้างล่าง<strong>ตั้งสัมประสิทธิ์ให้ต่างกันทุกพจน์โดยตั้งใจ</strong>
+(เช่น $\tfrac32\texttt{pt}^2 - \tfrac52\texttt{px}^2$) ⇒ ลอกรูปจากขั้นก่อนแล้ว
+ได้ทั้งเครื่องหมายผิดและตัวเลขผิด จับได้ทันที</p>
+
+<h2>② $-\tfrac14 F^2$ มาจากไหน — กางให้ดูจริง</h2>
+
+<p>ใช้ของที่ฝึกผ่านมาแล้วสองอย่าง: <strong>การนับด้วยปฏิสมมาตร</strong> กับ
+<strong>การยกดัชนีด้วยเมตริก</strong></p>
+
+<table>
+  <tr><th style="width:38%">$F$ มีองค์ประกอบอิสระ</th><td>$\dfrac{4\cdot3}{2} = 6$ ตัว — เคยนับมาแล้ว</td></tr>
+  <tr><td>หกตัวนั้นคือ</td><td>$\vec E$ สามตัว ($F_{0i}$) $+$ $\vec B$ สามตัว ($F_{ij}$)</td></tr>
+  <tr><td>ยก $F_{0i}$ ขึ้น</td><td>แตะดัชนีเวลา <strong>หนึ่งครั้ง</strong> ⇒ $F^{0i} = -F_{0i}$</td></tr>
+  <tr><td>ยก $F_{ij}$ ขึ้น</td><td>ไม่แตะดัชนีเวลาเลย ⇒ $F^{ij} = +F_{ij}$</td></tr>
+</table>
+
+<p>บวกทั้ง 16 ช่อง (แต่ละคู่โผล่สองครั้งเพราะปฏิสมมาตร):</p>
+
+<div class="eq">$$ F_{\mu\nu}F^{\mu\nu} \;=\; \underbrace{2\sum_i F_{0i}F^{0i}}_{-2E^2} \;+\; \underbrace{\sum_{ij} F_{ij}F^{ij}}_{+2B^2} $$</div>
+<div class="eq" data-eqno="1">$$ F_{\mu\nu}F^{\mu\nu} \;=\; 2\,(B^2 - E^2) $$</div>
+
+<div class="key">
+  <div class="eq" data-eqno="2">$$ -\tfrac14 F_{\mu\nu}F^{\mu\nu} \;=\; \tfrac12\,(E^2 - B^2) $$</div>
+  <p style="margin-bottom:0"><strong>$E$ เป็นบวกเพราะมันมีดัชนีเวลาหนึ่งตัว</strong> ·
+  $B$ ไม่มี ⇒ ติดลบ ⇒ ได้รูป $T - V$ · <em>ไฟฟ้าเล่นบทพลังงานจลน์ แม่เหล็กเล่นบทศักย์</em>
+  <br>(สร้าง $F$ ขึ้นมาจริงใน <code>sympy</code> แล้วบวกครบทั้ง 16 ช่อง — ไม่ได้พิมพ์ผลไว้เอง)</p>
+</div>
+
+<div class="warn">
+  <strong>เครื่องหมายไม่คงที่ — ค่านี้ติดลบได้</strong> · คลื่นแม่เหล็กไฟฟ้ามี $E = B$
+  พอดี ⇒ $-\tfrac14F^2 = 0$ · บริเวณที่แม่เหล็กแรงกว่าได้ค่าติดลบ ·
+  <strong>อย่าจำว่ามันเป็นพลังงาน</strong> (พลังงานคือ $\tfrac12(E^2+B^2)$ ซึ่งบวกเสมอ
+  และเป็นคนละตัว — ตัวนั้นอยู่ใน $T^{\mu\nu}$ ที่จะเจอบทหน้า)
+</div>
+
+<h2>③ บันไดมิติ — ไต่ขึ้นเองได้ทุกขั้น</h2>
+
+<p>ทุกข้อนับมิติที่เคยทำเริ่มจาก $[\mathcal{L}] = M^4$ <strong>โดยที่ไม่เคยไต่ขึ้นมาถึงมันเอง</strong> ·
+บันไดมีสี่ขั้นและไต่ได้ในสามบรรทัด:</p>
+
+<table>
+  <tr><th style="width:22%">$[S] = 0$</th><td>เพราะสิ่งที่โผล่จริงในควอนตัมคือ $e^{iS/\hbar}$ และ $\hbar = 1$ ⇒ เลขชี้กำลังต้องไร้มิติ</td></tr>
+  <tr><th>$[d^4x] = -4$</th><td>ความยาว $= 1/$มวล ⇒ ยกกำลังสี่</td></tr>
+  <tr><th>$[\mathcal{L}] = +4$</th><td><strong>ต้องหักล้าง $d^4x$ ให้ $S$ ไร้มิติ</strong> — ขั้นนี้คือตัวที่พลาด</td></tr>
+  <tr><th>$[\phi] = 1$</th><td>จาก $m^2\phi^2$: $2 + 2[\phi] = 4$</td></tr>
+</table>
+
+<div class="key">
+  <p style="margin:0"><strong>ตรวจไขว้ได้ฟรี</strong> — $[\partial] = 1$ (อนุพันธ์คือ $1/$ความยาว)
+  ⇒ พจน์จลน์ $[(\partial\phi)^2] = 2(1+1) = 4$ ✓ <em>ตรงกับพจน์มวลพอดี</em>
+  ⇒ ลากรองจ์สอดคล้องกันเอง โดยไม่ต้องคำนวณอะไรเลย</p>
+</div>
+
+<p>แล้วค่าคงตัวคู่ควบทุกตัวได้มาจากบรรทัดเดียว —
+<strong>$[g] = 4 - $ (ผลรวมมิติของสิ่งที่เหลือในพจน์)</strong></p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="hint"><code>pt</code> แทน $\partial_t\phi$ · <code>px</code> แทน $\partial_x\phi$ ·
+<code>phi</code> แทน $\phi$ · มิติตอบเป็นเลขยกกำลัง (เช่น <code>-2</code>)</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · $\;\mathcal{L} = \tfrac32\,\texttt{pt}^2 \,-\, \tfrac52\,\texttt{px}^2 \,-\, 2\,\texttt{phi}^2$
+  &nbsp;<span class="hint">(สัมประสิทธิ์ต่างกันทุกพจน์)</span></h3>
+  <ol class="steps">
+    <li data-answer="3*pt" data-alt="3pt|pt*3|3 pt">
+      <p><strong>ขั้น 1</strong> — หา $\partial\mathcal{L}/\partial\,\texttt{pt}$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  3*pt" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac32 \cdot 2\,\texttt{pt} = 3\,\texttt{pt}$</p>
+    </li>
+    <li data-answer="-5*px" data-alt="-5px|−5*px|−5px|-px*5">
+      <p><strong>ขั้น 2</strong> — หา $\partial\mathcal{L}/\partial\,\texttt{px}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-\tfrac52\cdot 2\,\texttt{px} = -5\,\texttt{px}$ ·
+      <strong>ลบติดมาจากตัว $\mathcal{L}$</strong> — ลอกรูปจากขั้น 1 จะได้ $5\texttt{px}$
+      ซึ่งผิดทั้งเครื่องหมาย</p>
+    </li>
+    <li data-answer="-4*phi" data-alt="-4phi|−4*phi|−4phi|-phi*4">
+      <p><strong>ขั้น 3</strong> — หา $\partial\mathcal{L}/\partial\,\texttt{phi}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-2\cdot 2\,\texttt{phi} = -4\,\texttt{phi}$ ·
+      สัมประสิทธิ์ $2$ ไม่มี $\tfrac12$ มาตัด ⇒ เลข 2 จากกำลังสองเหลืออยู่</p>
+    </li>
+  </ol>
+  <p class="fb">สามพจน์ สามสัมประสิทธิ์ สองเครื่องหมาย — <strong>ไม่มีขั้นไหนลอกขั้นก่อนได้เลย</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · $\;\mathcal{L} = 2\,\texttt{pt}^2 \,-\, 7\,\texttt{px}^2$</h3>
+  <ol class="steps">
+    <li data-answer="4*pt" data-alt="4pt|pt*4">
+      <p><strong>ขั้น 1</strong> — หา $\partial\mathcal{L}/\partial\,\texttt{pt}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4\,\texttt{pt}$</p>
+    </li>
+    <li data-answer="-14*px" data-alt="-14px|−14*px|−14px|-px*14">
+      <p><strong>ขั้น 2</strong> — หา $\partial\mathcal{L}/\partial\,\texttt{px}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-14\,\texttt{px}$ · <strong>รอบที่สองแล้ว</strong> — พจน์ที่ว่างติดลบเสมอ
+      ใน signature $(-,+,+,+)$</p>
+    </li>
+  </ol>
+  <p class="fb">ลบตัวนี้คือสิ่งเดียวที่เมตริกทำ · เอาออกแล้วคลื่นหายไปจากสมการ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · ไล่ที่มาของ $-\tfrac14 F^2$ เอง</h3>
+  <ol class="steps">
+    <li data-answer="6" data-alt="หก|6 ตัว">
+      <p><strong>ขั้น 1</strong> — $F_{\mu\nu}$ ใน 4 มิติ มีองค์ประกอบอิสระกี่ตัว</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac{4\cdot3}{2} = 6$ — ของเดิมที่เคยนับผ่านมาแล้ว</p>
+    </li>
+    <li data-answer="-1" data-alt="−1|-1.0|ลบ1|ลบหนึ่ง">
+      <p><strong>ขั้น 2</strong> — ยกดัชนี $F_{0i}$ ขึ้นเป็น $F^{0i}$ ·
+      อัตราส่วน $F^{0i}/F_{0i}$ เท่ากับเท่าไร
+      &nbsp;<span class="hint">(แตะดัชนีเวลากี่ครั้ง)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-1$ — ยกสองดัชนีแต่มีเพียงดัชนี $0$ ที่ให้ $-1$ ส่วนดัชนี $i$ ให้ $+1$
+      ⇒ <strong>ลบครั้งเดียว</strong></p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|+1|1.0">
+      <p><strong>ขั้น 3</strong> — แล้ว $F^{ij}/F_{ij}$ ล่ะ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$+1$ — ไม่แตะดัชนีเวลาเลย ⇒ <strong>นี่คือจุดที่ $E$ กับ $B$
+      แยกทางกัน</strong> ทั้งที่อยู่ในวัตถุก้อนเดียวกัน</p>
+    </li>
+    <li data-answer="-16" data-alt="−16|-16.0">
+      <p><strong>ขั้น 4</strong> — ใช้ $F_{\mu\nu}F^{\mu\nu} = 2(B^2-E^2)$ ที่เพิ่งได้ ·
+      บริเวณที่ $E = 3$, $B = 1$ · หา $F_{\mu\nu}F^{\mu\nu}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2(1 - 9) = -16$</p>
+    </li>
+    <li data-answer="4" data-alt="4.0|สี่">
+      <p><strong>ขั้น 5</strong> — แล้ว $-\tfrac14 F_{\mu\nu}F^{\mu\nu}$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-\tfrac14(-16) = 4$ · ตรวจอีกทาง: $\tfrac12(9-1) = 4$ ✓</p>
+    </li>
+  </ol>
+  <p class="fb">ห้าขั้นนี้คือที่มาทั้งหมด — <strong>ไม่มีขั้นไหนต้องจำ</strong>
+  มีแต่การนับกับการยกดัชนีที่ฝึกผ่านมาแล้วทั้งคู่</p>
+</div>
+
+<div class="quiz" data-open data-answer="-6" data-alt="−6|-6.0">
+  <h3>ข้อ 4 · บริเวณที่ $E = 2$ และ $B = 4$ · หา $-\tfrac14 F_{\mu\nu}F^{\mu\nu}$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\tfrac12(4 - 16) = -6$ · <strong>ติดลบได้</strong> เมื่อแม่เหล็กแรงกว่าไฟฟ้า
+  ⇒ อย่าอ่านว่ามันเป็นพลังงาน · คลื่นแม่เหล็กไฟฟ้ามี $E = B$ พอดีจึงให้ $0$ เสมอ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · ไต่บันไดมิติขึ้นเอง <span class="hint">(ตอบเป็นเลขยกกำลังของมวล)</span></h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 1</strong> — $[S]$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — สิ่งที่โผล่จริงคือ $e^{iS/\hbar}$ และ $\hbar=1$ ⇒ เลขชี้กำลังต้องไร้มิติ</p>
+    </li>
+    <li data-answer="-4" data-alt="−4|-4.0">
+      <p><strong>ขั้น 2</strong> — $[d^4x]$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-4$ — ความยาวคือ $1/$มวล ยกกำลังสี่</p>
+    </li>
+    <li data-answer="4" data-alt="4.0|สี่">
+      <p><strong>ขั้น 3</strong> — แล้ว $[\mathcal{L}]$ ล่ะ
+      &nbsp;<span class="hint">(ต้องหักล้างกับขั้น 2 ให้ได้ขั้น 1)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0 - (-4) = 4$ ⇒ $[\mathcal{L}] = M^4$ ·
+      <strong>นี่คือเลขที่ใช้เป็นวัตถุดิบมาตลอด และเพิ่งได้ผลิตมันเองเป็นครั้งแรก</strong></p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 4</strong> — จากพจน์ $m^2\phi^2$ · $[\phi]$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 + 2[\phi] = 4 \Rightarrow [\phi] = 1$ ·
+      ตรวจไขว้กับพจน์จลน์: $2([\partial]+[\phi]) = 2(1+1) = 4$ ✓ <strong>ตรงกัน</strong></p>
+    </li>
+  </ol>
+  <p class="fb">สี่ขั้นนี้คือฐานของทุกข้อนับมิติ — ไต่ขึ้นเองได้แล้วไม่ต้องจำเลขไหนอีก</p>
+</div>
+
+<div class="quiz" data-open data-answer="-1" data-alt="−1|-1.0">
+  <h3>ข้อ 6 · พจน์ $\;g\,\phi\,\partial_\mu\phi\,\partial^\mu\phi\;$ ใน $\mathcal{L}$ ·
+  $[g]$ เท่ากับเท่าไร</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$[\phi] = 1$ · $[(\partial\phi)^2] = 4$ ⇒ ของที่เหลือรวมเป็น $5$
+  ⇒ $[g] = 4 - 5 = -1$
+  <br><strong>มิติติดลบ ⇒ พจน์นี้ถูกกดด้วยสเกลพลังงานหนึ่ง</strong>
+  ($g \sim 1/\Lambda$) ⇒ ทฤษฎีใช้ได้แค่ต่ำกว่า $\Lambda$ — สำนวนที่เจอทุกหน้าใน
+  effective field theory</p>
+</div>
+
+<div class="quiz" data-open data-answer="4" data-alt="สี่|4.0">
+  <h3>ข้อ 7 · กลับทาง — ถ้าพจน์คือ $g\,\phi^n$ และอยากให้ $g$ <strong>ไร้มิติ</strong> ·
+  $n$ ต้องเป็นเท่าไร</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$[g] = 4 - n\,[\phi] = 4 - n = 0 \Rightarrow n = 4$ ·
+  <strong>นี่คือเหตุผลที่ $\lambda\phi^4$ เป็นทฤษฎีปฏิสัมพันธ์มาตรฐานของสนามสเกลาร์</strong>
+  — ไม่ใช่เพราะสวย แต่เพราะเป็นกำลังเดียวที่ค่าคงตัวไร้มิติในสี่มิติ
+  <br>$\phi^3$ ให้ $[g] = 1$ (ใช้ได้แต่มีสเกลติดมา) · $\phi^5$ ขึ้นไปให้มิติติดลบ</p>
+</div>
+
+<div class="quiz" data-open data-answer="0" data-alt="ศูนย์|0.0">
+  <h3>ข้อ 8 · คลื่นแม่เหล็กไฟฟ้าในสุญญากาศมี $E = B$ ·
+  ค่าของ $-\tfrac14 F_{\mu\nu}F^{\mu\nu}$ เท่ากับเท่าไร</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\tfrac12(E^2 - E^2) = 0$ · <strong>ลากรองจ์ของคลื่นแสงเป็นศูนย์ทุกจุด</strong>
+  ทั้งที่มันขนพลังงานไปจริง ๆ
+  <br>⇒ <strong>$-\tfrac14F^2$ ไม่ใช่พลังงาน</strong> · พลังงานคือ $\tfrac12(E^2+B^2)$
+  ซึ่งบวกเสมอและเป็นองค์ประกอบ $T^{00}$ ของเทนเซอร์ความเค้น-พลังงาน — <em>ตัวที่บทหน้าจะทำ</em></p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · <strong>“ไม่รู้” ยังเป็นคำตอบที่มีค่าที่สุด</strong>
+  — รอบนี้มันชี้ให้เจอว่ากฎบ้านที่เพิ่งเขียนไปยังหลวม: มีข้อฝึกคู่กันไม่พอ
+  ต้องเป็นข้อที่<em>ผลิต</em>มันออกมาด้วย
+  <div class="nav">
+    <a href="./0016-fields.html">← บทที่ 7 · สนาม</a>
+    <a href="./0006-maxwell.html">บทที่ 5 · แมกซ์เวลล์</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>

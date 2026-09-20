@@ -85,9 +85,11 @@
       .replace(/[()]/g, '');
   }
   function num(v) {                     // อ่านเป็นตัวเลข รับเศษส่วน a/b
-    var s = norm(v), m = s.match(/^(-?\d*\.?\d+)\/(-?\d*\.?\d+)$/);
+    // รับเครื่องหมายบวกนำหน้าด้วย — "+1" เป็นคำตอบที่คนเขียนจริงเวลาเน้นว่าเป็นบวก
+    // (เดิมตกไปเทียบแบบสตริงแล้วไม่ตรงกับคีย์ "1" · เจอตอนทดสอบตัวตรวจของบท 0017)
+    var s = norm(v), m = s.match(/^([+-]?\d*\.?\d+)\/([+-]?\d*\.?\d+)$/);
     if (m) return parseFloat(m[1]) / parseFloat(m[2]);
-    return /^-?\d*\.?\d+$/.test(s) ? parseFloat(s) : null;
+    return /^[+-]?\d*\.?\d+$/.test(s) ? parseFloat(s) : null;
   }
   function judge(el, typed) {          // el = .quiz หรือ <li> ของขั้น — ขอแค่มี data-answer
     if (!typed.trim()) return 'empty';
