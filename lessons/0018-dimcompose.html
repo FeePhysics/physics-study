@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ประกอบมิติจากชิ้นส่วน</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>ประกอบมิติจากชิ้นส่วน</h1>
+<p class="meta">บทฝึกสั้น · ~12 นาที · ปฏิบัติการเดียว เจ็ดข้อ</p>
+
+<div class="key">
+  <p><strong>7/8 · ข้อเดียว และผมทำพลาดซ้ำรูปแบบเดิมในบทที่เขียนขึ้นมาแก้เรื่องนี้พอดี</strong></p>
+  <p style="margin-bottom:0">นับใหม่หลังรอบที่แล้ว — <strong>$[\partial]$ ให้ไว้ 4 ครั้ง · ถามเอา 0 ครั้ง</strong> ·
+  และข้อ $[g]$ ทุกข้อในประวัติ ($\lambda\phi^4$ · $g\phi^3$ · $g\phi^6$)
+  <strong>ไม่มีอนุพันธ์เลยสักข้อ</strong> ⇒ ข้อ 6 เป็นพจน์แรกที่ต้อง
+  <em>ประกอบ</em> $[(\partial\phi)^2]$ ขึ้นมาจากชิ้นส่วน ซึ่งไม่เคยทำมาก่อน</p>
+</div>
+
+<div class="warn">
+  <strong>คำตอบ $4$ บอกว่าเดินมาถูกทางแล้วสองขั้น</strong> — $4$ คือ $[\mathcal{L}]$
+  ซึ่งเป็นของที่เพิ่งผลิตเองได้สำเร็จในข้อ 5 (ผ่านครบทั้งสี่ขั้น) ·
+  ที่ขาดคือขั้นสุดท้าย: <strong>$[g]$ ไม่ใช่มิติของทั้งพจน์ แต่คือส่วนที่เหลือ
+  หลังหักทุกอย่างในพจน์ออกไปแล้ว</strong>
+</div>
+
+<h2>สามบรรทัดที่ใช้ได้กับทุกพจน์</h2>
+
+<table>
+  <tr><th style="width:16%">บรรทัด 1</th><td>นับมิติของ<strong>ทุกชิ้น</strong>ในพจน์ · $[\phi] = 1$ · $[\partial] = 1$ &nbsp;<span class="hint">(อนุพันธ์คือ $1/$ความยาว = มวล)</span></td></tr>
+  <tr><th>บรรทัด 2</th><td>บวกให้หมด — <strong>อนุพันธ์นับเป็นชิ้นหนึ่งด้วย ไม่ใช่ของแถมที่ไม่มีมิติ</strong></td></tr>
+  <tr><th>บรรทัด 3</th><td>$[g] = 4 \;-\;$ ผลรวมนั้น &nbsp;<span class="hint">(เพราะทั้งพจน์ต้องได้ $M^4$)</span></td></tr>
+</table>
+
+<div class="key">
+  <div class="eq" data-eqno="1">$$ [\partial_\mu\phi\,\partial^\mu\phi] \;=\; 2\big([\partial] + [\phi]\big) \;=\; 2(1+1) \;=\; 4 $$</div>
+  <p style="margin-bottom:0"><strong>พจน์จลน์มีมิติครบ $4$ ด้วยตัวเองพอดี</strong> ⇒
+  สัมประสิทธิ์ของมัน (เลข $\tfrac12$) ไร้มิติ · <em>นี่คือเหตุผลที่มันเขียนเปล่า ๆ ได้
+  โดยไม่ต้องมีค่าคงตัวอะไรมาแปะ</em></p>
+</div>
+
+<p><strong>ของแถมที่ได้จากบรรทัดเดียวกัน</strong> — พจน์มวล $m^2\phi^2$ ก็คือ
+$g\phi^2$ ที่ $[g] = 4 - 2 = 2$ ⇒ <em>“มวล” คือค่าคงตัวคู่ควบที่บังเอิญมีมิติ $2$</em>
+ไม่ใช่ของพิเศษคนละชนิด</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="hint">ตอบเป็นเลขยกกำลังของมวล (เช่น <code>-1</code> · <code>0</code> · <code>2</code>)</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · ฐานที่ต้องผลิตเองให้ได้</h3>
+  <ol class="steps">
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 1</strong> — $[\partial]$ เท่ากับเท่าไร
+      &nbsp;<span class="hint">(อนุพันธ์เทียบกับความยาว)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — $\partial \sim 1/\text{ความยาว}$ และความยาว $= 1/$มวล ⇒ $[\partial] = M$ ·
+      <strong>ตัวนี้ถูกใช้มา 4 ครั้งแต่ไม่เคยถูกถาม</strong></p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 2</strong> — $[\partial_\mu\phi\,\partial^\mu\phi]$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">สี่ชิ้น: $\partial$, $\phi$, $\partial$, $\phi$ ⇒ $1+1+1+1 = 4$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — แล้วสัมประสิทธิ์ที่แปะหน้าพจน์จลน์ ($\tfrac12$)
+      มีมิติเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4 - 4 = 0$ ⇒ <strong>ไร้มิติ</strong> — จึงเขียนเป็นเลขเปล่า ๆ ได้</p>
+    </li>
+  </ol>
+  <p class="fb">สามขั้นนี้คือทั้งกระบวนการ · ที่เหลือคือเปลี่ยนพจน์</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · พจน์ที่พลาดรอบก่อน &nbsp;$\;g\,\phi\,\partial_\mu\phi\,\partial^\mu\phi$</h3>
+  <ol class="steps">
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 1</strong> — <strong>ไม่นับ $g$</strong> · ของที่เหลือในพจน์
+      ($\phi$ กับ $\partial_\mu\phi\,\partial^\mu\phi$) รวมมิติได้เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$[\phi] + [(\partial\phi)^2] = 1 + 4 = 5$</p>
+    </li>
+    <li data-answer="-1" data-alt="−1|-1.0">
+      <p><strong>ขั้น 2</strong> — แล้ว $[g]$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4 - 5 = -1$ ·
+      <strong>$4$ คือมิติของทั้งพจน์ ไม่ใช่ของ $g$</strong> — $g$ คือส่วนที่เหลือหลังหัก
+      <br>มิติติดลบ ⇒ $g \sim 1/\Lambda$ ⇒ ทฤษฎีใช้ได้แค่ต่ำกว่าสเกล $\Lambda$</p>
+    </li>
+  </ol>
+  <p class="fb">แยกเป็นสองขั้นแล้วจะเห็นว่าขั้นที่ขาดไปคือขั้นไหน</p>
+</div>
+
+<div class="quiz" data-open data-answer="-2" data-alt="−2|-2.0">
+  <h3>ข้อ 3 · $\;g\,\phi^2\,\partial_\mu\phi\,\partial^\mu\phi\;$ · หา $[g]$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">ที่เหลือ $= 2 + 4 = 6$ ⇒ $[g] = 4 - 6 = -2$ ·
+  <strong>เพิ่ม $\phi$ หนึ่งตัว มิติของ $g$ ลดลงหนึ่ง</strong> ทุกครั้ง</p>
+</div>
+
+<div class="quiz" data-open data-answer="-4" data-alt="−4|-4.0">
+  <h3>ข้อ 4 · $\;g\,(\partial_\mu\phi\,\partial^\mu\phi)^2\;$ · หา $[g]$
+  <span class="hint">(ยกกำลังสองทั้งก้อน)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">ก้อนในวงเล็บมีมิติ $4$ ⇒ ยกกำลังสองได้ $8$ ⇒ $[g] = 4 - 8 = -4$ ·
+  <strong>พจน์แบบนี้โผล่จริงในทฤษฎีสนามยังผล</strong> และมิติ $-4$ บอกว่ามันถูกกดด้วย
+  $\Lambda^4$ ⇒ เล็กมากที่พลังงานต่ำ</p>
+</div>
+
+<div class="quiz" data-open data-answer="2" data-alt="สอง|2.0">
+  <h3>ข้อ 5 · $\;g\,\phi^2\;$ · หา $[g]$ <span class="hint">(พจน์นี้คุ้น ๆ ไหม)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$4 - 2 = 2$ · <strong>บวก ไม่ใช่ลบ</strong> —
+  และมิติ $2$ คือมิติของ $m^2$ พอดี
+  <br>⇒ <strong>พจน์มวลไม่ใช่ของพิเศษคนละชนิด</strong> มันคือค่าคงตัวคู่ควบที่มีมิติ $2$ ·
+  เขียน $\tfrac12 m^2\phi^2$ ก็คือเลือกตั้งชื่อ $g$ ว่า $\tfrac12 m^2$ เท่านั้นเอง</p>
+</div>
+
+<div class="quiz" data-open data-answer="1" data-alt="หนึ่ง|1.0">
+  <h3>ข้อ 6 · เช็คย้อนบทที่ 5 · จาก $-\tfrac14 F_{\mu\nu}F^{\mu\nu}$ และ
+  $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ · หา $[A_\mu]$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$[F] = [\partial] + [A] = 1 + [A]$ · และพจน์ $F^2$ ต้องได้ $4$
+  ⇒ $2(1+[A]) = 4$ ⇒ $[A] = 1$
+  <br><strong>สนามเกจมีมิติเท่ากับสนามสเกลาร์พอดี</strong> ($M$ ทั้งคู่) ·
+  ตรวจซ้ำ: $[F] = 2$ ⇒ $[F^2] = 4$ ✓ · เลข $-\tfrac14$ จึงไร้มิติเหมือน $\tfrac12$ ของพจน์จลน์</p>
+</div>
+
+<div class="quiz" data-open data-answer="0" data-alt="ศูนย์|0.0">
+  <h3>ข้อ 7 · กลับทาง — $\;g\,\phi^a\,\partial_\mu\phi\,\partial^\mu\phi\;$
+  และอยากให้ $[g] = 0$ · $a$ ต้องเป็นเท่าไร</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$4 - (a + 4) = 0 \Rightarrow a = 0$ ·
+  <strong>พจน์จลน์เปล่า ๆ มีมิติครบ $4$ อยู่แล้ว</strong> ไม่ต้องมี $\phi$ มาเติมเลย
+  <br>⇒ เติม $\phi$ เข้าไปเมื่อไหร่ $g$ ก็มีมิติติดลบทันที ·
+  เทียบกับ $g\phi^n$ ที่ไม่มีอนุพันธ์ซึ่งได้ $n = 4$ — <em>อนุพันธ์สองตัว
+  “กินโควตา” ไปเท่ากับ $\phi$ สี่ตัว</em></p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · ผ่านชุดนี้แล้วเครื่องมือนับมิติครบ
+  <strong>บทต่อไปคือ $T^{\mu\nu}$ กับกระแสอนุรักษ์</strong> — ตัวที่นั่งอยู่ขวามือ
+  ของสมการไอน์สไตน์
+  <div class="nav">
+    <a href="./0017-produce.html">← ผลิตเอง ไม่ใช่รับมา</a>
+    <a href="./0016-fields.html">บทที่ 7 · สนาม</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>
