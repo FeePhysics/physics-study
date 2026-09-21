@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 8 · ขวามือของสมการไอน์สไตน์</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 8 · ขวามือของสมการไอน์สไตน์</h1>
+<p class="meta">บทเรียน · ~25 นาที · กระแสอนุรักษ์ และเทนเซอร์ความเค้น-พลังงาน</p>
+
+<div class="key">
+  <p style="margin:0"><strong>7/7 · เครื่องมือนับมิติครบแล้ว</strong> —
+  และบทนี้จะได้ใช้มันเป็นตัวตรวจงานทันที ($[T^{\mu\nu}]$ ต้องออกมาเป็น $4$)</p>
+</div>
+
+<h2>① เนอเธอร์ฉบับสนาม — รูปเดิมทุกตัวอักษร</h2>
+
+<p>สิ่งที่ฝึกจนติดแล้วสำหรับอนุภาค:
+$\;Q = \sum_i \dfrac{\partial L}{\partial\dot q_i}\,\delta q_i\;$ ·
+เปลี่ยนตามพจนานุกรมของบทที่ 7 ($\dot q \to \partial_\mu\phi$) ได้ทันที:</p>
+
+<div class="key">
+  <div class="eq" data-eqno="1">$$ j^\mu \;=\; \frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}\;\delta\phi $$</div>
+  <p style="margin-bottom:0"><strong>ต่างกันอย่างเดียว: ผลลัพธ์มีดัชนีติดมาด้วย</strong> —
+  ไม่ใช่เลขตัวเดียวแล้ว แต่เป็นของสี่ช่อง เรียกว่า<strong>กระแส</strong></p>
+</div>
+
+<p>และ "อนุรักษ์" ก็เปลี่ยนรูปตามกัน — จาก $\;dQ/dt = 0\;$ กลายเป็น</p>
+
+<div class="eq" data-eqno="2">$$ \partial_\mu j^\mu \;=\; 0 \qquad\Longleftrightarrow\qquad \frac{\partial j^0}{\partial t} + \nabla\!\cdot\!\vec{j} = 0 $$</div>
+
+<p><strong>นี่คือสมการความต่อเนื่องที่แบสอนในไฟฟ้า</strong> — ประจุในกล่องลดลงได้ทางเดียว
+คือไหลออกทางผิว · ปริมาณที่คงที่จริง ๆ คือ $\;Q = \int d^3x\; j^0$</p>
+
+<h2>② สมมาตรใหม่ที่ยังไม่เคยเจอ: เลื่อน<em>ค่า</em>ของสนาม</h2>
+
+<p>บทก่อน ๆ เลื่อน<em>ตำแหน่ง</em> · คราวนี้เลื่อน<em>ค่าที่สนามอ่านได้</em>:
+$\;\phi \to \phi + c\;$ ⇒ $\delta\phi = 1$</p>
+
+<div class="warn">
+  <strong>ตรวจก่อนเขียน เหมือนเดิมทุกครั้ง</strong> — $\delta\mathcal{L} = \dfrac{\partial\mathcal{L}}{\partial\phi}\,\delta\phi$
+  ต้องเป็นศูนย์
+  <br>$\mathcal{L}$ ที่มีแต่อนุพันธ์ ⇒ ไม่มี $\phi$ เปล่า ๆ ⇒ $\delta\mathcal{L} = 0$ ✓
+  <br><strong>แต่พจน์มวล $-\tfrac12 m^2\phi^2$ มี $\phi$ เปล่า ๆ</strong> ⇒ $\delta\mathcal{L} = -m^2\phi \neq 0$ ✗
+</div>
+
+<p>สำหรับกรณีไร้มวล สมการ (1) ให้ $\;j^\mu = -\partial^\mu\phi\;$ และ
+$\partial_\mu j^\mu = -\Box\phi = 0$ พอดีตามสมการการเคลื่อนที่ (ตรวจแล้วด้วย <code>sympy</code>)</p>
+
+<div class="key">
+  <div class="eq" data-eqno="3">$$ \partial_\mu j^\mu \;=\; \delta\mathcal{L} $$</div>
+  <p style="margin-bottom:0"><strong>สมมาตรพังไปเท่าไร กระแสรั่วเท่านั้นพอดี</strong> —
+  ไม่ใช่ว่าพังแล้วใช้ไม่ได้เลย · ตรวจแล้ว: ใส่พจน์มวลกลับเข้าไป ทั้งสองข้างได้
+  $-m^2\phi$ เท่ากันเป๊ะ
+  <br>⇒ <strong>มวลของอนุภาคคือปริมาณที่วัดว่าสมมาตรเลื่อนค่าพังแค่ไหน</strong> ·
+  นี่คือรากของทฤษฎีบทโกลด์สโตน — สมมาตรที่แตกเองให้อนุภาคไร้มวลออกมา</p>
+</div>
+
+<h2>③ เลื่อนกาลอวกาศ ⇒ ได้ $T^{\mu\nu}$</h2>
+
+<p>เลื่อนทั้งกาลอวกาศ $x^\mu \to x^\mu + a^\mu$ · <strong>เลื่อนได้สี่ทิศอิสระ ⇒
+ได้กระแสสี่ชุด</strong> ⇒ ผลลัพธ์มีสองดัชนี</p>
+
+<div class="key">
+  <div class="eq" data-eqno="4">$$ T^{\mu\nu} \;=\; \partial^\mu\phi\,\partial^\nu\phi \;+\; g^{\mu\nu}\mathcal{L} \qquad\qquad \partial_\mu T^{\mu\nu} = 0 $$</div>
+  <p style="margin-bottom:0">ดัชนี $\mu$ ทำหน้าที่เดิมของ $j^\mu$ (ทิศที่ของไหล) ·
+  <strong>ดัชนี $\nu$ บอกว่ากำลังพูดถึงกระแสชุดไหนในสี่ชุดนั้น</strong></p>
+</div>
+
+<table>
+  <tr><th style="width:26%">$T^{00}$</th><td>ความหนาแน่นพลังงาน &nbsp;$= \tfrac12\dot\phi^2 + \tfrac12|\nabla\phi|^2 + \tfrac12 m^2\phi^2$</td></tr>
+  <tr><th>$T^{0i}$</th><td>ความหนาแน่นโมเมนตัม (และเป็นฟลักซ์ของพลังงานพร้อมกัน)</td></tr>
+  <tr><th>$T^{ij}$</th><td>ความเค้น — ความดันกับแรงเฉือน</td></tr>
+</table>
+
+<div class="warn">
+  <strong>เครื่องหมายของสมการ (4) ต้องวัด ไม่ใช่จำ</strong> — ลองทั้ง
+  $+\partial^\mu\phi\partial^\nu\phi + g^{\mu\nu}\mathcal{L}$ และแบบติดลบทั้งก้อน
+  แล้วดูว่าอันไหนให้ $T^{00}$ เป็น<strong>บวก</strong> · อีกแบบให้พลังงานติดลบทุกจุด
+  ซึ่งผิดแน่นอน · (ตรวจแล้วทั้งสองแบบด้วย <code>sympy</code> · และยืนยันว่า
+  $T^{\mu\nu}$ สมมาตรจริง และ $\partial_\mu T^\mu{}_\nu = 0$ ครบทั้งสี่ค่าของ $\nu$
+  เมื่อใช้สมการการเคลื่อนที่)
+</div>
+
+<h2>④ ทำไมตัวนี้ถึงสำคัญที่สุดในบรรดาทุกตัวที่เรียนมา</h2>
+
+<div class="key">
+  <div class="eq" data-eqno="5">$$ G^{\mu\nu} \;=\; 8\pi G\;T^{\mu\nu} $$</div>
+  <p style="margin-bottom:0"><strong>สมการสนามของไอน์สไตน์</strong> · ซ้ายมือคือ
+  ความโค้งของกาลอวกาศ · <strong>ขวามือคือตัวที่เพิ่งสร้างขึ้นมาจากลากรองจ์</strong>
+  <br>⇒ เขียน $\mathcal{L}$ ลงไป แล้วเดินตามสมการ (4) ก็ได้ของที่ป้อนเข้าสมการ
+  ไอน์สไตน์ได้เลย — <em>นี่คือสิ่งที่ paper ใน <code>gr-qc</code> ทำกันทุกฉบับ</em></p>
+</div>
+
+<div class="warn">
+  <strong>อย่าสับสนกับ $-\tfrac14F^2$</strong> — บทก่อนวัดแล้วว่ามันเป็นศูนย์สำหรับ
+  คลื่นแสง ($E=B$) และติดลบได้ · <strong>$T^{00}$ ของแม่เหล็กไฟฟ้าคือ
+  $\tfrac12(E^2+B^2)$ ซึ่งบวกเสมอ</strong> · สองตัวนี้สร้างจาก $F$ เหมือนกัน
+  แต่คนละหน้าที่: ตัวแรกคือ<em>ลากรองจ์</em> ตัวหลังคือ<em>พลังงาน</em>
+</div>
+
+<div class="warn">
+  <strong>ที่บทนี้ยังไม่แตะโดยตั้งใจ</strong> — กระแสจากสมมาตรภายใน $U(1)$
+  ของสนามเชิงซ้อน (ซึ่งให้ประจุไฟฟ้า) · การทำ $T^{\mu\nu}$ ให้สมมาตรเมื่อมันไม่สมมาตร
+  เอง · และตัว $G^{\mu\nu}$ ฝั่งซ้าย · ทั้งสามต้องมีข้อฝึกของตัวเองตามกฎบ้าน
+</div>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="hint">ข้อฝึกใช้ <strong>1+1 มิติ</strong> · <code>pt</code> แทน $\partial_t\phi$ ·
+<code>px</code> แทน $\partial_x\phi$ · <code>phi</code> แทน $\phi$</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · สนามไร้มวล &nbsp;$\mathcal{L} = \tfrac12\texttt{pt}^2 - \tfrac12\texttt{px}^2$ ·
+  เลื่อนค่าสนาม $\phi \to \phi + c$ &nbsp;($\delta\phi = 1$)</h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 1</strong> — ตรวจก่อน: $\delta\mathcal{L} = \dfrac{\partial\mathcal{L}}{\partial\texttt{phi}}\cdot 1$
+      เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>ไม่มี $\phi$ เปล่า ๆ ใน $\mathcal{L}$ เลย</strong> มีแต่อนุพันธ์
+      ⇒ เลื่อนค่าแล้ว $\mathcal{L}$ ไม่รู้สึกอะไร ⇒ เป็นสมมาตรจริง ⇒ เขียนกระแสต่อได้</p>
+    </li>
+    <li data-answer="pt" data-alt="1*pt|pt*1">
+      <p><strong>ขั้น 2</strong> — หา $j^t = \dfrac{\partial\mathcal{L}}{\partial\texttt{pt}}\cdot\delta\phi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\texttt{pt}\cdot 1 = \texttt{pt}$ — ปฏิบัติการเดิมจากบทที่ 7</p>
+    </li>
+    <li data-answer="-px" data-alt="-1*px|−px|-px*1">
+      <p><strong>ขั้น 3</strong> — หา $j^x$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-\texttt{px}$ — <strong>ลบของพจน์ที่ว่างยังอยู่</strong> เหมือนเดิม</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 4</strong> — $\partial_\mu j^\mu = \partial_t(j^t) + \partial_x(j^x)$
+      &nbsp;<span class="hint">(ใช้สมการการเคลื่อนที่ของสนามไร้มวล)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\partial_t^2\phi - \partial_x^2\phi$ ซึ่ง<strong>คือสมการการเคลื่อนที่
+      ของสนามไร้มวลพอดี ⇒ เท่ากับ $0$</strong>
+      <br>⇒ กระแสอนุรักษ์จริง · สังเกตว่าเราไม่ได้บังคับให้มันเป็นศูนย์ —
+      <em>มันเป็นศูนย์เพราะสนามเดินตามสมการของมันเอง</em></p>
+    </li>
+  </ol>
+  <p class="fb">สี่ขั้นนี้คือเนอเธอร์ฉบับสนามทั้งหมด — โครงเดียวกับที่ฝึกมากับอนุภาค</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · ใส่พจน์มวลกลับเข้าไป &nbsp;$\mathcal{L} = \tfrac12\texttt{pt}^2 - \tfrac12\texttt{px}^2 - \tfrac12 m^2\texttt{phi}^2$</h3>
+  <ol class="steps">
+    <li data-answer="-m^2*phi" data-alt="-m**2*phi|-m^2phi|−m^2*phi|-phi*m^2">
+      <p><strong>ขั้น 1</strong> — ตรวจก่อน: $\delta\mathcal{L}$ เท่ากับเท่าไร
+      &nbsp;<span class="hint">($\delta\phi = 1$ เหมือนเดิม)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  -m^2*phi" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-m^2\phi$ · <strong>ไม่เป็นศูนย์ ⇒ ไม่ใช่สมมาตร</strong>
+      — พจน์มวลมี $\phi$ เปล่า ๆ อยู่ มันจึง "เห็น" การเลื่อนค่า</p>
+    </li>
+    <li data-answer="-m^2*phi" data-alt="-m**2*phi|-m^2phi|−m^2*phi|-phi*m^2">
+      <p><strong>ขั้น 2</strong> — แล้ว $\partial_\mu j^\mu$ เท่ากับเท่าไร
+      &nbsp;<span class="hint">(ใช้สมการ (3))</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-m^2\phi$ — <strong>เท่ากับขั้น 1 เป๊ะ</strong> (ตรวจตรง ๆ ด้วย
+      <code>sympy</code> แล้วทั้งสองข้าง)
+      <br>⇒ <em>สมมาตรพังไปเท่าไร กระแสรั่วเท่านั้น</em> · และเมื่อ $m \to 0$
+      ทั้งสองข้างกลับเป็นศูนย์พร้อมกัน — <strong>นี่คือเหตุผลที่อนุภาคโกลด์สโตน
+      ต้องไร้มวล</strong></p>
+    </li>
+  </ol>
+  <p class="fb">สองขั้นนี้แสดงว่า "ตรวจก่อนเขียน" ไม่ได้มีไว้แค่กันพลาด —
+  <strong>ตัวเลขที่ได้จากการตรวจเป็นฟิสิกส์ของมันเอง</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · ความหนาแน่นพลังงาน &nbsp;$T^{00} = \tfrac12\texttt{pt}^2 + \tfrac12\texttt{px}^2 + \tfrac12 m^2\texttt{phi}^2$</h3>
+  <ol class="steps">
+    <li data-answer="10" data-alt="10.0">
+      <p><strong>ขั้น 1</strong> — จุดที่ $\texttt{pt} = 2$, $\texttt{px} = 4$, $m = 0$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12(4) + \tfrac12(16) = 2 + 8 = 10$ ·
+      <strong>ทุกพจน์บวกหมด</strong> — ต่างจาก $\mathcal{L}$ ที่พจน์ที่ว่างติดลบ</p>
+    </li>
+    <li data-answer="19" data-alt="19.0">
+      <p><strong>ขั้น 2</strong> — จุดที่ $\texttt{pt} = 1$, $\texttt{px} = 1$, $m = 2$, $\phi = 3$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12 + \tfrac12 + \tfrac12(4)(9) = 1 + 18 = 19$</p>
+    </li>
+  </ol>
+  <p class="fb">เทียบกับ $\mathcal{L}$ ที่จุดเดียวกัน: $\tfrac12 - \tfrac12 - 18 = -18$ —
+  <strong>คนละตัวเลขคนละความหมาย</strong> ทั้งที่สร้างจากของชุดเดียวกัน</p>
+</div>
+
+<div class="quiz" data-open data-answer="50" data-alt="50.0">
+  <h3>ข้อ 4 · สนามที่<strong>อยู่นิ่งสนิทและสม่ำเสมอ</strong> — $\texttt{pt} = 0$,
+  $\texttt{px} = 0$, $m = 5$, $\phi = 2$ · หา $T^{00}$</h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\tfrac12(25)(4) = 50$ · <strong>ไม่ขยับเลยแต่ยังมีพลังงาน</strong>
+  <br>⇒ สนามที่มีค่าไม่เป็นศูนย์ทั่วทั้งอวกาศ<strong>แบกความหนาแน่นพลังงานติดตัว</strong> ·
+  นี่คือกลไกของ<em>ค่าคงตัวจักรวาล</em> และของสนามฮิกส์ — สองเรื่องที่โผล่ในบทคัดย่อ
+  ของ paper แทบทุกฉบับใน <code>gr-qc</code></p>
+</div>
+
+<div class="quiz" data-open data-answer="4" data-alt="สี่|4.0">
+  <h3>ข้อ 5 · $[T^{\mu\nu}]$ เท่ากับเท่าไร <span class="hint">(ตอบเลขยกกำลังของมวล)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$[\partial^\mu\phi\,\partial^\nu\phi] = 2([\partial] + [\phi]) = 4$ ·
+  และพจน์ $g^{\mu\nu}\mathcal{L}$ ก็ $4$ (เมตริกไร้มิติ) ⇒ ตรงกัน ✓
+  <br><strong>สองพจน์ในสมการ (4) ต้องมีมิติเท่ากัน ไม่งั้นบวกกันไม่ได้</strong> —
+  นี่คือการตรวจงานตัวเองที่เร็วที่สุด ใช้ได้กับทุกสูตรที่เจอใน paper</p>
+</div>
+
+<div class="quiz" data-open data-answer="9" data-alt="9.0">
+  <h3>ข้อ 6 · คลื่นแม่เหล็กไฟฟ้าที่ $E = B = 3$ · ความหนาแน่นพลังงานคือ
+  $\tfrac12(E^2+B^2)$ · หาค่า
+  <span class="hint">(แล้วเทียบกับ $-\tfrac14F^2$ ที่จุดเดียวกัน)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$\tfrac12(9+9) = 9$ · ขณะที่ $-\tfrac14F^2 = \tfrac12(9-9) = 0$
+  <br><strong>จุดเดียวกัน ตัวเลขคนละค่า</strong> — ลากรองจ์เป็นศูนย์ แต่พลังงานไม่เป็นศูนย์ ·
+  คลื่นแสงขนพลังงานไปจริง และ $T^{00}$ คือตัวที่บอกเรื่องนั้น ไม่ใช่ $\mathcal{L}$</p>
+</div>
+
+<div class="quiz" data-open data-answer="4" data-alt="สี่|4.0">
+  <h3>ข้อ 7 · การเลื่อนกาลอวกาศให้ปริมาณอนุรักษ์กี่ตัว
+  <span class="hint">(ตอบเป็นจำนวน)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb"><strong>$4$ ตัว</strong> — เลื่อนได้สี่ทิศอิสระ ($t$, $x$, $y$, $z$)
+  ⇒ กระแสสี่ชุด ⇒ <strong>พลังงาน $1$ + โมเมนตัม $3$</strong>
+  <br>และ $4$ ตัวนี้คือค่าที่ดัชนี $\nu$ ของ $T^{\mu}{}_{\nu}$ วิ่งได้พอดี —
+  <em>ดัชนีที่สองไม่ได้มาลอย ๆ มันนับกระแส</em></p>
+</div>
+
+<div class="quiz" data-open data-answer="0" data-alt="ศูนย์|0.0">
+  <h3>ข้อ 8 · $\partial_\mu T^{\mu 0}$ เท่ากับเท่าไร
+  <span class="hint">(เมื่อสนามเดินตามสมการการเคลื่อนที่)</span></h3>
+  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <p class="fb">$0$ — <strong>กฎอนุรักษ์พลังงาน</strong> ในรูปสมการความต่อเนื่อง ·
+  ตรวจแล้วด้วย <code>sympy</code> ครบทั้งสี่ค่าของ $\nu$ ไม่ใช่แค่ $\nu = 0$
+  <br>⇒ และเพราะ $\partial_\mu T^{\mu\nu} = 0$ เสมอ ฝั่งซ้ายของสมการไอน์สไตน์
+  <strong>จึงถูกบังคับให้มีสมบัติเดียวกัน</strong> — นั่นเป็นเงื่อนไขที่คัดว่า
+  $G^{\mu\nu}$ ต้องหน้าตาแบบไหน</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · <strong>ถึงตรงนี้เครื่องมือของ
+  กลศาสตร์คลาสสิกกับทฤษฎีสนามคลาสสิกครบแล้ว</strong> — ที่เหลือก่อนอ่าน paper จริง
+  คือสมมาตรภายใน ($U(1)$ ⇒ ประจุ) และการควอนไทซ์
+  <div class="nav">
+    <a href="./0018-dimcompose.html">← ประกอบมิติ</a>
+    <a href="./0016-fields.html">บทที่ 7 · สนาม</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>
