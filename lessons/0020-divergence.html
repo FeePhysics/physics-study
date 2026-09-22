@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 9 · ไดเวอร์เจนซ์</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 9 · ไดเวอร์เจนซ์</h1>
+<p class="meta">บทเรียน · ~20 นาที · ปฏิบัติการเดียวที่บทที่ 8 ขอโดยไม่เคยสอน</p>
+
+<div class="warn">
+  <p style="margin-top:0"><strong>2/8 ของบทที่ 8 เป็นความผิดของตัวบท ไม่ใช่ของแบ</strong> —
+  ไล่ข้อที่พลาดแล้วเจอว่า <strong>สามข้อในนั้นเป็นเรื่องเดียวกันหมด</strong>
+  คือ $\partial_\mu j^\mu$ ซึ่งบทที่ 8 <em>ใช้</em> ตั้งแต่สมการ (2)
+  แต่<strong>ไม่เคยมีข้อไหนให้ลงมือทำมันเลย</strong> (กฎบ้านข้อ 7 เป๊ะ ๆ)</p>
+
+  <p style="margin-bottom:0">และที่หนักกว่านั้น — <strong>บทที่ 8 ไม่ได้ให้สัญกรณ์
+  ที่จะเขียนคำตอบระหว่างทางด้วยซ้ำ</strong> · พจนานุกรมที่ให้ไปมีแค่
+  <code>pt</code> <code>px</code> <code>phi</code> ซึ่งเขียน $\partial_t^2\phi$ ไม่ได้
+  ⇒ ข้อ 1 ขั้น 4 <strong>ตอบถูกไม่ได้ถ้าไม่รู้คำตอบอยู่แล้ว</strong> (กฎบ้านข้อ 8)</p>
+</div>
+
+<div class="key">
+  <p style="margin-top:0"><strong>สิ่งที่แบตอบในข้อ 1 ขั้น 4 คือ <code>pt-px</code></strong>
+  — โครงถูกแล้ว: ช่องแรกบวกช่องสอง และลบมาจาก $j^x$ ·
+  ที่หายไปคือ<strong>อนุพันธ์ตัวนอก</strong> ซึ่งไม่มีตัวอักษรให้เขียน</p>
+  <p style="margin-bottom:0">บทนี้เติมตัวอักษรนั้นให้ แล้วให้ทำซ้ำจนติด ·
+  <strong>ไม่มีของใหม่ทางฟิสิกส์เลยสักอย่าง</strong></p>
+</div>
+
+<h2>① พจนานุกรมที่ขาดไป — อนุพันธ์ชั้นสอง</h2>
+
+<p>บทที่ 8 ให้ไว้สามคำ · บทนี้เติมอีกสาม — <strong>ทุกตัวคืออนุพันธ์ของ $\phi$
+ตัวเดิม ต่างกันแค่ทำกี่ครั้งและทำเทียบกับอะไร</strong></p>
+
+<table>
+<thead><tr><th>เขียน</th><th>คือ</th><th>อ่านว่า</th></tr></thead>
+<tbody>
+<tr><td><code>phi</code></td><td>$\phi$</td><td>ตัวสนามเอง</td></tr>
+<tr><td><code>pt</code></td><td>$\partial_t\phi$</td><td>อนุพันธ์เทียบเวลา 1 ครั้ง</td></tr>
+<tr><td><code>px</code></td><td>$\partial_x\phi$</td><td>อนุพันธ์เทียบที่ 1 ครั้ง</td></tr>
+<tr><td><code>ptt</code></td><td>$\partial_t^2\phi$</td><td>เทียบเวลา <strong>2</strong> ครั้ง</td></tr>
+<tr><td><code>pxx</code></td><td>$\partial_x^2\phi$</td><td>เทียบที่ <strong>2</strong> ครั้ง</td></tr>
+<tr><td><code>ptx</code></td><td>$\partial_t\partial_x\phi$</td><td>เทียบเวลา 1 · เทียบที่ 1</td></tr>
+</tbody>
+</table>
+
+<p>กฎเดียวที่ต้องจำ — <strong>เติมตัวอักษรของสิ่งที่เพิ่งอนุพันธ์เทียบ</strong>:
+$\;\partial_t(\texttt{pt}) = \texttt{ptt}\;$ · $\;\partial_x(\texttt{pt}) = \texttt{ptx}\;$ ·
+$\;\partial_t(\texttt{phi}) = \texttt{pt}$</p>
+
+<p>และ <code>ptx</code> กับ <code>pxt</code> เป็นตัวเดียวกัน
+(อนุพันธ์สลับลำดับได้ — <em>ตรวจแล้วด้วย</em> <code>sympy</code>) ⇒ เขียน <code>ptx</code> อย่างเดียวพอ</p>
+
+<h2>② ไดเวอร์เจนซ์ = อนุพันธ์แล้วบวก — สองขั้น ห้ามรวบ</h2>
+
+<div class="key">
+  <div class="eq" data-eqno="1">$$ \partial_\mu j^\mu \;=\; \partial_t\,(j^t) \;+\; \partial_x\,(j^x) $$</div>
+  <p style="margin-bottom:0"><strong>ขั้นที่ 1 อนุพันธ์แต่ละช่อง · ขั้นที่ 2 บวกกัน</strong>
+  — ไม่ใช่ปฏิบัติการเดียว มันเป็นสองอัน</p>
+</div>
+
+<div class="warn">
+  <strong>เครื่องหมายบวกตรงกลางเป็นบวกเสมอ แม้เมตริกจะมีลบ</strong> —
+  $\partial_\mu$ มีดัชนี<em>ล่าง</em>อยู่แล้ว มันคือ $\partial/\partial x^\mu$ ตรง ๆ
+  <strong>ไม่ต้องเอาเมตริกไปคูณก่อนเลย</strong>
+  <br>ลบของ $g = \mathrm{diag}(-1,+1)$ ถูกใช้ไปแล้วตอนสร้าง $j^x = -\texttt{px}$ ·
+  ใช้ซ้ำอีกรอบคือนับสองครั้ง
+  <br><em>(เขียนบทนี้เผลอเอาเมตริกไปคูณก่อนจริง ๆ แล้ว <code>sympy</code> ตีกลับด้วยเศษเหลือ
+  $-2\,\texttt{pt}\,\texttt{pxx} - 2\,\texttt{px}\,\texttt{ptx}$ ที่ไม่เป็นศูนย์)</em>
+</div>
+
+<p>ลองกับของที่ทำมาแล้ว — $j^t = \texttt{pt}$, $j^x = -\texttt{px}$:</p>
+
+<div class="eq">$$ \partial_t(\texttt{pt}) + \partial_x(-\texttt{px}) \;=\; \texttt{ptt} - \texttt{pxx} $$</div>
+
+<p><strong>นี่คือคำตอบที่บทที่ 8 ต้องการในขั้นนั้น</strong> — และตอนนี้มันเขียนได้แล้ว ·
+ที่เหลือคือขั้นที่สาม ซึ่งเป็นคนละเรื่องกัน</p>
+
+<h2>③ ขั้นที่สาม: สมการการเคลื่อนที่ — บรรทัดเดียวที่ทำให้มันเป็นศูนย์</h2>
+
+<p>$\texttt{ptt} - \texttt{pxx}$ <strong>ไม่ได้เป็นศูนย์โดยตัวมันเอง</strong> ·
+มันเป็นศูนย์เพราะสนามเดินตามสมการของมัน ⇒ ต้องรู้ว่าสมการนั้นหน้าตายังไง</p>
+
+<table>
+<thead><tr><th>$\mathcal{L}$</th><th>สมการการเคลื่อนที่</th><th>⇒ $\texttt{ptt} - \texttt{pxx}$ เท่ากับ</th></tr></thead>
+<tbody>
+<tr><td>ไร้มวล $\;\tfrac12\texttt{pt}^2 - \tfrac12\texttt{px}^2$</td>
+    <td>$\texttt{ptt} - \texttt{pxx} = 0$</td><td>$0$</td></tr>
+<tr><td>มีมวล $\;{-}\tfrac12 m^2\texttt{phi}^2$ เพิ่ม</td>
+    <td>$\texttt{ptt} - \texttt{pxx} + m^2\texttt{phi} = 0$</td><td>$-m^2\texttt{phi}$</td></tr>
+</tbody>
+</table>
+
+<p class="src">ทั้งสองบรรทัดคำนวณจาก Euler–Lagrange ด้วย <code>sympy</code> ไม่ได้พิมพ์จากความจำ
+— <code>scripts/verify/0021_divergence.py</code></p>
+
+<div class="key">
+  <p style="margin:0"><strong>สามขั้น ไม่ใช่ขั้นเดียว</strong> —
+  ① อนุพันธ์แต่ละช่อง → ② บวกกัน → ③ แทนสมการการเคลื่อนที่
+  <br>ขั้น ③ คือขั้นเดียวที่มีฟิสิกส์ · สองขั้นแรกเป็นแคลคูลัสล้วน</p>
+</div>
+
+<h2>④ สมการ (3) ของบทที่ 8 เป็น<em>ตารางเลือก</em> ไม่ใช่กฎที่ต้องพิสูจน์ซ้ำ</h2>
+
+<div class="eq" data-eqno="2">$$ \partial_\mu j^\mu \;=\; \delta\mathcal{L} $$</div>
+
+<table>
+<thead><tr><th>ตรวจก่อนเขียนได้</th><th>⇒ $\partial_\mu j^\mu$ คือ</th><th>เรียกว่า</th></tr></thead>
+<tbody>
+<tr><td>$\delta\mathcal{L} = 0$</td><td>$0$</td><td>กระแสอนุรักษ์</td></tr>
+<tr><td>$\delta\mathcal{L} = -m^2\texttt{phi}$</td><td>$-m^2\texttt{phi}$</td><td>กระแสรั่วเท่าที่สมมาตรพัง</td></tr>
+</tbody>
+</table>
+
+<div class="warn">
+  <strong>ข้อ 2 ของบทที่ 8 พลาดตรงนี้</strong> — ขั้น 1 ตอบ $-m^2\phi$ ถูก
+  แล้วขั้น 2 ตอบ $0$ · <strong>คือหยิบคำท่อง "อนุรักษ์ = ศูนย์" มาใช้แทนที่จะอ่าน
+  ตัวเลขที่เพิ่งคำนวณได้เองเมื่อบรรทัดก่อน</strong>
+  <br>สองทางนี้มีอยู่จริงทั้งคู่ — <em>ตัวที่บอกว่าใช้ทางไหนคือผลของการตรวจ ไม่ใช่ความเคยชิน</em>
+</div>
+
+<h2>⑤ ⚠️ ข้อ 7 ของบทที่ 8 — แบตอบถูก บทผิดเอง</h2>
+
+<p>บทที่ 8 ประกาศไว้ตรงหัวข้อฝึกว่า <strong>"ข้อฝึกใช้ 1+1 มิติ"</strong>
+แล้วข้อ 7 ถามจำนวนปริมาณอนุรักษ์จากการเลื่อนกาลอวกาศ · เฉลยเขียน $4$
+<strong>ซึ่งเป็นคำตอบของ 3+1 มิติ</strong> · ใน 1+1 คำตอบคือ $2$ — <em>ตรงกับที่แบตอบ</em></p>
+
+<div class="key">
+  <p style="margin:0"><strong>กฎจริงคือ: จำนวนปริมาณอนุรักษ์ = จำนวนทิศที่เลื่อนได้ = มิติของกาลอวกาศ</strong>
+  <br>1+1 ⇒ $2$ (พลังงาน $1$ + โมเมนตัม $1$) · 3+1 ⇒ $4$ (พลังงาน $1$ + โมเมนตัม $3$)
+  <br>และเลขนี้คือจำนวนค่าที่ดัชนี $\nu$ ของ $T^{\mu\nu}$ วิ่งได้พอดี</p>
+</div>
+
+<h2>ลองเอง</h2>
+
+<p class="meta"><strong>ทุกข้อในหน้านี้อยู่ใน 1+1 มิติ</strong> ยกเว้นข้อที่บอกไว้ชัดว่าไม่ใช่ ·
+ใช้พจนานุกรม 6 คำจากหัวข้อ ① · เครื่องหมาย $^\wedge$ คือยกกำลัง
+(เช่น <code>m^2*phi</code>)</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · ไดเวอร์เจนซ์เปล่า ๆ — ยังไม่มีฟิสิกส์ ไม่ต้องใช้สมการการเคลื่อนที่</h3>
+  <ol class="steps">
+    <li data-answer="pt" data-alt="1*pt|pt*1|∂t phi">
+      <p><strong>ขั้น 1</strong> — $j^t = \texttt{phi}$, $j^x = 0$ ·
+      $\partial_\mu j^\mu$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="เช่น  pt" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\partial_t(\texttt{phi}) + \partial_x(0) = \texttt{pt}$ —
+      <strong>อนุพันธ์ของ <code>phi</code> คือ <code>pt</code></strong> เติมตัวอักษรของสิ่งที่อนุพันธ์เทียบ</p>
+    </li>
+    <li data-answer="ptt+pxx" data-alt="pxx+ptt">
+      <p><strong>ขั้น 2</strong> — $j^t = \texttt{pt}$, $j^x = \texttt{px}$
+      &nbsp;<span class="hint">(ทั้งคู่บวก)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\texttt{ptt} + \texttt{pxx}$ — <strong>เครื่องหมายตรงกลางเป็นบวกเสมอ</strong>
+      มันมาจากรูปของไดเวอร์เจนซ์ ไม่ได้มาจากเมตริก</p>
+    </li>
+    <li data-answer="ptt-pxx" data-alt="-pxx+ptt|ptt−pxx">
+      <p><strong>ขั้น 3</strong> — $j^t = \texttt{pt}$, $j^x = -\texttt{px}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\texttt{ptt} - \texttt{pxx}$ · <strong>ลบตัวนี้มาจาก $j^x$ ที่ติดลบมาแต่แรก</strong>
+      ไม่ได้มาจากตรงกลาง — เทียบกับขั้น 2 ที่ต่างกันแค่ตรงนี้</p>
+    </li>
+    <li data-answer="2*ptx" data-alt="2ptx|ptx*2|ptx+ptx|2*pxt">
+      <p><strong>ขั้น 4</strong> — $j^t = \texttt{px}$, $j^x = \texttt{pt}$
+      &nbsp;<span class="hint">(สลับกัน)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\partial_t(\texttt{px}) + \partial_x(\texttt{pt}) = \texttt{ptx} + \texttt{ptx} = 2\,\texttt{ptx}$
+      — <strong>สองก้อนนี้เป็นตัวเดียวกันเพราะอนุพันธ์สลับลำดับได้</strong></p>
+    </li>
+  </ol>
+  <p class="fb">สี่ขั้นนี้ไม่มีฟิสิกส์เลยแม้แต่นิดเดียว — <strong>เป็นแคลคูลัสที่แบสอนอยู่ทุกวัน</strong>
+  สิ่งที่บทที่ 8 ขาดคือตัวอักษรสำหรับเขียนผลลัพธ์ ไม่ใช่ความรู้</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · ข้อ 1 ของบทที่ 8 ทำใหม่ &nbsp;$\mathcal{L} = \tfrac12\texttt{pt}^2 - \tfrac12\texttt{px}^2$ ·
+  ไร้มวล · $j^t = \texttt{pt}$, $j^x = -\texttt{px}$</h3>
+  <ol class="steps">
+    <li data-answer="ptt-pxx" data-alt="-pxx+ptt|ptt−pxx">
+      <p><strong>ขั้น 1</strong> — $\partial_\mu j^\mu$ <strong>ก่อน</strong>ใช้สมการการเคลื่อนที่</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\texttt{ptt} - \texttt{pxx}$ — เหมือนข้อ 1 ขั้น 3 เป๊ะ ·
+      <strong>ขั้นนี้ยังเป็นแคลคูลัสล้วน</strong></p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — สมการการเคลื่อนที่ของสนามไร้มวลบอกว่า
+      $\texttt{ptt} - \texttt{pxx}$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>นี่คือสมการการเคลื่อนที่ ไม่ใช่ข้อสรุปเรื่องการอนุรักษ์</strong> ·
+      มันเป็นสมการคลื่น $\partial_t^2\phi = \partial_x^2\phi$ ที่แบรู้จักอยู่แล้ว</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ⇒ $\partial_\mu j^\mu$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ · <strong>กระแสอนุรักษ์ — แต่เป็นศูนย์เพราะขั้น 2 ไม่ใช่เพราะเราอยากให้เป็น</strong>
+      <br>ถ้าสนามไม่เดินตามสมการของมัน เลขนี้ไม่เป็นศูนย์</p>
+    </li>
+  </ol>
+  <p class="fb">สามขั้นนี้คือสิ่งที่บทที่ 8 ยุบเป็นช่องเดียว —
+  <strong>ขั้น 1 เป็นแคลคูลัส ขั้น 2 เป็นฟิสิกส์ ขั้น 3 เป็นแค่การอ่านผล</strong>
+  รวบแล้วพลาดขั้นไหนก็แยกไม่ออก</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · ข้อ 2 ของบทที่ 8 ทำใหม่ &nbsp;ใส่พจน์มวล
+  $-\tfrac12 m^2\texttt{phi}^2$ เข้าไป &nbsp;($\delta\phi = 1$)</h3>
+  <ol class="steps">
+    <li data-answer="-m^2*phi" data-alt="-m**2*phi|-m^2phi|−m^2*phi|-phi*m^2">
+      <p><strong>ขั้น 1</strong> — ตรวจก่อน: $\delta\mathcal{L} = \dfrac{\partial\mathcal{L}}{\partial\texttt{phi}}$
+      เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="เช่น  -m^2*phi" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-m^2\texttt{phi}$ — ไม่เป็นศูนย์ ⇒ <strong>ไม่ใช่สมมาตร</strong></p>
+    </li>
+    <li data-answer="ptt-pxx" data-alt="-pxx+ptt|ptt−pxx">
+      <p><strong>ขั้น 2</strong> — $j^t$ กับ $j^x$ <strong>ไม่เปลี่ยนเลย</strong>
+      (พจน์มวลไม่มีอนุพันธ์อยู่ในตัว) ⇒ $\partial_\mu j^\mu$ ก่อนใช้สมการการเคลื่อนที่</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\texttt{ptt} - \texttt{pxx}$ — <strong>เท่าเดิมทุกตัวอักษร</strong> ·
+      ที่เปลี่ยนคือสมการการเคลื่อนที่ในขั้นถัดไป ไม่ใช่กระแส</p>
+    </li>
+    <li data-answer="-m^2*phi" data-alt="-m**2*phi|-m^2phi|−m^2*phi|-phi*m^2">
+      <p><strong>ขั้น 3</strong> — สมการการเคลื่อนที่ของสนามมีมวลคือ
+      $\texttt{ptt} - \texttt{pxx} + m^2\texttt{phi} = 0$ ⇒ $\partial_\mu j^\mu$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-m^2\texttt{phi}$ — <strong>ย้ายข้างจากสมการที่ให้มาตรง ๆ</strong>
+      <br>⇒ และมันเท่ากับขั้น 1 เป๊ะ ซึ่งคือสมการ (2) ของบทนี้ ·
+      <em>สมมาตรพังเท่าไร กระแสรั่วเท่านั้น</em></p>
+    </li>
+  </ol>
+  <p class="fb">ข้อนี้กับข้อ 2 ต่างกันที่<strong>ขั้นเดียว</strong> — ขั้นที่ 3 ·
+  สองขั้นแรกเหมือนกันทุกตัวอักษร</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · ใช้สมการ (2) โดยไม่ต้องคำนวณกระแสเลย</h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 1</strong> — $\mathcal{L}$ ก้อนหนึ่งมีแต่อนุพันธ์ ไม่มี $\phi$ เปล่า ๆ ·
+      $\partial_\mu j^\mu$ ของกระแสเลื่อนค่าสนามเท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>ไม่ต้องหา $j^\mu$ เลย</strong> · $\delta\mathcal{L} = 0$ ⇒ สมการ (2) ตอบให้ทันที</p>
+    </li>
+    <li data-answer="-4*phi" data-alt="-4phi|−4*phi|-phi*4|-4.0*phi">
+      <p><strong>ขั้น 2</strong> — ถ้า $\delta\mathcal{L} = -4\,\texttt{phi}$
+      แล้ว $\partial_\mu j^\mu$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="เช่น  -4*phi" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-4\,\texttt{phi}$ — <strong>คัดลอกมาทั้งก้อน</strong> ·
+      (นี่คือกรณี $m = 2$ ของข้อ 3 พอดี)</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — แล้วถ้า $m \to 0$ ล่ะ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — สองข้างกลับเป็นศูนย์พร้อมกัน ·
+      <strong>นี่คือเหตุผลที่อนุภาคโกลด์สโตนต้องไร้มวล</strong></p>
+    </li>
+  </ol>
+  <p class="fb">ข้อนี้ไม่ได้คำนวณกระแสสักครั้งเดียว — <strong>สมการ (2) แปลงผลของ
+  "ตรวจก่อนเขียน" เป็นคำตอบให้ตรง ๆ</strong> · ตรวจแล้วได้อะไร กระแสรั่วเท่านั้น</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · พจน์มวลของ $T^{00}$ ล้วน ๆ &nbsp;$\tfrac12 m^2\texttt{phi}^2$
+  <span class="hint">(สนามอยู่นิ่งสนิท: $\texttt{pt} = \texttt{px} = 0$)</span></h3>
+  <ol class="steps">
+    <li data-answer="8" data-alt="แปด|8.0">
+      <p><strong>ขั้น 1</strong> — $m = 4$, $\texttt{phi} = 1$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12(16)(1) = 8$ — <strong>ยกกำลังสองทั้ง $m$ และ $\texttt{phi}$ ก่อน แล้วค่อยครึ่ง</strong></p>
+    </li>
+    <li data-answer="18" data-alt="สิบแปด|18.0">
+      <p><strong>ขั้น 2</strong> — $m = 3$, $\texttt{phi} = 2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12(9)(4) = 18$</p>
+    </li>
+    <li data-answer="50" data-alt="ห้าสิบ|50.0">
+      <p><strong>ขั้น 3</strong> — $m = 5$, $\texttt{phi} = 2$
+      &nbsp;<span class="hint">(ข้อ 4 ของบทที่ 8)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12(25)(4) = 50$ · <strong>บทที่ 8 ตอบ $10$ ซึ่งคือ $\tfrac12 m\,\texttt{phi}^2$
+      — ยกกำลังสองแค่ $\texttt{phi}$ ลืมยก $m$</strong>
+      <br>วิธีจับตัวเอง: $\tfrac12 m^2\texttt{phi}^2 = \tfrac12(m\cdot\texttt{phi})^2$ ⇒ คูณก่อนแล้วค่อยยกกำลัง
+      $\;\tfrac12(5\cdot 2)^2 = \tfrac12(100) = 50$</p>
+    </li>
+  </ol>
+  <p class="fb">พจน์นี้โผล่ในทุกข้อที่เกี่ยวกับ $T^{00}$ — <strong>ต้องอ่านออกโดยไม่ต้องคิด
+  ก่อนจะไปคิดเรื่องอื่นในข้อเดียวกันได้</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · $T^{00}$ เต็มรูป &nbsp;$\tfrac12\texttt{pt}^2 + \tfrac12\texttt{px}^2 + \tfrac12 m^2\texttt{phi}^2$
+  ที่ $\texttt{pt} = 1$, $\texttt{px} = 1$, $m = 2$, $\texttt{phi} = 3$</h3>
+  <ol class="steps">
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 1</strong> — สองพจน์แรกรวมกัน
+      $\;\tfrac12\texttt{pt}^2 + \tfrac12\texttt{px}^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12 + \tfrac12 = 1$ — <strong>ครึ่งอยู่กับทุกพจน์ ไม่ใช่แค่พจน์มวล</strong> ·
+      บทที่ 8 ตอบ $20$ ซึ่งคือ $2 + 18$ = ลืมครึ่งของสองพจน์แรกไป</p>
+    </li>
+    <li data-answer="18" data-alt="สิบแปด|18.0">
+      <p><strong>ขั้น 2</strong> — พจน์มวล $\;\tfrac12 m^2\texttt{phi}^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12(2\cdot 3)^2 = 18$ — เหมือนข้อ 5 ขั้น 2</p>
+    </li>
+    <li data-answer="19" data-alt="สิบเก้า|19.0">
+      <p><strong>ขั้น 3</strong> — รวม</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$19$ · เทียบกับ $\mathcal{L}$ ที่จุดเดียวกัน $= \tfrac12 - \tfrac12 - 18 = -18$ —
+      <strong>คนละตัวเลขคนละความหมาย ทั้งที่สร้างจากของชุดเดียวกัน</strong></p>
+    </li>
+  </ol>
+  <p class="fb">แตกเป็นสามขั้นแล้วไม่มีช่องให้พลาดครึ่ง — <em>รูปของข้อคือสิ่งที่แก้ ไม่ใช่คำอธิบาย</em></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 7 · ข้อ 7 ของบทที่ 8 ทำใหม่ให้ถูก — จำนวนปริมาณอนุรักษ์จากการเลื่อนกาลอวกาศ</h3>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — ใน <strong>1+1 มิติ</strong> (ที่ข้อฝึกทุกข้อใช้อยู่)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์จำนวน" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — เลื่อนได้สองทิศ ($t$, $x$) ⇒ พลังงาน $1$ + โมเมนตัม $1$ ·
+      <strong>คำตอบที่แบให้ในบทที่ 8 ถูกแล้ว เฉลยของบทนั้นผิดเอง</strong></p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 2</strong> — ใน <strong>3+1 มิติ</strong> (โลกจริง)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์จำนวน" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4$ — พลังงาน $1$ + โมเมนตัม $3$</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 3</strong> — ดัชนี $\nu$ ของ $T^{\mu\nu}$ วิ่งได้กี่ค่าใน 3+1 มิติ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์จำนวน" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4$ — <strong>เลขเดียวกับขั้น 2 ไม่ใช่เรื่องบังเอิญ</strong> ·
+      ดัชนีที่สองคือตัวนับว่ากำลังพูดถึงกระแสชุดไหน ⇒ มีกี่ปริมาณอนุรักษ์ ดัชนีก็วิ่งได้เท่านั้น</p>
+    </li>
+  </ol>
+  <p class="fb">บทเรียนของข้อนี้ไม่ใช่เลข $2$ หรือ $4$ — <strong>คือการอ่านโจทย์ว่ากำลังอยู่ในกี่มิติ</strong>
+  · เลขมิติเป็นตัวแปรของข้อ ไม่ใช่ค่าคงที่สากล</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 8 · $\partial_\mu T^{\mu 0} = 0$ — คราวนี้ผลิตมันออกมาเอง
+  <span class="hint">(1+1 มิติ · สนามมีมวล)</span></h3>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — $\partial_\mu T^{\mu 0}$ ต้องหาอนุพันธ์ทั้งหมดกี่ช่อง
+      &nbsp;<span class="hint">(ดัชนี $\mu$ วิ่งได้กี่ค่า)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์จำนวน" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ ช่อง — $\;\partial_t T^{00} + \partial_x T^{10}$ ·
+      <strong>รูปเดียวกับสมการ (1) ทุกประการ</strong> แค่ของที่อยู่ข้างในมีดัชนีเพิ่มมาหนึ่งตัว</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — จัดรูปสองช่องนั้นแล้วได้
+      $\;\texttt{pt}\cdot(\texttt{ptt} - \texttt{pxx} + m^2\texttt{phi})$ ·
+      <strong>วงเล็บ</strong>เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>วงเล็บคือสมการการเคลื่อนที่ทั้งดุ้น</strong> (ตารางในหัวข้อ ③)</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ⇒ $\partial_\mu T^{\mu 0}$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — กฎอนุรักษ์พลังงาน ·
+      <strong>โครงเดียวกับข้อ 2 เป๊ะ: อนุพันธ์ → บวก → แทนสมการการเคลื่อนที่</strong>
+      <br><em>ตรวจแล้วด้วย</em> <code>sympy</code> <em>ทั้ง $\nu = 0$ และ $\nu = 1$ · และการจัดรูป
+      ในขั้น 2 ก็คำนวณมา ไม่ได้พิมพ์จากความจำ</em></p>
+    </li>
+  </ol>
+  <p class="fb">$\partial_\mu T^{\mu\nu} = 0$ เป็นศูนย์เพราะสมการการเคลื่อนที่ ·
+  <strong>และเพราะมันเป็นศูนย์เสมอ ฝั่งซ้ายของสมการไอน์สไตน์จึงถูกบังคับให้เป็นศูนย์ด้วย</strong>
+  — นั่นคือเงื่อนไขที่คัดว่า $G^{\mu\nu}$ ต้องหน้าตาแบบไหน</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา ·
+  <strong>บทนี้ไม่มีฟิสิกส์ใหม่เลย</strong> — มีแต่ปฏิบัติการเดียวที่บทที่ 8 ข้ามไป
+  กับตัวอักษรที่จะเขียนมันลงไป
+  <div class="nav">
+    <a href="./0019-current-T.html">← บทที่ 8 · $T^{\mu\nu}$</a>
+    <a href="./0018-dimcompose.html">ประกอบมิติ</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>

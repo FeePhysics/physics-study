@@ -99,6 +99,21 @@ HAND = [
     ("0019-current-T.html", "9", "18", "wrong"),            # ลืม 1/2
     ("0019-current-T.html", "4", "0", "wrong"),             # [T] ไม่ใช่ไร้มิติ
     ("0016-fields.html", "-m^2*phi", "m^2*phi", "wrong"),
+
+    # ── บทที่ 9 · ความเข้าใจผิดที่เกิดจริงในผล 2/8 ของบทที่ 8 ──────────
+    ("0020-divergence.html", "ptt-pxx", "pt-px", "wrong"),    # ลืมอนุพันธ์ตัวนอก (คำตอบจริงของแบ)
+    ("0020-divergence.html", "ptt-pxx", "ptt+pxx", "wrong"),  # เอาลบของ j^x ไปรวมกับตรงกลาง
+    ("0020-divergence.html", "ptt+pxx", "ptt-pxx", "wrong"),  # กลับกัน
+    ("0020-divergence.html", "-m^2*phi", "0", "wrong"),       # คำท่อง "อนุรักษ์ = ศูนย์"
+    ("0020-divergence.html", "-m^2*phi", "m^2*phi", "wrong"), # ลืมลบตอนย้ายข้าง
+    ("0020-divergence.html", "2*ptx", "ptx", "wrong"),        # ลืมว่าสองก้อนเป็นตัวเดียวกัน
+    ("0020-divergence.html", "50", "10", "wrong"),            # ลืมยกกำลังสอง m (คำตอบจริงของแบ)
+    ("0020-divergence.html", "19", "20", "wrong"),            # ลืม 1/2 ของพจน์จลน์ (คำตอบจริงของแบ)
+    ("0020-divergence.html", "1", "2", "wrong"),              # ลืม 1/2 ทั้งสองพจน์
+    ("0020-divergence.html", "18", "36", "wrong"),            # ลืม 1/2 ของพจน์มวล
+    ("0020-divergence.html", "8", "16", "wrong"),
+    ("0020-divergence.html", "-4*phi", "4*phi", "wrong"),
+    ("0020-divergence.html", "pt", "phi", "wrong"),           # ไม่ได้อนุพันธ์
 ]
 
 
