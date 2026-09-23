@@ -51,6 +51,13 @@ def check(f: pathlib.Path, html: str):
     if not re.search(r'<h1[ >]', html):
         bad("ไม่มี <h1>")
 
+    # ── บทที่มีแบบฝึกต้องมี <div id="score"> ──────────────
+    # quiz.js สร้างปุ่ม "📋 คัดลอกผล" ไว้ข้างใน #score เท่านั้น (board())
+    # ไม่มี element นี้ = ปุ่มไม่โผล่ · หน้ายังใช้ได้ปกติ ไม่มี error อะไรฟ้อง
+    # แต่ผู้เรียนส่งผลกลับมาไม่ได้ ซึ่งเป็นทั้งหมดของ loop นี้ (เกิดจริงในบทที่ 9)
+    if 'class="quiz"' in html and 'id="score"' not in html:
+        bad('มีแบบฝึกแต่ไม่มี <div id="score"> — ปุ่ม 📋 คัดลอกผล จะไม่โผล่')
+
     # ── แบบฝึก — มีสองแบบ: ปรนัย กับ พิมพ์คำตอบเอง ───────
     for m in re.finditer(r'<div class="quiz"([^>]*)>(.*?)</div>\s*(?=<h|<div class="ask"|</body)',
                          html, flags=re.S):

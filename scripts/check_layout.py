@@ -102,6 +102,22 @@ with sync_playwright() as p:
                     if not (st["res"] == "wrong" and st["right"] and st["fb"] and st["locked"]):
                         problems.append(f"{rel}: quiz #{i+1} ไม่ทำงานถูก — {st}")
 
+                # ── ทำครบทุกข้อแล้ว ปุ่ม "📋 คัดลอกผล" ต้องโผล่ ───────────
+                # นี่คือทางเดียวที่ผู้เรียนส่งผลกลับมาได้ = ทั้งหมดของ loop นี้
+                # ⚠️ หายได้เงียบสนิท: quiz.js วางปุ่มไว้ใน #score ที่เดียว
+                #    ไม่มี element นั้น = หน้ายังใช้ได้ปกติ ไม่มี error อะไรฟ้อง
+                #    (เกิดจริงในบทที่ 9 · และเจอว่าบทที่ 1 กับ _template.html โดนด้วย)
+                if page.locator(".quiz").count():
+                    page.wait_for_timeout(150)
+                    st = page.evaluate("() => ({copy: !!document.querySelector('#copy'),"
+                                       " again: !!document.querySelector('#again'),"
+                                       " left: document.querySelectorAll('.quiz').length"
+                                       " - document.querySelectorAll('.quiz[data-result]').length})")
+                    if st["left"]:
+                        problems.append(f"{rel}: ทำครบแล้วแต่ยังเหลือ {st['left']} ข้อที่ไม่มีผล")
+                    elif not (st["copy"] and st["again"]):
+                        problems.append(f"{rel}: ทำครบทุกข้อแล้วปุ่มสรุปไม่โผล่ — {st}")
+
             for e in errs:
                 problems.append(f"{rel} @{width}px: JS error — {e[:90]}")
             page.close()
