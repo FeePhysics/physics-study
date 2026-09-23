@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 10 · on-shell กับ off-shell</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 10 · on-shell กับ off-shell</h1>
+<p class="meta">บทเรียน · ~15 นาที · ชื่อของความต่างที่ทำให้พลาดสามข้อในบทที่ 9</p>
+
+<div class="key">
+  <p style="margin-top:0"><strong>5/8 · ไดเวอร์เจนซ์ติดแล้ว</strong> — ข้อ 1 ผ่านครบสี่ขั้น
+  (ปฏิบัติการเปล่า ๆ) · พจน์ $\tfrac12 m^2\phi^2$ ผ่าน · สมการ (2) ผ่าน · มิติผ่าน</p>
+  <p style="margin-bottom:0"><strong>ที่พลาดสามจุดเป็นเรื่องเดียวกันหมด และเป็น
+  <em>ขั้นสุดท้าย</em>ของข้อทั้งสามพอดี</strong> — ขั้นที่ไม่ได้ขอให้คำนวณอะไรใหม่
+  แค่ประกอบของที่ได้มาแล้ว</p>
+</div>
+
+<h2>① ไล่ดูสามจุดที่พลาด — มันสลับกันเอง</h2>
+
+<table>
+<thead><tr><th>จุด</th><th>โจทย์ถาม</th><th>ตอบ</th><th>ที่ถูก</th></tr></thead>
+<tbody>
+<tr><td>ข้อ 2 ขั้น 3</td><td><strong>หลัง</strong>แทนสมการการเคลื่อนที่</td>
+    <td><code>ptt-pxx</code></td><td><code>0</code></td></tr>
+<tr><td>ข้อ 3 ขั้น 2</td><td><strong>ก่อน</strong>แทนสมการการเคลื่อนที่</td>
+    <td><code>0</code></td><td><code>ptt-pxx</code></td></tr>
+</tbody>
+</table>
+
+<p><strong>สองข้อนี้ให้คำตอบที่ถูกต้องของ<em>อีกขั้นหนึ่ง</em> — สลับกันเป๊ะ</strong> ·
+แปลว่าค่าทั้งสองตัวอยู่ในมือครบแล้ว ที่ยังไม่ชัดคือ <em>ช่องไหนใส่ค่าไหน</em></p>
+
+<div class="warn">
+  <strong>และนั่นเป็นความผิดของบท</strong> — บทที่ 9 ใช้ชื่อ $\partial_\mu j^\mu$
+  เรียก<strong>ของสองอย่างที่ค่าไม่เท่ากัน</strong> แล้วแยกมันด้วย<strong>คำวิเศษณ์ใน
+  ประโยคภาษาไทย</strong> ("ก่อน…" กับ "⇒…") เท่านั้น
+  <br>ตัวแยกแบบนั้นอ่อนเกินไป · ของสองอย่างที่ต่างกันต้องมี<strong>ชื่อ</strong>
+</div>
+
+<h2>② ชื่อจริงของมัน — และเป็นศัพท์ที่จะเจอในทุก paper</h2>
+
+<div class="key">
+  <p style="margin-top:0"><strong>off-shell</strong> = ยังไม่แทนสมการการเคลื่อนที่ ·
+  เป็นพีชคณิตล้วน · <em>จริงสำหรับสนามทุกแบบ ไม่ว่าจะเป็นคำตอบหรือไม่</em>
+  <br><strong>on-shell</strong> = แทนแล้ว · <em>จริงเฉพาะสนามที่เดินตามสมการของมันเอง</em></p>
+  <p style="margin-bottom:0">เวลาอ่าน paper แล้วเจอประโยค
+  <em>"the current is conserved on-shell"</em> — แปลว่า <strong>$\partial_\mu j^\mu = 0$
+  ต้องใช้สมการการเคลื่อนที่ถึงจะจริง</strong> ไม่ได้จริงเองจากรูปของสูตร</p>
+</div>
+
+<h3>ตารางสองคอลัมน์ของ $\partial_\mu j^\mu$</h3>
+
+<table>
+<thead><tr><th>$\mathcal{L}$</th><th>off-shell</th><th>on-shell</th></tr></thead>
+<tbody>
+<tr><td>ไร้มวล</td><td><code>ptt - pxx</code></td><td><code>0</code></td></tr>
+<tr><td>มีมวล</td><td><code>ptt - pxx</code></td><td><code>-m^2*phi</code></td></tr>
+</tbody>
+</table>
+
+<div class="warn">
+  ⚠️ <strong>คอลัมน์ off-shell เหมือนกันทั้งสองแถว</strong> — พจน์มวลไม่มีอนุพันธ์อยู่ในตัว
+  กระแสจึงไม่เปลี่ยน · <strong>ที่เปลี่ยนคือสมการการเคลื่อนที่ ซึ่งอยู่คอลัมน์ขวา</strong>
+  <br>ข้อ 3 ขั้น 2 ตอบ <code>0</code> = <strong>หยิบค่าในช่องขวาบนมาใส่ช่องซ้ายล่าง</strong>
+  <span class="src">ตรวจแล้วด้วย <code>sympy</code> ว่าช่องซ้ายทั้งสองแถวเท่ากันจริง —
+  <code>scripts/verify/0022_onshell.py</code></span>
+</div>
+
+<h2>③ ขั้นประกอบคือการแทนค่า ไม่ใช่คำถามซ้ำ</h2>
+
+<p>เขียนเป็นโซ่เดียวแล้วจะเห็นว่าขั้นสุดท้ายไม่ได้ถามซ้ำ — มันถาม<strong>ปลายโซ่</strong>:</p>
+
+<div class="key">
+  <div class="eq" data-eqno="1">$$ \partial_\mu j^\mu \;\;\overset{\text{พีชคณิต}}{=}\;\; \underbrace{\texttt{ptt} - \texttt{pxx}}_{\text{off-shell}} \;\;\overset{\text{แทน EOM}}{=}\;\; \underbrace{0}_{\text{on-shell}} $$</div>
+  <p style="margin-bottom:0"><strong>เครื่องหมายเท่ากับตัวที่สองคือที่ที่ฟิสิกส์เข้ามา</strong>
+  — ตัวแรกเป็นแคลคูลัสเฉย ๆ</p>
+</div>
+
+<h2>④ off-shell ไม่ใช่ของสมมุติ — ใส่ตัวเลขแล้วมันไม่เป็นศูนย์จริง ๆ</h2>
+
+<p>ลอง $\phi = t^2$ (สนามที่<strong>ไม่ได้</strong>เดินตามสมการคลื่น):
+$\;\texttt{ptt} = 2$, $\texttt{pxx} = 0$ ⇒ $\texttt{ptt} - \texttt{pxx} = 2 \neq 0$</p>
+
+<p>ลอง $\phi = f(x - t)$ (คลื่นวิ่ง — เป็นคำตอบจริง):
+$\;\texttt{ptt} = f''$, $\texttt{pxx} = f''$ ⇒ ผลต่างเป็น $0$</p>
+
+<p><strong>สองบรรทัดนี้คือความหมายทั้งหมดของ on-shell</strong> — มันเป็นสมบัติของ
+<em>สนาม</em> ไม่ใช่ของ<em>สูตร</em> · สูตรตัวเดียวกันให้ $2$ กับ $0$ ได้ ขึ้นกับว่า
+ป้อนสนามอะไรเข้าไป <span class="src">ทั้งสองค่าตรวจด้วย <code>sympy</code> แล้ว</span></p>
+
+<div class="warn">
+  ⚠️ <strong>กับดักเครื่องหมายที่ <code>sympy</code> จับได้ตอนเขียนบทนี้</strong> —
+  เดาไว้ว่า $\partial_\mu T^{\mu 1}$ off-shell เป็น $+\texttt{px}\cdot(\ldots)$
+  ตามรูปของแถว $\nu = 0$ · <strong>ของจริงติดลบ</strong>
+  <br>$\partial_\mu T^{\mu 0} = +\texttt{pt}\cdot(\ldots)$ แต่
+  $\partial_\mu T^{\mu 1} = -\texttt{px}\cdot(\ldots)$ — <em>ห้ามเดาเครื่องหมายจากรูปของแถวบน</em>
+  <br>(ทั้งคู่ on-shell ได้ $0$ เท่ากัน เพราะวงเล็บเป็นตัวเดียวกัน)
+</div>
+
+<h2>⑤ ทำไมต้องมี off-shell อยู่ในโลก</h2>
+
+<p>ถ้าสนใจแต่สนามที่เดินตามสมการ จะเก็บคอลัมน์ขวาไว้คอลัมน์เดียวก็ได้ ·
+แต่<strong>ทฤษฎีสนามควอนตัมไม่ได้สนใจแค่นั้น</strong> — path integral บวก<em>ทุก</em>
+เส้นทางที่สนามเป็นไปได้ รวมทั้งเส้นที่ไม่ใช่คำตอบของสมการใด ๆ</p>
+
+<p>⇒ ของที่ <em>"จริงเฉพาะ on-shell"</em> ใช้ในนั้นไม่ได้ · ของที่ <em>"จริง off-shell"</em>
+ใช้ได้ทุกที่ · <strong>นี่คือเหตุผลที่ paper แยกสองคำนี้ชัดเจนเสมอ</strong></p>
+
+<p class="hint">ชื่อ "shell" มาจากเงื่อนไข $p^2 = -m^2$ ของอนุภาคจริง ซึ่งเป็นผิวใน
+ปริภูมิโมเมนตัม เรียกว่า <em>mass shell</em> · อยู่บนผิวนั้น = on-shell ·
+บทนี้ใช้คำในความหมาย "เดินตามสมการการเคลื่อนที่" ซึ่งเป็นการใช้ที่พบบ่อยกว่า
+ในบริบทลากรองจ์ — <strong>ที่บทนี้ตรวจด้วย <code>sympy</code> คือพีชคณิต ไม่ใช่ถ้อยคำ</strong></p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta"><strong>ทุกข้ออยู่ใน 1+1 มิติ</strong> · พจนานุกรมเดิมจากบทที่ 9
+(<code>phi</code> <code>pt</code> <code>px</code> <code>ptt</code> <code>pxx</code> <code>ptx</code>)</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · สนาม<strong>ไร้มวล</strong> — เติมตารางสองช่อง</h3>
+  <ol class="steps">
+    <li data-answer="ptt-pxx" data-alt="-pxx+ptt|ptt−pxx">
+      <p><strong>ขั้น 1</strong> — $\partial_\mu j^\mu$ ช่อง <strong>off-shell</strong></p>
+      <div class="ans"><input type="text" placeholder="เช่น  ptt-pxx" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>ptt - pxx</code> — อนุพันธ์แล้วบวก จบแค่นั้น <strong>ยังไม่แตะฟิสิกส์</strong></p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — ช่อง <strong>on-shell</strong>
+      &nbsp;<span class="hint">(สมการการเคลื่อนที่ไร้มวล: $\texttt{ptt} - \texttt{pxx} = 0$)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>0</code> — แทนสมการที่ให้มาในวงเล็บลงไปตรง ๆ</p>
+    </li>
+  </ol>
+  <p class="fb">ตารางสองช่องคือสิ่งที่บทที่ 9 ถามเป็นสามขั้นเรียงกัน ⇒ ขั้นที่สาม
+  อ่านเหมือนถามซ้ำ · <strong>วางเป็นตารางแล้วช่องมันแยกกันเอง</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · สนาม<strong>มีมวล</strong> — ตารางเดียวกัน อีกแถว</h3>
+  <ol class="steps">
+    <li data-answer="ptt-pxx" data-alt="-pxx+ptt|ptt−pxx">
+      <p><strong>ขั้น 1</strong> — ช่อง <strong>off-shell</strong>
+      &nbsp;<span class="hint">(พจน์มวลไม่มีอนุพันธ์ ⇒ กระแสไม่เปลี่ยน)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>ptt - pxx</code> — <strong>เหมือนข้อ 1 เป๊ะ</strong> ·
+      คอลัมน์ off-shell ของทั้งสองแถวเป็นตัวเดียวกัน</p>
+    </li>
+    <li data-answer="-m^2*phi" data-alt="-m**2*phi|-m^2phi|−m^2*phi|-phi*m^2">
+      <p><strong>ขั้น 2</strong> — ช่อง <strong>on-shell</strong>
+      &nbsp;<span class="hint">(สมการการเคลื่อนที่มีมวล: $\texttt{ptt} - \texttt{pxx} + m^2\texttt{phi} = 0$)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  -m^2*phi" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>-m^2*phi</code> — ย้ายข้างจากสมการในวงเล็บ</p>
+    </li>
+    <li data-answer="ptt-pxx" data-alt="-pxx+ptt|ptt−pxx">
+      <p><strong>ขั้น 3</strong> — ช่อง off-shell ของ<strong>แถวนี้</strong> ต่างจากแถวข้อ 1 ไหม
+      &nbsp;<span class="hint">(ถ้าเหมือน ให้เขียนค่านั้นอีกครั้ง)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">เหมือนเดิม <code>ptt - pxx</code> · <strong>มวลไม่แตะคอลัมน์ซ้าย มันแตะแต่คอลัมน์ขวา</strong>
+      <br>⇒ บทที่ 9 ข้อ 3 ขั้น 2 ตอบ <code>0</code> คือหยิบค่าจากคอลัมน์ขวามาใส่คอลัมน์ซ้าย</p>
+    </li>
+  </ol>
+  <p class="fb">ขั้น 1 กับขั้น 3 ถามช่องเดียวกันและได้คำตอบเดียวกัน —
+  <strong>ตั้งใจให้ซ้ำ</strong> เพราะสิ่งที่ต้องติดคือ "มวลไม่แตะคอลัมน์ซ้าย"</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · off-shell มีตัวเลขจริง — ป้อน $\phi = t^2$ เข้าไป
+  <span class="hint">(สนามนี้ <strong>ไม่ใช่</strong> คำตอบของสมการคลื่น)</span></h3>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — $\texttt{ptt} = \partial_t^2(t^2)$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — อนุพันธ์เทียบ $t$ สองครั้งของ $t^2$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — $\texttt{pxx} = \partial_x^2(t^2)$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — ไม่มี $x$ อยู่ในนั้นเลย</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 3</strong> — ⇒ ค่า off-shell ของ $\partial_\mu j^\mu$ ที่สนามนี้</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 - 0 = 2$ · <strong>ไม่เป็นศูนย์</strong> — กระแสของสนามนี้<em>ไม่</em>อนุรักษ์
+      <br>⇒ "อนุรักษ์" ไม่ได้ติดมากับสูตร มันติดมากับ<strong>สนามที่เดินตามสมการ</strong></p>
+    </li>
+  </ol>
+  <p class="fb">นี่คือครั้งแรกที่ค่า off-shell มี<strong>ตัวเลข</strong>ให้เห็น ·
+  ก่อนหน้านี้มันเป็นแค่ "ขั้นกลางที่เดี๋ยวก็กลายเป็นศูนย์" ซึ่งยุบทิ้งได้โดยไม่รู้สึกผิด</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · คราวนี้ป้อนคลื่นวิ่ง $\phi = f(x - t)$ เข้าไป</h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 1</strong> — ลูกโซ่ให้ $\texttt{ptt} = f''$ และ $\texttt{pxx} = f''$
+      &nbsp;<span class="hint">(ลบสองตัวยกกำลังสองหายไป)</span> ⇒ ค่า off-shell</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$f'' - f'' = 0$ — <strong>คราวนี้ช่อง off-shell เป็นศูนย์เอง</strong>
+      โดยไม่ต้องอ้างสมการการเคลื่อนที่เลย</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — แล้วค่า on-shell</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ เหมือนกัน · <strong>เพราะคลื่นวิ่งเป็นคำตอบของสมการอยู่แล้ว
+      สองคอลัมน์จึงตรงกัน</strong>
+      <br>⇒ เทียบกับข้อ 3 ที่ได้ $2$ กับ $0$ — <em>สองคอลัมน์ต่างกันก็ต่อเมื่อสนามไม่ใช่คำตอบ</em></p>
+    </li>
+  </ol>
+  <p class="fb">ข้อ 3 กับข้อ 4 ใช้สูตรเดียวกันทุกตัวอักษร ได้คนละค่า —
+  <strong>ต่างกันที่สนามที่ป้อนเข้าไป ไม่ใช่ที่สูตร</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · ขั้นประกอบล้วน ๆ — คูณด้วยวงเล็บ</h3>
+  <ol class="steps">
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 1</strong> — $\texttt{pt} = 2$ และวงเล็บ $= 3$ ⇒ $\texttt{pt}\cdot(\ldots)$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 3 = 6$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — $\texttt{pt} = 7$ และวงเล็บ $= 0$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$7 \times 0 = 0$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — $\texttt{pt}$ เป็นอะไรก็ได้ ไม่รู้ค่า · วงเล็บ $= 0$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>ไม่ต้องรู้ค่า $\texttt{pt}$ เลย</strong>
+      <br>⇒ นี่คือขั้นสุดท้ายของข้อ 8 ในบทที่ 9 ทั้งดุ้น · <em>มันเป็นคณิตประถม
+      ที่ถูกซ่อนอยู่ใต้สัญลักษณ์ที่ดูใหญ่โต</em></p>
+    </li>
+  </ol>
+  <p class="fb">สามขั้นนี้ไม่มีฟิสิกส์เลย — <strong>ขั้นประกอบไม่เคยยาก
+  มันแค่อ่านไม่ออกว่ากำลังถูกถามอะไร</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · $\partial_\mu T^{\mu 0}$ ครบทั้งโซ่ &nbsp;<span class="hint">(สนามมีมวล)</span></h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 1</strong> — off-shell จัดรูปได้
+      $\;\texttt{pt}\cdot(\texttt{ptt} - \texttt{pxx} + m^2\texttt{phi})$ ·
+      <strong>วงเล็บ</strong> on-shell เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>วงเล็บคือสมการการเคลื่อนที่ทั้งดุ้น</strong></p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — ⇒ $\partial_\mu T^{\mu 0}$ ช่อง <strong>on-shell</strong></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <code>pt</code> คูณศูนย์ (ข้อ 5 ขั้น 3 เป๊ะ) ·
+      <strong>กฎอนุรักษ์พลังงาน</strong></p>
+    </li>
+    <li data-answer="pt*(ptt-pxx+m^2*phi)" data-alt="pt(ptt-pxx+m^2*phi)|pt*(ptt-pxx+m**2*phi)|(ptt-pxx+m^2*phi)*pt|pt*ptt-pt*pxx+pt*m^2*phi">
+      <p><strong>ขั้น 3</strong> — แล้วช่อง <strong>off-shell</strong> ล่ะ
+      &nbsp;<span class="hint">(เขียนทั้งก้อนตามที่โจทย์ให้ไว้ในขั้น 1)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  pt*(ptt-pxx+m^2*phi)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>pt*(ptt-pxx+m^2*phi)</code> — <strong>ยังไม่เป็นศูนย์</strong>
+      จนกว่าจะบอกว่าสนามเดินตามสมการ
+      <br>⇒ ประโยคเต็มคือ <em>"$T^{\mu\nu}$ อนุรักษ์ <strong>on-shell</strong>"</em>
+      ซึ่งเป็นประโยคที่เจอใน paper คำต่อคำ</p>
+    </li>
+  </ol>
+  <p class="fb">ขั้น 2 กับขั้น 3 ถามคนละช่องของตารางเดียวกัน — <strong>สลับกันแล้วผิดทั้งคู่</strong>
+  ซึ่งเป็นสิ่งที่เกิดในบทที่ 9 พอดี</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 7 · แถว $\nu = 1$ — กับดักเครื่องหมาย</h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 1</strong> — $\partial_\mu T^{\mu 1}$ off-shell $=
+      -\texttt{px}\cdot(\texttt{ptt} - \texttt{pxx} + m^2\texttt{phi})$
+      &nbsp;<span class="hint">(สังเกตลบข้างหน้า)</span> ⇒ ช่อง <strong>on-shell</strong></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>ลบหน้าไม่มีผลเลยเมื่อวงเล็บเป็นศูนย์</strong> ·
+      ทั้งสองแถวได้ $0$ เท่ากัน ⇒ $\partial_\mu T^{\mu\nu} = 0$ ครบทุกค่าของ $\nu$</p>
+    </li>
+    <li data-answer="-px" data-alt="-1*px|−px|-px*1">
+      <p><strong>ขั้น 2</strong> — ตัวคูณหน้าวงเล็บของแถวนี้คืออะไร
+      &nbsp;<span class="hint">(แถว $\nu = 0$ คือ <code>pt</code>)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>-px</code> · ⚠️ <strong>เขียนบทนี้เดาว่าเป็น <code>+px</code>
+      ตามรูปของแถวบน แล้ว <code>sympy</code> ตีกลับ</strong>
+      <br>⇒ เครื่องหมายจากเมตริกต้องคำนวณทุกครั้ง <em>ห้ามเดาจากแถวที่อยู่ข้างบน</em></p>
+    </li>
+  </ol>
+  <p class="fb">on-shell ทั้งสองแถวเป็น $0$ เหมือนกัน แต่ off-shell ไม่เหมือนกัน —
+  <strong>อีกตัวอย่างว่าคอลัมน์ขวาซ่อนข้อมูลของคอลัมน์ซ้ายไว้</strong></p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา ·
+  <strong>on-shell / off-shell เป็นศัพท์แรกของบทเรียนชุดนี้ที่จะเจอใน paper คำต่อคำ</strong>
+  — ที่เหลือก่อนอ่านของจริงคือสมมาตรภายใน ($U(1)$ ⇒ ประจุ)
+  <div class="nav">
+    <a href="./0020-divergence.html">← บทที่ 9 · ไดเวอร์เจนซ์</a>
+    <a href="./0019-current-T.html">บทที่ 8 · $T^{\mu\nu}$</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>

@@ -114,6 +114,17 @@ HAND = [
     ("0020-divergence.html", "8", "16", "wrong"),
     ("0020-divergence.html", "-4*phi", "4*phi", "wrong"),
     ("0020-divergence.html", "pt", "phi", "wrong"),           # ไม่ได้อนุพันธ์
+
+    # ── บทที่ 10 · ความเข้าใจผิดที่เกิดจริงในผล 5/8 ของบทที่ 9 ─────────
+    # สองเคสแรกคือ "สลับช่อง off-shell กับ on-shell" ซึ่งเป็นทั้งหมดของบทที่ 10
+    ("0021-onshell.html", "0", "ptt-pxx", "wrong"),           # เอาค่า off-shell ใส่ช่อง on-shell
+    ("0021-onshell.html", "ptt-pxx", "0", "wrong"),           # เอาค่า on-shell ใส่ช่อง off-shell
+    ("0021-onshell.html", "ptt-pxx", "Ptt-pxx", "right"),     # ⚠️ ตัวใหญ่ต้องรับ (พิมพ์มาจริง)
+    ("0021-onshell.html", "-px", "px", "wrong"),              # เดาเครื่องหมายจากแถวบน
+    ("0021-onshell.html", "-m^2*phi", "m^2*phi", "wrong"),
+    ("0021-onshell.html", "2", "0", "wrong"),                 # นึกว่า off-shell เป็นศูนย์เสมอ
+    ("0021-onshell.html", "6", "5", "wrong"),
+    ("0021-onshell.html", "pt*(ptt-pxx+m^2*phi)", "0", "wrong"),  # ตอบค่า on-shell ในช่อง off-shell
 ]
 
 

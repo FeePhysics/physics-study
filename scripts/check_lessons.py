@@ -59,11 +59,29 @@ def check(f: pathlib.Path, html: str):
         bad('มีแบบฝึกแต่ไม่มี <div id="score"> — ปุ่ม 📋 คัดลอกผล จะไม่โผล่')
 
     # ── แบบฝึก — มีสองแบบ: ปรนัย กับ พิมพ์คำตอบเอง ───────
-    for m in re.finditer(r'<div class="quiz"([^>]*)>(.*?)</div>\s*(?=<h|<div class="ask"|</body)',
-                         html, flags=re.S):
-        attrs, block = m.group(1), m.group(2)
+    # ⚠️ เดิมจับด้วย regex ตัวเดียว `<div class="quiz"...>(.*?)</div>` + lookahead
+    #    ซึ่ง **ยุบทุกข้อในหน้าเป็นก้อนเดียว** (วัดแล้ว: 7 ข้อ → 1 block)
+    #    เพราะ </div> ปิดข้อหนึ่งตามด้วย <div class="quiz"> ของข้อถัดไป ไม่ใช่ <h
+    #    ⇒ ด่านรายข้อทุกด่านในนี้ตรวจก้อนรวมมาตลอด และบางด่านยิงไม่ออกเลย
+    #    หั่นด้วยตำแหน่งเริ่มของแต่ละข้อแทน
+    starts = [mm.start() for mm in re.finditer(r'<div class="quiz"', html)]
+    stop = min([i for i in (html.find('<div class="ask"'), html.find('</body')) if i != -1]
+               or [len(html)])
+    for k, st in enumerate(starts):
+        en = starts[k + 1] if k + 1 < len(starts) else stop
+        chunk = html[st:en]
+        hm = re.match(r'<div class="quiz"([^>]*)>', chunk)
+        if not hm:
+            continue
+        attrs, block = hm.group(1), chunk[hm.end():]
 
         if 'data-steps' in attrs:
+            # ── ต้องมี <p class="fb"> สรุปท้ายข้อ (หลัง </ol>) ────────
+            # check_layout.py บังคับข้อนี้อยู่แล้ว แต่ต้องเปิดเบราว์เซอร์ ~3 นาที
+            # ⇒ ตรวจจากตัวไฟล์ตรงนี้ด้วย จะได้รู้ใน 1 วินาที (ลืมมาแล้วสองรอบ)
+            if not re.search(r'</ol>\s*<p class="fb"', block):
+                bad("quiz[data-steps] ไม่มี <p class=\"fb\"> สรุปท้ายข้อหลัง </ol>")
+
             # โจทย์ไล่ขั้น: เฉลยอยู่ที่ <li> แต่ละขั้น ไม่ใช่ที่ตัว .quiz
             steps = re.findall(r'<li ([^>]*)>(.*?)</li>', block, flags=re.S)
             if len(steps) < 2:
