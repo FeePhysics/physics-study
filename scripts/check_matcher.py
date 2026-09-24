@@ -147,6 +147,23 @@ HAND = [
     ("0016-fields.html", "m^2", "m²", "right"),
     # …แต่ยังต้องปฏิเสธเครื่องหมายที่ผิดเหมือนเดิม
     ("0021-onshell.html", "-m^2*phi", "m 2 phi", "wrong"),
+
+    # ── บทที่ 11 · สนามเชิงซ้อน — ความพลาดที่เดาได้จากโครงของบท ──────
+    ("0022-u1charge.html", "-i*phis", "i*phis", "wrong"),     # ลืมสังยุคของ i
+    ("0022-u1charge.html", "i*phi", "phi", "wrong"),          # ลืม i
+    ("0022-u1charge.html", "i*phi", "i*phis", "wrong"),       # สลับสนามกับสังยุค
+    ("0022-u1charge.html", "pts", "pt", "wrong"),             # อนุพันธ์เทียบผิดตัว
+    ("0022-u1charge.html", "-pxs", "pxs", "wrong"),           # ลืมลบจากเมตริก
+    ("0022-u1charge.html", "-2i", "2i", "wrong"),
+    ("0022-u1charge.html", "-2", "2", "wrong"),               # ลบผิดทาง (6-4 แทน 4-6)
+    ("0022-u1charge.html", "-2i", "-2", "wrong"),             # ลืม i
+    ("0022-u1charge.html", "0", "30", "wrong"),               # บวกแทนลบในข้อสนามจริง
+    ("0022-u1charge.html", "12", "16", "wrong"),              # 2*7+1*2
+    # ฝั่งรับ: เขียนสลับที่ได้ (การคูณสลับที่)
+    ("0022-u1charge.html", "i*phi*pts", "i*pts*phi", "right"),
+    ("0022-u1charge.html", "i*phi*pts", "phi*pts*i", "right"),
+    ("0022-u1charge.html", "-i*phis*pt", "−i*phis*pt", "right"),
+    ("0022-u1charge.html", "-2i", "-2*i", "right"),
 ]
 
 

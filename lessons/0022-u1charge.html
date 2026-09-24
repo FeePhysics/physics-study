@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 11 · ประจุไฟฟ้ามาจากไหน</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 11 · ประจุไฟฟ้ามาจากไหน</h1>
+<p class="meta">บทเรียน · ~20 นาที · สมมาตรภายใน $U(1)$ — ของที่ค้างไว้สามบทติด</p>
+
+<div class="key">
+  <p style="margin-top:0"><strong>7/7 · on-shell / off-shell ติดแล้ว</strong> —
+  และบทนี้จะได้ใช้มันทันทีในรูปที่คมกว่าเดิม: มีของสองอย่างที่เป็นศูนย์
+  <em>คนละแบบ</em> ในบทเดียวกัน</p>
+  <p style="margin-bottom:0">บทที่ 8, 9, 10 ปิดท้ายเหมือนกันทั้งสามบทว่า
+  "ที่เหลือคือสมมาตรภายใน ($U(1)$ ⇒ ประจุ)" · <strong>นี่คือบทนั้น</strong></p>
+</div>
+
+<h2>① สนามเชิงซ้อน = สองสนามในตัวเดียว</h2>
+
+<p>ทุกบทที่ผ่านมาใช้สนามจริงตัวเดียว · คราวนี้ให้ $\phi$ เป็น<strong>จำนวนเชิงซ้อน</strong>
+ที่ทุกจุดในกาลอวกาศ ⇒ มีสังยุค $\phi^*$ มาด้วยเสมอ</p>
+
+<div class="warn">
+  <strong>วิธีมาตรฐาน: ปฏิบัติกับ $\phi$ และ $\phi^*$ เป็น<em>สองสนามอิสระ</em></strong>
+  — ไม่ใช่แยกเป็นส่วนจริง/ส่วนจินตภาพ · ทุกสูตรที่ฝึกมาใช้ได้ทันที
+  แค่<strong>ทำสองรอบแล้วบวกกัน</strong>
+</div>
+
+<table>
+<thead><tr><th>เขียน</th><th>คือ</th></tr></thead>
+<tbody>
+<tr><td><code>phi</code> · <code>phis</code></td><td>$\phi$ และ $\phi^*$</td></tr>
+<tr><td><code>pt</code> · <code>pts</code></td><td>$\partial_t\phi$ และ $\partial_t\phi^*$</td></tr>
+<tr><td><code>px</code> · <code>pxs</code></td><td>$\partial_x\phi$ และ $\partial_x\phi^*$</td></tr>
+<tr><td><code>i</code></td><td>หน่วยจินตภาพ</td></tr>
+</tbody>
+</table>
+
+<p>ลากรองจ์ — <strong>รูปเดิมทุกพจน์ เปลี่ยนแค่ "ยกกำลังสอง" เป็น "คูณกับสังยุค"</strong>:</p>
+
+<div class="eq" data-eqno="1">$$ \mathcal{L} \;=\; \texttt{pts}\cdot\texttt{pt} \;-\; \texttt{pxs}\cdot\texttt{px} \;-\; m^2\,\texttt{phis}\cdot\texttt{phi} $$</div>
+
+<p class="src">ตรวจแล้ว: ใส่ $\phi^* = \phi$ กลับเข้าไป ได้ลากรองจ์สนามจริงของบทที่ 8-10
+คูณสองพอดี — <code>scripts/verify/0023_u1charge.py</code></p>
+
+<h2>② สมมาตรที่ไม่เกี่ยวกับกาลอวกาศเลยแม้แต่นิดเดียว</h2>
+
+<p>บทก่อน ๆ เลื่อน<em>ตำแหน่ง</em> · บทที่ 8 เลื่อน<em>ค่า</em> · คราวนี้
+<strong>หมุนเฟส</strong> — ไม่ได้ขยับอะไรในกาลอวกาศเลย</p>
+
+<div class="key">
+  <div class="eq" data-eqno="2">$$ \phi \to e^{i\alpha}\phi \qquad\Longrightarrow\qquad \delta\phi = i\,\texttt{phi} \;,\quad \delta\phi^* = -\,i\,\texttt{phis} $$</div>
+  <p style="margin-bottom:0">มาจากการกระจาย $e^{i\alpha} \approx 1 + i\alpha$ ถึงอันดับหนึ่ง ·
+  <strong>เครื่องหมายลบของ $\delta\phi^*$ มาจากสังยุคของ $i$</strong></p>
+</div>
+
+<div class="warn">
+  <strong>ตรวจก่อนเขียน — และคราวนี้ผลที่ได้แรงกว่าทุกบท</strong>
+  <br>$\mathcal{L}$ ทั้งก้อนมีแต่คู่ <code>phis·phi</code> และ <code>pts·pt</code> ·
+  เฟสที่ $\phi$ ได้มา กับที่ $\phi^*$ ได้มา <strong>หักล้างกันพอดีทุกคู่</strong>
+  <br>⇒ $\delta\mathcal{L} = 0$ <strong>แบบ off-shell</strong> —
+  <em>ไม่ต้องใช้สมการการเคลื่อนที่เลย</em> (ตรวจด้วย <code>sympy</code> แล้ว)
+</div>
+
+<h2>③ $\textstyle\sum_i$ กลับมา — สองสนาม สองพจน์</h2>
+
+<p>สูตรกระแสของบทที่ 8 เขียนไว้แบบสนามเดียว · <strong>ของจริงมีผลรวมอยู่ด้วยเสมอ</strong>
+เหมือน $\;Q = \sum_i \dfrac{\partial L}{\partial\dot q_i}\delta q_i\;$ ที่ผ่าน 7/7
+มาตั้งแต่บท 0014 — บทที่ 8-10 มีสนามเดียว ผลรวมเลยมองไม่เห็น</p>
+
+<div class="key">
+  <div class="eq" data-eqno="3">$$ j^\mu \;=\; \frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi)}\,\delta\phi \;+\; \frac{\partial\mathcal{L}}{\partial(\partial_\mu\phi^*)}\,\delta\phi^* $$</div>
+  <p style="margin-bottom:0"><strong>สองพจน์ เพราะมีสองสนาม</strong> —
+  ไม่มีอะไรใหม่นอกจากคำว่า "แล้วบวกกัน"</p>
+</div>
+
+<p>เดินตามสมการ (3) กับลากรองจ์ (1) แล้วได้</p>
+
+<div class="eq" data-eqno="4">$$ j^t \;=\; i\,\big(\texttt{phi}\cdot\texttt{pts} \;-\; \texttt{phis}\cdot\texttt{pt}\big) $$</div>
+
+<p>และปริมาณที่คงที่จริง ๆ คือ $\;Q = \int dx\; j^t\;$ — <strong>นี่คือประจุไฟฟ้า</strong>
+<span class="src">ทุกเครื่องหมายและตัวประกอบ $i$ derive จาก $\mathcal{L}$ ด้วย <code>sympy</code>
+ไม่ได้พิมพ์จากความจำ (ตำราแต่ละเล่มเขียนไม่เหมือนกัน)</span></p>
+
+<h2>④ ⚠️ ศูนย์สองแบบในบทเดียว — อย่าสับสน</h2>
+
+<table>
+<thead><tr><th>อะไรเป็นศูนย์</th><th>เป็นศูนย์แบบไหน</th><th>แปลว่า</th></tr></thead>
+<tbody>
+<tr><td>$\delta\mathcal{L}$</td><td><strong>off-shell</strong> — เป็นเอง</td>
+    <td>เป็นสมมาตรจริง ⇒ มีกระแสให้เขียน</td></tr>
+<tr><td>$\partial_\mu j^\mu$</td><td><strong>on-shell</strong> — ต้องใช้ EOM</td>
+    <td>ประจุอนุรักษ์เมื่อสนามเดินตามสมการ</td></tr>
+</tbody>
+</table>
+
+<p class="src">ค่า off-shell ของ $\partial_\mu j^\mu$ คือ
+$\;i\big(\phi\cdot(\text{EOM ของ }\phi^*) - \phi^*\cdot(\text{EOM ของ }\phi)\big)\;$
+ซึ่ง<strong>ไม่เป็นศูนย์</strong> — วัดแล้วด้วยสนามที่ไม่ใช่คำตอบ</p>
+
+<h2>⑤ ผลที่ตามมา: สนามจริงไม่มีประจุ — และเป็นศูนย์แบบเอง</h2>
+
+<p>ใส่ $\phi^* = \phi$ ลงในสมการ (4): $\;j^t = i(\phi\,\partial_t\phi - \phi\,\partial_t\phi) = 0$</p>
+
+<div class="key">
+  <p style="margin-top:0"><strong>เป็นศูนย์โดยไม่ต้องใช้สมการการเคลื่อนที่เลย</strong>
+  — ไม่ใช่ "ประจุอนุรักษ์ที่ค่าศูนย์" แต่คือ <em>ไม่มีประจุให้พูดถึงตั้งแต่ต้น</em></p>
+  <p style="margin-bottom:0">⇒ <strong>สนามจริงบรรยายอนุภาคที่ไม่มีประจุเท่านั้น</strong> ·
+  อนุภาคที่มีประจุต้องใช้สนามเชิงซ้อน ซึ่งมาพร้อม $\phi^*$ เสมอ —
+  <strong>นั่นคือปฏิอนุภาค</strong> · ประจุตรงข้าม มวลเท่ากัน
+  <br>ไม่ใช่สมมติฐานที่ใส่เพิ่ม — มันโผล่มาจากการนับพจน์ในสมการ (3)</p>
+</div>
+
+<p class="hint">ชื่อ $U(1)$ คือกลุ่มของการคูณด้วย $e^{i\alpha}$ (จำนวนเชิงซ้อนขนาด $1$) ·
+เรียกว่า "สมมาตร<strong>ภายใน</strong>" เพราะหมุนอยู่ในตัวสนามเอง ไม่แตะกาลอวกาศ —
+<strong>นี่คือรูปแบบที่แรงนิวเคลียร์และแรงอ่อนใช้ด้วย</strong> เปลี่ยนแค่กลุ่มเป็น
+$SU(2)$ กับ $SU(3)$ · ที่บทนี้ยังไม่แตะโดยตั้งใจ: การทำให้ $\alpha$ ขึ้นกับตำแหน่ง
+(gauge symmetry) ซึ่งเป็นที่มาของตัวแรงเอง</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta"><strong>ทุกข้ออยู่ใน 1+1 มิติ</strong> · พจนานุกรมจากหัวข้อ ① ·
+<code>i</code> คือหน่วยจินตภาพ (เช่น <code>i*phi</code>)</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · การแปรผันจากการหมุนเฟส &nbsp;$\phi \to e^{i\alpha}\phi$</h3>
+  <ol class="steps">
+    <li data-answer="i*phi" data-alt="iphi|phi*i|i·phi|alpha*i*phi">
+      <p><strong>ขั้น 1</strong> — $e^{i\alpha} \approx 1 + i\alpha$ ⇒ $\phi$ เปลี่ยนไปเป็น
+      $\phi + i\alpha\phi$ · <strong>$\delta\phi$</strong> (ตัวคูณของ $\alpha$) คืออะไร</p>
+      <div class="ans"><input type="text" placeholder="เช่น  i*phi" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>i*phi</code> — <strong>ต่างจากบทที่ 8 ที่ $\delta\phi = 1$</strong>
+      คราวนี้ตัวสนามเองอยู่ในนั้นด้วย</p>
+    </li>
+    <li data-answer="-i*phis" data-alt="-iphis|−i*phis|-phis*i|-i·phis">
+      <p><strong>ขั้น 2</strong> — $\phi^*$ ได้สังยุคของตัวคูณเดียวกัน ⇒ <strong>$\delta\phi^*$</strong></p>
+      <div class="ans"><input type="text" placeholder="เช่น  -i*phis" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>-i*phis</code> — <strong>สังยุคของ $i$ คือ $-i$</strong> ·
+      ลบตัวนี้คือที่มาของทุกเครื่องหมายในบทนี้</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — พจน์ $-m^2\,\texttt{phis}\cdot\texttt{phi}$ เปลี่ยนไปเท่าไร
+      &nbsp;<span class="hint">($\phi$ ได้ $e^{i\alpha}$ · $\phi^*$ ได้ $e^{-i\alpha}$ · คูณกันแล้ว)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — $e^{i\alpha}e^{-i\alpha} = 1$ ⇒ <strong>คู่นี้ไม่รู้สึกอะไรเลย</strong>
+      · ทุกพจน์ใน $\mathcal{L}$ เป็นคู่แบบนี้หมด ⇒ $\delta\mathcal{L} = 0$</p>
+    </li>
+  </ol>
+  <p class="fb">ขั้น 3 คือ "ตรวจก่อนเขียน" ฉบับบทนี้ — และมันเป็นศูนย์
+  <strong>off-shell</strong> ต่างจาก $\partial_\mu j^\mu$ ที่เป็นศูนย์ <strong>on-shell</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · อนุพันธ์ย่อยของ $\mathcal{L} = \texttt{pts}\cdot\texttt{pt} - \texttt{pxs}\cdot\texttt{px} - m^2\,\texttt{phis}\cdot\texttt{phi}$</h3>
+  <ol class="steps">
+    <li data-answer="pts" data-alt="1*pts|pts*1">
+      <p><strong>ขั้น 1</strong> — $\dfrac{\partial\mathcal{L}}{\partial\,\texttt{pt}}$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  pts" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>pts</code> — <strong>อนุพันธ์เทียบตัวหนึ่ง เหลืออีกตัวหนึ่ง</strong>
+      เหมือนอนุพันธ์ของผลคูณธรรมดา</p>
+    </li>
+    <li data-answer="pt" data-alt="1*pt|pt*1">
+      <p><strong>ขั้น 2</strong> — $\dfrac{\partial\mathcal{L}}{\partial\,\texttt{pts}}$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  pt" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>pt</code> — สลับกับขั้น 1 พอดี</p>
+    </li>
+    <li data-answer="-pxs" data-alt="-1*pxs|−pxs|-pxs*1">
+      <p><strong>ขั้น 3</strong> — $\dfrac{\partial\mathcal{L}}{\partial\,\texttt{px}}$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  -pxs" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>-pxs</code> — <strong>ลบของพจน์ที่ว่างยังอยู่</strong>
+      เหมือนทุกบทที่ผ่านมา (มาจาก $g = \mathrm{diag}(-1,+1)$)</p>
+    </li>
+  </ol>
+  <p class="fb">สามขั้นนี้ไม่มีอะไรใหม่เลย — <strong>ผลคูณของสองตัวแปร
+  อนุพันธ์เทียบตัวหนึ่งก็เหลืออีกตัวหนึ่ง</strong> ซึ่งแบสอนอยู่ทุกวัน</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · ประกอบ $j^t$ ตามสมการ (3) — ทีละพจน์</h3>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — สมการ (3) มีกี่พจน์บวกกัน
+      &nbsp;<span class="hint">(มีกี่สนามก็มีเท่านั้น)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — <strong>$\phi$ หนึ่งพจน์ $\phi^*$ อีกหนึ่งพจน์</strong> ·
+      บทที่ 8-10 มีสนามเดียวจึงมีพจน์เดียว</p>
+    </li>
+    <li data-answer="i*phi*pts" data-alt="iphipts|i*pts*phi|phi*pts*i|pts*i*phi|i·phi·pts">
+      <p><strong>ขั้น 2</strong> — พจน์แรก $= \dfrac{\partial\mathcal{L}}{\partial\,\texttt{pt}}\cdot\delta\phi$
+      &nbsp;<span class="hint">(ข้อ 2 ขั้น 1 คูณ ข้อ 1 ขั้น 1)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  i*phi*pts" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>pts</code> $\times$ <code>i*phi</code> $=$ <code>i*phi*pts</code></p>
+    </li>
+    <li data-answer="-i*phis*pt" data-alt="-iphispt|-i*pt*phis|−i*phis*pt|-phis*pt*i|-pt*i*phis">
+      <p><strong>ขั้น 3</strong> — พจน์ที่สอง $= \dfrac{\partial\mathcal{L}}{\partial\,\texttt{pts}}\cdot\delta\phi^*$
+      &nbsp;<span class="hint">(ข้อ 2 ขั้น 2 คูณ ข้อ 1 ขั้น 2)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  -i*phis*pt" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>pt</code> $\times$ <code>-i*phis</code> $=$ <code>-i*phis*pt</code>
+      <br>⇒ รวมสองพจน์ได้ $\;j^t = i(\texttt{phi}\cdot\texttt{pts} - \texttt{phis}\cdot\texttt{pt})$
+      ซึ่งคือสมการ (4)</p>
+    </li>
+  </ol>
+  <p class="fb">ทั้งข้อคือการคูณสองครั้งแล้วบวก — <strong>ของใหม่ทั้งหมดของบทนี้
+  อยู่ที่คำว่า "แล้วบวก" เท่านั้น</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · ใส่ตัวเลขลงใน $j^t = i\,(\texttt{phi}\cdot\texttt{pts} - \texttt{phis}\cdot\texttt{pt})$</h3>
+  <ol class="steps">
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 1</strong> — ที่ $\texttt{phi} = 1$, $\texttt{pts} = 4$ ·
+      พจน์แรกในวงเล็บ ($\texttt{phi}\cdot\texttt{pts}$) เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 \times 4 = 4$</p>
+    </li>
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 2</strong> — ที่ $\texttt{phis} = 3$, $\texttt{pt} = 2$ ·
+      พจน์ที่สองในวงเล็บ ($\texttt{phis}\cdot\texttt{pt}$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 \times 2 = 6$</p>
+    </li>
+    <li data-answer="-2" data-alt="−2|-2.0">
+      <p><strong>ขั้น 3</strong> — ⇒ <strong>ก้อนในวงเล็บ</strong> ทั้งก้อน</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4 - 6 = -2$</p>
+    </li>
+    <li data-answer="-2i" data-alt="-2*i|−2i|-2 i|-i*2|-2·i">
+      <p><strong>ขั้น 4</strong> — ⇒ $j^t$ ทั้งตัว
+      &nbsp;<span class="hint">(อย่าลืม $i$ ข้างหน้า)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  -2i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>-2i</code> — <strong>ค่าของ $j^t$ ที่จุดนี้ไม่เป็นศูนย์</strong>
+      ⇒ มีประจุไหลผ่านจริง</p>
+    </li>
+  </ol>
+  <p class="fb">สี่ขั้นนี้ทำได้โดยไม่ต้องรู้จักจำนวนเชิงซ้อนมากไปกว่า
+  "$i$ คือตัวคูณที่ติดไปด้วย"</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · ⚠️ สนาม<strong>จริง</strong> — $\phi^* = \phi$ ⇒ <code>phis</code> เท่ากับ <code>phi</code>
+  และ <code>pts</code> เท่ากับ <code>pt</code></h3>
+  <ol class="steps">
+    <li data-answer="15" data-alt="สิบห้า|15.0">
+      <p><strong>ขั้น 1</strong> — ที่ $\texttt{phi} = 3$, $\texttt{pt} = 5$
+      (⇒ $\texttt{phis} = 3$, $\texttt{pts} = 5$) · พจน์แรกในวงเล็บ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 \times 5 = 15$</p>
+    </li>
+    <li data-answer="15" data-alt="สิบห้า|15.0">
+      <p><strong>ขั้น 2</strong> — พจน์ที่สองในวงเล็บ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 \times 5 = 15$ — <strong>เลขเดียวกันเป๊ะ</strong>
+      เพราะสองพจน์กลายเป็นตัวเดียวกันเมื่อ $\phi^* = \phi$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ⇒ $j^t$ ที่สนามจริง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$i(15 - 15) = 0$ · <strong>และเป็นศูนย์ไม่ว่าจะใส่เลขอะไรลงไป</strong>
+      — ลองเปลี่ยน $3$ กับ $5$ เป็นอะไรก็ได้ ผลยังเป็นศูนย์
+      <br>⇒ <strong>สนามจริงไม่มีประจุ</strong> · อนุภาคที่มีประจุต้องมี $\phi^*$
+      ที่ต่างจาก $\phi$ — <em>นั่นคือปฏิอนุภาค</em></p>
+    </li>
+  </ol>
+  <p class="fb">ข้อนี้กับข้อ 4 ใช้สูตรเดียวกันทุกตัวอักษร —
+  <strong>ต่างกันที่สนามที่ป้อนเข้าไป ไม่ใช่ที่สูตร</strong> (บทเรียนเดียวกับข้อ 3-4 ของบทที่ 10)</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · ศูนย์สองแบบในบทนี้ — แยกให้ออก</h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 1</strong> — $\delta\mathcal{L}$ ของการหมุนเฟส
+      &nbsp;<span class="hint">(ข้อ 1 ขั้น 3)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — และเป็นศูนย์ <strong>off-shell</strong> ·
+      ถ้าไม่เป็นศูนย์ ก็ไม่มีสมมาตร ไม่มีกระแสให้เขียนตั้งแต่ต้น</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — $\partial_\mu j^\mu$ ช่อง <strong>on-shell</strong></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>ประจุอนุรักษ์</strong> · ต้องใช้สมการการเคลื่อนที่</p>
+    </li>
+    <li data-answer="12" data-alt="สิบสอง|12.0">
+      <p><strong>ขั้น 3</strong> — ค่า <strong>off-shell</strong> ของ $\partial_\mu j^\mu$ คือ
+      $\;i\big(\texttt{phi}\cdot E^* - \texttt{phis}\cdot E\big)$ โดย $E$, $E^*$ คือสมการการเคลื่อนที่
+      ของสองสนาม · ที่สนามซึ่ง<strong>ไม่ใช่</strong>คำตอบ สมมุติ $\texttt{phi} = 2$, $E^* = 7$,
+      $\texttt{phis} = 1$, $E = 2$ · <strong>ก้อนในวงเล็บ</strong>เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 7 - 1 \times 2 = 12$ — <strong>ไม่เป็นศูนย์</strong>
+      <br>⇒ ประจุอนุรักษ์เฉพาะเมื่อสนามเดินตามสมการ · <em>ต่างจาก $\delta\mathcal{L}$
+      ในขั้น 1 ที่เป็นศูนย์เองไม่มีเงื่อนไข</em></p>
+    </li>
+  </ol>
+  <p class="fb"><strong>สองศูนย์นี้คนละชนิดกัน</strong> — ตัวแรกบอกว่า
+  "มีสมมาตร" ตัวหลังบอกว่า "ปริมาณนั้นอนุรักษ์" · สับสนกันเมื่อไหร่ก็จะคิดว่า
+  ประจุอนุรักษ์เพราะรูปของสูตร ซึ่งไม่ใช่</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 7 · นับให้ครบ</h3>
+  <ol class="steps">
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 1</strong> — สนาม<strong>จริง</strong>ของบทที่ 8-10 นับเป็นกี่สนาม
+      เวลาเข้าสมการ (3)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — จึงมีพจน์เดียว และผลรวมมองไม่เห็น</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 2</strong> — สนาม<strong>เชิงซ้อน</strong>นับเป็นกี่สนาม</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — $\phi$ กับ $\phi^*$ · <strong>ผลรวมถึงโผล่มาให้เห็น</strong></p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — $[Q]$ เท่ากับเท่าไร (เลขยกกำลังของมวล)
+      &nbsp;<span class="hint">($[j^\mu] = 3$ · $Q = \int d^3x\, j^0$ · $[d^3x] = -3$)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 - 3 = 0$ — <strong>ประจุไร้มิติ</strong> ·
+      ซึ่งถูกแล้ว เพราะเราวัดมันเป็น "กี่เท่าของประจุอิเล็กตรอน" ไม่ใช่เป็นกิโลกรัมหรือเมตร</p>
+    </li>
+  </ol>
+  <p class="fb">เครื่องมือนับมิติจากบท 0017-0019 ยังใช้ตรวจงานตัวเองได้ทุกบท —
+  <strong>นี่คือการเช็คที่เร็วที่สุดว่าสูตรที่เพิ่งเขียนเป็นไปได้หรือเปล่า</strong></p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา ·
+  <strong>ถึงตรงนี้เครื่องมือของทฤษฎีสนามคลาสสิกครบแล้วจริง ๆ</strong> —
+  ทั้งสามสมมาตร (เลื่อนตำแหน่ง · เลื่อนค่า · หมุนเฟส) ใช้เครื่องเดียวกันหมด ·
+  ก้าวถัดไปคือให้ $\alpha$ ขึ้นกับตำแหน่ง ซึ่งเป็นที่มาของ<em>ตัวแรง</em>เอง
+  <div class="nav">
+    <a href="./0021-onshell.html">← บทที่ 10 · on-shell</a>
+    <a href="./0020-divergence.html">บทที่ 9 · ไดเวอร์เจนซ์</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>
