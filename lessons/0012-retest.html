@@ -53,13 +53,13 @@
     </li>
     <li data-answer="20" data-alt="+20">
       <p><strong>ขั้น 2</strong> — หา $\dfrac{\partial L}{\partial x}$</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$20$ — ค่าคงที่ · <strong>ไม่เป็นศูนย์ ⇒ $x$ ไม่ใช่พิกัดวัฏจักร</strong>
       ⇒ โมเมนตัมของระบบนี้ <em>ไม่</em> อนุรักษ์ (มีแรงโน้มถ่วงดึงอยู่)</p>
     </li>
     <li data-answer="5" data-alt="5.0">
       <p><strong>ขั้น 3</strong> — ใช้สมการออยเลอร์–ลากรองจ์หา<strong>ความเร่ง</strong></p>
-      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$\frac{d}{dt}(4v) = 20 \Rightarrow 4a = 20 \Rightarrow a = 5$ ·
       ตรงกับสูตรรอกมาตรฐาน $\dfrac{(m_1-m_2)g}{m_1+m_2} = \dfrac{2\cdot 10}{4} = 5$
       <strong>ซึ่งเราไม่ได้ใช้เลย</strong> — ได้มาจากการเดิน EL ล้วน ๆ
@@ -73,7 +73,7 @@
 <div class="quiz" data-open data-answer="26/3" data-alt="8.667|8.6667|8.67|8.666">
   <h3>ข้อ 2 · อนุภาคมวล $m = 4$ ไม่มีแรงใด ๆ เดินตามเส้นทาง $y = 3t - t^2$ ·
   หา $S$ บนช่วง $[0,1]$</h3>
-  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
   <p class="fb">$\dot y = 3-2t$ ⇒ $T = \tfrac12\cdot 4\cdot(3-2t)^2 = 2(3-2t)^2 = 8t^2-24t+18$ ·
   ไม่มี $V$ ⇒ $S = \int_0^1 T\,dt = \tfrac83 - 12 + 18 = \tfrac{26}{3}$ ·
   <strong>$m=4$ ต้องเข้าไปคูณจริง</strong> — วัดทั้งสองทางพลาดแล้ว:
@@ -91,19 +91,19 @@
     </li>
     <li data-answer="-1" data-alt="−1|-1.0">
       <p><strong>ขั้น 2</strong> — หา $\displaystyle\int_0^1 m\,\dot y_0\,\dot\eta\;dt$</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$3\int_0^1 2t(1-2t)\,dt = 3\int_0^1(2t-4t^2)dt = 3\left(1-\tfrac43\right) = -1$ ·
       <strong>ตัว $m=3$ อยู่ในพจน์นี้ด้วย</strong> — ตกไปแล้วได้ $-\tfrac13$
       และคำตอบสุดท้ายจะกลายเป็น $-\tfrac{16}{3}$ แทนที่จะเป็น $-6$ (วัดแล้ว)</p>
     </li>
     <li data-answer="5" data-alt="5.0">
       <p><strong>ขั้น 3</strong> — หา $\displaystyle\int_0^1 m g\,\eta\;dt$</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$30\int_0^1(t-t^2)dt = 30\left(\tfrac12-\tfrac13\right) = 30\cdot\tfrac16 = 5$</p>
     </li>
     <li data-answer="-6" data-alt="−6|-6.0">
       <p><strong>ขั้น 4</strong> — หาสัมประสิทธิ์ของ $\varepsilon$</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$-1 - 5 = -6$ · <strong>ไม่เป็นศูนย์ ⇒ $y_0 = t^2$ ไม่ใช่เส้นทางจริง</strong> ·
       กางแอ็กชันเต็มก้อนด้วย <code>sympy</code> แล้วหยิบสัมประสิทธิ์ $\varepsilon$ ออกมา
       ได้ $-6$ ตรงกัน — <em>คนละทางกับการใช้สูตรลัด</em></p>
@@ -132,7 +132,7 @@
 
 <div class="quiz" data-open data-answer="-16" data-alt="−16|-16.0">
   <h3>ข้อ 5 · $v^\mu = (5,\,1,\,2,\,2)$ · หา $v^\mu v_\mu$</h3>
-  <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+  <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
   <p class="fb">$v_\mu = (-5,\,1,\,2,\,2)$ ⇒ $v^\mu v_\mu = -25+1+4+4 = -16$ ·
   <strong>ติดลบ ⇒ เป็นช่วงแบบเวลา</strong> (อนุภาคที่มีมวลเดินทางแบบนี้ได้) ·
   ตอบ $34$ แปลว่าบวกทุกช่องแบบพีทาโกรัส ซึ่งเป็นเรขาคณิตคนละอันกับกาลอวกาศ</p>

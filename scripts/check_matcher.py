@@ -22,11 +22,20 @@ ROOT = Path(__file__).resolve().parent.parent
 
 
 # ── จำลอง quiz.js ─────────────────────────────────────────
+SUP = str.maketrans("\u2070\u00b9\u00b2\u00b3\u2074\u2075\u2076\u2077\u2078\u2079",
+                    "0123456789")
+
+
 def norm(v: str) -> str:
+    """ต้องตรงกับ norm() ใน assets/quiz.js เป๊ะ — นี่คือเหตุผลทั้งหมดที่ไฟล์นี้มีอยู่"""
     s = str(v).strip().lower()
     s = re.sub(r"[−–—]", "-", s)
+    s = s.translate(SUP)                    # ⁰¹²³… → เลขธรรมดา
     s = s.replace("**", "^")
     s = re.sub(r"[\s*·]", "", s)
+    # ⚠️ ตัด ^ ทิ้ง — ก๊อป $m^2$ จากหน้าที่เรนเดอร์แล้วได้ "m 2" ไม่มี ^
+    #    ไม่ตัดจะปฏิเสธคำตอบที่ถูก (เกิดจริง 2026-09-24)
+    s = s.replace("^", "")
     return re.sub(r"[()]", "", s)
 
 
@@ -124,7 +133,20 @@ HAND = [
     ("0021-onshell.html", "-m^2*phi", "m^2*phi", "wrong"),
     ("0021-onshell.html", "2", "0", "wrong"),                 # นึกว่า off-shell เป็นศูนย์เสมอ
     ("0021-onshell.html", "6", "5", "wrong"),
-    ("0021-onshell.html", "pt*(ptt-pxx+m^2*phi)", "0", "wrong"),  # ตอบค่า on-shell ในช่อง off-shell
+    ("0021-onshell.html", "20", "0", "wrong"),                # นึกว่า off-shell เป็นศูนย์เสมอ
+
+    # ── ⚠️ ฝั่งรับ: ก๊อปสมการที่เรนเดอร์แล้วมาวาง ────────────────────
+    # $m^2$ บนหน้าเว็บ ก๊อปมาได้ "m 2" (ไม่มี ^) หรือ "m²" (ตัวยกยูนิโคด)
+    # ทั้งสองแบบเป็นคำตอบที่ถูก ⇒ ตัวตรวจต้องรับ
+    # (เกิดจริง 2026-09-24: ตอบ "pt · ( ptt − pxx + m 2 phi )" ถูกแต่ถูกปฏิเสธ)
+    ("0021-onshell.html", "-m^2*phi", "-m 2 phi", "right"),
+    ("0021-onshell.html", "-m^2*phi", "-m²*phi", "right"),
+    ("0021-onshell.html", "-m^2*phi", "−m 2 phi", "right"),
+    ("0020-divergence.html", "-m^2*phi", "-m 2 phi", "right"),
+    ("0019-current-T.html", "-m^2*phi", "-m²phi", "right"),
+    ("0016-fields.html", "m^2", "m²", "right"),
+    # …แต่ยังต้องปฏิเสธเครื่องหมายที่ผิดเหมือนเดิม
+    ("0021-onshell.html", "-m^2*phi", "m 2 phi", "wrong"),
 ]
 
 

@@ -139,7 +139,7 @@ $\;\texttt{ptt} = f''$, $\texttt{pxx} = f''$ ⇒ ผลต่างเป็น 
     <li data-answer="0" data-alt="ศูนย์|0.0">
       <p><strong>ขั้น 2</strong> — ช่อง <strong>on-shell</strong>
       &nbsp;<span class="hint">(สมการการเคลื่อนที่ไร้มวล: $\texttt{ptt} - \texttt{pxx} = 0$)</span></p>
-      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb"><code>0</code> — แทนสมการที่ให้มาในวงเล็บลงไปตรง ๆ</p>
     </li>
   </ol>
@@ -201,50 +201,64 @@ $\;\texttt{ptt} = f''$, $\texttt{pxx} = f''$ ⇒ ผลต่างเป็น 
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 4 · คราวนี้ป้อนคลื่นวิ่ง $\phi = f(x - t)$ เข้าไป</h3>
+  <h3>ข้อ 4 · คราวนี้ป้อน<strong>คลื่นวิ่ง</strong> $\phi = (x - t)^2$ เข้าไป
+  <span class="hint">(สนามนี้ <strong>เป็น</strong> คำตอบของสมการคลื่น)</span></h3>
   <ol class="steps">
-    <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 1</strong> — ลูกโซ่ให้ $\texttt{ptt} = f''$ และ $\texttt{pxx} = f''$
-      &nbsp;<span class="hint">(ลบสองตัวยกกำลังสองหายไป)</span> ⇒ ค่า off-shell</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$f'' - f'' = 0$ — <strong>คราวนี้ช่อง off-shell เป็นศูนย์เอง</strong>
-      โดยไม่ต้องอ้างสมการการเคลื่อนที่เลย</p>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — $\texttt{ptt} = \partial_t^2\big((x-t)^2\big)$ เท่ากับเท่าไร
+      &nbsp;<span class="hint">(ลูกโซ่สองรอบ · ลบสองตัวคูณกันได้บวก)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — $\partial_t(x-t)^2 = -2(x-t)$ แล้ว $\partial_t$ อีกรอบได้ $+2$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 2</strong> — $\texttt{pxx} = \partial_x^2\big((x-t)^2\big)$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — ทางนี้ไม่มีลบเลย แต่ได้ $2$ เท่ากัน</p>
     </li>
     <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 2</strong> — แล้วค่า on-shell</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$0$ เหมือนกัน · <strong>เพราะคลื่นวิ่งเป็นคำตอบของสมการอยู่แล้ว
-      สองคอลัมน์จึงตรงกัน</strong>
-      <br>⇒ เทียบกับข้อ 3 ที่ได้ $2$ กับ $0$ — <em>สองคอลัมน์ต่างกันก็ต่อเมื่อสนามไม่ใช่คำตอบ</em></p>
+      <p><strong>ขั้น 3</strong> — ⇒ ค่า off-shell ของ $\partial_\mu j^\mu$ <strong>ที่สนามนี้</strong>
+      &nbsp;<span class="hint">(เอาเลขสองตัวข้างบนมาลบกัน)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 - 2 = 0$ · <strong>เป็นศูนย์เองโดยไม่ต้องอ้างสมการการเคลื่อนที่เลย</strong>
+      — เพราะสนามนี้เป็นคำตอบอยู่แล้ว</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 4</strong> — แล้วค่า on-shell ที่สนามนี้</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ เหมือนกัน · <strong>สองคอลัมน์ตรงกันก็ต่อเมื่อสนามเป็นคำตอบ</strong>
+      <br>⇒ เทียบข้อ 3 ($2$ กับ $0$) กับข้อ 4 ($0$ กับ $0$) —
+      <em>สูตรเดียวกันทุกตัวอักษร ต่างกันที่สนามที่ป้อนเข้าไป</em></p>
     </li>
   </ol>
-  <p class="fb">ข้อ 3 กับข้อ 4 ใช้สูตรเดียวกันทุกตัวอักษร ได้คนละค่า —
-  <strong>ต่างกันที่สนามที่ป้อนเข้าไป ไม่ใช่ที่สูตร</strong></p>
+  <p class="fb">ข้อ 3 กับข้อ 4 ตอบเป็น<strong>ตัวเลข</strong>ทั้งคู่ เพราะระบุสนามมาแล้ว ·
+  ส่วนข้อ 1-2 ตอบเป็น<strong>นิพจน์</strong> เพราะยังไม่ได้ระบุสนาม —
+  <em>ดูที่ช่องพิมพ์ว่าขอ "ตัวเลข" หรือขอ "นิพจน์"</em></p>
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 5 · ขั้นประกอบล้วน ๆ — คูณด้วยวงเล็บ</h3>
+  <h3>ข้อ 5 · ขั้นประกอบล้วน ๆ — ไม่มีฟิสิกส์เลย
+  <span class="hint">(ให้ $A$ กับ $B$ เป็นเลขสองตัว และของที่เราสนใจคือผลคูณ $A \times B$)</span></h3>
   <ol class="steps">
     <li data-answer="6" data-alt="หก|6.0">
-      <p><strong>ขั้น 1</strong> — $\texttt{pt} = 2$ และวงเล็บ $= 3$ ⇒ $\texttt{pt}\cdot(\ldots)$</p>
+      <p><strong>ขั้น 1</strong> — $A = 2$ และ $B = 3$ ⇒ $A \times B$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$2 \times 3 = 6$</p>
+      <p class="fb">$6$</p>
     </li>
     <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 2</strong> — $\texttt{pt} = 7$ และวงเล็บ $= 0$</p>
+      <p><strong>ขั้น 2</strong> — $A = 7$ และ $B = 0$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$7 \times 0 = 0$</p>
+      <p class="fb">$0$</p>
     </li>
     <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 3</strong> — $\texttt{pt}$ เป็นอะไรก็ได้ ไม่รู้ค่า · วงเล็บ $= 0$</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$0$ — <strong>ไม่ต้องรู้ค่า $\texttt{pt}$ เลย</strong>
-      <br>⇒ นี่คือขั้นสุดท้ายของข้อ 8 ในบทที่ 9 ทั้งดุ้น · <em>มันเป็นคณิตประถม
-      ที่ถูกซ่อนอยู่ใต้สัญลักษณ์ที่ดูใหญ่โต</em></p>
+      <p><strong>ขั้น 3</strong> — $A$ เป็นอะไรก็ได้ <strong>ไม่รู้ค่า</strong> · $B = 0$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>ไม่ต้องรู้ค่า $A$ เลย</strong></p>
     </li>
   </ol>
-  <p class="fb">สามขั้นนี้ไม่มีฟิสิกส์เลย — <strong>ขั้นประกอบไม่เคยยาก
-  มันแค่อ่านไม่ออกว่ากำลังถูกถามอะไร</strong></p>
+  <p class="fb">ข้อถัดไปคือข้อนี้ทั้งดุ้น โดยที่ $A = \texttt{pt}$ และ
+  $B = \texttt{ptt} - \texttt{pxx} + m^2\texttt{phi}$ ·
+  <strong>ขั้นประกอบไม่เคยยาก มันแค่อ่านไม่ออกว่ากำลังถูกถามอะไรเมื่ออยู่ใต้สัญลักษณ์ใหญ่ ๆ</strong>
+  <br><em>(บทที่ 9 ข้อ 8 ขั้น 3 ที่ตอบ "ไม่รู้" คือข้อนี้ ขั้น 3 เป๊ะ)</em></p>
 </div>
 
 <div class="quiz" data-steps>
@@ -254,20 +268,21 @@ $\;\texttt{ptt} = f''$, $\texttt{pxx} = f''$ ⇒ ผลต่างเป็น 
       <p><strong>ขั้น 1</strong> — off-shell จัดรูปได้
       $\;\texttt{pt}\cdot(\texttt{ptt} - \texttt{pxx} + m^2\texttt{phi})$ ·
       <strong>วงเล็บ</strong> on-shell เท่ากับเท่าไร</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$0$ — <strong>วงเล็บคือสมการการเคลื่อนที่ทั้งดุ้น</strong></p>
     </li>
     <li data-answer="0" data-alt="ศูนย์|0.0">
       <p><strong>ขั้น 2</strong> — ⇒ $\partial_\mu T^{\mu 0}$ ช่อง <strong>on-shell</strong></p>
-      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$0$ — <code>pt</code> คูณศูนย์ (ข้อ 5 ขั้น 3 เป๊ะ) ·
       <strong>กฎอนุรักษ์พลังงาน</strong></p>
     </li>
-    <li data-answer="pt*(ptt-pxx+m^2*phi)" data-alt="pt(ptt-pxx+m^2*phi)|pt*(ptt-pxx+m**2*phi)|(ptt-pxx+m^2*phi)*pt|pt*ptt-pt*pxx+pt*m^2*phi">
-      <p><strong>ขั้น 3</strong> — แล้วช่อง <strong>off-shell</strong> ล่ะ
-      &nbsp;<span class="hint">(เขียนทั้งก้อนตามที่โจทย์ให้ไว้ในขั้น 1)</span></p>
-      <div class="ans"><input type="text" placeholder="เช่น  pt*(ptt-pxx+m^2*phi)" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb"><code>pt*(ptt-pxx+m^2*phi)</code> — <strong>ยังไม่เป็นศูนย์</strong>
+    <li data-answer="20" data-alt="ยี่สิบ|20.0">
+      <p><strong>ขั้น 3</strong> — ป้อนสนามที่<strong>ไม่ใช่</strong>คำตอบเข้าไป
+      จนวงเล็บมีค่า $5$ และ $\texttt{pt} = 4$ ·
+      ⇒ $\partial_\mu T^{\mu 0}$ ช่อง <strong>off-shell</strong> เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4 \times 5 = 20$ — <strong>ไม่เป็นศูนย์</strong>
       จนกว่าจะบอกว่าสนามเดินตามสมการ
       <br>⇒ ประโยคเต็มคือ <em>"$T^{\mu\nu}$ อนุรักษ์ <strong>on-shell</strong>"</em>
       ซึ่งเป็นประโยคที่เจอใน paper คำต่อคำ</p>
@@ -284,7 +299,7 @@ $\;\texttt{ptt} = f''$, $\texttt{pxx} = f''$ ⇒ ผลต่างเป็น 
       <p><strong>ขั้น 1</strong> — $\partial_\mu T^{\mu 1}$ off-shell $=
       -\texttt{px}\cdot(\texttt{ptt} - \texttt{pxx} + m^2\texttt{phi})$
       &nbsp;<span class="hint">(สังเกตลบข้างหน้า)</span> ⇒ ช่อง <strong>on-shell</strong></p>
-      <div class="ans"><input type="text" placeholder="พิมพ์คำตอบ" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$0$ — <strong>ลบหน้าไม่มีผลเลยเมื่อวงเล็บเป็นศูนย์</strong> ·
       ทั้งสองแถวได้ $0$ เท่ากัน ⇒ $\partial_\mu T^{\mu\nu} = 0$ ครบทุกค่าของ $\nu$</p>
     </li>

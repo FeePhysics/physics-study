@@ -16,6 +16,29 @@ ROOT = pathlib.Path(__file__).resolve().parent.parent
 problems = []
 
 
+_NUMRE = re.compile(r"^[+-]?\d*\.?\d+$")
+
+
+def _is_num(v: str) -> bool:
+    """คำตอบนี้เป็นตัวเลขล้วนไหม (กฎเดียวกับ num() ใน quiz.js · รับเศษส่วน a/b)"""
+    t = re.sub(r"[\s*·]", "", str(v).strip().lower()).replace("\u2212", "-")
+    if re.match(r"^[+-]?\d*\.?\d+/[+-]?\d*\.?\d+$", t):
+        return True
+    return bool(_NUMRE.match(t))
+
+
+def _placeholder_declares_number(ph: str) -> bool:
+    """ช่องพิมพ์บอกไหมว่าขอ "ตัวเลข" — บอกตรง ๆ หรือยกตัวอย่างที่เป็นตัวเลขก็ได้"""
+    if re.search(r"ตัวเลข|จำนวน", ph):
+        return True
+    m = re.match(r"\s*เช่น\s+(.+)$", ph)
+    if m and _is_num(m.group(1)):
+        return True
+    # "1 หรือ 2" — ไล่ค่าที่เป็นไปได้ทั้งหมด ชัดกว่าคำว่า "ตัวเลข" ด้วยซ้ำ
+    toks = [t for t in re.split(r"[\s,/]+|หรือ", ph) if t]
+    return bool(toks) and all(_is_num(t) for t in toks)
+
+
 def check(f: pathlib.Path, html: str):
     def bad(msg): problems.append(f"{f.relative_to(ROOT)}: {msg}")
 
@@ -75,6 +98,22 @@ def check(f: pathlib.Path, html: str):
             continue
         attrs, block = hm.group(1), chunk[hm.end():]
 
+        # ── ขั้นที่คำตอบเป็น "ตัวเลข" ช่องพิมพ์ต้องบอกว่าขอตัวเลข ──
+        # ⚠️ ไม่บอก = ผู้เรียนตอบเป็น *นิพจน์* ซึ่งถูกตามที่คำถามเขียน แต่ถูกนับว่าผิด
+        #    (เกิดจริง 2026-09-24 · บทที่ 10 ข้อ 4: ถาม "ค่า off-shell" ตอบ ptt-pxx
+        #     ซึ่งเป็นคำตอบของข้อ 1-2 ในบทเดียวกันเป๊ะ · ข้อที่ผ่านคือข้อที่ช่องพิมพ์
+        #     เขียนว่า "พิมพ์ตัวเลข")
+        for em in re.finditer(r'<(?:li|div)\b[^>]*data-answer="([^"]*)"[^>]*>', block):
+            a = em.group(1)
+            if not _is_num(a):
+                continue
+            nx = re.search(r'<(?:li|div)\b[^>]*data-answer="', block[em.end():])
+            seg = block[em.end():em.end() + (nx.start() if nx else len(block))]
+            ph = re.search(r'placeholder="([^"]*)"', seg)
+            if ph and not _placeholder_declares_number(ph.group(1)):
+                bad(f'คำตอบ {a!r} เป็นตัวเลข แต่ช่องพิมพ์เขียน {ph.group(1)!r}'
+                    ' — ต้องบอกว่าขอตัวเลข ไม่งั้นผู้เรียนตอบเป็นนิพจน์')
+
         if 'data-steps' in attrs:
             # ── ต้องมี <p class="fb"> สรุปท้ายข้อ (หลัง </ol>) ────────
             # check_layout.py บังคับข้อนี้อยู่แล้ว แต่ต้องเปิดเบราว์เซอร์ ~3 นาที
@@ -84,6 +123,7 @@ def check(f: pathlib.Path, html: str):
 
             # โจทย์ไล่ขั้น: เฉลยอยู่ที่ <li> แต่ละขั้น ไม่ใช่ที่ตัว .quiz
             steps = re.findall(r'<li ([^>]*)>(.*?)</li>', block, flags=re.S)
+
             if len(steps) < 2:
                 bad("quiz[data-steps] มีขั้นเดียว — ใช้ data-open แทน")
             for j, (sa, sb) in enumerate(steps, 1):
