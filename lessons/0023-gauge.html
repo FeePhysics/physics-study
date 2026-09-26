@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 12 · แสงมาจากไหน</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 12 · แสงมาจากไหน</h1>
+<p class="meta">บทเรียน · ~20 นาที · ให้ $\alpha$ ขึ้นกับตำแหน่ง ⇒ ต้องมีสนาม $A_\mu$</p>
+
+<div class="key">
+  <p style="margin-top:0"><strong>7/7 รอบแรก</strong> — บทแรกในรอบนี้ที่ผ่านตั้งแต่ครั้งแรก
+  โดยไม่ต้องแก้รูปโจทย์ · $\textstyle\sum_i$ กลับมาแล้ว และสนามจริงไม่มีประจุ</p>
+  <p style="margin-bottom:0">บทที่ 11 ปิดท้ายว่า "ก้าวถัดไปคือให้ $\alpha$ ขึ้นกับตำแหน่ง
+  ซึ่งเป็นที่มาของ<em>ตัวแรง</em>เอง" · <strong>นี่คือบทนั้น</strong> —
+  และเป็นความคิดเดียวที่ paper ใน hep-th ใช้มากที่สุด</p>
+</div>
+
+<h2>① คำถาม: ทำไม $\alpha$ ต้องเท่ากันทั้งจักรวาล</h2>
+
+<p>บทที่ 11 หมุนเฟสทุกจุดด้วย $\alpha$ <strong>ตัวเดียวกัน</strong> —
+หมุนที่นี่ ที่ดาวอังคารก็ต้องหมุนเท่ากันในวินาทีเดียวกัน ·
+คราวนี้ถามว่า <strong>ถ้าแต่ละจุดหมุนได้ไม่เท่ากันล่ะ</strong> — $\alpha = \alpha(t, x)$</p>
+
+<table>
+<thead><tr><th>เขียน</th><th>คือ</th></tr></thead>
+<tbody>
+<tr><td><code>alpha</code></td><td>$\alpha(t,x)$ — มุมที่หมุน ณ จุดนั้น</td></tr>
+<tr><td><code>dta</code></td><td>$\partial_t\alpha$ — มุมเปลี่ยนเร็วแค่ไหนตามเวลา</td></tr>
+<tr><td><code>e</code></td><td>ค่าคงตัว (ความแรงของการคู่ควบ)</td></tr>
+</tbody>
+</table>
+<p class="hint">ที่เหลือใช้พจนานุกรมเดิมของบทที่ 11: <code>phi</code> <code>phis</code>
+<code>pt</code> <code>pts</code> <code>i</code></p>
+
+<h2>② ปัญหา: อนุพันธ์ไปโดน $\alpha$ ด้วย</h2>
+
+<p>$\phi \to e^{i\alpha}\phi$ ⇒ $\delta\phi = i\,\alpha\,\phi$ เหมือนเดิม · แต่พอหาอนุพันธ์
+<strong>กฎผลคูณให้สองพจน์</strong>:</p>
+
+<div class="eq" data-eqno="1">$$ \delta(\partial_t\phi) \;=\; \underbrace{i\,\alpha\,\partial_t\phi}_{\text{เหมือนบทที่ 11}} \;+\; \underbrace{i\,(\partial_t\alpha)\,\phi}_{\text{พจน์เกิน}} $$</div>
+
+<div class="warn">
+  <strong>พจน์เกินนี้ทำให้ $\mathcal{L}$ ของบทที่ 11 พัง</strong> — คู่
+  <code>pts·pt</code> ไม่หักล้างกันพอดีอีกต่อไป ⇒ $\delta\mathcal{L} \neq 0$
+  <span class="src">ตรวจแล้วด้วย <code>sympy</code> ว่าพังจริง —
+  <code>scripts/verify/0024_gauge.py</code></span>
+  <br>ถ้า $\alpha$ คงที่ $\partial_t\alpha = 0$ ⇒ พจน์เกินหายไป ⇒ กลับไปเป็นบทที่ 11
+</div>
+
+<h2>③ ทางแก้: เพิ่มสนามใหม่หนึ่งตัวที่มีหน้าที่ดูดพจน์เกินทิ้ง</h2>
+
+<p>แทน $\partial_\mu$ ด้วย <strong>อนุพันธ์โคแวเรียนต์</strong> ซึ่งมีสนามใหม่ $A_\mu$ ติดมา
+และให้ $A_\mu$ แปลงตัวไปพร้อมกับ $\phi$:</p>
+
+<div class="key">
+  <div class="eq" data-eqno="2">$$ D_\mu \;=\; \partial_\mu - i\,e\,A_\mu \qquad\qquad A_\mu \;\to\; A_\mu + \frac{1}{e}\,\partial_\mu\alpha $$</div>
+  <p style="margin-bottom:0">ชิ้นที่ $A_\mu$ ขนมา คือ $-ie\cdot\tfrac{1}{e}(\partial_t\alpha)\cdot\phi = -i(\partial_t\alpha)\phi$
+  — <strong>ลบของพจน์เกินพอดี</strong> ⇒ หักล้างกันหมด</p>
+</div>
+
+<p>ผลคือ $D_\mu\phi$ <strong>แปลงตัวเหมือน $\phi$ เป๊ะ</strong>:
+$\;\delta(D_\mu\phi) = i\,\alpha\,(D_\mu\phi)$ · แทน $\partial$ ด้วย $D$ ในลากรองจ์ของบทที่ 11
+แล้ว $\delta\mathcal{L} = 0$ ได้อีกครั้ง — <em>แม้ $\alpha$ จะขึ้นกับตำแหน่ง</em></p>
+
+<div class="warn">
+  <strong>convention</strong> — บางตำราเขียน $D_\mu = \partial_\mu + ieA_\mu$ ·
+  ฟิสิกส์เหมือนกันทุกอย่าง แค่เปลี่ยน $e \to -e$ ทั้งบท ·
+  <strong>ทุกเครื่องหมายในบทนี้ derive ด้วย convention ข้างบนเท่านั้น</strong>
+</div>
+
+<h2>④ $A_\mu$ คือศักย์แม่เหล็กไฟฟ้า — และแบรู้จักมันแล้ว</h2>
+
+<p>สนาม $F_{\mu\nu} = \partial_\mu A_\nu - \partial_\nu A_\mu$ ในบทแมกซ์เวลล์ (0006) กับบทที่ 7 (ตัวที่ $-\tfrac14 F^2$
+สร้างจาก) <strong>ไม่เปลี่ยนเลย</strong>ภายใต้การแปลงในสมการ (2) — เพราะ
+$\partial_t\partial_x\alpha = \partial_x\partial_t\alpha$ (อนุพันธ์สลับลำดับได้ · เหมือน
+<code>ptx</code> = <code>pxt</code> ของบทที่ 9)</p>
+
+<p><strong>⇒ สนามที่ถูกบังคับให้มีเพื่อซ่อมสมมาตร คือตัวเดียวกับแม่เหล็กไฟฟ้าพอดี</strong> ·
+ไม่ได้ใส่แสงเข้ามาเพราะรู้ว่ามีแสง — <em>สมมาตรเฉพาะที่เรียกร้องมันออกมาเอง</em></p>
+
+<h2>⑤ กระจายลากรองจ์แล้วเห็นว่าแสงคุยกับอะไร</h2>
+
+<div class="eq" data-eqno="3">$$ \mathcal{L} \;=\; \underbrace{\mathcal{L}_{\text{บทที่ 11}}}_{\text{ไม่มี }A} \;\;-\;\; e\,A_\mu\,j^\mu \;\;+\;\; e^2\big(A_t^2 - A_x^2\big)\,\phi^*\phi $$</div>
+
+<div class="key">
+  <p style="margin:0"><strong>พจน์กลาง: $A_\mu$ คูณกับ $j^\mu$ ของบทที่ 11 ตัวเดิมทุกตัวอักษร</strong>
+  ⇒ แสงคุยกับ<strong>กระแสประจุ</strong> · ไม่ได้คุยกับมวล ไม่ได้คุยกับพลังงาน ·
+  สนามจริง ($j = 0$) จึงไม่รู้สึกแสงเลย
+  <br>ค่าคงตัว $e$ ในสมการ (2) กลายเป็น<strong>ประจุ</strong>ที่คูณหน้าการคู่ควบ</p>
+</div>
+
+<p class="src">ทั้งสามพจน์ derive ด้วย <code>sympy</code> — รวมถึงยืนยันว่าพจน์แรกเป็น
+$\mathcal{L}$ ของบทที่ 11 ทุกตัวอักษร และพจน์กลางคือ $j^\mu$ ตัวเดิม (ไม่ใช่รูปคล้าย ๆ)</p>
+
+<p class="hint">ที่บทนี้ยังไม่แตะโดยตั้งใจ — สมการการเคลื่อนที่ของ $A_\mu$ เอง
+(แปรผัน $\mathcal{L}$ เทียบ $A_\mu$ แล้วได้สมการแมกซ์เวลล์ที่มี $j^\mu$ เป็นแหล่ง) ·
+และกรณีที่กลุ่มไม่ใช่ $U(1)$ ($SU(2)$, $SU(3)$) ซึ่ง $A_\mu$ กลายเป็นเมทริกซ์และ
+<em>คุยกับตัวเอง</em>ได้</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta"><strong>ทุกข้ออยู่ใน 1+1 มิติ</strong> ยกเว้นข้อ 7 ขั้น 3 ที่บอกไว้ ·
+พจนานุกรมจากหัวข้อ ① (<code>alpha</code> <code>dta</code> <code>e</code>) + ของบทที่ 11</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · ปัญหาของ $\alpha$ ที่ขึ้นกับตำแหน่ง &nbsp;<span class="hint">($\delta\phi = i\,\texttt{alpha}\,\texttt{phi}$)</span></h3>
+  <ol class="steps">
+    <li data-answer="i*alpha*pt" data-alt="ialphapt|i*pt*alpha|alpha*i*pt|i*α*pt|iαpt">
+      <p><strong>ขั้น 1</strong> — ถ้า $\alpha$ <strong>คงที่</strong> ⇒ $\delta(\texttt{pt}) = \partial_t(i\,\texttt{alpha}\,\texttt{phi})$ เท่ากับอะไร</p>
+      <div class="ans"><input type="text" placeholder="เช่น  i*alpha*pt" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>i*alpha*pt</code> — $\alpha$ คงที่ ⇒ ดึงออกมานอกอนุพันธ์ได้ ·
+      <strong>รูปเดียวกับ $\delta\phi$ แค่ <code>phi</code> กลายเป็น <code>pt</code></strong></p>
+    </li>
+    <li data-answer="i*dta*phi" data-alt="idtaphi|i*phi*dta|dta*i*phi|phi*i*dta">
+      <p><strong>ขั้น 2</strong> — ถ้า $\alpha$ <strong>ขึ้นกับเวลา</strong> ⇒ กฎผลคูณให้พจน์เพิ่มมาอีกหนึ่ง ·
+      <strong>พจน์ที่เพิ่มมา</strong>คืออะไร &nbsp;<span class="hint">(อนุพันธ์ไปโดน $\alpha$)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  i*dta*phi" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>i*dta*phi</code> — <strong>นี่คือพจน์เกิน</strong> ที่ทำให้ $\mathcal{L}$ พัง</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ถ้า $\alpha$ คงที่ <code>dta</code> เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ ⇒ พจน์เกินหายไปเอง ⇒ <strong>บทที่ 11 คือกรณีพิเศษของบทนี้</strong></p>
+    </li>
+  </ol>
+  <p class="fb">ปัญหาทั้งหมดของบทนี้อยู่ในขั้น 2 — <strong>กฎผลคูณธรรมดา</strong>
+  ที่ให้สองพจน์ ทั้งที่เราอยากได้พจน์เดียว</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · ซ่อมด้วย $D_t\phi = \texttt{pt} - i\,e\,A_t\,\texttt{phi}$ &nbsp;<span class="hint">(และ $\delta A_t = \texttt{dta}/e$)</span></h3>
+  <ol class="steps">
+    <li data-answer="-i*dta*phi" data-alt="-idtaphi|−i*dta*phi|-i*phi*dta|-phi*i*dta|-dta*i*phi">
+      <p><strong>ขั้น 1</strong> — ชิ้นที่ $A_t$ ขนมา: $\;-i\,e\cdot(\delta A_t)\cdot\texttt{phi}\;$ เท่ากับอะไร
+      &nbsp;<span class="hint">(แทน $\delta A_t = \texttt{dta}/e$ แล้ว $e$ ตัดกัน)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  -i*dta*phi" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>-i*dta*phi</code> — <strong>ลบของพจน์เกินในข้อ 1 ขั้น 2 พอดี</strong></p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — พจน์เกิน ($\,i\,\texttt{dta}\,\texttt{phi}\,$) บวกกับชิ้นของ $A_t$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — หักล้างกันหมด</p>
+    </li>
+    <li data-answer="i*alpha" data-alt="ialpha|alpha*i|i*α|iα">
+      <p><strong>ขั้น 3</strong> — ⇒ $\delta(D_t\phi) = (\;?\;)\cdot D_t\phi$ · ตัวคูณในวงเล็บคืออะไร</p>
+      <div class="ans"><input type="text" placeholder="เช่น  i*alpha" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>i*alpha</code> — <strong>ตัวคูณเดียวกับ $\delta\phi = (i\,\alpha)\,\phi$</strong>
+      ⇒ $D_t\phi$ แปลงตัวเหมือน $\phi$ เป๊ะ · นั่นคือความหมายของคำว่า "โคแวเรียนต์"</p>
+    </li>
+  </ol>
+  <p class="fb">$A_\mu$ ไม่ได้มาจากไหนเลยนอกจาก "ต้องมีอะไรสักอย่างมาดูดพจน์เกินทิ้ง" —
+  <strong>แล้วมันกลายเป็นแสง</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · $A_t$ ต้องเปลี่ยนเท่าไรถึงจะดูดพจน์เกินได้พอดี</h3>
+  <ol class="steps">
+    <li data-answer="dta/e" data-alt="1/e*dta|dta*1/e|(1/e)dta|(1/e)*dta|dta/e*1">
+      <p><strong>ขั้น 1</strong> — ต้องการให้ $\;-i\,e\cdot(\delta A_t)\cdot\texttt{phi} = -i\,\texttt{dta}\,\texttt{phi}\;$
+      ⇒ $\delta A_t$ เท่ากับอะไร</p>
+      <div class="ans"><input type="text" placeholder="เช่น  dta/e" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>dta/e</code> — หาร $e$ ออกจากทั้งสองข้าง ·
+      <strong>นี่คือที่มาของ $\tfrac{1}{e}$ ในสมการ (2)</strong> ไม่ได้ตั้งเอาเอง</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 2</strong> — $e = 2$, $\;\texttt{dta} = 6$ ⇒ $\delta A_t$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$6/2 = 3$</p>
+    </li>
+  </ol>
+  <p class="fb">ข้อนี้ผลิตการแปลงของ $A_\mu$ ออกมาจากความต้องการเดียว คือ
+  "ต้องหักล้างพจน์เกินพอดี" — <strong>สมการ (2) ไม่ได้ท่อง มันคำนวณได้</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · สนามแม่เหล็กไฟฟ้าไม่รู้สึกการแปลงนี้ &nbsp;$F_{tx} = \partial_t A_x - \partial_x A_t$</h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 1</strong> — $\partial_t(\delta A_x) = \tfrac1e\,\partial_t\partial_x\alpha$ และ
+      $\partial_x(\delta A_t) = \tfrac1e\,\partial_x\partial_t\alpha$ · <strong>สองก้อนนี้ต่างกันเท่าไร</strong>
+      &nbsp;<span class="hint">(บทที่ 9: <code>ptx</code> = <code>pxt</code>)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — อนุพันธ์สลับลำดับได้ ⇒ สองก้อนเป็นตัวเดียวกัน</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — ⇒ $\delta F_{tx}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ · <strong>$F_{\mu\nu}$ ไม่เปลี่ยน</strong> ⇒ $-\tfrac14F^2$ ของบทแมกซ์เวลล์กับบทที่ 7
+      ใส่คู่กับ $|D\phi|^2$ ได้เลยโดยไม่ต้องแก้อะไร
+      <br>⇒ สนามไฟฟ้าและสนามแม่เหล็ก (ของที่วัดได้) ไม่เปลี่ยน ·
+      ที่เปลี่ยนคือ $A_\mu$ (ศักย์) ซึ่งวัดตรง ๆ ไม่ได้</p>
+    </li>
+  </ol>
+  <p class="fb">นี่คือเหตุผลที่แม่เหล็กไฟฟ้าต้องเขียนด้วย $F$ ไม่ใช่ $A$ —
+  <strong>$A$ มีส่วนที่เปลี่ยนได้ตามใจโดยฟิสิกส์ไม่เปลี่ยน</strong> ส่วนนั้นเรียกว่า gauge</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · กระจาย $(D_t\phi)^*(D_t\phi) = (\texttt{pts} + i e A_t\,\texttt{phis})(\texttt{pt} - i e A_t\,\texttt{phi})$</h3>
+  <ol class="steps">
+    <li data-answer="pts*pt" data-alt="pt*pts|ptspt|ptpts">
+      <p><strong>ขั้น 1</strong> — พจน์ที่<strong>ไม่มี</strong> $A_t$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  pts*pt" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>pts*pt</code> — <strong>พจน์แรกของ $\mathcal{L}$ ในบทที่ 11 ตัวเดิม</strong></p>
+    </li>
+    <li data-answer="-e" data-alt="−e|-1*e|-e*1">
+      <p><strong>ขั้น 2</strong> — พจน์เชิงเส้นใน $A_t$ คือ $\;-i e A_t\,(\texttt{phi}\cdot\texttt{pts} - \texttt{phis}\cdot\texttt{pt})\;$
+      ซึ่งเขียนเป็น $(\;?\;)\cdot A_t\cdot j^t$ ได้ โดย $j^t = i(\texttt{phi}\cdot\texttt{pts} - \texttt{phis}\cdot\texttt{pt})$
+      ของบทที่ 11 · ตัวคูณในวงเล็บคืออะไร</p>
+      <div class="ans"><input type="text" placeholder="เช่น  -e" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>-e</code> — $-ie\,A_t(\ldots) = -e\,A_t\cdot i(\ldots) = -e\,A_t\,j^t$
+      <br>⇒ <strong>แสงคูณกับกระแสประจุ</strong> — $j^t$ ตัวที่แบเพิ่งหามาในบทที่ 11</p>
+    </li>
+    <li data-answer="12" data-alt="สิบสอง|12.0">
+      <p><strong>ขั้น 3</strong> — พจน์กำลังสอง $\;e^2 A_t^2\,\texttt{phis}\cdot\texttt{phi}\;$
+      ที่ $e = 2$, $A_t = 1$, $\texttt{phis}\cdot\texttt{phi} = 3$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4 \times 1 \times 3 = 12$ — พจน์นี้<strong>ไม่มีในบทที่ 11</strong>
+      มันมากับ $D$ เท่านั้น</p>
+    </li>
+  </ol>
+  <p class="fb">สามพจน์นี้คือสมการ (3) ทั้งหมด — <strong>ของเดิม + แสงคุยกับประจุ +
+  พจน์ที่มีแสงสองตัว</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · ใส่ตัวเลขลงในพจน์คู่ควบ $\;-e\,A_\mu\,j^\mu = -e\,(A_t\,j^t + A_x\,j^x)$</h3>
+  <ol class="steps">
+    <li data-answer="-30" data-alt="−30|-30.0">
+      <p><strong>ขั้น 1</strong> — $e = 2$, $A_t = 3$, $j^t = 5$, $A_x = 0$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-2 \times 3 \times 5 = -30$</p>
+    </li>
+    <li data-answer="-11" data-alt="−11|-11.0">
+      <p><strong>ขั้น 2</strong> — $e = 1$, $A_t = 2$, $j^t = 4$, $A_x = 1$, $j^x = 3$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-1 \times (2\cdot4 + 1\cdot3) = -11$ ·
+      <strong>ผลรวมสองช่องเหมือนไดเวอร์เจนซ์ แต่เป็นคูณแล้วบวก ไม่ใช่อนุพันธ์แล้วบวก</strong></p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — สนาม<strong>จริง</strong> ($j^\mu = 0$ ตามบทที่ 11) ที่ $e = 5$, $A_t = 9$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>ไม่ว่า $A$ จะแรงแค่ไหน สนามที่ไม่มีประจุไม่รู้สึกแสง</strong></p>
+    </li>
+  </ol>
+  <p class="fb">ขั้น 3 คือบทที่ 11 กับบทนี้ต่อกัน — <strong>ไม่มีประจุ ⇒ ไม่มีกระแส ⇒
+  ไม่คุยกับแสง</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 7 · นับมิติ (เลขยกกำลังของมวล ใน 3+1 มิติ)</h3>
+  <ol class="steps">
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 1</strong> — $D_\mu = \partial_\mu - ieA_\mu$ สองพจน์ต้องมีมิติเท่ากัน ·
+      $[\partial_\mu] = 1$ ⇒ $[e\,A_\mu]$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — บวกกันได้ต้องมีมิติเท่ากัน</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — $[A_\mu] = 1$ (บท 0018) ⇒ $[e]$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 - 1 = 0$ — <strong>ประจุไร้มิติใน 3+1 มิติ</strong> ·
+      ตรงกับบทที่ 11 ที่ได้ $[Q] = 0$ ⇒ สองบทยืนยันกันเอง</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 3</strong> — ใน <strong>3+1 มิติ</strong> $A_\mu$ มีกี่ส่วนประกอบ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4$ — หนึ่งช่องต่อหนึ่งทิศที่ $\alpha$ เปลี่ยนได้ ($\partial_\mu\alpha$ มี $4$ ช่อง)</p>
+    </li>
+  </ol>
+  <p class="fb">การนับมิติยังเป็นตัวตรวจงานที่เร็วที่สุด — <strong>และคราวนี้มันบอกของ
+  ที่เป็นฟิสิกส์จริง</strong>: ความแรงของแรงไฟฟ้าเป็นตัวเลขล้วน ไม่มีหน่วย</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา ·
+  <strong>นี่คือโครงของทุกทฤษฎีแรงในแบบจำลองมาตรฐาน</strong> —
+  เปลี่ยนแค่กลุ่มจาก $U(1)$ เป็น $SU(2)$ หรือ $SU(3)$
+  <div class="nav">
+    <a href="./0022-u1charge.html">← บทที่ 11 · ประจุ</a>
+    <a href="./0021-onshell.html">บทที่ 10 · on-shell</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>

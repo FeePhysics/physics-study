@@ -164,6 +164,24 @@ HAND = [
     ("0022-u1charge.html", "i*phi*pts", "phi*pts*i", "right"),
     ("0022-u1charge.html", "-i*phis*pt", "−i*phis*pt", "right"),
     ("0022-u1charge.html", "-2i", "-2*i", "right"),
+
+    # ── บทที่ 12 · gauge — ความพลาดที่เดาได้จากโครงของบท ────────────
+    ("0023-gauge.html", "i*dta*phi", "i*alpha*pt", "wrong"),  # ตอบพจน์ปกติแทนพจน์เกิน
+    ("0023-gauge.html", "i*dta*phi", "i*alpha*phi", "wrong"), # ลืมว่าอนุพันธ์ไปโดน alpha
+    ("0023-gauge.html", "-i*dta*phi", "i*dta*phi", "wrong"),  # เครื่องหมายของชิ้น A
+    ("0023-gauge.html", "i*alpha", "i*alpha*phi", "wrong"),   # ตอบทั้ง delta phi แทนตัวคูณ
+    ("0023-gauge.html", "dta/e", "e*dta", "wrong"),           # คูณแทนหาร
+    ("0023-gauge.html", "dta/e", "dta", "wrong"),             # ลืม 1/e
+    ("0023-gauge.html", "-e", "e", "wrong"),                  # เครื่องหมายของการคู่ควบ
+    ("0023-gauge.html", "-e", "-i*e", "wrong"),               # ลืมว่า i ไปรวมเป็น j
+    ("0023-gauge.html", "3", "12", "wrong"),                  # e*dta แทน dta/e
+    ("0023-gauge.html", "-30", "30", "wrong"),
+    ("0023-gauge.html", "-11", "-8", "wrong"),                # คิดแค่ช่อง t ลืมช่อง x
+    ("0023-gauge.html", "12", "6", "wrong"),                  # ลืมยกกำลัง e
+    # ฝั่งรับ
+    ("0023-gauge.html", "i*alpha*pt", "i*α*pt", "right"),
+    ("0023-gauge.html", "dta/e", "(1/e)*dta", "right"),
+    ("0023-gauge.html", "pts*pt", "pt*pts", "right"),
 ]
 
 
