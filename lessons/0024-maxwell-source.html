@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 13 · ประจุสร้างแสง</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 13 · ประจุสร้างแสง</h1>
+<p class="meta">บทเรียน · ~20 นาที · สมการการเคลื่อนที่ของ $A_\mu$ เอง = แมกซ์เวลล์ที่มีแหล่ง</p>
+
+<div class="key">
+  <p style="margin-top:0"><strong>6/7</strong> — จุดเดียวที่พลาดคือข้อ 6 ขั้น 2 ตอบ $11$ แทน $-11$ ·
+  <strong>โครงถูกหมด</strong> ($2\cdot4 + 1\cdot3 = 11$ คูณแล้วบวกสองช่องถูก) ขาดแค่ลบข้างหน้า</p>
+  <p style="margin-bottom:0">ขั้น 1 ที่ $e = 2$ ได้ $-30$ ถูก · ลบหายตอน $e = 1$ —
+  <strong>$-e$ กลายเป็น $-1$ ซึ่งดูเหมือนไม่ได้คูณอะไร</strong> ⇒ ข้อ 3 ของบทนี้ถามลบตัวเดิม
+  ที่ $e = 1$ อีกรอบ</p>
+</div>
+
+<h2>① ของที่บทที่ 12 ยังไม่ได้ถาม</h2>
+
+<p>บทที่ 12 ได้ลากรองจ์ที่มี $A_\mu$ แล้ว แต่ใช้ $A$ เป็นแค่ตัวซ่อมสมมาตร ·
+<strong>$A$ เองก็เป็นสนาม ⇒ ต้องมีสมการการเคลื่อนที่ของมัน</strong> — ทำ Euler–Lagrange
+เทียบ $A$ แบบเดียวกับที่ทำกับ $\phi$ มาตลอด</p>
+
+<div class="eq" data-eqno="1">$$ \mathcal{L} \;=\; \underbrace{-\tfrac14 F_{\mu\nu}F^{\mu\nu}}_{\text{แสงเดินเอง}} \;+\; \underbrace{|D\phi|^2 - m^2|\phi|^2}_{\text{บทที่ 12}} $$</div>
+
+<table>
+<thead><tr><th>เขียน</th><th>คือ</th></tr></thead>
+<tbody>
+<tr><td><code>F</code></td><td>$F_{tx} = \partial_t A_x - \partial_x A_t$ — <strong>ใน 1+1 มิติ $F$ มีช่องเดียว</strong></td></tr>
+<tr><td><code>jt</code></td><td>$j^t$ ของบทที่ 11 (ตอนที่ยังไม่มี $A$)</td></tr>
+<tr><td><code>e</code></td><td>ประจุ (บทที่ 12)</td></tr>
+</tbody>
+</table>
+
+<p>ใน 1+1 มิติ $\;-\tfrac14 F_{\mu\nu}F^{\mu\nu} = \tfrac12 F^2\;$
+<span class="src">(ตรวจด้วย <code>sympy</code> พร้อมยกดัชนีด้วย $g = \mathrm{diag}(-1,+1)$ —
+<code>scripts/verify/0025_maxwell_source.py</code>)</span></p>
+
+<h2>② Euler–Lagrange เทียบ $A_t$ — สูตรเดิมทุกตัวอักษร</h2>
+
+<div class="eq" data-eqno="2">$$ \partial_x\!\left(\frac{\partial\mathcal{L}}{\partial(\partial_x A_t)}\right) \;-\; \frac{\partial\mathcal{L}}{\partial A_t} \;=\; 0 $$</div>
+
+<table>
+<thead><tr><th>ชิ้น</th><th>มาจาก</th><th>ได้</th></tr></thead>
+<tbody>
+<tr><td>$\dfrac{\partial\mathcal{L}}{\partial(\partial_x A_t)}$</td><td>$\tfrac12F^2$ · มี $-\partial_x A_t$ อยู่ใน $F$</td><td>$-F$</td></tr>
+<tr><td>$\dfrac{\partial\mathcal{L}}{\partial A_t}$</td><td>พจน์คู่ควบ $-e A_t j^t$ ของบทที่ 12</td><td>$-e\,j^t$</td></tr>
+</tbody>
+</table>
+
+<div class="key">
+  <div class="eq" data-eqno="3">$$ \partial_x F \;=\; e\,J^t \qquad\qquad \partial_t F \;=\; -\,e\,J^x $$</div>
+  <p style="margin-bottom:0"><strong>นี่คือสมการแมกซ์เวลล์ใน 1+1 มิติ</strong> — ตัวแรกคือกฎของเกาส์
+  (ความชันของ $F$ ถูกกำหนดโดยความหนาแน่นประจุ · ใน 1+1 มิติ $F$ คือสนามไฟฟ้าตัวเดียวที่มี) ·
+  <strong>ด้านซ้ายมาจากแสง ด้านขวามาจากประจุ</strong></p>
+</div>
+
+<h2>③ $J$ ไม่ใช่ $j$ เป๊ะ — มันคือ $j$ ที่เปลี่ยน $\partial$ เป็น $D$</h2>
+
+<p>พจน์ $e^2A_t^2|\phi|^2$ ของบทที่ 12 ก็มี $A_t$ อยู่ ⇒ อนุพันธ์เทียบ $A_t$ ได้ชิ้นเพิ่มมา:</p>
+
+<div class="eq" data-eqno="4">$$ J^t \;=\; j^t \;-\; 2\,e\,A_t\,|\phi|^2 \;=\; i\big(\phi\,(D_t\phi)^* - \phi^*\,D_t\phi\big) $$</div>
+
+<p><strong>กฎเดิมของบทที่ 12 ทำงานอีกครั้ง: ทุกที่ที่เคยมี $\partial$ ให้ใส่ $D$</strong> ·
+เมื่อ $A = 0$ ก็กลับเป็น $j^t$ ของบทที่ 11 พอดี
+<span class="src">ตรวจแล้วว่าทั้งสองช่องได้ $\partial\mathcal{L}/\partial A_\mu = -e\,J^\mu$
+— ⚠️ ตอนเขียนเดาช่อง $x$ ไว้เป็น $+e\,J^x$ แล้ว <code>sympy</code> ตีกลับ</span></p>
+
+<h2>④ แมกซ์เวลล์<em>บังคับ</em>ให้ประจุอนุรักษ์</h2>
+
+<p>หาอนุพันธ์ด้านซ้ายของสมการ (3) ไขว้กัน: $\;\partial_t(\partial_x F) - \partial_x(\partial_t F)\;$
+— <strong>เป็นศูนย์เสมอ</strong> เพราะอนุพันธ์สลับลำดับได้ (<code>ptx</code> = <code>pxt</code>
+ของบทที่ 9) <em>ไม่ต้องใช้สมการการเคลื่อนที่อะไรเลย</em></p>
+
+<p>แทนด้านขวาเข้าไป: $\;e\,\partial_t J^t - (-e\,\partial_x J^x) = e\,(\partial_t J^t + \partial_x J^x) = 0$</p>
+
+<div class="key">
+  <p style="margin:0"><strong>ศูนย์สองแบบอีกครั้ง</strong> — ด้านซ้ายเป็นศูนย์
+  <strong>off-shell</strong> (เป็นเอง) ⇒ ด้านขวาต้องเป็นศูนย์ด้วย ·
+  แต่ $\partial_\mu J^\mu$ เป็นศูนย์แค่ <strong>on-shell</strong>
+  (วัดแล้วว่า off-shell ไม่เป็นศูนย์)
+  <br>⇒ <strong>สมการแมกซ์เวลล์จะเป็นจริงได้ก็ต่อเมื่อประจุอนุรักษ์</strong> ·
+  ถ้ามีประจุโผล่ขึ้นมาจากความว่างเปล่า สมการชุดนี้ขัดแย้งในตัวเอง</p>
+</div>
+
+<p class="hint">ที่ยังไม่แตะโดยตั้งใจ: รูป 3+1 มิติเต็ม ซึ่ง $F$ มี 6 ช่อง
+และแยกได้เป็นสมการแมกซ์เวลล์สองข้อที่มีแหล่ง (ยังไม่ได้ derive เครื่องหมายด้วย
+<code>sympy</code> จึงไม่เขียนสูตรไว้ตรงนี้) ·
+ใน 1+1 มี $F$ ช่องเดียว จึงเหลือแค่สองสมการที่เห็นอยู่ และไม่มีสนามแม่เหล็ก</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta"><strong>ทุกข้ออยู่ใน 1+1 มิติ</strong> ยกเว้นข้อ 7 ขั้น 2-3 ที่บอกไว้ ·
+พจนานุกรม <code>F</code> <code>jt</code> <code>e</code></p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · ลากรองจ์ของแสงใน 1+1 มิติ &nbsp;$-\tfrac14 F_{\mu\nu}F^{\mu\nu} = \tfrac12 F^2$</h3>
+  <ol class="steps">
+    <li data-answer="8" data-alt="แปด|8.0">
+      <p><strong>ขั้น 1</strong> — ที่ $F = 4$ ค่าของ $\tfrac12 F^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12(16) = 8$</p>
+    </li>
+    <li data-answer="F" data-alt="1*F|F*1">
+      <p><strong>ขั้น 2</strong> — $\dfrac{\partial}{\partial F}\big(\tfrac12F^2\big)$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  F" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>F</code> — เหมือน $\partial(\tfrac12\dot q^2)/\partial\dot q = \dot q$ ของบทแรก ๆ</p>
+    </li>
+  </ol>
+  <p class="fb">ลากรองจ์ของแสงมีรูปเดียวกับพลังงานจลน์ — <strong>ครึ่งหนึ่งของกำลังสอง</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · ชิ้นแรกของสมการ (2) &nbsp;<span class="hint">($F = \partial_t A_x - \partial_x A_t$)</span></h3>
+  <ol class="steps">
+    <li data-answer="-1" data-alt="−1|-1.0">
+      <p><strong>ขั้น 1</strong> — $\dfrac{\partial F}{\partial(\partial_x A_t)}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-1$ — $\partial_x A_t$ อยู่ใน $F$ พร้อมเครื่องหมายลบ</p>
+    </li>
+    <li data-answer="-F" data-alt="−F|-1*F|-F*1">
+      <p><strong>ขั้น 2</strong> — ⇒ $\dfrac{\partial\mathcal{L}}{\partial(\partial_x A_t)}$
+      &nbsp;<span class="hint">(กฎลูกโซ่: ข้อ 1 ขั้น 2 คูณ ขั้น 1)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  -F" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>-F</code> · $F \times (-1)$</p>
+    </li>
+  </ol>
+  <p class="fb">สองขั้นนี้คือกฎลูกโซ่ธรรมดา — <strong>ลบมาจากรูปของ $F$ ไม่ได้มาจากเมตริก</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · ชิ้นที่สองของสมการ (2) — ลบตัวที่หายไปในบทที่ 12</h3>
+  <ol class="steps">
+    <li data-answer="-e*jt" data-alt="-ejt|−e*jt|-jt*e|-1*e*jt">
+      <p><strong>ขั้น 1</strong> — $\dfrac{\partial}{\partial A_t}\big(-e\,A_t\,j^t\big)$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  -e*jt" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>-e*jt</code> — <strong>ลบติดมากับ $e$ ไม่ได้หายไปไหน</strong></p>
+    </li>
+    <li data-answer="-4" data-alt="−4|-4.0">
+      <p><strong>ขั้น 2</strong> — ที่ $e = 1$, $j^t = 4$ ⇒ ค่าของขั้น 1</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-1 \times 4 = -4$ · <strong>$e = 1$ ทำให้ $-e$ เหลือแค่ $-1$
+      แต่ลบยังอยู่</strong> — จุดเดียวกับที่หายไปในบทที่ 12 ข้อ 6 ขั้น 2</p>
+    </li>
+    <li data-answer="-7" data-alt="−7|-7.0">
+      <p><strong>ขั้น 3</strong> — ที่ $e = 1$, $j^t = 7$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-7$</p>
+    </li>
+  </ol>
+  <p class="fb">เทคนิคจับตัวเอง: <strong>เขียน $-e$ เป็น $(-1)\times e$ เสมอก่อนแทนค่า</strong>
+  ⇒ พอ $e = 1$ ลบยังนั่งอยู่หน้าวงเล็บให้เห็น</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · ประกอบสมการ (2) ⇒ กฎของเกาส์ &nbsp;<span class="hint">(ยังไม่นับชิ้นจาก $e^2A^2$ — ดูข้อ 5)</span></h3>
+  <ol class="steps">
+    <li data-answer="e*jt" data-alt="ejt|jt*e|e·jt">
+      <p><strong>ขั้น 1</strong> — $\partial_x(-F) - (-e\,j^t) = 0$ ⇒ $\partial_x F$ เท่ากับอะไร</p>
+      <div class="ans"><input type="text" placeholder="เช่น  e*jt" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>e*jt</code> — ลบสองตัวหักล้างกัน · <strong>ความชันของสนาม = ประจุ</strong></p>
+    </li>
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 2</strong> — ที่ $e = 2$, $j^t = 3$ ⇒ $\partial_x F$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$6$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ที่ที่<strong>ไม่มีประจุ</strong> ($j^t = 0$) ⇒ $\partial_x F$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — สนามไม่เปลี่ยนตามที่ในบริเวณที่ไม่มีประจุ ·
+      <strong>ประจุคือที่มาของความชันของสนาม</strong></p>
+    </li>
+  </ol>
+  <p class="fb">ด้านซ้ายมาจาก $\tfrac12F^2$ ด้านขวามาจากพจน์คู่ควบ —
+  <strong>สองพจน์คนละบทมาเจอกันในสมการเดียว</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · ชิ้นเพิ่มจาก $e^2A_t^2|\phi|^2$ &nbsp;$J^t = j^t - 2\,e\,A_t\,|\phi|^2$</h3>
+  <ol class="steps">
+    <li data-answer="12" data-alt="สิบสอง|12.0">
+      <p><strong>ขั้น 1</strong> — $2\,e\,A_t\,|\phi|^2$ ที่ $e = 1$, $A_t = 2$, $|\phi|^2 = 3$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 1 \times 2 \times 3 = 12$ · เลข $2$ ข้างหน้ามาจากอนุพันธ์ของ $A_t^2$</p>
+    </li>
+    <li data-answer="-7" data-alt="−7|-7.0">
+      <p><strong>ขั้น 2</strong> — ถ้า $j^t = 5$ ที่จุดเดียวกัน ⇒ $J^t$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5 - 12 = -7$ — <strong>ต่างจาก $j^t$ มาก</strong> เมื่อ $A$ แรง ·
+      นี่คือกระแสที่เปลี่ยน $\partial$ เป็น $D$ แล้ว</p>
+    </li>
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 3</strong> — ถ้าสนามแสงหายไป ($A_t = 0$) แต่ $j^t = 5$ เท่าเดิม ⇒ $J^t$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5$ — <strong>กลับเป็น $j^t$ ของบทที่ 11 พอดี</strong></p>
+    </li>
+  </ol>
+  <p class="fb">ข้อนี้คือเหตุผลที่แหล่งของแมกซ์เวลล์เขียนเป็น $J$ ไม่ใช่ $j$ —
+  <strong>กฎ "เปลี่ยน $\partial$ เป็น $D$" ของบทที่ 12 ใช้กับกระแสด้วย</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · แมกซ์เวลล์บังคับให้ประจุอนุรักษ์</h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 1</strong> — $\partial_t(\partial_x F) - \partial_x(\partial_t F)$
+      &nbsp;<span class="hint">(ไม่ต้องรู้ว่า $F$ คืออะไร · บทที่ 9: <code>ptx</code> = <code>pxt</code>)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>off-shell</strong> · เป็นศูนย์เองจากการสลับลำดับอนุพันธ์</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — แทน $\partial_x F = e\,J^t$ และ $\partial_t F = -e\,J^x$ ลงในขั้น 1
+      ได้ $\;e\,(\partial_t J^t + \partial_x J^x)\;$ · ค่าของมันต้องเท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — เพราะมันเท่ากับขั้น 1 ⇒ <strong>ประจุอนุรักษ์</strong></p>
+    </li>
+  </ol>
+  <p class="fb">ด้านซ้ายศูนย์ <strong>off-shell</strong> ⇒ ด้านขวาต้องศูนย์ ·
+  แต่ $\partial_\mu J^\mu$ ศูนย์แค่ <strong>on-shell</strong> — สมการแมกซ์เวลล์จะจริงได้ก็ต่อเมื่อ
+  สนามประจุเดินตามสมการของมันด้วย</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 7 · ใช้ผลที่ได้</h3>
+  <ol class="steps">
+    <li data-answer="-5" data-alt="−5|-5.0">
+      <p><strong>ขั้น 1</strong> — ที่จุดหนึ่ง $\partial_t J^t = 5$ ⇒ $\partial_x J^x$ ต้องเท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-5$ — ประจุเพิ่มที่จุดนี้ได้ทางเดียวคือไหลเข้ามา</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 2</strong> — ใน <strong>3+1 มิติ</strong> $[F_{\mu\nu}] = [\partial] + [A]$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + 1 = 2$ ⇒ $[F^2] = 4 = [\mathcal{L}]$ ✓</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 3</strong> — ใน <strong>3+1 มิติ</strong> $[\partial F] = 3$ และ $[e] = 0$
+      (บทที่ 12) ⇒ $[J]$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3$ — <strong>ตรงกับ $[j^\mu] = 3$ ของบทที่ 11</strong> ⇒ สามบทตรวจกันเอง</p>
+    </li>
+  </ol>
+  <p class="fb">การนับมิติเช็คได้ว่าบทที่ 11, 12, 13 ใช้ของชุดเดียวกันจริง —
+  <strong>ถ้ามิติไม่ตรงกันที่ไหน แปลว่าสูตรใดสูตรหนึ่งผิด</strong></p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา ·
+  <strong>ถึงตรงนี้วงครบแล้ว</strong>: ประจุมาจากสมมาตร (บท 11) · แสงมาจากการให้สมมาตรนั้น
+  เป็นเฉพาะที่ (บท 12) · ประจุสร้างแสง และแสงบังคับให้ประจุอนุรักษ์ (บทนี้)
+  <div class="nav">
+    <a href="./0023-gauge.html">← บทที่ 12 · แสงมาจากไหน</a>
+    <a href="./0022-u1charge.html">บทที่ 11 · ประจุ</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>

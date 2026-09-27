@@ -182,6 +182,18 @@ HAND = [
     ("0023-gauge.html", "i*alpha*pt", "i*α*pt", "right"),
     ("0023-gauge.html", "dta/e", "(1/e)*dta", "right"),
     ("0023-gauge.html", "pts*pt", "pt*pts", "right"),
+
+    # ── บทที่ 13 · ลบของ -e ที่หายไปจริงในบทที่ 12 (ตอบ 11 แทน -11) ─────
+    ("0024-maxwell-source.html", "-4", "4", "wrong"),         # ลบหายตอน e = 1 (คำตอบจริงรอบก่อน)
+    ("0024-maxwell-source.html", "-7", "7", "wrong"),
+    ("0024-maxwell-source.html", "-e*jt", "e*jt", "wrong"),
+    ("0024-maxwell-source.html", "e*jt", "-e*jt", "wrong"),   # ลืมว่าลบสองตัวหักล้างกัน
+    ("0024-maxwell-source.html", "-F", "F", "wrong"),         # ลืมลบจากรูปของ F
+    ("0024-maxwell-source.html", "-1", "1", "wrong"),
+    ("0024-maxwell-source.html", "12", "6", "wrong"),         # ลืม 2 จากอนุพันธ์ของ A^2
+    ("0024-maxwell-source.html", "-5", "5", "wrong"),
+    ("0024-maxwell-source.html", "8", "16", "wrong"),         # ลืม 1/2
+    ("0024-maxwell-source.html", "-e*jt", "-jt*e", "right"),
 ]
 
 
