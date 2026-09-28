@@ -194,6 +194,19 @@ HAND = [
     ("0024-maxwell-source.html", "-5", "5", "wrong"),
     ("0024-maxwell-source.html", "8", "16", "wrong"),         # ลืม 1/2
     ("0024-maxwell-source.html", "-e*jt", "-jt*e", "right"),
+
+    # ── บทที่ 14 · Yang–Mills — ความพลาดที่เดาได้ ─────────────────────
+    ("0025-nonabelian.html", "-1", "1", "wrong"),           # ลบลำดับกลับ (BA - AB)
+    ("0025-nonabelian.html", "i", "-i", "wrong"),
+    ("0025-nonabelian.html", "-i", "i", "wrong"),
+    ("0025-nonabelian.html", "2i", "0", "wrong"),           # นึกว่าคอมมิวต์กัน
+    ("0025-nonabelian.html", "2i", "2", "wrong"),           # ลืม i
+    ("0025-nonabelian.html", "2", "-2", "wrong"),           # -i*2i ผิดเครื่องหมาย
+    ("0025-nonabelian.html", "-2", "2", "wrong"),
+    ("0025-nonabelian.html", "8", "9", "wrong"),            # ลืมตัดเทรซ
+    ("0025-nonabelian.html", "3", "4", "wrong"),
+    ("0025-nonabelian.html", "2i", "2*i", "right"),
+    ("0025-nonabelian.html", "-i", "−i", "right"),
 ]
 
 

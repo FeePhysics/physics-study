@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 14 · แรงที่คุยกับตัวเอง</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 14 · แรงที่คุยกับตัวเอง</h1>
+<p class="meta">บทเรียน · ~25 นาที · ให้เฟสเป็นเมทริกซ์ ⇒ Yang–Mills</p>
+
+<div class="key">
+  <p style="margin-top:0"><strong>7/7 · ลบของ $-e$ ที่ $e = 1$ รอดแล้ว</strong> (ข้อ 3 ผ่านทั้งสองค่า) —
+  และวงของแม่เหล็กไฟฟ้าครบ: ประจุ (11) → แสง (12) → ประจุสร้างแสง (13)</p>
+  <p style="margin-bottom:0">บทที่ 12 ทิ้งไว้ว่า "เปลี่ยนกลุ่มจาก $U(1)$ เป็น $SU(2)$ หรือ $SU(3)$
+  แล้ว $A_\mu$ จะ<em>คุยกับตัวเอง</em>ได้" · <strong>นี่คือบทนั้น</strong> —
+  โครงของแรงนิวเคลียร์ทั้งสองแรง และของ paper ใน hep-th ส่วนใหญ่</p>
+</div>
+
+<h2>① สิ่งเดียวที่เปลี่ยน: ลำดับการคูณเริ่มสำคัญ</h2>
+
+<p>บทที่ 11-13 หมุนเฟสด้วย $e^{i\alpha}$ ซึ่งเป็น<strong>ตัวเลข</strong> ·
+คราวนี้ให้ $\phi$ เป็น<strong>คอลัมน์สองช่อง</strong> และหมุนด้วย<strong>เมทริกซ์</strong> $2\times2$:</p>
+
+<div class="eq" data-eqno="1">$$ \phi = \begin{pmatrix}\phi_1\\ \phi_2\end{pmatrix} \;\to\; U\phi \;, \qquad U \approx \mathbb{1} + i\,\alpha \quad (\alpha \text{ เป็นเมทริกซ์ } 2\times 2) $$</div>
+
+<div class="warn">
+  <strong>ตัวเลขสลับที่คูณได้ เมทริกซ์ไม่ได้</strong> — ของใหม่ทั้งบทมาจากข้อเท็จจริงเดียวนี้
+  <br>นิยาม <strong>คอมมิวเทเตอร์</strong> $\;[A, B] = AB - BA\;$ ·
+  ตัวเลขได้ $0$ เสมอ · เมทริกซ์ส่วนใหญ่ไม่เป็นศูนย์
+</div>
+
+<h2>② อนุพันธ์โคแวเรียนต์ — รูปเดิม แต่ $A$ ต้องหมุนตามด้วย</h2>
+
+<p>ใช้รูปเดียวกับบทที่ 12 เปลี่ยนชื่อประจุเป็น $g$ และให้ $A_\mu$ เป็นเมทริกซ์ $2\times2$:</p>
+
+<div class="key">
+  <div class="eq" data-eqno="2">$$ D_\mu = \partial_\mu - i\,g\,A_\mu \qquad\qquad \delta A_\mu \;=\; \underbrace{\tfrac{1}{g}\,\partial_\mu\alpha}_{\text{บทที่ 12}} \;+\; \underbrace{i\,[\alpha, A_\mu]}_{\text{ใหม่}} $$</div>
+  <p style="margin-bottom:0"><strong>พจน์ใหม่เป็นศูนย์ถ้า $\alpha$ กับ $A$ เป็นตัวเลข</strong> ⇒
+  กลับเป็นบทที่ 12 พอดี · ถ้าเป็นเมทริกซ์ มันขาดไม่ได้</p>
+</div>
+
+<p class="src">ตรวจแล้วด้วย <code>sympy</code> ทั้งสองทาง: มีพจน์ใหม่ ⇒ $D(U\phi) = U\,D\phi$ ·
+ตัดพจน์ใหม่ทิ้ง ⇒ พัง — <code>scripts/verify/0026_nonabelian.py</code></p>
+
+<div class="key">
+  <p style="margin:0"><strong>ความหมายของพจน์ใหม่</strong> — แม้ $\alpha$ <em>คงที่ทั่วจักรวาล</em>
+  ($\partial\alpha = 0$) $A$ ก็ยังถูกหมุน $\;\delta A = i[\alpha, A]\;$
+  <br>⇒ <strong>$A$ รู้สึกการหมุนแบบเดียวกับที่ $\phi$ รู้สึก</strong> = $A$ มีประจุของตัวเอง ·
+  ต่างจากแสง ($U(1)$) ที่ไม่มีประจุ</p>
+</div>
+
+<h2>③ สนาม $F$ ได้พจน์คอมมิวเทเตอร์</h2>
+
+<p>นิยาม $F$ จาก $[D_t, D_x]\,\phi = -i\,g\,F\,\phi$ แล้วได้</p>
+
+<div class="eq" data-eqno="3">$$ F_{tx} \;=\; \partial_t A_x - \partial_x A_t \;-\; i\,g\,[A_t, A_x] $$</div>
+
+<p>สองพจน์แรกคือ $F$ ของบทที่ 12 ทุกตัวอักษร · พจน์ที่สามเป็นศูนย์ถ้า $A$ เป็นตัวเลข ·
+<strong>$F$ ไม่ได้ "ไม่เปลี่ยน" อีกต่อไป</strong> มันหมุนตาม $\delta F = i[\alpha, F]$ แต่
+$\operatorname{tr}(F^2)$ ไม่เปลี่ยน ⇒ ลากรองจ์ใช้ $-\tfrac12\operatorname{tr}(F_{\mu\nu}F^{\mu\nu})$
+<span class="src">(ทั้ง $\delta F$ และ $\delta\operatorname{tr}F^2 = 0$ ตรวจด้วย <code>sympy</code> แล้ว ·
+ตัวคูณหน้า $\operatorname{tr}$ ขึ้นกับการ normalise เมทริกซ์ ซึ่งบทนี้ยังไม่แตะ)</span></p>
+
+<h2>④ สองผลที่แม่เหล็กไฟฟ้าทำไม่ได้</h2>
+
+<table>
+<thead><tr><th></th><th>แม่เหล็กไฟฟ้า ($U(1)$)</th><th>Yang–Mills ($SU(2)$, $SU(3)$)</th></tr></thead>
+<tbody>
+<tr><td>$A$ คงที่ทุกที่</td><td>$F = 0$ เสมอ</td><td><strong>$F \neq 0$ ได้</strong> จากพจน์ $[A_t, A_x]$</td></tr>
+<tr><td>กำลังของ $A$ ใน $F^2$</td><td>$2$ เท่านั้น</td><td>$2, 3, 4$</td></tr>
+<tr><td>แปลว่า</td><td>แสงไม่ชนแสง</td><td><strong>สนามแรงคุยกับตัวเอง</strong></td></tr>
+</tbody>
+</table>
+
+<p>พจน์กำลัง $3$ และ $4$ ของ $A$ ในลากรองจ์คือ<strong>อันตรกิริยา</strong> —
+กลูออนชนกลูออนได้ · แสงชนแสงไม่ได้ (ในระดับคลาสสิก)
+<span class="src">นับกำลังด้วย <code>sympy</code> แล้ว: $\operatorname{tr}F^2$ มีกำลัง $\{2,3,4\}$ ·
+แบบอาบีเลียนมีแค่ $2$</span></p>
+
+<h2>⑤ มีกี่สนามแรง — นับพารามิเตอร์ของ $\alpha$</h2>
+
+<p>$\alpha$ ต้องเป็นเมทริกซ์ <strong>Hermitian</strong> (ให้ $U$ รักษาขนาดของ $\phi$) และ
+<strong>ไร้เทรซ</strong> (ส่วนที่มีเทรซคือ $U(1)$ เดิมที่แยกออกไปแล้ว) ·
+นับพารามิเตอร์จริงของเมทริกซ์ $n\times n$ แบบนี้:</p>
+
+<div class="eq" data-eqno="4">$$ \underbrace{n}_{\text{ทแยง (จริง)}} \;+\; \underbrace{2\cdot\tfrac{n(n-1)}{2}}_{\text{นอกทแยง (ซับซ้อน)}} \;-\; \underbrace{1}_{\text{ไร้เทรซ}} \;=\; n^2 - 1 $$</div>
+
+<p>หนึ่งพารามิเตอร์ = หนึ่งทิศที่หมุนได้ = <strong>หนึ่งสนามแรง</strong> ·
+$SU(2)$ ได้ $3$ · $SU(3)$ ได้ $8$ — <strong>นั่นคือจำนวนกลูออน</strong>
+<span class="src">(สูตรนับตรวจด้วยการนับตรง ๆ ใน <code>sympy</code> · การที่แรงเข้มใช้ $SU(3)$
+เป็นข้อเท็จจริงทางการทดลอง ไม่ใช่สิ่งที่บทนี้พิสูจน์)</span></p>
+
+<p class="hint">ที่ยังไม่แตะโดยตั้งใจ: สมการการเคลื่อนที่ของ $A$ แบบ non-abelian
+(แมกซ์เวลล์ที่มีพจน์คอมมิวเทเตอร์) · การ normalise เมทริกซ์ $T^a$ ·
+และคำถามว่าทำไมสนามพวกนี้ต้องไร้มวล แต่แรงอ่อนกลับมีมวล (กลไกฮิกส์)</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">เมทริกซ์เขียนเป็นแถว เช่น $[[0,1],[0,0]]$ = แถวแรก $(0,1)$ แถวสอง $(0,0)$ ·
+ช่อง $(1,2)$ = แถว 1 หลัก 2 · <code>i</code> คือหน่วยจินตภาพ</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · ลำดับการคูณ &nbsp;$A = [[0,1],[0,0]]$ · $B = [[0,0],[1,0]]$</h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 1</strong> — ตัวเลขก่อน: $\;3\cdot5 - 5\cdot3$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — ตัวเลขสลับที่คูณได้เสมอ</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 2</strong> — ช่อง $(1,1)$ ของ $AB$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — แถว 1 ของ $A$ คือ $(0,1)$ · หลัก 1 ของ $B$ คือ $(0,1)$ · $0\cdot0 + 1\cdot1$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ช่อง $(1,1)$ ของ $BA$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — แถว 1 ของ $B$ คือ $(0,0)$</p>
+    </li>
+    <li data-answer="-1" data-alt="−1|-1.0">
+      <p><strong>ขั้น 4</strong> — ช่อง $(2,2)$ ของ $[A, B] = AB - BA$
+      &nbsp;<span class="hint">($(AB)_{22} = 0$ · $(BA)_{22} = 1$)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0 - 1 = -1$ · ทั้งเมทริกซ์คือ $[[1,0],[0,-1]]$ — <strong>ไม่เป็นศูนย์</strong></p>
+    </li>
+  </ol>
+  <p class="fb">คอมมิวเทเตอร์วัดว่า "สลับลำดับแล้วต่างไปเท่าไร" ·
+  <strong>ทุกอย่างที่ใหม่ในบทนี้คือคอมมิวเทเตอร์ที่ไม่เป็นศูนย์</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · $A$ ถูกหมุนแม้ $\alpha$ คงที่ &nbsp;$\alpha = [[1,0],[0,-1]]$ · $A = [[0,1],[1,0]]$</h3>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — ช่อง $(1,2)$ ของ $[\alpha, A]$
+      &nbsp;<span class="hint">($(\alpha A)_{12} = 1$ · $(A\alpha)_{12} = -1$)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 - (-1) = 2$</p>
+    </li>
+    <li data-answer="-2" data-alt="−2|-2.0">
+      <p><strong>ขั้น 2</strong> — ช่อง $(2,1)$ ของ $[\alpha, A]$
+      &nbsp;<span class="hint">($(\alpha A)_{21} = -1$ · $(A\alpha)_{21} = 1$)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-1 - 1 = -2$ ⇒ $[\alpha, A] = [[0,2],[-2,0]] \neq 0$ ·
+      <strong>$A$ เปลี่ยนทั้งที่ $\partial\alpha = 0$</strong></p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ถ้า $\alpha = 7$ และ $A = 3$ เป็น<strong>ตัวเลข</strong> ⇒ $[\alpha, A]$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>แสงของบทที่ 12 ไม่ถูกหมุน</strong> ⇒ แสงไม่มีประจุ</p>
+    </li>
+  </ol>
+  <p class="fb">ขั้น 2 กับขั้น 3 คือความต่างระหว่างกลูออนกับโฟตอนทั้งหมด —
+  <strong>ตัวหนึ่งถูกหมุน (มีประจุ) อีกตัวไม่ถูกหมุน (ไม่มีประจุ)</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · ส่วนที่เหมือนบทที่ 12 &nbsp;$\delta A_t = \tfrac1g\,\partial_t\alpha + i[\alpha, A_t]$</h3>
+  <ol class="steps">
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 1</strong> — ถ้า $[\alpha, A_t] = 0$ และ $g = 2$, $\partial_t\alpha = 6$ ⇒ $\delta A_t$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$6/2 = 3$ — <strong>เลขเดียวกับบทที่ 12 ข้อ 3 ขั้น 2</strong></p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — ถ้า $\alpha$ คงที่ ($\partial_t\alpha = 0$) และ $[\alpha, A_t] = 0$ ⇒ $\delta A_t$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — ต้องมีอย่างใดอย่างหนึ่งไม่เป็นศูนย์ $A$ ถึงจะเปลี่ยน</p>
+    </li>
+  </ol>
+  <p class="fb">สมการ (2) มีสองพจน์ที่เป็นอิสระกัน — <strong>ตัวแรกมาจาก $\alpha$ ขึ้นกับตำแหน่ง
+  ตัวที่สองมาจาก $\alpha$ เป็นเมทริกซ์</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · $F$ ที่ไม่เป็นศูนย์ทั้งที่ $A$ คงที่ &nbsp;<span class="hint">($A_t = [[0,1],[1,0]]$ ·
+  $A_x = [[0,-i],[i,0]]$ · $g = 1$ · $\partial A = 0$ ทุกที่)</span></h3>
+  <ol class="steps">
+    <li data-answer="i" data-alt="1i|i*1">
+      <p><strong>ขั้น 1</strong> — ช่อง $(1,1)$ ของ $A_t A_x$
+      &nbsp;<span class="hint">(แถว $(0,1)$ · หลัก $(0,i)$)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>i</code> — $0\cdot0 + 1\cdot i$</p>
+    </li>
+    <li data-answer="-i" data-alt="−i|-1*i|-1i">
+      <p><strong>ขั้น 2</strong> — ช่อง $(1,1)$ ของ $A_x A_t$
+      &nbsp;<span class="hint">(แถว $(0,-i)$ · หลัก $(0,1)$)</span></p>
+      <div class="ans"><input type="text" placeholder="เช่น  -i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>-i</code></p>
+    </li>
+    <li data-answer="2i" data-alt="2*i|i*2|2·i">
+      <p><strong>ขั้น 3</strong> — ช่อง $(1,1)$ ของ $[A_t, A_x]$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  2i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>2i</code> — $i - (-i)$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 4</strong> — ⇒ ช่อง $(1,1)$ ของ $F_{tx} = 0 - 0 - i\,g\,[A_t, A_x]$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-i \times 2i = 2$ · <strong>สนามไม่เป็นศูนย์ ทั้งที่ $A$ ไม่เปลี่ยนตามที่หรือเวลาเลย</strong>
+      <br>ในแม่เหล็กไฟฟ้า $A$ คงที่ ⇒ ไม่มีสนามแน่นอน</p>
+    </li>
+  </ol>
+  <p class="fb">$A_t$ กับ $A_x$ ของข้อนี้คือเมทริกซ์เพาลี $\sigma_x$ กับ $\sigma_y$ —
+  ตัวเดียวกับที่ใช้บรรยายสปินในกลศาสตร์ควอนตัม</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · ขีดจำกัดอาบีเลียน &nbsp;$A_t = [[1,0],[0,2]]$ · $A_x = [[3,0],[0,5]]$ · $\partial A = 0$</h3>
+  <ol class="steps">
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 1</strong> — ช่อง $(1,1)$ ของ $A_t A_x$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 \times 3 = 3$ · และ $(A_xA_t)_{11} = 3 \times 1 = 3$ เท่ากัน</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — ช่อง $(2,2)$ ของ $[A_t, A_x]$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2\cdot5 - 5\cdot2 = 0$ — <strong>เมทริกซ์ทแยงคอมมิวต์กันเสมอ</strong>
+      เพราะแต่ละช่องคูณกันแยกขาดเหมือนตัวเลข</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ⇒ ช่อง $(1,1)$ ของ $F_{tx}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>กลับเป็นแม่เหล็กไฟฟ้าสองชุดที่ไม่คุยกัน</strong></p>
+    </li>
+  </ol>
+  <p class="fb">เมทริกซ์ทแยง = ตัวเลขหลายตัววางเรียงกัน ⇒ ไม่มีอะไรใหม่ ·
+  <strong>ของใหม่ต้องมาจากช่องนอกทแยงเท่านั้น</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · นับกำลังของ $A$ &nbsp;<span class="hint">(ดูสมการ (3))</span></h3>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — กำลังสูงสุดของ $A$ ใน $F_{tx}$ (non-abelian)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — จาก $[A_t, A_x]$ ซึ่งมี $A$ สองตัวคูณกัน</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 2</strong> — ⇒ กำลังสูงสุดของ $A$ ใน $F^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 + 2 = 4$ — พจน์ $A^3$ และ $A^4$ คือสนามแรงคุยกับตัวเอง</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 3</strong> — แม่เหล็กไฟฟ้า: กำลังสูงสุดของ $A$ ใน $F^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — ไม่มีพจน์ $A^3$, $A^4$ ⇒ <strong>แสงไม่ชนแสง</strong></p>
+    </li>
+  </ol>
+  <p class="fb">การนับกำลังบอกได้ทันทีว่ามีอันตรกิริยาแบบไหนบ้าง —
+  <strong>นี่คือสิ่งแรกที่ paper ทำกับลากรองจ์ใหม่ทุกตัว</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 7 · มีกี่สนามแรง &nbsp;<span class="hint">(สมการ (4))</span></h3>
+  <ol class="steps">
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 1</strong> — เมทริกซ์ Hermitian $2\times2$ มีพารามิเตอร์จริงกี่ตัว
+      &nbsp;<span class="hint">(ทแยง 2 ช่องจริง · นอกทแยง 1 คู่ซับซ้อน)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 + 2 = 4$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 2</strong> — ⇒ ไร้เทรซ ($SU(2)$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4 - 1 = 3$ — สามทิศที่หมุนได้ (เมทริกซ์เพาลีสามตัว)</p>
+    </li>
+    <li data-answer="8" data-alt="แปด|8.0">
+      <p><strong>ขั้น 3</strong> — $SU(3)$ ($n = 3$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$9 - 1 = 8$ — <strong>จำนวนกลูออน</strong></p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 4</strong> — ใน 3+1 มิติ $[g]$ เท่ากับเท่าไร
+      &nbsp;<span class="hint">($D = \partial - igA$ · $[A] = 1$)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — เหมือน $[e] = 0$ ของบทที่ 12 · เหตุผลเดียวกันทุกตัวอักษร</p>
+    </li>
+  </ol>
+  <p class="fb">หนึ่งทิศที่หมุนได้ = หนึ่งสนามแรง · $U(1)$ มีทิศเดียว = โฟตอนตัวเดียว ·
+  <strong>จำนวนอนุภาคพาแรงถูกกำหนดโดยการนับ ไม่ใช่การทดลองแยกแต่ละตัว</strong></p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา ·
+  <strong>ถึงตรงนี้มีโครงของแรงทั้งสามในแบบจำลองมาตรฐานแล้ว</strong> ในระดับคลาสสิก —
+  ของที่เหลือใหญ่ ๆ คือการควอนไทซ์ และกลไกที่ทำให้แรงอ่อนมีมวล
+  <div class="nav">
+    <a href="./0024-maxwell-source.html">← บทที่ 13 · ประจุสร้างแสง</a>
+    <a href="./0023-gauge.html">บทที่ 12 · แสงมาจากไหน</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>
