@@ -82,6 +82,12 @@ $\operatorname{tr}(F^2)$ ไม่เปลี่ยน ⇒ ลากรอง�
 </tbody>
 </table>
 
+<div class="warn">
+  <strong>"กำลังของ $A$" นับยังไง</strong> — แทน $A_t \to \lambda A_t$ และ $A_x \to \lambda A_x$
+  <em>ทุกตัวพร้อมกัน</em> แล้วดูกำลังของ $\lambda$ · <strong>ไม่ใช่นับว่าเห็นตัวอักษร $A$ กี่ตัวในสูตร</strong>
+  <br>เช่น $[A_t, A_x] = A_tA_x - A_xA_t$ เห็น $A$ สี่ตัว แต่แต่ละพจน์มี $\lambda^2$ ⇒ กำลัง $2$
+</div>
+
 <p>พจน์กำลัง $3$ และ $4$ ของ $A$ ในลากรองจ์คือ<strong>อันตรกิริยา</strong> —
 กลูออนชนกลูออนได้ · แสงชนแสงไม่ได้ (ในระดับคลาสสิก)
 <span class="src">นับกำลังด้วย <code>sympy</code> แล้ว: $\operatorname{tr}F^2$ มีกำลัง $\{2,3,4\}$ ·
@@ -243,7 +249,8 @@ $SU(2)$ ได้ $3$ · $SU(3)$ ได้ $8$ — <strong>นั่นคือ
   <h3>ข้อ 6 · นับกำลังของ $A$ &nbsp;<span class="hint">(ดูสมการ (3))</span></h3>
   <ol class="steps">
     <li data-answer="2" data-alt="สอง|2.0">
-      <p><strong>ขั้น 1</strong> — กำลังสูงสุดของ $A$ ใน $F_{tx}$ (non-abelian)</p>
+      <p><strong>ขั้น 1</strong> — กำลังสูงสุดของ $A$ ใน $F_{tx}$ (non-abelian)
+      &nbsp;<span class="hint">(แทนทุก $A$ ด้วย $\lambda A$ แล้วดูกำลังของ $\lambda$ — ดูกล่องในหัวข้อ ④)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$2$ — จาก $[A_t, A_x]$ ซึ่งมี $A$ สองตัวคูณกัน</p>
     </li>
@@ -265,24 +272,30 @@ $SU(2)$ ได้ $3$ · $SU(3)$ ได้ $8$ — <strong>นั่นคือ
 <div class="quiz" data-steps>
   <h3>ข้อ 7 · มีกี่สนามแรง &nbsp;<span class="hint">(สมการ (4))</span></h3>
   <ol class="steps">
-    <li data-answer="4" data-alt="สี่|4.0">
-      <p><strong>ขั้น 1</strong> — เมทริกซ์ Hermitian $2\times2$ มีพารามิเตอร์จริงกี่ตัว
-      &nbsp;<span class="hint">(ทแยง 2 ช่องจริง · นอกทแยง 1 คู่ซับซ้อน)</span></p>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — จำนวนเชิงซ้อน $a + ib$ หนึ่งตัว มีพารามิเตอร์จริงกี่ตัว</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$2 + 2 = 4$</p>
+      <p class="fb">$2$ — $a$ กับ $b$</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 2</strong> — เมทริกซ์ Hermitian $2\times2$ มีพารามิเตอร์จริงกี่ตัว
+      &nbsp;<span class="hint">(ทแยงสองช่องเป็นจำนวนจริง · ช่อง $(1,2)$ เป็นจำนวนเชิงซ้อน ·
+      ช่อง $(2,1)$ ถูกบังคับให้เป็นสังยุคของ $(1,2)$ จึงไม่นับเพิ่ม)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + 1 + 2 = 4$ — ช่อง $(1,2)$ กิน $2$ ตามขั้น 1</p>
     </li>
     <li data-answer="3" data-alt="สาม|3.0">
-      <p><strong>ขั้น 2</strong> — ⇒ ไร้เทรซ ($SU(2)$)</p>
+      <p><strong>ขั้น 3</strong> — ⇒ ไร้เทรซ ($SU(2)$)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$4 - 1 = 3$ — สามทิศที่หมุนได้ (เมทริกซ์เพาลีสามตัว)</p>
     </li>
     <li data-answer="8" data-alt="แปด|8.0">
-      <p><strong>ขั้น 3</strong> — $SU(3)$ ($n = 3$)</p>
+      <p><strong>ขั้น 4</strong> — $SU(3)$ ($n = 3$)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$9 - 1 = 8$ — <strong>จำนวนกลูออน</strong></p>
     </li>
     <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 4</strong> — ใน 3+1 มิติ $[g]$ เท่ากับเท่าไร
+      <p><strong>ขั้น 5</strong> — ใน 3+1 มิติ $[g]$ เท่ากับเท่าไร
       &nbsp;<span class="hint">($D = \partial - igA$ · $[A] = 1$)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$0$ — เหมือน $[e] = 0$ ของบทที่ 12 · เหตุผลเดียวกันทุกตัวอักษร</p>

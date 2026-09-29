@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 15 · แสงที่มีมวล</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 15 · แสงที่มีมวล</h1>
+<p class="meta">บทเรียน · ~25 นาที · กลไกฮิกส์แบบ $U(1)$ — สุญญากาศที่ไม่เป็นศูนย์</p>
+
+<div class="key">
+  <p style="margin-top:0"><strong>5/7</strong> — ของใหม่ของบทที่ 14 (คอมมิวเทเตอร์ · $F$ จาก $[A_t, A_x]$ ·
+  $A$ ถูกหมุนแม้ $\alpha$ คงที่ · $SU(3) \to 8$) ผ่านหมด · สองจุดที่พลาดเป็น<strong>การนับ</strong>
+  ซึ่งบทไม่ได้นิยามให้ชัด</p>
+  <table>
+  <thead><tr><th>จุด</th><th>ตอบ</th><th>อ่านออกว่า</th></tr></thead>
+  <tbody>
+  <tr><td>ข้อ 6 ขั้น 1 · กำลังของ $A$ ใน $F$</td><td>$4$</td>
+      <td>$A_tA_x - A_xA_t$ <strong>เห็น $A$ สี่ตัว</strong> — บทไม่เคยบอกว่า "กำลัง" นับยังไง
+      ทั้งที่มี $A_t$ กับ $A_x$ สองตัวแปร</td></tr>
+  <tr><td>ข้อ 7 ขั้น 1 · Hermitian $2\times2$</td><td>$3$</td>
+      <td>คำใบ้เขียน "นอกทแยง <strong>1 คู่</strong>ซับซ้อน" ⇒ นับเป็น $1$ ·
+      ขั้น "เชิงซ้อน $= 2$ จริง" ถูกรวบไว้ในขั้นเดียวกับการนับทั้งเมทริกซ์</td></tr>
+  </tbody>
+  </table>
+  <p style="margin-bottom:0">แก้ในบทที่ 14 แล้ว (กฎนับกำลังเขียนไว้ในกล่อง · แตกขั้นเชิงซ้อนออกมา) ·
+  <strong>บทนี้ถามทั้งสองเรื่องซ้ำด้วยกฎที่นิยามชัด</strong> (ข้อ 2 และข้อ 5)</p>
+</div>
+
+<h2>① คำถามที่ค้างมาตั้งแต่บทที่ 12</h2>
+
+<p>สมมาตรเฉพาะที่ <strong>บังคับ</strong>ให้มี $A_\mu$ และ $A_\mu$ ที่ได้มา<strong>ไร้มวล</strong> —
+พจน์ $M^2 A_\mu A^\mu$ ใส่ตรง ๆ ไม่ได้เพราะมันพังสมมาตร ($\delta A = \tfrac1e\partial\alpha$) ·
+แต่แรงอ่อนมีอนุภาคพาแรงที่<strong>หนัก</strong> · ทางออกไม่ได้อยู่ที่ $A$ — อยู่ที่ $\phi$</p>
+
+<h2>② ศักย์ที่จุดต่ำสุดไม่ใช่ศูนย์</h2>
+
+<div class="key">
+  <div class="eq" data-eqno="1">$$ V(\phi) \;=\; \lambda\,\big(\phi^*\phi - v^2\big)^2 $$</div>
+  <p style="margin-bottom:0">$V(0) = \lambda v^4 > 0$ · $V = 0$ เมื่อ $\phi^*\phi = v^2$ ⇒
+  <strong>สนามอยากมีค่า ไม่อยากเป็นศูนย์</strong></p>
+</div>
+
+<p>$\phi$ เป็นจำนวนเชิงซ้อน = <strong>ระนาบสองมิติ</strong> · $V$ ขึ้นกับ $|\phi|$ อย่างเดียว ⇒
+จุดต่ำสุดไม่ใช่จุดเดียว แต่เป็น<strong>วงกลมรัศมี $v$</strong> (รูปหมวกเม็กซิกัน) ·
+และ $\phi = 0$ เป็นจุด<em>สูงสุด</em>ตามแนวรัศมี
+<span class="src">ตรวจแล้ว: $V$ ไม่ขึ้นกับมุม · อนุพันธ์อันดับสองตามรัศมีเป็นบวกที่ $r = v$
+และเป็นลบที่ $r = 0$ — <code>scripts/verify/0027_higgs_u1.py</code></span></p>
+
+<h2>③ สุญญากาศต้องเลือกจุดหนึ่งบนวงกลม ⇒ สมมาตรแตก</h2>
+
+<p>สนามจริงต้องอยู่ที่จุดใดจุดหนึ่ง · เลือก $\phi = v$ (จำนวนจริง) ·
+ตอนนี้หมุนเฟส: $\;\delta\phi = i\,\phi = i\,v \neq 0$</p>
+
+<div class="key">
+  <p style="margin:0"><strong>ลากรองจ์ยังสมมาตร แต่สุญญากาศไม่</strong> —
+  $\delta\mathcal{L} = 0$ เหมือนบทที่ 11 ทุกอย่าง (V ขึ้นกับ $\phi^*\phi$ อย่างเดียว) ·
+  แต่สภาวะที่ธรรมชาติเลือกอยู่ถูกหมุนแล้วเปลี่ยน · เรียกว่า
+  <strong>สมมาตรแตกเอง</strong> (spontaneous symmetry breaking)</p>
+</div>
+
+<h2>④ พจน์ของบทที่ 12 ที่รอมาตลอด</h2>
+
+<p>บทที่ 12 ข้อ 5 ขั้น 3 เจอพจน์ $\;e^2\big(A_t^2 - A_x^2\big)\,\phi^*\phi\;$ ที่ "มากับ $D$ เท่านั้น" ·
+แทน $\phi^*\phi = v^2$ ของสุญญากาศลงไป:</p>
+
+<div class="eq" data-eqno="2">$$ \mathcal{L}\big|_{\phi = v} \;=\; \tfrac12 F^2 \;+\; e^2 v^2\,\big(A_t^2 - A_x^2\big) $$</div>
+
+<p><strong>พจน์ที่สองมี $A$ กำลังสองแต่ไม่มีอนุพันธ์</strong> — รูปเดียวกับพจน์มวล $-\tfrac12 m^2\phi^2$
+ของสนามในบทที่ 7 · ไม่ได้ใส่เพิ่ม มันอยู่ในลากรองจ์ตั้งแต่บทที่ 12 แค่คูณกับ $\phi^*\phi$
+ซึ่งเป็นศูนย์ในสุญญากาศเดิม</p>
+
+<h2>⑤ มวลเท่าไร — วัดจากคลื่น ไม่ใช่จากการเทียบรูปพจน์</h2>
+
+<p>ทำ Euler–Lagrange แบบบทที่ 13 กับสมการ (2) ได้ $\;\partial_x F = -M^2 A_t\;$ และ
+$\;\partial_t F = -M^2 A_x\;$ โดย</p>
+
+<div class="key">
+  <div class="eq" data-eqno="3">$$ M^2 \;=\; 2\,e^2 v^2 \qquad\Longrightarrow\qquad \partial_t^2 A_x - \partial_x^2 A_x + M^2 A_x = 0 $$</div>
+  <p style="margin-bottom:0"><strong>สมการด้านขวาคือ <code>ptt - pxx + m^2*phi = 0</code> ของบทที่ 9-10
+  ทุกตัวอักษร</strong> แค่เปลี่ยน $\phi$ เป็น $A_x$ ⇒ คลื่นแสงเดินตาม
+  $\;\omega^2 = k^2 + M^2\;$ = อนุภาคมีมวล $M$</p>
+</div>
+
+<p class="src">ตรวจด้วยการป้อนคลื่นระนาบเข้าไปในสมการทั้งสองจริง ๆ — เป็นจริงเมื่อ
+$\omega^2 = k^2 + 2e^2v^2$ และ<strong>ไม่</strong>จริงเมื่อ $\omega = k$ (ตัวควบคุมฝั่งลบ) ·
+⚠️ ตัวประกอบ $2$ ขึ้นกับว่า normalise $\phi$ ยังไง จึงวัดจากความสัมพันธ์การกระจาย
+ไม่ได้อ่านจากรูปพจน์</p>
+
+<div class="warn">
+  <strong>ถ้า $v = 0$ ⇒ $M = 0$</strong> — กลับเป็นแสงไร้มวลของบทที่ 12-13 ·
+  <em>มวลของแสงเป็นสมบัติของสุญญากาศ ไม่ใช่ของ $A$</em>
+</div>
+
+<p class="hint">กลไกแบบเดียวกันนี้ใช้อธิบายตัวนำยวดยิ่ง (แสงมีมวลอยู่ข้างใน จึงเข้าไปได้แค่ตื้น ๆ) — บทนี้ไม่ได้พิสูจน์ส่วนนั้น ·
+ที่บทนี้ยังไม่แตะโดยตั้งใจ: การสั่นรอบ $v$ ตามแนวรัศมี (ตัวนั้นคือ<em>ฮิกส์บอซอน</em>) ·
+การสั่นตามแนววงกลม (อนุภาคโกลด์สโตน ซึ่งถูก $A$ "กิน" ไปเป็นองศาอิสระที่เพิ่มมาของแสงมีมวล) ·
+และแบบ $SU(2)\times U(1)$ ของจริง · ทุกข้อที่นี่อยู่ใน <strong>1+1 มิติ</strong></p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta"><strong>1+1 มิติ</strong> ยกเว้นข้อ 7 · convention เดียวกับบทที่ 12-13
+($D = \partial - ieA$)</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · หมวกเม็กซิกัน &nbsp;$V = \lambda(\phi^*\phi - v^2)^2$ ที่ $\lambda = 2$, $v = 3$</h3>
+  <ol class="steps">
+    <li data-answer="162" data-alt="162.0">
+      <p><strong>ขั้น 1</strong> — $V$ ที่ $\phi = 0$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times (0 - 9)^2 = 2 \times 81 = 162$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — $V$ ที่ $\phi^*\phi = 9$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>ต่ำกว่าที่ $\phi = 0$</strong> ⇒ สนามไม่อยากเป็นศูนย์</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 3</strong> — จุดต่ำสุดอยู่บนวงกลมในระนาบของ $\phi$ · รัศมีเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$|\phi| = v = 3$</p>
+    </li>
+  </ol>
+  <p class="fb">พลังงานต่ำสุดอยู่ที่ $|\phi| = v$ ไม่ใช่ที่ $0$ —
+  <strong>นี่คือสิ่งเดียวที่ต่างจากทุกสนามที่ผ่านมา</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · นับพารามิเตอร์จริง &nbsp;<span class="hint">(ซ่อมบทที่ 14 ข้อ 7)</span></h3>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — $\phi$ เป็นจำนวนเชิงซ้อนหนึ่งตัว · มีพารามิเตอร์จริงกี่ตัว</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — ส่วนจริงกับส่วนจินตภาพ ⇒ $\phi$ อยู่บน<strong>ระนาบ</strong> ไม่ใช่เส้นตรง</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 2</strong> — ในระนาบนั้น จุดต่ำสุด (วงกลม) ถูกบอกตำแหน่งได้ด้วยพารามิเตอร์กี่ตัว</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — มุมบนวงกลม · รัศมีถูกตรึงที่ $v$ แล้ว</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 3</strong> — เมทริกซ์ Hermitian $2\times2$: ช่อง $(1,2)$ เป็นจำนวนเชิงซ้อนหนึ่งตัว ·
+      มันกินพารามิเตอร์จริงกี่ตัว</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — กฎเดียวกับขั้น 1 · ช่อง $(2,1)$ เป็นสังยุคของมัน ไม่นับเพิ่ม</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 4</strong> — ⇒ Hermitian $2\times2$ ทั้งเมทริกซ์
+      &nbsp;<span class="hint">(ทแยงสองช่องเป็นจำนวนจริง)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + 1 + 2 = 4$ — แล้วตัดเทรซได้ $3$ ของ $SU(2)$</p>
+    </li>
+  </ol>
+  <p class="fb">กฎเดียว: <strong>จำนวนเชิงซ้อนหนึ่งตัว = พารามิเตอร์จริงสองตัว</strong> เสมอ ·
+  บทที่ 14 รวบขั้นนี้ไว้กับการนับทั้งเมทริกซ์ในช่องเดียว</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · สุญญากาศไม่สมมาตร &nbsp;$\delta\phi = i\,\phi$</h3>
+  <ol class="steps">
+    <li data-answer="3i" data-alt="3*i|i*3|3·i">
+      <p><strong>ขั้น 1</strong> — สุญญากาศเลือก $\phi = v = 3$ ⇒ $\delta\phi$</p>
+      <div class="ans"><input type="text" placeholder="เช่น  3i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb"><code>3i</code> — <strong>ไม่เป็นศูนย์</strong> ⇒ หมุนแล้วสุญญากาศย้ายไปจุดอื่นบนวงกลม</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — ถ้าสุญญากาศเป็น $\phi = 0$ (แบบบทที่ 11) ⇒ $\delta\phi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — จุดศูนย์กลางหมุนแล้วอยู่ที่เดิม</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — $\delta\mathcal{L}$ ของการหมุนเฟส (ทั้งลากรองจ์ รวม $V$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — <strong>กฎยังสมมาตร</strong> · ที่ไม่สมมาตรคือสภาวะที่เลือก ไม่ใช่กฎ</p>
+    </li>
+  </ol>
+  <p class="fb">ขั้น 1 กับขั้น 3 คู่กันคือนิยามของ<strong>สมมาตรแตกเอง</strong> —
+  $\delta\mathcal{L} = 0$ แต่ $\delta(\text{สุญญากาศ}) \neq 0$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · พจน์มวลจากบทที่ 12 &nbsp;$e^2(A_t^2 - A_x^2)\,\phi^*\phi$</h3>
+  <ol class="steps">
+    <li data-answer="9" data-alt="เก้า|9.0">
+      <p><strong>ขั้น 1</strong> — ในสุญญากาศ $\phi^*\phi = v^2$ · ที่ $e = 1$, $v = 3$
+      สัมประสิทธิ์หน้า $(A_t^2 - A_x^2)$ คือ $e^2v^2$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 \times 9 = 9$</p>
+    </li>
+    <li data-answer="18" data-alt="สิบแปด|18.0">
+      <p><strong>ขั้น 2</strong> — ⇒ $M^2 = 2e^2v^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$18$ · ตัวประกอบ $2$ มาจากอนุพันธ์ของ $A^2$ ตอนทำ Euler–Lagrange
+      (เหมือน $2eA_t|\phi|^2$ ในบทที่ 13 ข้อ 5)</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ถ้า $v = 0$ ⇒ $M^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — แสงไร้มวลของบทที่ 12 · <strong>พจน์เดียวกัน ต่างกันที่สุญญากาศ</strong></p>
+    </li>
+  </ol>
+  <p class="fb">ไม่มีพจน์ไหนถูกเพิ่มเข้าไปในลากรองจ์ — <strong>มวลโผล่มาจากการที่ $\phi^*\phi$
+  ไม่เป็นศูนย์ในสุญญากาศ</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · นับกำลังด้วยกฎที่นิยามแล้ว &nbsp;<span class="hint">(ซ่อมบทที่ 14 ข้อ 6)</span></h3>
+  <p class="hint">กฎ: แทน <strong>ทุก</strong> $A_t \to \lambda A_t$ และ $A_x \to \lambda A_x$ แล้วดูกำลังของ $\lambda$
+  · <strong>ไม่ใช่</strong>นับว่าเห็นตัวอักษร $A$ กี่ตัว</p>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — $e^2v^2\,(A_t^2 - A_x^2)$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — ทุกพจน์ได้ $\lambda^2$ ⇒ <strong>พจน์มวล</strong> (กำลัง 2 ไม่มีอนุพันธ์)</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 2</strong> — $A_tA_x - A_xA_t$ &nbsp;<span class="hint">(เห็น $A$ สี่ตัว)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — แต่ละพจน์ได้ $\lambda^2$ · บวกกันกำลังไม่เพิ่ม</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 3</strong> — $-e\,A_t\,j^t$ (บทที่ 12)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — <strong>พจน์คู่ควบ</strong> (A ตัวเดียวคุยกับประจุ)</p>
+    </li>
+  </ol>
+  <p class="fb">กำลัง $1$ = คู่ควบกับอย่างอื่น · กำลัง $2$ ไม่มีอนุพันธ์ = มวล ·
+  กำลัง $3, 4$ = คุยกับตัวเอง — <strong>อ่านบทบาทของพจน์จากกำลังได้ทันที</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · คลื่นแสงที่มีมวล &nbsp;$\omega^2 = k^2 + M^2$</h3>
+  <ol class="steps">
+    <li data-answer="25" data-alt="ยี่สิบห้า|25.0">
+      <p><strong>ขั้น 1</strong> — $k = 3$, $M^2 = 16$ ⇒ $\omega^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$9 + 16 = 25$</p>
+    </li>
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 2</strong> — ⇒ $\omega$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 3</strong> — แสงไร้มวล ($M = 0$) ที่ $k = 3$ ⇒ $\omega$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3$ — $\omega = k$ · มวลทำให้ $\omega$ ของเลขคลื่นเดียวกัน<strong>สูงขึ้น</strong>
+      (ต้องใช้พลังงานเพิ่มเพื่อสร้างมวล)</p>
+    </li>
+  </ol>
+  <p class="fb">สมการที่ให้ $\omega^2 = k^2 + M^2$ คือ <code>ptt - pxx + M^2 A_x = 0</code> —
+  <strong>ตัวเดียวกับสนามมีมวลของบทที่ 9-10</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 7 · นับมิติใน 3+1 มิติ</h3>
+  <ol class="steps">
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 1</strong> — $[v]$ &nbsp;<span class="hint">($v$ คือค่าของ $\phi$ · บท 0017)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ = $[\phi]$</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 2</strong> — $[M] = [e] + [v]$ &nbsp;<span class="hint">($[e] = 0$ บทที่ 12)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0 + 1 = 1$ — <strong>มิติของมวลพอดี</strong> ⇒ สมการ (3) ผ่านการตรวจมิติ</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — $[\lambda]$ &nbsp;<span class="hint">($[V] = 4$ · $V \sim \lambda\,\phi^4$)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4 - 4 = 0$ — ไร้มิติ เหมือน $e$ และ $g$</p>
+    </li>
+  </ol>
+  <p class="fb">มวลของแสงมีหน่วยถูกต้องได้ก็เพราะ $v$ มีมิติ $1$ ·
+  <strong>ถ้าสุญญากาศเป็นศูนย์ ไม่มีอะไรในลากรองจ์ที่มีมิติของมวลให้ใช้เลย</strong></p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา ·
+  <strong>ถึงตรงนี้ครบทุกชิ้นของแบบจำลองมาตรฐานในระดับคลาสสิก</strong>:
+  สมมาตร → ประจุ → แรง → แรงคุยกับตัวเอง → มวลจากสุญญากาศ ·
+  ที่เหลือใหญ่ ๆ คือการควอนไทซ์
+  <div class="nav">
+    <a href="./0025-nonabelian.html">← บทที่ 14 · แรงที่คุยกับตัวเอง</a>
+    <a href="./0023-gauge.html">บทที่ 12 · แสงมาจากไหน</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>
