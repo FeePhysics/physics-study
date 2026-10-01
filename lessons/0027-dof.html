@@ -16,272 +16,284 @@
 <body>
 
 <h1>บทที่ 16 · ของหายไปไหน</h1>
-<p class="meta">บทเรียน · ~20 นาที · นับองศาอิสระ — โกลด์สโตนถูกแสงกิน</p>
+<p class="meta">บทเรียน · ~20 นาที · แสงได้มวลมาแล้ว แต่มันได้ "ของ" เพิ่มมาหนึ่งชิ้นด้วย ชิ้นนั้นมาจากไหน</p>
 
 <div class="key">
-  <p style="margin-top:0"><strong>6/7</strong> — ฮิกส์ทั้งบทผ่าน (หมวกเม็กซิกัน · สมมาตรแตกเอง ·
-  พจน์มวลจากบทที่ 12 · $\omega^2 = k^2 + M^2$ · นับกำลังด้วยกฎ $\lambda$)</p>
-  <p style="margin-bottom:0"><strong>ข้อ 2 ตอบ "ไม่รู้" สามขั้น — ทั้งสามขั้นใช้คำว่า
-  "พารามิเตอร์จริง" ซึ่งผมไม่เคยนิยามเลยทั้งบท 14 และ 15</strong> · ขั้นเดียวที่ผ่าน
-  (ขั้น 2) คือขั้นที่เขียนเชิงปฏิบัติว่า "บอก<em>ตำแหน่ง</em>ได้ด้วยกี่ตัว" ·
-  แก้สองบทนั้นแล้ว · บทนี้นิยามมันด้วยพีชคณิตเชิงเส้นตรง ๆ แล้วใช้มันตอบคำถามที่ค้างจากบทที่ 15</p>
+  <p style="margin-top:0">บทที่ 15 จบไว้ที่ <strong>แสงมีมวล</strong> บทนี้ตอบคำถามเดียวที่ค้างอยู่:
+  แสงที่มีมวลสั่นได้มากกว่าแสงไร้มวลหนึ่งแบบ <strong>แบบที่เพิ่มมานั้นยืมมาจากใคร</strong></p>
+  <p style="margin-bottom:0">คำตอบสั้น ๆ: <strong>ยืมมาจาก "มุม" ของ $\phi$</strong>
+  ทั้งบทคือการเดินไปให้ถึงประโยคนี้ทีละขั้น</p>
 </div>
 
-<h2>① นิยาม: องศาอิสระ = มิติบน $\mathbb{R}$</h2>
+<h2>① นับอะไร: ต้องบอกตัวเลขจริงกี่ตัว</h2>
 
-<div class="key">
-  <p style="margin:0"><strong>จำนวนตัวเลขจริงที่ต้องบอกให้ครบ ถึงจะรู้ค่าของสิ่งนั้นทั้งหมด</strong> =
-  จำนวนสมาชิกใน<strong>ฐาน</strong>เมื่อมองเป็นปริภูมิเวกเตอร์บน $\mathbb{R}$
-  (สัมประสิทธิ์ต้องเป็นจำนวนจริง)</p>
-</div>
+<p>ทั้งบทนับของอย่างเดียว คือ <strong>ต้องบอกตัวเลขจริงกี่ตัว ถึงจะรู้ว่าสิ่งนั้นเป็นอะไรครบ</strong>
+ฟิสิกส์เรียกจำนวนนี้ว่า <strong>degrees of freedom</strong> (องศาอิสระ)</p>
 
 <table>
-<thead><tr><th>สิ่งที่นับ</th><th>ฐานบน $\mathbb{R}$</th><th>มิติ</th></tr></thead>
+<thead><tr><th>สิ่งที่นับ</th><th>เขียนแบบทั่วไป</th><th>ต้องบอกตัวเลข</th><th>จำนวน</th></tr></thead>
 <tbody>
-<tr><td>จำนวนเชิงซ้อน $a + ib$</td><td>$\{1,\; i\}$</td><td>$2$</td></tr>
-<tr><td>Hermitian $2\times2$</td><td>$\{\mathbb{1},\; \sigma_x,\; \sigma_y,\; \sigma_z\}$</td><td>$4$</td></tr>
-<tr><td>Hermitian ไร้เทรซ $2\times2$ ($SU(2)$)</td><td>$\{\sigma_x,\; \sigma_y,\; \sigma_z\}$</td><td>$3$</td></tr>
+<tr><td>จำนวนเชิงซ้อน</td><td>$a + ib$</td><td>$a,\ b$</td><td>$2$</td></tr>
+<tr><td>Hermitian $2\times2$</td><td>$\begin{bmatrix} a & b + ic \\ b - ic & d \end{bmatrix}$</td><td>$a,\ b,\ c,\ d$</td><td>$4$</td></tr>
+<tr><td>Hermitian $2\times2$ ที่เทรซเป็น $0$</td><td>เหมือนข้างบน แต่ $d = -a$</td><td>$a,\ b,\ c$</td><td>$3$</td></tr>
 </tbody>
 </table>
 
-<p class="src">ตรวจแล้วด้วย <code>sympy</code>: Hermitian $2\times2$ ทุกตัวเขียนเป็นผลรวมของฐานสี่ตัว
-ด้วยสัมประสิทธิ์<strong>จริง</strong>ได้แบบเดียว และสี่ตัวนั้นอิสระเชิงเส้น ·
-$\sigma_x, \sigma_y, \sigma_z$ คือ $A_t$, $A_x$ และ $\alpha$ ของบทที่ 14 —
-<code>scripts/verify/0028_dof.py</code></p>
+<p>ทำไม Hermitian เขียนแบบนั้น: Hermitian แปลว่า สลับแถวกับหลักแล้วเอาสังยุคได้ตัวเดิม
+ตัวบนแนวทแยงจึงต้องเป็นจำนวนจริง และตัวนอกแนวทแยงสองตัวต้องเป็นสังยุคของกันและกัน
+บอกตัวบนขวา ($b + ic$) ก็ได้ตัวล่างซ้ายมาฟรี</p>
 
-<p><strong>สำหรับสนาม</strong> ให้นับต่อจุด แล้ววัดด้วย<strong>จำนวนคลื่นอิสระ</strong> —
-สนามจริงที่เดินตาม <code>ptt - pxx + m^2 f = 0</code> หนึ่งตัว = $1$</p>
+<p>แถวสุดท้ายคือสามตัวที่บทที่ 14 ใช้เป็นสามสนามแรงของ $SU(2)$</p>
 
-<h2>② แยก $\phi$ รอบสุญญากาศเป็นสองทิศ</h2>
+<p class="hint">มองแบบพีชคณิตเชิงเส้น: จำนวนนี้คือมิติบน $\mathbb{R}$ หรือจำนวนสมาชิกในฐาน
+เช่น $\mathbb{C}$ มีฐาน $\{1, i\}$ และ Hermitian $2\times2$ มีฐาน
+$\{\mathbb{1}, \sigma_x, \sigma_y, \sigma_z\}$ (ตรวจด้วย <code>sympy</code> แล้วว่าแผ่ทั่วและอิสระเชิงเส้น ·
+<code>scripts/verify/0028_dof.py</code>)</p>
 
-<div class="eq" data-eqno="1">$$ \phi \;=\; (v + h)\,e^{i\theta} \qquad h = \text{ตามรัศมี} \;,\quad \theta = \text{ตามวงกลม} $$</div>
+<p><strong>ถ้าเป็นสนาม นับยังไง</strong> — สนามมีค่าที่ทุกจุด แต่ที่เราสนใจคือ
+<strong>มันกระเพื่อมเป็นคลื่นได้กี่แบบ</strong> สนามจริงหนึ่งตัวที่ทำตามสมการ
+<code>ptt - pxx + m^2 f = 0</code> กระเพื่อมได้ $1$ แบบ</p>
 
-<p>$\phi^*\phi = (v+h)^2$ — <strong>ไม่มี $\theta$ อยู่ในนั้นเลย</strong> ⇒ ศักย์ของบทที่ 15
-ไม่รู้สึก $\theta$ · กางศักย์รอบ $h = 0$ ได้พจน์ $4\lambda v^2 h^2$ ·
-ป้อนคลื่นระนาบแล้วได้</p>
+<h2>② เขียน $\phi$ แบบเชิงขั้ว</h2>
+
+<p>$\phi$ เป็นจำนวนเชิงซ้อน จึงเขียนแบบเชิงขั้ว $r\,e^{i\theta}$ ได้ เหมือนที่สอน ม.ปลาย
+ในบทที่ 15 ก้นหมวกเม็กซิกันเป็นวงกลมรัศมี $v$ เราจึงเขียนรัศมีเป็น $v + h$
+โดย $h$ คือระยะที่ลูกบอลเลยก้นหมวกออกไป</p>
+
+<div class="eq" data-eqno="1">$$ \phi \;=\; (v + h)\,e^{i\theta} $$</div>
+
+<p>ตอนนี้ $\phi$ ถูกแทนด้วยสนามจริงสองตัว คือ $h$ (รัศมี) กับ $\theta$ (มุม)
+ลูกบอลที่นอนอยู่ก้นหมวกจึงขยับได้สองทาง:</p>
 
 <table>
-<thead><tr><th>ทิศ</th><th>ความสัมพันธ์การกระจาย</th><th>ชื่อ</th></tr></thead>
+<thead><tr><th>ขยับทาง</th><th>ใช้พลังงานไหม</th><th>คลื่นของมัน</th><th>ชื่อ</th></tr></thead>
 <tbody>
-<tr><td>$h$ (ขึ้นลงหมวก)</td><td>$\omega^2 = k^2 + 4\lambda v^2$</td><td><strong>ฮิกส์บอซอน</strong> · มีมวล</td></tr>
-<tr><td>$\theta$ (เดินรอบวง)</td><td>$\omega^2 = k^2$</td><td><strong>โกลด์สโตน</strong> · ไร้มวล</td></tr>
+<tr><td>$h$ · ไต่ขึ้นผนังหมวก</td><td>ใช้ (ผนังชัน)</td><td>$\omega^2 = k^2 + 4\lambda v^2$</td><td><strong>Higgs boson</strong> · มีมวล</td></tr>
+<tr><td>$\theta$ · กลิ้งไปตามก้นหมวก</td><td>ไม่ใช้ (ก้นแบน)</td><td>$\omega^2 = k^2$</td><td><strong>Goldstone</strong> · ไร้มวล</td></tr>
 </tbody>
 </table>
 
-<p>เดินรอบก้นหมวกไม่เสียพลังงานศักย์ ⇒ ไร้มวล · ขึ้นผนังหมวกเสีย ⇒ มีมวล ·
-<strong>นี่คือโกลด์สโตนที่บทที่ 8 พูดถึงไว้</strong> ("สมมาตรที่แตกเองให้อนุภาคไร้มวลออกมา")</p>
+<p><strong>ทำไม $\theta$ ไม่ใช้พลังงาน</strong>: ศักย์ $V$ ขึ้นกับ $\phi^*\phi$ เท่านั้น
+และ $\phi^*\phi = (v+h)^2$ ไม่มี $\theta$ อยู่ในนั้นเลย
+<strong>มวลของ $h$</strong>: กางศักย์รอบก้นหมวกแล้วได้พจน์ $4\lambda v^2 h^2$ จึงได้ $m_h^2 = 4\lambda v^2$</p>
 
-<h2>③ แต่พอมี $A$ — $\theta$ ถูกกิน</h2>
+<p>ถึงตรงนี้ยังไม่มีแสงเลย และ $\theta$ ก็เป็นอนุภาคไร้มวลตัวหนึ่ง</p>
 
-<p>กาง $|D_t\phi|^2$ ด้วยสมการ (1):</p>
+<h2>③ ใส่แสงกลับเข้าไป แล้ว $\theta$ หายไป</h2>
+
+<p>บทที่ 12 สอนว่า <strong>จะหมุนเฟสของ $\phi$ ที่แต่ละจุดไปเท่าไรก็ได้</strong> (คูณด้วย $e^{i\alpha}$)
+ฟิสิกส์ไม่เปลี่ยน ขอแค่ให้ $A$ เปลี่ยนตามเป็น $A + \tfrac1e\partial\alpha$</p>
+
+<p>ใช้สิทธิ์นี้ให้คุ้ม: ที่ทุกจุด <strong>หมุนกลับด้วย $\alpha = -\theta$</strong>
+มุมของ $\phi$ ก็หายหมด เหลือ $\phi = v + h$ ซึ่งเป็นจำนวนจริง</p>
+
+<p>แต่การหมุนไม่ได้ได้มาฟรี เพราะ $A$ ต้องเปลี่ยนเป็น $A - \tfrac1e\partial\theta$
+<strong>ข้อมูลของ $\theta$ จึงไม่ได้หายไปไหน มันย้ายเข้าไปอยู่ใน $A$</strong>
+กางพจน์จลน์จริงก็เห็นแบบเดียวกัน:</p>
 
 <div class="eq" data-eqno="2">$$ |D_t\phi|^2 \;=\; (\partial_t h)^2 \;+\; e^2\,(v+h)^2 \Big(A_t - \tfrac{1}{e}\,\partial_t\theta\Big)^2 $$</div>
 
-<div class="key">
-  <p style="margin:0"><strong>$\theta$ โผล่มาในรูป $A_t - \tfrac1e\partial_t\theta$ เท่านั้น</strong> —
-  ซึ่งคือ $A$ หลังการแปลงของบทที่ 12 ด้วย $\alpha = -\theta$ พอดี
-  <br>⇒ เลือก $\alpha = -\theta$ แล้ว $\phi$ กลายเป็นจำนวนจริง $v + h$ และ $\theta$
-  <strong>หายไปจากลากรองจ์ทั้งหมด</strong> · $F$ ไม่เปลี่ยน (บทที่ 12)
-  <br><em>$\theta$ ไม่ได้หายไปจริง — มันกลายเป็นส่วนหนึ่งของ $A$</em></p>
+<p>$\theta$ โผล่อยู่ในก้อน $A_t - \tfrac1e\partial_t\theta$ ก้อนเดียว ซึ่งก็คือ $A$ ตัวใหม่พอดี
+ส่วน $F$ ไม่เปลี่ยนเลย (บทที่ 12) ฟิสิกส์เรียกเหตุการณ์นี้ว่า <strong>แสง "กิน" Goldstone</strong></p>
+
+<h2>④ ทำบัญชี (1+1 มิติ)</h2>
+
+<div class="warn">
+  <strong>ใน 1+1 มิติ แสงไร้มวลกระเพื่อมเป็นคลื่นไม่ได้เลย</strong> — แสงใน 1+1 มีสนามตัวเดียวคือ $F$
+  ถ้าไม่มีประจุ สมการ Maxwell (บทที่ 13) บอกว่า $\partial_x F = 0$ และ $\partial_t F = 0$
+  คือ $F$ ไม่เปลี่ยนทั้งตามที่และตามเวลา ค่าคงที่จึงเป็นคลื่นไม่ได้ ได้ $0$ แบบ
+  (3+1 มิติไม่เป็นแบบนี้ แสงในโลกจริงเป็นคลื่นได้)
 </div>
 
-<h2>④ นับก่อน/หลัง — ใน 1+1 มิติ</h2>
+<p>ส่วนแสงที่มีมวลในบทที่ 15 กระเพื่อมได้ $1$ แบบ (คลื่นของ $A_x$)</p>
 
 <table>
-<thead><tr><th></th><th>$v = 0$ (สมมาตรไม่แตก)</th><th>$v \neq 0$ (หลังฮิกส์)</th></tr></thead>
+<thead><tr><th></th><th>ก่อน ($v = 0$)</th><th>หลัง ($v \neq 0$)</th></tr></thead>
 <tbody>
-<tr><td>สนามสเกลาร์</td><td>$\phi$ เชิงซ้อน · $2$</td><td>$h$ · $1$ &nbsp;·&nbsp; $\theta$ · $0$ (ถูกกิน)</td></tr>
-<tr><td>แสง</td><td>ไร้มวล · $0$</td><td>มีมวล ($A_x$ บทที่ 15) · $1$</td></tr>
+<tr><td>$\phi$</td><td>เชิงซ้อน · $2$</td><td>$h$ · $1$ และ $\theta$ · $0$ (ถูกกินแล้ว)</td></tr>
+<tr><td>แสง</td><td>ไร้มวล · $0$</td><td>มีมวล · $1$</td></tr>
 <tr><td><strong>รวม</strong></td><td><strong>$2$</strong></td><td><strong>$2$</strong></td></tr>
 </tbody>
 </table>
 
-<div class="warn">
-  <strong>แสงไร้มวลใน 1+1 มิติมีคลื่น $0$ ตัว</strong> — ไม่มีแหล่ง
-  ⇒ $\partial_x F = 0$ และ $\partial_t F = 0$ (บทที่ 13) ⇒ $F$ เป็นค่าคงที่ทั่วทั้งกาลอวกาศ ·
-  คลื่น $\cos(kx - \omega t)$ ที่ $k \neq 0$ ทำไม่ได้ (ตรวจแล้ว) ·
-  ต่างจาก 3+1 มิติที่แสงมีคลื่นจริง
-</div>
+<p><strong>ของไม่หาย มันย้ายที่</strong> — แสงได้เพิ่มหนึ่งแบบ $\phi$ เสียไปหนึ่งแบบ และเป็นตัวเดียวกันคือ $\theta$</p>
 
-<p><strong>ของไม่หาย มันย้ายที่</strong> — องศาอิสระของ $\theta$ กลายเป็นองศาอิสระของแสงที่มีมวล ·
-แสงมีมวลต้องมีมากกว่าแสงไร้มวลหนึ่งตัว และมันเอามาจากโกลด์สโตน</p>
-
-<p class="hint">ใน 3+1 มิติ การนับแบบเดียวกันให้ $2 + 2 = 1 + 3$ (แสงไร้มวลมีโพลาไรเซชัน $2$ ·
-มีมวลมี $3$) — <strong>บทนี้ไม่ได้ derive การนับใน 3+1</strong> · นี่คือโครงของ $W^\pm$ และ $Z$
-ในแรงอ่อน ที่กินโกลด์สโตนสามตัวไป</p>
+<p class="hint">ใน 3+1 มิติ นับแบบเดียวกันได้ $2 + 2 = 1 + 3$ (บทนี้ยังไม่พิสูจน์)
+นี่คือเรื่องเดียวกับอนุภาค $W$ และ $Z$ ของแรงอ่อน ซึ่งได้มวลจากการกิน Goldstone</p>
 
 <h2>ลองเอง</h2>
 <div id="score"></div>
 
-<p class="meta"><strong>1+1 มิติ</strong> ยกเว้นข้อ 7 · convention เดียวกับบทที่ 12-15</p>
+<p class="meta">ทุกข้อเป็น <strong>1+1 มิติ</strong> ยกเว้นข้อ 7</p>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 1 · มิติบน $\mathbb{R}$ = ต้องใช้ตัวเลขจริงกี่ตัว</h3>
+  <h3>ข้อ 1 · ต้องบอกตัวเลขจริงกี่ตัว</h3>
   <ol class="steps">
     <li data-answer="2" data-alt="สอง|2.0">
       <p><strong>ขั้น 1</strong> — จะบอกค่า $3 + 4i$ ให้ครบ ต้องบอกตัวเลขจริงกี่ตัว</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$2$ — $3$ กับ $4$ · ฐาน $\{1, i\}$</p>
+      <p class="fb">$2$ — คือ $3$ กับ $4$</p>
     </li>
     <li data-answer="4" data-alt="สี่|4.0">
-      <p><strong>ขั้น 2</strong> — ฐานของ Hermitian $2\times2$ บน $\mathbb{R}$ คือ
-      $\{\mathbb{1}, \sigma_x, \sigma_y, \sigma_z\}$ ⇒ มิติ</p>
+      <p><strong>ขั้น 2</strong> — Hermitian $2\times2$ เขียนเป็น
+      $\begin{bmatrix} a & b + ic \\ b - ic & d \end{bmatrix}$ ต้องบอกตัวเลขจริงกี่ตัว</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$4$ — นับสมาชิกในฐาน</p>
+      <p class="fb">$4$ — คือ $a, b, c, d$</p>
     </li>
     <li data-answer="3" data-alt="สาม|3.0">
-      <p><strong>ขั้น 3</strong> — ตัดตัวที่มีเทรซ ($\mathbb{1}$ มีเทรซ $2$ · อีกสามตัวเทรซ $0$) ⇒ มิติ</p>
+      <p><strong>ขั้น 3</strong> — ถ้าบังคับให้เทรซเป็นศูนย์ ($a + d = 0$ แปลว่า $d = -a$) เหลือต้องบอกกี่ตัว</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$3$ — สามสนามแรงของ $SU(2)$ · ตรงกับบทที่ 14</p>
+      <p class="fb">$3$ — บอก $a$ แล้วได้ $d$ ฟรี · นี่คือสามสนามแรงของ $SU(2)$ ในบทที่ 14</p>
     </li>
   </ol>
-  <p class="fb">"พารามิเตอร์จริง" ในบทที่ 14-15 คือคำถามนี้ทุกตัวอักษร —
-  <strong>หาฐานบน $\mathbb{R}$ แล้วนับ</strong></p>
+  <p class="fb">"พารามิเตอร์จริง" ในบทที่ 14-15 คือคำถามนี้ทุกตัวอักษร</p>
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 2 · แยก $\phi = (v + h)\,e^{i\theta}$</h3>
+  <h3>ข้อ 2 · $\phi = (v + h)\,e^{i\theta}$</h3>
   <ol class="steps">
     <li data-answer="2" data-alt="สอง|2.0">
-      <p><strong>ขั้น 1</strong> — สมการ (1) ใช้สนามจริงกี่ตัว</p>
+      <p><strong>ขั้น 1</strong> — สมการ (1) แทน $\phi$ ด้วยสนามจริงกี่ตัว</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$2$ — $h$ กับ $\theta$ · เท่ากับมิติของ $\phi$ บน $\mathbb{R}$ (ข้อ 1 ขั้น 1)</p>
+      <p class="fb">$2$ — $h$ (รัศมี) กับ $\theta$ (มุม) · เท่ากับข้อ 1 ขั้น 1 เพราะ $\phi$ เป็นจำนวนเชิงซ้อน</p>
     </li>
     <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 2</strong> — $\dfrac{\partial V}{\partial\theta}$ &nbsp;<span class="hint">($V$ ขึ้นกับ $\phi^*\phi = (v+h)^2$)</span></p>
+      <p><strong>ขั้น 2</strong> — $V$ ขึ้นกับ $\phi^*\phi = (v+h)^2$ อย่างเดียว
+      ถ้าเปลี่ยนแค่ $\theta$ แล้ว $V$ เปลี่ยนไปเท่าไร (คือหา $\dfrac{\partial V}{\partial\theta}$)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$0$ — ก้นหมวกแบนตามวงกลม</p>
     </li>
     <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 3</strong> — ⇒ มวลกำลังสองของ $\theta$</p>
+      <p><strong>ขั้น 3</strong> — ดังนั้นมวลกำลังสองของ $\theta$ เท่ากับเท่าไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$0$ — <strong>โกลด์สโตน</strong> · $\omega^2 = k^2$</p>
+      <p class="fb">$0$ — นี่คือ Goldstone · คลื่นของมันคือ $\omega^2 = k^2$</p>
     </li>
   </ol>
-  <p class="fb">ทิศที่สมมาตรหมุนไปได้ = ทิศที่ไม่เสียพลังงาน = อนุภาคไร้มวล</p>
+  <p class="fb">ทางที่ขยับได้โดยไม่ใช้พลังงาน ให้อนุภาคไร้มวล</p>
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 3 · มวลของฮิกส์ &nbsp;$m_h^2 = 4\lambda v^2$</h3>
+  <h3>ข้อ 3 · มวลของ Higgs คือ $m_h^2 = 4\lambda v^2$</h3>
   <ol class="steps">
     <li data-answer="72" data-alt="72.0">
-      <p><strong>ขั้น 1</strong> — $\lambda = 2$, $v = 3$</p>
+      <p><strong>ขั้น 1</strong> — ถ้า $\lambda = 2$ และ $v = 3$ แล้ว $m_h^2$ เท่ากับเท่าไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$4 \times 2 \times 9 = 72$</p>
     </li>
     <li data-answer="4" data-alt="สี่|4.0">
-      <p><strong>ขั้น 2</strong> — $\lambda = 1$, $v = 1$</p>
+      <p><strong>ขั้น 2</strong> — ถ้า $\lambda = 1$ และ $v = 1$ แล้ว $m_h^2$ เท่ากับเท่าไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$4$</p>
     </li>
     <li data-answer="2" data-alt="สอง|2.0">
-      <p><strong>ขั้น 3</strong> — ⇒ $\omega$ ของฮิกส์ที่ $k = 0$ (อยู่นิ่ง) เมื่อ $m_h^2 = 4$</p>
+      <p><strong>ขั้น 3</strong> — ใช้ $m_h^2 = 4$ จากขั้น 2 · Higgs ที่อยู่นิ่ง ($k = 0$) มี $\omega$ เท่าไร
+      (ใช้ $\omega^2 = k^2 + m_h^2$)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\sqrt{0 + 4} = 2$ — ที่อยู่นิ่ง $\omega$ = มวล</p>
+      <p class="fb">$\sqrt{0 + 4} = 2$ — ตอนอยู่นิ่ง $\omega$ เท่ากับมวล</p>
     </li>
   </ol>
-  <p class="fb">$m_h$ มาจากความโค้งของผนังหมวก ($\lambda$) · ต่างจากมวลของแสง ($2e^2v^2$)
-  ที่มาจากความแรงของการคู่ควบ ($e$) — <strong>สองมวลนี้เป็นอิสระต่อกัน</strong></p>
+  <p class="fb">มวลของ Higgs มาจากความชันของผนังหมวก ($\lambda$) ส่วนมวลของแสง ($2e^2v^2$)
+  มาจากความแรงของประจุ ($e$) สองตัวนี้ปรับแยกกันได้</p>
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 4 · $\theta$ ถูกกิน &nbsp;<span class="hint">(สมการ (2))</span></h3>
+  <h3>ข้อ 4 · หมุนให้ $\theta$ หายไป</h3>
   <ol class="steps">
     <li data-answer="-0.3" data-alt="−0.3|-3/10|-.3">
-      <p><strong>ขั้น 1</strong> — ถ้า $\theta = 0.3$ ที่จุดหนึ่ง · ต้องเลือก $\alpha$ เท่าไร
-      ให้เฟสของ $\phi$ หลังแปลง ($\theta + \alpha$) เป็นศูนย์</p>
+      <p><strong>ขั้น 1</strong> — ที่จุดหนึ่ง $\theta = 0.3$ ถ้าหมุนด้วย $\alpha$ มุมของ $\phi$ จะกลายเป็น
+      $\theta + \alpha$ · ต้องเลือก $\alpha$ เท่าไรให้มุมนี้เป็นศูนย์</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$-0.3$ — $\alpha = -\theta$</p>
+      <p class="fb">$-0.3$ — คือ $\alpha = -\theta$</p>
     </li>
     <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 2</strong> — หลังแปลง ลากรองจ์มี $\theta$ อยู่กี่ที่</p>
+      <p><strong>ขั้น 2</strong> — ในสมการ (2) มี $\theta$ อยู่<em>นอก</em>ก้อน $A_t - \tfrac1e\partial_t\theta$ กี่ที่</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$0$ — $\theta$ อยู่แค่ในก้อน $A - \tfrac1e\partial\theta$ ซึ่งตอนนี้คือ $A$ ตัวใหม่</p>
+      <p class="fb">$0$ — $\theta$ อยู่ในก้อนนั้นที่เดียว และก้อนนั้นคือ $A$ ตัวใหม่</p>
     </li>
     <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 3</strong> — $F$ เปลี่ยนไปเท่าไรจากการแปลงนี้</p>
+      <p><strong>ขั้น 3</strong> — การหมุนนี้ทำให้ $F$ เปลี่ยนไปเท่าไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$0$ — บทที่ 12 ข้อ 4 · อนุพันธ์สลับลำดับได้</p>
+      <p class="fb">$0$ — เหมือนบทที่ 12 ข้อ 4 · อนุพันธ์สลับลำดับได้</p>
     </li>
   </ol>
-  <p class="fb">โกลด์สโตนไม่ได้ถูกลบทิ้ง — <strong>มันถูกย้ายเข้าไปอยู่ใน $A$</strong>
-  ซึ่งเป็นเหตุผลที่ $A$ มีคลื่นได้หลังจากนี้</p>
+  <p class="fb">Goldstone ไม่ได้ถูกลบทิ้ง มันถูกย้ายเข้าไปอยู่ใน $A$</p>
 </div>
 
 <div class="quiz" data-steps>
   <h3>ข้อ 5 · แสงไร้มวลใน 1+1 มิติ</h3>
   <ol class="steps">
     <li data-answer="5" data-alt="ห้า|5.0">
-      <p><strong>ขั้น 1</strong> — ไม่มีแหล่ง ⇒ $\partial_x F = 0$ และ $\partial_t F = 0$ ·
+      <p><strong>ขั้น 1</strong> — ไม่มีประจุ จึงได้ $\partial_x F = 0$ และ $\partial_t F = 0$
       ถ้า $F = 5$ ที่ $(t, x) = (0, 0)$ แล้ว $F$ ที่ $(t, x) = (3, 7)$ เท่ากับเท่าไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$5$ — อนุพันธ์ทุกทิศเป็นศูนย์ ⇒ ค่าคงที่ทั่วทั้งระนาบ</p>
+      <p class="fb">$5$ — ไม่เปลี่ยนทั้งตามที่และตามเวลา จึงเท่ากันทุกจุด</p>
     </li>
     <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 2</strong> — ⇒ จำนวนคลื่นอิสระของแสงไร้มวลใน 1+1</p>
+      <p><strong>ขั้น 2</strong> — ดังนั้นแสงไร้มวลใน 1+1 กระเพื่อมเป็นคลื่นได้กี่แบบ</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$0$ — ค่าคงที่เดินเป็นคลื่นไม่ได้</p>
+      <p class="fb">$0$ — ค่าคงที่เป็นคลื่นไม่ได้</p>
     </li>
     <li data-answer="1" data-alt="หนึ่ง|1.0">
-      <p><strong>ขั้น 3</strong> — แสง<strong>มีมวล</strong> (บทที่ 15: $A_x$ เดินตาม
-      <code>ptt - pxx + M^2 A_x = 0</code>) ⇒ จำนวนคลื่นอิสระ</p>
+      <p><strong>ขั้น 3</strong> — แสง<strong>มีมวล</strong>ในบทที่ 15 ทำตาม
+      <code>ptt - pxx + M^2 A_x = 0</code> กระเพื่อมได้กี่แบบ</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$1$ — เพิ่มขึ้นหนึ่งตัว · <strong>ตัวที่เพิ่มคือ $\theta$</strong></p>
+      <p class="fb">$1$ — เพิ่มมาหนึ่ง และตัวที่เพิ่มคือ $\theta$</p>
     </li>
   </ol>
-  <p class="fb">ไร้มวล $0$ → มีมวล $1$ · <strong>ส่วนต่างต้องมาจากที่ไหนสักแห่ง</strong></p>
+  <p class="fb">ไร้มวลได้ $0$ มีมวลได้ $1$ ส่วนที่เพิ่มต้องยืมมาจากที่ไหนสักแห่ง</p>
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 6 · นับก่อน/หลัง &nbsp;<span class="hint">(ตารางในหัวข้อ ④)</span></h3>
+  <h3>ข้อ 6 · ทำบัญชีก่อนและหลัง &nbsp;<span class="hint">(ตารางในหัวข้อ ④)</span></h3>
   <ol class="steps">
     <li data-answer="2" data-alt="สอง|2.0">
-      <p><strong>ขั้น 1</strong> — ก่อน ($v = 0$): $\phi$ เชิงซ้อน + แสงไร้มวล</p>
+      <p><strong>ขั้น 1</strong> — ก่อน ($v = 0$): $\phi$ เชิงซ้อน กับ แสงไร้มวล รวมกันกระเพื่อมได้กี่แบบ</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$2 + 0 = 2$</p>
     </li>
     <li data-answer="2" data-alt="สอง|2.0">
-      <p><strong>ขั้น 2</strong> — หลัง: $h$ + แสงมีมวล + $\theta$ (ถูกกินแล้ว)</p>
+      <p><strong>ขั้น 2</strong> — หลัง: $h$ กับ แสงมีมวล กับ $\theta$ (ที่ถูกกินแล้ว) รวมกันกี่แบบ</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$1 + 1 + 0 = 2$</p>
     </li>
     <li data-answer="0" data-alt="ศูนย์|0.0">
       <p><strong>ขั้น 3</strong> — ก่อน ลบ หลัง</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$0$ — <strong>ของไม่หาย มันย้ายที่</strong></p>
+      <p class="fb">$0$ — ของไม่หาย มันย้ายที่</p>
     </li>
   </ol>
-  <p class="fb">การนับให้ผลเท่ากันก่อนและหลังเป็นตัวตรวจงานตัวเองแบบเดียวกับการนับมิติ —
-  <strong>ถ้าไม่เท่า แปลว่ามีอะไรนับตกหรือนับซ้ำ</strong></p>
+  <p class="fb">ก่อนกับหลังต้องได้เท่ากันเสมอ ถ้าไม่เท่า แปลว่านับตกหรือนับซ้ำ ใช้ตรวจงานตัวเองได้</p>
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 7 · นับมิติใน 3+1 มิติ</h3>
+  <h3>ข้อ 7 · มิติ (หน่วย) ใน 3+1 มิติ</h3>
+  <p class="hint">$[X]$ แปลว่ามิติของ $X$ นับเป็นกำลังของหน่วยมวล แบบที่ใช้นับในบทก่อน ๆ ·
+  ใน 3+1 มิติ $[v] = 1$ และ $[\lambda] = 0$</p>
   <ol class="steps">
     <li data-answer="1" data-alt="หนึ่ง|1.0">
-      <p><strong>ขั้น 1</strong> — $[h]$ &nbsp;<span class="hint">($h$ บวกกับ $v$ ได้)</span></p>
+      <p><strong>ขั้น 1</strong> — $[h]$ &nbsp;<span class="hint">(ใบ้: $h$ บวกกับ $v$ ได้)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$1$ = $[v]$ — บวกกันได้ต้องมีมิติเท่ากัน</p>
+      <p class="fb">$1$ เท่ากับ $[v]$ — ของที่บวกกันได้ต้องมีหน่วยเดียวกัน</p>
     </li>
     <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 2</strong> — $[\theta]$ &nbsp;<span class="hint">($\theta$ อยู่ใน $e^{i\theta}$)</span></p>
+      <p><strong>ขั้น 2</strong> — $[\theta]$ &nbsp;<span class="hint">(ใบ้: $\theta$ อยู่ในเลขชี้กำลัง $e^{i\theta}$)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$0$ — สิ่งที่อยู่ในเลขชี้กำลังต้องไร้มิติ · <strong>$\theta$ เป็นมุม</strong></p>
+      <p class="fb">$0$ — ของในเลขชี้กำลังต้องไม่มีหน่วย เพราะ $\theta$ เป็นมุม</p>
     </li>
     <li data-answer="2" data-alt="สอง|2.0">
-      <p><strong>ขั้น 3</strong> — $[m_h^2] = [\lambda] + 2[v]$</p>
+      <p><strong>ขั้น 3</strong> — $[m_h^2] = [\lambda] + 2[v]$ เท่ากับเท่าไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$0 + 2 = 2$ — มวลกำลังสองพอดี ✓</p>
+      <p class="fb">$0 + 2 = 2$ — เป็นหน่วยของมวลกำลังสองพอดี ✓</p>
     </li>
   </ol>
-  <p class="fb">ขั้น 2 ทำให้ $[\partial\theta] = 1 = [A]$ พอดี —
-  <strong>จึงรวมกันเป็นก้อน $A - \tfrac1e\partial\theta$ ในสมการ (2) ได้</strong> ($[e] = 0$ ไม่เปลี่ยนมิติ)</p>
+  <p class="fb">เพราะ $\theta$ ไม่มีหน่วย $\partial\theta$ จึงมีหน่วย $1$ เท่ากับ $A$
+  มันจึงรวมกับ $A$ เป็นก้อนเดียวในสมการ (2) ได้</p>
 </div>
 
 <div class="ask">
   กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา ·
-  <strong>ครบฮิกส์ทั้งกลไก</strong>: หมวก (15) → แสงมีมวล (15) → ฮิกส์กับโกลด์สโตน (16) →
-  โกลด์สโตนถูกกิน (16) · ของใหญ่ที่เหลือคือการควอนไทซ์
+  ถึงตรงนี้ครบกลไก Higgs แล้ว: หมวก (15) แสงมีมวล (15) Higgs กับ Goldstone (16)
+  และ Goldstone ถูกกิน (16) · เรื่องใหญ่ที่เหลือคือการควอนไทซ์
   <div class="nav">
     <a href="./0026-higgs-u1.html">← บทที่ 15 · แสงที่มีมวล</a>
     <a href="./0025-nonabelian.html">บทที่ 14 · แรงที่คุยกับตัวเอง</a>

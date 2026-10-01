@@ -41,6 +41,12 @@ ok.append(("ฐานสี่ตัวอิสระเชิงเส้น (
 chk("เทรซของ sx, sy, sz = 0 ⇒ ไร้เทรซเหลือ 3", sx.trace() + sy.trace() + sz.trace(), 0)
 chk("เทรซของ 1 = 2 (ตัวที่ถูกตัด)", one.trace(), 2)
 
+# รูปทั่วไปในบทเรียน [[a, b+ic],[b-ic, d]] เป็น Hermitian จริง และเทรซศูนย์ ⇒ d = -a เหลือ 3 ตัว
+ga, gb, gc, gd = sp.symbols('ga gb gc gd', real=True)
+Hg = sp.Matrix([[ga, gb + I*gc], [gb - I*gc, gd]])
+ok.append(("[[a, b+ic],[b-ic, d]] = ทรานสโพสสังยุคของตัวเอง", sp.simplify(Hg - Hg.H) == sp.zeros(2, 2), Hg.H, Hg))
+chk("เทรซศูนย์ ⇒ d = -a", sp.solve(sp.Eq(Hg.trace(), 0), gd)[0], -ga)
+
 # ── ② phi = (v + h) e^{i theta} ─────────────────────────────
 h = sp.Function('h')(t, x)
 th = sp.Function('theta')(t, x)
@@ -116,6 +122,10 @@ after = 1 + 1 + 0       # h (1) + แสงมีมวล A_x (1 · บทท�
 chk("ก่อน = 2", before, 2)
 chk("หลัง = 2", after, 2)
 chk("ก่อน - หลัง = 0 (ของไม่หาย มันย้ายที่)", before - after, 0)
+
+hh, tt = sp.symbols('hh tt', real=True)
+chk("หมุนด้วย alpha = -theta ⇒ phi = v + h (จริง)",
+    sp.simplify((v + hh)*sp.exp(I*tt)*sp.exp(I*(-tt))), v + hh)
 
 # ── ⑦ ตัวเลขในข้อฝึก ───────────────────────────────────────
 chk("lam=2, v=3 ⇒ m_h^2 = 72", (4*lam*v**2).subs({lam: 2, v: 3}), 72)
