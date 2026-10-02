@@ -47,6 +47,29 @@ Hg = sp.Matrix([[ga, gb + I*gc], [gb - I*gc, gd]])
 ok.append(("[[a, b+ic],[b-ic, d]] = ทรานสโพสสังยุคของตัวเอง", sp.simplify(Hg - Hg.H) == sp.zeros(2, 2), Hg.H, Hg))
 chk("เทรซศูนย์ ⇒ d = -a", sp.solve(sp.Eq(Hg.trace(), 0), gd)[0], -ga)
 
+# ── กล่องนิยามเทรซ (คำถามของผู้เรียน 2026-10-02) ──────────
+chk("tr [[a, b+ic],[b-ic, d]] = a + d", Hg.trace(), ga + gd)
+# แยก H = (trH/2)*1 + ส่วนไร้เทรซ
+Hrest = Hg - (Hg.trace()/2)*one
+chk("ส่วนที่เหลือหลังหัก (trH/2)*1 มีเทรซ 0", Hrest.trace(), 0)
+ok.append(("H = (trH/2)*1 + ส่วนไร้เทรซ (ประกอบกลับได้ตัวเดิม)",
+           sp.simplify((Hg.trace()/2)*one + Hrest - Hg) == sp.zeros(2, 2), None, None))
+Xg = sp.Matrix(2, 2, sp.symbols('x0:4'))
+ok.append(("[1, X] = 0 ⇒ ส่วนที่เป็น 1 ไม่โผล่ในคอมมิวเตเตอร์ของ F",
+           one*Xg - Xg*one == sp.zeros(2, 2), None, None))
+th0 = sp.symbols('th0', real=True)
+ok.append(("e^{i th 1} = e^{i th} * 1 (หมุนทุกช่องด้วยมุมเท่ากัน)",
+           sp.simplify((I*th0*one).exp() - sp.exp(I*th0)*one) == sp.zeros(2, 2), None, None))
+# det(e^{iX}) = e^{i trX} — ตรวจกับเมทริกซ์ตัวเลขจริง (Hermitian)
+for Xn in [sp.Matrix([[3, 1 + 2*I], [1 - 2*I, -3]]), sp.Matrix([[2, I], [-I, 1]])]:
+    lhs = sp.N((I*Xn).exp().det(), 30)
+    rhs = sp.N(sp.exp(I*Xn.trace()), 30)
+    ok.append((f"det e^(iX) = e^(i trX) สำหรับ trX = {Xn.trace()}", abs(lhs - rhs) < 1e-20, lhs, rhs))
+ok.append(("ไร้เทรซ ⇒ det = 1 (S ใน SU)",
+           abs(sp.N((I*sp.Matrix([[3, 1 + 2*I], [1 - 2*I, -3]])).exp().det(), 30) - 1) < 1e-20, None, 1))
+ok.append(("ตัวควบคุมฝั่งลบ: X = 1 (เทรซ 2) ⇒ det ≠ 1",
+           abs(sp.N((I*one).exp().det(), 30) - 1) > 0.1, sp.N((I*one).exp().det()), "≠ 1"))
+
 # ── ② phi = (v + h) e^{i theta} ─────────────────────────────
 h = sp.Function('h')(t, x)
 th = sp.Function('theta')(t, x)
