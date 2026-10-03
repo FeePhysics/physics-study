@@ -229,6 +229,12 @@ HAND = [
     ("0027-dof.html", "-0.3", "0.3", "wrong"),                # เครื่องหมายของ alpha
     ("0027-dof.html", "-0.3", "-3/10", "right"),
     ("0027-dof.html", "5", "0", "wrong"),                     # นึกว่าสนามศูนย์เมื่อไม่มีแหล่ง
+    ("0028-oscillator.html", "-9", "9", "wrong"),              # ลืมเครื่องหมายลบของ cos
+    ("0028-oscillator.html", "25", "7", "wrong"),              # ลบ k^2 แทนบวก (16 - 9)
+    ("0028-oscillator.html", "1/2", "0.5", "right"),
+    ("0028-oscillator.html", "1/2", "-1/2", "wrong"),          # เอา d/2 แทน -d/2
+    ("0028-oscillator.html", "3/2", "1.5", "right"),
+    ("0028-oscillator.html", "11", "8", "wrong"),              # นับ B เป็น 3 (ลืม k)
 ]
 
 

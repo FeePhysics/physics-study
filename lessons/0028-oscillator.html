@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 17 · อนุภาคคืออะไร</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 17 · อนุภาคคืออะไร</h1>
+<p class="meta">บทเรียน · ~25 นาที · ก้าวแรกของการควอนไทซ์ — สนามคือสปริงจำนวนมาก และอนุภาคคือขั้นบันไดหนึ่งขั้นของสปริงตัวหนึ่ง</p>
+
+<div class="key">
+  <p style="margin-top:0">สิบหกบทที่ผ่านมาเป็นฟิสิกส์คลาสสิกทั้งหมด สนามเป็นคลื่นที่มีขนาดเท่าไรก็ได้
+  แต่ paper ใน hep-th พูดถึง <strong>อนุภาค</strong> ตลอดเวลา บทนี้ตอบคำถามเดียวว่า
+  <strong>อนุภาคมาจากสนามได้อย่างไร</strong></p>
+  <p style="margin-bottom:0">คำตอบสั้น ๆ: สนามแยกเป็นสปริงได้หลายตัว เมื่อทำให้เป็นควอนตัม
+  สปริงแต่ละตัวรับพลังงานได้เป็นขั้น ๆ <strong>หนึ่งขั้นคือหนึ่งอนุภาค</strong></p>
+</div>
+
+<p class="meta">ทั้งบทใช้ <strong>1+1 มิติ</strong> และหน่วย $\hbar = c = 1$ แบบบทที่ 7 ที่ผ่านมา
+· สนามจริงตัวเดียวที่ทำตาม <code>ptt - pxx + m^2 phi = 0</code></p>
+
+<h2>① สนามหนึ่งรูปร่าง = สปริงหนึ่งตัว</h2>
+
+<p>ลองให้สนามมีรูปร่างตายตัวเป็น $\cos(kx)$ แล้วให้แค่ความสูงขึ้นลงตามเวลา
+คือ $\phi = q(t)\cos(kx)$ โดย $q(t)$ เป็นตัวเลขตัวเดียวที่บอกว่าตอนนี้คลื่นสูงแค่ไหน</p>
+
+<p>อนุพันธ์ตามที่สองครั้งของ $\cos(kx)$ คือ $-k^2\cos(kx)$ แทนลงสมการสนามแล้ว
+ทุกพจน์มี $\cos(kx)$ คูณอยู่ หารทิ้งได้ เหลือ</p>
+
+<div class="eq" data-eqno="1">$$ \ddot q \;=\; -\,(k^2 + m^2)\,q \;=\; -\,\omega^2 q \qquad \omega^2 = k^2 + m^2 $$</div>
+
+<p>นี่คือสมการสปริงที่เรียนตอน ม.ปลาย ($\ddot x = -\omega^2 x$) เป๊ะ
+<strong>สนามที่มีรูปร่าง $\cos(kx)$ แกว่งขึ้นลงเหมือนสปริงความถี่ $\omega$</strong>
+และ $\omega^2 = k^2 + m^2$ ก็คือความสัมพันธ์เดียวกับในบทที่ 7 ที่บทที่ 15 ใช้วัดมวลของแสง</p>
+
+<p>เลือก $k$ ใหม่ก็ได้สปริงอีกตัว ความถี่ต่างไป และสปริงแต่ละตัวไม่ยุ่งกัน เพราะสมการ (1)
+ของ $k$ หนึ่งไม่มี $q$ ของ $k$ อื่นอยู่เลย ดังนั้น <strong>สนามหนึ่งตัว = สปริงจำนวนมาก
+หนึ่งตัวต่อหนึ่งรูปร่าง</strong></p>
+
+<p class="src">ตรวจด้วย <code>sympy</code>: ได้สมการ (1) จาก $\mathcal{L}$ จริงผ่านสมการ EL ·
+อินทิเกรต $\mathcal{L}$ ตลอดหนึ่งคาบของ $\cos(kx)$ ได้ $\tfrac{\pi}{k}\big(\tfrac12\dot q^2 - \tfrac12\omega^2q^2\big)$
+ซึ่งเป็น Lagrangian ของสปริงคูณค่าคงที่ — <code>scripts/verify/0029_oscillator.py</code></p>
+
+<h2>② สปริงควอนตัมรับพลังงานได้เป็นขั้น</h2>
+
+<p>สปริงคลาสสิกจะแกว่งแรงแค่ไหนก็ได้ พลังงานเป็นจำนวนจริงอะไรก็ได้ที่ไม่ติดลบ
+ควอนตัมเปลี่ยนเรื่องนี้ สถานะของสปริงไม่ได้บอกด้วยตำแหน่ง $x$ ตัวเดียวอีกต่อไป
+แต่บอกด้วยฟังก์ชัน $\psi(x)$ และสถานะที่มีพลังงานแน่นอน $E$ คือฟังก์ชันที่ทำให้</p>
+
+<div class="eq" data-eqno="2">$$ -\tfrac12\,\psi'' \;+\; \tfrac12\,\omega^2 x^2\,\psi \;=\; E\,\psi $$</div>
+
+<p>นี่คือสมการ Schrödinger ของสปริง (หน่วย $\hbar = 1$ และมวลสปริงเป็น $1$) · ฝั่งซ้ายคือ
+"พลังงานจลน์ + พลังงานศักย์" ในภาษาควอนตัม · กฎที่ต้องรับมาก่อนคือ <strong>ฟังก์ชัน $\psi$
+ต้องลู่เข้าศูนย์ที่ปลายทั้งสองข้าง</strong> (ความน่าจะเป็นรวมต้องจำกัด) และเงื่อนไขนี้ทำให้
+$E$ เป็นค่าอะไรก็ได้ไม่ได้อีก ได้เฉพาะ</p>
+
+<div class="eq" data-eqno="3">$$ E_n \;=\; \omega\Big(n + \tfrac12\Big) \qquad n = 0,\,1,\,2,\,\dots $$</div>
+
+<p>พลังงานจึงเป็นขั้นบันได ขั้นละ $\omega$ เท่ากันทุกขั้น ขั้นล่างสุด ($n = 0$) ไม่ใช่ศูนย์
+แต่เป็น $\tfrac12\omega$</p>
+
+<p class="src">สมการ (2)-(3) คือ quantum harmonic oscillator · Griffiths, <em>Introduction to Quantum
+Mechanics</em> §2.3 · ตรวจด้วย <code>sympy</code>: ฟังก์ชัน Hermite × $e^{-\omega x^2/2}$
+ให้ $E_n = \omega(n + \tfrac12)$ ครบ $n = 0$ ถึง $5$ และ $e^{-x^2}$ (ที่ $\omega = 1$) ไม่ใช่สถานะพลังงานแน่นอน</p>
+
+<p>ข้อ 3-4 ข้างล่างให้แบตรวจสองขั้นแรกเองด้วยการดิฟ ไม่ต้องเชื่อผม</p>
+
+<h2>③ หนึ่งขั้น = หนึ่งอนุภาค</h2>
+
+<p>เอา ① กับ ② มารวมกัน สปริงของรูปร่าง $k$ ขึ้นบันไดได้ทีละขั้น และแต่ละขั้นใช้พลังงาน</p>
+
+$$ \omega \;=\; \sqrt{k^2 + m^2} $$
+
+<p>ซึ่งตรงกับพลังงานของ<strong>อนุภาคมวล $m$ ที่มีโมเมนตัมขนาด $k$</strong> ตามสัมพัทธภาพ
+($E^2 = p^2 + m^2$ ในหน่วย $\hbar = c = 1$ จากบทที่ 7) ฟิสิกส์จึงตีความแบบนี้:</p>
+
+<table>
+<thead><tr><th>ภาษาสปริง</th><th>ภาษาอนุภาค</th></tr></thead>
+<tbody>
+<tr><td>สปริงของรูปร่าง $k$ อยู่ขั้นที่ $n$</td><td>มีอนุภาค $n$ ตัวที่มีโมเมนตัมขนาด $k$</td></tr>
+<tr><td>ขึ้นหนึ่งขั้น (เพิ่มพลังงาน $\omega$)</td><td>สร้างอนุภาคเพิ่มหนึ่งตัว</td></tr>
+<tr><td>ทุกสปริงอยู่ขั้นล่างสุด ($n = 0$ หมด)</td><td><strong>สุญญากาศ</strong> · ไม่มีอนุภาคเลย</td></tr>
+</tbody>
+</table>
+
+<p>ทำไมต้องเป็นขั้นละ $\omega$ พอดี: ถ้าขั้นบันไดของสปริงไม่สม่ำเสมอ สองอนุภาคจะไม่มีพลังงาน
+เป็นสองเท่าของหนึ่งอนุภาค บันไดที่เท่ากันทุกขั้นของสมการ (3) คือสิ่งที่ทำให้นับเป็น "ตัว" ได้</p>
+
+<p>ดังนั้นเวลานับพลังงาน<strong>เทียบกับสุญญากาศ</strong> ให้บวก $\omega$ ของทุกอนุภาคที่มี:
+อนุภาค $2$ ตัวที่ $\omega = 3$ กับ $1$ ตัวที่ $\omega = 5$ มีพลังงาน $2\times3 + 1\times5 = 11$</p>
+
+<div class="warn">
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — สปริงทุกตัวมีพลังงานขั้นล่างสุด $\tfrac12\omega$ และสนามมีสปริง
+  ไม่จำกัดจำนวน ถ้าบวกตรง ๆ ได้อนันต์ (vacuum energy) · บทนี้วัดพลังงานเทียบกับสุญญากาศเสมอ
+  ซึ่งเป็นสิ่งที่ paper ส่วนใหญ่ทำ · และ $\cos(kx)$ เป็นคลื่นนิ่ง ยังไม่บอกทิศของโมเมนตัม
+  (บอกแค่ขนาด) เรื่องทิศต้องใช้ $e^{ikx}$ ซึ่งจะมาพร้อมตัวสร้างอนุภาค $a^\dagger$ ในบทถัดไป
+</div>
+
+<p class="hint">ประโยค "particles are excitations of quantum fields" ที่ paper ชอบเขียนในย่อหน้าแรก
+หมายถึงตาราง ③ นี่แหละ</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ทุกข้อเป็น <strong>1+1 มิติ</strong> · $\hbar = c = 1$ · ตอบเป็นตัวเลข เศษส่วนพิมพ์แบบ <code>3/2</code> ได้</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · รูปร่าง $\cos(3x)$ ของสนามมวล $m = 4$</h3>
+  <ol class="steps">
+    <li data-answer="-9" data-alt="−9">
+      <p><strong>ขั้น 1</strong> — $\dfrac{d^2}{dx^2}\cos(3x) = c\cdot\cos(3x)$ · หา $c$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-9$ — ดิฟ $\cos$ สองครั้งได้ $-\cos$ คูณ $3^2$</p>
+    </li>
+    <li data-answer="25" data-alt="25.0">
+      <p><strong>ขั้น 2</strong> — แทน $\phi = q(t)\cos(3x)$ ลง <code>ptt - pxx + m^2 phi = 0</code> ที่ $m = 4$
+      แล้วหาร $\cos(3x)$ ทิ้ง จะได้ $\ddot q + c\,q = 0$ · หา $c$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$25$ — $\ddot q - (-9)q + 16q = \ddot q + 25q$</p>
+    </li>
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 3</strong> — สปริงตัวนี้แกว่งด้วย $\omega$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt{25} = 5$</p>
+    </li>
+  </ol>
+  <p class="fb">สนามรูปร่างเดียวทำตัวเหมือนสปริงความถี่ $\omega = \sqrt{k^2 + m^2}$ — สมการ (1)</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · $\omega = \sqrt{k^2 + m^2}$ ของสปริงตัวอื่น</h3>
+  <ol class="steps">
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 1</strong> — $k = 0$ (สนามขึ้นลงพร้อมกันทั้งเส้น), $m = 3$ · หา $\omega$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3$ — ไม่มีโมเมนตัม เหลือแต่มวล</p>
+    </li>
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 2</strong> — $k = 4$, $m = 3$ · หา $\omega$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt{16 + 9} = 5$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 3</strong> — $k = 2$, $m = 0$ (สนามไร้มวล) · หา $\omega$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — ไร้มวลแล้ว $\omega = k$ พอดี</p>
+    </li>
+  </ol>
+  <p class="fb">ทุกค่า $k$ ให้สปริงหนึ่งตัว ความถี่ต่างกันไปตาม $k$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · ตรวจขั้นล่างสุด $\psi = e^{-x^2/2}$ ด้วยสมการ (2) ที่ $\omega = 1$</h3>
+  <ol class="steps">
+    <li data-answer="-1" data-alt="−1">
+      <p><strong>ขั้น 1</strong> — $\psi' = c\cdot x\,\psi$ · หา $c$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-1$ — กฎลูกโซ่: $e^{-x^2/2}$ คูณอนุพันธ์ของ $-x^2/2$</p>
+    </li>
+    <li data-answer="-1" data-alt="−1">
+      <p><strong>ขั้น 2</strong> — $\psi'' = (x^2 + d)\,\psi$ · หา $d$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-1$ — ดิฟ $-x\psi$ ด้วยกฎผลคูณ: $-\psi + x^2\psi$</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5|.5">
+      <p><strong>ขั้น 3</strong> — แทนลงฝั่งซ้ายของสมการ (2): $-\tfrac12(x^2 + d)\psi + \tfrac12x^2\psi = E\psi$ · หา $E$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12$ — พจน์ $x^2$ ตัดกันหมด เหลือ $-\tfrac{d}{2} = \tfrac12$</p>
+    </li>
+  </ol>
+  <p class="fb">ได้ $E_0 = \tfrac12\omega$ ตรงกับสมการ (3) ที่ $n = 0$ · ขั้นล่างสุดไม่ใช่ศูนย์</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · ขั้นถัดไป $\psi = x\,e^{-x^2/2}$ ที่ $\omega = 1$</h3>
+  <ol class="steps">
+    <li data-answer="-3" data-alt="−3">
+      <p><strong>ขั้น 1</strong> — $\psi'' = (x^2 + d)\,\psi$ · หา $d$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-3$ — $\psi' = (1 - x^2)e^{-x^2/2}$ แล้ว $\psi'' = (x^3 - 3x)e^{-x^2/2} = (x^2 - 3)\psi$</p>
+    </li>
+    <li data-answer="3/2" data-alt="1.5">
+      <p><strong>ขั้น 2</strong> — ใช้วิธีเดียวกับข้อ 3 ขั้น 3 · หา $E$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-\tfrac{d}{2} = \tfrac32$</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 3</strong> — พลังงานขั้นนี้ ลบ ขั้นล่างสุด (ข้อ 3)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac32 - \tfrac12 = 1$ — เท่ากับ $\omega$ พอดี</p>
+    </li>
+  </ol>
+  <p class="fb">สองขั้นแรกของบันไดห่างกัน $\omega$ ตรงกับสมการ (3) · แบตรวจเองด้วยการดิฟ ไม่ได้รับมาเฉย ๆ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · บันไดของสปริง $\omega = 2$ &nbsp;<span class="hint">(สมการ (3))</span></h3>
+  <ol class="steps">
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 1</strong> — $E_0$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times \tfrac12 = 1$</p>
+    </li>
+    <li data-answer="7" data-alt="เจ็ด|7.0">
+      <p><strong>ขั้น 2</strong> — $E_3$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 3.5 = 7$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 3</strong> — $E_5 - E_4$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — ห่างกัน $\omega$ ทุกขั้น ไม่ว่าจะขั้นไหน</p>
+    </li>
+  </ol>
+  <p class="fb">บันไดเท่ากันทุกขั้น จึงนับเป็น "จำนวนตัว" ได้</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · หนึ่งขั้น = หนึ่งอนุภาค (มวล $m = 3$ · รูปร่าง $k = 4$)</h3>
+  <ol class="steps">
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 1</strong> — สปริงของรูปร่างนี้ขึ้นหนึ่งขั้นใช้พลังงานเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\omega = \sqrt{16 + 9} = 5$</p>
+    </li>
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 2</strong> — อนุภาคมวล $3$ โมเมนตัมขนาด $4$ มีพลังงานเท่าไรตาม $E^2 = p^2 + m^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5$ — เลขเดียวกับขั้น 1 · นี่คือเหตุผลที่เรียกขั้นหนึ่งขั้นว่าอนุภาคหนึ่งตัว</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 3</strong> — สปริงตัวนี้มีพลังงานเหนือขั้นล่างสุด $15$ · มีอนุภาคกี่ตัว</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$15 \div 5 = 3$ — สปริงอยู่ขั้นที่ $n = 3$</p>
+    </li>
+  </ol>
+  <p class="fb">ขั้นที่ $n$ ของสปริงรูปร่าง $k$ = อนุภาค $n$ ตัวที่มีโมเมนตัมขนาด $k$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 7 · สองสปริงพร้อมกัน (มวล $m = 3$ ทั้งคู่)</h3>
+  <p class="hint">สปริง A รูปร่าง $k = 0$ อยู่ขั้น $n = 2$ · สปริง B รูปร่าง $k = 4$ อยู่ขั้น $n = 1$</p>
+  <ol class="steps">
+    <li data-answer="11" data-alt="11.0">
+      <p><strong>ขั้น 1</strong> — พลังงานรวมเทียบกับสุญญากาศ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 3 + 1 \times 5 = 11$ — A มี $\omega = 3$ · B มี $\omega = 5$ (ข้อ 2)</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 2</strong> — มีอนุภาคทั้งหมดกี่ตัว</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 + 1 = 3$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ถ้าทั้งสองสปริงลงไปอยู่ขั้นล่างสุด เหลืออนุภาคกี่ตัว</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — นี่คือสุญญากาศ · ยังมีพลังงาน $\tfrac12\omega$ ต่อสปริง แต่ไม่มีอนุภาค</p>
+    </li>
+  </ol>
+  <p class="fb">อนุภาคสองตัวของ A อยู่นิ่ง ($k = 0$) จึงมีพลังงานตัวละ $3$ เท่ากับมวลพอดี</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · บทถัดไปเขียนการขึ้นบันไดเป็นตัวดำเนินการ
+  $a^\dagger$ ("สร้างอนุภาคหนึ่งตัว") ซึ่งเป็นสัญลักษณ์ที่ paper ใช้แทนตารางในหัวข้อ ③
+  <div class="nav">
+    <a href="./0027-dof.html">← บทที่ 16 · ของหายไปไหน</a>
+    <a href="./0016-fields.html">บทที่ 7 · จากอนุภาคไปสนาม</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>
