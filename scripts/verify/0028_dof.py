@@ -70,6 +70,21 @@ ok.append(("ไร้เทรซ ⇒ det = 1 (S ใน SU)",
 ok.append(("ตัวควบคุมฝั่งลบ: X = 1 (เทรซ 2) ⇒ det ≠ 1",
            abs(sp.N((I*one).exp().det(), 30) - 1) > 0.1, sp.N((I*one).exp().det()), "≠ 1"))
 
+# ── ตัวอย่างประกอบคำถาม "tr = 0 เพื่อให้ det = 1" (2026-10-03) ──
+q1, q2, qt = sp.symbols('q1 q2 qt', real=True)
+Ud = (I*sp.diag(q1, q2)).exp()
+chk("ทแยง: e^{i diag(a,d)} = diag(e^{ia}, e^{id})", Ud[0, 0] - sp.exp(I*q1) + Ud[1, 1] - sp.exp(I*q2), 0)
+chk("ทแยง: det = e^{i(a+d)}", sp.simplify(Ud.det() - sp.exp(I*(q1 + q2))), 0)
+chk("diag(0.3,-0.3) ⇒ det = 1", sp.simplify((I*sp.diag(sp.Rational(3, 10), -sp.Rational(3, 10))).exp().det()), 1)
+ok.append(("ตัวควบคุมฝั่งลบ: diag(0.3,0.3) ⇒ det = e^{0.6i} ≠ 1",
+           abs(sp.N((I*sp.diag(sp.Rational(3, 10), sp.Rational(3, 10))).exp().det()) - 1) > 0.1, None, None))
+ok.append(("diag(0.5,0.1) = 0.3*1 + diag(0.2,-0.2)",
+           sp.diag(sp.Rational(1, 2), sp.Rational(1, 10)) - (sp.Rational(3, 10)*one + sp.diag(sp.Rational(1, 5), -sp.Rational(1, 5))) == sp.zeros(2, 2), None, None))
+Usx = (I*qt*sx).exp().applyfunc(lambda z: sp.simplify(z.rewrite(sp.cos)))
+ok.append(("e^{i t sx} = [[cos t, i sin t],[i sin t, cos t]]",
+           sp.simplify(Usx - sp.Matrix([[sp.cos(qt), I*sp.sin(qt)], [I*sp.sin(qt), sp.cos(qt)]])) == sp.zeros(2, 2), Usx, None))
+chk("det e^{i t sx} = cos^2 + sin^2 = 1", sp.simplify(Usx.det()), 1)
+
 # ── ② phi = (v + h) e^{i theta} ─────────────────────────────
 h = sp.Function('h')(t, x)
 th = sp.Function('theta')(t, x)
