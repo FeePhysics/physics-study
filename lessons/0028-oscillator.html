@@ -96,8 +96,18 @@ $$ \omega \;=\; \sqrt{k^2 + m^2} $$
 <p>ทำไมต้องเป็นขั้นละ $\omega$ พอดี: ถ้าขั้นบันไดของสปริงไม่สม่ำเสมอ สองอนุภาคจะไม่มีพลังงาน
 เป็นสองเท่าของหนึ่งอนุภาค บันไดที่เท่ากันทุกขั้นของสมการ (3) คือสิ่งที่ทำให้นับเป็น "ตัว" ได้</p>
 
-<p>ดังนั้นเวลานับพลังงาน<strong>เทียบกับสุญญากาศ</strong> ให้บวก $\omega$ ของทุกอนุภาคที่มี:
-อนุภาค $2$ ตัวที่ $\omega = 3$ กับ $1$ ตัวที่ $\omega = 5$ มีพลังงาน $2\times3 + 1\times5 = 11$</p>
+<p><strong>"พลังงานเทียบกับสุญญากาศ" แปลว่า เอาพลังงานทั้งหมดตามสมการ (3) ลบด้วยพลังงานตอนที่
+ทุกสปริงอยู่ขั้นล่างสุด</strong> ส่วน $\tfrac12\omega$ ของแต่ละสปริงจะหักกันหมด เหลือแค่ $\omega$ ของอนุภาคแต่ละตัว
+· ตัวอย่าง: สปริง $\omega = 2$ อยู่ขั้น $1$ และสปริง $\omega = 6$ อยู่ขั้น $2$</p>
+
+<table>
+<thead><tr><th></th><th>สปริง $\omega = 2$</th><th>สปริง $\omega = 6$</th><th>รวม</th></tr></thead>
+<tbody>
+<tr><td>ทั้งหมด ตามสมการ (3)</td><td>$2 \times 1.5 = 3$</td><td>$6 \times 2.5 = 15$</td><td>$18$</td></tr>
+<tr><td>สุญญากาศ ($n = 0$ ทั้งคู่)</td><td>$2 \times 0.5 = 1$</td><td>$6 \times 0.5 = 3$</td><td>$4$</td></tr>
+<tr><td><strong>เทียบกับสุญญากาศ</strong></td><td>$1 \times 2$</td><td>$2 \times 6$</td><td>$\mathbf{14}$</td></tr>
+</tbody>
+</table>
 
 <div class="warn">
   <strong>ยังไม่แตะโดยตั้งใจ</strong> — สปริงทุกตัวมีพลังงานขั้นล่างสุด $\tfrac12\omega$ และสนามมีสปริง
@@ -249,22 +259,28 @@ $$ \omega \;=\; \sqrt{k^2 + m^2} $$
 
 <div class="quiz" data-steps>
   <h3>ข้อ 7 · สองสปริงพร้อมกัน (มวล $m = 3$ ทั้งคู่)</h3>
-  <p class="hint">สปริง A รูปร่าง $k = 0$ อยู่ขั้น $n = 2$ · สปริง B รูปร่าง $k = 4$ อยู่ขั้น $n = 1$</p>
+  <p class="hint">สปริง A รูปร่าง $k = 0$ อยู่ขั้น $n = 2$ · สปริง B รูปร่าง $k = 4$ อยู่ขั้น $n = 1$ ·
+  หา $\omega$ ของแต่ละสปริงก่อน (ข้อ 2)</p>
   <ol class="steps">
-    <li data-answer="11" data-alt="11.0">
-      <p><strong>ขั้น 1</strong> — พลังงานรวมเทียบกับสุญญากาศ</p>
+    <li data-answer="15" data-alt="15.0">
+      <p><strong>ขั้น 1</strong> — พลังงานทั้งหมดตามสมการ (3) ของ A บวก B</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$2 \times 3 + 1 \times 5 = 11$ — A มี $\omega = 3$ · B มี $\omega = 5$ (ข้อ 2)</p>
+      <p class="fb">$3 \times 2.5 + 5 \times 1.5 = 7.5 + 7.5 = 15$</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 2</strong> — พลังงานของสุญญากาศ (A และ B อยู่ขั้น $n = 0$ ทั้งคู่)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 \times 0.5 + 5 \times 0.5 = 4$</p>
+    </li>
+    <li data-answer="11" data-alt="11.0">
+      <p><strong>ขั้น 3</strong> — พลังงานเทียบกับสุญญากาศ (ขั้น 1 ลบ ขั้น 2)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$15 - 4 = 11 = 2 \times 3 + 1 \times 5$ — เหลือแค่ $\omega$ ของอนุภาคแต่ละตัว</p>
     </li>
     <li data-answer="3" data-alt="สาม|3.0">
-      <p><strong>ขั้น 2</strong> — มีอนุภาคทั้งหมดกี่ตัว</p>
+      <p><strong>ขั้น 4</strong> — มีอนุภาคทั้งหมดกี่ตัว (นับจำนวน ไม่ใช่พลังงาน)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$2 + 1 = 3$</p>
-    </li>
-    <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 3</strong> — ถ้าทั้งสองสปริงลงไปอยู่ขั้นล่างสุด เหลืออนุภาคกี่ตัว</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$0$ — นี่คือสุญญากาศ · ยังมีพลังงาน $\tfrac12\omega$ ต่อสปริง แต่ไม่มีอนุภาค</p>
+      <p class="fb">$2 + 1 = 3$ — จำนวนอนุภาคคือเลขขั้น $n$ ของแต่ละสปริงบวกกัน</p>
     </li>
   </ol>
   <p class="fb">อนุภาคสองตัวของ A อยู่นิ่ง ($k = 0$) จึงมีพลังงานตัวละ $3$ เท่ากับมวลพอดี</p>

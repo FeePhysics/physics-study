@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 18 · ปุ่มสร้างอนุภาค</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 18 · ปุ่มสร้างอนุภาค</h1>
+<p class="meta">บทเรียน · ~25 นาที · เขียนบันไดของบทที่ 17 เป็นเมทริกซ์ แล้วอ่านสัญลักษณ์ $a^\dagger$ $a$ $|0\rangle$ ที่ paper ใช้ทุกหน้าให้ออก</p>
+
+<div class="key">
+  <p style="margin-top:0"><strong>บทที่ 17 ได้ 6/7</strong> ฟิสิกส์ผ่านหมด ข้อ 7 ขั้น 1 ตอบ $15$
+  ซึ่งคือพลังงานทั้งหมดตามสมการ (3) ของบทนั้น ($7.5 + 7.5$) คิดถูกทุกตัว แต่โจทย์ถาม
+  "เทียบกับสุญญากาศ" และผมไม่เคยบอกว่าคำนี้ต้อง<em>ลบ</em>อะไรออก · แก้บทที่ 17 แล้วให้ทำเป็นสามขั้น
+  (ทั้งหมด · สุญญากาศ · ลบกัน) และข้อ 5 ของบทนี้ซ้อมเรื่องเดียวกันอีกรอบ</p>
+  <p style="margin-bottom:0">บทนี้ไม่มีฟิสิกส์ใหม่ เป็น<strong>ภาษาใหม่</strong>สำหรับเรื่องเดิม
+  paper ไม่วาดบันได แต่เขียน $a^\dagger|0\rangle$ แทน</p>
+</div>
+
+<h2>① สถานะคือเวกเตอร์ฐาน</h2>
+
+<p>ให้ $|n\rangle$ (อ่านว่า "ket n") เป็นชื่อของสถานะที่สปริงอยู่ขั้นที่ $n$
+มองเป็นเวกเตอร์ฐานตัวที่ $n$ แบบ $e_n$ ในพีชคณิตเชิงเส้นก็ได้ ·
+$|0\rangle$ คือขั้นล่างสุด ซึ่งก็คือสุญญากาศของสปริงตัวนั้น</p>
+
+<p>บันไดมีปุ่มสองปุ่ม <strong>$a^\dagger$ ขึ้นหนึ่งขั้น</strong> และ <strong>$a$ ลงหนึ่งขั้น</strong>
+ระหว่างทางมีตัวคูณรากที่สองติดมาด้วย:</p>
+
+<div class="eq" data-eqno="1">$$ a^\dagger|n\rangle = \sqrt{n+1}\;|n+1\rangle \qquad a|n\rangle = \sqrt{n}\;|n-1\rangle \qquad a|0\rangle = 0 $$</div>
+
+<p>เขียนเป็นเมทริกซ์บนฐาน $|0\rangle, |1\rangle, |2\rangle, |3\rangle$ (ตัดไว้แค่สี่ขั้นให้ดูง่าย)
+$a$ มี $\sqrt1, \sqrt2, \sqrt3$ อยู่<em>เหนือ</em>แนวทแยงหนึ่งช่อง</p>
+
+$$ a = \begin{bmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & \sqrt2 & 0 \\ 0 & 0 & 0 & \sqrt3 \\ 0 & 0 & 0 & 0 \end{bmatrix} $$
+
+<p>$a^\dagger$ คือทรานสโพสสังยุคของ $a$ (เครื่องหมาย $\dagger$ ตัวเดียวกับที่ใช้นิยาม Hermitian
+ในบทที่ 16) ตัวเลขจึงย้ายไปอยู่<em>ใต้</em>แนวทแยงแทน · <strong>$a|0\rangle = 0$ คือเวกเตอร์ศูนย์</strong>
+ไม่ใช่สถานะ $|0\rangle$ หมายความว่า ลงต่ำกว่าขั้นล่างสุดไม่ได้</p>
+
+<h2>② ทำไมต้องมีราก: เพื่อให้ $a^\dagger a$ นับได้</h2>
+
+<p>กดลงแล้วกดขึ้น: $a|n\rangle = \sqrt n\,|n-1\rangle$ แล้ว $a^\dagger$ คูณ $\sqrt n$ อีกครั้ง
+ได้ $\sqrt n \cdot \sqrt n = n$ พอดี</p>
+
+<div class="eq" data-eqno="2">$$ a^\dagger a\,|n\rangle \;=\; n\,|n\rangle \qquad\Rightarrow\qquad H \;=\; \omega\Big(a^\dagger a + \tfrac12\Big) $$</div>
+
+<p>$a^\dagger a$ จึงเป็นเมทริกซ์ทแยง $\operatorname{diag}(0, 1, 2, 3, \dots)$ ทำหน้าที่
+<strong>นับว่ามีกี่อนุภาค</strong> และ $H$ ให้ $\omega(n + \tfrac12)$ เท่าบันไดของบทที่ 17 ทุกขั้น ·
+พลังงานเทียบกับสุญญากาศก็คือ $\omega\,a^\dagger a$ ตัดเลข $\tfrac12$ ทิ้งไป</p>
+
+<h2>③ กฎเดียวที่ paper เขียนทุกฉบับ: $[a, a^\dagger] = 1$</h2>
+
+<p>สลับลำดับดู กดขึ้นก่อนแล้วกดลง: $a\,a^\dagger|n\rangle = \sqrt{n+1}\cdot\sqrt{n+1}\,|n\rangle = (n+1)|n\rangle$
+ส่วนกดลงก่อนได้ $n|n\rangle$ ต่างกัน $1$ ทุกขั้น จึงเขียนเป็นคอมมิวเตเตอร์ (ตัวเดียวกับบทที่ 14) ว่า</p>
+
+<div class="eq" data-eqno="3">$$ [a,\, a^\dagger] \;=\; a\,a^\dagger - a^\dagger a \;=\; 1 $$</div>
+
+<p>paper มักเริ่มการควอนไทซ์ด้วยบรรทัดนี้บรรทัดเดียว แล้วถือว่าผู้อ่านรู้ว่ามันให้บันไดทั้งชุดออกมา
+ซึ่งก็คือสิ่งที่ ① และ ② เพิ่งแสดง</p>
+
+<p class="src">ตรวจด้วย <code>sympy</code> บนเมทริกซ์ $8\times8$: สมการ (1)-(3) ครบ และ
+$x = (a + a^\dagger)/\sqrt{2\omega}$, $p = i\sqrt{\omega/2}\,(a^\dagger - a)$ แทนลง
+$\tfrac12p^2 + \tfrac12\omega^2x^2$ ได้ $\omega(a^\dagger a + \tfrac12)$ จริง ·
+แถวสุดท้ายของเมทริกซ์ที่ถูกตัดให้ $[a, a^\dagger] \neq 1$ เสมอ ซึ่งเป็นผลของการตัด ไม่ใช่ฟิสิกส์ ·
+Griffiths QM §2.3.1 — <code>scripts/verify/0030_ladder.py</code></p>
+
+<h2>④ หลายสปริง และทิศของโมเมนตัม</h2>
+
+<p>สนามมีสปริงหนึ่งตัวต่อหนึ่งรูปร่าง แต่ละตัวมีปุ่มของตัวเอง จึงติดป้าย $k$ ไว้ที่ปุ่ม:
+$a_k^\dagger$ สร้างอนุภาคหนึ่งตัวในรูปร่าง $k$ · บทที่ 17 ใช้รูปร่าง $\cos(kx)$
+ซึ่งบอกได้แค่ขนาดของโมเมนตัม คราวนี้ใช้ $e^{ikx}$ แทน ซึ่ง $k$ ติดลบได้ และ
+<strong>เครื่องหมายของ $k$ คือทิศ</strong> ($k > 0$ ไปทางขวา · $k < 0$ ไปทางซ้าย)</p>
+
+<div class="eq" data-eqno="4">$$ H - E_{\text{สุญญากาศ}} \;=\; \sum_k \omega_k\, a_k^\dagger a_k \qquad P \;=\; \sum_k k\; a_k^\dagger a_k \qquad \omega_k = \sqrt{k^2 + m^2} $$</div>
+
+<p>อ่านว่า นับอนุภาคในแต่ละรูปร่างด้วย $a_k^\dagger a_k$ แล้วคูณด้วยพลังงาน ($\omega_k$) หรือโมเมนตัม ($k$)
+ของหนึ่งตัว · $\omega_k$ ไม่สนเครื่องหมายของ $k$ แต่ $P$ สน</p>
+
+<table>
+<thead><tr><th>paper เขียน</th><th>แปลว่า</th></tr></thead>
+<tbody>
+<tr><td>$|0\rangle$</td><td>สุญญากาศ ทุกสปริงอยู่ขั้นล่างสุด</td></tr>
+<tr><td>$|k\rangle = a_k^\dagger|0\rangle$</td><td>อนุภาคหนึ่งตัว โมเมนตัม $k$</td></tr>
+<tr><td>$a_{k_1}^\dagger a_{k_2}^\dagger|0\rangle$</td><td>อนุภาคสองตัว โมเมนตัม $k_1$ กับ $k_2$</td></tr>
+<tr><td>$a_k|0\rangle = 0$</td><td>สุญญากาศไม่มีอะไรให้ทำลาย</td></tr>
+</tbody>
+</table>
+
+<div class="warn">
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — สมการ (4) ยังไม่ได้ derive ในบทนี้ (ต้องเขียนสนามทั้งตัวเป็นผลรวมของ
+  $a_k e^{ikx}$ กับ $a_k^\dagger e^{-ikx}$ แล้วแทนลงพลังงานและโมเมนตัมของสนาม) · รับมาจาก
+  Tong, <em>Quantum Field Theory</em> (Cambridge lecture notes) §2.3–2.4 และ Peskin &amp; Schroeder §2.3 ·
+  ข้อฝึกข้างล่างใช้สมการ (4) แค่บวกเลข
+</div>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ทุกข้อเป็น <strong>1+1 มิติ</strong> · $\hbar = c = 1$ · ตอบเป็นตัวเลข ·
+ถ้าคำตอบมีราก ข้อจะถามค่ายกกำลังสองแทน</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · กดปุ่มทีละครั้ง &nbsp;<span class="hint">(สมการ (1))</span></h3>
+  <ol class="steps">
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 1</strong> — $a^\dagger|2\rangle = c\,|3\rangle$ · หา $c^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$c = \sqrt{2+1}$ จึงได้ $c^2 = 3$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 2</strong> — $a|2\rangle = c\,|1\rangle$ · หา $c^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$c = \sqrt2$ จึงได้ $c^2 = 2$ — ลงใช้ $\sqrt n$ ขึ้นใช้ $\sqrt{n+1}$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ขนาด (ความยาว) ของเวกเตอร์ $a|0\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — เป็นเวกเตอร์ศูนย์ ลงต่ำกว่าสุญญากาศไม่ได้</p>
+    </li>
+  </ol>
+  <p class="fb">$a^\dagger$ ขึ้น · $a$ ลง · ลงจาก $|0\rangle$ ได้ศูนย์</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · ตัวนับ $a^\dagger a$ &nbsp;<span class="hint">(สมการ (2))</span></h3>
+  <ol class="steps">
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 1</strong> — $a|3\rangle = c\,|2\rangle$ · หา $c^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$c = \sqrt3$ จึงได้ $c^2 = 3$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 2</strong> — กด $a^\dagger$ ต่อจากขั้น 1: $a^\dagger a|3\rangle = d\,|3\rangle$ · หา $d$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt3 \cdot \sqrt3 = 3$ — นับได้ว่ามี $3$ อนุภาค</p>
+    </li>
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 3</strong> — เทรซของ $a^\dagger a$ บนฐาน $|0\rangle$ ถึง $|3\rangle$ (เมทริกซ์ $4\times4$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0 + 1 + 2 + 3 = 6$ — $a^\dagger a = \operatorname{diag}(0, 1, 2, 3)$ บวกแนวทแยง</p>
+    </li>
+  </ol>
+  <p class="fb">รากที่สองมีไว้เพื่อให้กดลงแล้วกดขึ้นได้ $n$ พอดี</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · สลับลำดับปุ่ม &nbsp;<span class="hint">(สมการ (3))</span></h3>
+  <ol class="steps">
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 1</strong> — $a\,a^\dagger|2\rangle = e\,|2\rangle$ (ขึ้นก่อนแล้วลง) · หา $e$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ขึ้นไป $|3\rangle$ ได้ $\sqrt3$ ลงกลับได้ $\sqrt3$ อีกครั้ง ⇒ $3$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 2</strong> — $a^\dagger a|2\rangle = f\,|2\rangle$ (ลงก่อนแล้วขึ้น) · หา $f$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — ตัวนับของข้อ 2</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 3</strong> — $e - f$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — ได้ $1$ ไม่ว่าเริ่มจากขั้นไหน นั่นคือ $[a, a^\dagger] = 1$</p>
+    </li>
+  </ol>
+  <p class="fb">ลำดับของปุ่มสำคัญ ต่างกันหนึ่งเสมอ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · $H = \omega(a^\dagger a + \tfrac12)$ ที่ $\omega = 4$</h3>
+  <ol class="steps">
+    <li data-answer="14" data-alt="14.0">
+      <p><strong>ขั้น 1</strong> — พลังงานของ $|3\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4 \times 3.5 = 14$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 2</strong> — พลังงานของสุญญากาศ $|0\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4 \times 0.5 = 2$</p>
+    </li>
+    <li data-answer="12" data-alt="12.0">
+      <p><strong>ขั้น 3</strong> — พลังงานของ $|3\rangle$ เทียบกับสุญญากาศ (ขั้น 1 ลบ ขั้น 2)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$14 - 2 = 12 = \omega \times 3$ — ได้ $\omega\,a^\dagger a$ ตรง ๆ</p>
+    </li>
+  </ol>
+  <p class="fb">"เทียบกับสุญญากาศ" = ลบพลังงานของ $|0\rangle$ ออก เหลือ $\omega$ คูณจำนวนอนุภาค</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · เทียบกับสุญญากาศ แบบสองสปริง</h3>
+  <p class="hint">สปริง $\omega = 2$ อยู่ขั้น $3$ · สปริง $\omega = 6$ อยู่ขั้น $1$</p>
+  <ol class="steps">
+    <li data-answer="16" data-alt="16.0">
+      <p><strong>ขั้น 1</strong> — พลังงานทั้งหมด ตาม $\omega(n + \tfrac12)$ ของสองสปริงบวกกัน</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 3.5 + 6 \times 1.5 = 7 + 9 = 16$</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 2</strong> — พลังงานของสุญญากาศ (สองสปริงอยู่ขั้น $0$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + 3 = 4$</p>
+    </li>
+    <li data-answer="12" data-alt="12.0">
+      <p><strong>ขั้น 3</strong> — พลังงานเทียบกับสุญญากาศ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$16 - 4 = 12 = 3 \times 2 + 1 \times 6$ — เท่ากับสมการ (4) ฝั่งซ้าย</p>
+    </li>
+  </ol>
+  <p class="fb">ข้อซ่อมของบทที่ 17 ข้อ 7 · ทางลัดคือบวก $\omega \times n$ เลย แต่ทางยาวยืนยันว่าทำไมทางลัดถูก</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · สองอนุภาคสวนทางกัน $a_3^\dagger a_{-3}^\dagger|0\rangle$ (มวล $m = 4$)</h3>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — มีอนุภาคกี่ตัว</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — กดปุ่มสร้างสองครั้ง</p>
+    </li>
+    <li data-answer="10" data-alt="10.0">
+      <p><strong>ขั้น 2</strong> — พลังงานเทียบกับสุญญากาศ &nbsp;<span class="hint">(สมการ (4))</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\omega_{3} = \omega_{-3} = \sqrt{9 + 16} = 5$ ⇒ $5 + 5 = 10$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — โมเมนตัมรวม $P$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 + (-3) = 0$ — ตัวหนึ่งไปขวา อีกตัวไปซ้าย</p>
+    </li>
+  </ol>
+  <p class="fb">พลังงานบวกกันเสมอ แต่โมเมนตัมหักล้างกันได้</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 7 · สองอนุภาคในรูปร่างเดียวกัน $a_3^\dagger a_3^\dagger|0\rangle$ (มวล $m = 4$)</h3>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — สปริงของรูปร่าง $k = 3$ ถูกกดขึ้นสองครั้ง: $a^\dagger a^\dagger|0\rangle = c\,|2\rangle$ · หา $c^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt1 \cdot \sqrt2$ ⇒ $c^2 = 2$</p>
+    </li>
+    <li data-answer="10" data-alt="10.0">
+      <p><strong>ขั้น 2</strong> — พลังงานเทียบกับสุญญากาศ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 5 = 10$ — เท่ากับข้อ 6</p>
+    </li>
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 3</strong> — โมเมนตัมรวม $P$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 3 = 6$ — ไปทางเดียวกันทั้งคู่</p>
+    </li>
+  </ol>
+  <p class="fb">ข้อ 6 กับข้อ 7 พลังงานเท่ากัน แยกกันได้ด้วยโมเมนตัม</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา
+  <div class="nav">
+    <a href="./0028-oscillator.html">← บทที่ 17 · อนุภาคคืออะไร</a>
+    <a href="./0025-nonabelian.html">บทที่ 14 · แรงที่คุยกับตัวเอง</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>
