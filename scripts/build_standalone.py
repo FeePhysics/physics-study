@@ -45,6 +45,16 @@ def to_mathml(html: str) -> str:
     html = re.sub(r"\$\$(.+?)\$\$", block, html, flags=re.S)
     html = re.sub(r"(?<!\\)\$([^$]+?)\$", lambda m: tex2mml(m.group(1)), html)
 
+    # latex2mathml ทำ | เป็นตัวดำเนินการที่มีช่องว่างสองข้าง ⇒ เค็ต $a^\dagger|2\rangle$
+    # ขึ้นเป็น "a† | 2⟩" ดูเหมือนพิมพ์ผิด (บทที่ 18 · ผู้เรียนทักมา) · ค่าสัมบูรณ์ $|x|$ ก็ควรชิดอยู่แล้ว
+    html = re.sub(r'<mo( stretchy="false")?>&#x0007C;</mo>',
+                  r'<mo\1 lspace="0em" rspace="0em">&#x0007C;</mo>', html)
+    # วงเล็บของ bmatrix ออกมาไม่ยืด ⇒ เมทริกซ์ 4 แถวมีวงเล็บเตี้ย ๆ อยู่กลาง ดูเหมือนพิมพ์ผิด
+    # ⇒ ตัด [ ] ทิ้งแล้ววาดวงเล็บด้วย CSS (.bmat ใน lesson.css) · stretchy ไม่พอ
+    #   เพราะต้องมีฟอนต์ที่มีตาราง MATH และ Source Serif 4 ซึ่งมาก่อนในลิสต์ไม่มี
+    html = re.sub(r'<mo>&#x0005B;</mo><mtable>(.*?)</mtable><mo>&#x0005D;</mo>',
+                  r'<mtable class="bmat">\1</mtable>', html, flags=re.S)
+
     for i, s in enumerate(svgs):
         html = html.replace(f"\x00SVG{i}\x00", s)
     return html

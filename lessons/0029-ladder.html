@@ -27,32 +27,50 @@
   paper ไม่วาดบันได แต่เขียน $a^\dagger|0\rangle$ แทน</p>
 </div>
 
-<h2>① สถานะคือเวกเตอร์ฐาน</h2>
+<h2>① อ่านสัญลักษณ์ให้ออกก่อน</h2>
 
-<p>ให้ $|n\rangle$ (อ่านว่า "ket n") เป็นชื่อของสถานะที่สปริงอยู่ขั้นที่ $n$
-มองเป็นเวกเตอร์ฐานตัวที่ $n$ แบบ $e_n$ ในพีชคณิตเชิงเส้นก็ได้ ·
-$|0\rangle$ คือขั้นล่างสุด ซึ่งก็คือสุญญากาศของสปริงตัวนั้น</p>
+<p>บทนี้มีสัญลักษณ์ใหม่แค่สามตัว แต่ละตัวมีชื่อเรียก และไม่มีตัวไหนเป็นการหารหรือค่าสัมบูรณ์</p>
 
-<p>บันไดมีปุ่มสองปุ่ม <strong>$a^\dagger$ ขึ้นหนึ่งขั้น</strong> และ <strong>$a$ ลงหนึ่งขั้น</strong>
-ระหว่างทางมีตัวคูณรากที่สองติดมาด้วย:</p>
+<table>
+<thead><tr><th>เขียน</th><th>อ่านว่า</th><th>แปลว่า</th></tr></thead>
+<tbody>
+<tr><td>$|2\rangle$</td><td>"เค็ต 2"</td><td>สถานะที่สปริงอยู่ขั้นที่ $2$ · เลข $2$ เป็น<em>ชื่อขั้น</em> ไม่ใช่ค่าที่เอาไปคูณ</td></tr>
+<tr><td>$a^\dagger$</td><td>"เอ-แดกเกอร์"</td><td>ปุ่มขึ้น กดแล้วขึ้นหนึ่งขั้น</td></tr>
+<tr><td>$a$</td><td>"เอ"</td><td>ปุ่มลง กดแล้วลงหนึ่งขั้น</td></tr>
+</tbody>
+</table>
 
-<div class="eq" data-eqno="1">$$ a^\dagger|n\rangle = \sqrt{n+1}\;|n+1\rangle \qquad a|n\rangle = \sqrt{n}\;|n-1\rangle \qquad a|0\rangle = 0 $$</div>
+<p>เขียนปุ่มไว้หน้าเค็ตแปลว่ากดปุ่มนั้นที่สถานะนั้น เช่น $a^\dagger|2\rangle$ คือกดปุ่มขึ้นตอนสปริงอยู่ขั้น $2$
+ถ้ามีหลายปุ่ม <strong>ตัวที่อยู่ติดเค็ตทำก่อน</strong> เหมือนเมทริกซ์คูณเวกเตอร์ $AB\vec v$ ที่ $B$ ทำก่อน
+ดังนั้น $a^\dagger a|3\rangle$ คือกดลงก่อนแล้วค่อยกดขึ้น</p>
 
-<p>เขียนเป็นเมทริกซ์บนฐาน $|0\rangle, |1\rangle, |2\rangle, |3\rangle$ (ตัดไว้แค่สี่ขั้นให้ดูง่าย)
-$a$ มี $\sqrt1, \sqrt2, \sqrt3$ อยู่<em>เหนือ</em>แนวทแยงหนึ่งช่อง</p>
+<p>ผลของการกดปุ่มคือขั้นใหม่ที่มีตัวเลขคูณติดหน้ามาด้วย ตัวคูณนี้เป็นรากที่สองเสมอ:</p>
 
-$$ a = \begin{bmatrix} 0 & 1 & 0 & 0 \\ 0 & 0 & \sqrt2 & 0 \\ 0 & 0 & 0 & \sqrt3 \\ 0 & 0 & 0 & 0 \end{bmatrix} $$
+<div class="eq" data-eqno="1">$$ \begin{array}{c} a^\dagger|n\rangle = \sqrt{n+1}\;|n+1\rangle \\ a|n\rangle = \sqrt{n}\;|n-1\rangle \\ a|0\rangle = 0 \end{array} $$</div>
 
-<p>$a^\dagger$ คือทรานสโพสสังยุคของ $a$ (เครื่องหมาย $\dagger$ ตัวเดียวกับที่ใช้นิยาม Hermitian
-ในบทที่ 16) ตัวเลขจึงย้ายไปอยู่<em>ใต้</em>แนวทแยงแทน · <strong>$a|0\rangle = 0$ คือเวกเตอร์ศูนย์</strong>
-ไม่ใช่สถานะ $|0\rangle$ หมายความว่า ลงต่ำกว่าขั้นล่างสุดไม่ได้</p>
+<p>อ่านว่า กดขึ้นจากขั้น $n$ ได้ขั้น $n+1$ ตัวคูณ $\sqrt{n+1}$ (รากของ<em>ขั้นปลายทาง</em>)
+กดลงจากขั้น $n$ ได้ขั้น $n-1$ ตัวคูณ $\sqrt n$ (รากของ<em>ขั้นต้นทาง</em>) ·
+ตัวคูณไม่เปลี่ยนว่าอยู่ขั้นไหน ข้อ ② จะแสดงว่ามันมีไว้ทำอะไร ·
+$a|0\rangle = 0$ ด้านขวาเป็น<strong>เลขศูนย์</strong> ไม่ใช่เค็ต $|0\rangle$ แปลว่ากดลงจากขั้นล่างสุดแล้วไม่เหลืออะไรเลย</p>
+
+<h3>ตัวอย่าง: ทำเป็นเมทริกซ์คูณเวกเตอร์จริง ๆ</h3>
+
+<p>ตัดบันไดไว้แค่สี่ขั้น ($0$ ถึง $3$) แล้วให้แต่ละขั้นเป็นเวกเตอร์ฐานแบบ $e_1, e_2, \dots$ ที่คุ้นกัน
+เค็ต $|2\rangle$ คือคอลัมน์ที่มีเลข $1$ อยู่ช่องที่สาม (นับขั้น $0$ เป็นช่องแรก)
+ปุ่มขึ้น $a^\dagger$ เป็นเมทริกซ์ที่มี $\sqrt1, \sqrt2, \sqrt3$ อยู่ใต้แนวทแยงหนึ่งช่อง</p>
+
+$$ a^\dagger|2\rangle \;=\; \begin{bmatrix} 0 & 0 & 0 & 0 \\ 1 & 0 & 0 & 0 \\ 0 & \sqrt2 & 0 & 0 \\ 0 & 0 & \sqrt3 & 0 \end{bmatrix} \begin{bmatrix} 0 \\ 0 \\ 1 \\ 0 \end{bmatrix} \;=\; \begin{bmatrix} 0 \\ 0 \\ 0 \\ \sqrt3 \end{bmatrix} \;=\; \sqrt3\;|3\rangle $$
+
+<p>คูณเมทริกซ์ตามปกติ ได้คอลัมน์ที่มีของอยู่ช่องสุดท้ายช่องเดียว นั่นคือขั้น $3$ คูณด้วย $\sqrt3$ ตรงกับสมการ (1)
+ที่ $n = 2$ · ปุ่มลง $a$ คือเมทริกซ์ตัวเดียวกันที่พลิกให้ตัวเลขไปอยู่<em>เหนือ</em>แนวทแยง
+(ทรานสโพส ซึ่งเครื่องหมาย $\dagger$ แปลว่าทรานสโพสสังยุค ตัวเดียวกับที่ใช้นิยาม Hermitian ในบทที่ 16)</p>
 
 <h2>② ทำไมต้องมีราก: เพื่อให้ $a^\dagger a$ นับได้</h2>
 
 <p>กดลงแล้วกดขึ้น: $a|n\rangle = \sqrt n\,|n-1\rangle$ แล้ว $a^\dagger$ คูณ $\sqrt n$ อีกครั้ง
 ได้ $\sqrt n \cdot \sqrt n = n$ พอดี</p>
 
-<div class="eq" data-eqno="2">$$ a^\dagger a\,|n\rangle \;=\; n\,|n\rangle \qquad\Rightarrow\qquad H \;=\; \omega\Big(a^\dagger a + \tfrac12\Big) $$</div>
+<div class="eq" data-eqno="2">$$ \begin{array}{c} a^\dagger a\,|n\rangle \;=\; n\,|n\rangle \\ H \;=\; \omega\Big(a^\dagger a + \tfrac12\Big) \end{array} $$</div>
 
 <p>$a^\dagger a$ จึงเป็นเมทริกซ์ทแยง $\operatorname{diag}(0, 1, 2, 3, \dots)$ ทำหน้าที่
 <strong>นับว่ามีกี่อนุภาค</strong> และ $H$ ให้ $\omega(n + \tfrac12)$ เท่าบันไดของบทที่ 17 ทุกขั้น ·
@@ -77,13 +95,14 @@ Griffiths QM §2.3.1 — <code>scripts/verify/0030_ladder.py</code></p>
 <h2>④ หลายสปริง และทิศของโมเมนตัม</h2>
 
 <p>สนามมีสปริงหนึ่งตัวต่อหนึ่งรูปร่าง แต่ละตัวมีปุ่มของตัวเอง จึงติดป้าย $k$ ไว้ที่ปุ่ม:
-$a_k^\dagger$ สร้างอนุภาคหนึ่งตัวในรูปร่าง $k$ · บทที่ 17 ใช้รูปร่าง $\cos(kx)$
+$a_k^\dagger$ สร้างอนุภาคหนึ่งตัวในรูปร่าง $k$ เช่น $a_3^\dagger$ คือปุ่มขึ้นของสปริงรูปร่าง $k = 3$ และ $a_{-3}^\dagger$ คือของสปริงรูปร่าง $k = -3$ ซึ่งเป็นคนละตัวกัน · บทที่ 17 ใช้รูปร่าง $\cos(kx)$
 ซึ่งบอกได้แค่ขนาดของโมเมนตัม คราวนี้ใช้ $e^{ikx}$ แทน ซึ่ง $k$ ติดลบได้ และ
 <strong>เครื่องหมายของ $k$ คือทิศ</strong> ($k > 0$ ไปทางขวา · $k < 0$ ไปทางซ้าย)</p>
 
-<div class="eq" data-eqno="4">$$ H - E_{\text{สุญญากาศ}} \;=\; \sum_k \omega_k\, a_k^\dagger a_k \qquad P \;=\; \sum_k k\; a_k^\dagger a_k \qquad \omega_k = \sqrt{k^2 + m^2} $$</div>
+<div class="eq" data-eqno="4">$$ \begin{array}{c} H - E_0 \;=\; \sum_k \omega_k\, a_k^\dagger a_k \\ P \;=\; \sum_k k\; a_k^\dagger a_k \\ \omega_k = \sqrt{k^2 + m^2} \end{array} $$</div>
 
-<p>อ่านว่า นับอนุภาคในแต่ละรูปร่างด้วย $a_k^\dagger a_k$ แล้วคูณด้วยพลังงาน ($\omega_k$) หรือโมเมนตัม ($k$)
+<p>$E_0$ คือพลังงานของสุญญากาศ ($\tfrac12\omega_k$ ของทุกสปริงรวมกัน) ลบออกแล้วจึงเป็น "เทียบกับสุญญากาศ" แบบบทที่ 17 ·
+อ่านว่า นับอนุภาคในแต่ละรูปร่างด้วย $a_k^\dagger a_k$ แล้วคูณด้วยพลังงาน ($\omega_k$) หรือโมเมนตัม ($k$)
 ของหนึ่งตัว · $\omega_k$ ไม่สนเครื่องหมายของ $k$ แต่ $P$ สน</p>
 
 <table>
@@ -107,25 +126,25 @@ $a_k^\dagger$ สร้างอนุภาคหนึ่งตัวในร
 <div id="score"></div>
 
 <p class="meta">ทุกข้อเป็น <strong>1+1 มิติ</strong> · $\hbar = c = 1$ · ตอบเป็นตัวเลข ·
-ถ้าคำตอบมีราก ข้อจะถามค่ายกกำลังสองแทน</p>
+ช่อง $\sqrt{\,?\,}$ ให้ตอบเลขที่อยู่ใต้ราก</p>
 
 <div class="quiz" data-steps>
   <h3>ข้อ 1 · กดปุ่มทีละครั้ง &nbsp;<span class="hint">(สมการ (1))</span></h3>
   <ol class="steps">
     <li data-answer="3" data-alt="สาม|3.0">
-      <p><strong>ขั้น 1</strong> — $a^\dagger|2\rangle = c\,|3\rangle$ · หา $c^2$</p>
+      <p><strong>ขั้น 1</strong> — กดขึ้นจากขั้น $2$: $\;a^\dagger|2\rangle = \sqrt{\,?\,}\;|3\rangle$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$c = \sqrt{2+1}$ จึงได้ $c^2 = 3$</p>
+      <p class="fb">$3$ — ขึ้นใช้รากของขั้นปลายทาง $\sqrt{2+1} = \sqrt3$ (ตัวอย่างเมทริกซ์ในข้อ ① คือข้อนี้)</p>
     </li>
     <li data-answer="2" data-alt="สอง|2.0">
-      <p><strong>ขั้น 2</strong> — $a|2\rangle = c\,|1\rangle$ · หา $c^2$</p>
+      <p><strong>ขั้น 2</strong> — กดลงจากขั้น $2$: $\;a|2\rangle = \sqrt{\,?\,}\;|1\rangle$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$c = \sqrt2$ จึงได้ $c^2 = 2$ — ลงใช้ $\sqrt n$ ขึ้นใช้ $\sqrt{n+1}$</p>
+      <p class="fb">$2$ — ลงใช้รากของขั้นต้นทาง $\sqrt2$</p>
     </li>
     <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 3</strong> — ขนาด (ความยาว) ของเวกเตอร์ $a|0\rangle$</p>
+      <p><strong>ขั้น 3</strong> — กดลงจากขั้น $0$: $\;a|0\rangle$ เท่ากับเลขอะไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$0$ — เป็นเวกเตอร์ศูนย์ ลงต่ำกว่าสุญญากาศไม่ได้</p>
+      <p class="fb">$0$ — ตัวคูณคือ $\sqrt0 = 0$ ลงต่ำกว่าขั้นล่างสุดไม่ได้</p>
     </li>
   </ol>
   <p class="fb">$a^\dagger$ ขึ้น · $a$ ลง · ลงจาก $|0\rangle$ ได้ศูนย์</p>
@@ -135,17 +154,17 @@ $a_k^\dagger$ สร้างอนุภาคหนึ่งตัวในร
   <h3>ข้อ 2 · ตัวนับ $a^\dagger a$ &nbsp;<span class="hint">(สมการ (2))</span></h3>
   <ol class="steps">
     <li data-answer="3" data-alt="สาม|3.0">
-      <p><strong>ขั้น 1</strong> — $a|3\rangle = c\,|2\rangle$ · หา $c^2$</p>
+      <p><strong>ขั้น 1</strong> — กดลงจากขั้น $3$: $\;a|3\rangle = \sqrt{\,?\,}\;|2\rangle$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$c = \sqrt3$ จึงได้ $c^2 = 3$</p>
+      <p class="fb">$3$ — ได้ $\sqrt3\,|2\rangle$</p>
     </li>
     <li data-answer="3" data-alt="สาม|3.0">
-      <p><strong>ขั้น 2</strong> — กด $a^\dagger$ ต่อจากขั้น 1: $a^\dagger a|3\rangle = d\,|3\rangle$ · หา $d$</p>
+      <p><strong>ขั้น 2</strong> — กดขึ้นต่อจากขั้น 1 (ลงก่อนแล้วขึ้น): $\;a^\dagger a|3\rangle = \;?\;|3\rangle$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\sqrt3 \cdot \sqrt3 = 3$ — นับได้ว่ามี $3$ อนุภาค</p>
+      <p class="fb">$3$ — ขาลงได้ $\sqrt3$ ขาขึ้นกลับไปขั้น $3$ ได้ $\sqrt3$ อีกตัว คูณกัน $\sqrt3 \times \sqrt3 = 3$ ตรงกับเลขขั้นพอดี</p>
     </li>
     <li data-answer="6" data-alt="หก|6.0">
-      <p><strong>ขั้น 3</strong> — เทรซของ $a^\dagger a$ บนฐาน $|0\rangle$ ถึง $|3\rangle$ (เมทริกซ์ $4\times4$)</p>
+      <p><strong>ขั้น 3</strong> — เทรซ (ผลบวกแนวทแยง) ของ $a^\dagger a$ เมื่อตัดไว้สี่ขั้น $0$ ถึง $3$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$0 + 1 + 2 + 3 = 6$ — $a^\dagger a = \operatorname{diag}(0, 1, 2, 3)$ บวกแนวทแยง</p>
     </li>
@@ -157,17 +176,17 @@ $a_k^\dagger$ สร้างอนุภาคหนึ่งตัวในร
   <h3>ข้อ 3 · สลับลำดับปุ่ม &nbsp;<span class="hint">(สมการ (3))</span></h3>
   <ol class="steps">
     <li data-answer="3" data-alt="สาม|3.0">
-      <p><strong>ขั้น 1</strong> — $a\,a^\dagger|2\rangle = e\,|2\rangle$ (ขึ้นก่อนแล้วลง) · หา $e$</p>
+      <p><strong>ขั้น 1</strong> — ขึ้นก่อนแล้วลง (ตัวติดเค็ตทำก่อน): $\;a\,a^\dagger|2\rangle = \;?\;|2\rangle$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">ขึ้นไป $|3\rangle$ ได้ $\sqrt3$ ลงกลับได้ $\sqrt3$ อีกครั้ง ⇒ $3$</p>
+      <p class="fb">$3$ — ขึ้นไปขั้น $3$ ได้ $\sqrt3$ ลงกลับจากขั้น $3$ ได้ $\sqrt3$ อีกตัว ⇒ $3$</p>
     </li>
     <li data-answer="2" data-alt="สอง|2.0">
-      <p><strong>ขั้น 2</strong> — $a^\dagger a|2\rangle = f\,|2\rangle$ (ลงก่อนแล้วขึ้น) · หา $f$</p>
+      <p><strong>ขั้น 2</strong> — ลงก่อนแล้วขึ้น: $\;a^\dagger a|2\rangle = \;?\;|2\rangle$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$2$ — ตัวนับของข้อ 2</p>
+      <p class="fb">$2$ — ลงไปขั้น $1$ ได้ $\sqrt2$ ขึ้นกลับได้ $\sqrt2$ ⇒ $2$ (ตัวนับแบบข้อ 2)</p>
     </li>
     <li data-answer="1" data-alt="หนึ่ง|1.0">
-      <p><strong>ขั้น 3</strong> — $e - f$</p>
+      <p><strong>ขั้น 3</strong> — คำตอบขั้น 1 ลบ คำตอบขั้น 2</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$1$ — ได้ $1$ ไม่ว่าเริ่มจากขั้นไหน นั่นคือ $[a, a^\dagger] = 1$</p>
     </li>
@@ -221,7 +240,8 @@ $a_k^\dagger$ สร้างอนุภาคหนึ่งตัวในร
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 6 · สองอนุภาคสวนทางกัน $a_3^\dagger a_{-3}^\dagger|0\rangle$ (มวล $m = 4$)</h3>
+  <h3>ข้อ 6 · สองอนุภาคสวนทางกัน (มวล $m = 4$)</h3>
+  <p class="hint">สถานะ $a_3^\dagger a_{-3}^\dagger|0\rangle$ แปลว่า เริ่มจากสุญญากาศ กดปุ่มขึ้นของสปริง $k = -3$ หนึ่งครั้ง แล้วกดของสปริง $k = 3$ อีกหนึ่งครั้ง</p>
   <ol class="steps">
     <li data-answer="2" data-alt="สอง|2.0">
       <p><strong>ขั้น 1</strong> — มีอนุภาคกี่ตัว</p>
@@ -243,12 +263,13 @@ $a_k^\dagger$ สร้างอนุภาคหนึ่งตัวในร
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 7 · สองอนุภาคในรูปร่างเดียวกัน $a_3^\dagger a_3^\dagger|0\rangle$ (มวล $m = 4$)</h3>
+  <h3>ข้อ 7 · สองอนุภาคในรูปร่างเดียวกัน (มวล $m = 4$)</h3>
+  <p class="hint">สถานะ $a_3^\dagger a_3^\dagger|0\rangle$ แปลว่า เริ่มจากสุญญากาศ กดปุ่มขึ้นของสปริง $k = 3$ สองครั้ง สปริงตัวนั้นจึงไปอยู่ขั้น $2$</p>
   <ol class="steps">
     <li data-answer="2" data-alt="สอง|2.0">
-      <p><strong>ขั้น 1</strong> — สปริงของรูปร่าง $k = 3$ ถูกกดขึ้นสองครั้ง: $a^\dagger a^\dagger|0\rangle = c\,|2\rangle$ · หา $c^2$</p>
+      <p><strong>ขั้น 1</strong> — กดขึ้นสองครั้งจากขั้น $0$: $\;a^\dagger a^\dagger|0\rangle = \sqrt{\,?\,}\;|2\rangle$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\sqrt1 \cdot \sqrt2$ ⇒ $c^2 = 2$</p>
+      <p class="fb">$2$ — ครั้งแรกขึ้นขั้น $1$ ได้ $\sqrt1$ ครั้งที่สองขึ้นขั้น $2$ ได้ $\sqrt2$ คูณกันได้ $\sqrt2$</p>
     </li>
     <li data-answer="10" data-alt="10.0">
       <p><strong>ขั้น 2</strong> — พลังงานเทียบกับสุญญากาศ</p>

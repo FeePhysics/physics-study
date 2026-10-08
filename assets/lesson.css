@@ -239,3 +239,15 @@ pre { background: var(--panel); padding: 1rem; overflow-x: auto; }
               padding-top: .8rem; border-top: 1px solid var(--rule); }
 .step-tally.right { color: var(--ok); font-weight: 600; }
 .step-tally.wrong { color: var(--ink-soft); }
+
+/* วงเล็บของ bmatrix — build_standalone ตัด [ ] ที่ไม่ยืดทิ้งแล้วใส่คลาสนี้แทน
+   (เส้นข้าง + ขีดสั้นบน/ล่าง 4 จุด ด้วย gradient ⇒ ไม่ต้องพึ่งฟอนต์คณิตของเครื่อง) */
+mtable.bmat {
+  padding: 0 .35em; margin: 0 .15em;
+  border-left: 1.5px solid currentColor; border-right: 1.5px solid currentColor;
+  background:
+    linear-gradient(currentColor, currentColor) left top / .3em 1.5px no-repeat,
+    linear-gradient(currentColor, currentColor) left bottom / .3em 1.5px no-repeat,
+    linear-gradient(currentColor, currentColor) right top / .3em 1.5px no-repeat,
+    linear-gradient(currentColor, currentColor) right bottom / .3em 1.5px no-repeat;
+}
