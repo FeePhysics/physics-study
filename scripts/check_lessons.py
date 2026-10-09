@@ -114,6 +114,22 @@ def check(f: pathlib.Path, html: str):
                 bad(f'คำตอบ {a!r} เป็นตัวเลข แต่ช่องพิมพ์เขียน {ph.group(1)!r}'
                     ' — ต้องบอกว่าขอตัวเลข ไม่งั้นผู้เรียนตอบเป็นนิพจน์')
 
+        # ── คำตอบที่เป็นตัวเลข ต้องโผล่ใน .fb ของขั้นตัวเอง ──
+        # ⚠️ แก้เนื้อขั้นแล้วลืมแก้ data-answer = เครื่องตรวจรับคำตอบเก่า เฉลยบอกคำตอบใหม่
+        #    (เกิดจริง 2026-10-09 · บทที่ 18 ข้อ 7 ขั้น 3: เฉลย "3" แต่ data-answer="6"
+        #     ⇒ ตอบถูกแล้วโดนนับผิด) · ตรวจเฉพาะคำตอบตัวเลข นิพจน์เขียนได้หลายรูป
+        for lm in re.finditer(r'<li data-answer="([^"]*)"(?: data-alt="([^"]*)")?>(.*?)</li>', block, re.S):
+            if not _is_num(lm.group(1)):
+                continue
+            fbm = re.search(r'<p class="fb">(.*?)</p>', lm.group(3), re.S)
+            if not fbm:
+                continue
+            ft = re.sub(r'\\[td]?frac\{?(-?\d+)\}?\{?(\d+)\}?', r'\1/\2', fbm.group(1)).replace('−', '-')
+            toks = set(re.findall(r'-?\d+(?:\.\d+)?(?:/\d+)?', ft))
+            alts = [lm.group(1)] + (lm.group(2).split('|') if lm.group(2) else [])
+            if not any(x.strip().replace('−', '-') in toks for x in alts):
+                bad(f'คำตอบ {lm.group(1)!r} ไม่โผล่ในเฉลยของขั้นนั้น — data-answer กับ .fb ไม่ตรงกัน?')
+
         if 'data-steps' in attrs:
             # ── ต้องมี <p class="fb"> สรุปท้ายข้อ (หลัง </ol>) ────────
             # check_layout.py บังคับข้อนี้อยู่แล้ว แต่ต้องเปิดเบราว์เซอร์ ~3 นาที
