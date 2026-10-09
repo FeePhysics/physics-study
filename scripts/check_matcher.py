@@ -241,6 +241,15 @@ HAND = [
     ("0029-ladder.html", "6", "4", "wrong"),                   # นับเทรซเป็นจำนวนแถว
     ("0029-ladder.html", "0", "-0", "right"),
     ("0029-ladder.html", "6", "24", "wrong"),                  # คูณมวลเข้าไปแบบ p = mv (ผลจริงของแบ)
+    ("0030-field-operator.html", "3/2", "1.5", "right"),
+    ("0030-field-operator.html", "-2", "2", "wrong"),          # ลืมทิศ
+    ("0030-field-operator.html", "-25", "25", "wrong"),        # ลืม i^2 = -1
+    ("0030-field-operator.html", "7/2", "3.5", "right"),
+    ("0030-field-operator.html", "21/2", "7", "wrong"),        # ใช้ N แทนจำนวนรูปร่าง
+    ("0030-field-operator.html", "1/5", "0.2", "right"),
+    ("0030-field-operator.html", "150", "15", "wrong"),        # ลืมคูณ 10 เมื่อกล่องยาวขึ้น
+    ("0030-field-operator.html", "2", "1/2", "wrong"),         # กลับด้านอัตราส่วน
+    ("0030-field-operator.html", "3", "12", "wrong"),          # คูณมวลซ้ำอีกรอบ
 ]
 
 

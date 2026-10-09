@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 19 · สนามคือผลรวมของปุ่ม</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 19 · สนามคือผลรวมของปุ่ม</h1>
+<p class="meta">บทเรียน · ~25 นาที · ประกอบปุ่ม $a_k$ กับ $a_k^\dagger$ ของบทที่ 18 กลับเป็นสนาม $\phi(t,x)$
+ทั้งตัว ซึ่งเป็นบรรทัดที่ paper QFT เขียนไว้ในหน้าแรก ๆ แทบทุกฉบับ</p>
+
+<div class="key">
+  <p style="margin-top:0"><strong>บทที่ 18 ได้ 6/7</strong> ข้อ 7 ตอบโมเมนตัมรวม $24 = 6 \times 4$
+  คือเอามวลไปคูณแบบ $p = mv$ ทั้งที่ $k$ เป็นโมเมนตัมอยู่แล้ว ข้อ 6 ก็คูณแบบเดียวกัน
+  แต่ $0 \times 4 = 0$ เลยไม่ฟ้อง แก้บทที่ 18 แล้ว และข้อ 6 ของบทนี้ซ้อมอีกรอบด้วยคำตอบที่ไม่เป็นศูนย์</p>
+  <p style="margin-bottom:0">ระหว่างแก้ ผมตั้งคำตอบของข้อ 7 ขั้น 3 ไว้ผิด (เฉลยบอก $3$ แต่เครื่องตรวจรับ $6$)
+  แก้แล้ว และเพิ่มตัวตรวจที่จับความผิดแบบนี้ได้ทุกบท</p>
+</div>
+
+<h2>① บรรทัดเดียวที่ต้องอ่านให้ออก</h2>
+
+<p>บทที่ 17 แยกสนามออกเป็นสปริงหนึ่งตัวต่อหนึ่งรูปร่าง บทที่ 18 ให้แต่ละสปริงมีปุ่มขึ้นลงของตัวเอง
+บทนี้ทำกลับทาง คือเอาทุกสปริงมาบวกกันให้ได้สนามคืนมา ผลที่ได้คือบรรทัดนี้</p>
+
+<div class="eq" data-eqno="1">$$ \begin{array}{l} \phi(t,x) \;=\; \displaystyle\sum_k \frac{1}{\sqrt{2\omega_k L}} \big[\, a_k\, e^{i(kx - \omega_k t)} \\ \qquad\qquad\qquad +\; a_k^\dagger\, e^{-i(kx - \omega_k t)} \,\big] \end{array} $$</div>
+
+<p>อ่านทีละชิ้นจากข้างในออกมา:</p>
+
+<table>
+<thead><tr><th>ชิ้น</th><th>หมายความว่า</th></tr></thead>
+<tbody>
+<tr><td>$e^{ikx}$</td><td>รูปร่างของสปริงตัวที่ $k$ (บทที่ 18 ข้อ ④)</td></tr>
+<tr><td>$e^{-i\omega_k t}$</td><td>สปริงตัวนั้นแกว่งด้วยความถี่ของตัวเอง $\omega_k = \sqrt{k^2 + m^2}$</td></tr>
+<tr><td>$a_k$</td><td>ปุ่มลงของสปริงตัวนั้น</td></tr>
+<tr><td>$a_k^\dagger\, e^{-i(\dots)}$</td><td>สังยุคของพจน์แรก ใส่ไว้ให้ $\phi$ เป็นจำนวนจริง (Hermitian)</td></tr>
+<tr><td>$\dfrac{1}{\sqrt{2\omega_k L}}$</td><td>ขนาดของแต่ละพจน์ ข้อ ④ จะบอกว่าทำไมต้องเป็นค่านี้</td></tr>
+</tbody>
+</table>
+
+<p>$L$ คือความยาวของกล่องที่ผมขังสนามไว้ให้นับรูปร่างได้ทีละตัว
+ปลายสองข้างของกล่องต่อกันเป็นวง รูปร่าง $e^{ikx}$ จึงต้องกลับมาค่าเดิมเมื่อเดินครบ $L$
+ซึ่งเกิดขึ้นได้เฉพาะ $k$ บางค่า:</p>
+
+<div class="eq" data-eqno="2">$$ k \;=\; \frac{2\pi n}{L} \qquad n = 0, \pm1, \pm2, \dots $$</div>
+
+<p>เช่นกล่องยาว $L = 2\pi$ ได้ $k = n$ เป็นจำนวนเต็มพอดี ข้อ ⑤ จะเอากล่องออกให้เหมือนใน paper</p>
+
+<h2>② ทำไมบรรทัดนี้ถูก: ทุกพจน์แก้สมการสนาม</h2>
+
+<p>ลองแทนพจน์เดียว $e^{i(kx - \omega t)}$ ลงสมการ $\phi_{tt} - \phi_{xx} + m^2\phi = 0$ ของบทที่ 7
+อนุพันธ์เทียบ $t$ สองครั้งได้ตัวคูณ $(-i\omega)^2 = -\omega^2$ และเทียบ $x$ สองครั้งได้ $(ik)^2 = -k^2$
+รวมกันได้ $(-\omega^2 + k^2 + m^2)\,\phi$ ซึ่งเป็นศูนย์พอดีเมื่อ $\omega^2 = k^2 + m^2$
+ตัวเดียวกับบทที่ 17</p>
+
+<p>ดังนั้นสมการ (1) ก็คือคำตอบทั่วไปของสมการสนามแบบคลาสสิก (ผลรวมของคลื่นทุกรูปร่าง)
+ต่างกันที่เดียวคือสัมประสิทธิ์หน้าคลื่นแต่ละตัวไม่ใช่ตัวเลข แต่เป็นปุ่ม $a_k$ และ $a_k^\dagger$
+paper เรียกการทำแบบนี้ว่า <strong>การควอนไทซ์</strong>: เอาคำตอบคลาสสิกมา แล้วเปลี่ยนสัมประสิทธิ์ให้เป็นปุ่ม</p>
+
+<h2>③ สนามทำอะไรกับสุญญากาศ</h2>
+
+<p>เอา $\phi$ ที่ $t = 0$ ไปกระทำกับ $|0\rangle$ พจน์ $a_k$ ทุกตัวให้ศูนย์ (ลงจากขั้นล่างสุดไม่ได้)
+เหลือแต่พจน์ $a_k^\dagger$ ซึ่งสร้างอนุภาคหนึ่งตัว:</p>
+
+<div class="eq" data-eqno="3">$$ \phi(0,x)\,|0\rangle \;=\; \sum_k \frac{e^{-ikx}}{\sqrt{2\omega_k L}}\; |k\rangle $$</div>
+
+<p>ผลคือ<strong>อนุภาคหนึ่งตัวที่จุด $x$</strong> ซึ่งไม่ได้มีโมเมนตัมค่าเดียว แต่เป็นผลรวมของทุก $k$
+โดยแต่ละ $k$ มีน้ำหนัก $1/\sqrt{2\omega_k L}$ รูปร่างที่ $\omega_k$ ใหญ่ (โมเมนตัมสูง) มีน้ำหนักน้อยกว่า
+เช่น $\omega = 20$ มีน้ำหนักเป็นครึ่งหนึ่งของ $\omega = 5$ เพราะ $\sqrt{20/5} = 2$
+</p>
+
+<p>ส่วนค่าเฉลี่ยของสนามในสุญญากาศ $\langle 0|\phi|0\rangle$ เป็นศูนย์ เพราะ $\phi|0\rangle$ มีแต่สถานะหนึ่งอนุภาค
+ซึ่งตั้งฉากกับ $|0\rangle$</p>
+
+<h2>④ บรรทัดที่ paper ใช้เริ่มต้น: $[\phi(x), \pi(y)] = i\,\delta(x-y)$</h2>
+
+<p>บทที่ 18 มีกฎ $[a, a^\dagger] = 1$ สำหรับสปริงตัวเดียว สปริงตัวเดียวในกลศาสตร์ควอนตัมมีอีกรูปหนึ่งคือ
+$[x, p] = i$ (ตำแหน่งกับโมเมนตัม) สนามก็มีคู่แบบนี้เหมือนกัน แต่มี<em>หนึ่งคู่ต่อหนึ่งจุด $x$</em>
+คือค่าของสนาม $\phi(x)$ กับ $\pi = \partial_t\phi$ ที่จุดเดียวกัน
+แทนสมการ (1) แล้วใช้ $[a_k, a_q^\dagger] = 1$ เมื่อ $k = q$ (และเป็นศูนย์เมื่อคนละรูปร่าง) จะได้</p>
+
+<div class="eq" data-eqno="4">$$ [\phi(x),\, \pi(y)] \;=\; \frac{i}{L} \sum_k e^{ik(x-y)} $$</div>
+
+<p>ที่จุดเดียวกัน ($x = y$) ทุกพจน์เท่ากับ $1$ ผลรวมจึงเท่ากับ $i$ คูณจำนวนรูปร่างหารด้วย $L$
+ถ้าเก็บ $n$ ตั้งแต่ $-3$ ถึง $3$ มี $7$ รูปร่าง ได้ $7i/L$ ยิ่งเก็บรูปร่างมาก ค่านี้ยิ่งโต
+แต่ที่ $x \neq y$ พจน์ต่าง ๆ หักล้างกันเอง และอินทิเกรตเทียบ $x$ ได้ $i$ เสมอ
+ของที่สูงไม่จำกัดตรงจุดเดียว แต่พื้นที่ใต้กราฟเป็น $1$ คือ $\delta(x - y)$</p>
+
+<p><strong>ตัวเลข $1/\sqrt{2\omega_k L}$ ในสมการ (1) ถูกเลือกมาเพื่อให้บรรทัดนี้ได้ $i\,\delta$ พอดี</strong>
+(ถ้าลืม $2$ ใต้ราก ผลจะเป็น $2i\,\delta$)</p>
+
+<p>แทนสมการ (1) ลงพลังงานของสนาม $\int\!\big(\tfrac12\pi^2 + \tfrac12\phi_x^2 + \tfrac12 m^2\phi^2\big)dx$
+ก็ได้ $\sum_k \omega_k\big(a_k^\dagger a_k + \tfrac12\big)$ คือสมการ (4) ของบทที่ 18 ที่บทนั้นรับมาเฉย ๆ
+ระหว่างทางมีพจน์ $a_k a_{-k}$ โผล่ออกมาจากทั้งสามก้อน แล้วหักกันหมดพอดีเมื่อรวมกัน
+ผมไม่ให้ทำเองเพราะเป็นพีชคณิตยาวที่ไม่ได้สอนอะไรใหม่</p>
+
+<p class="src">ตรวจด้วย <code>sympy</code>: แทนสมการ (1) ด้วย $5$ รูปร่างเป็นตัวดำเนินการที่ไม่สลับที่ แล้วคูณจริง
+ได้ $H = \sum\omega_k(a_k^\dagger a_k + \tfrac12)$ ที่เวลาใดก็ได้ · โมเมนตัม $-\!\int\pi\,\phi_x\,dx = \sum k\,a_k^\dagger a_k$ ·
+สมการ (4) และ $[\phi(x), \phi(y)] = 0$ · สมการ (3) บน Fock space ของ $3$ รูปร่างจริง ·
+ซ้อมทุบแล้ว (ตัด $\tfrac12$ · ลืมพจน์ $\phi_x$ · ลืม $2$ ใต้ราก · กลับเครื่องหมายคอมมิวเตเตอร์) จับได้ทุกเคส ·
+Tong, <em>Quantum Field Theory</em> §2.3–2.4 · Peskin &amp; Schroeder §2.3 —
+<code>scripts/verify/0031_field_operator.py</code></p>
+
+<h2>⑤ เอากล่องออก: หน้าตาที่เจอใน paper</h2>
+
+<p>กล่องยาว $L$ ทำให้รูปร่างอยู่ห่างกันทีละ $2\pi/L$ ถ้า $L$ ยาวมาก รูปร่างก็ถี่จนผลรวมกลายเป็นอินทิเกรล
+กฎแปลงคือ</p>
+
+<div class="eq" data-eqno="5">$$ \frac{1}{L}\sum_k \;\longrightarrow\; \int\frac{dk}{2\pi} $$</div>
+
+<p>เพราะในช่วง $dk$ มีรูปร่างอยู่ $dk \big/ (2\pi/L) = L\,dk/2\pi$ ตัว ส่วน paper ไม่มีกล่อง
+และย้าย $\sqrt L$ เข้าไปในปุ่ม ($a_k^{\text{paper}} = \sqrt{L}\,a_k$) บรรทัดเดียวกันจึงหน้าตาแบบนี้:</p>
+
+<table>
+<thead><tr><th>paper เขียน</th><th>เท่ากับของบทนี้</th></tr></thead>
+<tbody>
+<tr><td>$\displaystyle\phi(x) = \int\frac{dk}{2\pi}\frac{1}{\sqrt{2\omega_k}}\big(a_k e^{ikx} + a_k^\dagger e^{-ikx}\big)$</td><td>สมการ (1) ที่ $t = 0$</td></tr>
+<tr><td>$\dots + \text{h.c.}$</td><td>บวกสังยุคของพจน์ก่อนหน้า (h.c. = Hermitian conjugate)</td></tr>
+<tr><td>$[a_k, a_q^\dagger] = 2\pi\,\delta(k - q)$</td><td>$[a_k, a_q^\dagger] = 1$ ของรูปร่างเดียวกัน คูณ $L$ ที่ย้ายเข้าปุ่ม</td></tr>
+<tr><td>$[\phi(x), \pi(y)] = i\,\delta(x - y)$</td><td>สมการ (4)</td></tr>
+</tbody>
+</table>
+
+<div class="warn">
+  <strong>convention ต่างกันได้</strong> — บาง paper ใส่ $1/\sqrt{2\omega}$ ไว้ในปุ่มแทน
+  แล้ว $[a_k, a_q^\dagger]$ จะมี $2\omega_k$ คูณอยู่ด้วย ในสามมิติ $2\pi$ กลายเป็น $(2\pi)^3$
+  เห็นบรรทัดแบบนี้ให้หาว่าเขาวาง $\sqrt{2\omega}$ กับ $2\pi$ ไว้ตรงไหน ตัวฟิสิกส์ไม่เปลี่ยน
+</div>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ทุกข้อเป็น <strong>1+1 มิติ</strong> · $\hbar = c = 1$ · ตอบเป็นตัวเลข ·
+เศษส่วนพิมพ์แบบ <code>3/2</code> ได้</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · รูปร่างที่ใส่ในกล่องได้ &nbsp;<span class="hint">(สมการ (2))</span></h3>
+  <ol class="steps">
+    <li data-answer="3/2" data-alt="1.5">
+      <p><strong>ขั้น 1</strong> — กล่องยาว $L = 4\pi$ รูปร่าง $n = 3$ มี $k$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2\pi \times 3 / 4\pi = 3/2$</p>
+    </li>
+    <li data-answer="-2" data-alt="−2|-2.0">
+      <p><strong>ขั้น 2</strong> — กล่องเดิม รูปร่าง $n = -4$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2\pi \times (-4) / 4\pi = -2$ — ติดลบ = เดินไปทางซ้าย</p>
+    </li>
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 3</strong> — กล่องยาว $L = 2\pi$ รูปร่าง $n = 5$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$k = n = 5$ — กล่อง $2\pi$ ทำให้ $k$ เป็นจำนวนเต็มพอดี</p>
+    </li>
+  </ol>
+  <p class="fb">กล่องยิ่งยาว รูปร่างยิ่งอยู่ถี่</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · หนึ่งพจน์แก้สมการสนาม &nbsp;<span class="hint">(ข้อ ②)</span></h3>
+  <p class="hint">พจน์ $\phi = e^{i(3x - 5t)}$ มวล $m = 4$ (เช็คเองได้ว่า $\omega = 5$)</p>
+  <ol class="steps">
+    <li data-answer="-25" data-alt="−25|-25.0">
+      <p><strong>ขั้น 1</strong> — $\phi_{tt} = \;?\;\phi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(-5i)^2 = -25$</p>
+    </li>
+    <li data-answer="-9" data-alt="−9|-9.0">
+      <p><strong>ขั้น 2</strong> — $\phi_{xx} = \;?\;\phi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(3i)^2 = -9$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — $\phi_{tt} - \phi_{xx} + m^2\phi = \;?\;\phi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-25 - (-9) + 16 = 0$ — แก้สมการได้จริง</p>
+    </li>
+  </ol>
+  <p class="fb">เป็นศูนย์เพราะ $\omega^2 = k^2 + m^2$ ทุกพจน์ในสมการ (1) จึงแก้สมการสนาม</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · สนามกับสุญญากาศ &nbsp;<span class="hint">(สมการ (3))</span></h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 1</strong> — ค่าเฉลี่ยของสนามในสุญญากาศ $\langle 0|\phi(x)|0\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — $\phi|0\rangle$ มีแต่สถานะหนึ่งอนุภาค ตั้งฉากกับ $|0\rangle$</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 2</strong> — สถานะ $\phi(0,x)|0\rangle$ มีอนุภาคกี่ตัว</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — พจน์ $a_k$ ให้ศูนย์ เหลือพจน์ $a_k^\dagger$ ซึ่งกดขึ้นครั้งเดียว</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 3</strong> — น้ำหนักของรูปร่าง $\omega = 5$ เป็นกี่เท่าของรูปร่าง $\omega = 20$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt{20/5} = 2$ — น้ำหนักเป็น $1/\sqrt{2\omega L}$ ค่า $L$ ตัดกันไป</p>
+    </li>
+  </ol>
+  <p class="fb">$\phi(x)$ สร้างอนุภาคหนึ่งตัวที่จุด $x$ โดยผสมทุกโมเมนตัม</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · ทำไมได้เดลต้า &nbsp;<span class="hint">(สมการ (4))</span></h3>
+  <ol class="steps">
+    <li data-answer="7" data-alt="เจ็ด|7.0">
+      <p><strong>ขั้น 1</strong> — เก็บรูปร่าง $n = -3, \dots, 3$ มีกี่รูปร่าง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$7$ (รวม $n = 0$ ด้วย)</p>
+    </li>
+    <li data-answer="7/2" data-alt="3.5">
+      <p><strong>ขั้น 2</strong> — กล่อง $L = 2$: $[\phi(x), \pi(x)] = i \times \;?$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$7/2$ — ทุกพจน์เป็น $1$ ที่จุดเดียวกัน ได้ $7$ หาร $L$</p>
+    </li>
+    <li data-answer="21/2" data-alt="10.5">
+      <p><strong>ขั้น 3</strong> — กล่องเดิม แต่เก็บ $n = -10, \dots, 10$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$21/2$ — เก็บรูปร่างมากขึ้นแล้วโตขึ้นเรื่อย ๆ ตรงจุดเดียว แต่พื้นที่ใต้กราฟยังเป็น $1$</p>
+    </li>
+  </ol>
+  <p class="fb">สูงไม่จำกัดที่จุดเดียว พื้นที่เป็นหนึ่ง = $\delta(x - y)$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · ผลรวมกลายเป็นอินทิเกรล &nbsp;<span class="hint">(สมการ (5))</span></h3>
+  <ol class="steps">
+    <li data-answer="1/5" data-alt="0.2">
+      <p><strong>ขั้น 1</strong> — กล่อง $L = 10\pi$ รูปร่างที่ติดกันมี $k$ ห่างกันเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2\pi / 10\pi = 1/5$</p>
+    </li>
+    <li data-answer="15" data-alt="สิบห้า|15.0">
+      <p><strong>ขั้น 2</strong> — ช่วง $k$ ตั้งแต่ $0$ ถึง (ไม่รวม) $3$ มีกี่รูปร่าง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 \div (1/5) = 15$ — เท่ากับ $L\,\Delta k / 2\pi$</p>
+    </li>
+    <li data-answer="150" data-alt="150.0">
+      <p><strong>ขั้น 3</strong> — ช่วงเดิม แต่กล่องยาว $L = 100\pi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$150$ — กล่องยาวขึ้น $10$ เท่า รูปร่างถี่ขึ้น $10$ เท่า</p>
+    </li>
+  </ol>
+  <p class="fb">จำนวนรูปร่างโตตาม $L$ จึงต้องมี $1/L$ คู่กับ $\sum_k$ ถึงจะได้อินทิเกรลที่ไม่ขึ้นกับกล่อง</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · ซ้อมโมเมนตัมอีกรอบ (มวล $m = 4$ · กล่อง $L = 2\pi$)</h3>
+  <p class="hint">สถานะ $a_3^\dagger a_0^\dagger|0\rangle$ แปลว่า กดปุ่มขึ้นของรูปร่าง $k = 0$ หนึ่งครั้ง แล้วของ $k = 3$ อีกหนึ่งครั้ง</p>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — มีอนุภาคกี่ตัว</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — กดปุ่มสร้างสองครั้ง</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 2</strong> — โมเมนตัมรวม $P$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 + 0 = 3$ — บวก $k$ ตรง ๆ ไม่คูณมวล ($12$ คือคูณ $m = 4$ เข้าไป)</p>
+    </li>
+    <li data-answer="9" data-alt="เก้า|9.0">
+      <p><strong>ขั้น 3</strong> — พลังงานเทียบกับสุญญากาศ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt{9 + 16} + \sqrt{0 + 16} = 5 + 4 = 9$ — ตัวที่ $k = 0$ อยู่นิ่ง พลังงานเหลือแค่มวล</p>
+    </li>
+  </ol>
+  <p class="fb">มวลไปอยู่ในพลังงาน ($\omega$) ไม่ได้อยู่ในโมเมนตัม ($k$)</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา
+  <div class="nav">
+    <a href="./0029-ladder.html">← บทที่ 18 · ปุ่มสร้างอนุภาค</a>
+    <a href="./0016-fields.html">บทที่ 7 · จากอนุภาคไปสนาม</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>
