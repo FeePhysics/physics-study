@@ -85,6 +85,14 @@ chk("ข้อ 6: P = 3 + (-3) = 0", 3 + (-3), 0)
 chk("ข้อ 7: a†a†|0> = sqrt(2)|2> ⇒ c^2 = 2", coef(ad*ad*ket(0), 2)**2, 2)
 chk("ข้อ 7: E = 2*5 = 10", 2*wk(3, 4), 10)
 chk("ข้อ 7: P = 2*3 = 6", 2*3, 6)
+# กล่อง "k คือโมเมนตัมแล้ว ไม่ต้องคูณมวล": m γ v = k ทั่วไป และตัวเลข m=4 k=3
+kk, mm = sp.symbols('k m', positive=True)
+vv = kk/sp.sqrt(kk**2 + mm**2)
+chk("m γ v = k ทั่วไป (v = k/ω)", sp.simplify(mm*vv/sp.sqrt(1 - vv**2)), kk)
+chk("ตัวอย่าง: v = 3/5", 3/wk(3, 4), sp.Rational(3, 5))
+chk("ตัวอย่าง: γ = 1.25", 1/sp.sqrt(1 - sp.Rational(9, 25)), sp.Rational(5, 4))
+chk("ตัวอย่าง: m γ v = 4 * 1.25 * 0.6 = 3", 4*sp.Rational(5, 4)*sp.Rational(3, 5), 3)
+ok.append(("ตัวควบคุม: คำตอบ 24 = (2*3)*m คือคูณมวลซ้ำ ≠ P", 2*3*4 != 6, 24, 6))
 
 bad_ = [r for r in ok if not r[1]]
 for name, good, got, want in ok:
