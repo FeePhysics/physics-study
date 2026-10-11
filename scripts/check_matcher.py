@@ -250,6 +250,9 @@ HAND = [
     ("0030-field-operator.html", "150", "15", "wrong"),        # ลืมคูณ 10 เมื่อกล่องยาวขึ้น
     ("0030-field-operator.html", "2", "1/2", "wrong"),         # กลับด้านอัตราส่วน
     ("0030-field-operator.html", "3", "12", "wrong"),          # คูณมวลซ้ำอีกรอบ
+    ("0030-field-operator.html", "21/2", "21", "wrong"),       # ลืมหาร L (ผลจริงของแบ)
+    ("0030-field-operator.html", "9", "4", "wrong"),           # นับพลังงานตัวเดียว (ผลจริงของแบ)
+    ("0030-field-operator.html", "2/5", "0.4", "right"),
 ]
 
 

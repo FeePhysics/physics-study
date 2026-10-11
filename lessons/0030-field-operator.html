@@ -68,18 +68,37 @@ paper เรียกการทำแบบนี้ว่า <strong>กา�
 
 <h2>③ สนามทำอะไรกับสุญญากาศ</h2>
 
-<p>เอา $\phi$ ที่ $t = 0$ ไปกระทำกับ $|0\rangle$ พจน์ $a_k$ ทุกตัวให้ศูนย์ (ลงจากขั้นล่างสุดไม่ได้)
-เหลือแต่พจน์ $a_k^\dagger$ ซึ่งสร้างอนุภาคหนึ่งตัว:</p>
+<p>ดูสปริงตัวเดียวก่อน ส่วนของ $\phi$ ที่เป็นของสปริงตัวนี้คือ $c\,(a + a^\dagger)$ ($c$ คือตัวเลขข้างหน้า)
+เอาไปกระทำกับสุญญากาศ $|0\rangle$ ทีละพจน์:</p>
+
+<table>
+<thead><tr><th>พจน์</th><th>กระทำกับ $|0\rangle$ ได้</th><th>เพราะ</th></tr></thead>
+<tbody>
+<tr><td>$a\,|0\rangle$</td><td>$0$</td><td>กดลงจากขั้นล่างสุดไม่ได้</td></tr>
+<tr><td>$a^\dagger|0\rangle$</td><td>$|1\rangle$</td><td>กดขึ้นหนึ่งขั้น ได้อนุภาคหนึ่งตัว</td></tr>
+<tr><td>รวม $c\,(a + a^\dagger)|0\rangle$</td><td>$c\,|1\rangle$</td><td>เหลือแต่พจน์ $a^\dagger$</td></tr>
+</tbody>
+</table>
+
+<p>สนามทั้งตัวทำแบบเดียวกันกับทุกสปริงแล้วบวกกัน พจน์ $a_k$ หายหมด พจน์ $a_k^\dagger$ เหลือ
+ได้อนุภาคหนึ่งตัวในรูปร่าง $k$ ซึ่งเขียนว่า $|k\rangle$:</p>
 
 <div class="eq" data-eqno="3">$$ \phi(0,x)\,|0\rangle \;=\; \sum_k \frac{e^{-ikx}}{\sqrt{2\omega_k L}}\; |k\rangle $$</div>
 
-<p>ผลคือ<strong>อนุภาคหนึ่งตัวที่จุด $x$</strong> ซึ่งไม่ได้มีโมเมนตัมค่าเดียว แต่เป็นผลรวมของทุก $k$
-โดยแต่ละ $k$ มีน้ำหนัก $1/\sqrt{2\omega_k L}$ รูปร่างที่ $\omega_k$ ใหญ่ (โมเมนตัมสูง) มีน้ำหนักน้อยกว่า
-เช่น $\omega = 20$ มีน้ำหนักเป็นครึ่งหนึ่งของ $\omega = 5$ เพราะ $\sqrt{20/5} = 2$
-</p>
+<p>ผลคือ<strong>อนุภาคหนึ่งตัวที่จุด $x$</strong> ซึ่งไม่ได้มีโมเมนตัมค่าเดียว แต่ผสมทุก $k$
+โดยแต่ละ $k$ มีน้ำหนัก $1/\sqrt{2\omega_k L}$ รูปร่างที่ $\omega_k$ ใหญ่มีน้ำหนักน้อยกว่า
+เช่น $\omega = 18$ มีน้ำหนักเป็นหนึ่งในสามของ $\omega = 2$ เพราะ $\sqrt{18/2} = 3$</p>
 
-<p>ส่วนค่าเฉลี่ยของสนามในสุญญากาศ $\langle 0|\phi|0\rangle$ เป็นศูนย์ เพราะ $\phi|0\rangle$ มีแต่สถานะหนึ่งอนุภาค
-ซึ่งตั้งฉากกับ $|0\rangle$</p>
+<h3>สัญลักษณ์ใหม่ $\langle 0|\,\dots\,|0\rangle$</h3>
+
+<p>$\langle 0|$ อ่านว่า "บรา 0" คือเค็ต $|0\rangle$ ที่พลิกเป็น<em>แถว</em> (ทรานสโพสสังยุค)
+เอาไปวางหน้าเวกเตอร์คอลัมน์ก็คือ<strong>ผลคูณภายใน</strong> (dot product) ธรรมดา
+$\langle 0|\phi|0\rangle$ จึงแปลว่า ทำ $\phi|0\rangle$ ให้เสร็จก่อน แล้ว dot กับ $|0\rangle$
+paper เรียกค่านี้ว่า<strong>ค่าเฉลี่ยของ $\phi$ ในสุญญากาศ</strong> (vacuum expectation value)</p>
+
+<p>ใช้กับตารางข้างบน: $\phi|0\rangle$ มีแต่ $|1\rangle$ ซึ่งเป็นเวกเตอร์ฐานคนละตัวกับ $|0\rangle$
+เวกเตอร์ฐานคนละตัวตั้งฉากกัน dot กันได้ $0$ ดังนั้น $\langle 0|\phi|0\rangle = 0$
+(ถ้าเขียนเป็นคอลัมน์: $|0\rangle = (1,0,0,\dots)$ และ $|1\rangle = (0,1,0,\dots)$ คูณช่องต่อช่องแล้วบวกได้ $0$)</p>
 
 <h2>④ บรรทัดที่ paper ใช้เริ่มต้น: $[\phi(x), \pi(y)] = i\,\delta(x-y)$</h2>
 
@@ -112,8 +131,12 @@ Tong, <em>Quantum Field Theory</em> §2.3–2.4 · Peskin &amp; Schroeder §2.3 
 
 <h2>⑤ เอากล่องออก: หน้าตาที่เจอใน paper</h2>
 
-<p>กล่องยาว $L$ ทำให้รูปร่างอยู่ห่างกันทีละ $2\pi/L$ ถ้า $L$ ยาวมาก รูปร่างก็ถี่จนผลรวมกลายเป็นอินทิเกรล
-กฎแปลงคือ</p>
+<p>จากสมการ (2) รูปร่างที่ติดกัน ($n$ กับ $n+1$) มี $k$ ต่างกัน $2\pi/L$ เสมอ
+ตัวอย่างกล่อง $L = 4\pi$: แทน $n = 0, 1, 2, 3, \dots$ ได้ $k = 0, \tfrac12, 1, \tfrac32, \dots$
+แต่ละตัวห่างกัน $\tfrac12$ (คือ $2\pi/4\pi$) ถ้านับ $k$ ตั้งแต่ $0$ ถึงก่อน $2$ ได้ $4$ ตัว
+($0, \tfrac12, 1, \tfrac32$) ซึ่งเท่ากับความยาวช่วง หารด้วยระยะห่าง: $2 \div \tfrac12 = 4$</p>
+
+<p>ถ้า $L$ ยาวมาก ระยะห่าง $2\pi/L$ ก็เล็กมาก รูปร่างถี่จนผลรวมกลายเป็นอินทิเกรล กฎแปลงคือ</p>
 
 <div class="eq" data-eqno="5">$$ \frac{1}{L}\sum_k \;\longrightarrow\; \int\frac{dk}{2\pi} $$</div>
 
@@ -188,22 +211,32 @@ Tong, <em>Quantum Field Theory</em> §2.3–2.4 · Peskin &amp; Schroeder §2.3 
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 3 · สนามกับสุญญากาศ &nbsp;<span class="hint">(สมการ (3))</span></h3>
+  <h3>ข้อ 3 · สนามกับสุญญากาศ &nbsp;<span class="hint">(ตารางในข้อ ③)</span></h3>
   <ol class="steps">
     <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 1</strong> — ค่าเฉลี่ยของสนามในสุญญากาศ $\langle 0|\phi(x)|0\rangle$</p>
+      <p><strong>ขั้น 1</strong> — $a_k|0\rangle$ เท่ากับเลขอะไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$0$ — $\phi|0\rangle$ มีแต่สถานะหนึ่งอนุภาค ตั้งฉากกับ $|0\rangle$</p>
+      <p class="fb">$0$ — กดลงจากขั้นล่างสุดไม่ได้</p>
     </li>
     <li data-answer="1" data-alt="หนึ่ง|1.0">
-      <p><strong>ขั้น 2</strong> — สถานะ $\phi(0,x)|0\rangle$ มีอนุภาคกี่ตัว</p>
+      <p><strong>ขั้น 2</strong> — $a_k^\dagger|0\rangle$ มีอนุภาคกี่ตัว</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$1$ — พจน์ $a_k$ ให้ศูนย์ เหลือพจน์ $a_k^\dagger$ ซึ่งกดขึ้นครั้งเดียว</p>
+      <p class="fb">$1$ — กดขึ้นครั้งเดียว</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 3</strong> — $\phi(0,x)|0\rangle$ มีอนุภาคกี่ตัว (บวกผลของสองขั้นแรก)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — พจน์ $a_k$ ให้ $0$ เหลือแต่พจน์ $a_k^\dagger$ ซึ่งสร้างหนึ่งตัว</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 4</strong> — $\langle 0|\phi|0\rangle$ คือ dot ของ $|0\rangle$ กับผลของขั้น 3 ได้เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — สถานะหนึ่งอนุภาคตั้งฉากกับ $|0\rangle$</p>
     </li>
     <li data-answer="2" data-alt="สอง|2.0">
-      <p><strong>ขั้น 3</strong> — น้ำหนักของรูปร่าง $\omega = 5$ เป็นกี่เท่าของรูปร่าง $\omega = 20$</p>
+      <p><strong>ขั้น 5</strong> — น้ำหนักของรูปร่าง $\omega = 5$ เป็นกี่เท่าของรูปร่าง $\omega = 20$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\sqrt{20/5} = 2$ — น้ำหนักเป็น $1/\sqrt{2\omega L}$ ค่า $L$ ตัดกันไป</p>
+      <p class="fb">$\sqrt{20/5} = 2$ — น้ำหนักคือ $1/\sqrt{2\omega L}$ ค่า $L$ ตัดกันไป</p>
     </li>
   </ol>
   <p class="fb">$\phi(x)$ สร้างอนุภาคหนึ่งตัวที่จุด $x$ โดยผสมทุกโมเมนตัม</p>
@@ -223,31 +256,36 @@ Tong, <em>Quantum Field Theory</em> §2.3–2.4 · Peskin &amp; Schroeder §2.3 
       <p class="fb">$7/2$ — ทุกพจน์เป็น $1$ ที่จุดเดียวกัน ได้ $7$ หาร $L$</p>
     </li>
     <li data-answer="21/2" data-alt="10.5">
-      <p><strong>ขั้น 3</strong> — กล่องเดิม แต่เก็บ $n = -10, \dots, 10$</p>
+      <p><strong>ขั้น 3</strong> — กล่อง $L = 2$ เหมือนขั้น 2 แต่เก็บ $n = -10, \dots, 10$: $[\phi(x), \pi(x)] = i \times \;?$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$21/2$ — เก็บรูปร่างมากขึ้นแล้วโตขึ้นเรื่อย ๆ ตรงจุดเดียว แต่พื้นที่ใต้กราฟยังเป็น $1$</p>
+      <p class="fb">$21/2$ — $21$ รูปร่าง หาร $L = 2$ ($21$ คือยังไม่ได้หาร) เก็บรูปร่างมากขึ้นแล้วโตขึ้นเรื่อย ๆ ตรงจุดเดียว แต่พื้นที่ใต้กราฟยังเป็น $1$</p>
     </li>
   </ol>
   <p class="fb">สูงไม่จำกัดที่จุดเดียว พื้นที่เป็นหนึ่ง = $\delta(x - y)$</p>
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 5 · ผลรวมกลายเป็นอินทิเกรล &nbsp;<span class="hint">(สมการ (5))</span></h3>
+  <h3>ข้อ 5 · ผลรวมกลายเป็นอินทิเกรล &nbsp;<span class="hint">(ตัวอย่างในข้อ ⑤)</span></h3>
   <ol class="steps">
     <li data-answer="1/5" data-alt="0.2">
-      <p><strong>ขั้น 1</strong> — กล่อง $L = 10\pi$ รูปร่างที่ติดกันมี $k$ ห่างกันเท่าไร</p>
+      <p><strong>ขั้น 1</strong> — กล่อง $L = 10\pi$ รูปร่าง $n = 1$ มี $k$ เท่าไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$2\pi / 10\pi = 1/5$</p>
+      <p class="fb">$2\pi \times 1 / 10\pi = 1/5$ — และเพราะ $n = 0$ มี $k = 0$ นี่คือระยะห่างระหว่างรูปร่างที่ติดกันด้วย</p>
+    </li>
+    <li data-answer="2/5" data-alt="0.4">
+      <p><strong>ขั้น 2</strong> — กล่องเดิม รูปร่าง $n = 2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2/5$ — ห่างจาก $n = 1$ อีก $1/5$</p>
     </li>
     <li data-answer="15" data-alt="สิบห้า|15.0">
-      <p><strong>ขั้น 2</strong> — ช่วง $k$ ตั้งแต่ $0$ ถึง (ไม่รวม) $3$ มีกี่รูปร่าง</p>
+      <p><strong>ขั้น 3</strong> — กล่องเดิม นับ $k$ ตั้งแต่ $0$ ถึงก่อน $3$ ได้กี่ตัว</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$3 \div (1/5) = 15$ — เท่ากับ $L\,\Delta k / 2\pi$</p>
+      <p class="fb">$3 \div (1/5) = 15$ ($n = 0$ ถึง $14$)</p>
     </li>
     <li data-answer="150" data-alt="150.0">
-      <p><strong>ขั้น 3</strong> — ช่วงเดิม แต่กล่องยาว $L = 100\pi$</p>
+      <p><strong>ขั้น 4</strong> — ช่วงเดิม แต่กล่องยาว $L = 100\pi$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$150$ — กล่องยาวขึ้น $10$ เท่า รูปร่างถี่ขึ้น $10$ เท่า</p>
+      <p class="fb">$150$ — กล่องยาวขึ้น $10$ เท่า ระยะห่างเล็กลง $10$ เท่า รูปร่างถี่ขึ้น $10$ เท่า</p>
     </li>
   </ol>
   <p class="fb">จำนวนรูปร่างโตตาม $L$ จึงต้องมี $1/L$ คู่กับ $\sum_k$ ถึงจะได้อินทิเกรลที่ไม่ขึ้นกับกล่อง</p>
@@ -267,10 +305,20 @@ Tong, <em>Quantum Field Theory</em> §2.3–2.4 · Peskin &amp; Schroeder §2.3 
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$3 + 0 = 3$ — บวก $k$ ตรง ๆ ไม่คูณมวล ($12$ คือคูณ $m = 4$ เข้าไป)</p>
     </li>
-    <li data-answer="9" data-alt="เก้า|9.0">
-      <p><strong>ขั้น 3</strong> — พลังงานเทียบกับสุญญากาศ</p>
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 3</strong> — พลังงานของอนุภาคตัวที่ $k = 3$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\sqrt{9 + 16} + \sqrt{0 + 16} = 5 + 4 = 9$ — ตัวที่ $k = 0$ อยู่นิ่ง พลังงานเหลือแค่มวล</p>
+      <p class="fb">$\sqrt{9 + 16} = 5$</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 4</strong> — พลังงานของอนุภาคตัวที่ $k = 0$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt{0 + 16} = 4$ — อยู่นิ่ง พลังงานเหลือแค่มวล</p>
+    </li>
+    <li data-answer="9" data-alt="เก้า|9.0">
+      <p><strong>ขั้น 5</strong> — พลังงานเทียบกับสุญญากาศ (สองตัวรวมกัน)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5 + 4 = 9$ — มีสองอนุภาค พลังงานต้องบวกทั้งสองตัว</p>
     </li>
   </ol>
   <p class="fb">มวลไปอยู่ในพลังงาน ($\omega$) ไม่ได้อยู่ในโมเมนตัม ($k$)</p>

@@ -191,6 +191,18 @@ chk("[sqrt(L)a, sqrt(L)a†] = L ⇒ (1/L)Σ_q L δ_kq = 1 ↔ ∫dq/2π 2π δ(
     (1/L)*L, sp.integrate(sp.DiracDelta(kk_ - sp.Symbol('q', real=True))*2*sp.pi/(2*sp.pi),
                           (sp.Symbol('q', real=True), -sp.oo, sp.oo)))
 
+# ③ ฉบับแก้: สปริงตัวเดียว c(a + a†)|0> = c|1> · <0|1> = 0 · ตัวอย่างน้ำหนัก 18 กับ 2
+c_ = sp.Symbol('c')
+ket1 = lambda j: sp.Matrix([1 if i == j else 0 for i in range(D)])
+chk("a|0> = 0 (สปริงตัวเดียว)", (a1*ket1(0)).norm(), 0)
+ok.append(("c(a + a†)|0> = c|1>", c_*(a1 + a1.H)*ket1(0) == c_*ket1(1), None, None))
+chk("<0|1> = 0 (dot ของเวกเตอร์ฐานคนละตัว)", (ket1(0).T*ket1(1))[0], 0)
+chk("<0| c(a + a†) |0> = 0", (ket1(0).T*(c_*(a1 + a1.H))*ket1(0))[0], 0)
+chk("ตัวอย่าง: น้ำหนัก w=2 เป็น 3 เท่าของ w=18", (1/sp.sqrt(2*2*L))/(1/sp.sqrt(2*18*L)), 3)
+# ⑤ ตัวอย่าง L = 4π: k = 0, 1/2, 1, 3/2 · นับในช่วง [0, 2) ได้ 4
+chk("ตัวอย่าง: L = 4π ระยะห่าง 1/2", 2*sp.pi/(4*sp.pi), sp.Rational(1, 2))
+chk("ตัวอย่าง: k ใน [0, 2) มี 4 ตัว", len([nn for nn in range(0, 100) if 2*sp.pi*nn/(4*sp.pi) < 2]), 4)
+
 # ── ตัวเลขในข้อฝึก ──────────────────────────────────────────
 kbox = lambda nn, LL: 2*sp.pi*nn/LL
 chk("ข้อ 1: L = 4π, n = 3 ⇒ k = 3/2", kbox(3, 4*sp.pi), sp.Rational(3, 2))
@@ -199,16 +211,20 @@ chk("ข้อ 1: L = 2π, n = 5 ⇒ k = 5", kbox(5, 2*sp.pi), 5)
 chk("ข้อ 2: m=4 k=3 ⇒ w = 5 ⇒ phi_tt = -25 phi", -(sp.sqrt(9 + 16))**2, -25)
 chk("ข้อ 2: phi_xx = -9 phi", -(3**2), -9)
 chk("ข้อ 2: -25 + 9 + 16 = 0", -25 + 9 + 16, 0)
+chk("ข้อ 3 ขั้น 3: phi|0> มี 1 อนุภาค (ดูตัวนับข้างบน)", 1, 1)
 chk("ข้อ 3: แอมพลิจูด ∝ 1/sqrt(w) ⇒ w=5 กับ w=20 ต่างกัน 2 เท่า",
     (1/sp.sqrt(2*5*L))/(1/sp.sqrt(2*20*L)), 2)
 chk("ข้อ 4: N = 3 ⇒ 7 รูปร่าง", len(range(-3, 4)), 7)
 chk("ข้อ 4: L = 2 ⇒ [phi, pi] ที่จุดเดียวกัน = i*7/2", sp.I*7/2, sp.I*sp.Rational(7, 2))
 chk("ข้อ 4: N = 10 ⇒ i*21/2", sp.I*len(range(-10, 11))/2, sp.I*sp.Rational(21, 2))
-chk("ข้อ 5: L = 10π ⇒ ระยะห่างของ k = 2π/L = 1/5", 2*sp.pi/(10*sp.pi), sp.Rational(1, 5))
+chk("ข้อ 5: L = 10π, n = 1 ⇒ k = 1/5 = ระยะห่าง", 2*sp.pi/(10*sp.pi), sp.Rational(1, 5))
+chk("ข้อ 5: n = 2 ⇒ k = 2/5", 2*sp.pi*2/(10*sp.pi), sp.Rational(2, 5))
 chk("ข้อ 5: ช่วง k จาก 0 ถึง 3 (ไม่รวม) มี 15 รูปร่าง", len([nn for nn in range(0, 1000) if kbox(nn, 10*sp.pi) < 3]), 15)
 chk("ข้อ 5: L = 100π ⇒ 150 รูปร่าง", len([nn for nn in range(0, 5000) if kbox(nn, 100*sp.pi) < 3]), 150)
 chk("ข้อ 6: L = 2π m = 4: a_3†a_0†|0> ⇒ P = 3 + 0 = 3", kbox(3, 2*sp.pi) + kbox(0, 2*sp.pi), 3)
 ok.append(("ข้อ 6 ตัวควบคุม: คูณมวลได้ 12 ≠ 3", 3*4 != 3, 12, 3))
+chk("ข้อ 6: w_3 = 5", sp.sqrt(9 + 16), 5)
+chk("ข้อ 6: w_0 = 4", sp.sqrt(0 + 16), 4)
 chk("ข้อ 6: E = w_3 + w_0 = 5 + 4 = 9", sp.sqrt(9 + 16) + sp.sqrt(0 + 16), 9)
 
 bad_ = [r for r in ok if not r[1]]
