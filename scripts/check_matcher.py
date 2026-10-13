@@ -253,6 +253,9 @@ HAND = [
     ("0030-field-operator.html", "21/2", "21", "wrong"),       # ลืมหาร L (ผลจริงของแบ)
     ("0030-field-operator.html", "9", "4", "wrong"),           # นับพลังงานตัวเดียว (ผลจริงของแบ)
     ("0030-field-operator.html", "2/5", "0.4", "right"),
+    ("0030-field-operator.html", "15", "5", "wrong"),          # นับต่อหนึ่งหน่วย k (ผลจริงของแบ)
+    ("0030-field-operator.html", "5", "3", "wrong"),           # ตอบ k แทน ω (ผลจริงของแบ)
+    ("0030-field-operator.html", "14", "15", "wrong"),         # ตอบจำนวนตัวในขั้นที่ถามค่า n
 ]
 
 

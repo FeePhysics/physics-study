@@ -219,6 +219,8 @@ chk("ข้อ 4: L = 2 ⇒ [phi, pi] ที่จุดเดียวกัน
 chk("ข้อ 4: N = 10 ⇒ i*21/2", sp.I*len(range(-10, 11))/2, sp.I*sp.Rational(21, 2))
 chk("ข้อ 5: L = 10π, n = 1 ⇒ k = 1/5 = ระยะห่าง", 2*sp.pi/(10*sp.pi), sp.Rational(1, 5))
 chk("ข้อ 5: n = 2 ⇒ k = 2/5", 2*sp.pi*2/(10*sp.pi), sp.Rational(2, 5))
+chk("ข้อ 5: n สุดท้ายที่ k < 3 (L = 10π) คือ 14", max(nn for nn in range(0, 1000) if kbox(nn, 10*sp.pi) < 3), 14)
+chk("ข้อ 5: n = 15 ได้ k = 3 พอดี (ไม่นับ)", kbox(15, 10*sp.pi), 3)
 chk("ข้อ 5: ช่วง k จาก 0 ถึง 3 (ไม่รวม) มี 15 รูปร่าง", len([nn for nn in range(0, 1000) if kbox(nn, 10*sp.pi) < 3]), 15)
 chk("ข้อ 5: L = 100π ⇒ 150 รูปร่าง", len([nn for nn in range(0, 5000) if kbox(nn, 100*sp.pi) < 3]), 150)
 chk("ข้อ 6: L = 2π m = 4: a_3†a_0†|0> ⇒ P = 3 + 0 = 3", kbox(3, 2*sp.pi) + kbox(0, 2*sp.pi), 3)

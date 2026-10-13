@@ -174,7 +174,7 @@ Tong, <em>Quantum Field Theory</em> §2.3–2.4 · Peskin &amp; Schroeder §2.3 
       <p class="fb">$2\pi \times 3 / 4\pi = 3/2$</p>
     </li>
     <li data-answer="-2" data-alt="−2|-2.0">
-      <p><strong>ขั้น 2</strong> — กล่องเดิม รูปร่าง $n = -4$</p>
+      <p><strong>ขั้น 2</strong> — กล่อง $L = 4\pi$ เหมือนขั้น 1 รูปร่าง $n = -4$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$2\pi \times (-4) / 4\pi = -2$ — ติดลบ = เดินไปทางซ้าย</p>
     </li>
@@ -272,20 +272,25 @@ Tong, <em>Quantum Field Theory</em> §2.3–2.4 · Peskin &amp; Schroeder §2.3 
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$2\pi \times 1 / 10\pi = 1/5$ — และเพราะ $n = 0$ มี $k = 0$ นี่คือระยะห่างระหว่างรูปร่างที่ติดกันด้วย</p>
     </li>
-    <li data-answer="2/5" data-alt="0.4">
-      <p><strong>ขั้น 2</strong> — กล่องเดิม รูปร่าง $n = 2$</p>
+        <li data-answer="2/5" data-alt="0.4">
+      <p><strong>ขั้น 2</strong> — กล่อง $L = 10\pi$ รูปร่าง $n = 2$ มี $k$ เท่าไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$2/5$ — ห่างจาก $n = 1$ อีก $1/5$</p>
     </li>
-    <li data-answer="15" data-alt="สิบห้า|15.0">
-      <p><strong>ขั้น 3</strong> — กล่องเดิม นับ $k$ ตั้งแต่ $0$ ถึงก่อน $3$ ได้กี่ตัว</p>
+    <li data-answer="14" data-alt="สิบสี่|14.0">
+      <p><strong>ขั้น 3</strong> — กล่อง $L = 10\pi$ รูปร่างสุดท้ายที่ $k$ ยังน้อยกว่า $3$ คือ $n$ เท่าไร <span class="hint">(ตอบเป็นค่า $n$)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$3 \div (1/5) = 15$ ($n = 0$ ถึง $14$)</p>
+      <p class="fb">$14$ — $n = 14$ ได้ $k = 14/5 = 2.8$ ส่วน $n = 15$ ได้ $k = 3$ พอดีซึ่งไม่นับ</p>
+    </li>
+    <li data-answer="15" data-alt="สิบห้า|15.0">
+      <p><strong>ขั้น 4</strong> — กล่อง $L = 10\pi$ มีกี่รูปร่างที่ $k$ อยู่ตั้งแต่ $0$ ถึงก่อน $3$ <span class="hint">(ตอบเป็นจำนวนตัว)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$15$ — คือ $n = 0, 1, \dots, 14$ · เช็คด้วย $3 \div (1/5) = 15$</p>
     </li>
     <li data-answer="150" data-alt="150.0">
-      <p><strong>ขั้น 4</strong> — ช่วงเดิม แต่กล่องยาว $L = 100\pi$</p>
+      <p><strong>ขั้น 5</strong> — กล่องยาว $L = 100\pi$ มีกี่รูปร่างที่ $k$ อยู่ตั้งแต่ $0$ ถึงก่อน $3$ <span class="hint">(ตอบเป็นจำนวนตัว)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$150$ — กล่องยาวขึ้น $10$ เท่า ระยะห่างเล็กลง $10$ เท่า รูปร่างถี่ขึ้น $10$ เท่า</p>
+      <p class="fb">$150$ — ระยะห่างเหลือ $2\pi/100\pi = 1/50$ ได้ $3 \div (1/50) = 150$ กล่องยาวขึ้น $10$ เท่า รูปร่างถี่ขึ้น $10$ เท่า</p>
     </li>
   </ol>
   <p class="fb">จำนวนรูปร่างโตตาม $L$ จึงต้องมี $1/L$ คู่กับ $\sum_k$ ถึงจะได้อินทิเกรลที่ไม่ขึ้นกับกล่อง</p>
@@ -306,12 +311,12 @@ Tong, <em>Quantum Field Theory</em> §2.3–2.4 · Peskin &amp; Schroeder §2.3 
       <p class="fb">$3 + 0 = 3$ — บวก $k$ ตรง ๆ ไม่คูณมวล ($12$ คือคูณ $m = 4$ เข้าไป)</p>
     </li>
     <li data-answer="5" data-alt="ห้า|5.0">
-      <p><strong>ขั้น 3</strong> — พลังงานของอนุภาคตัวที่ $k = 3$</p>
+      <p><strong>ขั้น 3</strong> — พลังงาน $\omega$ ของอนุภาคตัวที่มีโมเมนตัม $k = 3$ <span class="hint">($\omega = \sqrt{k^2 + m^2}$ บทที่ 17)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\sqrt{9 + 16} = 5$</p>
+      <p class="fb">$\sqrt{9 + 16} = 5$ — พลังงานไม่ใช่ $k$ ($3$ คือโมเมนตัมของขั้น 2) มวลเข้ามาตรงนี้</p>
     </li>
     <li data-answer="4" data-alt="สี่|4.0">
-      <p><strong>ขั้น 4</strong> — พลังงานของอนุภาคตัวที่ $k = 0$</p>
+      <p><strong>ขั้น 4</strong> — พลังงาน $\omega$ ของอนุภาคตัวที่มีโมเมนตัม $k = 0$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$\sqrt{0 + 16} = 4$ — อยู่นิ่ง พลังงานเหลือแค่มวล</p>
     </li>
