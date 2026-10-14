@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 20 · อนุภาคเดินทางจากจุดหนึ่งไปอีกจุด</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 20 · อนุภาคเดินทางจากจุดหนึ่งไปอีกจุด</h1>
+<p class="meta">บทเรียน · ~25 นาที · สร้างอนุภาคที่จุด $y$ แล้วถามว่ามันไปโผล่ที่จุด $x$ ได้แค่ไหน
+ค่านี้ชื่อ propagator เป็นก้อนแรกของ Feynman diagram ทุกรูป</p>
+
+<div class="key">
+  <p style="margin-top:0"><strong>บทที่ 19 ผ่าน 6/6</strong> (รอบที่สาม) ทุกข้อที่เคยพลาดมาจากโจทย์ที่ผมเขียนไม่ชัด
+  ไม่ใช่ฟิสิกส์ บทนี้ใช้ของจากบทที่ 19 ตรง ๆ สองชิ้น คือ $\phi|0\rangle$ (สร้างอนุภาคหนึ่งตัว)
+  กับบรา $\langle 0|$ (dot product)</p>
+  <p style="margin-bottom:0">มีของใหม่ชิ้นเดียว คือ dot product ของเวกเตอร์ที่มีจำนวนเชิงซ้อน
+  ต้องเปลี่ยนเครื่องหมายของ $i$ ฝั่งซ้ายก่อนคูณ (ข้อ ①)</p>
+</div>
+
+<h2>① dot product เมื่อมี $i$</h2>
+
+<p>บทที่ 19 บอกว่าบราคือเค็ตที่พลิกเป็นแถว<em>แบบสังยุค</em> สังยุคแปลว่าเปลี่ยน $i$ เป็น $-i$ ทุกตัว
+บทนั้นใช้แต่เวกเตอร์ที่เป็นจำนวนจริงเลยไม่เห็นผล บทนี้เห็น:</p>
+
+<div class="eq" data-eqno="1">$$ \langle a|b\rangle \;=\; \sum_j \overline{a_j}\; b_j $$</div>
+
+<p>ขีดบน $\overline{a_j}$ คือสังยุค: เอา $a_j$ มาเปลี่ยน $i$ เป็น $-i$</p>
+
+<p>ตัวอย่าง $|a\rangle = (3,\, 4i)$ dot กับตัวเอง: แถวคือ $(3,\, -4i)$ คูณช่องต่อช่องได้
+$3 \cdot 3 + (-4i)(4i) = 9 + 16 = 25$ เป็นความยาวกำลังสองซึ่งต้องเป็นบวก
+ถ้าลืมสังยุคจะได้ $9 + (4i)(4i) = 9 - 16 = -7$ ซึ่งเป็นความยาวกำลังสองไม่ได้ ·
+<strong>สังยุคของ $e^{i\theta}$ คือ $e^{-i\theta}$</strong> (เลขชี้กำลังกลับเครื่องหมาย) ใช้บ่อยที่สุดในบทนี้</p>
+
+<h2>② คำถาม: สร้างที่ $y$ แล้วไปเจอที่ $x$ ได้แค่ไหน</h2>
+
+<p>บทที่ 19 สมการ (3) บอกว่า $\phi(0,y)|0\rangle$ คืออนุภาคหนึ่งตัวที่จุด $y$ ณ เวลา $0$
+ถ้าอยากรู้ว่ามันเหมือนอนุภาคที่จุด $x$ ณ เวลา $t$ แค่ไหน ก็เอาสองสถานะนี้มา dot กัน:</p>
+
+<div class="eq" data-eqno="2">$$ D(t,\, x-y) \;=\; \langle 0|\,\phi(t,x)\,\phi(0,y)\,|0\rangle $$</div>
+
+<p>อ่านจากขวาไปซ้าย: สร้างที่ $y$ ก่อน แล้ว dot กับ "สร้างที่ $x$ เวลา $t$"
+ทั้งสองฝั่งเป็นผลรวมของ $|k\rangle$ เหมือนบทที่ 19 · ฝั่งขวาคือ $\sum_q \frac{e^{-iqy}}{\sqrt{2\omega_q L}}|q\rangle$
+ฝั่งซ้ายมีเลขชี้ $e^{-i(kx - \omega_k t)}$ แต่พอเป็นบราต้องสังยุค เลขชี้จึงกลับเป็น $e^{+i(kx - \omega_k t)}$</p>
+
+<p>เวลาคูณสองผลรวม รูปร่างคนละตัวให้ $\langle k|q\rangle = 0$ (เวกเตอร์ฐานคนละตัว) เหลือแต่คู่ที่ $k = q$
+ซึ่งให้ $\langle k|k\rangle = 1$ ผลรวมสองชั้นจึงเหลือชั้นเดียว:</p>
+
+<div class="eq" data-eqno="3">$$ D(t,\, x-y) \;=\; \sum_k \frac{e^{\,i k(x-y)}\; e^{-i\omega_k t}}{2\omega_k L} $$</div>
+
+<h2>③ อ่านสมการ (3) ทีละชิ้น</h2>
+
+<table>
+<thead><tr><th>ชิ้น</th><th>หมายความว่า</th></tr></thead>
+<tbody>
+<tr><td>$\dfrac{1}{2\omega_k L}$</td><td>น้ำหนักของบทที่ 19 ($1/\sqrt{2\omega_k L}$) คูณกันสองครั้ง จากฝั่งสร้างหนึ่งครั้ง ฝั่งจับหนึ่งครั้ง ราก<em>หายไป</em></td></tr>
+<tr><td>$e^{ik(x-y)}$</td><td>ขึ้นกับระยะห่าง $x - y$ เท่านั้น ไม่ขึ้นกับว่าอยู่ตรงไหนของกล่อง</td></tr>
+<tr><td>$e^{-i\omega_k t}$</td><td>ทุกรูปร่างหมุนเฟสด้วยความถี่ของตัวเอง ตัวที่ $\omega$ มากกว่าหมุนเร็วกว่า</td></tr>
+</tbody>
+</table>
+
+<p>รากที่หายไปทำให้น้ำหนักลดตาม $\omega$ เร็วขึ้น เช่น $\omega = 6$ กับ $\omega = 24$ บทที่ 19 ต่างกัน
+$\sqrt{24/6} = 2$ เท่า แต่ใน $D$ ต่างกัน $24/6 = 4$ เท่า</p>
+
+<p>ที่ $t = 0$ รูปร่าง $k$ กับ $-k$ มี $\omega$ เท่ากัน เอามาบวกกันได้ $e^{ikr} + e^{-ikr} = 2\cos(kr)$
+โดย $r = x - y$ ⇒ ส่วนจินตภาพหักกันหมด $D$ ที่ $t = 0$ เป็นจำนวนจริง
+เช่น $k = 2$, $r = \pi/2$ ได้ $2\cos\pi = -2$</p>
+
+<h2>④ เอากล่องออก: ห่างไกลแค่ไหนถึงจะหาย</h2>
+
+<p>ใช้กฎ $\tfrac1L\sum_k \to \int\frac{dk}{2\pi}$ ของบทที่ 19 สมการ (3) กลายเป็นรูปที่ paper เขียน:</p>
+
+<div class="eq" data-eqno="4">$$ D(t,\, x-y) \;=\; \int \frac{dk}{2\pi}\; \frac{e^{\,ik(x-y) - i\omega_k t}}{2\omega_k} $$</div>
+
+<p>ที่ $t = 0$ อินทิเกรลนี้หาค่าได้ และพอระยะ $r$ มาก ๆ มันลดลงตามตัวคูณ $e^{-mr}$
+แปลว่าทุกครั้งที่ห่างเพิ่มอีก $1/m$ ค่าลดลงประมาณ $e \approx 2.7$ เท่า
+<strong>ระยะ $1/m$ คือระยะที่อนุภาคมวล $m$ "เอื้อมไปถึง"</strong> อนุภาคหนักเอื้อมได้สั้น
+เช่น $m = 4$ เอื้อมได้ราว $1/4$ · นี่คือเหตุผลที่แรงซึ่งมีอนุภาคหนักเป็นตัวส่ง มีระยะสั้น</p>
+
+<div class="warn">
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — ที่ $t = 0$ แต่คนละจุด $D$ ไม่เป็นศูนย์ ดูเหมือนอนุภาคไปได้เร็วกว่าแสง
+  แต่สิ่งที่วัดได้จริงขึ้นกับ<em>คอมมิวเตเตอร์</em> $[\phi(x), \phi(y)]$ ซึ่งเป็นศูนย์ (บทที่ 19 ตรวจไว้แล้วที่เวลาเดียวกัน)
+  · paper ส่วนใหญ่ใช้ Feynman propagator ที่เรียงลำดับเวลาก่อน (time-ordered) ไม่ใช่ $D$ ตัวนี้ตรง ๆ ·
+  Peskin &amp; Schroeder §2.4 · Tong, <em>Quantum Field Theory</em> §2.6–2.7
+</div>
+
+<p class="src">ตรวจด้วย <code>sympy</code>: สมการ (3) ได้จากการคูณเมทริกซ์บน Fock space ของ $3$ รูปร่างจริง
+ไม่ได้ใช้สูตร · ทั้งทางตรง $\langle 0|\phi\phi|0\rangle$ และทาง dot ของสองสถานะให้ค่าเดียวกัน ·
+ตัวควบคุม: ลืมสังยุคแล้วไม่เท่า · อินทิเกรลที่ $t = 0$ เทียบกับ $K_0(mr)/2\pi$ ด้วย <code>mpmath</code> และ
+การลดแบบ $e^{-mr}$ ที่ระยะไกล — <code>scripts/verify/0032_propagator.py</code></p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ทุกข้อเป็น <strong>1+1 มิติ</strong> · $\hbar = c = 1$ · ตอบเป็นตัวเลข ·
+เศษส่วนพิมพ์แบบ <code>1/4</code> ได้</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · dot product เมื่อมี $i$ &nbsp;<span class="hint">(สมการ (1))</span></h3>
+  <p class="hint">$|a\rangle = (1,\, i)$ และ $|b\rangle = (2,\, i)$</p>
+  <ol class="steps">
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 1</strong> — $\langle a|b\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3$ — แถวของ $a$ คือ $(1,\, -i)$ ได้ $1 \cdot 2 + (-i)(i) = 2 + 1 = 3$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 2</strong> — $\langle a|a\rangle$ (ความยาวกำลังสองของ $|a\rangle$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — $1 \cdot 1 + (-i)(i) = 1 + 1 = 2$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ถ้าลืมสังยุค คูณ $(1,\, i)$ กับ $(1,\, i)$ ช่องต่อช่องแล้วบวก ได้เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — $1 + i \cdot i = 1 - 1 = 0$ เวกเตอร์ที่ไม่ใช่ศูนย์มีความยาว $0$ ไม่ได้ จึงต้องสังยุค</p>
+    </li>
+  </ol>
+  <p class="fb">สังยุคฝั่งซ้ายก่อนเสมอ ความยาวกำลังสองจึงเป็นบวก</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · น้ำหนักกับเฟส &nbsp;<span class="hint">(ข้อ ③)</span></h3>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — ในบทที่ 19 น้ำหนัก $1/\sqrt{2\omega L}$ ของรูปร่าง $\omega = 5$ เป็นกี่เท่าของรูปร่าง $\omega = 20$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt{20/5} = 2$</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 2</strong> — ใน $D$ น้ำหนัก $1/(2\omega L)$ ของรูปร่าง $\omega = 5$ เป็นกี่เท่าของรูปร่าง $\omega = 20$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$20/5 = 4$ — รากหายไปเพราะน้ำหนักคูณกันสองครั้ง ($2 \times 2$)</p>
+    </li>
+    <li data-answer="-1" data-alt="−1|-1.0">
+      <p><strong>ขั้น 3</strong> — เฟส $e^{-i\omega t}$ ของรูปร่าง $\omega = 5$ ที่เวลา $t = \pi/5$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$e^{-i\pi} = -1$ — หมุนไปครึ่งรอบ</p>
+    </li>
+  </ol>
+  <p class="fb">ตัวที่ $\omega$ มากมีน้ำหนักน้อยและหมุนเฟสเร็ว</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · คู่ $\pm k$ ที่ $t = 0$ &nbsp;<span class="hint">(ข้อ ③ ย่อหน้าสุดท้าย)</span></h3>
+  <p class="hint">คิดเฉพาะ $e^{ikr} + e^{-ikr}$ ของรูปร่าง $k = 1$ (ไม่ต้องคูณน้ำหนัก)</p>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — ระยะ $r = 0$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2\cos 0 = 2$</p>
+    </li>
+    <li data-answer="-2" data-alt="−2|-2.0">
+      <p><strong>ขั้น 2</strong> — ระยะ $r = \pi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2\cos\pi = -2$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ระยะ $r = \pi/2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2\cos(\pi/2) = 0$</p>
+    </li>
+  </ol>
+  <p class="fb">ส่วนจินตภาพของ $k$ กับ $-k$ หักกันหมด เหลือ $2\cos(kr)$ ซึ่งเป็นจำนวนจริง</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · ทำไมผลรวมสองชั้นเหลือชั้นเดียว &nbsp;<span class="hint">(ข้อ ②)</span></h3>
+  <ol class="steps">
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 1</strong> — $\langle k{=}3\,|\,k{=}3\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — เวกเตอร์ฐานตัวเดียวกัน</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — $\langle k{=}3\,|\,k{=}{-3}\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ — คนละรูปร่าง คนละเวกเตอร์ฐาน</p>
+    </li>
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 3</strong> — ถ้าเก็บ $5$ รูปร่าง ($n = -2, \dots, 2$) จับคู่ฝั่งซ้ายกับฝั่งขวาได้ $5 \times 5 = 25$ คู่ มีกี่คู่ที่ไม่เป็นศูนย์</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5$ — เฉพาะคู่ที่รูปร่างเดียวกัน</p>
+    </li>
+  </ol>
+  <p class="fb">คู่ที่ต่างรูปร่างตั้งฉากกัน จึงเหลือผลรวมชั้นเดียวในสมการ (3)</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · อนุภาคหนักเอื้อมได้สั้น &nbsp;<span class="hint">(ข้อ ④)</span></h3>
+  <ol class="steps">
+    <li data-answer="1/4" data-alt="0.25">
+      <p><strong>ขั้น 1</strong> — มวล $m = 4$ เอื้อมได้ราวระยะ $1/m$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/4$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 2</strong> — มวล $m = 1/2$ เอื้อมได้ราวระยะเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 \div \tfrac12 = 2$ — เบากว่า $8$ เท่า เอื้อมไกลกว่า $8$ เท่า</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5">
+      <p><strong>ขั้น 3</strong> — ตัวคูณ $e^{-mr}$ เมื่อ $m = \ln 2$ และ $r = 1$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$e^{-\ln 2} = 1/2$ — ห่าง $1$ หน่วย ค่าลดลงครึ่งหนึ่ง</p>
+    </li>
+  </ol>
+  <p class="fb">มวลกำหนดระยะทำการ: หนักขึ้น ระยะ $1/m$ สั้นลง</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · ทบทวนพลังงานกับโมเมนตัม (มวล $m = 12$ · กล่อง $L = 2\pi$)</h3>
+  <p class="hint">สถานะ $a_5^\dagger a_{-9}^\dagger|0\rangle$ แปลว่า กดปุ่มขึ้นของรูปร่าง $k = -9$ หนึ่งครั้ง แล้วของ $k = 5$ อีกหนึ่งครั้ง</p>
+  <ol class="steps">
+    <li data-answer="-4" data-alt="−4|-4.0">
+      <p><strong>ขั้น 1</strong> — โมเมนตัมรวม $P$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5 + (-9) = -4$ — ไม่คูณมวล ติดลบ = รวมแล้วไปทางซ้าย</p>
+    </li>
+    <li data-answer="13" data-alt="13.0">
+      <p><strong>ขั้น 2</strong> — พลังงาน $\omega$ ของอนุภาคที่มีโมเมนตัม $k = 5$ <span class="hint">($\omega = \sqrt{k^2 + m^2}$)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt{25 + 144} = 13$</p>
+    </li>
+    <li data-answer="15" data-alt="15.0">
+      <p><strong>ขั้น 3</strong> — พลังงาน $\omega$ ของอนุภาคที่มีโมเมนตัม $k = -9$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt{81 + 144} = 15$ — เครื่องหมายของ $k$ ไม่มีผลกับ $\omega$</p>
+    </li>
+    <li data-answer="28" data-alt="28.0">
+      <p><strong>ขั้น 4</strong> — พลังงานเทียบกับสุญญากาศ (สองตัวรวมกัน)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$13 + 15 = 28$</p>
+    </li>
+  </ol>
+  <p class="fb">โมเมนตัมบวก $k$ (หักกันได้) · พลังงานบวก $\omega$ (หักกันไม่ได้)</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา
+  <div class="nav">
+    <a href="./0030-field-operator.html">← บทที่ 19 · สนามคือผลรวมของปุ่ม</a>
+    <a href="./0029-ladder.html">บทที่ 18 · ปุ่มสร้างอนุภาค</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>

@@ -256,6 +256,13 @@ HAND = [
     ("0030-field-operator.html", "15", "5", "wrong"),          # นับต่อหนึ่งหน่วย k (ผลจริงของแบ)
     ("0030-field-operator.html", "5", "3", "wrong"),           # ตอบ k แทน ω (ผลจริงของแบ)
     ("0030-field-operator.html", "14", "15", "wrong"),         # ตอบจำนวนตัวในขั้นที่ถามค่า n
+    ("0031-propagator.html", "3", "1", "wrong"),               # ลืมสังยุค (2 + i·i)
+    ("0031-propagator.html", "4", "2", "wrong"),               # ใช้รากเหมือนบทที่ 19
+    ("0031-propagator.html", "-1", "1", "wrong"),              # ลืมเครื่องหมาย
+    ("0031-propagator.html", "1/4", "0.25", "right"),
+    ("0031-propagator.html", "1/4", "4", "wrong"),             # ตอบ m แทน 1/m
+    ("0031-propagator.html", "-4", "4", "wrong"),              # ลืมทิศ
+    ("0031-propagator.html", "28", "8", "wrong"),              # ตอบ |P| + ... ไม่ใช่ ω
 ]
 
 
