@@ -64,9 +64,13 @@ $3 \cdot 3 + (-4i)(4i) = 9 + 16 = 25$ เป็นความยาวกำล
 <tbody>
 <tr><td>$\dfrac{1}{2\omega_k L}$</td><td>น้ำหนักของบทที่ 19 ($1/\sqrt{2\omega_k L}$) คูณกันสองครั้ง จากฝั่งสร้างหนึ่งครั้ง ฝั่งจับหนึ่งครั้ง ราก<em>หายไป</em></td></tr>
 <tr><td>$e^{ik(x-y)}$</td><td>ขึ้นกับระยะห่าง $x - y$ เท่านั้น ไม่ขึ้นกับว่าอยู่ตรงไหนของกล่อง</td></tr>
-<tr><td>$e^{-i\omega_k t}$</td><td>ทุกรูปร่างหมุนเฟสด้วยความถี่ของตัวเอง ตัวที่ $\omega$ มากกว่าหมุนเร็วกว่า</td></tr>
+<tr><td>$e^{-i\omega_k t}$</td><td>จุดบนวงกลมหนึ่งหน่วยที่หมุนไปด้วยมุม $\omega_k t$ ตัวที่ $\omega$ มากกว่าหมุนเร็วกว่า</td></tr>
 </tbody>
 </table>
+
+<p><strong>คำว่า "เฟส" ในฟิสิกส์หมายถึงมุม</strong> ไม่ใช่ตัวเลขที่ได้ ใน $e^{-i\theta}$ เฟสคือ $\theta$
+ส่วน $e^{-i\theta} = \cos\theta - i\sin\theta$ คือจุดบนวงกลมหนึ่งหน่วยที่มุมนั้น
+เช่นรูปร่าง $\omega = 4$ ที่เวลา $t = \pi/8$: เฟส $\omega t = \pi/2$ และค่า $e^{-i\pi/2} = \cos\tfrac\pi2 - i\sin\tfrac\pi2 = -i$</p>
 
 <p>รากที่หายไปทำให้น้ำหนักลดตาม $\omega$ เร็วขึ้น เช่น $\omega = 6$ กับ $\omega = 24$ บทที่ 19 ต่างกัน
 $\sqrt{24/6} = 2$ เท่า แต่ใน $D$ ต่างกัน $24/6 = 4$ เท่า</p>
@@ -140,10 +144,15 @@ $\sqrt{24/6} = 2$ เท่า แต่ใน $D$ ต่างกัน $24/6 =
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$20/5 = 4$ — รากหายไปเพราะน้ำหนักคูณกันสองครั้ง ($2 \times 2$)</p>
     </li>
-    <li data-answer="-1" data-alt="−1|-1.0">
-      <p><strong>ขั้น 3</strong> — เฟส $e^{-i\omega t}$ ของรูปร่าง $\omega = 5$ ที่เวลา $t = \pi/5$</p>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 3</strong> — รูปร่าง $\omega = 5$ ที่เวลา $t = \pi/5$ มีเฟส (มุม) $\omega t$ เท่ากับกี่ $\pi$ <span class="hint">(ตอบตัวเลขหน้า $\pi$)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$e^{-i\pi} = -1$ — หมุนไปครึ่งรอบ</p>
+      <p class="fb">$1$ — $5 \times \pi/5 = \pi$ คือ $1$ เท่าของ $\pi$</p>
+    </li>
+    <li data-answer="-1" data-alt="−1|-1.0">
+      <p><strong>ขั้น 4</strong> — ค่าของจำนวน $e^{-i\omega t}$ ที่มุมนั้น</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$e^{-i\pi} = \cos\pi - i\sin\pi = -1$ — หมุนไปครึ่งรอบ</p>
     </li>
   </ol>
   <p class="fb">ตัวที่ $\omega$ มากมีน้ำหนักน้อยและหมุนเฟสเร็ว</p>
@@ -186,9 +195,14 @@ $\sqrt{24/6} = 2$ เท่า แต่ใน $D$ ต่างกัน $24/6 =
       <p class="fb">$0$ — คนละรูปร่าง คนละเวกเตอร์ฐาน</p>
     </li>
     <li data-answer="5" data-alt="ห้า|5.0">
-      <p><strong>ขั้น 3</strong> — ถ้าเก็บ $5$ รูปร่าง ($n = -2, \dots, 2$) จับคู่ฝั่งซ้ายกับฝั่งขวาได้ $5 \times 5 = 25$ คู่ มีกี่คู่ที่ไม่เป็นศูนย์</p>
+      <p><strong>ขั้น 3</strong> — เก็บ $5$ รูปร่าง ($n = -2, \dots, 2$) ผลรวมสองชั้นมีพจน์ $\langle k|q\rangle$ ทั้งหมด $25$ พจน์ ($k$ เลือกได้ $5$ ค่า $q$ เลือกได้ $5$ ค่า) มีกี่พจน์ที่เท่ากับ $1$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$5$ — เฉพาะคู่ที่รูปร่างเดียวกัน</p>
+      <p class="fb">$5$ — เฉพาะพจน์ที่ $k = q$ เช่น $\langle 1|1\rangle$ และ $\langle -2|-2\rangle$</p>
+    </li>
+    <li data-answer="20" data-alt="ยี่สิบ|20.0">
+      <p><strong>ขั้น 4</strong> — มีกี่พจน์ที่เท่ากับ $0$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$25 - 5 = 20$ — ทุกพจน์ที่ $k \neq q$ รวม $\langle 1|-1\rangle$ ด้วย</p>
     </li>
   </ol>
   <p class="fb">คู่ที่ต่างรูปร่างตั้งฉากกัน จึงเหลือผลรวมชั้นเดียวในสมการ (3)</p>

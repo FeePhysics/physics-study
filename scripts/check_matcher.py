@@ -263,6 +263,8 @@ HAND = [
     ("0031-propagator.html", "1/4", "4", "wrong"),             # ตอบ m แทน 1/m
     ("0031-propagator.html", "-4", "4", "wrong"),              # ลืมทิศ
     ("0031-propagator.html", "28", "8", "wrong"),              # ตอบ |P| + ... ไม่ใช่ ω
+    ("0031-propagator.html", "5", "16", "wrong"),              # ผลจริงของแบ (ยังไม่รู้ที่มา)
+    ("0031-propagator.html", "20", "16", "wrong"),
 ]
 
 
