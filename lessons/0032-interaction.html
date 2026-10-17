@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 21 · อนุภาคชนกัน</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 21 · อนุภาคชนกัน</h1>
+<p class="meta">บทเรียน · ~25 นาที · เติมพจน์ $\lambda\phi^4$ ลงใน Lagrangian แล้วนับว่าอนุภาคสองตัวชนกันได้กี่วิธี
+จากการนับจะได้ Feynman diagram รูปแรก</p>
+
+<div class="key">
+  <p style="margin-top:0"><strong>บทที่ 20 ผ่านครบ</strong> สนามทุกบทที่ผ่านมาเป็นสนาม<em>อิสระ</em>
+  อนุภาคเดินทางได้แต่ไม่เคยชนกัน บทนี้เพิ่มพจน์เดียวให้มันชนกันได้</p>
+  <p style="margin-bottom:0">เกือบทั้งบทคือการ<strong>นับ</strong> (ทวินาม · วิธีเรียงสับเปลี่ยน · จับคู่ปลายเส้น)
+  ซึ่งแบถนัดอยู่แล้ว ส่วนฟิสิกส์ใหม่มีแค่ว่าแต่ละรูปที่นับได้หมายถึงอะไร</p>
+</div>
+
+<h2>① เติมพจน์เดียว แล้วคลื่นไม่ผ่านกันเฉย ๆ อีก</h2>
+
+<p>Lagrangian ของบทที่ 7 มีพจน์ $\phi$ ยกกำลังสองอย่างมาก จึงได้สมการเชิงเส้น
+คลื่นสองลูกบวกกันแล้วยังเป็นคำตอบ (ซ้อนกันได้) แปลว่าวิ่งผ่านกันเฉย ๆ ไม่มีใครรู้สึกถึงใคร
+บทนี้เติมพจน์ยกกำลังสี่:</p>
+
+<div class="eq" data-eqno="1">$$ \mathcal{L} \;=\; \tfrac12\phi_t^2 - \tfrac12\phi_x^2 - \tfrac12 m^2\phi^2 \;-\; \frac{\lambda}{4!}\,\phi^4 $$</div>
+
+<p>$\lambda$ คือตัวเลขบวกที่บอกว่าแรงชนแรงแค่ไหน paper เรียกว่า <strong>coupling constant</strong>
+และ $4! = 24$ ใส่ไว้ให้ตัดกับการนับในข้อ ③ พอดี ·
+ใช้สมการ Euler-Lagrange เหมือนบทที่ 7 พจน์ใหม่อนุพันธ์เทียบ $\phi$ ได้ $-\frac{\lambda}{4!}\cdot 4\phi^3 = -\frac{\lambda}{6}\phi^3$
+สมการสนามจึงกลายเป็น</p>
+
+<div class="eq" data-eqno="2">$$ \phi_{tt} - \phi_{xx} + m^2\phi + \frac{\lambda}{6}\,\phi^3 \;=\; 0 $$</div>
+
+<p>พจน์ $\phi^3$ ทำให้ซ้อนคลื่นไม่ได้แล้ว เพราะ $(u + v)^3$ ไม่เท่ากับ $u^3 + v^3$ มีพจน์ไขว้ $3u^2v + 3uv^2$ เหลืออยู่
+พจน์ไขว้นี้แหละคือคลื่นสองลูกรู้สึกถึงกัน นั่นคืออันตรกิริยา</p>
+
+<h2>② $\phi^4$ เป็นปุ่ม: ทวินามที่ลำดับสำคัญ</h2>
+
+<p>ดูสปริงตัวเดียวเหมือนบทที่ 19 ส่วนของ $\phi$ คือ $c\,(a + a^\dagger)$ ดังนั้น $\phi^4$ มี $(a + a^\dagger)^4$
+กางออกแล้วได้สตริงยาวสี่ตัว เช่น $a\,a^\dagger a\,a^\dagger$ ซึ่ง<em>ห้ามสลับที่</em> (บทที่ 18: $a\,a^\dagger \neq a^\dagger a$)
+จึงรวมพจน์ไม่ได้ ได้ครบ $2^4 = 16$ สตริง ถ้าแยกตามจำนวน $a^\dagger$ ในสตริงจะได้ทวินามพอดี:</p>
+
+<table>
+<thead><tr><th>$a^\dagger$ กี่ตัว</th><th>กี่สตริง</th><th>ทำอะไร</th></tr></thead>
+<tbody>
+<tr><td>$0$</td><td>$1$</td><td>ทำลายสี่ตัว</td></tr>
+<tr><td>$1$</td><td>$4$</td><td>ทำลายสาม สร้างหนึ่ง</td></tr>
+<tr><td>$2$</td><td>$6$</td><td>ทำลายสอง สร้างสอง ⇒ <strong>สองตัวชนกันแล้วได้สองตัว</strong></td></tr>
+<tr><td>$3$</td><td>$4$</td><td>ทำลายหนึ่ง สร้างสาม</td></tr>
+<tr><td>$4$</td><td>$1$</td><td>สร้างสี่ตัวจากสุญญากาศ</td></tr>
+</tbody>
+</table>
+
+<p>แถวที่สนใจคือแถวกลาง: ปุ่ม $a$ สองตัวทำลายอนุภาคขาเข้าสองตัว ปุ่ม $a^\dagger$ สองตัวสร้างขาออกสองตัว
+ซึ่งก็คือการชน · ในทฤษฎีนี้จำนวนอนุภาคไม่ต้องคงที่ด้วย แถวอื่นเปลี่ยนจำนวนได้
+(แต่ต้องมีพลังงานพอ ซึ่งบทนี้ไม่แตะ)</p>
+
+<h2>③ ชนกันหนึ่งครั้ง: $4!$ หายไปไหน</h2>
+
+<p>ให้อนุภาคขาเข้าอยู่รูปร่าง $k_1, k_2$ และขาออกอยู่ $k_3, k_4$ (สี่รูปร่างต่างกัน)
+$\phi^4$ คือ $\phi\cdot\phi\cdot\phi\cdot\phi$ สี่ตัว และ $\phi$ แต่ละตัวมีปุ่มของทุกรูปร่าง
+ต้องเลือกว่า $\phi$ ตัวไหนจะไปทำลาย $k_1$ ตัวไหนทำลาย $k_2$ ตัวไหนสร้าง $k_3$ ตัวไหนสร้าง $k_4$
+นี่คือการจับคู่ของสี่สิ่งกับสี่ช่อง ได้ $4! = 24$ วิธี ทุกวิธีให้ค่าเท่ากัน รวมกันแล้วคูณ $\frac{\lambda}{4!}$:</p>
+
+<div class="eq" data-eqno="3">$$ \frac{\lambda}{4!} \times 4! \;=\; \lambda $$</div>
+
+<p>นี่คือเหตุผลของ $4!$ ในสมการ (1) ผลการชนครั้งเดียวจึงออกมาเป็น $\lambda$ เปล่า ๆ
+(paper เขียน $-i\lambda$ ตัว $-i$ มาจากการเดินของเวลาในกลศาสตร์ควอนตัมซึ่งบทนี้ไม่ได้ไล่)</p>
+
+<p>อีกเงื่อนไขมาจากการอินทิเกรต $\phi^4$ ตลอดกล่อง แต่ละปุ่มพก $e^{\pm ikx}$ มาด้วย คูณกันได้
+$e^{i(k_1 + k_2 - k_3 - k_4)x}$ ซึ่งอินทิเกรตแล้วเป็นศูนย์เสมอ ยกเว้นตอน $k_1 + k_2 = k_3 + k_4$
+(ความตั้งฉากเดียวกับบทที่ 19) ⇒ <strong>โมเมนตัมขาเข้ารวมเท่ากับขาออกรวม</strong> และพลังงานก็เหมือนกัน</p>
+
+<p>ข้อสังเกตเฉพาะ 1+1 มิติ: อนุภาคมวลเท่ากันสองตัว ถ้าทั้งโมเมนตัมและพลังงานต้องเท่าเดิม
+ขาออกจะได้โมเมนตัมชุดเดิมเป๊ะ (สลับกันได้อย่างเดียว) เช่นเข้า $k = 5$ กับ $-5$ ก็ออก $5$ กับ $-5$
+นี่เป็นเหตุผลหนึ่งที่ paper ส่วนใหญ่ทำงานในสามมิติขึ้นไป ซึ่งขาออกเบนไปทิศอื่นได้</p>
+
+<h2>④ รูปที่วาดแทนการนับ: Feynman diagram</h2>
+
+<svg viewBox="0 0 520 170" width="100%" style="max-width:520px;display:block;margin:1rem auto" role="img" aria-label="ซ้าย: diagram รูปตัว X มีจุดยอดเดียว ขวา: diagram สองจุดยอดต่อกันด้วยสองเส้นเป็นห่วง">
+  <g stroke="currentColor" stroke-width="2" fill="none">
+    <line x1="30" y1="25" x2="110" y2="85"/><line x1="30" y1="145" x2="110" y2="85"/>
+    <line x1="190" y1="25" x2="110" y2="85"/><line x1="190" y1="145" x2="110" y2="85"/>
+    <line x1="270" y1="25" x2="330" y2="85"/><line x1="270" y1="145" x2="330" y2="85"/>
+    <path d="M330 85 Q385 40 440 85"/><path d="M330 85 Q385 130 440 85"/>
+    <line x1="500" y1="25" x2="440" y2="85"/><line x1="500" y1="145" x2="440" y2="85"/>
+  </g>
+  <g fill="currentColor"><circle cx="110" cy="85" r="5"/><circle cx="330" cy="85" r="5"/><circle cx="440" cy="85" r="5"/></g>
+  <g fill="currentColor" font-size="14" font-family="serif" font-style="italic">
+    <text x="12" y="22">k1</text><text x="12" y="160">k2</text><text x="192" y="22">k3</text><text x="192" y="160">k4</text>
+  </g>
+  <g fill="currentColor" font-size="13" text-anchor="middle">
+    <text x="110" y="168">จุดยอด 1 · ไม่มีห่วง</text><text x="385" y="168">จุดยอด 2 · ห่วง 1</text>
+  </g>
+</svg>
+
+<p>Feynman diagram คือรูปที่บันทึกการนับในข้อ ③ เวลาไหลจากซ้ายไปขวา กติกามีสามข้อ:</p>
+
+<table>
+<thead><tr><th>ในรูป</th><th>หมายความว่า</th><th>ค่าที่คูณ</th></tr></thead>
+<tbody>
+<tr><td>จุดยอด (จุดดำ) มีขา $4$ ขา</td><td>ใช้พจน์ $\lambda\phi^4$ หนึ่งครั้ง</td><td>$\lambda$ (ต่อจุด)</td></tr>
+<tr><td>เส้นภายนอก (ปลายลอย)</td><td>อนุภาคขาเข้าหรือขาออก</td><td>—</td></tr>
+<tr><td>เส้นภายใน (ต่อสองจุดยอด)</td><td>อนุภาคที่สร้างที่จุดหนึ่งแล้วทำลายที่อีกจุด</td><td>propagator ของบทที่ 20</td></tr>
+</tbody>
+</table>
+
+<p>รูปซ้ายมีจุดยอดเดียว ได้ $\lambda$ ตามข้อ ③ · รูปขวาใช้พจน์ $\lambda\phi^4$ สองครั้ง ได้ $\lambda^2$
+นับเส้นได้ด้วยการนับปลายขา: สองจุดยอดมีปลายขารวม $2 \times 4 = 8$ ใช้เป็นขาภายนอก $4$
+ที่เหลือ $4$ ปลายต้องจับคู่กันเป็นเส้นภายใน ได้ $4 \div 2 = 2$ เส้น ซึ่งต่อสองจุดยอดเป็นวง
+paper เรียกวงนี้ว่า <strong>loop</strong> (นับได้จาก เส้นภายใน − จุดยอด + 1)</p>
+
+<p>ถ้า $\lambda$ เล็ก รูปที่มีจุดยอดมากจะเล็กลงตาม $\lambda$ ยกกำลังจำนวนจุดยอด
+เช่น $\lambda = 0.1$ รูปสองจุดยอดเล็กกว่ารูปหนึ่งจุดยอด $10$ เท่า จึงคำนวณรูปน้อยจุดก่อนแล้วค่อยเติม
+paper เรียกวิธีนี้ว่า <strong>perturbation theory</strong> และเรียกรูปไม่มีห่วงว่า <strong>tree level</strong></p>
+
+<div class="warn">
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — ตัวคูณ $-i$ · ตัวหาร $2\omega$ ของขาภายนอก ·
+  การอินทิเกรตโมเมนตัมที่วิ่งในห่วง (ในสี่มิติห่วงนี้ให้ค่าอนันต์และต้อง renormalize ส่วนใน 1+1 มิติมันจำกัด) ·
+  Peskin &amp; Schroeder §4.1–4.6 · Tong, <em>Quantum Field Theory</em> §3.1–3.5
+</div>
+
+<p class="src">ตรวจด้วย <code>sympy</code>: สมการ (2) จาก Euler-Lagrange · เศษจากการซ้อนคลื่นไม่เป็นศูนย์ ·
+กาง $(a + a^\dagger)^4$ เป็น $16$ สตริงจริงแล้วนับ $1, 4, 6, 4, 1$ · สตริงที่พา $|2\rangle \to |2\rangle$ ได้คือ $6$ สตริงพอดี ·
+$\langle k_3 k_4|\phi^4|k_1 k_2\rangle$ บน Fock space สี่รูปร่าง (คูณเมทริกซ์จริง) ได้ $4!$ คูณน้ำหนักสี่ตัว ·
+ตัวควบคุม $\phi^3$ ได้ $0$ · การอนุรักษ์ใน 1+1 มิติแก้สมการหาขาออกจริง —
+<code>scripts/verify/0033_interaction.py</code></p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ทุกข้อเป็น <strong>1+1 มิติ</strong> · $\hbar = c = 1$ · ตอบเป็นตัวเลข ·
+เศษส่วนพิมพ์แบบ <code>1/2</code> ได้</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · สมการสนามใหม่ &nbsp;<span class="hint">(สมการ (1) และ (2))</span></h3>
+  <ol class="steps">
+    <li data-answer="1/2" data-alt="0.5">
+      <p><strong>ขั้น 1</strong> — ถ้า $\lambda = 12$ สัมประสิทธิ์ $\lambda/4!$ หน้า $\phi^4$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$12/24 = 1/2$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 2</strong> — อนุพันธ์ของ $\tfrac12\phi^4$ เทียบ $\phi$ ได้ $\;?\;\phi^3$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12 \times 4 = 2$ — ตรงกับ $\lambda/6 = 12/6 = 2$ ในสมการ (2)</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 3</strong> — ถ้า $\lambda = 6$ พจน์ในสมการ (2) คือ $\;?\;\phi^3$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$6/6 = 1$</p>
+    </li>
+  </ol>
+  <p class="fb">$\lambda/4!$ ใน Lagrangian กลายเป็น $\lambda/6$ ในสมการ เพราะอนุพันธ์ของ $\phi^4$ ได้ $4\phi^3$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · นับสตริงใน $(a + a^\dagger)^4$ &nbsp;<span class="hint">(ตารางในข้อ ②)</span></h3>
+  <ol class="steps">
+    <li data-answer="16" data-alt="16.0">
+      <p><strong>ขั้น 1</strong> — มีสตริงยาวสี่ตัวทั้งหมดกี่สตริง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2^4 = 16$ — แต่ละตำแหน่งเลือก $a$ หรือ $a^\dagger$</p>
+    </li>
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 2</strong> — กี่สตริงที่มี $a^\dagger$ สองตัวพอดี (ทำลายสอง สร้างสอง)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\binom42 = 6$ — เลือกตำแหน่งของ $a^\dagger$ สองตำแหน่งจากสี่</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 3</strong> — กี่สตริงที่สร้างสี่ตัวจากสุญญากาศได้ (มี $a^\dagger$ ทั้งสี่ตำแหน่ง)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — คือ $a^\dagger a^\dagger a^\dagger a^\dagger$</p>
+    </li>
+  </ol>
+  <p class="fb">นับแยกตามจำนวน $a^\dagger$ ได้ $1, 4, 6, 4, 1$ เหมือนสัมประสิทธิ์ทวินาม</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · $4!$ ตัดกัน &nbsp;<span class="hint">(สมการ (3))</span></h3>
+  <ol class="steps">
+    <li data-answer="24" data-alt="24.0">
+      <p><strong>ขั้น 1</strong> — จับอนุภาคภายนอก $4$ ตัว ($k_1, k_2, k_3, k_4$) เข้ากับ $\phi$ $4$ ตัว ตัวละหนึ่ง ได้กี่วิธี</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4! = 24$</p>
+    </li>
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 2</strong> — ถ้า $\lambda = 6$ เอา $\frac{\lambda}{4!}$ คูณจำนวนวิธีในขั้น 1 ได้เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{6}{24} \times 24 = 6 = \lambda$ — $4!$ ตัดกันพอดี</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 3</strong> — diagram ของการชนครั้งนี้มีจุดยอดกี่จุด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — ใช้พจน์ $\lambda\phi^4$ ครั้งเดียว รูปตัว X ในข้อ ④</p>
+    </li>
+  </ol>
+  <p class="fb">ชนกันหนึ่งครั้งได้ $\lambda$ เปล่า ๆ เพราะ $4!$ ในสมการ (1) ถูกใส่ไว้ให้ตัดกับการนับ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · ชนกันตรง ๆ (มวล $m = 12$)</h3>
+  <p class="hint">ขาเข้าเป็นอนุภาคโมเมนตัม $k_1 = 5$ กับ $k_2 = -5$ วิ่งเข้าหากัน</p>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 1</strong> — โมเมนตัมรวมขาเข้า</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5 + (-5) = 0$</p>
+    </li>
+    <li data-answer="-5" data-alt="−5|-5.0">
+      <p><strong>ขั้น 2</strong> — ขาออกตัวหนึ่งมี $k_4 = 5$ อีกตัว $k_3$ ต้องเป็นเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0 - 5 = -5$ — โมเมนตัมขาออกรวมต้องเท่าขาเข้ารวม</p>
+    </li>
+    <li data-answer="26" data-alt="26.0">
+      <p><strong>ขั้น 3</strong> — พลังงานขาออกรวม <span class="hint">($\omega = \sqrt{k^2 + m^2}$ ของแต่ละตัวแล้วบวกกัน)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt{25 + 144} + \sqrt{25 + 144} = 13 + 13 = 26$ — เท่าขาเข้า</p>
+    </li>
+  </ol>
+  <p class="fb">ที่จุดยอด โมเมนตัมและพลังงานเข้าเท่ากับออก</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · นับเส้นในรูปสองจุดยอด &nbsp;<span class="hint">(รูปขวาในข้อ ④)</span></h3>
+  <ol class="steps">
+    <li data-answer="8" data-alt="แปด|8.0">
+      <p><strong>ขั้น 1</strong> — สองจุดยอด จุดละ $4$ ขา มีปลายขารวมกี่ปลาย</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 4 = 8$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 2</strong> — ใช้เป็นเส้นภายนอก $4$ ปลาย ที่เหลือจับคู่เป็นเส้นภายในได้กี่เส้น</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(8 - 4) \div 2 = 2$ — เส้นหนึ่งใช้สองปลาย</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 3</strong> — จำนวน loop = เส้นภายใน − จุดยอด + 1</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 - 2 + 1 = 1$ — สองเส้นภายในต่อสองจุดยอดเป็นวงเดียว</p>
+    </li>
+  </ol>
+  <p class="fb">นับปลายขาก่อน แล้วเส้นภายในกับ loop ตามมาเอง</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · ยิ่งจุดยอดมาก ยิ่งเล็ก &nbsp;<span class="hint">(ย่อหน้าสุดท้ายของข้อ ④)</span></h3>
+  <ol class="steps">
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 1</strong> — รูปที่มีสามจุดยอด แปรผันตาม $\lambda$ ยกกำลังเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3$ — จุดละ $\lambda$ หนึ่งตัว</p>
+    </li>
+    <li data-answer="1/10" data-alt="0.1">
+      <p><strong>ขั้น 2</strong> — ถ้า $\lambda = 1/10$ รูปสองจุดยอดหารด้วยรูปหนึ่งจุดยอด ($\lambda^2 / \lambda$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\lambda = 1/10$ — เล็กกว่า $10$ เท่า</p>
+    </li>
+    <li data-answer="1/1000" data-alt="0.001">
+      <p><strong>ขั้น 3</strong> — ถ้า $\lambda = 1/10$ ค่า $\lambda^3$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/1000$ — รูปสามจุดยอดแทบไม่มีผล</p>
+    </li>
+  </ol>
+  <p class="fb">$\lambda$ เล็ก ⇒ คำนวณรูปน้อยจุดยอดก่อน (perturbation theory)</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา
+  <div class="nav">
+    <a href="./0031-propagator.html">← บทที่ 20 · อนุภาคเดินทางจากจุดหนึ่งไปอีกจุด</a>
+    <a href="./0016-fields.html">บทที่ 7 · จากอนุภาคไปสนาม</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>

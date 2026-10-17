@@ -265,6 +265,14 @@ HAND = [
     ("0031-propagator.html", "28", "8", "wrong"),              # ตอบ |P| + ... ไม่ใช่ ω
     ("0031-propagator.html", "5", "16", "wrong"),              # ผลจริงของแบ (ยังไม่รู้ที่มา)
     ("0031-propagator.html", "20", "16", "wrong"),
+    ("0032-interaction.html", "1/2", "0.5", "right"),
+    ("0032-interaction.html", "2", "4", "wrong"),              # ลืมคูณ ½
+    ("0032-interaction.html", "6", "4", "wrong"),              # นับ C(4,1) แทน C(4,2)
+    ("0032-interaction.html", "24", "4", "wrong"),             # นับ 4 แทน 4!
+    ("0032-interaction.html", "-5", "5", "wrong"),
+    ("0032-interaction.html", "2", "4", "wrong"),              # ไม่หารสอง (เส้นหนึ่งใช้สองปลาย)
+    ("0032-interaction.html", "1/10", "0.1", "right"),
+    ("0032-interaction.html", "1/1000", "0.01", "wrong"),
 ]
 
 
