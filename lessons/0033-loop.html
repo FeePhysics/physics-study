@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 22 · คำนวณห่วงแรก</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 22 · คำนวณห่วงแรก</h1>
+<p class="meta">บทเรียน · ~25 นาที · เขียน propagator ในรูป $1/(k^2 + m^2)$ ที่ paper ใช้
+แล้วคำนวณค่าของห่วงในรูปขวาของบทที่ 21 ด้วยพิกัดเชิงขั้ว</p>
+
+<div class="key">
+  <p style="margin-top:0"><strong>บทที่ 21 ผ่านครบ</strong> (ข้อ 3 ที่ตอบ "ไม่รู้" เพราะบทไม่ได้โยงการชนในข้อ ③
+  กับคำว่าจุดยอดในข้อ ④ แก้แล้ว)</p>
+  <p style="margin-bottom:0">บทนี้เป็นแคลคูลัสเกือบทั้งบท (arctan · เปลี่ยนตัวแปร · พิกัดเชิงขั้ว) ของใหม่มีแค่
+  ว่าแต่ละอินทิเกรลหมายถึงอะไรในรูป</p>
+</div>
+
+<h2>① น้ำหนัก $1/(2\omega)$ ของบทที่ 20 มาจากอินทิเกรล</h2>
+
+<p>บทที่ 20 ได้ propagator เป็นผลรวมของ $e^{ikr}$ คูณน้ำหนัก $\frac{1}{2\omega}$ โดย $\omega = \sqrt{k^2 + m^2}$
+ตัวเลข $\frac{1}{2\omega}$ เขียนเป็นอินทิเกรลได้ ให้ $k_0$ เป็นตัวแปรใหม่แล้วอินทิเกรตทั้งเส้นจำนวน:</p>
+
+<div class="eq" data-eqno="1">$$ \int_{-\infty}^{\infty} \frac{dk_0}{2\pi}\; \frac{1}{k_0^2 + \omega^2} \;=\; \frac{1}{2\omega} $$</div>
+
+<p>ทำได้ด้วยแคลคูลัส ม.ปลาย: ปฏิยานุพันธ์ของ $\frac{1}{k_0^2 + \omega^2}$ คือ $\frac{1}{\omega}\arctan\frac{k_0}{\omega}$
+แทนขอบได้ $\frac{1}{\omega}\big(\frac\pi2 - (-\frac\pi2)\big) = \frac{\pi}{\omega}$ แล้วหาร $2\pi$ ได้ $\frac{1}{2\omega}$
+เช่น $\omega = 3$ ได้ $\frac{\pi}{3} \div 2\pi = \frac16$</p>
+
+<p>แทน $\omega^2 = k^2 + m^2$ กลับเข้าไป ตัวส่วนกลายเป็น $k_0^2 + k^2 + m^2$
+ให้ $k_0$ กับ $k$ เป็นสองช่องของเวกเตอร์เดียว $\mathbf{k} = (k_0,\, k_1)$ ใช้ $\mathbf{k}^2 = k_0^2 + k_1^2$
+(บวกทั้งสองตัว เหมือนเวกเตอร์บนระนาบธรรมดา) แล้ว propagator ของเส้นภายในหนึ่งเส้นคือ</p>
+
+<div class="eq" data-eqno="2">$$ \frac{1}{\mathbf{k}^2 + m^2} $$</div>
+
+<p>นี่คือรูปที่ paper ใช้ในการคำนวณ loop แทบทุกฉบับ ตัวอย่าง $\mathbf{k} = (0,\, 3)$ กับ $m = 4$ ได้ $\frac{1}{0 + 9 + 16} = \frac{1}{25}$</p>
+
+<div class="warn">
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — การรวม $k_0$ ด้วยเครื่องหมายบวก เรียกว่าทำงานแบบ<em>ยุคลิด</em>
+  ของจริง (Minkowski) $k_0$ มาพร้อมเครื่องหมายลบและ $i$ การย้ายไปมาระหว่างสองแบบเรียกว่า Wick rotation · Peskin &amp; Schroeder §6.3 (Wick rotation)
+</div>
+
+<h2>② กติกาของเส้นภายใน + ห่วง</h2>
+
+<table>
+<thead><tr><th>ในรูป</th><th>ค่าที่คูณ</th></tr></thead>
+<tbody>
+<tr><td>จุดยอด</td><td>$\lambda$ (บทที่ 21) · โมเมนตัมเข้าเท่ากับออก</td></tr>
+<tr><td>เส้นภายในที่มีโมเมนตัม $\mathbf{k}$</td><td>$\dfrac{1}{\mathbf{k}^2 + m^2}$</td></tr>
+<tr><td>ห่วงหนึ่งวง</td><td>อินทิเกรต $\displaystyle\int\frac{d^2\mathbf{k}}{(2\pi)^2}$ ทั่วทั้งระนาบ</td></tr>
+</tbody>
+</table>
+
+<p>ทำไมต้องอินทิเกรต: ในรูปขวาของบทที่ 21 โมเมนตัมรวม $\mathbf{p}$ เข้ามาที่จุดยอดซ้าย แล้วแยกไปสองเส้นภายใน
+ถ้าเส้นบนพาไป $\mathbf{k}$ เส้นล่างต้องพาไป $\mathbf{p} - \mathbf{k}$ (อนุรักษ์ที่จุดยอด) แต่ไม่มีอะไรกำหนดว่า
+$\mathbf{k}$ เป็นเท่าไร ทุกค่าเป็นไปได้ จึงต้องรวมทุกค่า · ห่วงหนึ่งวง = โมเมนตัมอิสระหนึ่งตัว = อินทิเกรลหนึ่งก้อน
+เรียกค่าของห่วงนี้ว่า $B$ (จาก bubble ซึ่งเป็นชื่อที่ paper เรียกรูปนี้):</p>
+
+<div class="eq" data-eqno="3">$$ \begin{array}{l} B(\mathbf{p}) \;=\; \displaystyle\int\frac{d^2\mathbf{k}}{(2\pi)^2}\; \frac{1}{\mathbf{k}^2 + m^2} \\ \qquad\qquad \times\; \dfrac{1}{(\mathbf{p}-\mathbf{k})^2 + m^2} \end{array} $$</div>
+
+<h2>③ คำนวณที่ $\mathbf{p} = 0$ ด้วยพิกัดเชิงขั้ว</h2>
+
+<p>ที่ $\mathbf{p} = 0$ สองตัวส่วนเท่ากัน ได้ $\frac{1}{(\mathbf{k}^2 + m^2)^2}$ ซึ่งขึ้นกับความยาว $|\mathbf{k}|$ อย่างเดียว
+ใช้พิกัดเชิงขั้วบนระนาบ $\mathbf{k}$: $d^2\mathbf{k} = k\,dk\,d\theta$ มุมให้ $2\pi$ เหลืออินทิเกรลชั้นเดียว</p>
+
+<div class="eq" data-eqno="4">$$ \int_0^{\infty} \frac{k\,dk}{(k^2 + m^2)^2} \;=\; \frac{1}{2m^2} $$</div>
+
+<p>แทน $u = k^2$ ($du = 2k\,dk$) ได้ $\frac12\int_0^\infty \frac{du}{(u + m^2)^2} = \frac12\cdot\frac{1}{m^2}$
+รวมทุกชิ้น: $\frac{1}{(2\pi)^2}\times 2\pi \times \frac{1}{2m^2}$</p>
+
+<div class="eq" data-eqno="5">$$ B(0) \;=\; \frac{1}{4\pi m^2} $$</div>
+
+<p>เป็นตัวเลขจำกัด ห่วงในรูปขวาของบทที่ 21 จึงคูณ $\lambda^2$ เข้าไปแล้วได้ค่าที่ใช้ได้จริง
+(ตัวอย่าง $m = 1$ ได้ $\frac{1}{4\pi} \approx 0.08$)</p>
+
+<h2>④ ทำไมสี่มิติได้อนันต์</h2>
+
+<p>ในโลกจริงเวกเตอร์ $\mathbf{k}$ มี $d = 4$ ช่อง (เวลาหนึ่ง ที่สาม) พิกัดเชิงขั้วใน $d$ มิติให้ $k^{d-1}\,dk$ แทน $k\,dk$
+ที่ $k$ ใหญ่ ตัวส่วน $(k^2 + m^2)^2$ ประพฤติเหมือน $k^4$ ตัวที่ถูกอินทิเกรตจึงเหมือน $k^{d-1}/k^4 = k^{d-5}$:</p>
+
+<table>
+<thead><tr><th>$d$</th><th>ที่ $k$ ใหญ่</th><th>$\int^\infty$</th></tr></thead>
+<tbody>
+<tr><td>$2$</td><td>$k^{-3}$</td><td>จำกัด</td></tr>
+<tr><td>$3$</td><td>$k^{-2}$</td><td>จำกัด</td></tr>
+<tr><td>$4$</td><td>$k^{-1}$</td><td>$\ln k \to \infty$ อนันต์</td></tr>
+</tbody>
+</table>
+
+<p>สี่มิติได้ $\int^\infty \frac{dk}{k}$ ซึ่งโตแบบ log ไม่จบ นี่คือที่มาของคำว่า <strong>divergence</strong> ใน paper
+และเหตุผลที่ต้องมี <strong>renormalization</strong> · การนับเลขชี้กำลังแบบนี้เรียกว่า <strong>power counting</strong>
+ใช้ตัดสินได้ทันทีว่าห่วงไหนจะอนันต์โดยไม่ต้องคำนวณจริง</p>
+
+<p class="src">ตรวจด้วย <code>sympy</code>: สมการ (1) ทั้งอินทิเกรลตรงและผ่าน arctan · ตัวควบคุมลืมหาร $2\pi$ ·
+propagator 2D ที่ระยะ $r$ เท่ากับ $K_0(mr)/2\pi$ ของบทที่ 20 ด้วย <code>mpmath</code> ·
+สมการ (4) ทั้งตรงและแทน $u = k^2$ · สมการ (5) ตรวจซ้ำแบบพิกัดฉากสองชั้นเชิงตัวเลข ·
+ตัวควบคุมลืม $k$ ใน $k\,dk$ · $\ln\Lambda \to \infty$ ที่ $d = 4$ —
+<code>scripts/verify/0034_loop.py</code></p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ทุกข้อเป็น <strong>1+1 มิติแบบยุคลิด</strong> ($\mathbf{k}^2 = k_0^2 + k_1^2$) · ตอบเป็นตัวเลข ·
+เศษส่วนพิมพ์แบบ <code>1/8</code> ได้</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · อินทิเกรลของ $k_0$ &nbsp;<span class="hint">(สมการ (1))</span></h3>
+  <ol class="steps">
+    <li data-answer="1/5" data-alt="0.2">
+      <p><strong>ขั้น 1</strong> — $\displaystyle\int_{-\infty}^{\infty}\frac{dk_0}{k_0^2 + 25} = \;?\;\times\pi$ <span class="hint">(ตอบตัวเลขหน้า $\pi$)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/5$ — $\frac{\pi}{\omega}$ กับ $\omega = 5$</p>
+    </li>
+    <li data-answer="1/10" data-alt="0.1">
+      <p><strong>ขั้น 2</strong> — เอาผลขั้น 1 หารด้วย $2\pi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{\pi}{5} \div 2\pi = \frac{1}{10}$ — เท่ากับ $\frac{1}{2\omega}$ ของบทที่ 20</p>
+    </li>
+    <li data-answer="1/4" data-alt="0.25">
+      <p><strong>ขั้น 3</strong> — ถ้า $\omega = 2$ ค่าของสมการ (1)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{1}{2 \times 2} = \frac14$</p>
+    </li>
+  </ol>
+  <p class="fb">น้ำหนัก $\frac{1}{2\omega}$ คืออินทิเกรลของ $\frac{1}{k_0^2 + \omega^2}$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · ค่าของเส้นภายใน &nbsp;<span class="hint">(สมการ (2))</span></h3>
+  <ol class="steps">
+    <li data-answer="1/25" data-alt="0.04">
+      <p><strong>ขั้น 1</strong> — $\mathbf{k} = (3,\, 4)$ และ $m = 0$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{1}{9 + 16 + 0} = \frac{1}{25}$</p>
+    </li>
+    <li data-answer="1/9" data-alt="0.1111|0.111">
+      <p><strong>ขั้น 2</strong> — $\mathbf{k} = (1,\, 2)$ และ $m = 2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{1}{1 + 4 + 4} = \frac19$</p>
+    </li>
+    <li data-answer="1/16" data-alt="0.0625">
+      <p><strong>ขั้น 3</strong> — $\mathbf{k} = (0,\, 0)$ และ $m = 4$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{1}{0 + 16} = \frac{1}{16}$ — ค่ามากที่สุดของเส้นนี้ อยู่ที่ $\mathbf{k} = 0$</p>
+    </li>
+  </ol>
+  <p class="fb">$\mathbf{k}^2$ คือผลบวกกำลังสองของทั้งสองช่อง แล้วบวก $m^2$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · โมเมนตัมในห่วง &nbsp;<span class="hint">(ข้อ ②)</span></h3>
+  <p class="hint">เข้าห่วง $\mathbf{p} = (2,\, 1)$ เส้นบนพา $\mathbf{k} = (5,\, 3)$ มวล $m^2 = 12$</p>
+  <ol class="steps">
+    <li data-answer="-3" data-alt="−3|-3.0">
+      <p><strong>ขั้น 1</strong> — เส้นล่างพา $\mathbf{p} - \mathbf{k}$ ช่องแรกเท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 - 5 = -3$</p>
+    </li>
+    <li data-answer="-2" data-alt="−2|-2.0">
+      <p><strong>ขั้น 2</strong> — ช่องที่สองของ $\mathbf{p} - \mathbf{k}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 - 3 = -2$</p>
+    </li>
+    <li data-answer="1/25" data-alt="0.04">
+      <p><strong>ขั้น 3</strong> — ค่าของเส้นล่าง $\frac{1}{(\mathbf{p}-\mathbf{k})^2 + m^2}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{1}{9 + 4 + 12} = \frac{1}{25}$</p>
+    </li>
+  </ol>
+  <p class="fb">สองเส้นในห่วงแบ่งโมเมนตัมกัน ผลรวมต้องเท่ากับ $\mathbf{p}$ เสมอ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · ค่าของห่วง &nbsp;<span class="hint">(สมการ (4) และ (5))</span></h3>
+  <ol class="steps">
+    <li data-answer="1/2" data-alt="0.5">
+      <p><strong>ขั้น 1</strong> — $\displaystyle\int_0^\infty \frac{k\,dk}{(k^2 + 1)^2}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{1}{2m^2}$ กับ $m = 1$ ได้ $\frac12$</p>
+    </li>
+    <li data-answer="1/8" data-alt="0.125">
+      <p><strong>ขั้น 2</strong> — $\displaystyle\int_0^\infty \frac{k\,dk}{(k^2 + 4)^2}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$m = 2$: $\frac{1}{2 \times 4} = \frac18$</p>
+    </li>
+    <li data-answer="1/16" data-alt="0.0625">
+      <p><strong>ขั้น 3</strong> — $B(0)$ ที่ $m = 2$ เท่ากับ $\;?\;\big/\pi$ <span class="hint">(ตอบตัวเลขที่อยู่บนเศษเมื่อเขียนเป็น "เลข หาร $\pi$")</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{1}{4\pi \times 4} = \frac{1/16}{\pi}$ ⇒ $\frac{1}{16}$</p>
+    </li>
+  </ol>
+  <p class="fb">ห่วงในสองมิติให้ค่าจำกัด $\frac{1}{4\pi m^2}$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · power counting &nbsp;<span class="hint">(ตารางในข้อ ④)</span></h3>
+  <ol class="steps">
+    <li data-answer="-3" data-alt="−3|-3.0">
+      <p><strong>ขั้น 1</strong> — $d = 2$: ที่ $k$ ใหญ่ $k^{d-1}/k^4$ เท่ากับ $k$ ยกกำลังเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 - 4 = -3$</p>
+    </li>
+    <li data-answer="-2" data-alt="−2|-2.0">
+      <p><strong>ขั้น 2</strong> — $d = 3$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 - 4 = -2$ — ยังจำกัด</p>
+    </li>
+    <li data-answer="-1" data-alt="−1|-1.0">
+      <p><strong>ขั้น 3</strong> — $d = 4$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 - 4 = -1$ — $\int^\infty \frac{dk}{k}$ เป็น log อนันต์</p>
+    </li>
+  </ol>
+  <p class="fb">เลขชี้กำลัง $-1$ หรือมากกว่า ⇒ อินทิเกรลไม่จบ ⇒ ต้อง renormalize</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา
+  <div class="nav">
+    <a href="./0032-interaction.html">← บทที่ 21 · อนุภาคชนกัน</a>
+    <a href="./0031-propagator.html">บทที่ 20 · อนุภาคเดินทางจากจุดหนึ่งไปอีกจุด</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>

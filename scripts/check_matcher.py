@@ -273,6 +273,13 @@ HAND = [
     ("0032-interaction.html", "2", "4", "wrong"),              # ไม่หารสอง (เส้นหนึ่งใช้สองปลาย)
     ("0032-interaction.html", "1/10", "0.1", "right"),
     ("0032-interaction.html", "1/1000", "0.01", "wrong"),
+    ("0033-loop.html", "1/5", "5", "wrong"),                   # กลับเศษส่วน
+    ("0033-loop.html", "1/10", "1/5", "wrong"),                # ลืมหาร 2π
+    ("0033-loop.html", "1/9", "0.1111", "right"),
+    ("0033-loop.html", "1/9", "1/5", "wrong"),                 # ลืม m²
+    ("0033-loop.html", "-3", "3", "wrong"),
+    ("0033-loop.html", "1/8", "1/4", "wrong"),                 # ลืมยกกำลังสอง m
+    ("0033-loop.html", "-1", "1", "wrong"),
 ]
 
 

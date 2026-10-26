@@ -58,6 +58,16 @@ def check(f: pathlib.Path, html: str):
         if '$' in svg:
             bad("มี $ อยู่ใน <svg> — KaTeX ไม่เรนเดอร์ในนั้น จะขึ้น LaTeX ดิบ")
 
+    # ── ห้ามภาษาไทยใน \text{} ของสมการ ──
+    # ⚠️ หลุดมาสามบทติด (บทที่ 18, 20, 22) · ตัวแปลง MathML กับ KaTeX จัดฟอนต์ไทยในสมการไม่สวย
+    #    และอ่านแล้วเหมือนพิมพ์ผิด ⇒ ย้ายคำไทยออกนอก $...$ หรือใช้สัญลักษณ์แล้วนิยามเป็นภาษาไทย
+    # บทที่ผ่านไปแล้วก่อนมีประตูนี้ (ยังไม่ได้แก้ — แก้เมื่อกลับไปเปิดบทนั้น)
+    _text_th_ok = {'0001-action-cheatsheet.html', '0001-action-principle.html', '0004-indices.html', '0005-variation.html', '0006-maxwell.html', '0009-assemble.html', '0011-conserved.html', '0013-unpracticed.html', '0015-hamiltonian.html', '0016-fields.html', '0018-dimcompose.html', '0021-onshell.html', '0022-u1charge.html', '0023-gauge.html', '0024-maxwell-source.html', '0025-nonabelian.html', '0026-higgs-u1.html'}
+    for tm in (() if f.name in _text_th_ok else re.finditer(r'\\text\{([^}]*)\}', html)):
+        if re.search('[\u0E00-\u0E7F]', tm.group(1)):
+            bad(f'ภาษาไทยใน \\text{{}}: {tm.group(0)!r} — ย้ายออกนอกสมการ')
+
+
     # ── ไฟล์ที่ลิงก์ต้องมีอยู่จริง ─────────────────────────
     for rel in re.findall(r'(?:href|src)="((?!https?:|#|mailto:)[^"]+)"', html):
         target = (f.parent / rel.split('#')[0]).resolve()
