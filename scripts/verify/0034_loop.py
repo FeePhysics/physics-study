@@ -64,6 +64,14 @@ Lam = sp.Symbol('Lam', positive=True)
 ok.append(("d = 4: ∫_1^Λ dk/k = ln Λ → ∞", sp.limit(sp.integrate(1/k, (k, 1, Lam)), Lam, sp.oo) == sp.oo, None, None))
 chk("d = 2: ∫_1^∞ k^(-3) dk = 1/2 จำกัด", sp.integrate(k**-3, (k, 1, sp.oo)), sp.Rational(1, 2))
 
+# ฉบับแก้: สูตรสำเร็จ ∫dx/(x²+a²) = π/a · ตารางสี่ขั้นของ u = k² + m² · ตัวอย่าง m² = 9
+aa = sp.Symbol('aa', positive=True)
+chk("สูตรสำเร็จ ∫ dx/(x²+a²) = π/a", sp.integrate(1/(k0**2 + aa**2), (k0, -sp.oo, sp.oo)), sp.pi/aa)
+chk("ตาราง: ½∫_{m²}^∞ u^(-2) du = 1/(2m²)", sp.Rational(1, 2)*sp.integrate(u**-2, (u, m**2, sp.oo)), 1/(2*m**2))
+chk("ตาราง: ปฏิยานุพันธ์ของ u^(-2) = -u^(-1)", sp.diff(-1/u, u), u**-2)
+chk("ตัวอย่าง (k²+9)²: m² = 9 ⇒ 1/18", radial.subs(m, 3), sp.Rational(1, 18))
+chk("ข้อ 4: ตอบ 1/32 = แทน m = 4 (ยกกำลังซ้ำ) ≠ 1/8", radial.subs(m, 4), sp.Rational(1, 32))
+
 # ── ตัวเลขในข้อฝึก ──────────────────────────────────────────
 chk("ข้อ 1: ω = 5 ⇒ ∫ dk0/(k0²+25) = π/5 (ตัวเลขหน้า π = 1/5)", I1.subs(w, 5)/sp.pi, sp.Rational(1, 5))
 chk("ข้อ 1: หาร 2π ⇒ 1/10", I1.subs(w, 5)/(2*sp.pi), sp.Rational(1, 10))

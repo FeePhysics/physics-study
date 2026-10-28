@@ -33,8 +33,15 @@
 
 <div class="eq" data-eqno="1">$$ \int_{-\infty}^{\infty} \frac{dk_0}{2\pi}\; \frac{1}{k_0^2 + \omega^2} \;=\; \frac{1}{2\omega} $$</div>
 
-<p>ทำได้ด้วยแคลคูลัส ม.ปลาย: ปฏิยานุพันธ์ของ $\frac{1}{k_0^2 + \omega^2}$ คือ $\frac{1}{\omega}\arctan\frac{k_0}{\omega}$
-แทนขอบได้ $\frac{1}{\omega}\big(\frac\pi2 - (-\frac\pi2)\big) = \frac{\pi}{\omega}$ แล้วหาร $2\pi$ ได้ $\frac{1}{2\omega}$
+<div class="key">
+  <p style="margin-top:0"><strong>สูตรสำเร็จ (ใช้ได้เลย ไม่ต้องอินทิเกรตเอง)</strong></p>
+  <p style="margin-bottom:0">$$ \int_{-\infty}^{\infty} \frac{dx}{x^2 + a^2} \;=\; \frac{\pi}{a} \qquad (a > 0) $$
+  ที่มา: ปฏิยานุพันธ์คือ $\frac1a\arctan\frac xa$ ซึ่งต้องใช้การแทนค่าด้วยตรีโกณมิติ (ไม่อยู่ในหลักสูตร ม.ปลาย)
+  paper ใช้สูตรนี้บ่อยจนไม่เขียนที่มา · <strong>ระวัง:</strong> ตัวส่วน $x^2 + 25$ แปลว่า $a^2 = 25$ คือ $a = 5$
+  ไม่ใช่ $a = 25$</p>
+</div>
+
+<p>ใช้สูตรกับ $x = k_0$ และ $a = \omega$ ได้ $\frac{\pi}{\omega}$ แล้วหาร $2\pi$ ได้ $\frac{1}{2\omega}$
 เช่น $\omega = 3$ ได้ $\frac{\pi}{3} \div 2\pi = \frac16$</p>
 
 <p>แทน $\omega^2 = k^2 + m^2$ กลับเข้าไป ตัวส่วนกลายเป็น $k_0^2 + k^2 + m^2$
@@ -75,8 +82,20 @@ $\mathbf{k}$ เป็นเท่าไร ทุกค่าเป็นไป
 
 <div class="eq" data-eqno="4">$$ \int_0^{\infty} \frac{k\,dk}{(k^2 + m^2)^2} \;=\; \frac{1}{2m^2} $$</div>
 
-<p>แทน $u = k^2$ ($du = 2k\,dk$) ได้ $\frac12\int_0^\infty \frac{du}{(u + m^2)^2} = \frac12\cdot\frac{1}{m^2}$
-รวมทุกชิ้น: $\frac{1}{(2\pi)^2}\times 2\pi \times \frac{1}{2m^2}$</p>
+<p>ทำทีละขั้นด้วยกฎยกกำลังธรรมดา:</p>
+
+<table>
+<thead><tr><th>ขั้น</th><th>ทำอะไร</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>ให้ $u = k^2 + m^2$ ⇒ $du = 2k\,dk$ ⇒ $k\,dk = \tfrac12\,du$ (ตัว $k$ บนเศษหายไปพอดี)</td></tr>
+<tr><td>2</td><td>ขอบเปลี่ยนตาม: $k = 0$ ⇒ $u = m^2$ · $k \to \infty$ ⇒ $u \to \infty$</td></tr>
+<tr><td>3</td><td>เหลือ $\tfrac12\int_{m^2}^{\infty} u^{-2}\,du$ · ปฏิยานุพันธ์ของ $u^{-2}$ คือ $-u^{-1}$ (กฎยกกำลัง)</td></tr>
+<tr><td>4</td><td>แทนขอบ: $\tfrac12\big(0 - (-\tfrac{1}{m^2})\big) = \tfrac{1}{2m^2}$ (ที่ $u \to \infty$ ค่า $-\tfrac1u \to 0$)</td></tr>
+</tbody>
+</table>
+
+<p>ตัวอย่าง $(k^2 + 9)^2$: ตัวส่วนบอก $m^2 = 9$ (ไม่ต้องหา $m$) ได้ $\frac{1}{2 \times 9} = \frac{1}{18}$
+· รวมทุกชิ้นของห่วง: $\frac{1}{(2\pi)^2}\times 2\pi \times \frac{1}{2m^2}$</p>
 
 <div class="eq" data-eqno="5">$$ B(0) \;=\; \frac{1}{4\pi m^2} $$</div>
 
@@ -114,25 +133,30 @@ propagator 2D ที่ระยะ $r$ เท่ากับ $K_0(mr)/2\pi$ ข
 เศษส่วนพิมพ์แบบ <code>1/8</code> ได้</p>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 1 · อินทิเกรลของ $k_0$ &nbsp;<span class="hint">(สมการ (1))</span></h3>
+  <h3>ข้อ 1 · ใช้สูตรสำเร็จ &nbsp;<span class="hint">(กล่องสูตรในข้อ ①)</span></h3>
   <ol class="steps">
-    <li data-answer="1/5" data-alt="0.2">
-      <p><strong>ขั้น 1</strong> — $\displaystyle\int_{-\infty}^{\infty}\frac{dk_0}{k_0^2 + 25} = \;?\;\times\pi$ <span class="hint">(ตอบตัวเลขหน้า $\pi$)</span></p>
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 1</strong> — $\displaystyle\int_{-\infty}^{\infty}\frac{dk_0}{k_0^2 + 25}$ ตัวส่วนบอกว่า $a$ เท่ากับเท่าไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$1/5$ — $\frac{\pi}{\omega}$ กับ $\omega = 5$</p>
+      <p class="fb">$a^2 = 25$ ⇒ $a = 5$</p>
+    </li>
+    <li data-answer="1/5" data-alt="0.2">
+      <p><strong>ขั้น 2</strong> — อินทิเกรลนั้น $= \;?\;\times\pi$ <span class="hint">(ตอบตัวเลขหน้า $\pi$)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{\pi}{a} = \frac{\pi}{5}$ ⇒ $\frac15$</p>
     </li>
     <li data-answer="1/10" data-alt="0.1">
-      <p><strong>ขั้น 2</strong> — เอาผลขั้น 1 หารด้วย $2\pi$</p>
+      <p><strong>ขั้น 3</strong> — เอาผลขั้น 2 หารด้วย $2\pi$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\frac{\pi}{5} \div 2\pi = \frac{1}{10}$ — เท่ากับ $\frac{1}{2\omega}$ ของบทที่ 20</p>
+      <p class="fb">$\frac{\pi}{5} \div 2\pi = \frac{1}{10}$ — เท่ากับ $\frac{1}{2\omega}$ ของบทที่ 20 กับ $\omega = 5$</p>
     </li>
     <li data-answer="1/4" data-alt="0.25">
-      <p><strong>ขั้น 3</strong> — ถ้า $\omega = 2$ ค่าของสมการ (1)</p>
+      <p><strong>ขั้น 4</strong> — ถ้า $\omega = 2$ ค่าของสมการ (1)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$\frac{1}{2 \times 2} = \frac14$</p>
     </li>
   </ol>
-  <p class="fb">น้ำหนัก $\frac{1}{2\omega}$ คืออินทิเกรลของ $\frac{1}{k_0^2 + \omega^2}$</p>
+  <p class="fb">น้ำหนัก $\frac{1}{2\omega}$ คืออินทิเกรลของ $\frac{1}{k_0^2 + \omega^2}$ หาร $2\pi$</p>
 </div>
 
 <div class="quiz" data-steps>
@@ -181,25 +205,30 @@ propagator 2D ที่ระยะ $r$ เท่ากับ $K_0(mr)/2\pi$ ข
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 4 · ค่าของห่วง &nbsp;<span class="hint">(สมการ (4) และ (5))</span></h3>
+  <h3>ข้อ 4 · ค่าของห่วง &nbsp;<span class="hint">(สมการ (4) ตารางสี่ขั้น และสมการ (5))</span></h3>
   <ol class="steps">
     <li data-answer="1/2" data-alt="0.5">
-      <p><strong>ขั้น 1</strong> — $\displaystyle\int_0^\infty \frac{k\,dk}{(k^2 + 1)^2}$</p>
+      <p><strong>ขั้น 1</strong> — $\displaystyle\int_0^\infty \frac{k\,dk}{(k^2 + 1)^2}$ <span class="hint">(ใช้ $\frac{1}{2m^2}$)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\frac{1}{2m^2}$ กับ $m = 1$ ได้ $\frac12$</p>
+      <p class="fb">$m^2 = 1$ ⇒ $\frac{1}{2 \times 1} = \frac12$</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 2</strong> — $\displaystyle\int_0^\infty \frac{k\,dk}{(k^2 + 4)^2}$ ตัวส่วนบอกว่า $m^2$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$m^2 = 4$ (คือ $m = 2$)</p>
     </li>
     <li data-answer="1/8" data-alt="0.125">
-      <p><strong>ขั้น 2</strong> — $\displaystyle\int_0^\infty \frac{k\,dk}{(k^2 + 4)^2}$</p>
+      <p><strong>ขั้น 3</strong> — ค่าของอินทิเกรลในขั้น 2</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$m = 2$: $\frac{1}{2 \times 4} = \frac18$</p>
+      <p class="fb">$\frac{1}{2m^2} = \frac{1}{2 \times 4} = \frac18$ — ใส่ $m^2$ ตรง ๆ ไม่ต้องยกกำลังอีก ($\frac{1}{32}$ คือเอา $4$ ไปยกกำลังสองซ้ำ)</p>
     </li>
     <li data-answer="1/16" data-alt="0.0625">
-      <p><strong>ขั้น 3</strong> — $B(0)$ ที่ $m = 2$ เท่ากับ $\;?\;\big/\pi$ <span class="hint">(ตอบตัวเลขที่อยู่บนเศษเมื่อเขียนเป็น "เลข หาร $\pi$")</span></p>
+      <p><strong>ขั้น 4</strong> — $B(0) = \frac{1}{4\pi m^2}$ ที่ $m^2 = 4$ เขียนได้เป็น $\frac{?}{\pi}$ <span class="hint">(ตอบตัวเลขบนเศษ)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$\frac{1}{4\pi \times 4} = \frac{1/16}{\pi}$ ⇒ $\frac{1}{16}$</p>
     </li>
   </ol>
-  <p class="fb">ห่วงในสองมิติให้ค่าจำกัด $\frac{1}{4\pi m^2}$</p>
+  <p class="fb">ห่วงในสองมิติให้ค่าจำกัด $\frac{1}{4\pi m^2}$ · อ่าน $m^2$ จากตัวส่วนได้ตรง ๆ</p>
 </div>
 
 <div class="quiz" data-steps>
