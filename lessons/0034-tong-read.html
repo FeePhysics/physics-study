@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 23 · อ่าน Tong บทที่ 2</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 23 · อ่าน Tong บทที่ 2</h1>
+<p class="meta">เช็คพอยต์ · ~25 นาที · อ่าน lecture notes จริงของ David Tong (<em>Quantum Field Theory</em>,
+บทที่ 2 "Free Fields") ทีละสมการ แล้วชี้ว่าแต่ละบรรทัดคือบทไหนที่แบเรียนมาแล้ว ไม่มีฟิสิกส์ใหม่</p>
+
+<div class="key">
+  <p style="margin-top:0"><strong>บทที่ 22 ผ่านครบ</strong> — บทที่ 17-22 คือเนื้อหาครึ่งแรกของบทที่ 2 ใน Tong ทั้งหมด</p>
+  <p style="margin-bottom:0">เลขสมการ (2.xx) ข้างล่างคือเลขในไฟล์ <code>two.pdf</code> ที่แบส่งมา เปิดคู่กันได้เลย
+  ชื่อหัวข้อในวงเล็บคือหัวข้อในเล่ม</p>
+</div>
+
+<h2>① สามอย่างที่ Tong เขียนต่างจากเรา</h2>
+
+<p>ฟิสิกส์ไม่ต่าง ต่างแค่วิธีเขียน รู้สามข้อนี้แล้วอ่านได้ทั้งบท:</p>
+
+<ol>
+<li><strong>ลูกศร = 3 มิติ</strong> — $\vec p = (p_1, p_2, p_3)$ คือโมเมนตัม ($k$ ของเรา)
+และ $\vec p^{\,2} = p_1^2 + p_2^2 + p_3^2$</li>
+<li><strong>ไม่มีกล่อง</strong> — $\frac1L\sum_k$ ของเรากลายเป็น $\displaystyle\int\frac{d^3p}{(2\pi)^3}$ (บทที่ 19 ข้อ ⑤)</li>
+<li><strong>เมตริกกลับเครื่องหมาย</strong> — $p\cdot x = p^0x^0 - \vec p\cdot\vec x$ ส่วนบทที่ 17-21 ใช้ $\mathrm{diag}(-1, +1)$ (ข้อ ⑤)</li>
+</ol>
+
+<p>กฎของข้อ 2: <strong>อินทิเกรลกี่ชั้น ก็หาร $2\pi$ ยกกำลังเท่านั้น</strong>
+$d^3p$ มี $(2\pi)^3$ · $d^4p$ มี $(2\pi)^4$ · ห่วงของบทที่ 22 ใช้ $d^2\mathbf k$ จึงมี $(2\pi)^2$</p>
+
+<h2>② หน้า 22-23 · สปริงตัวเดียว (§2.1.1)</h2>
+
+<p><strong>(2.7)</strong> $\;\omega_{\vec p} = +\sqrt{\vec p^{\,2} + m^2}$ → บทที่ 17 · ความถี่ของคลื่นรูปร่าง $\vec p$</p>
+<p><strong>(2.11)</strong> $\;[a, a^\dagger] = 1$ → บทที่ 18</p>
+<p><strong>(2.12)</strong> $\;H = \omega\big(a^\dagger a + \tfrac12\big)$ → บทที่ 18 · พลังงานขั้นล่างสุด $\tfrac12\omega$</p>
+<p><strong>(2.17)</strong> $\;|n\rangle = (a^\dagger)^n|0\rangle$ และ $H|n\rangle = (n + \tfrac12)\omega|n\rangle$ → บทที่ 18 <strong>แต่ดูข้างล่าง</strong></p>
+
+<p>(2.17) มีจุดที่ต้องระวัง Tong เขียนต่อท้ายว่าเขา<em>ไม่ได้</em> normalize: $\langle n|n\rangle \neq 1$
+บทที่ 18 ใช้ $a^\dagger|n\rangle = \sqrt{n+1}\,|n+1\rangle$ กับสถานะที่ยาว 1 ดังนั้นกดขึ้นสองครั้งจาก $|0\rangle$ ได้</p>
+
+<div class="eq" data-eqno="1">$$ (a^\dagger)^2|0\rangle = \sqrt1\cdot\sqrt2\;|2\rangle_{\text{norm}} $$</div>
+
+<p>ความยาวกำลังสองจึงเป็น $1 \times 2 = 2$ ไม่ใช่ $1$ · กดขึ้น $n$ ครั้งได้ $\sqrt{1\cdot2\cdots n}$
+ความยาวกำลังสองของ $|n\rangle$ แบบ Tong คือ $n!$ · พลังงานไม่เปลี่ยน เพราะคูณด้วยตัวเลขไม่ทำให้ขั้นเปลี่ยน</p>
+
+<h2>③ หน้า 23-24 · สนามอิสระ (§2.2)</h2>
+
+<p><strong>(2.18)</strong> → บทที่ 19 สมการ (1) ที่ $t = 0$ (แถวแรกในตารางข้อ ⑤ ของบทนั้น)</p>
+<div class="eq">$$ \begin{array}{l} \phi(\vec x) = \displaystyle\int\frac{d^3p}{(2\pi)^3}\frac{1}{\sqrt{2\omega_{\vec p}}} \\ \qquad\times\big[a_{\vec p}\,e^{i\vec p\cdot\vec x} + a^\dagger_{\vec p}\,e^{-i\vec p\cdot\vec x}\big] \end{array} $$</div>
+
+<p><strong>(2.20)</strong> $\;[a_{\vec p}, a^\dagger_{\vec q}] = (2\pi)^3\,\delta^{(3)}(\vec p - \vec q)$ → บทที่ 19 ข้อ ⑤ · $2\pi\delta$ หนึ่งชุดต่อมิติ</p>
+
+<p><strong>(2.22)</strong> → (2.12) ของทุกสปริงบวกกัน</p>
+<div class="eq">$$ \begin{array}{l} H = \displaystyle\int\frac{d^3p}{(2\pi)^3}\,\omega_{\vec p} \\ \qquad\times\big[a^\dagger_{\vec p}a_{\vec p} + \tfrac12(2\pi)^3\delta^{(3)}(0)\big] \end{array} $$</div>
+
+<p><strong>(2.25)</strong> $\;(2\pi)^3\delta^{(3)}(0) = V$ → บทที่ 19: $2\pi\delta(0) = L$ ความยาวกล่อง · 3 มิติคือปริมาตร</p>
+
+<p>(2.22) อ่านง่ายที่สุดถ้าใส่กล่องกลับเข้าไป: มันคือ $H = \sum_k \omega_k\big(a_k^\dagger a_k + \tfrac12\big)$
+สปริงทุกตัวมีพลังงานขั้นล่างสุด $\tfrac12\omega_k$ ของมันเอง ตัวอย่างสปริงสามตัว $\omega = 1, 3, 5$
+สุญญากาศมีพลังงาน $\tfrac12(1 + 3 + 5) = \tfrac92$</p>
+
+<p>สุญญากาศจริงมีสปริงไม่จำกัดจำนวน (ทุก $\vec p$) ผลรวมนี้จึงอนันต์ Tong เรียกว่า (2.24)
+$E_0 = \infty$ ทางออกในเล่มคือวัดพลังงาน<em>เทียบกับสุญญากาศ</em> เพราะสิ่งที่วัดได้จริงคือผลต่าง
+ใส่อนุภาคหนึ่งตัวในสปริง $\omega = 3$ พลังงานขึ้นจาก $\tfrac92$ เป็น $\tfrac{15}2$ ผลต่างคือ $3$ เสมอ
+ไม่ว่าพลังงานศูนย์จะใหญ่แค่ไหน</p>
+
+<h2>④ หน้า 29 · อนุภาค (§2.4)</h2>
+
+<p><strong>(2.42)</strong> $\;|\vec p\rangle = a^\dagger_{\vec p}|0\rangle$ → บทที่ 19 · อนุภาคหนึ่งตัวรูปร่าง $\vec p$</p>
+<p><strong>(2.43)</strong> $\;H|\vec p\rangle = \omega_{\vec p}|\vec p\rangle$ → พลังงานเทียบกับสุญญากาศ (ข้อ ③)</p>
+<p><strong>(2.44)</strong> $\;E_{\vec p}^2 = \vec p^{\,2} + m^2$ → บทที่ 17</p>
+
+<p>หลัง (2.44) Tong <strong>เปลี่ยนชื่อ</strong> $\omega_{\vec p}$ เป็น $E_{\vec p}$ ทั้งเล่ม (บอกไว้หน้า 30)
+สองตัวนี้คือค่าเดียวกัน เห็น $2E_{\vec p}$ ในหน้าหลัง ๆ ก็คือ $2\omega$ ของบทที่ 19-20</p>
+
+<h2>⑤ หน้า 37-38 · propagator (§2.7)</h2>
+
+<p><strong>(2.90)</strong> → บทที่ 20 · น้ำหนัก $\frac{1}{2\omega}$ ตัวเดียวกัน</p>
+<div class="eq">$$ \begin{array}{l} D(x - y) = \langle0|\phi(x)\phi(y)|0\rangle \\ \qquad = \displaystyle\int\frac{d^3p}{(2\pi)^3}\frac{1}{2E_{\vec p}}\,e^{-ip\cdot(x-y)} \end{array} $$</div>
+
+<p><strong>(2.91)</strong> $\;D(x - y) \sim e^{-m|\vec x - \vec y|}$ → บทที่ 20 ข้อ ④ · ระยะ $1/m$</p>
+
+<p>ตัวที่ดูแปลกคือ $p\cdot(x-y)$ ไม่มีลูกศร แปลว่าเวกเตอร์ 4 ช่อง (เวลา + อวกาศ) และ Tong ใช้เมตริก
+$(+, -, -, -)$ คือ<strong>บวกช่องเวลา ลบช่องอวกาศ</strong>:</p>
+
+<div class="eq" data-eqno="2">$$ p\cdot x = E\,t - \vec p\cdot\vec x \qquad\qquad x^2 = t^2 - \vec x^{\,2} $$</div>
+
+<p>ตัวอย่าง 1+1 มิติ $p = (5,\, 3)$ กับ $x = (2,\, 1)$: $p\cdot x = 5\times2 - 3\times1 = 7$
+ดังนั้น $e^{-ip\cdot x} = e^{-iEt + i\vec p\cdot\vec x}$ เป็นรูปเดียวกับ $e^{i(kx - \omega t)}$ ของบทที่ 19 พอดี</p>
+
+<p>บทที่ 17-21 ใช้ $\mathrm{diag}(-1, +1)$ ซึ่งกลับกัน ผลคือ $x^2$ เปลี่ยนเครื่องหมาย:
+คำว่า "spacelike" ของ Tong คือ $x^2 < 0$ (เช่น $(1,\, 2)$ ได้ $1 - 4 = -3$) แต่ในเมตริกของบทก่อน ๆ ได้ $+3$
+<strong>เปิด paper ใหม่ให้ดูเมตริกก่อนเสมอ</strong> ส่วนมาก hep-th ใช้ $(-,+,+,+)$ ส่วนตำรา QFT มักใช้ $(+,-,-,-)$</p>
+
+<h2>⑥ หน้า 38 · Feynman propagator</h2>
+
+<div class="eq" data-eqno="3">$$ \text{(2.95)}\qquad \Delta_F(x - y) = \int\frac{d^4p}{(2\pi)^4}\,\frac{i}{p^2 - m^2}\,e^{-ip\cdot(x-y)} $$</div>
+
+<p>ตัวส่วน $p^2 - m^2 = (p^0)^2 - \vec p^{\,2} - m^2$ (เมตริก $+,-,-,-$) เป็นศูนย์ตอน $p^0 = \pm E_{\vec p}$
+ตรงนั้นเศษส่วนระเบิด Tong เรียกว่า <em>pole</em> และหน้าต่อไปใช้ทั้งหน้าหาทางเลี่ยง</p>
+
+<p>บทที่ 22 เลี่ยงด้วยวิธีที่ warn ไว้ชื่อ Wick rotation: แทน $p^0 = i\,k_0$ ⇒ $(p^0)^2 = -k_0^2$ แล้ว</p>
+
+<div class="eq" data-eqno="4">$$ \begin{array}{l} p^2 - m^2 = -k_0^2 - \vec p^{\,2} - m^2 \\ \qquad\;\;\; = -\big(\mathbf k^2 + m^2\big) \end{array} $$</div>
+
+<p>ในวงเล็บคือตัวส่วน $\mathbf k^2 + m^2$ ของบทที่ 22 พอดี (ไม่มีวันเป็นศูนย์ เพราะบวกล้วน)
+ตัวอย่าง 1+1 มิติ $\vec p = 3$, $m = 4$, $k_0 = 2$: $-(4 + 9 + 16) = -29$</p>
+
+<div class="warn">
+  <strong>ข้ามไปโดยตั้งใจ</strong> — §2.3.1-2.3.2 (ค่าคงตัวจักรวาล · แรง Casimir) · §2.5 สนามเชิงซ้อน ·
+  §2.6 Heisenberg picture และ causality (2.86)-(2.92) · contour ของ $p^0$ หลัง (2.95) · §2.8
+  ทุกหัวข้อใช้เครื่องมือจากบทที่ 17-22 อ่านเองได้ เจอบรรทัดไหนติดให้คัดลอกเลขสมการมาถาม
+</div>
+
+<p class="src">ตรวจด้วย <code>sympy</code>: $\omega$ ของ $\vec p = (1,2,2)$ · $\langle n|n\rangle = n!$ ของ $(a^\dagger)^n|0\rangle$
+ด้วยเมทริกซ์ปุ่มจริง $n = 0$-$4$ · $H|3\rangle = 7|3\rangle$ · พลังงานศูนย์และผลต่าง · $p\cdot x$ และ $x^2$
+ทั้งสองเมตริก · $e^{-ip\cdot x}$ เท่ากับรูปของบทที่ 19 · ขั้วและ Wick rotation —
+<code>scripts/verify/0035_tong_read.py</code></p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ตอบเป็นตัวเลข · เศษส่วนพิมพ์แบบ <code>9/2</code> ได้</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · Tong (2.7) และ (2.43) &nbsp;<span class="hint">(ข้อ ① และ ④)</span></h3>
+  <p class="hint">อนุภาค $\vec p = (1,\, 2,\, 2)$ มวล $m = 4$</p>
+  <ol class="steps">
+    <li data-answer="9" data-alt="เก้า|9.0">
+      <p><strong>ขั้น 1</strong> — $\vec p^{\,2}$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + 4 + 4 = 9$</p>
+    </li>
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 2</strong> — $\omega_{\vec p}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt{9 + 16} = 5$</p>
+    </li>
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 3</strong> — $|\vec p\rangle$ มีพลังงานเหนือสุญญากาศเท่าไร <span class="hint">(2.43)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\omega_{\vec p} = 5$ — Tong จะเรียกตัวนี้ว่า $E_{\vec p}$ ตั้งแต่หน้า 30</p>
+    </li>
+  </ol>
+  <p class="fb">ลูกศรคือโมเมนตัม 3 ช่อง ยกกำลังสองแล้วบวกทุกช่อง</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · Tong (2.17) ไม่ normalize &nbsp;<span class="hint">(ข้อ ②)</span></h3>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — $|2\rangle$ แบบ Tong คือ $(a^\dagger)^2|0\rangle$ ความยาวกำลังสอง $\langle2|2\rangle$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt1\cdot\sqrt2$ ยกกำลังสอง $= 2$</p>
+    </li>
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 2</strong> — $\langle3|3\rangle$ ของ $|3\rangle = (a^\dagger)^3|0\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 \times 2 \times 3 = 6 = 3!$</p>
+    </li>
+    <li data-answer="7" data-alt="เจ็ด|7.0">
+      <p><strong>ขั้น 3</strong> — สปริงความถี่ $\omega = 2$: พลังงานของ $|3\rangle$ <span class="hint">($H|n\rangle = (n+\tfrac12)\omega|n\rangle$)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(3 + \tfrac12) \times 2 = 7$ — ความยาวไม่มีผลกับพลังงาน</p>
+    </li>
+  </ol>
+  <p class="fb">$|n\rangle$ ของ Tong ยาวกำลังสอง $n!$ · ของบทที่ 18 ยาว $1$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · นับ $2\pi$ &nbsp;<span class="hint">(กฎในข้อ ①)</span></h3>
+  <ol class="steps">
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 1</strong> — (2.18) มี $\int d^3p$ หารด้วย $2\pi$ ยกกำลังเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">อินทิเกรล 3 ชั้น ⇒ $(2\pi)^3$ ⇒ ตอบ 3</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 2</strong> — (2.95) มี $\int d^4p$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(2\pi)^4$ ⇒ ตอบ 4 · Tong บอกว่าเป็นครั้งแรกที่อินทิเกรตทั้งเวลาและอวกาศ</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 3</strong> — ห่วงของบทที่ 22 ใน 1+1 มิติ ($\int d^2\mathbf k$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(2\pi)^2$ ⇒ ตอบ 2</p>
+    </li>
+  </ol>
+  <p class="fb">กำลังของ $2\pi$ เท่ากับจำนวนชั้นของอินทิเกรลเสมอ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · พลังงานศูนย์ (2.22) &nbsp;<span class="hint">(ข้อ ③)</span></h3>
+  <p class="hint">สนามในกล่องมีสปริงแค่สามตัว ความถี่ $\omega = 2,\ 4,\ 6$</p>
+  <ol class="steps">
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 1</strong> — พลังงานของสุญญากาศ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12(2 + 4 + 6) = 6$</p>
+    </li>
+    <li data-answer="10" data-alt="สิบ|10.0">
+      <p><strong>ขั้น 2</strong> — ใส่อนุภาคหนึ่งตัวในสปริง $\omega = 4$ พลังงานรวมเป็นเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$6 + 4 = 10$</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 3</strong> — พลังงานเหนือสุญญากาศ (ตัวที่ (2.43) เรียกว่าพลังงานของอนุภาค)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$10 - 6 = 4$ — เท่ากับ $\omega$ ของสปริงนั้นพอดี ไม่ขึ้นกับพลังงานศูนย์</p>
+    </li>
+  </ol>
+  <p class="fb">สปริงไม่จำกัดตัว ⇒ พลังงานศูนย์อนันต์ (2.24) แต่ผลต่างยังจำกัด</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · เมตริกของ Tong &nbsp;<span class="hint">(สมการ (2) และ (2.91))</span></h3>
+  <ol class="steps">
+    <li data-answer="7" data-alt="เจ็ด|7.0">
+      <p><strong>ขั้น 1</strong> — 1+1 มิติ $p = (5,\, 3)$ และ $x = (2,\, 1)$ (ช่องแรกคือเวลา): $p\cdot x$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5\times2 - 3\times1 = 7$</p>
+    </li>
+    <li data-answer="-3" data-alt="−3|-3.0">
+      <p><strong>ขั้น 2</strong> — $x = (1,\, 2)$: $x^2$ ในเมตริกของ Tong</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 - 4 = -3$ ติดลบ ⇒ spacelike ในภาษาของ Tong</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 3</strong> — $x = (1,\, 2)$ ในเมตริก $\mathrm{diag}(-1, +1)$ ของบทที่ 17-21</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-1 + 4 = 3$ — จุดเดียวกัน เครื่องหมายตรงข้าม</p>
+    </li>
+    <li data-answer="1/4" data-alt="0.25">
+      <p><strong>ขั้น 4</strong> — (2.91) กับ $m = 4$: ระยะ $1/m$ ที่ propagator ลดลงเป็น $e^{-1}$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{1}{m} = \frac14$ — ระยะของบทที่ 20</p>
+    </li>
+  </ol>
+  <p class="fb">เห็น $p\cdot x$ ไม่มีลูกศร ให้ถามก่อนว่าเมตริกบวกช่องไหน</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · ตัวส่วนของ (2.95) &nbsp;<span class="hint">(ข้อ ⑥)</span></h3>
+  <p class="hint">1+1 มิติ $\vec p = 3$ มวล $m = 4$ · $p^2 - m^2 = (p^0)^2 - \vec p^{\,2} - m^2$</p>
+  <ol class="steps">
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 1</strong> — $E_{\vec p}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt{9 + 16} = 5$</p>
+    </li>
+    <li data-answer="-9" data-alt="−9|-9.0">
+      <p><strong>ขั้น 2</strong> — $p^0 = 4$: $p^2 - m^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$16 - 9 - 16 = -9$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — $p^0 = 5$: $p^2 - m^2$ <span class="hint">(ตรงนี้คือ pole)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$25 - 9 - 16 = 0$ — $p^0 = E_{\vec p}$ พอดี เศษส่วนหารด้วยศูนย์</p>
+    </li>
+    <li data-answer="-29" data-alt="−29|-29.0">
+      <p><strong>ขั้น 4</strong> — แทน $p^0 = i\,k_0$ ที่ $k_0 = 2$ <span class="hint">($(p^0)^2 = -k_0^2$)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-4 - 9 - 16 = -29$ — คือ $-(\mathbf k^2 + m^2)$ ของบทที่ 22 กับ $\mathbf k = (2,\, 3)$</p>
+    </li>
+  </ol>
+  <p class="fb">Wick rotation เปลี่ยนตัวส่วนที่มี pole เป็นตัวส่วนบวกล้วนของบทที่ 22</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา
+  <div class="nav">
+    <a href="./0033-loop.html">← บทที่ 22 · คำนวณห่วงแรก</a>
+    <a href="./0031-propagator.html">บทที่ 20 · propagator</a>
+    📎 ชีทสรุป
+  </div>
+</div>
+
+</body>
+</html>
