@@ -207,3 +207,16 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 `/opt/pw-browsers/chromium` ใช้ผ่าน `pip install playwright` (อย่ารัน `playwright install`)
 
 เว็บที่บล็อกด้วย: `goodtheorist.science`, `webspace.science.uu.nl` (ดู `RESOURCES.md`)
+
+## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-10-29)
+
+- บทล่าสุด: **บทที่ 23** `lessons/0034-tong-read.html` (อ่าน Tong QFT บทที่ 2 โยงบทที่ 17-22)
+  · learning record `learning-records/0041-tong-read-built.md` — **"ผลรอบแรก" ยังรอผล**
+- งานถัดไป: แบรายงานผลบทที่ 23 → เติม "ผลรอบแรก" → แก้ข้อที่พลาด (ถ้ามี) → commit
+  · ผ่านครบแล้วค่อยออกบทที่ 24 ตามแผนใน `MISSION.md` / learning records
+- **Artifact (publish ทับ URL เดิมเสมอ ห้ามสร้างใหม่):**
+  ch18 `UaMnbMxd6LC7HrRRSY6Agu` · ch19 `XeTN5v7GDpNjS3WorDYrot` · ch20 `BHJ8MRxpUh6DuKRyeAtDYv` ·
+  ch21 `EVreU25bGhApapQgohHYDA` · ch22 `1cKQ2RhxTt8wDt4xWhFuFS` · ch23 `T8Z1G4JjDyerBoNSo3fcjZ`
+  (URL เต็ม = `https://claude.ai/artifact/<id>` · ต้อง `read` ก่อน publish ทับจาก session ใหม่)
+- ต้นฉบับ Tong บทที่ 2 (`two.pdf`) แบอัปโหลดใน session เก่า — session ใหม่ไม่เห็น ต้องแนบใหม่ถ้าจะอ้างหน้าอีก
+- ปุ่ม 📋 คัดลอกผล อยู่ใต้หัวข้อ "ลองเอง" และโผล่เมื่อตอบครบทุกขั้นทุกข้อเท่านั้น (ไม่ใช่บั๊ก)
