@@ -211,8 +211,8 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 ## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-11-01)
 
 - บทล่าสุด: **บทที่ 23** `lessons/0034-tong-read.html` (อ่าน Tong QFT บทที่ 2 โยงบทที่ 17-22)
-  · learning record `learning-records/0041-tong-read-built.md` — รอบแรก 2/6 แก้แล้ว · **"รอบสอง" ยังรอผล**
-- งานถัดไป: แบรายงานผลรอบสองของบทที่ 23 → เติม "รอบสอง" → แก้ข้อที่พลาด (ถ้ามี) → commit
+  · learning record `learning-records/0041-tong-read-built.md` — รอบสอง 5/6 (ข้อ 6 สลับขั้นแล้ว) · **"รอบสาม" ยังรอผล**
+- งานถัดไป: แบรายงานผลรอบสามของบทที่ 23 (ข้อ 6 ข้อเดียว) → เติม "รอบสาม" → แก้ข้อที่พลาด (ถ้ามี) → commit
   · ผ่านครบแล้วค่อยออกบทที่ 24 ตามแผนใน `MISSION.md` / learning records
 - **Artifact (publish ทับ URL เดิมเสมอ ห้ามสร้างใหม่):**
   ch18 `UaMnbMxd6LC7HrRRSY6Agu` · ch19 `XeTN5v7GDpNjS3WorDYrot` · ch20 `BHJ8MRxpUh6DuKRyeAtDYv` ·
