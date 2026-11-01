@@ -51,8 +51,13 @@ $d^3p$ มี $(2\pi)^3$ · $d^4p$ มี $(2\pi)^4$ · ห่วงของบ
 
 <div class="eq" data-eqno="1">$$ (a^\dagger)^2|0\rangle = \sqrt1\cdot\sqrt2\;|2\rangle_{\text{norm}} $$</div>
 
-<p>ความยาวกำลังสองจึงเป็น $1 \times 2 = 2$ ไม่ใช่ $1$ · กดขึ้น $n$ ครั้งได้ $\sqrt{1\cdot2\cdots n}$
-ความยาวกำลังสองของ $|n\rangle$ แบบ Tong คือ $n!$ · พลังงานไม่เปลี่ยน เพราะคูณด้วยตัวเลขไม่ทำให้ขั้นเปลี่ยน</p>
+<p>วิธีหาความยาวกำลังสองของสถานะที่ไม่ normalize ทำแบบเดียวกับเวกเตอร์ธรรมดา: ถ้าเขียนสถานะได้เป็น
+$c\,|n\rangle_{\text{norm}}$ โดยที่ $|n\rangle_{\text{norm}}$ ยาว 1 แล้วความยาวกำลังสองคือ $c^2$
+(เหมือน $|c\,\hat v|^2 = c^2$ เมื่อ $\hat v$ เป็นเวกเตอร์หนึ่งหน่วย) ดังนั้นงานมีสองขั้น: หา $c$ ก่อน แล้วค่อยยกกำลังสอง</p>
+
+<p>ในสมการ (1) ตัวคูณคือ $c = \sqrt1\cdot\sqrt2$ ความยาวกำลังสองจึงเป็น $c^2 = 1 \times 2 = 2$ ไม่ใช่ $1$
+ถ้ากดขึ้นสามครั้ง ปุ่มครั้งที่สามให้ $\sqrt3$ เพิ่มมาอีกตัว จึงได้ $c^2 = 1\times2\times3 = 6$
+และกดขึ้น $n$ ครั้งได้ $c^2 = n!$ ส่วนพลังงานไม่เปลี่ยน เพราะการคูณด้วยตัวเลขไม่ได้ทำให้สถานะย้ายขั้น</p>
 
 <h2>③ หน้า 23-24 · สนามอิสระ (§2.2)</h2>
 
@@ -67,12 +72,22 @@ $d^3p$ มี $(2\pi)^3$ · $d^4p$ มี $(2\pi)^4$ · ห่วงของบ
 <p><strong>(2.25)</strong> $\;(2\pi)^3\delta^{(3)}(0) = V$ → บทที่ 19: $2\pi\delta(0) = L$ ความยาวกล่อง · 3 มิติคือปริมาตร</p>
 
 <p>(2.22) อ่านง่ายที่สุดถ้าใส่กล่องกลับเข้าไป: มันคือ $H = \sum_k \omega_k\big(a_k^\dagger a_k + \tfrac12\big)$
-สปริงทุกตัวมีพลังงานขั้นล่างสุด $\tfrac12\omega_k$ ของมันเอง ตัวอย่างสปริงสามตัว $\omega = 1, 3, 5$
-สุญญากาศมีพลังงาน $\tfrac12(1 + 3 + 5) = \tfrac92$</p>
+สปริงทุกตัวมีพลังงานขั้นล่างสุด $\tfrac12\omega_k$ ของมันเอง และสุญญากาศคือสภาพที่<strong>ทุกสปริง</strong>
+ไม่มีอนุภาคเลย พลังงานของสุญญากาศจึงต้องบวกของทุกตัว ไม่ใช่ดูแค่ตัวเดียว
+ตัวอย่างสปริงสามตัว $\omega = 1, 3, 5$:</p>
+
+<table>
+<tr><th>สปริง</th><th>สุญญากาศ ($n = 0$ ทุกตัว)</th><th>อนุภาค 1 ตัวในสปริง $\omega = 3$</th></tr>
+<tr><td>$\omega = 1$</td><td>$\tfrac12$</td><td>$\tfrac12$</td></tr>
+<tr><td>$\omega = 3$</td><td>$\tfrac32$</td><td>$(1 + \tfrac12)\times3 = \tfrac92$</td></tr>
+<tr><td>$\omega = 5$</td><td>$\tfrac52$</td><td>$\tfrac52$</td></tr>
+<tr><td><strong>รวม</strong></td><td>$\tfrac92$</td><td>$\tfrac{15}2$</td></tr>
+</table>
 
 <p>สุญญากาศจริงมีสปริงไม่จำกัดจำนวน (ทุก $\vec p$) ผลรวมนี้จึงอนันต์ Tong เรียกว่า (2.24)
 $E_0 = \infty$ ทางออกในเล่มคือวัดพลังงาน<em>เทียบกับสุญญากาศ</em> เพราะสิ่งที่วัดได้จริงคือผลต่าง
-ใส่อนุภาคหนึ่งตัวในสปริง $\omega = 3$ พลังงานขึ้นจาก $\tfrac92$ เป็น $\tfrac{15}2$ ผลต่างคือ $3$ เสมอ
+ในตาราง สปริงที่ไม่ถูกแตะยังมีพลังงานเท่าเดิม มีแค่แถวกลางที่เปลี่ยน
+ผลต่างของสองคอลัมน์จึงเป็น $\tfrac{15}2 - \tfrac92 = 3$ ซึ่งเท่ากับ $\omega$ ของสปริงนั้นเสมอ
 ไม่ว่าพลังงานศูนย์จะใหญ่แค่ไหน</p>
 
 <h2>④ หน้า 29 · อนุภาค (§2.4)</h2>
@@ -89,18 +104,24 @@ $E_0 = \infty$ ทางออกในเล่มคือวัดพลั�
 <p><strong>(2.90)</strong> → บทที่ 20 · น้ำหนัก $\frac{1}{2\omega}$ ตัวเดียวกัน</p>
 <div class="eq">$$ \begin{array}{l} D(x - y) = \langle0|\phi(x)\phi(y)|0\rangle \\ \qquad = \displaystyle\int\frac{d^3p}{(2\pi)^3}\frac{1}{2E_{\vec p}}\,e^{-ip\cdot(x-y)} \end{array} $$</div>
 
-<p><strong>(2.91)</strong> $\;D(x - y) \sim e^{-m|\vec x - \vec y|}$ → บทที่ 20 ข้อ ④ · ระยะ $1/m$</p>
+<p><strong>(2.91)</strong> $\;D(x - y) \sim e^{-m r}$ โดย $r = |\vec x - \vec y|$ → บทที่ 20 ข้อ ④
+propagator ลดเหลือ $e^{-1}$ ตอนที่เลขชี้กำลังเป็น $-1$ คือ $m r = 1$ หรือ $r = 1/m$
+เช่น $m = 2$ ได้ $r = \tfrac12$ (มวลยิ่งมาก ระยะยิ่งสั้น)</p>
 
 <p>ตัวที่ดูแปลกคือ $p\cdot(x-y)$ ไม่มีลูกศร แปลว่าเวกเตอร์ 4 ช่อง (เวลา + อวกาศ) และ Tong ใช้เมตริก
 $(+, -, -, -)$ คือ<strong>บวกช่องเวลา ลบช่องอวกาศ</strong>:</p>
 
 <div class="eq" data-eqno="2">$$ p\cdot x = E\,t - \vec p\cdot\vec x \qquad\qquad x^2 = t^2 - \vec x^{\,2} $$</div>
 
-<p>ตัวอย่าง 1+1 มิติ $p = (5,\, 3)$ กับ $x = (2,\, 1)$: $p\cdot x = 5\times2 - 3\times1 = 7$
+<p>ตัวอย่าง 1+1 มิติ $p = (5,\, 3)$ กับ $x = (2,\, 1)$ (ช่องแรกคือเวลา) คิดเป็นสามขั้น:
+ช่องเวลาคูณกันได้ $5\times2 = 10$ ช่องอวกาศคูณกันได้ $3\times1 = 3$ แล้ว<strong>เอาช่องอวกาศไปลบ</strong>
+ได้ $p\cdot x = 10 - 3 = 7$ (ถ้าบวกจะได้ $13$ ซึ่งเป็นผลคูณจุดแบบ Euclid ไม่ใช่ของ Tong)
 ดังนั้น $e^{-ip\cdot x} = e^{-iEt + i\vec p\cdot\vec x}$ เป็นรูปเดียวกับ $e^{i(kx - \omega t)}$ ของบทที่ 19 พอดี</p>
 
 <p>บทที่ 17-21 ใช้ $\mathrm{diag}(-1, +1)$ ซึ่งกลับกัน ผลคือ $x^2$ เปลี่ยนเครื่องหมาย:
-คำว่า "spacelike" ของ Tong คือ $x^2 < 0$ (เช่น $(1,\, 2)$ ได้ $1 - 4 = -3$) แต่ในเมตริกของบทก่อน ๆ ได้ $+3$
+คำว่า "spacelike" ของ Tong คือ $x^2 < 0$ เช่น $x = (1,\, 2)$ ยกกำลังสองแต่ละช่องได้ $1$ กับ $4$
+เมตริกของ Tong ได้ $1 - 4 = -3$ ส่วนเมตริก $\mathrm{diag}(-1, +1)$ ได้ $-1 + 4 = +3$
+<strong>ยกกำลังสองทุกช่องก่อน แล้วค่อยใส่เครื่องหมายของเมตริก</strong> (ถ้าใส่เครื่องหมายกับ $1$ กับ $2$ ตรง ๆ จะได้ $-1 + 2 = 1$ ซึ่งผิด)
 <strong>เปิด paper ใหม่ให้ดูเมตริกก่อนเสมอ</strong> ส่วนมาก hep-th ใช้ $(-,+,+,+)$ ส่วนตำรา QFT มักใช้ $(+,-,-,-)$</p>
 
 <h2>⑥ หน้า 38 · Feynman propagator</h2>
@@ -115,7 +136,10 @@ $(+, -, -, -)$ คือ<strong>บวกช่องเวลา ลบช่�
 <div class="eq" data-eqno="4">$$ \begin{array}{l} p^2 - m^2 = -k_0^2 - \vec p^{\,2} - m^2 \\ \qquad\;\;\; = -\big(\mathbf k^2 + m^2\big) \end{array} $$</div>
 
 <p>ในวงเล็บคือตัวส่วน $\mathbf k^2 + m^2$ ของบทที่ 22 พอดี (ไม่มีวันเป็นศูนย์ เพราะบวกล้วน)
-ตัวอย่าง 1+1 มิติ $\vec p = 3$, $m = 4$, $k_0 = 2$: $-(4 + 9 + 16) = -29$</p>
+ตัวอย่าง 1+1 มิติ $\vec p = 3$, $m = 4$ ให้คิดสองก้อนแยกกัน: ก้อนที่ไม่ขึ้นกับ $p^0$ คือ
+$\vec p^{\,2} + m^2 = 9 + 16 = 25$ ก้อนเวลาคือ $(p^0)^2$ แล้วเอามาลบกัน $p^2 - m^2 = (p^0)^2 - 25$
+ที่ $p^0 = 5 = E_{\vec p}$ ได้ $25 - 25 = 0$ (pole) · ที่ $p^0 = 4$ ได้ $16 - 25 = -9$ ·
+หลัง Wick rotation ที่ $k_0 = 2$ ก้อนเวลากลายเป็น $(2i)^2 = -4$ แล้วต้องลบ $25$ ต่ออีก ได้ $-4 - 25 = -29$</p>
 
 <div class="warn">
   <strong>ข้ามไปโดยตั้งใจ</strong> — §2.3.1-2.3.2 (ค่าคงตัวจักรวาล · แรง Casimir) · §2.5 สนามเชิงซ้อน ·
@@ -158,19 +182,30 @@ $(+, -, -, -)$ คือ<strong>บวกช่องเวลา ลบช่�
 
 <div class="quiz" data-steps>
   <h3>ข้อ 2 · Tong (2.17) ไม่ normalize &nbsp;<span class="hint">(ข้อ ②)</span></h3>
+  <p class="hint">บทที่ 18: $a^\dagger|n\rangle_{\text{norm}} = \sqrt{n+1}\,|n+1\rangle_{\text{norm}}$ · ความยาวกำลังสองของ $c\,|n\rangle_{\text{norm}}$ คือ $c^2$</p>
   <ol class="steps">
-    <li data-answer="2" data-alt="สอง|2.0">
-      <p><strong>ขั้น 1</strong> — $|2\rangle$ แบบ Tong คือ $(a^\dagger)^2|0\rangle$ ความยาวกำลังสอง $\langle2|2\rangle$ เท่ากับเท่าไร</p>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 1</strong> — $a^\dagger|0\rangle = \sqrt{\,?\,}\;|1\rangle_{\text{norm}}$ ในรากคือเลขอะไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\sqrt1\cdot\sqrt2$ ยกกำลังสอง $= 2$</p>
+      <p class="fb">$n = 0$ ⇒ $\sqrt{0+1} = \sqrt1$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 2</strong> — $a^\dagger|1\rangle_{\text{norm}} = \sqrt{\,?\,}\;|2\rangle_{\text{norm}}$ ในรากคือเลขอะไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$n = 1$ ⇒ $\sqrt{1+1} = \sqrt2$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 3</strong> — $|2\rangle$ แบบ Tong $= (a^\dagger)^2|0\rangle = c\,|2\rangle_{\text{norm}}$ โดย $c = \sqrt1\cdot\sqrt2$ · $\langle2|2\rangle = c^2$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$c^2 = 1\times2 = 2$</p>
     </li>
     <li data-answer="6" data-alt="หก|6.0">
-      <p><strong>ขั้น 2</strong> — $\langle3|3\rangle$ ของ $|3\rangle = (a^\dagger)^3|0\rangle$</p>
+      <p><strong>ขั้น 4</strong> — $|3\rangle$ แบบ Tong $= (a^\dagger)^3|0\rangle$ · ตัวคูณ $c = \sqrt1\cdot\sqrt2\cdot\sqrt3$ · $\langle3|3\rangle = c^2$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$1 \times 2 \times 3 = 6 = 3!$</p>
     </li>
     <li data-answer="7" data-alt="เจ็ด|7.0">
-      <p><strong>ขั้น 3</strong> — สปริงความถี่ $\omega = 2$: พลังงานของ $|3\rangle$ <span class="hint">($H|n\rangle = (n+\tfrac12)\omega|n\rangle$)</span></p>
+      <p><strong>ขั้น 5</strong> — สปริงความถี่ $\omega = 2$: พลังงานของ $|3\rangle$ <span class="hint">($H|n\rangle = (n+\tfrac12)\omega|n\rangle$)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$(3 + \tfrac12) \times 2 = 7$ — ความยาวไม่มีผลกับพลังงาน</p>
     </li>
@@ -202,20 +237,40 @@ $(+, -, -, -)$ คือ<strong>บวกช่องเวลา ลบช่�
 
 <div class="quiz" data-steps>
   <h3>ข้อ 4 · พลังงานศูนย์ (2.22) &nbsp;<span class="hint">(ข้อ ③)</span></h3>
-  <p class="hint">สนามในกล่องมีสปริงแค่สามตัว ความถี่ $\omega = 2,\ 4,\ 6$</p>
+  <p class="hint">สนามในกล่องมีสปริงแค่สามตัว ความถี่ $\omega = 2,\ 4,\ 6$ · สปริงที่มีอนุภาค $n$ ตัวมีพลังงาน $(n + \tfrac12)\omega$</p>
   <ol class="steps">
-    <li data-answer="6" data-alt="หก|6.0">
-      <p><strong>ขั้น 1</strong> — พลังงานของสุญญากาศ</p>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 1</strong> — สปริง $\omega = 2$ ตอนไม่มีอนุภาค ($n = 0$)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\tfrac12(2 + 4 + 6) = 6$</p>
+      <p class="fb">$\tfrac12\times2 = 1$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 2</strong> — สปริง $\omega = 4$ ตอนไม่มีอนุภาค</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12\times4 = 2$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 3</strong> — สปริง $\omega = 6$ ตอนไม่มีอนุภาค</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12\times6 = 3$</p>
+    </li>
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 4</strong> — พลังงานของสุญญากาศ = บวกสามขั้นบน</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + 2 + 3 = 6$ — ทุกสปริงมีส่วน ไม่ใช่แค่ตัวที่ต่ำสุด</p>
+    </li>
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 5</strong> — ใส่อนุภาคหนึ่งตัวในสปริง $\omega = 4$ ($n = 1$): สปริงตัวนั้นตัวเดียวมีพลังงานเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(1 + \tfrac12)\times4 = 6$</p>
     </li>
     <li data-answer="10" data-alt="สิบ|10.0">
-      <p><strong>ขั้น 2</strong> — ใส่อนุภาคหนึ่งตัวในสปริง $\omega = 4$ พลังงานรวมเป็นเท่าไร</p>
+      <p><strong>ขั้น 6</strong> — พลังงานรวมทั้งกล่อง (สองสปริงที่ไม่ถูกแตะยังเป็น $1$ กับ $3$)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$6 + 4 = 10$</p>
+      <p class="fb">$1 + 6 + 3 = 10$</p>
     </li>
     <li data-answer="4" data-alt="สี่|4.0">
-      <p><strong>ขั้น 3</strong> — พลังงานเหนือสุญญากาศ (ตัวที่ (2.43) เรียกว่าพลังงานของอนุภาค)</p>
+      <p><strong>ขั้น 7</strong> — พลังงานเหนือสุญญากาศ = ขั้น 6 ลบขั้น 4 (ตัวที่ (2.43) เรียกว่าพลังงานของอนุภาค)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$10 - 6 = 4$ — เท่ากับ $\omega$ ของสปริงนั้นพอดี ไม่ขึ้นกับพลังงานศูนย์</p>
     </li>
@@ -225,26 +280,37 @@ $(+, -, -, -)$ คือ<strong>บวกช่องเวลา ลบช่�
 
 <div class="quiz" data-steps>
   <h3>ข้อ 5 · เมตริกของ Tong &nbsp;<span class="hint">(สมการ (2) และ (2.91))</span></h3>
+  <p class="hint">1+1 มิติ ช่องแรกคือเวลา · Tong: $p\cdot x = Et - \vec p\cdot\vec x$</p>
   <ol class="steps">
-    <li data-answer="7" data-alt="เจ็ด|7.0">
-      <p><strong>ขั้น 1</strong> — 1+1 มิติ $p = (5,\, 3)$ และ $x = (2,\, 1)$ (ช่องแรกคือเวลา): $p\cdot x$</p>
+    <li data-answer="10" data-alt="สิบ|10.0">
+      <p><strong>ขั้น 1</strong> — $p = (5,\, 3)$ และ $x = (2,\, 1)$: ช่องเวลาคูณกัน</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$5\times2 - 3\times1 = 7$</p>
+      <p class="fb">$5\times2 = 10$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 2</strong> — ช่องอวกาศคูณกัน</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3\times1 = 3$</p>
+    </li>
+    <li data-answer="7" data-alt="เจ็ด|7.0">
+      <p><strong>ขั้น 3</strong> — $p\cdot x$ ของ Tong = ขั้น 1 ลบขั้น 2</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$10 - 3 = 7$ — ไม่ใช่ $13$</p>
     </li>
     <li data-answer="-3" data-alt="−3|-3.0">
-      <p><strong>ขั้น 2</strong> — $x = (1,\, 2)$: $x^2$ ในเมตริกของ Tong</p>
+      <p><strong>ขั้น 4</strong> — $x = (1,\, 2)$: $x^2 = t^2 - \vec x^{\,2}$ ในเมตริกของ Tong</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$1 - 4 = -3$ ติดลบ ⇒ spacelike ในภาษาของ Tong</p>
     </li>
     <li data-answer="3" data-alt="สาม|3.0">
-      <p><strong>ขั้น 3</strong> — $x = (1,\, 2)$ ในเมตริก $\mathrm{diag}(-1, +1)$ ของบทที่ 17-21</p>
+      <p><strong>ขั้น 5</strong> — $x = (1,\, 2)$ ในเมตริก $\mathrm{diag}(-1, +1)$ ของบทที่ 17-21: $x^2 = -t^2 + \vec x^{\,2}$ <span class="hint">(ยกกำลังสองก่อน แล้วค่อยใส่เครื่องหมาย)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$-1 + 4 = 3$ — จุดเดียวกัน เครื่องหมายตรงข้าม</p>
     </li>
     <li data-answer="1/4" data-alt="0.25">
-      <p><strong>ขั้น 4</strong> — (2.91) กับ $m = 4$: ระยะ $1/m$ ที่ propagator ลดลงเป็น $e^{-1}$ เท่ากับเท่าไร</p>
+      <p><strong>ขั้น 6</strong> — (2.91) $D \sim e^{-m r}$ กับ $m = 4$: $r$ เท่าไรจึงได้ $m r = 1$ (propagator ลดเหลือ $e^{-1}$)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\frac{1}{m} = \frac14$ — ระยะของบทที่ 20</p>
+      <p class="fb">$r = \frac{1}{m} = \frac14$ — ระยะของบทที่ 20</p>
     </li>
   </ol>
   <p class="fb">เห็น $p\cdot x$ ไม่มีลูกศร ให้ถามก่อนว่าเมตริกบวกช่องไหน</p>
@@ -252,27 +318,42 @@ $(+, -, -, -)$ คือ<strong>บวกช่องเวลา ลบช่�
 
 <div class="quiz" data-steps>
   <h3>ข้อ 6 · ตัวส่วนของ (2.95) &nbsp;<span class="hint">(ข้อ ⑥)</span></h3>
-  <p class="hint">1+1 มิติ $\vec p = 3$ มวล $m = 4$ · $p^2 - m^2 = (p^0)^2 - \vec p^{\,2} - m^2$</p>
+  <p class="hint">1+1 มิติ $\vec p = 3$ มวล $m = 4$ · $p^2 - m^2 = (p^0)^2 - \big(\vec p^{\,2} + m^2\big)$</p>
   <ol class="steps">
     <li data-answer="5" data-alt="ห้า|5.0">
-      <p><strong>ขั้น 1</strong> — $E_{\vec p}$</p>
+      <p><strong>ขั้น 1</strong> — $E_{\vec p} = \sqrt{\vec p^{\,2} + m^2}$ (ตัวเดียวกับ $\omega_{\vec p}$)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$\sqrt{9 + 16} = 5$</p>
     </li>
-    <li data-answer="-9" data-alt="−9|-9.0">
-      <p><strong>ขั้น 2</strong> — $p^0 = 4$: $p^2 - m^2$</p>
+    <li data-answer="25" data-alt="ยี่สิบห้า|25.0">
+      <p><strong>ขั้น 2</strong> — ก้อนที่ไม่ขึ้นกับ $p^0$: $\vec p^{\,2} + m^2$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$16 - 9 - 16 = -9$</p>
+      <p class="fb">$9 + 16 = 25$</p>
+    </li>
+    <li data-answer="16" data-alt="สิบหก|16.0">
+      <p><strong>ขั้น 3</strong> — $p^0 = 4$: $(p^0)^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4^2 = 16$</p>
+    </li>
+    <li data-answer="-9" data-alt="−9|-9.0">
+      <p><strong>ขั้น 4</strong> — $p^0 = 4$: $p^2 - m^2$ = ขั้น 3 ลบขั้น 2</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$16 - 25 = -9$</p>
     </li>
     <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 3</strong> — $p^0 = 5$: $p^2 - m^2$ <span class="hint">(ตรงนี้คือ pole)</span></p>
+      <p><strong>ขั้น 5</strong> — $p^0 = 5$: $p^2 - m^2$ <span class="hint">(ตรงนี้คือ pole)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$25 - 9 - 16 = 0$ — $p^0 = E_{\vec p}$ พอดี เศษส่วนหารด้วยศูนย์</p>
+      <p class="fb">$25 - 25 = 0$ — $p^0 = E_{\vec p}$ พอดี เศษส่วนหารด้วยศูนย์</p>
+    </li>
+    <li data-answer="-4" data-alt="−4|-4.0">
+      <p><strong>ขั้น 6</strong> — แทน $p^0 = i\,k_0$ ที่ $k_0 = 2$: $(p^0)^2 = (2i)^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4i^2 = -4$</p>
     </li>
     <li data-answer="-29" data-alt="−29|-29.0">
-      <p><strong>ขั้น 4</strong> — แทน $p^0 = i\,k_0$ ที่ $k_0 = 2$ <span class="hint">($(p^0)^2 = -k_0^2$)</span></p>
+      <p><strong>ขั้น 7</strong> — $p^2 - m^2$ หลัง Wick rotation = ขั้น 6 ลบขั้น 2</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$-4 - 9 - 16 = -29$ — คือ $-(\mathbf k^2 + m^2)$ ของบทที่ 22 กับ $\mathbf k = (2,\, 3)$</p>
+      <p class="fb">$-4 - 25 = -29$ — คือ $-(\mathbf k^2 + m^2)$ ของบทที่ 22 กับ $\mathbf k = (2,\, 3)$</p>
     </li>
   </ol>
   <p class="fb">Wick rotation เปลี่ยนตัวส่วนที่มี pole เป็นตัวส่วนบวกล้วนของบทที่ 22</p>

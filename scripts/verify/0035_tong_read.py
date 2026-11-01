@@ -78,6 +78,26 @@ chk("แทน p0 = i k0: p² - m² = -(k0² + 9 + 16)", expr, -(k0**2 + 9 + 16)
 chk("k0 = 2: p² - m² = -29", expr.subs(k0, 2), -29)
 chk("= -(k² + m²) ของบทที่ 22 กับ k = (2, 3)", expr.subs(k0, 2), -(2**2 + 3**2 + m**2))
 
+# ── ฉบับแก้ (ผล 2/6): ขั้นกลางทุกขั้นที่แตกออกมา ─────────────────────
+chk("a†|0> = sqrt(1)|1>", (ad*vac)[1], 1)
+chk("a†|1>norm = sqrt(2)|2>norm", (ad*sp.Matrix([0, 1] + [0]*(D - 2)))[2], sp.sqrt(2))
+chk("(a†)³|0> = sqrt(1·2·3)|3> ⇒ c² = 6", ((ad**3*vac)[3])**2, 6)
+for wi, e in [(2, 1), (4, 2), (6, 3)]:
+    chk(f"สปริง ω = {wi} ที่ n = 0: ½ω = {e}", sp.Rational(1, 2)*wi, e)
+chk("สปริง ω = 4 ที่ n = 1: (1+½)·4 = 6", sp.Rational(3, 2)*4, 6)
+chk("รวมทั้งกล่อง 1 + 6 + 3 = 10", 1 + sp.Rational(3, 2)*4 + 3, 10)
+ws2 = [1, 3, 5]
+chk("ตาราง ω = 1,3,5: สุญญากาศ 9/2", sum(sp.Rational(x, 2) for x in ws2), sp.Rational(9, 2))
+chk("ตาราง: อนุภาคใน ω = 3 ⇒ 1/2 + 9/2 + 5/2 = 15/2", sp.Rational(1, 2) + sp.Rational(3, 2)*3 + sp.Rational(5, 2), sp.Rational(15, 2))
+chk("p·x: ช่องเวลา 5·2 = 10", 5*2, 10)
+chk("p·x: ช่องอวกาศ 3·1 = 3", 3*1, 3)
+chk("ตัวควบคุม: บวกแบบ Euclid ได้ 13 ≠ 7", 5*2 + 3*1, 13)
+chk("ตัวควบคุม: ใส่เครื่องหมายก่อนยกกำลัง -1 + 2 = 1 ≠ 3", -1 + 2, 1)
+chk("m = 2 ⇒ r = 1/2", sp.Rational(1, 2), sp.Rational(1, 2))
+chk("p⃗² + m² = 25", pp**2 + m**2, 25)
+chk("(2i)² = -4", (2*sp.I)**2, -4)
+chk("-4 - 25 = -29", (2*sp.I)**2 - (pp**2 + m**2), -29)
+
 bad_ = [r_ for r_ in ok if not r_[1]]
 for name, good, got, want in ok:
     print(("  ✓ " if good else "  ✗ ") + name + ("" if good else f"\n      ได้ {got}\n      ควรเป็น {want}"))
