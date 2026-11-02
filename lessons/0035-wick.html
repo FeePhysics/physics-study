@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 24 · จับคู่แทนการกาง</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 24 · จับคู่แทนการกาง</h1>
+<p class="meta">บทเรียน · ~25 นาที · Wick's theorem — เครื่องมือที่ทำให้ Feynman diagram เป็นการนับ
+ไม่ใช่การคูณเมทริกซ์</p>
+
+<div class="key">
+  <p style="margin-top:0"><strong>บทที่ 23 ผ่านครบ</strong> ตอนนี้เราอ่าน Tong บทที่ 2 ได้ทั้งบท
+  และเริ่มช่วง C ใน road map คือ Tong บทที่ 3 (Interacting Fields)</p>
+  <p style="margin-bottom:0">บทที่ 21 ให้กติกาไว้ว่า "เส้นในรูปหนึ่งเส้นคือ propagator หนึ่งตัว" โดยไม่ได้บอกว่ามาจากไหน
+  บทนี้พิสูจน์ส่วนนั้น และเนื้อหาเกือบทั้งหมดเป็นการนับวิธีจับคู่ ซึ่งแบถนัดอยู่แล้ว</p>
+</div>
+
+<h2>① ค่าในสุญญากาศ: กดแล้วดูว่าเหลือ $|0\rangle$ กี่เท่า</h2>
+
+<p>สัญลักษณ์ $\langle 0|X|0\rangle$ ที่เห็นในบทที่ 20 อ่านว่า "ค่าของ $X$ ในสุญญากาศ" และมีวิธีคิดที่ทำตามได้เลย:
+เอาปุ่มชุด $X$ ไปกดบน $|0\rangle$ (ตัวขวาสุดกดก่อน เหมือนบทที่ 18) แล้วดูว่าผลลัพธ์มี $|0\rangle$ อยู่กี่เท่า
+ส่วนที่เป็นขั้นอื่น เช่น $|2\rangle$ ไม่นับ เพราะตั้งฉากกับ $|0\rangle$</p>
+
+<p>ตัวอย่างแรกใช้สปริงตัวเดียว และ $X = (a + a^\dagger)^2$ ซึ่งกางได้สี่สตริง ($a$ กับ $a^\dagger$ สลับที่ไม่ได้):</p>
+
+<table>
+<thead><tr><th>สตริง</th><th>กดบน $|0\rangle$ ทีละปุ่มจากขวา</th><th>เหลือ $|0\rangle$</th></tr></thead>
+<tbody>
+<tr><td>$a\,a^\dagger$</td><td>ขึ้นเป็น $|1\rangle$ แล้วลงกลับ $|0\rangle$ ตัวคูณ $\sqrt1\cdot\sqrt1$</td><td>$1$</td></tr>
+<tr><td>$a^\dagger a$</td><td>กดลงจาก $|0\rangle$ ได้ $0$ ทันที</td><td>$0$</td></tr>
+<tr><td>$a\,a$</td><td>กดลงจาก $|0\rangle$ ได้ $0$ ทันที</td><td>$0$</td></tr>
+<tr><td>$a^\dagger a^\dagger$</td><td>ไปจบที่ $|2\rangle$ ไม่ใช่ $|0\rangle$</td><td>$0$</td></tr>
+</tbody>
+</table>
+
+<p>ดังนั้น $\langle 0|(a + a^\dagger)^2|0\rangle = 1$ สตริงที่รอดต้องขึ้นก่อนลง และต้องกลับมาจบที่ขั้น $0$ พอดี</p>
+
+<h2>② ยกกำลังสี่: 16 สตริง รอดแค่สอง</h2>
+
+<p>$(a + a^\dagger)^4$ กางได้ $2^4 = 16$ สตริง (ตารางในบทที่ 21) แต่ใช้เงื่อนไขเดิม คือขึ้นก่อนลงและจบที่ $0$
+จะเหลือแค่สองสตริง:</p>
+
+<table>
+<thead><tr><th>สตริง</th><th>ขั้นที่ผ่าน</th><th>ค่า</th></tr></thead>
+<tbody>
+<tr><td>$a\,a\,a^\dagger a^\dagger$</td><td>$0, 1, 2, 1, 0$</td><td>$2$</td></tr>
+<tr><td>$a\,a^\dagger a\,a^\dagger$</td><td>$0, 1, 0, 1, 0$</td><td>$1$</td></tr>
+</tbody>
+</table>
+
+<p>ขั้นที่ผ่านอ่านจากขวาไปซ้ายตามลำดับการกด ค่าของสตริงคือผลคูณของรากทุกปุ่ม
+สตริงแรกได้ $\sqrt1\cdot\sqrt2\cdot\sqrt2\cdot\sqrt1 = 2$ ส่วนสตริงที่สองไม่เคยขึ้นเกินขั้น $1$ จึงได้ $\sqrt1$ สี่ตัว เท่ากับ $1$
+รวมกันได้ $\langle 0|(a + a^\dagger)^4|0\rangle = 2 + 1 = 3$</p>
+
+<p>เลข $3$ นี้คือจำนวนวิธีแบ่งของสี่ชิ้น (ตัวประกอบ $(a + a^\dagger)$ ตัวที่ 1, 2, 3, 4) ออกเป็นสองคู่พอดี:
+$\{12, 34\}$ · $\{13, 24\}$ · $\{14, 23\}$
+ทุกคู่ให้ค่า $\langle 0|(a + a^\dagger)^2|0\rangle = 1$ ตามข้อ ① ผลคูณของสองคู่จึงเป็น $1$ และมีสามแบบ ได้ $3$
+ข้อนี้ไม่ได้บอกว่าสตริงหนึ่งตรงกับการจับคู่หนึ่งแบบ (สองสตริงให้ $2$ กับ $1$) สิ่งที่ตรงกันคือ<em>ผลรวม</em></p>
+
+<h2>③ กฎทั่วไป: นับวิธีจับคู่</h2>
+
+<p>"จับคู่" ในบทนี้แปลว่าแบ่งของ $n$ ชิ้นออกเป็นคู่ ๆ จนหมด ไม่สนว่าในคู่ใครมาก่อน และไม่สนว่าคู่ไหนเขียนก่อน
+นับได้แบบนี้: ชิ้นที่ 1 เลือกคู่ได้ $n - 1$ ทาง ที่เหลือ $n - 2$ ชิ้นทำซ้ำ ชิ้นแรกที่เหลือเลือกได้ $n - 3$ ทาง ไปเรื่อย ๆ
+ได้ผลคูณ $(n-1)(n-3)\cdots 3\cdot 1$ ซึ่งเขียนย่อว่า $(n-1)!!$ (อ่านว่า double factorial คูณเว้นตัว เช่น $5!! = 5\cdot3\cdot1 = 15$)
+ถ้า $n$ เป็นคี่ จะมีหนึ่งชิ้นไม่มีคู่ จับคู่ไม่ได้เลย</p>
+
+<div class="eq" data-eqno="1">$$ \langle 0|(a + a^\dagger)^n|0\rangle \;=\; (n-1)!! $$</div>
+
+<p>สมการ (1) ใช้เมื่อ $n$ เป็นคู่ ถ้า $n$ เป็นคี่ ค่าเป็น $0$</p>
+
+<p>ตำแหน่งของสปริง $x$ ในบทที่ 18 คือ $x = (a + a^\dagger)/\sqrt{2\omega}$ ทุกคู่จึงให้ $\langle 0|x^2|0\rangle = \frac{1}{2\omega}$ แทนเลข $1$:</p>
+
+<div class="eq" data-eqno="2">$$ \langle 0|x^n|0\rangle \;=\; (n-1)!!\,\Big(\frac{1}{2\omega}\Big)^{n/2} $$</div>
+
+<p>ตัวอย่าง $\omega = 1$: $\langle 0|x^2|0\rangle = \tfrac12$ และ $\langle 0|x^4|0\rangle = 3 \times \big(\tfrac12\big)^2 = \tfrac34$</p>
+
+<p>ถ้าคุ้นกับสถิติ สมการ (2) คือโมเมนต์ของการแจกแจงปกติ $E[Z^4] = 3\sigma^4$ พอดี ไม่ใช่เรื่องบังเอิญ
+เพราะความน่าจะเป็นของตำแหน่งในสถานะ $|0\rangle$ คือ Gaussian ที่มีความแปรปรวน $\sigma^2 = \frac{1}{2\omega}$
+(ย่อหน้านี้เป็นภาพช่วยจำ ไม่มีข้อฝึก)</p>
+
+<h2>④ สนาม: แต่ละคู่คือ propagator หนึ่งตัว</h2>
+
+<p>ตอนนี้แทนสปริงตัวเดียวด้วยสนามที่ 4 จุด ใช้ตัวย่อ $\phi_1 = \phi(x_1)$ ไปจนถึง $\phi_4$
+และให้ $D_{ij}$ แทน propagator ของบทที่ 20 ระหว่างสองจุด:</p>
+
+<div class="eq">$$ D_{ij} \;=\; \langle 0|\,\phi_i\,\phi_j\,|0\rangle $$</div>
+
+<p>สนามแต่ละจุดเป็นผลรวมของปุ่ม $a_k$ กับ $a_k^\dagger$ ทุกรูปร่าง (บทที่ 19) การกางจึงยุ่งกว่าข้อ ② มาก
+แต่ผลลัพธ์ยังเป็นการจับคู่เหมือนเดิม ต่างแค่แต่ละคู่ให้ค่า $D_{ij}$ แทนเลข $1$:</p>
+
+<div class="eq" data-eqno="3">$$ \langle 0|\,\phi_1\phi_2\phi_3\phi_4\,|0\rangle \;=\; D_{12}D_{34} \;+\; D_{13}D_{24} \;+\; D_{14}D_{23} $$</div>
+
+<p>ในแต่ละคู่ ตัวที่อยู่ซ้ายใน $\phi_1\phi_2\phi_3\phi_4$ ต้องอยู่ซ้ายใน $D$ ด้วย เพราะ $D_{21}$ ไม่เท่ากับ $D_{12}$
+(มันเป็นสังยุคกัน ตามจุดที่บทที่ 20 เน้นเรื่อง dot product เชิงซ้อน)</p>
+
+<figure>
+<svg viewBox="0 0 330 70" width="330" role="img" aria-label="สามวิธีจับคู่สี่จุด แต่ละวิธีวาดเป็นเส้นโค้งเชื่อมสองจุด">
+  <g fill="none" stroke="currentColor" stroke-width="1.6">
+    <path d="M15 45 Q27.5 25 40 45"/><path d="M65 45 Q77.5 25 90 45"/>
+    <path d="M125 45 Q150 15 175 45"/><path d="M150 45 Q175 15 200 45"/>
+    <path d="M235 45 Q272.5 5 310 45"/><path d="M260 45 Q272.5 30 285 45"/>
+  </g>
+  <g fill="currentColor">
+    <circle cx="15" cy="45" r="3.5"/><circle cx="40" cy="45" r="3.5"/><circle cx="65" cy="45" r="3.5"/><circle cx="90" cy="45" r="3.5"/>
+    <circle cx="125" cy="45" r="3.5"/><circle cx="150" cy="45" r="3.5"/><circle cx="175" cy="45" r="3.5"/><circle cx="200" cy="45" r="3.5"/>
+    <circle cx="235" cy="45" r="3.5"/><circle cx="260" cy="45" r="3.5"/><circle cx="285" cy="45" r="3.5"/><circle cx="310" cy="45" r="3.5"/>
+  </g>
+  <g fill="currentColor" font-size="11" text-anchor="middle" font-family="IBM Plex Mono, monospace">
+    <text x="15" y="63">1</text><text x="40" y="63">2</text><text x="65" y="63">3</text><text x="90" y="63">4</text>
+    <text x="125" y="63">1</text><text x="150" y="63">2</text><text x="175" y="63">3</text><text x="200" y="63">4</text>
+    <text x="235" y="63">1</text><text x="260" y="63">2</text><text x="285" y="63">3</text><text x="310" y="63">4</text>
+  </g>
+</svg>
+<figcaption>สามพจน์ของสมการ (3) จากซ้าย: $D_{12}D_{34}$ · $D_{13}D_{24}$ · $D_{14}D_{23}$ — เส้นหนึ่งเส้นคือ $D$ หนึ่งตัว</figcaption>
+</figure>
+
+<p>รูปข้างบนคือที่มาของกติกาในบทที่ 21 ทุกการจับคู่วาดเป็นเส้นเชื่อมสองจุดได้ และเส้นหนึ่งเส้นคือ propagator หนึ่งตัว
+Feynman diagram จึงเป็นรายการของการจับคู่ที่วาดเป็นรูป ส่วนกฎทั่วไปก็เหมือนสมการ (1):
+$n$ จุดให้ $(n-1)!!$ พจน์ แต่ละพจน์คูณ $D$ ทั้งหมด $n/2$ ตัว และถ้า $n$ เป็นคี่จะได้ศูนย์
+paper เรียกการจับคู่หนึ่งคู่ว่า contraction และเรียกกฎนี้ว่า Wick's theorem</p>
+
+<div class="warn">
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — ตำราใช้ $\langle 0|T\,\phi_1\phi_2\phi_3\phi_4|0\rangle$ ที่มี time ordering $T$
+  ซึ่งทำให้แต่ละคู่เป็น Feynman propagator $\Delta_F$ (สมการ (2.95) ในบทที่ 23) แทน $D$ แต่การนับคู่เหมือนเดิมทุกอย่าง ·
+  normal ordering · การใส่จุดยอด $\lambda\phi^4$ ลงไปแล้วจับคู่ ซึ่งจะได้รูปของบทที่ 21 ออกมาเอง (บทถัดไป)
+</div>
+
+<p class="src">ตรวจด้วย <code>sympy</code>: สมการ (1) จากเมทริกซ์ปุ่มขนาด $12\times12$ ที่ $n = 0$ ถึง $8$ ตรงกับการไล่จับคู่ทุกแบบ ·
+กาง 16 สตริงแล้วรอดสองสตริงค่า $2$ กับ $1$ · สมการ (2) และโมเมนต์ของ Gaussian $\frac{1}{2\omega}$ ·
+สมการ (3) จากสนามสองรูปร่างที่คูณเมทริกซ์จริงบน Fock space พร้อมตัวควบคุมว่ากลับลำดับในคู่แล้วผิด ·
+Peskin &amp; Schroeder §4.3 · Tong, <em>Quantum Field Theory</em> บทที่ 3 —
+<code>scripts/verify/0036_wick.py</code></p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ตอบเป็นตัวเลข · เศษส่วนพิมพ์แบบ <code>3/16</code> ได้</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · ค่าในสุญญากาศทีละสตริง &nbsp;<span class="hint">(ข้อ ①)</span></h3>
+  <p class="hint">สปริงตัวเดียว · $a^\dagger|n\rangle = \sqrt{n+1}\,|n+1\rangle$ · $a|n\rangle = \sqrt{n}\,|n-1\rangle$ · $a|0\rangle = 0$</p>
+  <ol class="steps">
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 1</strong> — สตริง $a\,a^\dagger$ กดบน $|0\rangle$ แล้วเหลือ $|0\rangle$ กี่เท่า</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ขึ้นเป็น $|1\rangle$ ตัวคูณ $\sqrt1$ แล้วลงกลับ $|0\rangle$ ตัวคูณ $\sqrt1$ ได้ $1$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — สตริง $a^\dagger a$ กดบน $|0\rangle$ แล้วเหลือ $|0\rangle$ กี่เท่า</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$a$ อยู่ติด $|0\rangle$ จึงกดก่อน ได้ $0$ ทันที</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 3</strong> — $\langle 0|(a + a^\dagger)^2|0\rangle$ = ผลรวมของทั้งสี่สตริง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + 0 + 0 + 0 = 1$ ($a\,a$ ได้ $0$ · $a^\dagger a^\dagger$ จบที่ $|2\rangle$)</p>
+    </li>
+  </ol>
+  <p class="fb">สตริงที่รอดต้องขึ้นก่อนลงและกลับมาจบที่ขั้น $0$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · สองสตริงที่รอดใน $(a + a^\dagger)^4$ &nbsp;<span class="hint">(ข้อ ②)</span></h3>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — $a\,a\,a^\dagger a^\dagger$ กดบน $|0\rangle$ แล้วเหลือ $|0\rangle$ กี่เท่า
+      <span class="hint">(ทางเดิน $0 \to 1 \to 2 \to 1 \to 0$ · คูณรากของทุกปุ่ม)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt1\cdot\sqrt2\cdot\sqrt2\cdot\sqrt1 = 2$</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 2</strong> — $a\,a^\dagger a\,a^\dagger$ <span class="hint">(ทางเดิน $0 \to 1 \to 0 \to 1 \to 0$)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt1\cdot\sqrt1\cdot\sqrt1\cdot\sqrt1 = 1$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 3</strong> — $\langle 0|(a + a^\dagger)^4|0\rangle$ (อีก 14 สตริงได้ $0$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 + 1 = 3$ เท่ากับจำนวนวิธีจับคู่ของสี่ชิ้น</p>
+    </li>
+  </ol>
+  <p class="fb">นับสตริงที่รอดได้ $2$ แต่ค่าที่ต้องการคือผลรวมของตัวคูณ ซึ่งได้ $3$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · นับวิธีจับคู่ &nbsp;<span class="hint">(สมการ (1))</span></h3>
+  <ol class="steps">
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 1</strong> — ของ 6 ชิ้น: ชิ้นที่ 1 เลือกคู่ได้กี่ทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">เลือกได้ทุกชิ้นยกเว้นตัวเอง $6 - 1 = 5$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 2</strong> — เหลือ 4 ชิ้น จับคู่ที่เหลือได้กี่วิธี</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3$ วิธี เหมือนข้อ ②</p>
+    </li>
+    <li data-answer="15" data-alt="สิบห้า|15.0">
+      <p><strong>ขั้น 3</strong> — $\langle 0|(a + a^\dagger)^6|0\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5 \times 3 = 15 = 5!!$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 4</strong> — $\langle 0|(a + a^\dagger)^5|0\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ห้าชิ้นเป็นคี่ จะเหลือหนึ่งชิ้นไม่มีคู่ ได้ $0$</p>
+    </li>
+  </ol>
+  <p class="fb">ยกกำลังคู่ได้ $(n-1)!!$ · ยกกำลังคี่ได้ $0$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · ตำแหน่งของสปริง &nbsp;<span class="hint">(สมการ (2))</span></h3>
+  <p class="hint">$x = (a + a^\dagger)/\sqrt{2\omega}$ · ความถี่ $\omega = 2$</p>
+  <ol class="steps">
+    <li data-answer="1/4" data-alt="0.25">
+      <p><strong>ขั้น 1</strong> — $\langle 0|x^2|0\rangle = \frac{1}{2\omega}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{1}{2\times2} = \frac14$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 2</strong> — $x^4$ มีกี่วิธีจับคู่</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3!! = 3$</p>
+    </li>
+    <li data-answer="1/16" data-alt="0.0625">
+      <p><strong>ขั้น 3</strong> — การจับคู่หนึ่งแบบมีสองคู่ แต่ละคู่ให้ $\langle 0|x^2|0\rangle$ ค่าของหนึ่งแบบคือเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\big(\tfrac14\big)^2 = \tfrac{1}{16}$</p>
+    </li>
+    <li data-answer="3/16" data-alt="0.1875">
+      <p><strong>ขั้น 4</strong> — $\langle 0|x^4|0\rangle$ = ขั้น 2 × ขั้น 3</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 \times \tfrac{1}{16} = \tfrac{3}{16}$</p>
+    </li>
+  </ol>
+  <p class="fb">จำนวนวิธีจับคู่ × ค่าของหนึ่งคู่ยกกำลังจำนวนคู่</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · สนามสี่จุด &nbsp;<span class="hint">(สมการ (3))</span></h3>
+  <p class="hint">กำหนด $D_{12} = 2$ · $D_{34} = 3$ · $D_{13} = 1$ · $D_{24} = 5$ · $D_{14} = 4$ · $D_{23} = \tfrac12$</p>
+  <ol class="steps">
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 1</strong> — พจน์ของการจับคู่ $\{12, 34\}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$D_{12}D_{34} = 2 \times 3 = 6$</p>
+    </li>
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 2</strong> — พจน์ของการจับคู่ $\{13, 24\}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$D_{13}D_{24} = 1 \times 5 = 5$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 3</strong> — พจน์ของการจับคู่ $\{14, 23\}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$D_{14}D_{23} = 4 \times \tfrac12 = 2$</p>
+    </li>
+    <li data-answer="13" data-alt="สิบสาม|13.0">
+      <p><strong>ขั้น 4</strong> — $\langle 0|\phi_1\phi_2\phi_3\phi_4|0\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$6 + 5 + 2 = 13$</p>
+    </li>
+  </ol>
+  <p class="fb">หนึ่งการจับคู่ = หนึ่งพจน์ = หนึ่งรูป · เส้นหนึ่งเส้น = $D$ หนึ่งตัว</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · กฎทั่วไปของสนาม &nbsp;<span class="hint">(ท้ายข้อ ④)</span></h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 1</strong> — $\langle 0|\phi_1\phi_2\phi_3|0\rangle$ มีกี่พจน์</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">สามจุดจับคู่ไม่ได้ ไม่มีพจน์เลย ค่าจึงเป็น $0$</p>
+    </li>
+    <li data-answer="15" data-alt="สิบห้า|15.0">
+      <p><strong>ขั้น 2</strong> — $\langle 0|\phi_1\phi_2\cdots\phi_6|0\rangle$ มีกี่พจน์</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5!! = 15$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 3</strong> — แต่ละพจน์ในขั้น 2 เป็นผลคูณของ $D$ กี่ตัว</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">หกจุดแบ่งได้ $6/2 = 3$ คู่ ⇒ $D$ สามตัว ⇒ รูปละสามเส้น</p>
+    </li>
+  </ol>
+  <p class="fb">$n$ จุด: $(n-1)!!$ รูป · รูปละ $n/2$ เส้น · $n$ คี่ได้ $0$</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา
+  <div class="nav">
+    <a href="./0034-tong-read.html">← บทที่ 23 · อ่าน Tong บทที่ 2</a>
+    <a href="./0032-interaction.html">บทที่ 21 · อนุภาคชนกัน</a>
+    <a href="./0031-propagator.html">บทที่ 20 · propagator</a>
+  </div>
+</div>
+
+</body>
+</html>
