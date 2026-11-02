@@ -25,7 +25,7 @@ OUT = ROOT / "build"
 FONTS = ('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
          'family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600'
-         '&family=IBM+Plex+Mono:wght@400&display=swap">')
+         '&family=IBM+Plex+Mono:wght@400&family=STIX+Two+Math&display=swap">')
 
 
 def to_mathml(html: str) -> str:
