@@ -83,7 +83,7 @@ $\{12, 34\}$ · $\{13, 24\}$ · $\{14, 23\}$
 
 <div class="eq" data-eqno="2">$$ \langle 0|x^n|0\rangle \;=\; (n-1)!!\,\Big(\frac{1}{2\omega}\Big)^{n/2} $$</div>
 
-<p>ตัวอย่าง $\omega = 1$: $\langle 0|x^2|0\rangle = \tfrac12$ และ $\langle 0|x^4|0\rangle = 3 \times \big(\tfrac12\big)^2 = \tfrac34$</p>
+<p>ตัวอย่าง $\omega = 1$: หนึ่งคู่ให้ $\langle 0|x^2|0\rangle = \tfrac12$ · $x^4$ จับคู่ได้ $3$ วิธี แต่ละวิธีมีสองคู่ เช่นวิธี $\{12, 34\}$ ให้ (ค่าของคู่ $12$) × (ค่าของคู่ $34$) $= \tfrac12 \times \tfrac12 = \tfrac14$ ทั้งสามวิธีได้ $\tfrac14$ เท่ากัน รวมเป็น $\langle 0|x^4|0\rangle = 3 \times \tfrac14 = \tfrac34$</p>
 
 <p>ถ้าคุ้นกับสถิติ สมการ (2) คือโมเมนต์ของการแจกแจงปกติ $E[Z^4] = 3\sigma^4$ พอดี ไม่ใช่เรื่องบังเอิญ
 เพราะความน่าจะเป็นของตำแหน่งในสถานะ $|0\rangle$ คือ Gaussian ที่มีความแปรปรวน $\sigma^2 = \frac{1}{2\omega}$
@@ -127,7 +127,21 @@ $\{12, 34\}$ · $\{13, 24\}$ · $\{14, 23\}$
 
 <p>รูปข้างบนคือที่มาของกติกาในบทที่ 21 ทุกการจับคู่วาดเป็นเส้นเชื่อมสองจุดได้ และเส้นหนึ่งเส้นคือ propagator หนึ่งตัว
 Feynman diagram จึงเป็นรายการของการจับคู่ที่วาดเป็นรูป ส่วนกฎทั่วไปก็เหมือนสมการ (1):
-$n$ จุดให้ $(n-1)!!$ พจน์ แต่ละพจน์คูณ $D$ ทั้งหมด $n/2$ ตัว และถ้า $n$ เป็นคี่จะได้ศูนย์
+หนึ่งวิธีจับคู่ให้หนึ่งพจน์ และพจน์นั้นมี $D$ หนึ่งตัวต่อหนึ่งคู่</p>
+
+<p>ตัวอย่างหกจุด: วิธี $\{12, 34, 56\}$ ให้พจน์ $D_{12}D_{34}D_{56}$ และวิธี $\{14, 26, 35\}$ ให้ $D_{14}D_{26}D_{35}$
+ทุกวิธีใช้ครบหกจุด จึงมีสามคู่เสมอ ทุกพจน์จึงเป็นผลคูณของ $D$ สามตัว (ไม่ใช่สองตัวแบบสี่จุด) และมีทั้งหมด $5!! = 15$ พจน์
+ทั่วไป: $n$ จุดให้ $(n-1)!!$ พจน์ พจน์ละ $n/2$ ตัว</p>
+
+<table>
+<thead><tr><th>คำ</th><th>สามจุด $1, 2, 3$</th><th>นับอะไร</th></tr></thead>
+<tbody>
+<tr><td>คู่ที่หยิบได้</td><td>$12, 13, 23$ = $3$</td><td>เลือกสองจุดจากทั้งหมด</td></tr>
+<tr><td>วิธีจับคู่</td><td>$0$</td><td>แบ่ง<em>ทุกจุด</em>เป็นคู่ไม่เหลือเศษ</td></tr>
+</tbody>
+</table>
+
+<p>Wick's theorem ใช้แถวล่าง สามจุดแบ่งให้หมดไม่ได้เพราะเหลือเศษหนึ่งจุดเสมอ จึงไม่มีพจน์เลย และ $\langle 0|\phi_1\phi_2\phi_3|0\rangle = 0$
 paper เรียกการจับคู่หนึ่งคู่ว่า contraction และเรียกกฎนี้ว่า Wick's theorem</p>
 
 <div class="warn">
@@ -235,9 +249,9 @@ Peskin &amp; Schroeder §4.3 · Tong, <em>Quantum Field Theory</em> บทที
       <p class="fb">$3!! = 3$</p>
     </li>
     <li data-answer="1/16" data-alt="0.0625">
-      <p><strong>ขั้น 3</strong> — การจับคู่หนึ่งแบบมีสองคู่ แต่ละคู่ให้ $\langle 0|x^2|0\rangle$ ค่าของหนึ่งแบบคือเท่าไร</p>
+      <p><strong>ขั้น 3</strong> — วิธีจับคู่ $\{12, 34\}$: คู่ $12$ ให้ $\tfrac14$ และคู่ $34$ ให้ $\tfrac14$ ผลคูณของสองคู่เท่ากับเท่าไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\big(\tfrac14\big)^2 = \tfrac{1}{16}$</p>
+      <p class="fb">$\tfrac14 \times \tfrac14 = \tfrac{1}{16}$ — อีกสองวิธีก็ได้ $\tfrac{1}{16}$ เท่ากัน</p>
     </li>
     <li data-answer="3/16" data-alt="0.1875">
       <p><strong>ขั้น 4</strong> — $\langle 0|x^4|0\rangle$ = ขั้น 2 × ขั้น 3</p>
@@ -280,22 +294,32 @@ Peskin &amp; Schroeder §4.3 · Tong, <em>Quantum Field Theory</em> บทที
   <h3>ข้อ 6 · กฎทั่วไปของสนาม &nbsp;<span class="hint">(ท้ายข้อ ④)</span></h3>
   <ol class="steps">
     <li data-answer="0" data-alt="ศูนย์|0.0">
-      <p><strong>ขั้น 1</strong> — $\langle 0|\phi_1\phi_2\phi_3|0\rangle$ มีกี่พจน์</p>
+      <p><strong>ขั้น 1</strong> — สามจุด $1, 2, 3$: วิธีจับคู่ที่ใช้<em>ทุกจุด</em>จนหมดมีกี่วิธี <span class="hint">(แถวล่างของตารางในข้อ ④)</span></p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">สามจุดจับคู่ไม่ได้ ไม่มีพจน์เลย ค่าจึงเป็น $0$</p>
+      <p class="fb">ทุกวิธีเหลือเศษหนึ่งจุด ⇒ $0$ วิธี · $3$ คือจำนวนคู่ที่หยิบได้ ซึ่งเป็นคนละเรื่อง</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — ดังนั้น $\langle 0|\phi_1\phi_2\phi_3|0\rangle$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ไม่มีพจน์ให้บวก ⇒ $0$</p>
     </li>
     <li data-answer="15" data-alt="สิบห้า|15.0">
-      <p><strong>ขั้น 2</strong> — $\langle 0|\phi_1\phi_2\cdots\phi_6|0\rangle$ มีกี่พจน์</p>
+      <p><strong>ขั้น 3</strong> — หกจุด: จำนวนวิธีจับคู่ (= จำนวนพจน์ของ $\langle 0|\phi_1\cdots\phi_6|0\rangle$)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$5!! = 15$</p>
+      <p class="fb">$5!! = 5 \times 3 \times 1 = 15$</p>
     </li>
     <li data-answer="3" data-alt="สาม|3.0">
-      <p><strong>ขั้น 3</strong> — แต่ละพจน์ในขั้น 2 เป็นผลคูณของ $D$ กี่ตัว</p>
+      <p><strong>ขั้น 4</strong> — วิธีจับคู่ $\{12, 34, 56\}$ มีกี่คู่</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">หกจุดแบ่งได้ $6/2 = 3$ คู่ ⇒ $D$ สามตัว ⇒ รูปละสามเส้น</p>
+      <p class="fb">หกจุดแบ่งได้ $6 \div 2 = 3$ คู่</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 5</strong> — พจน์ของวิธีในขั้น 4 เป็นผลคูณของ $D$ กี่ตัว <span class="hint">(คู่ละหนึ่งตัว)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$D_{12}D_{34}D_{56}$ ⇒ $3$ ตัว · ทุกพจน์ในหกจุดก็สามตัวเท่ากัน</p>
     </li>
   </ol>
-  <p class="fb">$n$ จุด: $(n-1)!!$ รูป · รูปละ $n/2$ เส้น · $n$ คี่ได้ $0$</p>
+  <p class="fb">$n$ จุด: $(n-1)!!$ พจน์ · พจน์ละ $n/2$ ตัว · $n$ คี่ได้ $0$</p>
 </div>
 
 <div class="ask">

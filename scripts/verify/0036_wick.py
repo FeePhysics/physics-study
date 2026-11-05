@@ -118,6 +118,12 @@ chk("⟨φ1φ2φ3⟩ = 0", (V.T*phi[0]*phi[1]*phi[2]*V)[0], 0)
 chk("ข้อฝึก: 2·3 + 1·5 + 4·½ = 13", 2*3 + 1*5 + 4*sp.Rational(1, 2), 13)
 chk("หกจุด: 15 พจน์ แต่ละพจน์มี D สามตัว", len(list(pairings(list(range(6))))), 15)
 
+# ฉบับแก้ (ผล 4/6)
+chk("ω=1 ต่อวิธี ½×½ = ¼ · รวม 3×¼ = ¾", 3*sp.Rational(1, 4), sp.Rational(3, 4))
+chk("สามจุด: คู่ที่หยิบได้ C(3,2) = 3", sp.binomial(3, 2), 3)
+chk("สามจุด: วิธีจับคู่ทุกจุด = 0", sum(1 for p in pairings([0, 1, 2]) if len(p)*2 == 3), 0)
+chk("หกจุด: ทุกวิธีมี 3 คู่", min(len(p) for p in pairings(list(range(6)))) == max(len(p) for p in pairings(list(range(6)))) == 3, True)
+
 bad = [r for r in ok if not r[1]]
 for name, good, got, want in ok:
     print(("  ✓ " if good else "  ✗ ") + name + ("" if good else f"\n      ได้ {got}\n      ควรเป็น {want}"))
