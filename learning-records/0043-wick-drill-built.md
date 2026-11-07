@@ -20,6 +20,8 @@
 
 `0037_wick_drill.py` 16/16 — Fock space สองสปริง $64\times64$ คูณเมทริกซ์จริงทุกข้อ
 
+artifact https://claude.ai/artifact/U9vdH1Verv2KzyeN3NV7aa
+
 ## ผลรอบแรก
 
 (รอผล)
