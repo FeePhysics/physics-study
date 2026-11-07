@@ -71,7 +71,11 @@ strong { font-weight: 600; }
   font-size: 1.06rem;
 }
 .eq math { font-size: 1.18em; }
-math { font-family: "Source Serif 4", "Latin Modern Math", "STIX Two Math", serif; }
+/* ⚠️ ฟอนต์ตัวแรกต้องมีตาราง OpenType MATH — Chromium วาดเครื่องหมายราก/เส้นบนของ <msqrt>
+   จากตารางนั้น · เดิมใช้ "Source Serif 4" ซึ่งไม่มี ⇒ √ หายไปทั้งตัวโดยไม่มีอะไรฟ้อง
+   ($\omega = +\sqrt{p^2+m^2}$ เรนเดอร์เป็น "+p²+m²" · แบจับได้จากบทที่ 23, 2026-11-02)
+   STIX Two Math โหลดจาก Google Fonts ใน FONTS ของ build_standalone.py */
+math { font-family: "STIX Two Math", "Latin Modern Math", "Cambria Math", math; }
 
 /* สมการ inline ที่ยาวกว่าบรรทัด (เช่น Σ_i ∂L/∂x_i δx_i ในหัวข้อ) ตัดบรรทัดไม่ได้
    ⇒ มันดัน **ทั้งหน้า** ให้กว้างเกินจอ · ให้มันเลื่อนในกล่องตัวเองแทน
