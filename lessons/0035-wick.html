@@ -84,7 +84,7 @@ $\{12, 34\}$ · $\{13, 24\}$ · $\{14, 23\}$
 
 <div class="eq" data-eqno="2">$$ \langle 0|x^n|0\rangle \;=\; (n-1)!!\,\Big(\frac{1}{2\omega}\Big)^{n/2} $$</div>
 
-<p>ตัวอย่าง $\omega = 1$: หนึ่งคู่ให้ $\langle 0|x^2|0\rangle = \tfrac12$ · $x^4$ จับคู่ได้ $3$ วิธี แต่ละวิธีมีสองคู่ เช่นวิธี $\{12, 34\}$ ให้ (ค่าของคู่ $12$) × (ค่าของคู่ $34$) $= \tfrac12 \times \tfrac12 = \tfrac14$ ทั้งสามวิธีได้ $\tfrac14$ เท่ากัน รวมเป็น $\langle 0|x^4|0\rangle = 3 \times \tfrac14 = \tfrac34$</p>
+<p>ตัวอย่าง $\omega = 1$: หนึ่งคู่ให้ $\langle 0|x^2|0\rangle = \tfrac12$ · $x^4$ จับคู่ได้ $3$ วิธี แต่ละวิธีมีสองคู่ เช่นวิธี $\{12, 34\}$ ให้ (ค่าของคู่ $12$) × (ค่าของคู่ $34$) $= \tfrac12 \times \tfrac12 = \tfrac14$ ทั้งสามวิธีได้ $\tfrac14$ เท่ากัน Wick's theorem บอกให้<strong>บวก</strong>ค่าของทุกวิธี (เหมือนสมการ (3) ที่บวกสามพจน์) จึงได้ $\langle 0|x^4|0\rangle = \tfrac14 + \tfrac14 + \tfrac14 = \tfrac34$ การคูณ $3 \times \tfrac14$ เป็นแค่ทางลัดของการบวกของที่เท่ากันสามตัว</p>
 
 <p>ถ้าคุ้นกับสถิติ สมการ (2) คือโมเมนต์ของการแจกแจงปกติ $E[Z^4] = 3\sigma^4$ พอดี ไม่ใช่เรื่องบังเอิญ
 เพราะความน่าจะเป็นของตำแหน่งในสถานะ $|0\rangle$ คือ Gaussian ที่มีความแปรปรวน $\sigma^2 = \frac{1}{2\omega}$
@@ -255,9 +255,9 @@ Peskin &amp; Schroeder §4.3 · Tong, <em>Quantum Field Theory</em> บทที
       <p class="fb">$\tfrac14 \times \tfrac14 = \tfrac{1}{16}$ — อีกสองวิธีก็ได้ $\tfrac{1}{16}$ เท่ากัน</p>
     </li>
     <li data-answer="3/16" data-alt="0.1875">
-      <p><strong>ขั้น 4</strong> — $\langle 0|x^4|0\rangle$ = ขั้น 2 × ขั้น 3</p>
+      <p><strong>ขั้น 4</strong> — $\langle 0|x^4|0\rangle$ = ผลรวมของค่าจากทุกวิธีจับคู่ (ทั้งสามวิธีได้ค่าเท่ากับขั้น 3)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$3 \times \tfrac{1}{16} = \tfrac{3}{16}$</p>
+      <p class="fb">$\tfrac{1}{16} + \tfrac{1}{16} + \tfrac{1}{16} = 3 \times \tfrac{1}{16} = \tfrac{3}{16}$ — บวกทุกวิธี ซึ่งเท่ากับคูณจำนวนวิธีเพราะทุกวิธีได้ค่าเท่ากัน</p>
     </li>
   </ol>
   <p class="fb">จำนวนวิธีจับคู่ × ค่าของหนึ่งคู่ยกกำลังจำนวนคู่</p>
