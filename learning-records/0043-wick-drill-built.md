@@ -37,6 +37,6 @@ artifact https://claude.ai/artifact/U9vdH1Verv2KzyeN3NV7aa
 
 `0037_wick_drill.py` 18/18
 
-## รอบสอง
+## รอบสอง — ผ่าน ✅
 
-(รอผล)
+แบรายงาน "ผ่าน" (ข้อ 6 ฉบับแตกขั้น) ⇒ Wick ครบ ไปบทที่ 25

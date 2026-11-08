@@ -210,10 +210,10 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 
 ## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-11-01)
 
-- บทล่าสุด: **บทที่ 24** `lessons/0035-wick.html` (Wick's theorem ด้วยการจับคู่ · บทแรกของช่วง C ใน `ROADMAP.md`)
-  · learning record `learning-records/0042-wick-built.md` — **ผ่านแล้ว** (รอบสาม)
-- **ชุดฝึก Wick** `lessons/0036-wick-drill.html` (แบขอเพิ่ม · `learning-records/0043-wick-drill-built.md`) — **รอผล**
-- งานถัดไป: ผลชุดฝึก → บทที่ 25 = ใส่จุดยอด $\lambda\phi^4$ แล้วจับคู่ ⇒ ได้รูปของบทที่ 21 เอง
+- บทล่าสุด: **บทที่ 25** `lessons/0037-vertex.html` (ใส่จุดยอด $\phi_v^4$ แล้วจับคู่ · symmetry factor · รูป X ได้ $\lambda$)
+  · learning record `learning-records/0044-vertex-built.md` — **"ผลรอบแรก" ยังรอผล**
+  · บทที่ 24 + ชุดฝึก Wick ผ่านแล้ว
+- งานถัดไป: ผลบทที่ 25 → แก้ → บทที่ 26 = Dyson series (ที่มาของ $-i$ และ $\int d^4z$ ที่บทที่ 25 ข้ามไว้)
 - ⚠️ ฟอนต์ `math` ต้องมีตาราง OpenType MATH (STIX Two Math) ไม่งั้น √ หายจากฉบับ `build/` โดยประตูไม่ฟ้อง (2026-11-02)
   · artifact ทุกบทแก้แล้ว
 - **Artifact (publish ทับ URL เดิมเสมอ ห้ามสร้างใหม่):**
