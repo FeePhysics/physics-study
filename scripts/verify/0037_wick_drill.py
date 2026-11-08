@@ -71,6 +71,9 @@ chk("ข้อ 6: ⟨y⁴⟩ = 3/16", E(y, y, y, y), sp.Rational(3, 16))
 chk("ข้อ 6: ⟨y²⟩·⟨y²⟩ = 1/16 = ค่าของวิธี {12, 34}", E(y, y)*E(y, y), sp.Rational(1, 16))
 chk("ข้อ 6: ผลต่าง = 2/16 = 1/8 = สองวิธีที่เหลือ", E(y, y, y, y) - E(y, y)**2, sp.Rational(1, 8))
 
+chk("กับดัก: (⟨x²⟩)² = 1/4 · ⟨x⁴⟩ − (⟨x²⟩)² = 1/2 (ω = 1)", E(x, x, x, x) - E(x, x)**2, sp.Rational(1, 2))
+chk("ข้อ 6 ขั้น 6: (2/16) ÷ (1/16) = 2", sp.Rational(2, 16)/sp.Rational(1, 16), 2)
+
 bad = [r for r in ok if not r[1]]
 for name, good, got, want in ok:
     print(("  ✓ " if good else "  ✗ ") + name + ("" if good else f"\n      ได้ {got}\n      ควรเป็น {want}"))
