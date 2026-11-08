@@ -255,3 +255,6 @@ mtable.bmat {
     linear-gradient(currentColor, currentColor) right top / .3em 1.5px no-repeat,
     linear-gradient(currentColor, currentColor) right bottom / .3em 1.5px no-repeat;
 }
+
+/* ตารางรายการสั้น ๆ ที่ต้องอ่านเทียบตัวอักษร (เช่น ไล่วิธีจับคู่ "1a · 2b · cd") */
+table.mono td { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .85rem; white-space: nowrap; }
