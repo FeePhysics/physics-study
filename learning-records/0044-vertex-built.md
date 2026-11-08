@@ -20,6 +20,8 @@
 
 `0038_vertex.py` 19/19 — ไล่จับคู่ทุกวิธีของตำแหน่งจริง (15 / 105) แล้วจัดกลุ่มตามรูปกราฟ · ตรวจไขว้ $\langle(a+a^\dagger)^{6,8}\rangle$ จากเมทริกซ์
 
+artifact https://claude.ai/artifact/PhzEyrYQjY21sweQ8owFGs
+
 ## ผลรอบแรก
 
 (รอผล)

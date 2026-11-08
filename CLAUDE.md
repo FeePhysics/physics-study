@@ -218,7 +218,7 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
   · artifact ทุกบทแก้แล้ว
 - **Artifact (publish ทับ URL เดิมเสมอ ห้ามสร้างใหม่):**
   ch18 `UaMnbMxd6LC7HrRRSY6Agu` · ch19 `XeTN5v7GDpNjS3WorDYrot` · ch20 `BHJ8MRxpUh6DuKRyeAtDYv` ·
-  ch21 `EVreU25bGhApapQgohHYDA` · ch22 `1cKQ2RhxTt8wDt4xWhFuFS` · ch23 `T8Z1G4JjDyerBoNSo3fcjZ` · ch24 `HMXgSv1mKHrqgUWTKj85kg` · ชุดฝึก Wick `U9vdH1Verv2KzyeN3NV7aa`
+  ch21 `EVreU25bGhApapQgohHYDA` · ch22 `1cKQ2RhxTt8wDt4xWhFuFS` · ch23 `T8Z1G4JjDyerBoNSo3fcjZ` · ch24 `HMXgSv1mKHrqgUWTKj85kg` · ชุดฝึก Wick `U9vdH1Verv2KzyeN3NV7aa` · ch25 `PhzEyrYQjY21sweQ8owFGs`
   (URL เต็ม = `https://claude.ai/artifact/<id>` · ต้อง `read` ก่อน publish ทับจาก session ใหม่)
 - ต้นฉบับ Tong บทที่ 2 (`two.pdf`) แบอัปโหลดใน session เก่า — session ใหม่ไม่เห็น ต้องแนบใหม่ถ้าจะอ้างหน้าอีก
 - ปุ่ม 📋 คัดลอกผล อยู่ใต้หัวข้อ "ลองเอง" และโผล่เมื่อตอบครบทุกขั้นทุกข้อเท่านั้น (ไม่ใช่บั๊ก)
