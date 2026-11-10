@@ -46,7 +46,8 @@ body > * + * { margin-top: 1.15rem; }
 /* หัวข้อและอังกฤษใช้ serif — เนื้อไทยใช้ Sarabun ที่อ่านยาว ๆ สบายกว่า */
 h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; line-height: 1.2;
              text-wrap: balance; margin: 0; }
-h1 { font-size: 2.05rem; font-weight: 600; letter-spacing: -.01em; }
+/* ไทยมีสระล่าง (ุ ู) ใต้เส้นฐาน ⇒ line-height 1.2 ไม่พอ ทับบรรทัด .meta (iPad 2026-11-10) */
+h1 { font-size: 2.05rem; font-weight: 600; letter-spacing: -.01em; line-height: 1.4; }
 h2 { font-size: 1.3rem;  font-weight: 600; margin-top: 1.6rem;
      padding-bottom: .35rem; border-bottom: 1px solid var(--rule); }
 h3 { font-size: 1.02rem; font-weight: 600; }
@@ -56,7 +57,7 @@ ul, ol { padding-left: 1.3rem; display: flex; flex-direction: column; gap: .5rem
 .meta {
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: .78rem; letter-spacing: .02em; color: var(--ink-soft);
-  text-transform: none; margin-top: -.7rem;
+  text-transform: none; margin-top: .25rem;
 }
 
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
