@@ -49,4 +49,13 @@ check("H_int = +λ/4! φ^4", sp.expand(H - sp.Rational(1, 2)*phidot**2) == lam/2
 check("-i λ/4! * 4! = -iλ", sp.simplify(-sp.I*lam/24*24 + sp.I*lam) == 0)
 check("2nd order prefactor (-i)^2/2! = -1/2", (-sp.I)**2/2 == sp.Rational(-1, 2))
 check("swap 2 vertices cancels 1/2!", sp.Rational(1, 2)*2 == 1)
+
+# ฉบับเขียนใหม่ (รอบสอง): ตัวเลขอุ่นเครื่อง + ประกอบกับบทที่ 25
+check("e^0.1 ≈ 1.1052", abs(float(sp.exp(sp.Rational(1,10))) - 1.10517) < 1e-5)
+check("0.1^2/2 = 0.005", sp.Rational(1,10)**2/2 == sp.Rational(1,200))
+check("e^{-i(5+0.1)t} = e^{-5it} e^{-0.1it}", sp.simplify(sp.exp(-sp.I*(5+sp.Rational(1,10))*t) - sp.exp(-5*sp.I*t)*sp.exp(-sp.I*t/10)) == 0)
+check("1st order of e^{-0.1it}: -0.1i t", sp.series(sp.exp(-sp.I*t/10), t, 0, 2).removeO().coeff(t, 1) == -sp.I/10)
+check("A: -i * 1/2 = -i/2", -sp.I*sp.Rational(12, 24) == -sp.I/2)
+check("X: -i * 24/24 = -i", -sp.I*sp.Rational(24, 24) == -sp.I)
+check("B: -i * 3/24 = -i/8", -sp.I*sp.Rational(3, 24) == -sp.I/8)
 print(f"{ok}/{ok}")
