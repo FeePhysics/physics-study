@@ -211,8 +211,9 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 ## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-11-10)
 
 - บทที่ 25 `lessons/0037-vertex.html` **ผ่าน 6/6** (รอบสอง) · บทที่ 24 + ชุดฝึก Wick ผ่านแล้ว
-- ล่าสุด: **ชุดฝึกจุดยอด** `lessons/0038-vertex-drill.html` ($\phi^3$ · $\phi^6$ · สี่จุด) · learning record `0045` — **ผ่าน 6/6**
-- งานถัดไป: บทที่ 26 = Dyson series (ที่มาของ $-i$ และ $\int d^4z$) · แบเคยถามเรื่องแวะไป GR (ช่วง G ใน `ROADMAP.md`) — ยังไม่ได้ตัดสิน
+- ชุดฝึกจุดยอด `0038-vertex-drill.html` ผ่าน 6/6
+- ล่าสุด: **บทที่ 26** `lessons/0039-dyson.html` (Dyson series: $-i$ · $\frac1{n!}$ = สามเหลี่ยม · $-i\lambda\int d^4z$) · learning record `0046` — **"ผลรอบแรก" ยังรอผล**
+- งานถัดไป: ผลบทที่ 26 → แก้ → ต่อช่วง C (time ordering $T$ ⇒ propagator · amplitude · เช็คพอยต์อ่าน Tong บทที่ 3) · แวะ GR ยังเปิดอยู่ (แบเลือกต่อ C ก่อน 2026-11-10)
 - ⚠️ `build_standalone.py` เคยปล่อยสคริปต์ KaTeX CDN ค้างในทุกไฟล์ build ⇒ iPad ขึ้น "Script error." · แก้แล้ว + ด่านกันในตัว build (2026-11-10)
 - ⚠️ ลิงก์ artifact ch25 เปิดจาก session 2026-11-10 ไม่ได้ (not found) ⇒ ส่งเป็นไฟล์ `build/` แทน
 - ⚠️ ฟอนต์ `math` ต้องมีตาราง OpenType MATH (STIX Two Math) ไม่งั้น √ หายจากฉบับ `build/` โดยประตูไม่ฟ้อง (2026-11-02)

@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 26 · Dyson series</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 26 · Dyson series</h1>
+<p class="meta">บทเรียน · ~25 นาที · ตัวคูณ $-i$ กับ $\int d^4z$ ที่บทที่ 25 ข้ามไว้ มาจากการกางเลขชี้กำลังของเวลา</p>
+
+<h2>① เวลาเดินด้วย $e^{-iHt}$</h2>
+<p>
+ในกลศาสตร์ควอนตัม สถานะ $\psi$ เปลี่ยนตามเวลาด้วยสมการ Schrödinger ($\hbar = 1$)
+</p>
+<div class="eq" data-eqno="1">$$ i\,\frac{d\psi}{dt} \;=\; H\,\psi $$</div>
+<p>
+$H$ คือ Hamiltonian หรือพลังงานของระบบ (บทที่ 6) ถ้าสถานะมีพลังงาน $E$ แน่นอน $H$ ทำกับมันแล้วได้ $E$ คูณตัวเดิม
+คำตอบคือ $\psi(t) = e^{-iEt}\,\psi(0)$ ลองตรวจดูได้ อนุพันธ์ของ $e^{-iEt}$ ดึง $-iE$ ลงมา แล้วคูณ $i$ อีกที $i \cdot (-iE) = E$ ตรงกับฝั่งขวาพอดี
+ตัว $e^{-i\omega_k t}$ ในสนามของบทที่ 19 ก็คือตัวนี้ โดยมี $E = \omega_k$
+</p>
+<p>
+ตัว $-i$ ที่เราตามหาอยู่ตรงนี้แล้ว ตัวเลขชี้กำลังของการเดินเวลาเป็น $-i$ คูณพลังงานคูณเวลาเสมอ
+เพราะ $i$ อยู่ฝั่งซ้ายของสมการ (1) พอย้ายไปฝั่งขวาก็กลายเป็น $\frac{1}{i} = -i$
+</p>
+
+<h2>② แยกพลังงานเป็นสองก้อน แล้วกางก้อนเล็ก</h2>
+<p>
+ในบทที่ 21 พลังงานมีสองก้อน คือก้อนของสนามอิสระ (สปริงทุกตัวแกว่งเอง) กับก้อนเล็กที่มาจาก $\lambda\phi^4$
+ให้เรียกพลังงานรวมว่า $E + v$ โดย $v$ คือก้อนเล็ก ถ้าสองก้อนนี้เป็นตัวเลขธรรมดา
+</p>
+<div class="eq" data-eqno="2">$$ e^{-i(E+v)t} \;=\; e^{-iEt}\,\Big[\,1 \;+\; (-i)\,vt \;+\; \frac{(-i)^2}{2!}(vt)^2 \;+\; \cdots\Big] $$</div>
+<p>
+ก้อน $e^{-iEt}$ ข้างหน้าคือการแกว่งของสนามอิสระที่เรารู้จักแล้ว ส่วนในวงเล็บคือผลของอันตรกิริยา
+กางด้วยอนุกรม $e^x = 1 + x + \frac{x^2}{2!} + \cdots$ โดยแทน $x = -ivt$
+พจน์ที่มี $v$ หนึ่งตัวมี $-i$ หนึ่งตัว พจน์ที่มี $v$ สองตัวมี $(-i)^2$ และ $\frac{1}{2!}$ ต่อไปเรื่อย ๆ
+อนุกรมนี้คือ <strong>Dyson series</strong> และพจน์ที่มี $v$ $n$ ตัวคือรูปที่มี<strong>จุดยอด $n$ จุด</strong>
+</p>
+<p>
+ในทฤษฎีสนาม $v$ ไม่ใช่ตัวเลข มันเป็นตัวดำเนินการและเปลี่ยนตามเวลา สูตรเลยต้องเขียนเป็นอินทิกรัลเวลา
+แต่โครงยังเหมือนเดิมทุกอย่าง คือหนึ่งจุดยอดได้ $-i$ หนึ่งตัว (ข้อ ③ จะแสดงว่า $\frac{1}{n!}$ มาจากไหนในแบบที่มีอินทิกรัล)
+</p>
+
+<h2>③ $\frac{1}{2!}$ คือสามเหลี่ยมครึ่งสี่เหลี่ยม</h2>
+<p>
+เมื่อ $v$ เปลี่ยนตามเวลา ก้อน $vt$ กลายเป็น $\int_0^t v(t_1)\,dt_1$ และพจน์ที่สองของ Dyson คือ
+</p>
+<div class="eq" data-eqno="3">$$ (-i)^2 \int_0^t\! dt_1 \int_0^{t_1}\! dt_2\; v(t_1)\,v(t_2) \qquad (t_1 > t_2) $$</div>
+<p>
+เงื่อนไข $t_1 > t_2$ มาจากเหตุผลทางฟิสิกส์ อันตรกิริยาเกิดทีละครั้งตามลำดับเวลา ครั้งที่สองต้องมาหลังครั้งแรก
+พื้นที่ที่อินทิกรัลวิ่งจึงเป็นครึ่งล่างของสี่เหลี่ยมจัตุรัส $[0,t] \times [0,t]$ ซึ่งเป็นรูปสามเหลี่ยม:
+</p>
+<svg viewBox="0 0 230 130" width="230" role="img" aria-label="สี่เหลี่ยมจัตุรัสด้าน t แบ่งด้วยเส้นทแยง ครึ่งล่าง t1 มากกว่า t2 แรเงา">
+  <g fill="none" stroke="currentColor" stroke-width="1.5">
+    <path d="M30 110 L130 110 L130 10 L30 10 Z"/><path d="M30 110 L130 10"/>
+  </g>
+  <path d="M30 110 L130 110 L130 10 Z" fill="currentColor" opacity=".18"/>
+  <g fill="currentColor" font-size="11" font-family="IBM Plex Mono, monospace">
+    <text x="78" y="125">t₁</text><text x="10" y="64">t₂</text>
+    <text x="96" y="92">t₁ &gt; t₂</text><text x="40" y="34">t₂ &gt; t₁</text>
+    <text x="145" y="64">ครึ่งหนึ่ง</text><text x="145" y="80">ของจัตุรัส</text>
+  </g>
+</svg>
+<p>
+ฟังก์ชัน $v(t_1)v(t_2)$ สลับ $t_1$ กับ $t_2$ แล้วได้ค่าเดิม (ตอนนี้ยังถือว่าสลับลำดับกันได้) อินทิกรัลบนสามเหลี่ยมสองชิ้นจึงเท่ากัน
+แต่ละชิ้นได้ครึ่งหนึ่งของอินทิกรัลบนจัตุรัส ซึ่งเท่ากับ $\big(\int_0^t v\big)^2$ เลยได้ $\frac{1}{2!}$ ของสมการ (2) กลับมา
+ถ้าเป็นเวลาสามค่า $t_1 > t_2 > t_3$ รูปจะเป็นทรงสี่หน้าที่กินลูกบาศก์ไป $\frac{1}{3!}$ เพราะเรียงสามค่าได้ $3!$ แบบ แต่ใช้แค่แบบเดียว
+</p>
+
+<h2>④ $\int d^4z$ คือพลังงานบวกทุกจุด คูณเวลา</h2>
+<p>
+เหลือคำถามว่า $v$ ของทฤษฎีสนามคืออะไร Lagrangian ของบทที่ 21 มีพจน์ $-\frac{\lambda}{4!}\phi^4$
+พจน์นี้ไม่มี $\dot\phi$ เลย การแปลง Legendre $H = \pi\dot\phi - \mathcal{L}$ (บทที่ 6) จึงทำกับมันแค่<strong>กลับเครื่องหมาย</strong>
+ได้ความหนาแน่นพลังงาน $+\frac{\lambda}{4!}\phi^4$ ที่แต่ละจุดในอวกาศ พลังงานรวมคือผลบวกทุกจุด $v = \int d^3x\,\frac{\lambda}{4!}\phi^4$
+</p>
+<p>
+พจน์แรกของ Dyson คือ $-i\int dt\; v$ ซึ่งเป็นอินทิกรัลเวลาซ้อนกับอินทิกรัลอวกาศ ตำรารวมสองอันเป็นอินทิกรัลเดียวบนกาลอวกาศ
+$\int dt\,d^3x = \int d^4z$ โดย $z$ คือตำแหน่งของจุดยอด (เวลาหนึ่งพิกัดกับอวกาศสามพิกัด)
+บทเรียนของเราใช้ 1+1 มิติ อินทิกรัลเดียวกันจึงเป็น $\int d^2z$ (เวลาหนึ่งกับอวกาศหนึ่ง)
+</p>
+<div class="eq" data-eqno="4">$$ -i\!\int\! d^4z\;\frac{\lambda}{4!}\,\phi^4 \;\xrightarrow{\;\times\,4!\;}\; -i\lambda\!\int\! d^4z $$</div>
+<p>
+ลูกศร $\times 4!$ คือจำนวนวิธีจับคู่ของรูป X จากบทที่ 25 สมการ (4) คือสิ่งที่บทที่ 25 ข้ามไว้ทั้งก้อน การนับของบทที่ 25 ให้ $\frac{\lambda}{4!} \times 4! = \lambda$ ส่วน Dyson เติม $-i$ ข้างหน้า
+และบอกว่าจุดยอดไปอยู่ที่ไหนก็ได้ทั่วกาลอวกาศ ต้องบวกทุกตำแหน่ง ผลคือกฎของ Feynman ข้อแรกในตำรา: <strong>จุดยอดหนึ่งจุดได้ $-i\lambda$</strong>
+</p>
+<p>
+พจน์ที่มีจุดยอดสองจุดมี $\frac{(-i)^2}{2!}$ ส่วน $\frac{1}{2!}$ ตัดกันพอดีกับการสลับชื่อจุดยอด $z_1 \leftrightarrow z_2$ ซึ่งได้วิธีจับคู่ใหม่ $2$ วิธีที่ให้รูปเดียวกัน
+แบบเดียวกับที่ $\frac{1}{4!}$ ตัดกับการสลับขา (Peskin &amp; Schroeder §4.4)
+</p>
+
+<div class="warn">
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — interaction picture แบบเต็ม (เมื่อ $v$ กับก้อนอิสระสลับลำดับกันไม่ได้) ·
+  ตัวดำเนินการ time ordering $T$ ที่ทำให้สามเหลี่ยมกลายเป็นจัตุรัสได้แม้ $v$ สลับไม่ได้ ·
+  ว่าทำไมจับคู่ภายใต้ $T$ แล้วได้ propagator ของบทที่ 20
+</div>
+
+<p class="src">ตรวจด้วย sympy/numpy: $e^{-iEt}$ แก้สมการ (1) · สัมประสิทธิ์ของอนุกรม (2) · สามเหลี่ยม = ครึ่งจัตุรัสกับ $v(t)$ สามแบบ · ทรงสี่หน้า $\frac16$ ·
+พจน์ที่สองของ Dyson ตรงกับการกาง $e^{-i\int v}$ · กับเมทริกซ์ $2\times2$ ที่สลับไม่ได้ พจน์แรก $-i\int v_I$ ผิดไม่เกิน $\varepsilon^2$ ·
+Legendre ให้ $+\frac{\lambda}{4!}\phi^4$ — <code>scripts/verify/0040_dyson.py</code> (18/18) ·
+<strong>อ่านต่อ:</strong> Tong, <em>Quantum Field Theory</em> §3.1 (Dyson's formula) · Peskin &amp; Schroeder §4.2 สมการ (4.22)</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ตอบเป็นตัวเลข หรือตัวเลขคูณ <code>i</code> เช่น <code>-3i</code> · เศษส่วนพิมพ์แบบ <code>-1/2</code> ได้ · มีคำถามให้พิมพ์ในแชต</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · ตรวจคำตอบของ Schrödinger &nbsp;<span class="hint">(สมการ (1) · $E = 3$)</span></h3>
+  <p class="hint">$\psi(t) = e^{-3it}$</p>
+  <ol class="steps">
+    <li data-answer="-3i" data-alt="-3*i|-i3|-i*3">
+      <p><strong>ขั้น 1</strong> — $\frac{d\psi}{dt} = (\;?\;)\,e^{-3it}$ · ตัวในวงเล็บคืออะไร</p>
+      <div class="ans"><input type="text" placeholder="เช่น 5i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">กฎลูกโซ่ดึงเลขชี้กำลัง $-3i$ ลงมา</p>
+    </li>
+    <li data-answer="-1" data-alt="-1.0">
+      <p><strong>ขั้น 2</strong> — $i \times i$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$i^2 = -1$</p>
+    </li>
+    <li data-answer="3" data-alt="3.0">
+      <p><strong>ขั้น 3</strong> — $i \times (-3i)$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-3 \times i^2 = -3 \times (-1) = 3 = E$ ⇒ สมการ (1) เป็นจริง</p>
+    </li>
+  </ol>
+  <p class="fb">$-i$ ในเลขชี้กำลังทำให้ $i\,\frac{d}{dt}$ ดึง $E$ ออกมาเป็นบวก</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · กางก้อนเล็ก &nbsp;<span class="hint">(สมการ (2))</span></h3>
+  <p class="hint">กาง $e^{x}$ โดย $x = -ivt$ · ถามสัมประสิทธิ์หน้า $vt$ และหน้า $(vt)^2$</p>
+  <ol class="steps">
+    <li data-answer="-i" data-alt="-1i|-1*i">
+      <p><strong>ขั้น 1</strong> — สัมประสิทธิ์หน้า $vt$ (พจน์จุดยอดเดียว)</p>
+      <div class="ans"><input type="text" placeholder="เช่น 5i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$x = -i\,vt$ ⇒ $-i$</p>
+    </li>
+    <li data-answer="-1" data-alt="-1.0">
+      <p><strong>ขั้น 2</strong> — $(-i)^2$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(-i)^2 = i^2 = -1$</p>
+    </li>
+    <li data-answer="-1/2" data-alt="-0.5">
+      <p><strong>ขั้น 3</strong> — สัมประสิทธิ์หน้า $(vt)^2$ (หาร $2!$ ด้วย)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{-1}{2} = -\frac12$</p>
+    </li>
+  </ol>
+  <p class="fb">จุดยอด $n$ จุดได้ $\frac{(-i)^n}{n!}$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · สามเหลี่ยมกับจัตุรัส &nbsp;<span class="hint">(ข้อ ③ · $t = 1$)</span></h3>
+  <ol class="steps">
+    <li data-answer="1" data-alt="1.0">
+      <p><strong>ขั้น 1</strong> — พื้นที่จัตุรัส $[0,1]\times[0,1]$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5">
+      <p><strong>ขั้น 2</strong> — พื้นที่ส่วนที่ $t_1 > t_2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">สามเหลี่ยมครึ่งจัตุรัส ⇒ $\frac12 = \frac{1}{2!}$</p>
+    </li>
+    <li data-answer="6" data-alt="6.0">
+      <p><strong>ขั้น 3</strong> — เวลาสามค่า $t_1, t_2, t_3$ เรียงจากมากไปน้อยได้กี่แบบ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3! = 6$ แบบ</p>
+    </li>
+    <li data-answer="1/6" data-alt="0.1667">
+      <p><strong>ขั้น 4</strong> — ปริมาตรส่วนที่ $t_1 > t_2 > t_3$ ในลูกบาศก์ $[0,1]^3$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ใช้แบบเดียวจาก $6$ แบบที่ขนาดเท่ากัน ⇒ $\frac16 = \frac{1}{3!}$</p>
+    </li>
+  </ol>
+  <p class="fb">$\frac{1}{n!}$ ของ Dyson = สัดส่วนของการเรียงเวลาแบบเดียวจาก $n!$ แบบ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · พลังงานของ $\phi^4$ &nbsp;<span class="hint">(ข้อ ④ · $\lambda = 24$)</span></h3>
+  <p class="hint">$\mathcal{L}$ มีพจน์ $-\frac{\lambda}{4!}\phi^4$ · ถามสัมประสิทธิ์หน้า $\phi^4$</p>
+  <ol class="steps">
+    <li data-answer="-1" data-alt="-1.0">
+      <p><strong>ขั้น 1</strong> — ใน $\mathcal{L}$ (แทน $\lambda = 24$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-\frac{24}{24} = -1$</p>
+    </li>
+    <li data-answer="1" data-alt="+1|1.0">
+      <p><strong>ขั้น 2</strong> — ในความหนาแน่นพลังงาน (พจน์นี้ไม่มี $\dot\phi$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$H = \pi\dot\phi - \mathcal{L}$ และพจน์นี้ไม่อยู่ใน $\pi\dot\phi$ ⇒ กลับเครื่องหมายเป็น $+1$</p>
+    </li>
+    <li data-answer="-i" data-alt="-1i|-1*i">
+      <p><strong>ขั้น 3</strong> — คูณด้วยตัวคูณของพจน์จุดยอดเดียวจากข้อ 2</p>
+      <div class="ans"><input type="text" placeholder="เช่น 5i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-i \times 1 = -i$</p>
+    </li>
+  </ol>
+  <p class="fb">สองเครื่องหมายลบ (ของ $\mathcal{L}$ และของ Legendre) หักกัน เหลือ $-i$ จาก Dyson ตัวเดียว</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · ประกอบกฎจุดยอด &nbsp;<span class="hint">(สมการ (4) · รูป X)</span></h3>
+  <p class="hint">ตัวคูณหน้า $\lambda\int d^4z$ ของรูป X</p>
+  <ol class="steps">
+    <li data-answer="24" data-alt="24.0">
+      <p><strong>ขั้น 1</strong> — รูป X มีกี่วิธีจับคู่ (บทที่ 25)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4! = 24$</p>
+    </li>
+    <li data-answer="1" data-alt="1.0">
+      <p><strong>ขั้น 2</strong> — $\frac{1}{4!} \times 24$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$</p>
+    </li>
+    <li data-answer="-i" data-alt="-1i|-1*i">
+      <p><strong>ขั้น 3</strong> — ตัวคูณทั้งหมดหน้า $\lambda\int d^4z$ (เติมตัวคูณจาก Dyson)</p>
+      <div class="ans"><input type="text" placeholder="เช่น 5i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-i \times 1 = -i$ ⇒ $-i\lambda\int d^4z$</p>
+    </li>
+    <li data-answer="2" data-alt="2.0">
+      <p><strong>ขั้น 4</strong> — ในบทเรียนของเรา (1+1 มิติ) $\int d^{\,?}z$ · ใส่เลขอะไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">เวลา $1$ + อวกาศ $1$ = $2$</p>
+    </li>
+  </ol>
+  <p class="fb">กฎจุดยอดของ Feynman: $-i\lambda$ และบวกตำแหน่งจุดยอดทั่วกาลอวกาศ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · จุดยอดสองจุด &nbsp;<span class="hint">(ข้อ ④ ย่อหน้าสุดท้าย)</span></h3>
+  <ol class="steps">
+    <li data-answer="-1/2" data-alt="-0.5">
+      <p><strong>ขั้น 1</strong> — ตัวคูณจาก Dyson ของพจน์สองจุดยอด $\frac{(-i)^2}{2!}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{-1}{2}$</p>
+    </li>
+    <li data-answer="2" data-alt="2.0">
+      <p><strong>ขั้น 2</strong> — สลับชื่อ $z_1 \leftrightarrow z_2$ ได้รูปเดียวกันกี่วิธี</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2! = 2$ (เดิมกับสลับ)</p>
+    </li>
+    <li data-answer="-1" data-alt="-1.0">
+      <p><strong>ขั้น 3</strong> — คูณสองขั้นแรก</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-\frac12 \times 2 = -1 = (-i)^2$ ⇒ แต่ละจุดยอดได้ $-i$ ของตัวเอง</p>
+    </li>
+  </ol>
+  <p class="fb">$\frac{1}{n!}$ ตัดกับการสลับชื่อจุดยอด เหมือน $\frac{1}{4!}$ ตัดกับการสลับขา</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · ถ้ามีข้อไหนงง พิมพ์มาในแชตได้เลย
+  <div class="nav">
+    <a href="./0038-vertex-drill.html">← ชุดฝึก · จุดยอด</a>
+    <a href="./0037-vertex.html">บทที่ 25 · จุดยอดก็จับคู่ได้</a>
+    <a href="./0032-interaction.html">บทที่ 21 · อนุภาคชนกัน</a>
+  </div>
+</div>
+
+</body>
+</html>
