@@ -48,4 +48,5 @@ artifact https://claude.ai/artifact/PhzEyrYQjY21sweQ8owFGs
 
 ## รอบสอง
 
-(รอผล)
+**ผล: 6/6 ถูกหมด** (2026-11-10) · ภาพสี่จุดในแถว + บีบเป็นรูป แก้ปัญหา "ขา" ได้จริง
+· แบขอชุดฝึกเพิ่มเอง ("กำลังสนุก") ⇒ `0038-vertex-drill.html` · learning record 0045

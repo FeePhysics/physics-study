@@ -208,12 +208,13 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 
 เว็บที่บล็อกด้วย: `goodtheorist.science`, `webspace.science.uu.nl` (ดู `RESOURCES.md`)
 
-## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-11-01)
+## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-11-10)
 
-- บทล่าสุด: **บทที่ 25** `lessons/0037-vertex.html` (ใส่จุดยอด $\phi_v^4$ แล้วจับคู่ · symmetry factor · รูป X ได้ $\lambda$)
-  · learning record `learning-records/0044-vertex-built.md` — **"ผลรอบแรก" ยังรอผล**
-  · บทที่ 24 + ชุดฝึก Wick ผ่านแล้ว
-- งานถัดไป: ผลบทที่ 25 → แก้ → บทที่ 26 = Dyson series (ที่มาของ $-i$ และ $\int d^4z$ ที่บทที่ 25 ข้ามไว้)
+- บทที่ 25 `lessons/0037-vertex.html` **ผ่าน 6/6** (รอบสอง) · บทที่ 24 + ชุดฝึก Wick ผ่านแล้ว
+- ล่าสุด: **ชุดฝึกจุดยอด** `lessons/0038-vertex-drill.html` ($\phi^3$ · $\phi^6$ · สี่จุด) · learning record `0045` — **"ผลรอบแรก" ยังรอผล**
+- งานถัดไป: ผลชุดฝึกจุดยอด → บทที่ 26 = Dyson series (ที่มาของ $-i$ และ $\int d^4z$) · แบเคยถามเรื่องแวะไป GR (ช่วง G ใน `ROADMAP.md`) — ยังไม่ได้ตัดสิน
+- ⚠️ `build_standalone.py` เคยปล่อยสคริปต์ KaTeX CDN ค้างในทุกไฟล์ build ⇒ iPad ขึ้น "Script error." · แก้แล้ว + ด่านกันในตัว build (2026-11-10)
+- ⚠️ ลิงก์ artifact ch25 เปิดจาก session 2026-11-10 ไม่ได้ (not found) ⇒ ส่งเป็นไฟล์ `build/` แทน
 - ⚠️ ฟอนต์ `math` ต้องมีตาราง OpenType MATH (STIX Two Math) ไม่งั้น √ หายจากฉบับ `build/` โดยประตูไม่ฟ้อง (2026-11-02)
   · artifact ทุกบทแก้แล้ว
 - **Artifact (publish ทับ URL เดิมเสมอ ห้ามสร้างใหม่):**
