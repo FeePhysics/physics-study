@@ -16,71 +16,55 @@
 <body>
 
 <h1>บทที่ 25 · จุดยอดก็จับคู่ได้</h1>
-<p class="meta">บทเรียน · ~25 นาที · เอาพจน์ $\frac{\lambda}{4!}\phi^4$ ของบทที่ 21 มาจับคู่ด้วย Wick
-แล้วรูปของบทที่ 21 ออกมาเองพร้อมตัวเลขหน้ารูป</p>
+<p class="meta">บทเรียน · ~25 นาที · เอาพจน์ $\frac{\lambda}{4!}\phi^4$ ของบทที่ 21 มาจับคู่ด้วยภาพเดียวกับบทที่ 24
+คือจุดเรียงแถวกับโค้ง แล้วรูปของบทที่ 21 ออกมาเองพร้อมตัวเลขหน้ารูป</p>
 
-<div class="key">
-  <p style="margin-top:0"><strong>บทที่ 24 และชุดฝึกผ่านครบ</strong> ตอนนี้แบจับคู่ได้แล้วว่าคูณภายในวิธีและบวกระหว่างวิธี</p>
-  <p style="margin-bottom:0">บทที่ 21 บอกว่า $4!$ ใน $\frac{\lambda}{4!}$ ตัดกับจำนวนวิธีต่อขาพอดี แต่นับแบบเล่าเรื่อง
-  บทนี้นับใหม่ด้วยการจับคู่ ได้ผลเดียวกัน และเห็นรูปอื่นที่บทที่ 21 ไม่ได้วาดด้วย</p>
-</div>
+<h2>① จุดยอดคือสี่จุด ไม่ใช่จุดเดียว</h2>
 
-<h2>① จุดยอด = สนามสี่ตัวที่ตำแหน่งเดียวกัน</h2>
+<p>ในบทที่ 24 เราหา $\langle 0|x^4|0\rangle$ โดยวาง $x$ สี่ตัวเป็นสี่จุดในแถว แม้ทั้งสี่ตัวชื่อ $x$ เหมือนกัน
+แต่ตำแหน่งที่ 1, 2, 3, 4 ในแถวเป็นคนละจุด จึงจับคู่ได้สามวิธี บทนี้ใช้ความคิดเดียวกันทุกอย่าง</p>
 
-<p>พจน์ $\frac{\lambda}{4!}\phi^4$ ใน Lagrangian ของบทที่ 21 มีสนามสี่ตัวคูณกันที่ตำแหน่งเดียวกัน
-เรียกตำแหน่งนั้นว่า $v$ (จุดยอด) และเรียกสนามแต่ละตัวในนั้นว่า<strong>ขา</strong>ของจุดยอด
-เมื่อมีอันตรกิริยาครั้งเดียว ค่าในสุญญากาศของสนามสองจุดจะมีพจน์เพิ่มขึ้นมาหนึ่งพจน์ที่หน้าตาแบบนี้</p>
+<p>พจน์ $\frac{\lambda}{4!}\phi^4$ ใน Lagrangian ของบทที่ 21 คือ $\phi$ สี่ตัวคูณกันที่ตำแหน่งเดียวกัน
+เรียกตำแหน่งนั้นว่า $v$ (จุดยอด) และตั้งชื่อ $\phi$ สี่ตัวนั้นว่า <strong>ขา a, b, c, d</strong>
+ถ้ามีอนุภาคเข้าออกที่จุด 1 กับจุด 2 และชนกันหนึ่งครั้ง ค่าที่ต้องหาคือ</p>
 
 <div class="eq" data-eqno="1">$$ \frac{\lambda}{4!}\,\langle 0|\,\phi_1\,\phi_2\;\phi_v\phi_v\phi_v\phi_v\,|0\rangle $$</div>
 
-<p>ในวงเล็บคือสนามหกตัว จับคู่ด้วย Wick ได้ตามปกติ ($5!! = 15$ วิธี) ค่าของแต่ละคู่อ่านจากปลายสองข้างของเส้น:</p>
+<p>ในวงเล็บมี $\phi$ หกตัว วางเป็นหกจุดในแถวแบบบทที่ 24 ได้แบบนี้ (ขาทั้งสี่อยู่ที่ตำแหน่ง $v$ เดียวกัน แต่เป็นคนละจุดในแถว):</p>
+
+<figure>
+<svg viewBox="0 0 175 90" width="175" role="img" aria-label="หกจุดเรียงแถว: 1, 2 และขาของจุดยอด a b c d"><g transform="translate(0 0)"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M80 66 L80 70 L164 70 L164 66"/></g><g fill="currentColor"><circle cx="14" cy="46" r="3.5"/><circle cx="42" cy="46" r="3.5"/><circle cx="86" cy="46" r="3.5"/><circle cx="110" cy="46" r="3.5"/><circle cx="134" cy="46" r="3.5"/><circle cx="158" cy="46" r="3.5"/></g><g fill="currentColor" font-size="11" text-anchor="middle" font-family="IBM Plex Mono, monospace"><text x="14" y="61">1</text><text x="42" y="61">2</text><text x="86" y="61">a</text><text x="110" y="61">b</text><text x="134" y="61">c</text><text x="158" y="61">d</text><text x="122.0" y="82">ขาของ v</text></g></g></svg>
+<figcaption>หกจุดที่ต้องจับคู่ · a, b, c, d คือ $\phi_v$ สี่ตัว</figcaption>
+</figure>
+
+<p>หกจุดจับคู่ได้ $5!! = 15$ วิธี เหมือนในบทที่ 24 ไม่มีอะไรใหม่</p>
+
+<h2>② บีบ a, b, c, d ให้เป็นจุดเดียว แล้วได้รูป</h2>
+
+<p>วาดแต่ละวิธีเป็นโค้งบนแถว แล้ว<strong>บีบขา a, b, c, d เข้าหากันจนเป็นจุดเดียว</strong> (เพราะมันอยู่ที่ตำแหน่ง $v$ เดียวกันจริง ๆ)
+โค้งจาก 1 ไปขาตัวไหนก็กลายเป็นเส้นจาก 1 เข้า $v$ ส่วนโค้งที่ต่อขากับขา เช่น cd กลายเป็นห่วงที่ออกจาก $v$ แล้ววนกลับ $v$
+ตัวอย่างสามวิธี (เขียน "1a 2b cd" แปลว่าจุด 1 จับขา a · จุด 2 จับขา b · ขา c จับขา d):</p>
+
+<figure>
+<svg viewBox="0 0 330 285" width="330" role="img" aria-label="สามวิธีจับคู่ วาดเป็นโค้งบนจุดเรียงแถว แล้วบีบขา a b c d เป็นจุดเดียว ได้รูป A รูป A และรูป B"><g transform="translate(0 0)"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 46 Q50.0 17.839999999999996 86 46"/><path d="M42 46 Q76.0 18.959999999999997 110 46"/><path d="M134 46 Q146.0 31.28 158 46"/><path d="M80 66 L80 70 L164 70 L164 66"/></g><g fill="currentColor"><circle cx="14" cy="46" r="3.5"/><circle cx="42" cy="46" r="3.5"/><circle cx="86" cy="46" r="3.5"/><circle cx="110" cy="46" r="3.5"/><circle cx="134" cy="46" r="3.5"/><circle cx="158" cy="46" r="3.5"/></g><g fill="currentColor" font-size="11" text-anchor="middle" font-family="IBM Plex Mono, monospace"><text x="14" y="61">1</text><text x="42" y="61">2</text><text x="86" y="61">a</text><text x="110" y="61">b</text><text x="134" y="61">c</text><text x="158" y="61">d</text><text x="122.0" y="82">ขาของ v</text></g></g><g transform="translate(0 0)"><g fill="currentColor" font-size="16" text-anchor="middle"><text x="196" y="50">→</text></g><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M228 46 L318 46"/><circle cx="273" cy="34" r="12"/></g><g fill="currentColor"><circle cx="228" cy="46" r="3.5"/><circle cx="318" cy="46" r="3.5"/><circle cx="273" cy="46" r="4.5"/></g><g fill="currentColor" font-size="11" text-anchor="middle" font-family="IBM Plex Mono, monospace"><text x="228" y="61">1</text><text x="318" y="61">2</text><text x="273" y="61">v</text></g></g><g transform="translate(0 95)"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 46 Q74.0 4.399999999999999 134 46"/><path d="M42 46 Q100.0 5.519999999999996 158 46"/><path d="M86 46 Q98.0 31.28 110 46"/><path d="M80 66 L80 70 L164 70 L164 66"/></g><g fill="currentColor"><circle cx="14" cy="46" r="3.5"/><circle cx="42" cy="46" r="3.5"/><circle cx="86" cy="46" r="3.5"/><circle cx="110" cy="46" r="3.5"/><circle cx="134" cy="46" r="3.5"/><circle cx="158" cy="46" r="3.5"/></g><g fill="currentColor" font-size="11" text-anchor="middle" font-family="IBM Plex Mono, monospace"><text x="14" y="61">1</text><text x="42" y="61">2</text><text x="86" y="61">a</text><text x="110" y="61">b</text><text x="134" y="61">c</text><text x="158" y="61">d</text><text x="122.0" y="82">ขาของ v</text></g></g><g transform="translate(0 95)"><g fill="currentColor" font-size="16" text-anchor="middle"><text x="196" y="50">→</text></g><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M228 46 L318 46"/><circle cx="273" cy="34" r="12"/></g><g fill="currentColor"><circle cx="228" cy="46" r="3.5"/><circle cx="318" cy="46" r="3.5"/><circle cx="273" cy="46" r="4.5"/></g><g fill="currentColor" font-size="11" text-anchor="middle" font-family="IBM Plex Mono, monospace"><text x="228" y="61">1</text><text x="318" y="61">2</text><text x="273" y="61">v</text></g></g><g transform="translate(0 190)"><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 46 Q28.0 30.16 42 46"/><path d="M86 46 Q98.0 31.28 110 46"/><path d="M134 46 Q146.0 31.28 158 46"/><path d="M80 66 L80 70 L164 70 L164 66"/></g><g fill="currentColor"><circle cx="14" cy="46" r="3.5"/><circle cx="42" cy="46" r="3.5"/><circle cx="86" cy="46" r="3.5"/><circle cx="110" cy="46" r="3.5"/><circle cx="134" cy="46" r="3.5"/><circle cx="158" cy="46" r="3.5"/></g><g fill="currentColor" font-size="11" text-anchor="middle" font-family="IBM Plex Mono, monospace"><text x="14" y="61">1</text><text x="42" y="61">2</text><text x="86" y="61">a</text><text x="110" y="61">b</text><text x="134" y="61">c</text><text x="158" y="61">d</text><text x="122.0" y="82">ขาของ v</text></g></g><g transform="translate(0 190)"><g fill="currentColor" font-size="16" text-anchor="middle"><text x="196" y="50">→</text></g><g fill="none" stroke="currentColor" stroke-width="1.5"><path d="M228 52 L318 52"/><circle cx="263" cy="22" r="10"/><circle cx="283" cy="22" r="10"/></g><g fill="currentColor"><circle cx="228" cy="52" r="3.5"/><circle cx="318" cy="52" r="3.5"/><circle cx="273" cy="22" r="4.5"/></g><g fill="currentColor" font-size="11" text-anchor="middle" font-family="IBM Plex Mono, monospace"><text x="228" y="66">1</text><text x="318" y="66">2</text><text x="273" y="44">v</text></g></g></svg>
+<figcaption>บน: 1a 2b cd → รูป A · กลาง: 1c 2d ab → รูป A เหมือนกัน · ล่าง: 12 ab cd → รูป B</figcaption>
+</figure>
+
+<p>สองแถวบนเป็นคนละวิธีจับคู่ (โค้งต่างกัน) แต่บีบแล้วได้รูปเดียวกัน เพราะรูปที่บีบแล้วมองไม่เห็นชื่อขา
+ทั้ง 15 วิธีบีบแล้วได้แค่สองรูป และดูได้จากจุด 1 จุดเดียว:</p>
 
 <table>
-<thead><tr><th>คู่</th><th>ค่า</th><th>ในรูป</th></tr></thead>
+<thead><tr><th>จุด 1 จับกับ</th><th>รูป</th></tr></thead>
 <tbody>
-<tr><td>$\phi_1$ กับขาของ $v$</td><td>$D_{1v}$</td><td>เส้นจากจุด 1 ไปจุดยอด</td></tr>
-<tr><td>ขาของ $v$ กับขาของ $v$</td><td>$D_{vv}$</td><td>เส้นออกจาก $v$ แล้ววนกลับ $v$ (ห่วง)</td></tr>
-<tr><td>$\phi_1$ กับ $\phi_2$</td><td>$D_{12}$</td><td>เส้นตรงจาก 1 ไป 2 ไม่ผ่านจุดยอด</td></tr>
+<tr><td>ขาตัวใดตัวหนึ่ง (a, b, c หรือ d)</td><td>A — จุด 2 ต้องจับขาด้วย และสองขาที่เหลือกลายเป็นห่วง</td></tr>
+<tr><td>จุด 2</td><td>B — ขาทั้งสี่จับกันเองเป็นห่วงสองวง</td></tr>
 </tbody>
 </table>
 
-<h2>② ตัวอย่างสองจุด: 15 วิธี ได้แค่สองรูป</h2>
+<h2>③ นับว่าแต่ละรูปมีกี่วิธี</h2>
 
-<p><strong>รูป A</strong> — จุด 1 กับจุด 2 ต่อเข้าจุดยอดทั้งคู่ และสองขาที่เหลือของจุดยอดจับกันเองเป็นห่วง
-นับได้แบบนี้: จุด 1 เลือกขาของ $v$ ได้ $4$ ทาง จุด 2 เลือกขาที่เหลือได้ $3$ ทาง สองขาสุดท้ายจับกันได้ $1$ วิธี
-รวม $4 \times 3 \times 1 = 12$ วิธี ทุกวิธีมีเส้นชุดเดียวกัน ค่าจึงเท่ากันหมดคือ $D_{1v}D_{2v}D_{vv}$</p>
-
-<p><strong>รูป B</strong> — จุด 1 จับจุด 2 โดยตรง แล้วสี่ขาของจุดยอดจับกันเองหมด
-สี่ขาจับคู่กันได้ $3!! = 3$ วิธี รวม $3$ วิธี ค่าเท่ากันหมดคือ $D_{12}D_{vv}D_{vv}$</p>
-
-<p>ตรวจ: $12 + 3 = 15$ ครบทุกวิธี (จุด 1 จะจับขาของ $v$ หรือจับจุด 2 ก็ได้ ไม่มีทางที่สาม)</p>
-
-<figure>
-<svg viewBox="0 0 330 90" width="330" role="img" aria-label="รูป A: จุด 1 กับ 2 ต่อเข้าจุดยอดที่มีห่วงหนึ่งวง · รูป B: เส้นตรงจาก 1 ไป 2 แยกจากจุดยอดที่มีห่วงสองวง">
-  <g fill="none" stroke="currentColor" stroke-width="1.6">
-    <path d="M15 65 L80 65 L145 65"/>
-    <circle cx="80" cy="47" r="18"/>
-    <path d="M190 75 L315 75"/>
-    <circle cx="237" cy="32" r="14"/><circle cx="267" cy="32" r="14"/>
-  </g>
-  <g fill="currentColor">
-    <circle cx="15" cy="65" r="3.5"/><circle cx="145" cy="65" r="3.5"/><circle cx="80" cy="65" r="4.5"/>
-    <circle cx="190" cy="75" r="3.5"/><circle cx="315" cy="75" r="3.5"/><circle cx="252" cy="32" r="4.5"/>
-  </g>
-  <g fill="currentColor" font-size="11" text-anchor="middle" font-family="IBM Plex Mono, monospace">
-    <text x="15" y="83">1</text><text x="145" y="83">2</text><text x="80" y="83">v</text>
-    <text x="190" y="89">1</text><text x="315" y="89">2</text><text x="252" y="58">v</text>
-    <text x="80" y="14">A</text><text x="252" y="12">B</text>
-  </g>
-</svg>
-<figcaption>ซ้าย: รูป A ($12$ วิธี) · ขวา: รูป B ($3$ วิธี) · จุดใหญ่คือจุดยอด</figcaption>
-</figure>
-
-<h3>รูปเดียว แต่หลายวิธี: ตั้งชื่อขาก่อน</h3>
-
-<p>รูปวาดไม่บอกว่าเส้นไหนต่อเข้า<em>ขาไหน</em> ของจุดยอด แต่การจับคู่สนใจเรื่องนี้
-ลองตั้งชื่อสี่ขาของจุดยอดว่า a, b, c, d (คือ $\phi_v$ ตัวที่ 1 ถึง 4 ในสมการ (1)) แล้วไล่ทุกวิธีของรูป A
-เขียน "1a 2b cd" แปลว่าจุด 1 จับขา a · จุด 2 จับขา b · ขา c จับขา d เป็นห่วง (แต่ละแถวคือจุด 1 เลือกขาเดียวกัน)</p>
+<p><strong>รูป A</strong> — จุด 1 เลือกขาได้ $4$ ทาง จุด 2 เลือกขาที่ยังว่างได้ $3$ ทาง สองขาสุดท้ายจับกันได้ $1$ วิธี
+รวม $4 \times 3 \times 1 = 12$ วิธี ไล่ครบได้ตามตารางนี้ (แต่ละแถวคือจุด 1 เลือกขาเดียวกัน):</p>
 
 <table class="mono">
 <tbody>
@@ -91,180 +75,176 @@
 </tbody>
 </table>
 
-<p>ทั้ง 12 แบบวาดออกมาเป็นรูป A รูปเดียวกันหมด เพราะในรูปมองไม่เห็นชื่อขา
-รูป B ก็เหมือนกัน: จุด 1 จับจุด 2 แล้วสี่ขาจับกันเองได้สามแบบคือ ab · cd, ac · bd และ ad · bc
-ทั้งสามแบบวาดเป็นห่วงสองวงเหมือนกันหมด</p>
+<p><strong>รูป B</strong> — จุด 1 จับจุด 2 แล้วขาสี่ตัวจับกันเองได้ $3!! = 3$ วิธี คือ ab·cd · ac·bd · ad·bc รวม $3$ วิธี
+ตรวจ: $12 + 3 = 15$ ครบทุกวิธี</p>
 
-<p>นี่คือที่มาของตัวเลขหน้ารูป <strong>หนึ่งรูปเป็นตัวแทนของหลายวิธีจับคู่</strong> และทุกวิธีของรูปเดียวกันมีค่าเท่ากัน
-(เส้นชุดเดียวกัน) ค่าของรูปจึงเท่ากับ (จำนวนวิธี) × (ค่าของหนึ่งวิธี)</p>
+<p>ทุกวิธีในรูปเดียวกันมีเส้นชุดเดียวกัน ค่าจึงเท่ากัน (บทที่ 24: เมื่อทุกวิธีเท่ากัน บวกกันก็คือคูณจำนวนวิธี)
+คูณด้วย $\frac{\lambda}{4!} = \frac{\lambda}{24}$ ที่อยู่หน้าวงเล็บ ตัวเลขหน้าแต่ละรูปจึงเป็น</p>
 
-<p>คูณด้วย $\frac{\lambda}{4!} = \frac{\lambda}{24}$ ที่อยู่หน้าวงเล็บในสมการ (1) ตัวเลขหน้าแต่ละรูปจึงเป็น</p>
+<div class="eq" data-eqno="2">$$ \text{A}:\;\frac{12}{24}\lambda = \frac{\lambda}{2} \qquad\quad \text{B}:\;\frac{3}{24}\lambda = \frac{\lambda}{8} $$</div>
 
-<div class="eq" data-eqno="2">$$ \begin{array}{l} \tfrac{12}{24}\,\lambda\,D_{1v}D_{2v}D_{vv} \;+\; \tfrac{3}{24}\,\lambda\,D_{12}D_{vv}D_{vv} \\ \quad=\; \tfrac{\lambda}{2}\,(\text{A}) \;+\; \tfrac{\lambda}{8}\,(\text{B}) \end{array} $$</div>
+<p>ตำราเขียนตัวเลขนี้เป็น $\frac{1}{S}$ และเรียก $S$ ว่า <strong>symmetry factor</strong> ของรูป (A มี $S = 2$ · B มี $S = 8$)
+มันไม่ใช่กฎใหม่ มันคือ $24$ หารด้วยจำนวนวิธีจับคู่ที่บีบแล้วได้รูปนั้น</p>
 
-<p>$4!$ ตัดกับการนับไม่หมด เหลือ $\tfrac12$ กับ $\tfrac18$ ค้างอยู่ ตำราเขียนตัวเลขนี้เป็น $\frac{1}{S}$
-และเรียก $S$ ว่า <strong>symmetry factor</strong> ของรูป (รูป A มี $S = 2$ · รูป B มี $S = 8$)
-สิ่งที่บทนี้แสดงคือ $S$ ไม่ใช่กฎใหม่ มันคือ $24$ หารด้วยจำนวนวิธีจับคู่ที่ให้รูปนั้น</p>
+<h2>④ สี่จุด: รูป X ของบทที่ 21</h2>
 
-<h2>③ สี่จุด: รูป X ของบทที่ 21</h2>
+<p>ถ้ามีอนุภาคสี่ตัว แถวจะมีจุด 1, 2, 3, 4 และขา a, b, c, d รวมแปดจุด
+วิธีที่จุดภายนอกทุกจุดจับขา (คนละขา) บีบแล้วได้รูปตัว X ของบทที่ 21 นับได้ $4 \times 3 \times 2 \times 1 = 24$ วิธี ดังนั้น</p>
 
-<p>ทำแบบเดียวกันกับ $\frac{\lambda}{4!}\langle 0|\phi_1\phi_2\phi_3\phi_4\;\phi_v\phi_v\phi_v\phi_v|0\rangle$ ซึ่งมีแปดตัว
-รูปที่ทุกจุดภายนอกต่อเข้าจุดยอดคือรูปตัว X ของบทที่ 21 จุด 1 เลือกขาได้ $4$ ทาง จุด 2 ได้ $3$ จุด 3 ได้ $2$ จุด 4 ได้ $1$
-รวม $4! = 24$ วิธี คูณ $\frac{\lambda}{24}$ แล้วได้</p>
+<div class="eq" data-eqno="3">$$ \frac{24}{24}\,\lambda \;=\; \lambda $$</div>
 
-<div class="eq" data-eqno="3">$$ \frac{24}{24}\,\lambda\;D_{1v}D_{2v}D_{3v}D_{4v} \;=\; \lambda\,D_{1v}D_{2v}D_{3v}D_{4v} $$</div>
-
-<p>ตัวคูณเหลือ $\lambda$ เปล่า ๆ ตรงกับข้อ ③ ของบทที่ 21 ตอนนี้ได้มาจากการนับคู่ล้วน ๆ
-ส่วนอีก $105 - 24 = 81$ วิธีเป็นรูปที่มีจุดภายนอกบางจุดไม่ได้แตะจุดยอด คือมีอนุภาคบางตัวไม่ได้ชนกับใคร ข้อฝึกจะนับรูปเหล่านี้</p>
+<p>เหลือ $\lambda$ เปล่า ๆ ตรงกับบทที่ 21 แต่คราวนี้ได้มาจากการนับคู่ล้วน ๆ
+($4!$ ใน $\frac{\lambda}{4!}$ ถูกใส่ไว้ให้ตัดกับรูปนี้พอดี)</p>
 
 <div class="warn">
-  <strong>ยังไม่แตะโดยตั้งใจ</strong> — ตัวคูณ $-i$ และการอินทิกรัลตำแหน่งจุดยอด $v$ ทุกที่ (มาจาก Dyson series บทถัดไป) ·
-  time ordering $T$ · เหตุผลที่ตำราตัดรูปที่มีส่วนแยกขาดออกตอนคำนวณการชน
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — วิธีอื่นของแปดจุด (มีทั้งหมด $7!! = 105$ วิธี รูป X ใช้ไป 24) ·
+  ตัวคูณ $-i$ และการอินทิกรัลตำแหน่ง $v$ (Dyson series บทถัดไป) · time ordering $T$
 </div>
 
-<p class="src">ตรวจด้วย Python: ไล่ทุกวิธีจับคู่ของตำแหน่งจริง (15 กับ 105 วิธี) แล้วจัดกลุ่มตามรูป ได้ $12/3$ และ $24/72/9$ ·
-ตรวจไขว้ว่าถ้าทุกเส้นค่าเท่ากันจะได้ $\langle 0|(a+a^\dagger)^6|0\rangle = 15$ และ $\langle 0|(a+a^\dagger)^8|0\rangle = 105$ จากเมทริกซ์ปุ่มจริง ·
-Peskin &amp; Schroeder §4.4 · Tong, <em>Quantum Field Theory</em> บทที่ 3 —
+<p class="src">ตรวจด้วย Python: ไล่ทุกวิธีจับคู่ของหกจุดจริงแล้วจัดกลุ่มตามรูป ได้ $12$ กับ $3$ · แปดจุดได้รูป X $24$ วิธี ·
+ตารางในข้อ ③ สร้างจากการไล่จริง · Peskin &amp; Schroeder §4.4 · Tong, <em>Quantum Field Theory</em> บทที่ 3 —
 <code>scripts/verify/0038_vertex.py</code></p>
 
 <h2>ลองเอง</h2>
 <div id="score"></div>
 
-<p class="meta">ตอบเป็นตัวเลข · เศษส่วนพิมพ์แบบ <code>1/8</code> ได้ · มีคำถามให้พิมพ์ในแชต</p>
+<p class="meta">ตอบเป็นตัวเลข (ข้อ 2 ตอบ A หรือ B) · เศษส่วนพิมพ์แบบ <code>1/8</code> ได้ · มีคำถามให้พิมพ์ในแชต</p>
+
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 1 · รูป A ของสองจุด &nbsp;<span class="hint">(สมการ (2))</span></h3>
-  <p class="hint">จุด 1 กับ 2 ต่อเข้าจุดยอด · สองขาที่เหลือของจุดยอดจับกันเอง</p>
+  <h3>ข้อ 1 · วางจุดเป็นแถว &nbsp;<span class="hint">(ข้อ ①)</span></h3>
+  <p class="hint">$\langle 0|\phi_1\phi_2\;\phi_v\phi_v\phi_v\phi_v|0\rangle$</p>
   <ol class="steps">
-    <li data-answer="4" data-alt="สี่|4.0">
-      <p><strong>ขั้น 1</strong> — จุด 1 เลือกขาของจุดยอดได้กี่ทาง</p>
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 1</strong> — วางเป็นแถวได้กี่จุด (นับขาของ $v$ แยกทีละขา)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">จุดยอดมี $4$ ขา</p>
-    </li>
-    <li data-answer="3" data-alt="สาม|3.0">
-      <p><strong>ขั้น 2</strong> — จุด 2 เลือกขาที่เหลือได้กี่ทาง</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">ขาหนึ่งถูกจุด 1 ใช้ไปแล้ว เหลือ $3$</p>
-    </li>
-    <li data-answer="12" data-alt="สิบสอง|12.0">
-      <p><strong>ขั้น 3</strong> — รูป A มีกี่วิธี (สองขาสุดท้ายจับกันได้ $1$ วิธี · ทุกการเลือกในขั้น 1 ไปคู่กับทุกการเลือกในขั้น 2 ได้)</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$4 \times 3 \times 1 = 12$</p>
-    </li>
-    <li data-answer="1/2" data-alt="0.5">
-      <p><strong>ขั้น 4</strong> — ตัวเลขหน้ารูป A คือ (จำนวนวิธี) $\div 4!$ เท่ากับเท่าไร</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\frac{12}{24} = \frac12$ ⇒ symmetry factor $S = 2$</p>
-    </li>
-  </ol>
-  <p class="fb">ทุกวิธีของรูปเดียวกันมีค่าเท่ากัน ⇒ ใช้ทางลัดคูณจำนวนวิธีได้</p>
-</div>
-
-<div class="quiz" data-steps>
-  <h3>ข้อ 2 · รูป B ของสองจุด &nbsp;<span class="hint">(สมการ (2))</span></h3>
-  <p class="hint">จุด 1 จับจุด 2 โดยตรง · สี่ขาของจุดยอดจับกันเองหมด</p>
-  <ol class="steps">
-    <li data-answer="3" data-alt="สาม|3.0">
-      <p><strong>ขั้น 1</strong> — สี่ขาของจุดยอดจับคู่กันเองได้กี่วิธี</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$3!! = 3$</p>
-    </li>
-    <li data-answer="1/8" data-alt="0.125">
-      <p><strong>ขั้น 2</strong> — ตัวเลขหน้ารูป B ($\div 4!$)</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\frac{3}{24} = \frac18$ ⇒ $S = 8$</p>
+      <p class="fb">จุด 1, 2 และขา a, b, c, d = $6$ จุด</p>
     </li>
     <li data-answer="15" data-alt="สิบห้า|15.0">
-      <p><strong>ขั้น 3</strong> — จำนวนวิธีของรูป A บวกรูป B</p>
+      <p><strong>ขั้น 2</strong> — จับคู่ทั้งแถวได้กี่วิธี</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$12 + 3 = 15 = 5!!$ ครบทุกวิธีของหกตำแหน่ง</p>
+      <p class="fb">$5!! = 5 \times 3 \times 1 = 15$ — เหมือนหกชิ้นในบทที่ 24</p>
     </li>
   </ol>
-  <p class="fb">ผลรวมของทุกรูปต้องเท่ากับจำนวนวิธีจับคู่ทั้งหมดเสมอ — ใช้ตรวจว่านับครบ</p>
+  <p class="fb">จุดยอดหนึ่งจุดคือสี่จุดในแถว</p>
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 3 · สี่จุดกับหนึ่งจุดยอด: ทั้งหมดกี่วิธี</h3>
-  <p class="hint">$\langle 0|\phi_1\phi_2\phi_3\phi_4\;\phi_v\phi_v\phi_v\phi_v|0\rangle$</p>
+  <h3>ข้อ 2 · บีบแล้วได้รูปไหน &nbsp;<span class="hint">(ข้อ ②)</span></h3>
+  <p class="hint">พิมพ์ A หรือ B · ดูแค่ว่าจุด 1 จับกับใคร</p>
   <ol class="steps">
-    <li data-answer="8" data-alt="แปด|8.0">
-      <p><strong>ขั้น 1</strong> — มีสนามทั้งหมดกี่ตัว (ตำแหน่งที่ต้องจับคู่)</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">จุดภายนอก $4$ + ขาของจุดยอด $4$ = $8$</p>
+    <li data-answer="A" data-alt="a|รูปA">
+      <p><strong>ขั้น 1</strong> — 1b 2c ad</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ A หรือ B" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">จุด 1 จับขา b ⇒ เส้นจาก 1 เข้า $v$ ⇒ รูป A</p>
     </li>
-    <li data-answer="105" data-alt="105.0">
-      <p><strong>ขั้น 2</strong> — จำนวนวิธีจับคู่ทั้งหมด</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$7!! = 7 \times 5 \times 3 \times 1 = 105$</p>
+    <li data-answer="B" data-alt="b|รูปB">
+      <p><strong>ขั้น 2</strong> — 12 ac bd</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ A หรือ B" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">จุด 1 จับจุด 2 ⇒ รูป B</p>
+    </li>
+    <li data-answer="A" data-alt="a|รูปA">
+      <p><strong>ขั้น 3</strong> — 1d 2a bc</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ A หรือ B" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">จุด 1 จับขา d ⇒ รูป A</p>
     </li>
   </ol>
-  <p class="fb">ข้อ 4-6 แบ่ง 105 วิธีนี้ออกเป็นสามแบบ</p>
+  <p class="fb">จุด 1 จับขา ⇒ A · จุด 1 จับจุด 2 ⇒ B</p>
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 4 · แบบ X: ทุกจุดภายนอกต่อเข้าจุดยอด &nbsp;<span class="hint">(สมการ (3))</span></h3>
+  <h3>ข้อ 3 · นับรูป A &nbsp;<span class="hint">(ข้อ ③)</span></h3>
   <ol class="steps">
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 1</strong> — จุด 1 จับกับขาตัวไหนก็ได้ใน a, b, c, d — ได้กี่ทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4$ ทาง (คือสี่แถวของตารางในข้อ ③)</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 2</strong> — จุด 2 จับกับขาที่ยังว่าง — ได้กี่ทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ขาหนึ่งถูกจุด 1 ใช้ไปแล้ว เหลือ $3$ (คือสามช่องในแต่ละแถว)</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 3</strong> — ขาสองตัวสุดท้ายจับกันเอง — ได้กี่วิธี</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">เหลือสองตัว จับกันได้แบบเดียว ⇒ $1$</p>
+    </li>
+    <li data-answer="12" data-alt="สิบสอง|12.0">
+      <p><strong>ขั้น 4</strong> — รูป A มีกี่วิธี (ทุกทางของขั้น 1 ไปกับทุกทางของขั้น 2 ได้ ⇒ คูณ)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4 \times 3 \times 1 = 12$ = จำนวนช่องในตาราง</p>
+    </li>
+  </ol>
+  <p class="fb">นับแบบเดียวกับตาราง: แถว × ช่องต่อแถว</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · นับรูป B และตรวจ &nbsp;<span class="hint">(ข้อ ③)</span></h3>
+  <ol class="steps">
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 1</strong> — จุด 1 จับจุด 2 แล้ว ขาสี่ตัว a, b, c, d จับกันเองได้กี่วิธี</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3!! = 3$ คือ ab·cd · ac·bd · ad·bc</p>
+    </li>
+    <li data-answer="15" data-alt="สิบห้า|15.0">
+      <p><strong>ขั้น 2</strong> — รูป A + รูป B</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$12 + 3 = 15$ ตรงกับข้อ 1 ⇒ นับครบ</p>
+    </li>
+  </ol>
+  <p class="fb">ทุกวิธีต้องเป็น A หรือ B อย่างใดอย่างหนึ่ง</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · ตัวเลขหน้ารูป &nbsp;<span class="hint">(สมการ (2))</span></h3>
+  <p class="hint">ตัวเลขหน้ารูป = (จำนวนวิธีของรูป) ÷ $4!$</p>
+  <ol class="steps">
+    <li data-answer="1/2" data-alt="0.5">
+      <p><strong>ขั้น 1</strong> — รูป A</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{12}{24} = \frac12$</p>
+    </li>
+    <li data-answer="1/8" data-alt="0.125">
+      <p><strong>ขั้น 2</strong> — รูป B</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{3}{24} = \frac18$</p>
+    </li>
+  </ol>
+  <p class="fb">symmetry factor: รูป A มี $S = 2$ · รูป B มี $S = 8$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · รูป X ของสี่จุด &nbsp;<span class="hint">(สมการ (3))</span></h3>
+  <p class="hint">แถวมีจุด 1, 2, 3, 4 และขา a, b, c, d · รูป X = จุดภายนอกทุกจุดจับขา</p>
+  <ol class="steps">
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 1</strong> — จุด 1 เลือกขาได้กี่ทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 2</strong> — จุด 2 เลือกขาที่ยังว่างได้กี่ทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 3</strong> — จุด 3 เลือกขาที่ยังว่างได้กี่ทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — จุด 4 ได้ขาสุดท้ายขาเดียว</p>
+    </li>
     <li data-answer="24" data-alt="ยี่สิบสี่|24.0">
-      <p><strong>ขั้น 1</strong> — จำนวนวิธี (จุด 1, 2, 3, 4 เลือกขาทีละจุด)</p>
+      <p><strong>ขั้น 4</strong> — รูป X มีกี่วิธี</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$4 \times 3 \times 2 \times 1 = 24$</p>
     </li>
     <li data-answer="1" data-alt="หนึ่ง|1.0">
-      <p><strong>ขั้น 2</strong> — ตัวเลขหน้ารูป X ($\div 4!$)</p>
+      <p><strong>ขั้น 5</strong> — ตัวเลขหน้ารูป X ($\div 4!$)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\frac{24}{24} = 1$ ⇒ เหลือ $\lambda$ เปล่า ๆ เหมือนบทที่ 21</p>
+      <p class="fb">$\frac{24}{24} = 1$ ⇒ เหลือ $\lambda$ เหมือนบทที่ 21</p>
     </li>
   </ol>
-  <p class="fb">$4!$ ใน $\frac{\lambda}{4!}$ ถูกเลือกมาให้ตัดกับรูปนี้พอดี</p>
-</div>
-
-<div class="quiz" data-steps>
-  <h3>ข้อ 5 · แบบแยกขาด: ไม่มีจุดภายนอกแตะจุดยอดเลย</h3>
-  <ol class="steps">
-    <li data-answer="3" data-alt="สาม|3.0">
-      <p><strong>ขั้น 1</strong> — จุดภายนอกสี่จุดจับคู่กันเองได้กี่วิธี</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$3!! = 3$</p>
-    </li>
-    <li data-answer="3" data-alt="สาม|3.0">
-      <p><strong>ขั้น 2</strong> — สี่ขาของจุดยอดจับคู่กันเองได้กี่วิธี</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$3!! = 3$</p>
-    </li>
-    <li data-answer="9" data-alt="เก้า|9.0">
-      <p><strong>ขั้น 3</strong> — จำนวนวิธีของแบบนี้ (ทุกวิธีในขั้น 1 ไปคู่กับทุกวิธีในขั้น 2 ได้)</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$3 \times 3 = 9$ — หลักการคูณของการนับ เพราะสองฝั่งเลือกอิสระจากกัน</p>
-    </li>
-  </ol>
-  <p class="fb">การคูณตรงนี้เป็นการคูณของการนับ (เลือกอิสระสองครั้ง) ไม่ใช่การคูณค่าของคู่</p>
-</div>
-
-<div class="quiz" data-steps>
-  <h3>ข้อ 6 · แบบกลาง: สองจุดต่อเข้าจุดยอด อีกสองจุดจับกันเอง</h3>
-  <ol class="steps">
-    <li data-answer="6" data-alt="หก|6.0">
-      <p><strong>ขั้น 1</strong> — เลือกว่าจุดภายนอกสองจุดไหนจะต่อเข้าจุดยอด ได้กี่แบบ</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\binom42 = 6$</p>
-    </li>
-    <li data-answer="12" data-alt="สิบสอง|12.0">
-      <p><strong>ขั้น 2</strong> — สองจุดที่เลือกแล้ว เลือกขาของจุดยอดได้กี่วิธี (สองขาที่เหลือจับกันเองได้ $1$ วิธี)</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$4 \times 3 = 12$ — เหมือนรูป A ในข้อ 1</p>
-    </li>
-    <li data-answer="72" data-alt="เจ็ดสิบสอง|72.0">
-      <p><strong>ขั้น 3</strong> — จำนวนวิธีของแบบนี้ (สองจุดภายนอกที่ไม่ได้เลือกจับกันเองได้ $1$ วิธี)</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$6 \times 12 \times 1 = 72$</p>
-    </li>
-    <li data-answer="105" data-alt="105.0">
-      <p><strong>ขั้น 4</strong> — ตรวจ: แบบ X + แบบกลาง + แบบแยกขาด</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$24 + 72 + 9 = 105$ ตรงกับข้อ 3 ⇒ นับครบ ไม่ซ้ำ</p>
-    </li>
-  </ol>
-  <p class="fb">จากทั้งหมด 105 วิธี มีแค่ 24 วิธี (แบบ X) ที่ทุกอนุภาคได้ชนกันจริง</p>
+  <p class="fb">$4!$ ใน $\frac{\lambda}{4!}$ ตัดกับรูป X พอดี</p>
 </div>
 
 <div class="ask">
