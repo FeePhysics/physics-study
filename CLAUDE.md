@@ -212,8 +212,9 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 
 - บทที่ 25 `lessons/0037-vertex.html` **ผ่าน 6/6** (รอบสอง) · บทที่ 24 + ชุดฝึก Wick ผ่านแล้ว
 - ชุดฝึกจุดยอด `0038-vertex-drill.html` ผ่าน 6/6
-- ล่าสุด: **บทที่ 26** `lessons/0039-dyson.html` (Dyson series: $-i$ · $\frac1{n!}$ = สามเหลี่ยม · $-i\lambda\int d^4z$) · learning record `0046` — **ผ่าน 6/6** (รอบสาม · รอบแรก "อ่านไม่เข้าใจ" ⇒ เขียนใหม่ · รอบสอง 3/6)
-- งานถัดไป: บทที่ 27 ต่อช่วง C (time ordering $T$ ⇒ propagator · amplitude · เช็คพอยต์อ่าน Tong บทที่ 3) · แวะ GR ยังเปิดอยู่ (แบเลือกต่อ C ก่อน 2026-11-10)
+- บทที่ 26 `0039-dyson.html` (Dyson series) ผ่าน 6/6 (รอบสาม)
+- ล่าสุด: **บทที่ 27** `lessons/0040-time-order.html` (time ordering $T$ ⇒ Feynman propagator $D_F$ · เส้น = $D_F$) · learning record `0047` — **"ผลรอบแรก" ยังรอผล**
+- งานถัดไป: ผลบทที่ 27 → แก้ → ต่อช่วง C (amplitude ของการชน · เช็คพอยต์อ่าน Tong บทที่ 3) · แวะ GR ยังเปิดอยู่
 - ⚠️ `quiz.js` รับตัว O แทนเลข 0 แล้ว (iPad · 2026-11-11)
 - ⚠️ งานเสร็จแต่ละชิ้นต้อง merge เข้า `main` — session ใหม่เริ่มจาก `main` (เคยค้างที่บทที่ 23 ทั้งที่เรียนถึงบทที่ 26)
 - ⚠️ `build_standalone.py` เคยปล่อยสคริปต์ KaTeX CDN ค้างในทุกไฟล์ build ⇒ iPad ขึ้น "Script error." · แก้แล้ว + ด่านกันในตัว build (2026-11-10)

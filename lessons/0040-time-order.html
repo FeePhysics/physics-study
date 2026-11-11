@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 27 · เรียงตามเวลา</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 27 · เรียงตามเวลา</h1>
+<p class="meta">บทเรียน · ~20 นาที · คู่หนึ่งคู่ในการจับคู่มีค่าเท่าไรเมื่อสองปลายอยู่คนละเวลา และทำไมต้องเรียงเวลาก่อน</p>
+
+<h2>① คำถามของบทนี้</h2>
+<p>
+ในบทที่ 24 เราจับคู่ $x$ ของสปริงตัวเดียว และทุกคู่ให้ค่าเท่ากันหมดคือ $\frac{1}{2\omega}$ ที่เป็นแบบนั้นเพราะ $x$ ทุกตัวอยู่ที่<strong>เวลาเดียวกัน</strong>
+แต่ในบทที่ 25 และ 26 จุด 1, จุด 2 และจุดยอด $z$ อยู่คนละที่และคนละเวลา บทนี้ถามว่าคู่ที่ปลายอยู่คนละเวลามีค่าเท่าไร
+คำตอบคือ propagator ของบทที่ 20 แต่มีเงื่อนไขหนึ่งข้อที่บทนั้นยังไม่ได้พูดถึง คือต้อง<strong>เรียงตามเวลาก่อน</strong>
+</p>
+
+<h2>② ปล่อยให้สองปลายอยู่คนละเวลา</h2>
+<p>
+บทที่ 18 เขียนตำแหน่งสปริงว่า $x = (a + a^\dagger)/\sqrt{2\omega}$ และบทที่ 19 บอกว่าปุ่มแต่ละตัวหมุนตามเวลา $a$ ติด $e^{-i\omega t}$ ส่วน $a^\dagger$ ติด $e^{+i\omega t}$
+</p>
+<div class="eq" data-eqno="1">$$ x(t) \;=\; \frac{a\,e^{-i\omega t} \;+\; a^\dagger e^{+i\omega t}}{\sqrt{2\omega}} $$</div>
+<p>
+เอาสองตัวมาวางคู่กัน $\langle 0|\,x(t_1)\,x(t_2)\,|0\rangle$ แล้วใช้กฎของบทที่ 24 ว่าสตริงที่รอดต้อง "ขึ้นก่อนลง"
+อ่านจากขวาไปซ้าย ตัวขวาต้องเป็นปุ่มขึ้น $a^\dagger$ จาก $x(t_2)$ และตัวซ้ายต้องเป็นปุ่มลง $a$ จาก $x(t_1)$ สตริงที่รอดมีแบบเดียว:
+</p>
+<div class="eq" data-eqno="2">$$ \langle 0|\,x(t_1)\,x(t_2)\,|0\rangle \;=\; \frac{e^{-i\omega t_1}\,e^{+i\omega t_2}}{2\omega} \;=\; \frac{e^{-i\omega(t_1 - t_2)}}{2\omega} $$</div>
+<p>
+ลองแทนตัวเลข $\omega = 2$, $t_1 = 3$, $t_2 = 1$ จะได้ $\frac{e^{-4i}}{4}$ ทีนี้สลับลำดับเป็น $\langle 0|x(1)\,x(3)|0\rangle$
+สมการ (2) ให้ $\frac{e^{+4i}}{4}$ เลขชี้กำลังกลับเครื่องหมาย และ<strong>ได้ค่าคนละค่ากัน</strong>
+ลำดับซ้ายขวาจึงสำคัญ (สาเหตุคือ $a a^\dagger \neq a^\dagger a$ เหมือนในบทที่ 18)
+</p>
+<p>
+ในบทที่ 24 เราไม่เคยเจอเรื่องนี้ เพราะเมื่อ $t_1 = t_2$ เลขชี้กำลังเป็นศูนย์ ทั้งสองลำดับได้ $\frac{1}{2\omega}$ เท่ากัน
+</p>
+
+<h2>③ กติกา: เวลามากอยู่ซ้าย</h2>
+<p>
+ในบทที่ 20 เราอ่านผลคูณจาก<strong>ขวาไปซ้าย</strong> ตัวขวาสุดทำก่อน (สร้างที่ $y$ ก่อน แล้วไปเจอที่ $x$)
+ส่วนบทที่ 26 บอกว่าการชนเกิดตามลำดับเวลา ครั้งหลังต้องมาหลังครั้งแรก สองเรื่องนี้รวมกันเป็นกติกาเดียว
+คือ<strong>ตัวที่เวลามากกว่าต้องอยู่ซ้าย</strong> ตำราเขียนการเรียงแบบนี้ว่า $T[\;\cdots\;]$ ซึ่งอ่านว่า time ordering
+</p>
+<table class="mono">
+<tr><th>ถ้า</th><th>$T[x(t_1)\,x(t_2)]$ เรียงเป็น</th><th>ค่าจากสมการ (2)</th></tr>
+<tr><td>$t_1 > t_2$</td><td>$x(t_1)\,x(t_2)$</td><td>$e^{-i\omega(t_1 - t_2)}/2\omega$</td></tr>
+<tr><td>$t_2 > t_1$</td><td>$x(t_2)\,x(t_1)$</td><td>$e^{-i\omega(t_2 - t_1)}/2\omega$</td></tr>
+</table>
+<p>
+สองแถวนี้เขียนรวมเป็นสูตรเดียวได้ เพราะในเลขชี้กำลังเป็น "เวลามากลบเวลาน้อย" เสมอ ซึ่งก็คือ $|t_1 - t_2|$
+</p>
+<div class="eq" data-eqno="3">$$ \langle 0|\,T[x(t_1)\,x(t_2)]\,|0\rangle \;=\; \frac{e^{-i\omega\,|t_1 - t_2|}}{2\omega} $$</div>
+<p>
+ตอนนี้สลับ $t_1$ กับ $t_2$ แล้วได้ค่าเดิม คู่จึงไม่สนว่าปลายไหนถูกเขียนก่อน ซึ่งเป็นเงื่อนไขที่การนับในบทที่ 24 และ 25 แอบใช้มาตลอด
+(เรานับ "จุด 1 จับขา b" กับ "ขา b จับจุด 1" เป็นวิธีเดียวกัน) ค่านี้มีชื่อว่า <strong>Feynman propagator</strong>
+ที่เวลาเท่ากันมันให้ $\frac{1}{2\omega}$ ตรงกับบทที่ 24
+</p>
+
+<h2>④ จากสปริงตัวเดียวเป็นสนาม</h2>
+<p>
+สนามคือสปริงทุกรูปร่าง $k$ รวมกัน (บทที่ 19) ทำแบบเดียวกันกับทุก $k$ แล้วบวกกัน ผลที่ได้คือ $D$ ของบทที่ 20 พร้อมการเรียงเวลา
+</p>
+<div class="eq" data-eqno="4">$$ D_F(t,\,r) \;=\; \langle 0|\,T[\phi(t,x)\,\phi(0,y)]\,|0\rangle \;=\; D(|t|,\, r) \qquad r = x - y $$</div>
+<p>
+เมื่อ $t > 0$ ค่านี้ก็คือ $D$ ของบทที่ 20 ตรง ๆ เมื่อ $t < 0$ การเรียงเวลาสลับสองตัวให้ จึงได้ $D$ ที่เวลา $|t|$ แทน
+(ระยะ $r$ กลับเครื่องหมายไปด้วย แต่ในบทที่ 20 รูปร่าง $k$ กับ $-k$ มาเป็นคู่เสมอ ค่าจึงไม่เปลี่ยน)
+</p>
+<p>
+ภาพที่ควรจำไว้คือ <strong>เส้นหนึ่งเส้นใน Feynman diagram = $D_F$ ระหว่างปลายสองข้างของเส้น</strong>
+เช่นรูป A ของบทที่ 25 มีสามเส้น คือ เส้น 1–$z$ ได้ $D_F(1 - z)$ เส้น $z$–2 ได้ $D_F(z - 2)$
+และห่วงที่ $z$ ได้ $D_F(0)$ เพราะปลายทั้งสองอยู่ที่จุดเดียวกัน (ห่วงของบทที่ 22)
+</p>
+
+<div class="warn">
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — พิสูจน์ว่า Wick ใช้ได้ภายใต้ $T$ (ตรวจเชิงตัวเลขแล้วด้านล่าง แต่ยังไม่เขียนเป็นบท) ·
+  $D_F$ ในรูปโมเมนตัม $\frac{i}{p^2 - m^2 + i\varepsilon}$ ที่ paper ใช้ ·
+  ทำไม $D$ ที่ $t = 0$ แต่คนละที่ไม่ใช่ศูนย์ (หมายเหตุในบทที่ 20)
+</div>
+
+<p class="src">ตรวจด้วยเมทริกซ์บน Fock space จริง (ตัดที่ 14 ระดับ): สมการ (2) ทั้งสองลำดับ และยืนยันว่าต่างกัน ·
+สมการ (3) ที่เวลาสี่คู่ รวมเวลาเท่ากัน · ผลบวกสามวิธีจับคู่ของ $D_F$ เท่ากับ $\langle T[x\,x\,x\,x]\rangle$ ที่เวลาสุ่มห้าชุด ·
+สมการ (4) กับ $\pm k$ — <code>scripts/verify/0041_time_order.py</code> (16/16) ·
+<strong>อ่านต่อ:</strong> Tong, <em>Quantum Field Theory</em> §2.7 (Feynman propagator) และ §3.2 (Wick's theorem) · Peskin &amp; Schroeder §2.4 และ §4.3</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ตอบเป็นตัวเลข · เศษส่วนพิมพ์แบบ <code>1/4</code> ได้ · มีคำถามให้พิมพ์ในแชต</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · คู่ที่คนละเวลา &nbsp;<span class="hint">(สมการ (2) · $\omega = 2$)</span></h3>
+  <p class="hint">$\langle 0|x(3)\,x(1)|0\rangle = \frac{e^{-i\theta}}{N}$ · หา $\theta$ กับ $N$</p>
+  <ol class="steps">
+    <li data-answer="2" data-alt="2.0">
+      <p><strong>ขั้น 1</strong> — $t_1 - t_2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 - 1 = 2$</p>
+    </li>
+    <li data-answer="4" data-alt="4.0">
+      <p><strong>ขั้น 2</strong> — $\theta = \omega(t_1 - t_2)$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 2 = 4$</p>
+    </li>
+    <li data-answer="4" data-alt="4.0">
+      <p><strong>ขั้น 3</strong> — $N = 2\omega$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 2 = 4$ ⇒ คู่นี้มีค่า $\frac{e^{-4i}}{4}$</p>
+    </li>
+  </ol>
+  <p class="fb">ตัวหาร $2\omega$ เหมือนบทที่ 24 · ที่เพิ่มมาคือเฟสจากเวลาที่ต่างกัน</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · สลับลำดับ &nbsp;<span class="hint">(สมการ (2) · $\omega = 2$)</span></h3>
+  <p class="hint">$\langle 0|x(1)\,x(3)|0\rangle$ · ตอนนี้ $t_1 = 1$, $t_2 = 3$ · เขียนผลเป็น $\frac{e^{-i\theta}}{4}$</p>
+  <ol class="steps">
+    <li data-answer="-2" data-alt="-2.0">
+      <p><strong>ขั้น 1</strong> — $t_1 - t_2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 - 3 = -2$</p>
+    </li>
+    <li data-answer="-4" data-alt="-4.0">
+      <p><strong>ขั้น 2</strong> — $\theta = \omega(t_1 - t_2)$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times (-2) = -4$ ⇒ $e^{-i(-4)} = e^{+4i}$ ไม่เท่ากับ $e^{-4i}$ ของข้อ 1</p>
+    </li>
+  </ol>
+  <p class="fb">ไม่เรียงเวลา ⇒ สลับซ้ายขวาแล้วได้คนละค่า</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · ใช้กติกา $T$ &nbsp;<span class="hint">(ตาราง ③)</span></h3>
+  <p class="hint">$T[x(2)\,x(5)]$</p>
+  <ol class="steps">
+    <li data-answer="5" data-alt="5.0">
+      <p><strong>ขั้น 1</strong> — หลังเรียงแล้ว ตัวซ้ายเป็น $x$ ของเวลาเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5 > 2$ ⇒ เวลา $5$ อยู่ซ้าย ได้ $x(5)\,x(2)$</p>
+    </li>
+    <li data-answer="3" data-alt="3.0">
+      <p><strong>ขั้น 2</strong> — เวลามากลบเวลาน้อย</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5 - 2 = 3 = |2 - 5|$</p>
+    </li>
+  </ol>
+  <p class="fb">$T$ ไม่สนว่าเขียนอะไรก่อน มันเรียงใหม่ให้เสมอ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · ลำดับไหนก็ได้ค่าเดียว &nbsp;<span class="hint">(สมการ (3) · $\omega = 2$)</span></h3>
+  <p class="hint">เขียนผลเป็น $\frac{e^{-i\theta}}{4}$ แล้วหา $\theta$</p>
+  <ol class="steps">
+    <li data-answer="4" data-alt="4.0">
+      <p><strong>ขั้น 1</strong> — $\langle 0|T[x(3)\,x(1)]|0\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times |3 - 1| = 4$</p>
+    </li>
+    <li data-answer="4" data-alt="4.0">
+      <p><strong>ขั้น 2</strong> — $\langle 0|T[x(1)\,x(3)]|0\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times |1 - 3| = 4$ เท่าข้อ 1 ทั้งที่ข้อ 2 ได้ $-4$</p>
+    </li>
+  </ol>
+  <p class="fb">ภายใต้ $T$ คู่สลับปลายได้ ⇒ นับแบบบทที่ 24–25 ได้เลย</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · กลับไปบทที่ 24 &nbsp;<span class="hint">(สมการ (3) · $\omega = 3$)</span></h3>
+  <ol class="steps">
+    <li data-answer="0" data-alt="0.0">
+      <p><strong>ขั้น 1</strong> — ถ้า $t_1 = t_2$ ค่า $|t_1 - t_2|$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ ⇒ $e^{0} = 1$</p>
+    </li>
+    <li data-answer="1/6" data-alt="0.1667">
+      <p><strong>ขั้น 2</strong> — ค่าของคู่นั้น</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{1}{2 \times 3} = \frac16$ คือค่าคู่ของบทที่ 24</p>
+    </li>
+  </ol>
+  <p class="fb">บทที่ 24 คือกรณีพิเศษที่ทุกปลายอยู่เวลาเดียวกัน</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · เส้นในรูป &nbsp;<span class="hint">(ข้อ ④ · สมการ (4))</span></h3>
+  <ol class="steps">
+    <li data-answer="2" data-alt="2.0">
+      <p><strong>ขั้น 1</strong> — $D_F(-2,\,r) = D(\;?\;,\,r)$ · ใส่เวลาเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$|-2| = 2$</p>
+    </li>
+    <li data-answer="3" data-alt="3.0">
+      <p><strong>ขั้น 2</strong> — รูป A ของบทที่ 25 มี $D_F$ คูณกันกี่ตัว (นับเส้น รวมห่วง)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3$ — เส้น 1–$z$ · เส้น $z$–2 · ห่วงที่ $z$ (หกปลายจับเป็นสามคู่)</p>
+    </li>
+    <li data-answer="0" data-alt="0.0">
+      <p><strong>ขั้น 3</strong> — ห่วงที่ $z$ ได้ $D_F$ ที่ระยะ $r$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ปลายทั้งสองอยู่ที่ $z$ ⇒ $r = 0$ และเวลาต่างกัน $0$ ด้วย</p>
+    </li>
+  </ol>
+  <p class="fb">หนึ่งคู่ = หนึ่งเส้น = หนึ่ง $D_F$</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · ถ้าอ่านแล้วยังไม่เห็นภาพตรงไหน บอกเลขหัวข้อมาได้เลย
+  <div class="nav">
+    <a href="./0039-dyson.html">← บทที่ 26 · Dyson series</a>
+    <a href="./0031-propagator.html">บทที่ 20 · propagator</a>
+    <a href="./0035-wick.html">บทที่ 24 · จับคู่แทนการกาง</a>
+  </div>
+</div>
+
+</body>
+</html>
