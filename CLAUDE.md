@@ -208,15 +208,19 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 
 เว็บที่บล็อกด้วย: `goodtheorist.science`, `webspace.science.uu.nl` (ดู `RESOURCES.md`)
 
-## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-10-29)
+## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-11-10)
 
-- บทล่าสุด: **บทที่ 23** `lessons/0034-tong-read.html` (อ่าน Tong QFT บทที่ 2 โยงบทที่ 17-22)
-  · learning record `learning-records/0041-tong-read-built.md` — **"ผลรอบแรก" ยังรอผล**
-- งานถัดไป: แบรายงานผลบทที่ 23 → เติม "ผลรอบแรก" → แก้ข้อที่พลาด (ถ้ามี) → commit
-  · ผ่านครบแล้วค่อยออกบทที่ 24 ตามแผนใน `MISSION.md` / learning records
+- บทที่ 25 `lessons/0037-vertex.html` **ผ่าน 6/6** (รอบสอง) · บทที่ 24 + ชุดฝึก Wick ผ่านแล้ว
+- ชุดฝึกจุดยอด `0038-vertex-drill.html` ผ่าน 6/6
+- ล่าสุด: **บทที่ 26** `lessons/0039-dyson.html` (Dyson series: $-i$ · $\frac1{n!}$ = สามเหลี่ยม · $-i\lambda\int d^4z$) · learning record `0046` — **"ผลรอบแรก" ยังรอผล**
+- งานถัดไป: ผลบทที่ 26 → แก้ → ต่อช่วง C (time ordering $T$ ⇒ propagator · amplitude · เช็คพอยต์อ่าน Tong บทที่ 3) · แวะ GR ยังเปิดอยู่ (แบเลือกต่อ C ก่อน 2026-11-10)
+- ⚠️ `build_standalone.py` เคยปล่อยสคริปต์ KaTeX CDN ค้างในทุกไฟล์ build ⇒ iPad ขึ้น "Script error." · แก้แล้ว + ด่านกันในตัว build (2026-11-10)
+- ⚠️ ลิงก์ artifact ch25 เปิดจาก session 2026-11-10 ไม่ได้ (not found) ⇒ ส่งเป็นไฟล์ `build/` แทน
+- ⚠️ ฟอนต์ `math` ต้องมีตาราง OpenType MATH (STIX Two Math) ไม่งั้น √ หายจากฉบับ `build/` โดยประตูไม่ฟ้อง (2026-11-02)
+  · artifact ทุกบทแก้แล้ว
 - **Artifact (publish ทับ URL เดิมเสมอ ห้ามสร้างใหม่):**
   ch18 `UaMnbMxd6LC7HrRRSY6Agu` · ch19 `XeTN5v7GDpNjS3WorDYrot` · ch20 `BHJ8MRxpUh6DuKRyeAtDYv` ·
-  ch21 `EVreU25bGhApapQgohHYDA` · ch22 `1cKQ2RhxTt8wDt4xWhFuFS` · ch23 `T8Z1G4JjDyerBoNSo3fcjZ`
+  ch21 `EVreU25bGhApapQgohHYDA` · ch22 `1cKQ2RhxTt8wDt4xWhFuFS` · ch23 `T8Z1G4JjDyerBoNSo3fcjZ` · ch24 `HMXgSv1mKHrqgUWTKj85kg` · ชุดฝึก Wick `U9vdH1Verv2KzyeN3NV7aa` · ch25 `PhzEyrYQjY21sweQ8owFGs`
   (URL เต็ม = `https://claude.ai/artifact/<id>` · ต้อง `read` ก่อน publish ทับจาก session ใหม่)
 - ต้นฉบับ Tong บทที่ 2 (`two.pdf`) แบอัปโหลดใน session เก่า — session ใหม่ไม่เห็น ต้องแนบใหม่ถ้าจะอ้างหน้าอีก
 - ปุ่ม 📋 คัดลอกผล อยู่ใต้หัวข้อ "ลองเอง" และโผล่เมื่อตอบครบทุกขั้นทุกข้อเท่านั้น (ไม่ใช่บั๊ก)
