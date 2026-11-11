@@ -65,7 +65,7 @@
 </p>
 <div class="eq" data-eqno="2">$$ e^{-iWt} \;=\; 1 \;+\; (-i)\,Wt \;+\; \frac{(-i)^2}{2!}\,(Wt)^2 \;+\; \cdots $$</div>
 <p>
-อ่านทีละพจน์ได้แบบนี้ พจน์ $1$ คือไม่มีการชนเลย อนุภาควิ่งผ่านกันเฉย ๆ พจน์ที่มี $W$ หนึ่งตัวคือใช้การชนหนึ่งครั้ง
+ตัวอย่างเช่น $W = 0.1$ จะได้ $x = -i \times 0.1 \times t = -0.1i\,t$ ตัว $-i$ ติดไปกับ $W$ ทุกครั้ง ไม่หายไปไหน อ่านทีละพจน์ได้แบบนี้ พจน์ $1$ คือไม่มีการชนเลย อนุภาควิ่งผ่านกันเฉย ๆ พจน์ที่มี $W$ หนึ่งตัวคือใช้การชนหนึ่งครั้ง
 ซึ่งในรูปคือ<strong>จุดยอดหนึ่งจุด</strong> พจน์ที่มี $W$ สองตัวคือจุดยอดสองจุด
 </p>
 <table class="mono">
@@ -173,13 +173,18 @@ $\lambda$ มาจากการนับคู่ (บทที่ 25) แล
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข 1 หรือ 2" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">ก้อนที่ 2 มี $W$ ส่วนก้อนแรกคือสนามอิสระ</p>
     </li>
-    <li data-answer="-0.1i" data-alt="-0.1*i|-i/10|-1/10i|-i0.1">
-      <p><strong>ขั้น 2</strong> — กางก้อนที่ 2 ได้ $1 + (\;?\;)\,t + \cdots$ · ตัวในวงเล็บคืออะไร</p>
+    <li data-answer="0.1" data-alt="1/10|.1">
+      <p><strong>ขั้น 2</strong> — ก้อนที่ 2 เขียนเป็น $e^{x}$ โดย $x = -i \times W \times t$ · ในข้อนี้ $W$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$W = 0.1$ (พลังงานก้อนเล็ก)</p>
+    </li>
+    <li data-answer="-0.1i" data-alt="-0.1*i|-i/10|-1/10i|-i0.1|-i*0.1">
+      <p><strong>ขั้น 3</strong> — $x = (\;?\;)\,t$ · คูณ $-i$ เข้ากับ $W$ จากขั้น 2</p>
       <div class="ans"><input type="text" placeholder="เช่น 5i" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$x = -i(0.1)t$ ⇒ $-0.1i$</p>
+      <p class="fb">$-i \times 0.1 = -0.1i$ ⇒ กางได้ $1 + (-0.1i)\,t + \cdots$</p>
     </li>
     <li data-answer="1" data-alt="หนึ่ง|1.0">
-      <p><strong>ขั้น 3</strong> — พจน์นั้นมี $W$ กี่ตัว (= จุดยอดกี่จุด)</p>
+      <p><strong>ขั้น 4</strong> — พจน์ $(-0.1i)\,t$ มี $W$ กี่ตัว (= จุดยอดกี่จุด)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$1$ — การชนหนึ่งครั้ง</p>
     </li>
@@ -227,9 +232,9 @@ $\lambda$ มาจากการนับคู่ (บทที่ 25) แล
   <p class="hint">ตัวคูณหน้า $\lambda$ (ไม่ต้องเขียน $\int d^4z$)</p>
   <ol class="steps">
     <li data-answer="1/2" data-alt="0.5">
-      <p><strong>ขั้น 1</strong> — รูป A ในบทที่ 25: $12$ วิธี $\div 4!$</p>
+      <p><strong>ขั้น 1</strong> — ตัวเลขหน้ารูป A ตามบทที่ 25 ซึ่ง<strong>ยังไม่มี $-i$</strong>: $12$ วิธี $\div 4!$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\frac{12}{24} = \frac12$</p>
+      <p class="fb">$\frac{12}{24} = \frac12$ — ขั้นถัดไปค่อยคูณ $-i$</p>
     </li>
     <li data-answer="-i/2" data-alt="-0.5i|-1/2i|-0.5*i|-i*0.5">
       <p><strong>ขั้น 2</strong> — รูป A ในบทนี้ (คูณ $-i$)</p>

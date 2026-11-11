@@ -41,6 +41,9 @@ def norm(v: str) -> str:
 
 def num(v: str):
     s = norm(v)
+    # ต้องตรงกับ quiz.js: ตัว O แทนศูนย์ เฉพาะสตริงที่เป็นตัวเลขล้วน (iPad 2026-11-11)
+    if re.match(r"^[+-]?[o\d]*\.?[o\d]+(/[+-]?[o\d]*\.?[o\d]+)?$", s):
+        s = s.replace("o", "0")
     m = re.match(r"^([+-]?\d*\.?\d+)/([+-]?\d*\.?\d+)$", s)
     if m:
         return float(m.group(1)) / float(m.group(2))
@@ -68,6 +71,8 @@ def accept_forms(keys):
     out = []
     for k in keys:
         out += [k, " " + k + " ", k.upper()]
+        if num(k) is not None and "0" in k:
+            out.append(k.replace("0", "O"))   # ตัว O แทนศูนย์ (iPad)
         n = num(k)
         if n is not None and n > 0 and not k.startswith("+"):
             out.append("+" + k)
@@ -101,6 +106,12 @@ def reject_forms(keys):
 # ตัวสร้างอัตโนมัติจับได้แค่ "เครื่องหมายกลับ" กับ "คลาดไปหนึ่ง"
 # ส่วนนี้ไว้ใส่ค่าที่ผู้เรียนตอบผิดมาจริง ๆ แล้วต้องไม่ถูกรับ
 HAND = [
+    # ── บทที่ 26 · ผลรอบสองจริง 2026-11-11 ──────────
+    ("0039-dyson.html", "0.005", "O.005", "right"),     # ตัว O แทนศูนย์ — ถูกแต่เคยถูกปฏิเสธ
+    ("0039-dyson.html", "-0.1i", "0.1", "wrong"),       # ลืมคูณ -i (ตอบค่า W)
+    ("0039-dyson.html", "-0.1i", "O.1", "wrong"),
+    ("0039-dyson.html", "1/2", "-i/2", "wrong"),        # คูณ -i ก่อนขั้นที่ถาม
+    ("0039-dyson.html", "1/2", "O.5", "right"),
     # (ไฟล์, คีย์, สิ่งที่พิมพ์, ผลที่ต้องได้)
     ("0019-current-T.html", "-px", "px", "wrong"),          # ลืมยกดัชนี (g มีลบ)
     ("0019-current-T.html", "-m^2*phi", "m^2*phi", "wrong"),  # ลืมลบจาก EL
