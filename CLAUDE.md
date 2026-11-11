@@ -208,15 +208,21 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 
 เว็บที่บล็อกด้วย: `goodtheorist.science`, `webspace.science.uu.nl` (ดู `RESOURCES.md`)
 
-## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-10-29)
+## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-11-11)
 
-- บทล่าสุด: **บทที่ 23** `lessons/0034-tong-read.html` (อ่าน Tong QFT บทที่ 2 โยงบทที่ 17-22)
-  · learning record `learning-records/0041-tong-read-built.md` — **"ผลรอบแรก" ยังรอผล**
-- งานถัดไป: แบรายงานผลบทที่ 23 → เติม "ผลรอบแรก" → แก้ข้อที่พลาด (ถ้ามี) → commit
-  · ผ่านครบแล้วค่อยออกบทที่ 24 ตามแผนใน `MISSION.md` / learning records
+- **มีสองเส้นทาง** (ดู `MISSION.md`) · **เส้น thesis มาก่อน**
+- **เส้น thesis — Bayes ในจักรวาลวิทยา:** paper ของอาจารย์ = Trotta 2008 *Bayes in the sky* + Cobaya
+  (arXiv:2005.05290) · ไฟล์ที่ 3 ที่แบส่งมาซ้ำกับ Cobaya (md5 ตรงกัน) ⇒ **ฉบับที่ 3 ยังไม่ได้รับ**
+  · แผน 21 หัวข้อ: `reference/0002-bayes-roadmap.html` (อัปเดต ✅ ทุกครั้งที่สอนเสร็จ)
+  · บทล่าสุด **บทที่ 24** `lessons/0035-bayes-gauss.html` · record `0042-thesis-track.md` — **"ผลรอบแรก" รอผล**
+  · ถัดไป: หัวข้อ 2 ในแผน (prior และการเปลี่ยนตัวแปร · Trotta (11))
+  · PDF ไม่ได้ commit ⇒ session ใหม่ต้องให้แบแนบใหม่ถ้าจะอ้างหน้า
+- **เส้น QFT:** บทที่ 23 `lessons/0034-tong-read.html` ยังรอผล (`0041-tong-read-built.md`)
 - **Artifact (publish ทับ URL เดิมเสมอ ห้ามสร้างใหม่):**
   ch18 `UaMnbMxd6LC7HrRRSY6Agu` · ch19 `XeTN5v7GDpNjS3WorDYrot` · ch20 `BHJ8MRxpUh6DuKRyeAtDYv` ·
-  ch21 `EVreU25bGhApapQgohHYDA` · ch22 `1cKQ2RhxTt8wDt4xWhFuFS` · ch23 `T8Z1G4JjDyerBoNSo3fcjZ`
+  ch21 `EVreU25bGhApapQgohHYDA` · ch22 `1cKQ2RhxTt8wDt4xWhFuFS` · ch23 `T8Z1G4JjDyerBoNSo3fcjZ` ·
+  ch24 `Wrgdh2fegJsw8aYfWrrMmF` · แผนที่ paper `VCojs8XZedFFWL5hSp5mWy`
   (URL เต็ม = `https://claude.ai/artifact/<id>` · ต้อง `read` ก่อน publish ทับจาก session ใหม่)
 - ต้นฉบับ Tong บทที่ 2 (`two.pdf`) แบอัปโหลดใน session เก่า — session ใหม่ไม่เห็น ต้องแนบใหม่ถ้าจะอ้างหน้าอีก
 - ปุ่ม 📋 คัดลอกผล อยู่ใต้หัวข้อ "ลองเอง" และโผล่เมื่อตอบครบทุกขั้นทุกข้อเท่านั้น (ไม่ใช่บั๊ก)
+- ⚠️ `pip install playwright` จะอัปเกรดทับตัวที่ติดตั้งไว้ ⇒ launch เองต้องส่ง `executable_path` (ประตูทำอยู่แล้ว)
