@@ -1,4 +1,4 @@
-"""ตรวจทุกข้ออ้างของบทที่ 24 — Bayes กับพารามิเตอร์ต่อเนื่อง (Trotta 2008 §2.2-2.3)
+"""ตรวจทุกข้ออ้างของ Thesis บทที่ 1 — Bayes กับพารามิเตอร์ต่อเนื่อง (Trotta 2008 §2.2-2.3)
 
 prior N(mu, Sigma^2) × likelihood N(m | theta, sigma^2) ⇒ posterior N(mubar, tau^2)
   1/tau^2 = 1/Sigma^2 + 1/sigma^2           (precision บวกกัน)

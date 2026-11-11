@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ชุดฝึก · จุดยอด</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>ชุดฝึก · จุดยอด</h1>
+<p class="meta">ชุดฝึก · ~15 นาที · วิธีนับเดิมของบทที่ 25 กับจุดยอดที่มีสามขาและหกขา</p>
+
+<h2>① ของเดิม กับของที่เปลี่ยน</h2>
+<p>
+ในบทที่ 25 จุดยอดมาจากพจน์ $\frac{\lambda}{4!}\phi^4$ ซึ่งมี $\phi$ สี่ตัวที่ตำแหน่ง $v$ เดียวกัน เราจึงวางมันเป็นสี่ขา a, b, c, d ในแถว
+แล้วนับว่าจับคู่ให้ได้รูปที่ต้องการได้กี่วิธี เสร็จแล้วหารด้วย $4!$ ผลที่ได้คือตัวเลขหน้ารูป
+</p>
+<p>
+ชุดนี้ใช้วิธีนับเดิมทุกขั้น สิ่งเดียวที่เปลี่ยนคือ<strong>จำนวนขา</strong> ทฤษฎีที่มีพจน์ $\frac{\lambda}{3!}\phi^3$ ก็ให้จุดยอดเหมือนกัน
+แต่จุดยอดนั้นมี $\phi$ สามตัว จึงมี<strong>สามขา</strong> a, b, c และหารด้วย $3!$ ส่วนพจน์ $\frac{g}{6!}\phi^6$ ให้จุดยอดที่มี<strong>หกขา</strong>
+และหารด้วย $6!$ กฎทั่วไปคือ $\phi$ ยกกำลังเท่าไร จุดยอดก็มีขาเท่านั้น และตัวหารก็คือแฟกทอเรียลของเลขเดียวกัน
+</p>
+
+<table class="mono">
+<tr><th>พจน์</th><th>ขาของ $v$</th><th>หารด้วย</th></tr>
+<tr><td>$\frac{\lambda}{3!}\phi^3$</td><td>a b c</td><td>$3! = 6$</td></tr>
+<tr><td>$\frac{\lambda}{4!}\phi^4$</td><td>a b c d</td><td>$4! = 24$</td></tr>
+<tr><td>$\frac{g}{6!}\phi^6$</td><td>a b c d e f</td><td>$6! = 720$</td></tr>
+</table>
+
+<p>
+ข้อ 6 มีจุดภายนอกสี่จุด เมื่อจุดภายนอกมีสี่จุด แต่ละจุดเลือกได้สองทาง คือจับกับขาของ $v$ หรือจับกับจุดภายนอกอีกจุด
+ข้อนั้นจึงบอกไว้ในโจทย์เลยว่าจุดไหนจับกับอะไร:
+</p>
+
+<table class="mono">
+<tr><th>จุดภายนอกจับกับ</th><th>เส้นในรูป</th></tr>
+<tr><td>ขาของ $v$</td><td>เส้นวิ่งเข้าจุดยอด</td></tr>
+<tr><td>จุดภายนอกอีกจุด</td><td>เส้นตรงไม่ผ่าน $v$</td></tr>
+</table>
+
+<div class="warn">
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — ตัวคูณ $-i$ และ $\int d^4z$ (บทที่ 26) · จุดยอดสองจุดขึ้นไป
+</div>
+
+<p class="src">ทุกคำตอบไล่จับคู่จริงทุกวิธีแล้วนับด้วย Python — <code>scripts/verify/0039_vertex_drill.py</code> (13/13) ·
+ตัวหาร $1/n!$ ของพจน์ $\phi^n$ ตาม Peskin &amp; Schroeder §4.4 · Tong, <em>Quantum Field Theory</em> บทที่ 3</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ตอบเป็นตัวเลข · เศษส่วนพิมพ์แบบ <code>1/8</code> ได้ · มีคำถามให้พิมพ์ในแชต</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · ย้อนจากตัวเลขหน้ารูป &nbsp;<span class="hint">($\phi^4$ · จุด 1, 2)</span></h3>
+  <p class="hint">ตัวเลขหน้ารูป = (จำนวนวิธี) ÷ $4!$</p>
+  <ol class="steps">
+    <li data-answer="24" data-alt="ยี่สิบสี่|24.0">
+      <p><strong>ขั้น 1</strong> — $4!$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4 \times 3 \times 2 \times 1 = 24$</p>
+    </li>
+    <li data-answer="12" data-alt="สิบสอง|12.0">
+      <p><strong>ขั้น 2</strong> — ตัวเลขหน้ารูป A คือ $\frac12$ ⇒ รูป A มีกี่วิธี</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac12 \times 24 = 12$ ตรงกับที่นับได้ในบทที่ 25</p>
+    </li>
+  </ol>
+  <p class="fb">จำนวนวิธี = ตัวเลขหน้ารูป × $4!$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · สามขา สามจุด &nbsp;<span class="hint">($\frac{\lambda}{3!}\phi^3$)</span></h3>
+  <p class="hint">แถวมีจุด 1, 2, 3 และขา a, b, c · รูป Y = จุดภายนอกทุกจุดจับขา</p>
+  <ol class="steps">
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 1</strong> — จุด 1 เลือกขาได้กี่ทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3$ (a, b, c)</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 2</strong> — จุด 2 เลือกขาที่ยังว่างได้กี่ทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2$ — จุด 3 ได้ขาสุดท้ายขาเดียว</p>
+    </li>
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 3</strong> — รูป Y มีกี่วิธี</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 \times 2 \times 1 = 6$</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 4</strong> — ตัวเลขหน้ารูป Y ($\div 3!$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{6}{6} = 1$ ⇒ เหลือ $\lambda$ เหมือนรูป X ของ $\phi^4$</p>
+    </li>
+  </ol>
+  <p class="fb">$n!$ ตัดกับรูปที่จุดภายนอกเสียบเต็มทุกขาพอดี</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · สามขา จุดเดียว &nbsp;<span class="hint">($\frac{\lambda}{3!}\phi^3$)</span></h3>
+  <p class="hint">แถวมีจุด 1 และขา a, b, c</p>
+  <ol class="steps">
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 1</strong> — แถวมีกี่จุด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">จุด 1 กับขา a, b, c = $4$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 2</strong> — จุด 1 ต้องจับขา (ไม่มีจุดภายนอกอื่นให้จับ) — เลือกได้กี่ทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3$</p>
+    </li>
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 3</strong> — ขาสองตัวที่เหลือจับกันเองได้กี่วิธี</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — กลายเป็นห่วงที่ $v$</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5">
+      <p><strong>ขั้น 4</strong> — ตัวเลขหน้ารูป ($3 \times 1$ วิธี $\div 3!$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{3}{6} = \frac12$ ⇒ $S = 2$ เพราะห่วงพลิกได้สองทาง</p>
+    </li>
+  </ol>
+  <p class="fb">ทั้งแถวจับคู่ได้ $3!! = 3$ วิธี และทุกวิธีให้รูปนี้</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · สามขา สองจุด &nbsp;<span class="hint">($\frac{\lambda}{3!}\phi^3$)</span></h3>
+  <p class="hint">แถวมีจุด 1, 2 และขา a, b, c</p>
+  <ol class="steps">
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 1</strong> — แถวมีกี่จุด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 + 3 = 5$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — จับคู่ทั้งแถวได้กี่วิธี</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">จำนวนคี่ ⇒ เหลือหนึ่งจุดไม่มีคู่เสมอ ⇒ $0$ (กฎเดียวกับ $\langle x^3\rangle = 0$ ในบทที่ 24)</p>
+    </li>
+  </ol>
+  <p class="fb">จุดยอด $\phi^3$ หนึ่งจุดให้ค่ากับสองจุดภายนอกเป็นศูนย์ ต้องใช้จุดยอดสองจุดถึงจะได้ค่า</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · หกขา สองจุด &nbsp;<span class="hint">($\frac{g}{6!}\phi^6$)</span></h3>
+  <p class="hint">แถวมีจุด 1, 2 และขา a–f · รูปที่ต้องการ: จุด 1 กับจุด 2 จับขาทั้งคู่</p>
+  <ol class="steps">
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 1</strong> — จุด 1 เลือกขาได้กี่ทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$6$</p>
+    </li>
+    <li data-answer="5" data-alt="ห้า|5.0">
+      <p><strong>ขั้น 2</strong> — จุด 2 เลือกขาที่ยังว่างได้กี่ทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 3</strong> — ขาสี่ตัวที่เหลือจับกันเองได้กี่วิธี</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3!! = 3$ — ได้ห่วงสองวงที่ $v$</p>
+    </li>
+    <li data-answer="90" data-alt="เก้าสิบ|90.0">
+      <p><strong>ขั้น 4</strong> — รูปนี้มีกี่วิธี (ทุกทางของขั้น 1, 2, 3 ไปด้วยกันได้ ⇒ คูณ)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$6 \times 5 \times 3 = 90$</p>
+    </li>
+    <li data-answer="1/8" data-alt="0.125">
+      <p><strong>ขั้น 5</strong> — ตัวเลขหน้ารูป ($\div 6! = 720$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{90}{720} = \frac18$ ⇒ $S = 8$</p>
+    </li>
+  </ol>
+  <p class="fb">ห่วงสองวง: แต่ละวงพลิกได้ 2 ทาง และสลับสองวงได้อีก 2 ทาง ⇒ $2 \times 2 \times 2 = 8$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · สี่ขา สี่จุด รูปที่ไม่ใช่ X &nbsp;<span class="hint">($\frac{\lambda}{4!}\phi^4$)</span></h3>
+  <p class="hint">แถวมีจุด 1, 2, 3, 4 และขา a, b, c, d · รูปที่ต้องการ: จุด 1 จับจุด 2 · จุด 3 กับจุด 4 จับขา</p>
+  <ol class="steps">
+    <li data-answer="1" data-alt="หนึ่ง|1.0">
+      <p><strong>ขั้น 1</strong> — จุด 1 จับจุด 2 ได้กี่ทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — มีจุด 2 อยู่จุดเดียว</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 2</strong> — จุด 3 เลือกขาได้กี่ทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 3</strong> — จุด 4 เลือกขาที่ยังว่างได้กี่ทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3$ — ขาสองตัวสุดท้ายจับกันเองได้แบบเดียว</p>
+    </li>
+    <li data-answer="12" data-alt="สิบสอง|12.0">
+      <p><strong>ขั้น 4</strong> — รูปนี้มีกี่วิธี</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 \times 4 \times 3 \times 1 = 12$</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5">
+      <p><strong>ขั้น 5</strong> — ตัวเลขหน้ารูป ($\div 4!$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{12}{24} = \frac12$ — เท่ากับรูป A ของบทที่ 25 พอดี</p>
+    </li>
+  </ol>
+  <p class="fb">รูปนี้คือเส้นตรง 1–2 วางคู่กับรูป A ของจุด 3, 4 ⇒ ตัวเลขหน้ารูปเท่ากับของรูป A</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · ถ้ามีข้อไหนงง พิมพ์มาในแชตได้เลย
+  <div class="nav">
+    <a href="./0037-vertex.html">← บทที่ 25 · จุดยอดก็จับคู่ได้</a>
+    <a href="./0036-wick-drill.html">ชุดฝึก · จับคู่ (Wick)</a>
+  </div>
+</div>
+
+</body>
+</html>

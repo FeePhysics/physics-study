@@ -15,7 +15,7 @@
 <body>
 
 <h1>แผนที่ paper · Bayes ในจักรวาลวิทยา</h1>
-<p class="meta">หัวข้อทั้งหมดของ paper ที่อาจารย์ให้อ่าน เรียงเป็นลำดับบทเรียน · ✅ = สอนแล้ว · ⬜ = ยังไม่สอน</p>
+<p class="meta">เส้นทาง thesis · เรียนขนานกับเส้น QFT · เลขบท T1, T2, … นับแยกจากเส้น QFT (ไฟล์ <code>lessons/tNNNN-*.html</code>) · ✅ = สอนแล้ว · ⬜ = ยังไม่สอน</p>
 
 <div class="key">
   <p style="margin-top:0"><strong>[T]</strong> R. Trotta, <em>Bayes in the sky: Bayesian inference and model selection in cosmology</em>,
@@ -33,59 +33,59 @@
 
 <h2>ช่วง 1 · การอนุมานพารามิเตอร์ <span class="hint">(อ่าน [T] §2-3 และ [C] §II ได้)</span></h2>
 <ol>
-<li>✅ <strong>Bayes กับพารามิเตอร์ต่อเนื่อง</strong> — prior · likelihood · posterior · evidence ในฐานะตัวหาร · Gaussian × Gaussian · precision บวกกัน · ข้อมูลกลบ prior
-  <span class="src">[T] §2.2-2.3 (1)-(10) · [C] (1) · <a href="../lessons/0035-bayes-gauss.html">บทที่ 24</a></span></li>
-<li>⬜ <strong>prior และการเปลี่ยนตัวแปร</strong> — flat prior · Jacobian · Jeffreys prior $\propto 1/\theta$ · prior บน $\log A$ ใน Cobaya (<code>logamplitude</code>)
+<li>✅ <strong>T1 · Bayes กับพารามิเตอร์ต่อเนื่อง</strong> — prior · likelihood · posterior · evidence ในฐานะตัวหาร · Gaussian × Gaussian · precision บวกกัน · ข้อมูลกลบ prior
+  <span class="src">[T] §2.2-2.3 (1)-(10) · [C] (1) · <a href="../lessons/t0001-bayes-gauss.html">T1</a></span></li>
+<li>⬜ <strong>T2 · prior และการเปลี่ยนตัวแปร</strong> — flat prior · Jacobian · Jeffreys prior $\propto 1/\theta$ · prior บน $\log A$ ใน Cobaya (<code>logamplitude</code>)
   <span class="src">[T] (11), §5.4 ข้อ 1-2 · [C] รูป 9</span></li>
-<li>⬜ <strong>สองพารามิเตอร์ · marginalise</strong> — Gaussian 2 มิติ · covariance matrix · nuisance parameter · marginal กับ profile (maximise) ต่างกัน
+<li>⬜ <strong>T3 · สองพารามิเตอร์ · marginalise</strong> — Gaussian 2 มิติ · covariance matrix · nuisance parameter · marginal กับ profile (maximise) ต่างกัน
   <span class="src">[T] (12)-(13), (16), §5.3.2</span></li>
-<li>⬜ <strong>สร้าง likelihood</strong> — $\chi^2 = -2\ln\mathcal L$ · data set อิสระ ⇒ $\chi^2$ บวกกัน · $\Delta\chi^2 = 4$ คือ $2\sigma$ · ทฤษฎี → observable → การวัด
+<li>⬜ <strong>T4 · สร้าง likelihood</strong> — $\chi^2 = -2\ln\mathcal L$ · data set อิสระ ⇒ $\chi^2$ บวกกัน · $\Delta\chi^2 = 4$ คือ $2\sigma$ · ทฤษฎี → observable → การวัด
   <span class="src">[T] (45)-(47) · [C] (2) $O_D \sim \mathcal N(\mathcal F(O_T), \Sigma)$</span></li>
-<li>⬜ <strong>Monte Carlo จากตัวอย่าง</strong> — ค่าเฉลี่ยจากตัวอย่าง · marginal = histogram ทิ้งพิกัดอื่น · ตัวอย่างมีน้ำหนัก
+<li>⬜ <strong>T5 · Monte Carlo จากตัวอย่าง</strong> — ค่าเฉลี่ยจากตัวอย่าง · marginal = histogram ทิ้งพิกัดอื่น · ตัวอย่างมีน้ำหนัก
   <span class="src">[T] (14)-(16)</span></li>
-<li>⬜ <strong>Metropolis–Hastings เขียนเอง</strong> — Markov chain · proposal · อัตรายอมรับ · ทำซ้ำรูปวงแหวนรูป 2-4 ของ [C] ด้วย Python ล้วน
+<li>⬜ <strong>T6 · Metropolis–Hastings เขียนเอง</strong> — Markov chain · proposal · อัตรายอมรับ · ทำซ้ำรูปวงแหวนรูป 2-4 ของ [C] ด้วย Python ล้วน
   <span class="src">[T] §3.2 · [C] §IV.C</span></li>
-<li>⬜ <strong>chain ลู่เข้าหรือยัง</strong> — burn-in · Gelman–Rubin $R - 1$ · proposal covariance · Cholesky decorrelation
+<li>⬜ <strong>T7 · chain ลู่เข้าหรือยัง</strong> — burn-in · Gelman–Rubin $R - 1$ · proposal covariance · Cholesky decorrelation
   <span class="src">[C] §IV.C, ภาคผนวก A ย่อหน้า 1-4</span></li>
-<li>⬜ <strong>ใช้ Cobaya + GetDist จริง</strong> — YAML · sampled / fixed / derived · <code>prior</code> <code>ref</code> <code>proposal</code> · triangle plot · contour 68/95% · credible กับ confidence interval
+<li>⬜ <strong>T8 · ใช้ Cobaya + GetDist จริง</strong> — YAML · sampled / fixed / derived · <code>prior</code> <code>ref</code> <code>proposal</code> · triangle plot · contour 68/95% · credible กับ confidence interval
   <span class="src">[C] §IV.A-D, รูป 2-4 · [T] หมายเหตุ 8</span></li>
 </ol>
 
 <h2>ช่วง 2 · เทียบโมเดล <span class="hint">(อ่าน [T] §4 ได้)</span></h2>
 <ol start="9">
-<li>⬜ <strong>evidence และ Bayes factor</strong> — Occam's razor · $p(\mathcal M\,|\,d)$ · $B_{01}$ · ตัวอย่างโมเดลซ้อน (21) · Jeffreys' scale ตาราง 1
+<li>⬜ <strong>T9 · evidence และ Bayes factor</strong> — Occam's razor · $p(\mathcal M\,|\,d)$ · $B_{01}$ · ตัวอย่างโมเดลซ้อน (21) · Jeffreys' scale ตาราง 1
   <span class="src">[T] §4.1-4.2 (17)-(21)</span></li>
-<li>⬜ <strong>Laplace · Fisher matrix · Savage–Dickey</strong> — evidence ของ Gaussian $F = L + P$ (ต่อจากบทที่ 24) · rough guide (26) รูป 3 · SDDR (23)
+<li>⬜ <strong>T10 · Laplace · Fisher matrix · Savage–Dickey</strong> — evidence ของ Gaussian $F = L + P$ (ต่อจาก T1) · rough guide (26) รูป 3 · SDDR (23)
   <span class="src">[T] §4.3-4.4 (22)-(26)</span></li>
-<li>⬜ <strong>คำนวณ evidence ด้วยตัวเลข</strong> — thermodynamic integration · nested sampling (หลักของ PolyChord)
+<li>⬜ <strong>T11 · คำนวณ evidence ด้วยตัวเลข</strong> — thermodynamic integration · nested sampling (หลักของ PolyChord)
   <span class="src">[T] §4.3 ข้อ 1-2 · [C] §IV.C, ภาคผนวก A "Applicability to PolyChord"</span></li>
-<li>⬜ <strong>p-value กับ Bayes factor</strong> — ขอบบน $\bar B = -1/(e\,\wp\ln\wp)$ · ตาราง 2 · Lindley's paradox · ใช้ข้อมูลซ้ำสองรอบ
+<li>⬜ <strong>T12 · p-value กับ Bayes factor</strong> — ขอบบน $\bar B = -1/(e\,\wp\ln\wp)$ · ตาราง 2 · Lindley's paradox · ใช้ข้อมูลซ้ำสองรอบ
   <span class="src">[T] §4.5 (27), §5.4 ข้อ 3-4</span></li>
-<li>⬜ <strong>KL divergence · Bayesian complexity · AIC/BIC/DIC</strong>
+<li>⬜ <strong>T13 · KL divergence · Bayesian complexity · AIC/BIC/DIC</strong>
   <span class="src">[T] §4.6-4.7 (28)-(41)</span></li>
 </ol>
 
 <h2>ช่วง 3 · ฟิสิกส์ของจักรวาลวิทยา <span class="hint">(อ่าน [T] §5-6 และ [C] §VI ได้)</span></h2>
 <ol start="14">
-<li>⬜ <strong>เอกภพที่ขยายตัว</strong> — FRW metric (42) · scale factor · redshift (43) · ระยะ comoving (44) · $\Omega$ · $H_0 = 100h$
+<li>⬜ <strong>T14 · เอกภพที่ขยายตัว</strong> — FRW metric (42) · scale factor · redshift (43) · ระยะ comoving (44) · $\Omega$ · $H_0 = 100h$
   <span class="src">[T] §5.1 · ใช้ดัชนีจากบทที่ 4</span></li>
-<li>⬜ <strong>สิ่งที่วัดได้</strong> — CMB $C_\ell$ และ acoustic peak · $P(k)$ และ BAO · SN Ia · weak lensing · ทำไมต้องรวมหลาย data set
+<li>⬜ <strong>T15 · สิ่งที่วัดได้</strong> — CMB $C_\ell$ และ acoustic peak · $P(k)$ และ BAO · SN Ia · weak lensing · ทำไมต้องรวมหลาย data set
   <span class="src">[T] §5.2, §5.3.1</span></li>
-<li>⬜ <strong>ΛCDM หกพารามิเตอร์</strong> — $\omega_b$ $\omega_c$ $\Theta_s$ $\tau$ $A_s$ $n_s$ · derived parameter · nuisance · ตาราง 3 รูป 6
+<li>⬜ <strong>T16 · ΛCDM หกพารามิเตอร์</strong> — $\omega_b$ $\omega_c$ $\Theta_s$ $\tau$ $A_s$ $n_s$ · derived parameter · nuisance · ตาราง 3 รูป 6
   <span class="src">[T] §5.3 · [C] ภาคผนวก A $\theta = (A_s, n_s, H_0, \Omega_B, \Omega_{CDM}, \tau_{reio})$</span></li>
-<li>⬜ <strong>primordial power spectrum และ feature</strong> — $P_0(k) = A_s(k/k_*)^{n_s - 1}$ · feature (3) ของ [C] · lensing กับ delensing · degeneracy รูป 5
+<li>⬜ <strong>T17 · primordial power spectrum และ feature</strong> — $P_0(k) = A_s(k/k_*)^{n_s - 1}$ · feature (3) ของ [C] · lensing กับ delensing · degeneracy รูป 5
   <span class="src">[C] §VI.A (3), รูป 5, 7-9</span></li>
-<li>⬜ <strong>ผลเทียบโมเดลของจักรวาลวิทยา</strong> — ตาราง 4-5 · multi-model inference (48)-(49) · forecasting · PPOD (50)
+<li>⬜ <strong>T18 · ผลเทียบโมเดลของจักรวาลวิทยา</strong> — ตาราง 4-5 · multi-model inference (48)-(49) · forecasting · PPOD (50)
   <span class="src">[T] §6</span></li>
 </ol>
 
 <h2>ช่วง 4 · ข้างในของ Cobaya <span class="hint">(อ่าน [C] ทั้งฉบับได้)</span></h2>
 <ol start="19">
-<li>⬜ <strong>Theory กับ Likelihood class</strong> — <code>get_requirements</code> · <code>get_can_provide</code> · <code>calculate</code> · <code>logp</code> · provider · cache · Boltzmann code (CAMB/CLASS)
+<li>⬜ <strong>T19 · Theory กับ Likelihood class</strong> — <code>get_requirements</code> · <code>get_can_provide</code> · <code>calculate</code> · <code>logp</code> · provider · cache · Boltzmann code (CAMB/CLASS)
   <span class="src">[C] §III, §IV.B, รูป 3, §VI</span></li>
-<li>⬜ <strong>speed hierarchy · blocking</strong> — footprint (A1) · matrix $F(\sigma)$ (A2) · $D(F) = \min(1, L^TF)$ (A3) · ต้นทุน $T(\sigma)$ (A4)-(A5) · oversampling (A6) · dragging
+<li>⬜ <strong>T20 · speed hierarchy · blocking</strong> — footprint (A1) · matrix $F(\sigma)$ (A2) · $D(F) = \min(1, L^TF)$ (A3) · ต้นทุน $T(\sigma)$ (A4)-(A5) · oversampling (A6) · dragging
   <span class="src">[C] ภาคผนวก A</span></li>
-<li>⬜ <strong>เช็คพอยต์</strong> — อ่าน [T] และ [C] ตั้งแต่ต้นจนจบ ชี้ว่าแต่ละบรรทัดคือบทไหน</li>
+<li>⬜ <strong>T21 · เช็คพอยต์</strong> — อ่าน [T] และ [C] ตั้งแต่ต้นจนจบ ชี้ว่าแต่ละบรรทัดคือบทไหน</li>
 </ol>
 
 <div class="warn">
@@ -104,7 +104,7 @@
 
 <div class="ask">
   <div class="nav">
-    <a href="../lessons/0035-bayes-gauss.html">บทที่ 24 · Bayes กับพารามิเตอร์ต่อเนื่อง</a>
+    <a href="../lessons/t0001-bayes-gauss.html">T1 · Bayes กับพารามิเตอร์ต่อเนื่อง</a>
     <a href="./0001-action-cheatsheet.html">📎 ชีทสรุปเส้น QFT</a>
   </div>
 </div>

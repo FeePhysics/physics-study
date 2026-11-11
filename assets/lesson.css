@@ -46,7 +46,8 @@ body > * + * { margin-top: 1.15rem; }
 /* หัวข้อและอังกฤษใช้ serif — เนื้อไทยใช้ Sarabun ที่อ่านยาว ๆ สบายกว่า */
 h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; line-height: 1.2;
              text-wrap: balance; margin: 0; }
-h1 { font-size: 2.05rem; font-weight: 600; letter-spacing: -.01em; }
+/* ไทยมีสระล่าง (ุ ู) ใต้เส้นฐาน ⇒ line-height 1.2 ไม่พอ ทับบรรทัด .meta (iPad 2026-11-10) */
+h1 { font-size: 2.05rem; font-weight: 600; letter-spacing: -.01em; line-height: 1.4; }
 h2 { font-size: 1.3rem;  font-weight: 600; margin-top: 1.6rem;
      padding-bottom: .35rem; border-bottom: 1px solid var(--rule); }
 h3 { font-size: 1.02rem; font-weight: 600; }
@@ -56,7 +57,7 @@ ul, ol { padding-left: 1.3rem; display: flex; flex-direction: column; gap: .5rem
 .meta {
   font-family: "IBM Plex Mono", ui-monospace, monospace;
   font-size: .78rem; letter-spacing: .02em; color: var(--ink-soft);
-  text-transform: none; margin-top: -.7rem;
+  text-transform: none; margin-top: .25rem;
 }
 
 a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 2px; }
@@ -71,7 +72,11 @@ strong { font-weight: 600; }
   font-size: 1.06rem;
 }
 .eq math { font-size: 1.18em; }
-math { font-family: "Source Serif 4", "Latin Modern Math", "STIX Two Math", serif; }
+/* ⚠️ ฟอนต์ตัวแรกต้องมีตาราง OpenType MATH — Chromium วาดเครื่องหมายราก/เส้นบนของ <msqrt>
+   จากตารางนั้น · เดิมใช้ "Source Serif 4" ซึ่งไม่มี ⇒ √ หายไปทั้งตัวโดยไม่มีอะไรฟ้อง
+   ($\omega = +\sqrt{p^2+m^2}$ เรนเดอร์เป็น "+p²+m²" · แบจับได้จากบทที่ 23, 2026-11-02)
+   STIX Two Math โหลดจาก Google Fonts ใน FONTS ของ build_standalone.py */
+math { font-family: "STIX Two Math", "Latin Modern Math", "Cambria Math", math; }
 
 /* สมการ inline ที่ยาวกว่าบรรทัด (เช่น Σ_i ∂L/∂x_i δx_i ในหัวข้อ) ตัดบรรทัดไม่ได้
    ⇒ มันดัน **ทั้งหน้า** ให้กว้างเกินจอ · ให้มันเลื่อนในกล่องตัวเองแทน
@@ -251,3 +256,6 @@ mtable.bmat {
     linear-gradient(currentColor, currentColor) right top / .3em 1.5px no-repeat,
     linear-gradient(currentColor, currentColor) right bottom / .3em 1.5px no-repeat;
 }
+
+/* ตารางรายการสั้น ๆ ที่ต้องอ่านเทียบตัวอักษร (เช่น ไล่วิธีจับคู่ "1a · 2b · cd") */
+table.mono td { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .85rem; white-space: nowrap; }

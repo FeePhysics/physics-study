@@ -208,21 +208,33 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 
 เว็บที่บล็อกด้วย: `goodtheorist.science`, `webspace.science.uu.nl` (ดู `RESOURCES.md`)
 
-## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-11-11)
+## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-11-10)
 
-- **มีสองเส้นทาง** (ดู `MISSION.md`) · **เส้น thesis มาก่อน**
-- **เส้น thesis — Bayes ในจักรวาลวิทยา:** paper ของอาจารย์ = Trotta 2008 *Bayes in the sky* + Cobaya
-  (arXiv:2005.05290) · ไฟล์ที่ 3 ที่แบส่งมาซ้ำกับ Cobaya (md5 ตรงกัน) ⇒ **ฉบับที่ 3 ยังไม่ได้รับ**
-  · แผน 21 หัวข้อ: `reference/0002-bayes-roadmap.html` (อัปเดต ✅ ทุกครั้งที่สอนเสร็จ)
-  · บทล่าสุด **บทที่ 24** `lessons/0035-bayes-gauss.html` · record `0042-thesis-track.md` — **"ผลรอบแรก" รอผล**
-  · ถัดไป: หัวข้อ 2 ในแผน (prior และการเปลี่ยนตัวแปร · Trotta (11))
-  · PDF ไม่ได้ commit ⇒ session ใหม่ต้องให้แบแนบใหม่ถ้าจะอ้างหน้า
-- **เส้น QFT:** บทที่ 23 `lessons/0034-tong-read.html` ยังรอผล (`0041-tong-read-built.md`)
+### 🎓 เส้น thesis — เรียนขนานกับเส้น QFT (เพิ่ม 2026-11-11)
+
+- paper ของอาจารย์: Trotta 2008 *Bayes in the sky* + Cobaya (arXiv:2005.05290) · ไฟล์ที่ 3 ที่ส่งมาซ้ำกับ Cobaya (md5 ตรงกัน)
+  ⇒ **ฉบับที่ 3 ยังไม่ได้รับ** · PDF ไม่ได้ commit ⇒ session ใหม่ต้องให้แบแนบใหม่ถ้าจะอ้างหน้า
+- ⚠️ **เลขบทแยก ห้ามปนกับเส้น QFT** — ไฟล์ขึ้นต้นด้วย `t` ทั้งหมด: `lessons/tNNNN-*.html` ·
+  `learning-records/tNNNN-*.md` · `scripts/verify/tNNNN_*.py` · ในบทเรียกว่า "Thesis บทที่ N" / "TN"
+  (สอง session ทำงานพร้อมกัน เลข `0035` เคยชนกันจริง)
+- แผน 21 หัวข้อ: `reference/thesis-roadmap.html` (อัปเดต ✅ ทุกครั้งที่สอนเสร็จ)
+- ล่าสุด **T1** `lessons/t0001-bayes-gauss.html` · record `t0001-thesis-track.md` — **"ผลรอบแรก" รอผล**
+  · ถัดไป: T2 prior และการเปลี่ยนตัวแปร (Trotta (11))
+- Artifact: T1 `Wrgdh2fegJsw8aYfWrrMmF` · แผนที่ `VCojs8XZedFFWL5hSp5mWy`
+
+### เส้น QFT
+
+- บทที่ 25 `lessons/0037-vertex.html` **ผ่าน 6/6** (รอบสอง) · บทที่ 24 + ชุดฝึก Wick ผ่านแล้ว
+- ชุดฝึกจุดยอด `0038-vertex-drill.html` ผ่าน 6/6
+- ล่าสุด: **บทที่ 26** `lessons/0039-dyson.html` (Dyson series: $-i$ · $\frac1{n!}$ = สามเหลี่ยม · $-i\lambda\int d^4z$) · learning record `0046` — **"ผลรอบแรก" ยังรอผล**
+- งานถัดไป: ผลบทที่ 26 → แก้ → ต่อช่วง C (time ordering $T$ ⇒ propagator · amplitude · เช็คพอยต์อ่าน Tong บทที่ 3) · แวะ GR ยังเปิดอยู่ (แบเลือกต่อ C ก่อน 2026-11-10)
+- ⚠️ `build_standalone.py` เคยปล่อยสคริปต์ KaTeX CDN ค้างในทุกไฟล์ build ⇒ iPad ขึ้น "Script error." · แก้แล้ว + ด่านกันในตัว build (2026-11-10)
+- ⚠️ ลิงก์ artifact ch25 เปิดจาก session 2026-11-10 ไม่ได้ (not found) ⇒ ส่งเป็นไฟล์ `build/` แทน
+- ⚠️ ฟอนต์ `math` ต้องมีตาราง OpenType MATH (STIX Two Math) ไม่งั้น √ หายจากฉบับ `build/` โดยประตูไม่ฟ้อง (2026-11-02)
+  · artifact ทุกบทแก้แล้ว
 - **Artifact (publish ทับ URL เดิมเสมอ ห้ามสร้างใหม่):**
   ch18 `UaMnbMxd6LC7HrRRSY6Agu` · ch19 `XeTN5v7GDpNjS3WorDYrot` · ch20 `BHJ8MRxpUh6DuKRyeAtDYv` ·
-  ch21 `EVreU25bGhApapQgohHYDA` · ch22 `1cKQ2RhxTt8wDt4xWhFuFS` · ch23 `T8Z1G4JjDyerBoNSo3fcjZ` ·
-  ch24 `Wrgdh2fegJsw8aYfWrrMmF` · แผนที่ paper `VCojs8XZedFFWL5hSp5mWy`
+  ch21 `EVreU25bGhApapQgohHYDA` · ch22 `1cKQ2RhxTt8wDt4xWhFuFS` · ch23 `T8Z1G4JjDyerBoNSo3fcjZ` · ch24 `HMXgSv1mKHrqgUWTKj85kg` · ชุดฝึก Wick `U9vdH1Verv2KzyeN3NV7aa` · ch25 `PhzEyrYQjY21sweQ8owFGs`
   (URL เต็ม = `https://claude.ai/artifact/<id>` · ต้อง `read` ก่อน publish ทับจาก session ใหม่)
 - ต้นฉบับ Tong บทที่ 2 (`two.pdf`) แบอัปโหลดใน session เก่า — session ใหม่ไม่เห็น ต้องแนบใหม่ถ้าจะอ้างหน้าอีก
 - ปุ่ม 📋 คัดลอกผล อยู่ใต้หัวข้อ "ลองเอง" และโผล่เมื่อตอบครบทุกขั้นทุกข้อเท่านั้น (ไม่ใช่บั๊ก)
-- ⚠️ `pip install playwright` จะอัปเกรดทับตัวที่ติดตั้งไว้ ⇒ launch เองต้องส่ง `executable_path` (ประตูทำอยู่แล้ว)

@@ -25,7 +25,7 @@ OUT = ROOT / "build"
 FONTS = ('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n'
          '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?'
          'family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600'
-         '&family=IBM+Plex+Mono:wght@400&display=swap">')
+         '&family=IBM+Plex+Mono:wght@400&family=STIX+Two+Math&display=swap">')
 
 
 def to_mathml(html: str) -> str:
@@ -65,13 +65,15 @@ def build(src: pathlib.Path) -> pathlib.Path:
     css = (ROOT / "assets" / "lesson.css").read_text(encoding="utf-8")
     js = (ROOT / "assets" / "quiz.js").read_text(encoding="utf-8")
 
-    html = to_mathml(html)
-
+    # ตัดก่อนแปลง MathML — ไม่งั้น $$ ใน onload ของ auto-render ถูกแปลงเป็น <math>
+    # จน regex ข้างล่างจับแท็ก katex ไม่ได้ ⇒ สคริปต์ CDN ค้าง ⇒ "Script error." (iPad 2026-11-10)
     # ตัด <link>/<script> ที่ชี้ไฟล์ข้าง ๆ และ CDN ออกให้หมด แล้วฝังของจริงแทน
     html = re.sub(r'\s*<link rel="stylesheet" href="\.\./assets/lesson\.css">', "", html)
     html = re.sub(r'\s*<link[^>]*katex[^>]*>', "", html)
     html = re.sub(r'\s*<script[^>]*katex[^>]*>\s*</script>', "", html, flags=re.S)
     html = re.sub(r'\s*<script[^>]*quiz\.js[^>]*>\s*</script>', "", html)
+
+    html = to_mathml(html)
 
     html = html.replace("</head>", f"{FONTS}\n<style>\n{css}\n</style>\n"
                                    f"<script>\n{js}\n</script>\n</head>", 1)
@@ -79,6 +81,9 @@ def build(src: pathlib.Path) -> pathlib.Path:
     # ลิงก์ไปไฟล์อื่นในรีโปใช้ไม่ได้เมื่อไฟล์ยืนอยู่เดี่ยว ๆ ⇒ ตัดเหลือข้อความ
     html = re.sub(r'<a href="\.\./[^"]+">(.*?)</a>', r"\1", html, flags=re.S)
     html = re.sub(r'<a href="\./">(.*?)</a>', r"\1", html, flags=re.S)
+
+    if re.search(r'<script[^>]*\ssrc=|cdn\.jsdelivr', html):
+        sys.exit(f"❌ {src.name}: ยังมีสคริปต์ภายนอกค้างในฉบับ build")
 
     OUT.mkdir(exist_ok=True)
     dst = OUT / src.name

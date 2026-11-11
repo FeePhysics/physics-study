@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ชุดฝึก · จับคู่ (Wick)</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>ชุดฝึก · จับคู่ (Wick)</h1>
+<p class="meta">ชุดฝึกของบทที่ 24 · ~20 นาที · โจทย์ใหม่ทั้งหมด บางข้อแต่ละวิธีจับคู่ให้ค่าไม่เท่ากัน
+จึงต้องบวกทีละวิธีจริง ๆ ใช้ทางลัดคูณไม่ได้</p>
+
+<h2>สามขั้นของ Wick</h2>
+
+<p>ทุกโจทย์ในชุดนี้ทำด้วยสามขั้นเดิม:</p>
+
+<ol>
+<li><strong>ไล่ทุกวิธีจับคู่</strong> ของตำแหน่งทั้งหมด (ตำแหน่งที่ 1, 2, 3, ... นับจากซ้าย)</li>
+<li><strong>ค่าของหนึ่งวิธี</strong> = ค่าของแต่ละคู่ในวิธีนั้นคูณกัน</li>
+<li><strong>คำตอบ</strong> = ค่าของทุกวิธีบวกกัน</li>
+</ol>
+
+<p>ตัวอย่างจากบทที่ 24 คือ $\langle 0|x^4|0\rangle$ ที่ $\omega = 1$ ซึ่งหนึ่งคู่ให้ $\frac{1}{2\omega} = \tfrac12$:</p>
+
+<table>
+<thead><tr><th>วิธี</th><th>ค่าของแต่ละคู่</th><th>ค่าของวิธี</th></tr></thead>
+<tbody>
+<tr><td>$\{12, 34\}$</td><td>$\tfrac12$ กับ $\tfrac12$</td><td>$\tfrac14$</td></tr>
+<tr><td>$\{13, 24\}$</td><td>$\tfrac12$ กับ $\tfrac12$</td><td>$\tfrac14$</td></tr>
+<tr><td>$\{14, 23\}$</td><td>$\tfrac12$ กับ $\tfrac12$</td><td>$\tfrac14$</td></tr>
+<tr><td colspan="2"><strong>บวกทุกวิธี</strong></td><td>$\tfrac34$</td></tr>
+</tbody>
+</table>
+
+<p>ในตัวอย่างนี้ทุกแถวได้ค่าเท่ากัน คนจึงชอบเขียนย่อเป็น $3 \times \tfrac14$
+แต่ถ้าแต่ละแถวได้ค่าไม่เท่ากัน ก็ต้องบวกทีละแถวจริง ๆ ซึ่งคือสิ่งที่ข้อ 1-3 ของชุดนี้ฝึก</p>
+
+<h2>ของใหม่ชิ้นเดียว: สปริงสองตัว</h2>
+
+<p>ชุดนี้มีสปริงสองตัวที่แยกกันอยู่ ตำแหน่ง $x$ ความถี่ $\omega = 1$ และตำแหน่ง $y$ ความถี่ $\omega = 2$
+แต่ละตัวมีปุ่มของตัวเอง (บทที่ 19) คู่ที่ประกอบจากตัวเดียวกันให้ค่า $\frac{1}{2\omega}$ ของตัวนั้นเหมือนเดิม
+(คำนวณเองได้จาก $\omega$ ตัวเดียว: $y = (a + a^\dagger)/\sqrt{2\cdot2} = (a + a^\dagger)/2$ ดังนั้น $\langle 0|y^2|0\rangle = \tfrac14\langle 0|(a + a^\dagger)^2|0\rangle = \tfrac14 \times 1$)
+แต่คู่ที่ประกอบจาก $x$ หนึ่งตัวกับ $y$ หนึ่งตัวให้ $0$ เพราะ $x\,y$ กดบน $|0\rangle$ แล้วสปริง $x$ ขึ้นไปขั้น $1$ และสปริง $y$ ก็ขึ้นไปขั้น $1$
+ไม่มีปุ่มไหนพากลับมา $|0\rangle$ ได้</p>
+
+<table>
+<thead><tr><th>คู่</th><th>ค่า</th></tr></thead>
+<tbody>
+<tr><td>$x$ กับ $x$</td><td>$\langle 0|x^2|0\rangle = \tfrac12$</td></tr>
+<tr><td>$y$ กับ $y$</td><td>$\langle 0|y^2|0\rangle = \tfrac14$</td></tr>
+<tr><td>$x$ กับ $y$</td><td>$0$</td></tr>
+</tbody>
+</table>
+
+<p>ข้อสำคัญคือ<strong>จับคู่ตามตำแหน่ง ไม่ใช่ตามชื่อ</strong> เช่น $\langle 0|x\,y\,x\,y|0\rangle$ มีสี่ตำแหน่ง
+ตำแหน่ง 1 กับ 3 เป็น $x$ ส่วนตำแหน่ง 2 กับ 4 เป็น $y$ ทั้งสามวิธีจับคู่ยังมีครบ แต่บางวิธีให้ $0$</p>
+
+<h2>กับดัก: $\langle 0|x^4|0\rangle$ ไม่ใช่ $\big(\langle 0|x^2|0\rangle\big)^2$</h2>
+
+<p>ที่ $\omega = 1$ ค่า $\big(\langle 0|x^2|0\rangle\big)^2 = \tfrac12 \times \tfrac12 = \tfrac14$ คือค่าของ<em>วิธีจับคู่เดียว</em> $\{12, 34\}$
+(จับสองตัวแรกเป็นคู่ จับสองตัวหลังเป็นคู่) ส่วน $\langle 0|x^4|0\rangle = \tfrac34$ ต้องบวกครบสามวิธี
+จึงใหญ่กว่า $3$ เท่า ผลต่าง $\tfrac34 - \tfrac14 = \tfrac12$ มาจากอีกสองวิธีที่ "จับไขว้" คือ $\{13, 24\}$ กับ $\{14, 23\}$ วิธีละ $\tfrac14$
+ข้อ 6 ทำเรื่องเดียวกันกับ $y$</p>
+
+<p class="src">ตรวจด้วย <code>sympy</code> บนสปริงสองตัว (Fock space $64\times64$) ทุกข้อคูณเมทริกซ์จริง —
+<code>scripts/verify/0037_wick_drill.py</code></p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ตอบเป็นตัวเลข · เศษส่วนพิมพ์แบบ <code>1/8</code> ได้ · ช่องคำตอบรับตัวเลขอย่างเดียว ถ้ามีคำถามให้พิมพ์มาในแชตแทน</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · สนามสี่จุด ค่าไม่เท่ากัน</h3>
+  <p class="hint">กำหนด $D_{12} = 1$ · $D_{34} = 2$ · $D_{13} = 3$ · $D_{24} = 0$ · $D_{14} = 1$ · $D_{23} = 4$</p>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — ค่าของวิธี $\{12, 34\}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$D_{12}D_{34} = 1 \times 2 = 2$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — ค่าของวิธี $\{13, 24\}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$D_{13}D_{24} = 3 \times 0 = 0$ — มีคู่เดียวเป็นศูนย์ ทั้งวิธีก็เป็นศูนย์</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 3</strong> — ค่าของวิธี $\{14, 23\}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$D_{14}D_{23} = 1 \times 4 = 4$</p>
+    </li>
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 4</strong> — $\langle 0|\phi_1\phi_2\phi_3\phi_4|0\rangle$ = บวกทุกวิธี</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 + 0 + 4 = 6$ — สามวิธีได้ค่าไม่เท่ากัน จึงคูณ $3$ ไม่ได้</p>
+    </li>
+  </ol>
+  <p class="fb">คูณภายในวิธี · บวกระหว่างวิธี</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · $\langle 0|x\,x\,y\,y|0\rangle$</h3>
+  <p class="hint">ตำแหน่ง 1, 2 เป็น $x$ · ตำแหน่ง 3, 4 เป็น $y$ · ใช้ตารางค่าของคู่ข้างบน</p>
+  <ol class="steps">
+    <li data-answer="1/8" data-alt="0.125">
+      <p><strong>ขั้น 1</strong> — ค่าของวิธี $\{12, 34\}$ (คู่ $x$ กับ $x$ และคู่ $y$ กับ $y$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12 \times \tfrac14 = \tfrac18$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 2</strong> — ค่าของวิธี $\{13, 24\}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">คู่ 13 คือ $x$ กับ $y$ ให้ $0$ ⇒ ทั้งวิธีเป็น $0$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ค่าของวิธี $\{14, 23\}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">คู่ 14 คือ $x$ กับ $y$ ให้ $0$</p>
+    </li>
+    <li data-answer="1/8" data-alt="0.125">
+      <p><strong>ขั้น 4</strong> — $\langle 0|x\,x\,y\,y|0\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac18 + 0 + 0 = \tfrac18$ — เหลือวิธีเดียวที่จับ $x$ กับ $x$ และ $y$ กับ $y$</p>
+    </li>
+  </ol>
+  <p class="fb">วิธีที่มีคู่ข้ามสปริงหายไปทั้งวิธี</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · $\langle 0|x\,y\,x\,y|0\rangle$ — ลำดับเปลี่ยน</h3>
+  <p class="hint">ตำแหน่ง 1, 3 เป็น $x$ · ตำแหน่ง 2, 4 เป็น $y$</p>
+  <ol class="steps">
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 1</strong> — ค่าของวิธี $\{12, 34\}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ตำแหน่ง 1 คือ $x$ ตำแหน่ง 2 คือ $y$ ⇒ คู่ข้ามสปริง ⇒ $0$</p>
+    </li>
+    <li data-answer="1/8" data-alt="0.125">
+      <p><strong>ขั้น 2</strong> — ค่าของวิธี $\{13, 24\}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">คู่ 13 คือ $x$ กับ $x$ ให้ $\tfrac12$ · คู่ 24 คือ $y$ กับ $y$ ให้ $\tfrac14$ ⇒ $\tfrac18$</p>
+    </li>
+    <li data-answer="0" data-alt="ศูนย์|0.0">
+      <p><strong>ขั้น 3</strong> — ค่าของวิธี $\{14, 23\}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">คู่ 14 คือ $x$ กับ $y$ ⇒ $0$</p>
+    </li>
+    <li data-answer="1/8" data-alt="0.125">
+      <p><strong>ขั้น 4</strong> — $\langle 0|x\,y\,x\,y|0\rangle$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0 + \tfrac18 + 0 = \tfrac18$ — คำตอบเท่าข้อ 2 แต่วิธีที่รอดเป็นคนละวิธี</p>
+    </li>
+  </ol>
+  <p class="fb">จับคู่ตามตำแหน่ง แล้วดูชื่อของแต่ละตำแหน่งเพื่อหาค่าของคู่</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · $\langle 0|x^6|0\rangle$ ที่ $\omega = 1$</h3>
+  <ol class="steps">
+    <li data-answer="15" data-alt="สิบห้า|15.0">
+      <p><strong>ขั้น 1</strong> — จำนวนวิธีจับคู่ของหกตำแหน่ง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5!! = 5 \times 3 \times 1 = 15$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 2</strong> — หนึ่งวิธีมีกี่คู่</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$6 \div 2 = 3$ คู่</p>
+    </li>
+    <li data-answer="1/8" data-alt="0.125">
+      <p><strong>ขั้น 3</strong> — ค่าของหนึ่งวิธี (ทุกคู่เป็น $x$ กับ $x$ ให้ $\tfrac12$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12 \times \tfrac12 \times \tfrac12 = \tfrac18$</p>
+    </li>
+    <li data-answer="15/8" data-alt="1.875">
+      <p><strong>ขั้น 4</strong> — บวกทั้ง 15 วิธี (ทุกวิธีได้ค่าเท่ากับขั้น 3)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">บวก $\tfrac18$ สิบห้าครั้ง $= \tfrac{15}{8}$</p>
+    </li>
+  </ol>
+  <p class="fb">ทางลัดคูณใช้ได้เพราะทุกวิธีได้ค่าเท่ากัน</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · ย้อนกลับ: รู้คำตอบ หาความถี่</h3>
+  <p class="hint">สปริงตัวที่สาม $z$ ไม่รู้ความถี่ วัดได้ $\langle 0|z^4|0\rangle = \tfrac{3}{16}$</p>
+  <ol class="steps">
+    <li data-answer="1/16" data-alt="0.0625">
+      <p><strong>ขั้น 1</strong> — สามวิธีได้ค่าเท่ากันและบวกกันได้ $\tfrac{3}{16}$ หนึ่งวิธีจึงได้เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac{3}{16} \div 3 = \tfrac{1}{16}$</p>
+    </li>
+    <li data-answer="1/4" data-alt="0.25">
+      <p><strong>ขั้น 2</strong> — หนึ่งวิธีคือสองคู่ที่ได้ค่าเท่ากันคูณกัน หนึ่งคู่จึงได้เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sqrt{1/16} = \tfrac14$ — นี่คือ $\langle 0|z^2|0\rangle$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 3</strong> — จาก $\langle 0|z^2|0\rangle = \frac{1}{2\omega}$ ความถี่ $\omega$ ของ $z$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{1}{2\omega} = \tfrac14$ ⇒ $\omega = 2$</p>
+    </li>
+  </ol>
+  <p class="fb">ถอยกลับทีละชั้น: บวก → คูณ → ค่าของหนึ่งคู่</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · $\langle 0|y^4|0\rangle$ กับ $\big(\langle 0|y^2|0\rangle\big)^2$</h3>
+  <p class="hint">$y$ มี $\omega = 2$ ⇒ หนึ่ง<strong>คู่</strong> (สองตำแหน่ง) ให้ $\langle 0|y^2|0\rangle = \tfrac14$</p>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — $y^4$ มีสี่ตำแหน่ง หนึ่งวิธีจับคู่มีกี่คู่</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4 \div 2 = 2$ คู่</p>
+    </li>
+    <li data-answer="1/16" data-alt="0.0625">
+      <p><strong>ขั้น 2</strong> — ค่าของหนึ่งวิธี (สองคู่ คู่ละ $\tfrac14$ คูณกัน)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac14 \times \tfrac14 = \tfrac{1}{16}$</p>
+    </li>
+    <li data-answer="3/16" data-alt="0.1875">
+      <p><strong>ขั้น 3</strong> — $\langle 0|y^4|0\rangle$ = บวกทั้งสามวิธี</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac{1}{16} + \tfrac{1}{16} + \tfrac{1}{16} = \tfrac{3}{16}$</p>
+    </li>
+    <li data-answer="1/16" data-alt="0.0625">
+      <p><strong>ขั้น 4</strong> — $\big(\langle 0|y^2|0\rangle\big)^2 = \tfrac14 \times \tfrac14$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac{1}{16}$ — เท่ากับค่าของวิธี $\{12, 34\}$ วิธีเดียว (ย่อหน้ากับดักข้างบน)</p>
+    </li>
+    <li data-answer="1/8" data-alt="0.125|2/16">
+      <p><strong>ขั้น 5</strong> — ขั้น 3 ลบขั้น 4</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac{3}{16} - \tfrac{1}{16} = \tfrac{2}{16} = \tfrac18$</p>
+    </li>
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 6</strong> — ผลต่างในขั้น 5 เท่ากับค่าของหนึ่งวิธี ($\tfrac{1}{16}$) กี่เท่า</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac{2}{16} \div \tfrac{1}{16} = 2$ — คือสองวิธีที่จับไขว้ $\{13, 24\}$ กับ $\{14, 23\}$</p>
+    </li>
+  </ol>
+  <p class="fb">$\big(\langle y^2\rangle\big)^2$ นับวิธีจับคู่เดียว ส่วน $\langle y^4\rangle$ นับครบทุกวิธี</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · ถ้ามีข้อไหนงง พิมพ์มาในแชตได้เลย
+  <div class="nav">
+    <a href="./0035-wick.html">← บทที่ 24 · จับคู่แทนการกาง</a>
+  </div>
+</div>
+
+</body>
+</html>
