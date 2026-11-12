@@ -210,6 +210,20 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 
 ## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-11-10)
 
+### 🎓 เส้น thesis — เรียนขนานกับเส้น QFT (เพิ่ม 2026-11-11)
+
+- paper ของอาจารย์: Trotta 2008 *Bayes in the sky* + Cobaya (arXiv:2005.05290) · ไฟล์ที่ 3 ที่ส่งมาซ้ำกับ Cobaya (md5 ตรงกัน)
+  ⇒ **ฉบับที่ 3 ยังไม่ได้รับ** · PDF ไม่ได้ commit ⇒ session ใหม่ต้องให้แบแนบใหม่ถ้าจะอ้างหน้า
+- ⚠️ **เลขบทแยก ห้ามปนกับเส้น QFT** — ไฟล์ขึ้นต้นด้วย `t` ทั้งหมด: `lessons/tNNNN-*.html` ·
+  `learning-records/tNNNN-*.md` · `scripts/verify/tNNNN_*.py` · ในบทเรียกว่า "Thesis บทที่ N" / "TN"
+  (สอง session ทำงานพร้อมกัน เลข `0035` เคยชนกันจริง)
+- แผน 21 หัวข้อ: `reference/thesis-roadmap.html` (อัปเดต ✅ ทุกครั้งที่สอนเสร็จ)
+- ล่าสุด **T1** `lessons/t0001-bayes-gauss.html` · record `t0001-thesis-track.md` — **"ผลรอบแรก" รอผล**
+  · ถัดไป: T2 prior และการเปลี่ยนตัวแปร (Trotta (11))
+- Artifact: T1 `Wrgdh2fegJsw8aYfWrrMmF` · แผนที่ `VCojs8XZedFFWL5hSp5mWy`
+
+### เส้น QFT
+
 - บทที่ 25 `lessons/0037-vertex.html` **ผ่าน 6/6** (รอบสอง) · บทที่ 24 + ชุดฝึก Wick ผ่านแล้ว
 - ชุดฝึกจุดยอด `0038-vertex-drill.html` ผ่าน 6/6
 - บทที่ 26 `0039-dyson.html` (Dyson series) ผ่าน 6/6 (รอบสาม)

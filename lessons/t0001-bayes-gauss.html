@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thesis บทที่ 1 · Bayes กับพารามิเตอร์ต่อเนื่อง</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>Thesis บทที่ 1 · Bayes กับพารามิเตอร์ต่อเนื่อง</h1>
+<p class="meta">เส้นทาง thesis (เรียนขนานกับเส้น QFT) · ~15 นาที · Trotta (2008) §2.2-2.3 สมการ (5)-(10) ·
+แผนที่ทั้งเส้นทางอยู่ใน <a href="../reference/thesis-roadmap.html">ชีทแผนที่ paper</a></p>
+
+<p>paper ทั้งสองอันที่อาจารย์ให้มาเริ่มจากสมการเดียวกัน คือ Trotta สมการ (5) กับ Cobaya สมการ (1)
+ส่วนที่เหลือของทั้งสอง paper เป็นวิธีคำนวณสมการนี้เมื่อมันยากขึ้น บทนี้ทำกรณีที่คำนวณด้วยมือได้ทั้งหมด
+คือ prior เป็น Gaussian และการวัดก็เป็น Gaussian ซึ่งเป็นตัวอย่างที่ Trotta ใช้เปิดเรื่อง (รูปที่ 2)
+และเป็นตัวเดียวกับ likelihood แบบ Gaussian ใน Cobaya สมการ (2)</p>
+
+<h2>① สมการเดียวที่สองฉบับใช้ร่วมกัน</h2>
+
+<p>แบรู้จัก Bayes อยู่แล้วในรูปของเหตุการณ์ สิ่งที่ต่างออกไปในฟิสิกส์คือ<strong>ตัวที่ไม่รู้ค่าไม่ใช่เหตุการณ์
+แต่เป็นพารามิเตอร์ของทฤษฎี</strong> เช่นมวลของอนุภาค หรือปริมาณสสารมืดในเอกภพ เราเรียกมันว่า $\theta$
+แล้วถือว่าค่าของมันเป็นตัวแปรสุ่ม เพราะ "ความน่าจะเป็น" ในที่นี้คือระดับความเชื่อของเรา
+ไม่ใช่ความถี่ (Trotta §2.1.2) ส่วนผลการวัดที่ได้มาจริงเรียกว่า $d$ (data) แล้ว Bayes เขียนได้ว่า</p>
+
+<div class="eq" data-eqno="1">$$ \begin{array}{l} \underbrace{p(\theta\,|\,d)}_{\text{posterior}} = \dfrac{\overbrace{\mathcal L(\theta)}^{\text{likelihood}}\;\overbrace{p(\theta)}^{\text{prior}}}{\underbrace{p(d)}_{\text{evidence}}} \\ p(d) = \displaystyle\sum_H p(d\,|\,H)\,p(H) \end{array} $$</div>
+
+<p>อ่านทีละตัวได้แบบนี้ $p(\theta)$ คือสิ่งที่เชื่อก่อนวัด $\mathcal L(\theta) = p(d\,|\,\theta)$ คือโอกาสที่จะได้ผลวัด $d$
+ถ้าค่าจริงเป็น $\theta$ เราอ่านมันเป็นฟังก์ชันของ $\theta$ โดยตรึง $d$ ไว้ จึง<em>ไม่ใช่</em>การแจกแจงของ $\theta$
+และอินทิเกรตแล้วไม่จำเป็นต้องได้ 1 ส่วนตัวส่วน $p(d)$ คือผลรวม (หรืออินทิเกรล) ของตัวเศษทุกค่า
+ซึ่งทำหน้าที่ normalize ให้ posterior รวมได้ 1 Trotta เรียกตัวนี้ว่า <em>Bayesian evidence</em> (สมการ 6)
+ในบทนี้มันเป็นแค่ตัวหาร แต่ครึ่งหลังของ paper (§4) ใช้มันเป็นเครื่องมือหลักในการเทียบโมเดล
+<span class="src">Trotta (2008) สมการ (5)-(6) · Cobaya สมการ (1) เขียนแบบเดียวกันโดยใช้ $\pi(\theta)$ แทน prior</span></p>
+
+<h2>② Gaussian คูณ Gaussian</h2>
+
+<p>ตัวอย่างของ Trotta มีนักวิทยาศาสตร์สองคน Alice กับ Bob ทั้งคู่เชื่อเรื่องค่า $\theta$ เป็น Gaussian
+คนละแบบ prior ของแต่ละคนมีจุดกลาง $\mu$ และความแปรปรวน $\Sigma^2$ จากนั้นทั้งคู่ใช้เครื่องเดียวกันวัดได้ค่า $m$
+เครื่องมี noise แบบ Gaussian ความแปรปรวน $\sigma^2$ (ตัวเล็ก ซึ่งต่างจาก $\Sigma$ ตัวใหญ่ของ prior)
+likelihood จึงเป็น $\mathcal L(\theta) \propto e^{-(\theta - m)^2/2\sigma^2}$ (Trotta สมการ 7)</p>
+
+<p>ผลคูณของ exponential คือ exponential ของผลบวก ถ้าคูณ $-2\ln$ เข้าไปทั้งสองข้างก็จะได้พหุนามกำลังสองของ $\theta$
+(ตัด $\ln$ ของค่าคงตัวที่ไม่มี $\theta$ ทิ้งได้ เพราะมันไปรวมอยู่ใน $p(d)$)</p>
+
+<div class="eq" data-eqno="2">$$ \begin{array}{l} -2\ln\big[\mathcal L(\theta)\,p(\theta)\big] \\ \quad = \dfrac{(\theta - \mu)^2}{\Sigma^2} + \dfrac{(\theta - m)^2}{\sigma^2} + \text{const} \end{array} $$</div>
+
+<p>posterior ที่เป็น Gaussian จุดกลาง $\bar\mu$ ความแปรปรวน $\tau^2$ จะให้ $(\theta - \bar\mu)^2/\tau^2$
+เทียบสัมประสิทธิ์ของ $\theta^2$ ทั้งสองข้างได้สมการ (3) ทันที และเทียบสัมประสิทธิ์ของ $\theta^1$ ได้สมการ (4)
+คือการเติมกำลังสองที่แบสอนนักเรียนอยู่แล้ว ส่วนกลับของความแปรปรวนมีชื่อเรียกว่า <strong>precision</strong></p>
+
+<div class="key">
+  <div class="eq" data-eqno="3">$$ \frac{1}{\tau^2} = \frac{1}{\Sigma^2} + \frac{1}{\sigma^2} $$</div>
+  <div class="eq" data-eqno="4">$$ \bar\mu = \tau^2\left(\frac{\mu}{\Sigma^2} + \frac{m}{\sigma^2}\right) $$</div>
+  <p style="margin-bottom:0">(3) บอกว่า <strong>precision บวกกัน</strong> ข้อมูลทำให้เรามั่นใจขึ้นเสมอ ไม่มีทางมั่นใจน้อยลง
+  ส่วน (4) บอกว่าจุดกลางใหม่คือ<strong>ค่าเฉลี่ยถ่วงน้ำหนัก</strong>ของ $\mu$ กับ $m$ ตัวไหน precision สูงกว่าก็ดึงไปทางตัวนั้น</p>
+</div>
+
+<p>Trotta เขียนผลเดียวกันนี้อีกรูปหนึ่ง (สมการ 9-10) โดยคูณทั้งเศษและส่วนด้วย $\sigma^2$
+จนเหลือแต่อัตราส่วน $(\sigma/\Sigma)^2$ ซึ่งบอกว่าเครื่องวัดหยาบกว่า prior กี่เท่า</p>
+
+<div class="eq">$$ \begin{array}{l} \bar\mu = \dfrac{m + (\sigma/\Sigma)^2\,\mu}{1 + (\sigma/\Sigma)^2} \\ \tau^2 = \dfrac{\sigma^2}{1 + (\sigma/\Sigma)^2} \end{array} $$</div>
+
+<p>ตัวอย่างเช่น prior $\mu = 0,\ \Sigma^2 = 9$ กับผลวัด $m = 10,\ \sigma^2 = 1$
+จะได้ $1/\tau^2 = \tfrac19 + 1 = \tfrac{10}9$ ดังนั้น $\tau^2 = 0.9$ และ $\bar\mu = 0.9 \times (0 + 10) = 9$
+posterior ถูกดึงเกือบถึงผลวัด เพราะเครื่องแม่นกว่า prior 9 เท่า</p>
+
+<h2>③ ข้อมูลมากขึ้น prior ก็หายไป</h2>
+
+<p>ถ้าวัด $N$ ครั้ง ได้ค่าเฉลี่ย $\bar m$ ผลรวมในเลขชี้กำลังของ likelihood ทั้ง $N$ ตัวรวมเป็นก้อนเดียวได้
+คือ $\sum_i (\theta - m_i)^2/\sigma^2 = (\theta - \bar m)^2/(\sigma^2/N)$ บวกค่าที่ไม่มี $\theta$
+ผลก็คือสมการ (3)-(4) ใช้ได้เหมือนเดิม แค่แทนดังนี้ (Trotta เขียนไว้ใต้สมการ 10)</p>
+
+<div class="eq" data-eqno="5">$$ \begin{array}{l} m \;\to\; \bar m \qquad \sigma^2 \;\to\; \dfrac{\sigma^2}{N} \\ \Longrightarrow\quad \dfrac{1}{\sigma^2} \;\to\; \dfrac{N}{\sigma^2} \end{array} $$</div>
+
+<p>precision ของข้อมูลจึงโตตาม $N$ ส่วน precision ของ prior คงที่ พอ $N$ มากพอ ข้อมูลจะกลบ prior จนหมด
+Alice กับ Bob ที่เริ่มต้นเชื่อต่างกันมากก็จะได้ posterior เดียวกัน (รูปที่ 2(d) ของ Trotta)
+นี่เป็นเหตุผลที่ Trotta ใช้แย้งว่าการเลือก prior ไม่ได้ทำให้การอนุมานหมดความเป็นวัตถุวิสัย
+แต่ก็เตือนไว้ด้วยว่าในจักรวาลวิทยาหลายปัญหาข้อมูลยังไม่มากพอจะไปถึงจุดนั้น</p>
+
+<div class="warn">
+  <strong>สัญกรณ์ต่างฉบับ</strong> — Trotta ใช้ $p(\theta)$ เป็น prior และ $\mathcal L(\theta)$ เป็น likelihood ·
+  Cobaya ใช้ $\pi(\theta\,|\,\mathcal M)$ เป็น prior ใช้ $\mathcal P$ เป็น posterior และเขียน $\mathcal M$ ซึ่งคือโมเดลไว้ทางขวาของ $|$ ทุกตัว ·
+  บทนี้ไม่เขียน $\mathcal M$ เพราะมีโมเดลเดียว โมเดลจะเริ่มมีหลายตัวในบท evidence
+  <br><strong>ยังไม่แตะโดยตั้งใจ</strong> — prior แบบ flat และ Jeffreys กับการเปลี่ยนตัวแปร (สมการ 11) ไว้บทถัดไป ·
+  ส่วน §2.1.3 ความน่าจะเป็นเชิงควอนตัม ไม่ต้องใช้กับ thesis
+</div>
+
+<p class="src">ตรวจด้วย <code>sympy</code>: สัมประสิทธิ์ $\theta^2$, $\theta^1$ ของสมการ (2) → (3)(4) ·
+posterior ที่ normalize ด้วยอินทิเกรลจริงตรงกับ $N(\bar\mu, \tau^2)$ ห้าจุด · (3)(4) เท่ากับ Trotta (9)(10) ·
+การรวม likelihood $N = 4$ ตัวเป็น $\sigma^2/N$ · ตัวอย่าง $\Sigma^2 = 9$ · ทุกคำตอบข้างล่าง และตัวควบคุมของคำตอบผิดที่น่าจะเจอ
+— <code>scripts/verify/t0001_bayes_gauss.py</code> 37/37</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ทุกข้อเป็นงานแบบเดียว คือแทนค่าลงสูตรที่ชื่ออยู่ในวงเล็บ · ตอบเป็นตัวเลข เศษส่วนพิมพ์แบบ <code>4/5</code> ได้</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · evidence คือตัวหาร &nbsp;<span class="hint">(สมการ 1)</span></h3>
+  <p class="hint">สมมติฐานสองข้อ $A$, $B$ prior เท่ากัน $p(A) = p(B) = \tfrac12$ · likelihood $p(d\,|\,A) = 0.2$, $p(d\,|\,B) = 0.6$</p>
+  <ol class="steps">
+    <li data-answer="2/5" data-alt="0.4|.4">
+      <p><strong>ขั้น 1</strong> — evidence $p(d)$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0.2 \times \tfrac12 + 0.6 \times \tfrac12 = 0.4$</p>
+    </li>
+    <li data-answer="3/4" data-alt="0.75|.75">
+      <p><strong>ขั้น 2</strong> — posterior $p(B\,|\,d)$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0.3 / 0.4 = 0.75$ · ถ้าได้ $0.3$ แปลว่ายังไม่ได้หารด้วย evidence</p>
+    </li>
+  </ol>
+  <p class="fb">evidence คือผลรวมของ likelihood × prior ทุกทางเลือก</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · posterior ของ Alice &nbsp;<span class="hint">(สมการ 3, 4 และ Trotta 9)</span></h3>
+  <p class="hint">prior ของ Alice $\mu = 0$, $\Sigma^2 = 4$ · ผลวัด $m = 5$, $\sigma^2 = 1$</p>
+  <ol class="steps">
+    <li data-answer="1/4" data-alt="0.25|.25">
+      <p><strong>ขั้น 1</strong> — precision ของ prior $1/\Sigma^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/4$</p>
+    </li>
+    <li data-answer="5/4" data-alt="1.25">
+      <p><strong>ขั้น 2</strong> — precision ของ posterior $1/\tau^2$ <span class="hint">(สมการ 3)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac14 + \tfrac11 = \tfrac54$</p>
+    </li>
+    <li data-answer="4/5" data-alt="0.8|.8">
+      <p><strong>ขั้น 3</strong> — ความแปรปรวนของ posterior $\tau^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">กลับเศษส่วน $\tfrac54 \to \tfrac45$ · น้อยกว่าทั้ง $\Sigma^2 = 4$ และ $\sigma^2 = 1$ · ถ้าได้ $5$ แปลว่าบวกความแปรปรวนแทน precision</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 4</strong> — จุดกลางของ posterior $\bar\mu$ <span class="hint">(สมการ 4)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac45 \times (\tfrac04 + \tfrac51) = 4$ · ไม่ใช่ค่าเฉลี่ยธรรมดา $2.5$ เพราะผลวัดแม่นกว่า prior</p>
+    </li>
+    <li data-answer="1/4" data-alt="0.25|.25">
+      <p><strong>ขั้น 5</strong> — อัตราส่วน $(\sigma/\Sigma)^2$ ที่ Trotta ใช้</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/4$ — เท่ากับ $\sigma^2/\Sigma^2$</p>
+    </li>
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 6</strong> — $\bar\mu$ จากสูตรของ Trotta $\dfrac{m + (\sigma/\Sigma)^2\mu}{1 + (\sigma/\Sigma)^2}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\dfrac{5 + 0}{1.25} = 4$ — ค่าเดียวกับขั้น 4 สองสูตรเป็นสมการเดียวกัน</p>
+    </li>
+  </ol>
+  <p class="fb">precision บวกกัน แล้วจุดกลางคือค่าเฉลี่ยถ่วงด้วย precision</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · posterior ของ Bob &nbsp;<span class="hint">(สมการ 3, 4)</span></h3>
+  <p class="hint">prior ของ Bob $\mu = 10$, $\Sigma^2 = 1$ · ผลวัดเดียวกับข้อ 2: $m = 5$, $\sigma^2 = 1$</p>
+  <ol class="steps">
+    <li data-answer="2" data-alt="สอง|2.0">
+      <p><strong>ขั้น 1</strong> — $1/\tau^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac11 + \tfrac11 = 2$</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5|.5">
+      <p><strong>ขั้น 2</strong> — $\tau^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/2$</p>
+    </li>
+    <li data-answer="15/2" data-alt="7.5">
+      <p><strong>ขั้น 3</strong> — $\bar\mu$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12 \times (10 + 5) = 7.5$ · precision เท่ากัน จึงได้ค่ากลางพอดี · ห่างจาก Alice $3.5$</p>
+    </li>
+  </ol>
+  <p class="fb">ข้อมูลตัวเดียวยังไม่พอให้สองคนเห็นตรงกัน</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · Bob กับข้อมูล 99 ตัว &nbsp;<span class="hint">(สมการ 5 แล้ว 3, 4)</span></h3>
+  <p class="hint">prior ของ Bob เดิม $\mu = 10$, $\Sigma^2 = 1$ · วัด $N = 99$ ครั้ง แต่ละครั้ง $\sigma^2 = 1$ ค่าเฉลี่ย $\bar m = 5$</p>
+  <ol class="steps">
+    <li data-answer="99" data-alt="99.0">
+      <p><strong>ขั้น 1</strong> — precision ของข้อมูลทั้งชุด $N/\sigma^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$99/1 = 99$</p>
+    </li>
+    <li data-answer="100" data-alt="100.0">
+      <p><strong>ขั้น 2</strong> — $1/\tau^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + 99 = 100$</p>
+    </li>
+    <li data-answer="101/20" data-alt="5.05">
+      <p><strong>ขั้น 3</strong> — $\bar\mu$ <span class="hint">(ตอบทศนิยมได้)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac{1}{100}(10 \times 1 + 5 \times 99) = 5.05$ · Alice ได้ $4.99$ ระยะห่างของสองคนลดจาก $3.5$ เหลือไม่ถึง $0.07$</p>
+    </li>
+  </ol>
+  <p class="fb">precision ของข้อมูลโตตาม $N$ ส่วนของ prior เท่าเดิม ⇒ ข้อมูลชนะ</p>
+</div>
+
+<h2>อ่านต่อ</h2>
+<p>อ่าน Trotta หน้า 76-78 (§2.2-2.3) ได้ทั้งหมดแล้ว ยกเว้นสมการ (11) ซึ่งเป็นบทถัดไป
+<span class="src">R. Trotta, <em>Bayes in the sky</em>, Contemp. Phys. 49 (2008) 71 · doi:10.1080/00107510802066753</span></p>
+
+<div class="ask">
+  ตรงไหนไม่ชัด <strong>ถามได้เลย</strong> · เสร็จแล้วกด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา
+  <div class="nav">
+    <a href="../reference/thesis-roadmap.html">🗺️ แผนที่ paper ทั้งสอง</a>
+  </div>
+</div>
+
+</body>
+</html>
