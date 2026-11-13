@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>คู่มืออ่าน Dodelson · สัญลักษณ์และ convention ทั้งเล่ม</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+</head>
+<body>
+
+<h1>คู่มืออ่าน Dodelson · สัญลักษณ์และ convention ทั้งเล่ม</h1>
+<p class="meta">อิง Appendix B–D (หนังสือหน้า 415–425) · คัดเฉพาะสัญลักษณ์ที่ใช้บ่อย คำอธิบายเขียนใหม่ทั้งหมด ไม่ใช่สำเนาตาราง Appendix D
+· "หน้าแรก" = หน้าที่สัญลักษณ์ปรากฏครั้งแรกตาม Appendix D (เลขที่พิมพ์บนหน้าหนังสือ)</p>
+
+<p>หน้านี้ใช้เปิดค้างไว้ข้างหนังสือ เมื่อเจอสัญลักษณ์ที่จำไม่ได้ว่าคืออะไร ให้ดูว่ามันอยู่กลุ่มไหน (เอกภพเรียบ · การกระเพื่อม · CMB · สถิติ)
+แล้วกลับไปเปิดหน้าแรกที่มันถูกนิยาม หลายตัวอักษรถูกใช้ซ้ำหลายความหมาย (เช่น $\eta$, $g$, $\tau$, $P$) — คอลัมน์ "คืออะไร" จะบอกว่าตัวไหนคือตัวไหน</p>
+
+<h2>(ก) สัญลักษณ์</h2>
+
+<h3>เอกภพเรียบ (พื้นหลังที่ไม่มีการกระเพื่อม)</h3>
+
+<table>
+  <tr><th>สัญลักษณ์</th><th>คืออะไร</th><th>หน้าแรก</th></tr>
+  <tr><td>$t$</td><td>เวลาจริงที่นาฬิกาซึ่งอยู่นิ่งกับการขยายตัววัด (cosmic time)</td><td>2</td></tr>
+  <tr><td>$a$</td><td>scale factor — ตัวคูณระยะทางของเอกภพ เท่ากับ 1 วันนี้ และเล็กลงเมื่อย้อนอดีต</td><td>2</td></tr>
+  <tr><td>$H$, $H_0$</td><td>อัตราการขยายตัว $\dot a/a$ และค่าของมันวันนี้</td><td>3</td></tr>
+  <tr><td>$h$</td><td>ตัวเลขไร้หน่วยที่เก็บความไม่แน่นอนของ $H_0$: $H_0 = 100h$ km/s/Mpc</td><td>5</td></tr>
+  <tr><td>$G$</td><td>ค่าคงที่โน้มถ่วงของนิวตัน</td><td>3</td></tr>
+  <tr><td>$T$</td><td>อุณหภูมิของโฟตอนพื้นหลัง ลดลงตาม $1/a$</td><td>4</td></tr>
+  <tr><td>$z$</td><td>redshift — $1+z = 1/a$</td><td>7</td></tr>
+  <tr><td>$\rho_{cr}$</td><td>ความหนาแน่นที่ทำให้เอกภพแบนพอดี</td><td>3</td></tr>
+  <tr><td>$\Omega_i$</td><td>ความหนาแน่นของส่วนประกอบ $i$ วันนี้ หารด้วย $\rho_{cr}$</td><td>10</td></tr>
+  <tr><td>$\Lambda$</td><td>cosmological constant</td><td>10</td></tr>
+  <tr><td>$g_{\mu\nu}$, $\eta_{\mu\nu}$</td><td>metric ทั่วไป และ metric ของ Minkowski (ดู convention ด้านล่าง)</td><td>25–26</td></tr>
+  <tr><td>$\Gamma^\mu{}_{\alpha\beta}$</td><td>Christoffel symbol — สร้างจากอนุพันธ์ของ metric ใช้ใน geodesic equation (ยังไม่ได้สอน)</td><td>30</td></tr>
+  <tr><td>$\eta$</td><td><strong>conformal time</strong> — ระยะทางที่แสงเดินได้ตั้งแต่ต้นเอกภพ (ไม่ใช่ metric!)</td><td>34</td></tr>
+  <tr><td>$\chi$</td><td>ระยะ comoving ถึงวัตถุที่ redshift หนึ่ง</td><td>34</td></tr>
+  <tr><td>$\Omega_k$</td><td>ส่วนที่บอกความโค้งของอวกาศ</td><td>35</td></tr>
+  <tr><td>$d_A$, $d_L$</td><td>angular diameter distance และ luminosity distance — สองวิธีนิยาม "ระยะ" จากขนาดเชิงมุมและความสว่าง</td><td>35–36</td></tr>
+  <tr><td>$P$</td><td>ความดัน (ในบทที่ 2–3) — ตัวเดียวกันใช้กับ power spectrum ในบทหลัง</td><td>37</td></tr>
+  <tr><td>$\rho_m$, $\rho_r$</td><td>ความหนาแน่นของสสารและของรังสี</td><td>38</td></tr>
+  <tr><td>$f$</td><td>ฟังก์ชันการกระจายในปริภูมิเฟส (occupation number)</td><td>38</td></tr>
+  <tr><td>$g_i$</td><td>จำนวน spin state ของอนุภาคชนิด $i$ (degeneracy)</td><td>38</td></tr>
+  <tr><td>$\rho_\gamma$, $\rho_b$, $\rho_\nu$</td><td>ความหนาแน่นของโฟตอน baryon และ neutrino</td><td>40–46</td></tr>
+  <tr><td>$s$</td><td>ความหนาแน่น entropy</td><td>40</td></tr>
+  <tr><td>$m_\nu$</td><td>มวลของ neutrino</td><td>46</td></tr>
+  <tr><td>$w$, $\rho_{de}$</td><td>อัตราส่วนความดันต่อความหนาแน่นของ dark energy และความหนาแน่นของมัน</td><td>50</td></tr>
+  <tr><td>$a_{eq}$, $z_{eq}$</td><td>ตอนที่สสารกับรังสีหนาแน่นเท่ากัน</td><td>51</td></tr>
+  <tr><td>$z_*$</td><td>redshift ของ recombination / decoupling</td><td>51</td></tr>
+  <tr><td>$m_{Pl}$</td><td>มวลของ Planck — สเกลพลังงานที่ gravity ต้องใช้ทฤษฎีควอนตัม</td><td>53</td></tr>
+  <tr><td>$\eta_b$</td><td>อัตราส่วนจำนวน baryon ต่อโฟตอน (คนละตัวกับ conformal time)</td><td>62</td></tr>
+  <tr><td>$Y_p$</td><td>สัดส่วนมวลของฮีเลียมที่เกิดจาก nucleosynthesis</td><td>69</td></tr>
+  <tr><td>$X_e$</td><td>สัดส่วนอิเล็กตรอนอิสระ (ionization fraction)</td><td>70</td></tr>
+  <tr><td>$\sigma_T$</td><td>Thomson cross section — ขนาดเป้าที่โฟตอนชนอิเล็กตรอน</td><td>72</td></tr>
+</table>
+
+<h3>การกระเพื่อม (perturbation และโครงสร้างขนาดใหญ่)</h3>
+
+<table>
+  <tr><th>สัญลักษณ์</th><th>คืออะไร</th><th>หน้าแรก</th></tr>
+  <tr><td>$\delta^D$</td><td>Dirac delta function</td><td>16</td></tr>
+  <tr><td>$P(k)$</td><td>power spectrum ของความหนาแน่น — ความแปรปรวนของ Fourier mode ที่ wavenumber $k$</td><td>16</td></tr>
+  <tr><td>$\Psi$, $\Phi$</td><td>สอง potential ใน metric ที่ถูกรบกวน: $\Psi$ อยู่ในส่วนเวลา $\Phi$ อยู่ในส่วนอวกาศ</td><td>87</td></tr>
+  <tr><td>$\vec k$, $k$</td><td>wavevector ของ Fourier mode และขนาดของมัน</td><td>101</td></tr>
+  <tr><td>$\mu$</td><td>cosine ของมุมระหว่าง $\vec k$ กับทิศเดินทางของโฟตอน</td><td>101</td></tr>
+  <tr><td>$\tau$</td><td>optical depth — โอกาสสะสมที่โฟตอนถูกกระเจิงจากเวลาหนึ่งถึงวันนี้</td><td>101</td></tr>
+  <tr><td>$\delta$, $\delta_b$</td><td>ความหนาแน่นเกินแบบสัมพัทธ์ของ dark matter และของ baryon</td><td>104–106</td></tr>
+  <tr><td>$v$, $v_b$</td><td>ความเร็วของ dark matter และของ baryon</td><td>96</td></tr>
+  <tr><td>$h_+$, $h_\times$</td><td>สอง polarization ของ gravity wave (tensor perturbation)</td><td>116</td></tr>
+  <tr><td>$\delta\phi$</td><td>การกระเพื่อมของสนาม inflaton</td><td>152</td></tr>
+  <tr><td>$\epsilon$, $\delta$</td><td>slow-roll parameter ของ inflation (ระวัง $\delta$ ซ้ำกับความหนาแน่นเกิน)</td><td>155</td></tr>
+  <tr><td>$P_\Phi$</td><td>power spectrum ของ potential $\Phi$</td><td>167</td></tr>
+  <tr><td>$\delta_H$</td><td>แอมพลิจูดของ primordial power spectrum ที่ใช้ normalize</td><td>171</td></tr>
+  <tr><td>$\Phi_p$</td><td>potential ตอนเริ่มต้น (primordial) ที่ inflation สร้าง</td><td>183</td></tr>
+  <tr><td>$D_1$</td><td>growth function — บอกว่าการกระเพื่อมโตตามเวลาเท่าใดในยุคหลัง</td><td>183</td></tr>
+  <tr><td>$\Delta^2(k)$</td><td>power spectrum ไร้หน่วย $k^3P/2\pi^2$ — ความแรงของการกระเพื่อมต่อช่วง $\ln k$</td><td>185</td></tr>
+  <tr><td>$k_{nl}$</td><td>สเกลที่การกระเพื่อมเริ่มไม่เป็นเชิงเส้น</td><td>185</td></tr>
+  <tr><td>$k_{eq}$</td><td>wavenumber ที่ข้ามขอบฟ้าตอน $a_{eq}$ — จุดที่ $P(k)$ หักโค้ง</td><td>194</td></tr>
+  <tr><td>$v_{pec}$</td><td>ความเร็วเฉพาะ (peculiar velocity) ของดาราจักร นอกเหนือการขยายตัว</td><td>261</td></tr>
+  <tr><td>$\chi_\infty$</td><td>ระยะ comoving ถึง redshift อนันต์</td><td>263</td></tr>
+  <tr><td>$\xi(r)$</td><td>correlation function ของดาราจักรใน 3 มิติ</td><td>264</td></tr>
+  <tr><td>$w(\theta)$</td><td>correlation function เชิงมุมบนท้องฟ้า (คนละตัวกับ $w$ ของ dark energy)</td><td>266</td></tr>
+  <tr><td>$C_l$ (matter)</td><td>power spectrum เชิงมุมของการกระจายดาราจักรที่ฉายลงท้องฟ้า</td><td>290</td></tr>
+  <tr><td>$\kappa$, $\gamma_1$, $\gamma_2$</td><td>convergence และสององค์ประกอบของ shear ใน weak lensing</td><td>300</td></tr>
+  <tr><td>$A_{ij}$</td><td>เมทริกซ์ 2×2 ที่แปลงมุมที่เห็นเป็นมุมจริงของแหล่งกำเนิด</td><td>300</td></tr>
+  <tr><td>$\epsilon_1$, $\epsilon_2$</td><td>ค่าความรีของภาพดาราจักร (ตัวประมาณ shear)</td><td>301</td></tr>
+  <tr><td>$\psi_{ij}$</td><td>distortion tensor $= A_{ij}-\delta_{ij}$</td><td>302</td></tr>
+</table>
+
+<h3>CMB</h3>
+
+<table>
+  <tr><th>สัญลักษณ์</th><th>คืออะไร</th><th>หน้าแรก</th></tr>
+  <tr><td>$R$</td><td>อัตราส่วนความหนาแน่น baryon ต่อโฟตอน (คูณ 3/4) — กำหนดความหนักของ "ของไหล" ก่อน decoupling</td><td>82</td></tr>
+  <tr><td>$c_s$</td><td>อัตราเร็วเสียงในของไหลโฟตอน-baryon</td><td>82</td></tr>
+  <tr><td>$\Theta$</td><td>ความคลาดเคลื่อนสัมพัทธ์ของอุณหภูมิโฟตอน $\delta T/T$</td><td>93</td></tr>
+  <tr><td>$\Theta_l$</td><td>moment ที่ $l$ ของ $\Theta$ เมื่อกระจายตาม Legendre polynomial ในตัวแปร $\mu$</td><td>110</td></tr>
+  <tr><td>$\Theta_P$</td><td>ความแรงของ polarization ของโฟตอน</td><td>111</td></tr>
+  <tr><td>$\mathcal P_l$</td><td>Legendre polynomial</td><td>112</td></tr>
+  <tr><td>$\Theta^T$</td><td>$\Theta$ ที่เกิดจาก tensor perturbation</td><td>116</td></tr>
+  <tr><td>$\eta_*$</td><td>conformal time ตอน recombination</td><td>218</td></tr>
+  <tr><td>$r_s$</td><td>sound horizon — ระยะที่คลื่นเสียงเดินได้ก่อน decoupling</td><td>228</td></tr>
+  <tr><td>$k_D$</td><td>สเกลที่ diffusion damping ลบการกระเพื่อมทิ้ง</td><td>229</td></tr>
+  <tr><td>$g(\eta)$</td><td>visibility function — การแจกแจงของเวลาที่โฟตอนกระเจิงครั้งสุดท้าย</td><td>236</td></tr>
+  <tr><td>$r$</td><td>tensor-to-scalar ratio</td><td>248</td></tr>
+  <tr><td>$C_l$</td><td>power spectrum เชิงมุมของ anisotropy ของอุณหภูมิ</td><td>(บท 8)</td></tr>
+  <tr><td>$E$, $B$</td><td>สองโหมดของ polarization (หรือของ shear) ที่ได้จากการหมุนตามทิศของ $\vec l$</td><td>306</td></tr>
+  <tr><td>$Q$, $U$</td><td>Stokes parameter สองตัวที่บอก linear polarization</td><td>312</td></tr>
+</table>
+
+<h3>สถิติและการวิเคราะห์ข้อมูล</h3>
+
+<table>
+  <tr><th>สัญลักษณ์</th><th>คืออะไร</th><th>หน้าแรก</th></tr>
+  <tr><td>$\mathcal L$</td><td>likelihood — ความน่าจะเป็นของข้อมูลเมื่อกำหนดพารามิเตอร์</td><td>337</td></tr>
+  <tr><td>$C_N$, $C_S$</td><td>covariance matrix ของ noise และของ signal</td><td>339–340</td></tr>
+  <tr><td>$\Delta_i$</td><td>ค่าที่วัดได้ในพิกเซล $i$</td><td>340</td></tr>
+  <tr><td>$C$</td><td>covariance ทั้งหมด $C_S+C_N$</td><td>341</td></tr>
+  <tr><td>$N_p$</td><td>จำนวนพิกเซล</td><td>341</td></tr>
+  <tr><td>$F$ (curvature)</td><td>อนุพันธ์อันดับสองของ $-\ln\mathcal L$ ตามพารามิเตอร์</td><td>365</td></tr>
+  <tr><td>$F_{\alpha\beta}$</td><td>Fisher matrix — ค่าคาดหมายของตัวบน ใช้พยากรณ์ error</td><td>366</td></tr>
+  <tr><td>$T_{ant}$</td><td>antenna temperature — หน่วยความเข้มที่ใช้กับ foreground</td><td>379</td></tr>
+  <tr><td>$\mathcal C$</td><td>band power — ค่า $C_l$ เฉลี่ยในช่วง $l$</td><td>389</td></tr>
+</table>
+
+<h2>(ข) convention ทั้งเล่ม</h2>
+
+<ul>
+  <li><strong>หน่วย</strong>: $\hbar = c = k_B = 1$ (หน้า 23) — พลังงาน มวล อุณหภูมิ ใช้หน่วยเดียวกัน (มักเป็น eV) และความยาว = เวลา = 1/พลังงาน ·
+    เวลาต้องการตัวเลขจริงให้เติม $\hbar$, $c$, $k_B$ กลับด้วยค่าใน (ค) · ระยะทางดาราศาสตร์มักเป็น Mpc หรือ $h^{-1}$Mpc</li>
+  <li><strong>metric signature</strong>: $\eta_{\mu\nu} = \mathrm{diag}(-1,1,1,1)$ (หน้า 26) ·
+    ต่างจาก QFT ใน workspace นี้ที่ใช้ $(+,-,-,-)$ ตาม Tong (<a href="../lessons/0034-tong-read.html">บทที่ 23</a>) ·
+    การเปรียบเทียบสองแบบอยู่ใน <a href="../lessons/0004-indices.html">บทที่ 3</a></li>
+  <li><strong>metric ที่ถูกรบกวน</strong>: $g_{00} = -1-2\Psi$, $g_{0i}=0$, $g_{ij} = a^2\delta_{ij}(1+2\Phi)$ (หน้า 87) ·
+    <em>นอกหนังสือ</em>: ตำราอื่นหลายเล่มใช้เครื่องหมายของ $\Phi$ กลับกัน ทำให้ความสัมพันธ์ $\Phi = -\Psi$ ของหนังสือนี้กลายเป็น $\Phi = \Psi$ ในเล่มอื่น</li>
+  <li><strong>Fourier 3 มิติ</strong> (Appendix C): $(2\pi)^3$ อยู่ใต้ $d^3k$ — ไป $x\to k$ ใช้ $e^{-i\vec k\cdot\vec x}$ ไม่มีตัวหาร
+    กลับ $k\to x$ ใช้ $e^{+i\vec k\cdot\vec x}$ หารด้วย $(2\pi)^3$ · power spectrum นิยามจาก $\langle\tilde\delta(\vec k)\tilde\delta^*(\vec k')\rangle = (2\pi)^3\delta^3(\vec k-\vec k')P(k)$</li>
+  <li><strong>Fourier 2 มิติบนท้องฟ้า</strong> (บท 9–10): โครงเดียวกัน แต่ $(2\pi)^2$ และ $\vec l$ แทน $\vec k$</li>
+  <li><strong>เฟสของ $Y_{lm}$</strong>: Appendix C เขียน $Y_{lm}$ ต่ำ ๆ ไว้ให้ ซึ่งบางตัวมี $i$ หรือเครื่องหมายลบนำหน้าที่<em>นอกหนังสือ</em>ต่างจากตำรากลศาสตร์ควอนตัมทั่วไป ·
+    ผลลัพธ์ที่ไม่ขึ้นกับเฟส (เช่น $C_l$) ไม่กระทบ แต่สูตรที่แยก $m$ (เช่น 10.95) ต้องใช้แบบของหนังสือ</li>
+  <li><strong>จุดบนหัว</strong>: ในบท 4 เป็นต้นไป $\dot{}$ คืออนุพันธ์ตาม conformal time $\eta$ ไม่ใช่ $t$ (บท 1–3 ใช้ $t$)</li>
+</ul>
+
+<h2>(ค) ค่าคงที่ที่ใช้บ่อย (ค่าปี 2003 · จาก Appendix B)</h2>
+
+<table>
+  <tr><th>ปริมาณ</th><th>ค่า (ค่าปี 2003)</th><th>ใช้ทำอะไร</th></tr>
+  <tr><td>$\hbar$</td><td>$6.582\times10^{-16}$ eV s</td><td>แปลงพลังงานเป็นเวลา</td></tr>
+  <tr><td>$\hbar c$</td><td>$1.973\times10^{-5}$ eV cm</td><td>แปลงพลังงานเป็นความยาว</td></tr>
+  <tr><td>$k_B$</td><td>$8.617\times10^{-5}$ eV/K</td><td>แปลงอุณหภูมิเป็นพลังงาน</td></tr>
+  <tr><td>$G$</td><td>$6.673\times10^{-8}$ cm³ g⁻¹ s⁻²</td><td>สมการ Friedmann</td></tr>
+  <tr><td>$m_{Pl}$</td><td>$1.221\times10^{19}$ GeV</td><td>$G$ ในหน่วยธรรมชาติ</td></tr>
+  <tr><td>$\sigma_T$</td><td>$0.665\times10^{-24}$ cm²</td><td>อัตราการกระเจิง (บท 3–4)</td></tr>
+  <tr><td>$m_e$, $m_p$</td><td>0.511 MeV, 938.27 MeV</td><td>recombination, nucleosynthesis</td></tr>
+  <tr><td>$T_0$</td><td>2.725 K $= 2.348\times10^{-4}$ eV</td><td>อุณหภูมิ CMB วันนี้</td></tr>
+  <tr><td>$H_0$</td><td>$100h$ km/s/Mpc $= 2.133h\times10^{-42}$ GeV</td><td>อัตราการขยายตัววันนี้</td></tr>
+  <tr><td>$\rho_{cr}$</td><td>$1.879h^2\times10^{-29}$ g cm⁻³</td><td>แปลง $\Omega$ เป็นความหนาแน่น</td></tr>
+  <tr><td>Mpc</td><td>$3.0856\times10^{24}$ cm (1 pc $= 3.0856\times10^{18}$ cm)</td><td>หน่วยระยะทาง</td></tr>
+  <tr><td>$a_{eq}$</td><td>$4.15\times10^{-5}(\Omega_mh^2)^{-1}$</td><td>ตอนสสาร = รังสี</td></tr>
+</table>
+
+<h2>(ง) ฟังก์ชันพิเศษ</h2>
+
+<p>Appendix C รวบรวมสูตรไว้แล้ว คู่มือนี้บอกแค่ว่าแต่ละตัวคืออะไรและโผล่ที่ไหน — สูตรให้เปิดหนังสือ</p>
+
+<table>
+  <tr><th>ฟังก์ชัน</th><th>คืออะไร</th><th>บทที่ใช้</th></tr>
+  <tr><td>Legendre polynomial $\mathcal P_l(x)$</td><td>พหุนามดีกรี $l$ บน $[-1,1]$ ที่ตั้งฉากกัน — ใช้กระจายฟังก์ชันของ $\mu$</td><td>4, 8, 10, 11</td></tr>
+  <tr><td>spherical harmonics $Y_{lm}$</td><td>ฐานตั้งฉากของฟังก์ชันบนทรงกลม — ใช้กระจายแผนที่ CMB เป็น $a_{lm}$ (ยังไม่ได้สอน)</td><td>8, 10, 11</td></tr>
+  <tr><td>spherical Bessel $j_l(x)$</td><td>ส่วนรัศมีของคลื่นระนาบเมื่อเขียนในพิกัดทรงกลม — ตัวเชื่อมจาก $k$ ไป $l$</td><td>8, 9, 10, 11</td></tr>
+  <tr><td>Bessel $J_n(x)$</td><td>ฟังก์ชันที่เกิดเมื่ออินทิเกรตคลื่นรอบวงกลม — ใช้ใน small-angle limit บนระนาบ</td><td>9, 10, 11</td></tr>
+  <tr><td>Gamma function $\Gamma(x)$</td><td>ส่วนขยายของแฟกทอเรียลไปจำนวนจริง</td><td>2–3, 6</td></tr>
+  <tr><td>Riemann zeta $\zeta(s)$</td><td>อนุกรม $\sum n^{-s}$ — $\zeta(3)\approx1.202$ โผล่ในความหนาแน่นจำนวนโฟตอน</td><td>2–3</td></tr>
+  <tr><td>Dirac delta $\delta^D$</td><td>"ฟังก์ชัน" ที่อินทิเกรตแล้วหยิบค่าที่จุดเดียว — ใช้ทุกที่ที่มี Fourier</td><td>1 เป็นต้นไป</td></tr>
+</table>
+
+<div class="ask">
+  <p>เจอสัญลักษณ์ที่ไม่มีในหน้านี้ <strong>ถามได้เลย</strong> — บอกเลขหน้ามา Claude เปิดดูหน้าเดียวกันได้</p>
+  <div class="nav">
+    <a href="dodelson-index.html">🗺️ แผนที่ทั้งเล่ม</a>
+    <a href="dodelson-ch11.html">← บทที่ 11</a>
+  </div>
+</div>
+
+</body>
+</html>

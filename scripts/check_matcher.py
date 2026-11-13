@@ -57,7 +57,7 @@ def judge(keys, typed: str) -> str:
     for k in keys:
         want = num(k)
         if got is not None and want is not None:
-            tol = max(1e-9, abs(want) * 5e-3)
+            tol = max(1e-9, min(abs(want) * 5e-3, 0.5))
             if abs(got - want) <= tol:
                 return "right"
         elif norm(typed) == norm(k):

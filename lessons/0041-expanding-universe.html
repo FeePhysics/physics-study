@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 28 · เอกภพขยายตัว</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 28 · เอกภพขยายตัว</h1>
+<p class="meta">บทเรียน · ~20 นาที · เปิดชุด cosmology ตาม Dodelson · ตรงกับ §1.1–1.2 (หน้า 1–8) · ตัวแปรตัวเดียวที่ทั้งเล่มตั้งอยู่บนมัน และกฎ $v = Hd$ ที่ได้จากมัน</p>
+
+<h2>① คำถามของบทนี้</h2>
+<p>
+อาจารย์ให้อ่าน <em>Modern Cosmology</em> ของ Dodelson หนังสือทั้งเล่มเล่าเรื่องเดียว คือเอกภพที่เรียบและกำลังขยายตัว
+แล้วมีการกระเพื่อมเล็ก ๆ ซ้อนอยู่ข้างบน (แผนที่ทั้งเล่มอยู่ที่ <a href="../reference/dodelson-index.html">คู่มืออ่าน Dodelson</a>)
+ส่วนที่ "เรียบและขยายตัว" นั้นบรรยายได้ด้วยฟังก์ชันของเวลาเพียงตัวเดียว เรียกว่า scale factor
+บทนี้ถามสองข้อ: scale factor คืออะไร และทำไมการขยายตัวจึงบังคับให้ดาราจักรที่อยู่ไกลกว่าถอยห่างเร็วกว่า
+</p>
+
+<h2>② ระยะสองแบบ</h2>
+<p>
+นึกถึงกระดาษกราฟที่ยืดออกได้ ดาราจักรแต่ละแห่งปักอยู่ที่จุดตัดของเส้นกราฟ เมื่อเวลาผ่านไปกระดาษยืดออกเท่ากันทุกทิศ
+ดาราจักร<strong>ไม่ได้ย้ายช่อง</strong> แต่ช่องแต่ละช่องกว้างขึ้น
+</p>
+
+<figure>
+<svg viewBox="0 0 520 190" role="img" aria-label="กริดเดียวกันสองเวลา จำนวนช่องระหว่างสองจุดเท่าเดิม แต่ระยะจริงยาวขึ้น">
+  <g fill="none" stroke="currentColor" stroke-width="1" opacity=".45">
+    <path d="M30 40h120M30 80h120M30 120h120M30 40v80M70 40v80M110 40v80M150 40v80"/>
+    <path d="M250 20h240M250 100h240M250 180h240M250 20v160M330 20v160M410 20v160M490 20v160"/>
+  </g>
+  <g fill="currentColor">
+    <circle cx="70" cy="80" r="5"/><circle cx="110" cy="80" r="5"/>
+    <circle cx="330" cy="100" r="5"/><circle cx="410" cy="100" r="5"/>
+    <text x="90" y="150" text-anchor="middle" font-size="13">เวลาก่อน · a เล็ก</text>
+    <text x="90" y="168" text-anchor="middle" font-size="13">ห่างกัน 1 ช่อง</text>
+    <text x="370" y="92" text-anchor="middle" font-size="13">ยังห่างกัน 1 ช่อง</text>
+    <text x="370" y="125" text-anchor="middle" font-size="13">แต่ช่องกว้างขึ้น 2 เท่า</text>
+    <text x="200" y="84" text-anchor="middle" font-size="20">→</text>
+  </g>
+</svg>
+<figcaption class="meta">จำนวนช่องระหว่างสองดาราจักรไม่เปลี่ยน สิ่งที่เปลี่ยนคือความกว้างของช่อง (วาดเองตามแนวคิดของรูป 1.1 ในหนังสือ)</figcaption>
+</figure>
+
+<p>จากภาพนี้มีระยะสองแบบ และหนังสือใช้ทั้งสองแบบตลอดเล่ม <span class="src">Dodelson หน้า 2</span></p>
+<table>
+  <tr><th>ชื่อ</th><th>สัญลักษณ์</th><th>วัดอะไร</th><th>เปลี่ยนตามเวลาไหม</th></tr>
+  <tr><td>comoving distance</td><td>$x$</td><td>นับจำนวนช่อง (ผลต่างของพิกัด)</td><td>ไม่เปลี่ยน</td></tr>
+  <tr><td>physical distance</td><td>$d$</td><td>ระยะจริงที่ไม้บรรทัดวัดได้ ณ เวลานั้น</td><td>เปลี่ยน</td></tr>
+</table>
+<p>
+ตัวที่เชื่อมสองระยะคือ <strong>scale factor</strong> $a(t)$ ซึ่งบอกว่าหนึ่งช่องกว้างเท่าไรที่เวลา $t$
+หนังสือตั้งมาตรไว้ว่าวันนี้ $a = 1$ ดังนั้นในอดีต $a$ น้อยกว่า 1
+</p>
+<div class="key">
+  <div class="eq">$$ d(t) = a(t)\,x \tag{1} $$</div>
+  <p>ระยะจริง = ความกว้างของหนึ่งช่อง × จำนวนช่อง · ตัวอย่าง: $x = 4$ และ $a = \tfrac12$ ได้ $d = 2$</p>
+</div>
+
+<h2>③ ขยายเร็วแค่ไหน: Hubble rate</h2>
+<p>
+อัตราที่ $a$ เปลี่ยนคือ $\dot a$ (จุดบนหัว = อนุพันธ์เทียบเวลา เหมือน $\dot q$ ของบทที่ 1)
+แต่ $\dot a$ ตัวเดียวขึ้นกับมาตรที่เราเลือกให้ $a$ จึงหารด้วย $a$ ให้เป็น<strong>อัตราการเปลี่ยนเป็นสัดส่วน</strong>
+(แบบเดียวกับอัตราดอกเบี้ยต่อปี) ปริมาณนี้ชื่อ Hubble rate <span class="src">Dodelson สมการ (1.1) หน้า 3</span>
+</p>
+<div class="key">
+  <div class="eq">$$ H(t) = \frac{\dot a}{a} \tag{2} $$</div>
+  <p>$H$ มีหน่วยเป็น 1/เวลา · ค่าของ $H$ วันนี้เขียนว่า $H_0$ (ตัวห้อย 0 ในหนังสือแปลว่า "ค่าวันนี้" เสมอ)</p>
+</div>
+<p>
+ตัวอย่างที่หนังสือใช้: ถ้าเอกภพแบนและมีแต่สสาร จะได้ $a \propto t^{2/3}$ (ที่มาของเลข $\tfrac23$ ต้องใช้สมการ Friedmann ซึ่งยังไม่แตะโดยตั้งใจ)
+ลองคิดเองด้วยกฎยกกำลัง เลือก $a = t^{2/3}$:
+</p>
+<table>
+  <tr><th>ขั้น</th><th>ทำอะไร</th><th>ได้</th></tr>
+  <tr><td>1</td><td>หาอนุพันธ์</td><td>$\dot a = \tfrac23\,t^{-1/3}$</td></tr>
+  <tr><td>2</td><td>หารด้วย $a$</td><td>$H = \dfrac{\tfrac23 t^{-1/3}}{t^{2/3}} = \dfrac{2}{3t}$</td></tr>
+  <tr><td>3</td><td>คูณด้วย $t$</td><td>$H\,t = \tfrac23$</td></tr>
+</table>
+<p>
+ขั้นที่ 3 คือการทดสอบที่หนังสือชี้ไว้: วัด $H_0$ กับอายุเอกภพ $t_0$ แยกกัน ถ้าเอกภพแบนและมีแต่สสาร ผลคูณต้องได้ $\tfrac23$
+<span class="src">Dodelson หน้า 3</span>
+</p>
+
+<h2>④ กฎ Hubble ออกมาเองจากสมการ (1)</h2>
+<p>
+ดาราจักรสองแห่งห่างกัน $x$ ช่อง และไม่ย้ายช่อง ($x$ คงที่) ความเร็วที่มันถอยห่างกันคืออนุพันธ์ของระยะจริง
+</p>
+<table>
+  <tr><th>ขั้น</th><th>ทำอะไร</th><th>ได้</th></tr>
+  <tr><td>1</td><td>หาอนุพันธ์ของ (1) โดย $x$ คงที่</td><td>$v = \dot d = \dot a\,x$</td></tr>
+  <tr><td>2</td><td>คูณและหารด้วย $a$</td><td>$v = \dfrac{\dot a}{a}\,(a\,x)$</td></tr>
+  <tr><td>3</td><td>อ่านวงเล็บด้วย (1) และเศษส่วนด้วย (2)</td><td>$v = H\,d$</td></tr>
+</table>
+<div class="key">
+  <div class="eq">$$ v = H\,d \tag{3} $$</div>
+  <p>ยิ่งไกลยิ่งถอยเร็ว เป็นเส้นตรง และ<strong>ความชันของเส้นคือ $H$</strong></p>
+</div>
+<p>
+กราฟที่พล็อตความเร็วเทียบระยะของดาราจักรเรียกว่า Hubble diagram ถ้าสมการ (3) จริง จุดต้องเรียงเป็นเส้นตรงผ่านจุดกำเนิด
+ข้อมูลชุดแรกของ Hubble ปี 1929 ไปถึงราว 1000 km/s ที่ระยะ 2 Mpc (Mpc = megaparsec หน่วยระยะของนักดาราศาสตร์ ประมาณ $3\times10^{24}$ cm)
+ส่วนค่าที่หนังสือใช้คือ $H_0 = 72$ km/s/Mpc คลาดเคลื่อนราว 10%
+<span class="src">Dodelson หน้า 7–9 · รูป 1.5, 1.6</span>
+</p>
+<div class="warn">
+  $H_0 = 72$ เป็น<strong>ค่าปี 2003</strong> ตามหนังสือ ค่าที่วัดกันทุกวันนี้อยู่นอกขอบเขตของบทนี้
+  · สมการ (3) ใช้กับดาราจักรที่ไม่มีการเคลื่อนที่ส่วนตัว (หนังสือเรียก peculiar velocity) และที่ระยะไม่ไกลมาก
+</div>
+
+<h2>⑤ redshift: วิธีอ่านค่า $a$ จากแสง</h2>
+<p>
+คลื่นแสงที่เดินทางอยู่ในกริดถูกยืดไปพร้อมกับกริด ความยาวคลื่นที่เราวัดได้ $\lambda_{\text{obs}}$ (obs = observed) จึงยาวกว่าตอนที่มันถูกปล่อย
+$\lambda_{\text{emit}}$ (emit = emitted) อัตราส่วนของสองค่านี้นิยามตัวเลข $z$ ที่เรียกว่า redshift
+และมันเท่ากับ $1/a$ ของตอนที่แสงถูกปล่อย <span class="src">Dodelson สมการ (1.7) หน้า 7</span>
+</p>
+<div class="key">
+  <div class="eq">$$ 1 + z = \frac{\lambda_{\text{obs}}}{\lambda_{\text{emit}}} = \frac{1}{a} \tag{4} $$</div>
+  <p>$a$ ในสมการนี้คือค่าตอนแสงออกเดินทาง · วันนี้ $a = 1$ ได้ $z = 0$ · ตัวอย่าง: แสงที่ออกมาตอน $a = \tfrac12$ มี $z = 1$</p>
+</div>
+<p>
+นักดาราศาสตร์จึงใช้ $z$ เป็นทั้งป้ายบอกเวลาและป้ายบอกระยะ ประโยคอย่าง "at redshift 3" ในหนังสือแปลว่า "ตอนที่เอกภพมีขนาดหนึ่งในสี่ของวันนี้"
+</p>
+
+<h2>⑥ ยังไม่แตะโดยตั้งใจ</h2>
+<p>
+ทำไม $a \propto t^{2/3}$ (สมการ Friedmann) · ความหนาแน่นพลังงานของสสารกับรังสีเปลี่ยนตาม $a$ อย่างไร · critical density ·
+เหตุผลที่แสงถูกยืดตามกริด (ต้องใช้ metric ของบทที่ 2) · สิ่งเหล่านี้คือบทถัดไป
+</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+<p class="meta">ทุกข้อเป็นแบบ "ใช้สมการที่ระบุ ทำตามขั้น" · ตอบเป็นตัวเลข · เศษส่วนพิมพ์แบบ <code>1/4</code> ได้ · มีคำถามให้พิมพ์ในแชต</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · ระยะสองแบบ &nbsp;<span class="hint">(สมการ (1))</span></h3>
+  <p class="hint">ดาราจักรสองแห่งมี comoving distance $x = 6$ Mpc</p>
+  <ol class="steps">
+    <li data-answer="6" data-alt="6.0">
+      <p><strong>ขั้น 1</strong> — physical distance วันนี้ ($a = 1$) กี่ Mpc</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$d = 1 \times 6 = 6$ · วันนี้สองระยะเท่ากันเพราะตั้งมาตร $a = 1$</p>
+    </li>
+    <li data-answer="2" data-alt="2.0">
+      <p><strong>ขั้น 2</strong> — physical distance ตอนที่ $a = \tfrac13$ กี่ Mpc</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$d = \tfrac13 \times 6 = 2$</p>
+    </li>
+    <li data-answer="6" data-alt="6.0">
+      <p><strong>ขั้น 3</strong> — comoving distance ตอนที่ $a = \tfrac13$ กี่ Mpc</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$6$ เท่าเดิม · จำนวนช่องไม่เปลี่ยนตามเวลา</p>
+    </li>
+  </ol>
+  <p class="fb">$x$ คงที่ · $d$ ตาม $a$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · Hubble rate &nbsp;<span class="hint">(สมการ (2) · $a = t^{2/3}$)</span></h3>
+  <p class="hint">คิดที่เวลา $t = 8$ · ใช้ $8^{1/3} = 2$</p>
+  <ol class="steps">
+    <li data-answer="4" data-alt="4.0">
+      <p><strong>ขั้น 1</strong> — $a = 8^{2/3}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(8^{1/3})^2 = 2^2 = 4$</p>
+    </li>
+    <li data-answer="1/3" data-alt="0.333|0.3333|0.33">
+      <p><strong>ขั้น 2</strong> — $\dot a = \tfrac23\,t^{-1/3}$ ที่ $t = 8$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac23 \times \tfrac12 = \tfrac13$</p>
+    </li>
+    <li data-answer="1/12" data-alt="0.0833|0.08333|0.083">
+      <p><strong>ขั้น 3</strong> — $H = \dot a / a$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac13 \div 4 = \tfrac1{12}$</p>
+    </li>
+    <li data-answer="2/3" data-alt="0.667|0.6667|0.67">
+      <p><strong>ขั้น 4</strong> — ผลคูณ $H\,t$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac1{12} \times 8 = \tfrac23$ · ได้ $\tfrac23$ ทุกเวลา ไม่ใช่เฉพาะ $t = 8$</p>
+    </li>
+  </ol>
+  <p class="fb">$H$ ลดลงตามเวลา ($\tfrac{2}{3t}$) แต่ $H\,t$ คงที่</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · ประกอบกฎ Hubble ด้วยตัวเลข &nbsp;<span class="hint">(สมการ (1) (2) (3))</span></h3>
+  <p class="hint">ที่เวลาหนึ่ง $a = 6$, $\dot a = 3$ และดาราจักรสองแห่งห่างกัน $x = 2$ (หน่วยสมมุติ)</p>
+  <ol class="steps">
+    <li data-answer="6" data-alt="6.0">
+      <p><strong>ขั้น 1</strong> — $v = \dot a\,x$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 \times 2 = 6$</p>
+    </li>
+    <li data-answer="12" data-alt="12.0">
+      <p><strong>ขั้น 2</strong> — $d = a\,x$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$6 \times 2 = 12$</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5|.5">
+      <p><strong>ขั้น 3</strong> — $H = \dot a / a$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 \div 6 = \tfrac12$</p>
+    </li>
+    <li data-answer="6" data-alt="6.0">
+      <p><strong>ขั้น 4</strong> — $H \times d$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12 \times 12 = 6$ เท่ากับขั้น 1 พอดี นี่คือ $v = Hd$</p>
+    </li>
+  </ol>
+  <p class="fb">ตัว $a$ ที่คูณเข้าในขั้น 2 ตัดกับตัวที่หารในขั้น 3</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · อ่าน Hubble diagram &nbsp;<span class="hint">(สมการ (3) · หน่วย km/s และ Mpc)</span></h3>
+  <ol class="steps">
+    <li data-answer="500" data-alt="500.0">
+      <p><strong>ขั้น 1</strong> — ข้อมูลปี 1929: $v = 1000$ ที่ $d = 2$ · ความชัน $H = v/d$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1000 \div 2 = 500$ km/s/Mpc · สูงกว่าค่าในหนังสือ ($72$) หลายเท่า เพราะการวัดระยะสมัยนั้นคลาดมาก</p>
+    </li>
+    <li data-answer="3600" data-alt="3600.0|3,600">
+      <p><strong>ขั้น 2</strong> — ใช้ $H_0 = 72$ · ดาราจักรที่ $d = 50$ ถอยห่างด้วย $v$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$72 \times 50 = 3600$ km/s</p>
+    </li>
+  </ol>
+  <p class="fb">ความชันของกราฟ = $H$ · รู้ $H$ แล้วระยะกับความเร็วแปลงกันได้</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · redshift &nbsp;<span class="hint">(สมการ (4) และ (1))</span></h3>
+  <ol class="steps">
+    <li data-answer="1/2" data-alt="0.5|.5">
+      <p><strong>ขั้น 1</strong> — แสงมี $z = 1$ · ตอนออกเดินทาง $a$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + z = 2 = 1/a$ ได้ $a = \tfrac12$</p>
+    </li>
+    <li data-answer="3" data-alt="3.0">
+      <p><strong>ขั้น 2</strong> — แสงออกเดินทางตอน $a = \tfrac14$ · $z$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/a = 4 = 1 + z$ ได้ $z = 3$</p>
+    </li>
+    <li data-answer="4864" data-alt="4864.0|4,864">
+      <p><strong>ขั้น 3</strong> — เส้นของไฮโดรเจนมี $\lambda_{\text{emit}} = 1216$ (หน่วย Å) · ที่ $z = 3$ เราวัด $\lambda_{\text{obs}}$ ได้เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1216 \times (1 + 3) = 4864$ · หนังสือใช้เส้นเดียวกันนี้ในรูป 1.9</p>
+    </li>
+    <li data-answer="2" data-alt="2.0">
+      <p><strong>ขั้น 4</strong> — ดาราจักรสองแห่งมี $x = 8$ Mpc · ที่ $z = 3$ physical distance กี่ Mpc</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$a = \tfrac14$ จากขั้น 2 แล้ว $d = \tfrac14 \times 8 = 2$</p>
+    </li>
+  </ol>
+  <p class="fb">เห็น $z$ ให้แปลงเป็น $a = \frac{1}{1+z}$ ก่อนเสมอ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · มิติของ $H$ &nbsp;<span class="hint">(ทวนบทที่ 9 · หน่วยธรรมชาติ)</span></h3>
+  <p class="hint">ใน<a href="./0018-dimcompose.html">หน่วยธรรมชาติ</a> เวลามีมิติ $M^{-1}$ และ $a$ เป็นตัวเลขไม่มีมิติ</p>
+  <ol class="steps">
+    <li data-answer="1" data-alt="1.0">
+      <p><strong>ขั้น 1</strong> — $\dot a = da/dt$ มีมิติ $M^{n}$ · $n$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">หารด้วยเวลาหนึ่งครั้ง = หารด้วย $M^{-1}$ = คูณ $M^{1}$</p>
+    </li>
+    <li data-answer="1" data-alt="1.0">
+      <p><strong>ขั้น 2</strong> — $H = \dot a/a$ มีมิติ $M^{n}$ · $n$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ · หารด้วย $a$ ที่ไม่มีมิติไม่เปลี่ยนอะไร นี่คือเหตุที่หนังสือเขียน $H_0$ เป็นหน่วย eV ได้ในสมการ (1.5)</p>
+    </li>
+  </ol>
+  <p class="fb">$H$ เป็นพลังงาน (หรือ 1/เวลา) · ค่าของมันเล็กมากเมื่อเทียบกับมวลของอนุภาค</p>
+</div>
+
+<h2>อ่านต่อ</h2>
+<p>
+เปิดหนังสือหน้า 1–8 (§1.1 กับ §1.2) อ่านคู่กับ <a href="../reference/dodelson-ch01.html">คู่มืออ่านบทที่ 1</a>
+สมการ (1.1) กับ (1.7) คือสมการ (2) กับ (4) ของบทนี้ ส่วนสมการ (1.2)–(1.6) ข้ามไปก่อนได้ บทถัดไปจะกลับมาเก็บ
+<span class="src">S. Dodelson, <em>Modern Cosmology</em> (2003) บทที่ 1</span>
+</p>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · อ่านหนังสือแล้วติดประโยคไหน บอกเลขหน้ามาได้เลย
+  <div class="nav">
+    <a href="../reference/dodelson-index.html">📎 แผนที่หนังสือ Dodelson</a>
+    <a href="./0040-time-order.html">← บทที่ 27 · เรียงตามเวลา</a>
+    <a href="./0018-dimcompose.html">บทที่ 9 · นับมิติ</a>
+  </div>
+</div>
+
+</body>
+</html>

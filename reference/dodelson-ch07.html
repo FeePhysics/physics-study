@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>คู่มืออ่าน Dodelson · บทที่ 7</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+</head>
+<body>
+
+<h1>คู่มืออ่าน Dodelson · บทที่ 7</h1>
+<p class="meta">Inhomogeneities · หน้า 180–215 · คู่มืออ่าน ไม่ใช่ฉบับแปล — เปิดคู่กับหนังสือ</p>
+
+<!-- ============================================================ -->
+<h2>1. บทนี้ตอบคำถามอะไร</h2>
+
+<p>บทที่ 4–5 ให้สมการ (Boltzmann + Einstein) และบทที่ 6 ให้ค่าเริ่มต้นจาก inflation บทนี้คือ
+"บทแก้สมการบทแรก" โดยเลือกแก้ของที่ง่ายกว่าก่อน คือ <strong>การกระเพื่อมของ dark matter</strong>
+คำถามหลักคือ ก้อนสสารที่หนาแน่นกว่าเฉลี่ยนิดเดียวตอนต้น โตขึ้นมาเป็นเท่าไรในวันนี้ และโตไม่เท่ากันในแต่ละขนาดอย่างไร
+คำตอบถูกอัดลงในสามชิ้น: transfer function $T(k)$ (ขึ้นกับขนาด), growth function $D_1(a)$ (ขึ้นกับเวลา)
+และ power spectrum ของสสาร $P(k)$ ที่เอาทั้งสองชิ้นมาคูณกัน
+บทที่ 8 จะใช้ศักย์ $\Phi$ ที่ได้จากบทนี้ไปขับการสั่นของโฟตอน และบทที่ 9 จะเอา $P(k)$ ไปเทียบกับการสำรวจดาราจักร</p>
+
+<!-- ============================================================ -->
+<h2>2. ต้องรู้อะไรก่อน</h2>
+<ul>
+  <li>สมการเชิงอนุพันธ์สามัญอันดับสอง, การลดอันดับเมื่อรู้คำตอบหนึ่งตัว, Wronskian และ Green's function แบบ ODE — คณิตที่ผู้เรียนมีแล้ว
+      (บทนี้ใช้หนัก โดยเฉพาะ "รู้คำตอบหนึ่ง แล้วหาตัวที่สอง")</li>
+  <li>Fourier transform ของสนาม — รู้จักแล้วจาก QFT
+      (ดู <a href="../lessons/0030-field-operator.html">บทที่ 19 · สนามคือผลรวมของปุ่ม</a>)</li>
+  <li>scale factor $a$, $H = \dot a/a$, ยุค radiation/matter — <a href="../lessons/0041-expanding-universe.html">บทที่ 28</a>
+      และคู่มือบทที่ 1–2</li>
+  <li>สมการ Boltzmann ของ dark matter/โฟตอน (สรุปท้ายบท 4) และสมการ Einstein ที่ถูกรบกวน (บทที่ 5) — <strong>ยังไม่ได้สอน</strong>ในบทเรียน
+      ใช้ตามคู่มือ <a href="dodelson-ch04.html">บทที่ 4</a> ไปก่อน</li>
+  <li>spherical Bessel function $j_1$ (โผล่ใน §7.3.1) — <strong>ยังไม่ได้สอน</strong> แต่บทนี้ใช้แค่รูปที่เขียนเป็น sin/cos ได้ ตรวจด้วยการแทนค่าได้เลย</li>
+  <li>ความโค้งของ metric, Christoffel — <strong>ยังไม่ได้สอน</strong> แต่บทนี้ไม่ต้องใช้โดยตรง</li>
+</ul>
+
+<div class="key">
+  <p><strong>ทวนสัญลักษณ์ที่บทนี้หยิบมาจากบทก่อน</strong> (ทุกตัวเป็นฟังก์ชันของเลขคลื่น $k$ และเวลา เพราะอยู่ใน Fourier space)</p>
+  <ul>
+    <li>$\eta$ = <em>conformal time</em> นิยามใน (2.41) หน้า 34 คือ $d\eta = dt/a$ มีหน่วยเป็นระยะ (เพราะ $c=1$)
+        และ $\eta$ ณ เวลาหนึ่งเท่ากับระยะ comoving ที่แสงเดินได้ตั้งแต่ต้น หรือ "ขนาดของ horizon"
+        จุดบนตัวแปร ($\dot\Phi$) แปลว่า $d/d\eta$ ไม่ใช่ $d/dt$</li>
+    <li>$\Psi,\ \Phi$ = การรบกวนใน metric (4.9) หน้า 87: $\Psi$ คือศักย์แบบ Newton, $\Phi$ คือการรบกวนความโค้งเชิงอวกาศ
+        บทนี้ทิ้ง anisotropic stress จึงใช้ $\Psi = -\Phi$ ทั้งบท (หนังสืออ้าง (5.33))</li>
+    <li>$\delta$ = fractional overdensity ของ dark matter ($\delta\rho/\rho$) และ $v$ = ความเร็วของมันในทิศ $\vec k$ — สรุปไว้หน้า 110</li>
+    <li>$\Theta_l$ = multipole ที่ $l$ ของการรบกวนอุณหภูมิโฟตอน $\Theta = \delta T/T$ นิยามใน (4.99) หน้า 110
+        ($\Theta_0$ = monopole ≈ ความหนาแน่น, $\Theta_1$ = dipole ≈ ความเร็ว) ห้อย $r$ ($\Theta_{r,0}$) = รวมโฟตอนและนิวตริโนเป็น "รังสี" ก้อนเดียว</li>
+    <li>$\Phi_p$ = ค่า primordial ของ $\Phi$ ที่ inflation ตั้งไว้ และสเปกตรัมของมัน $P_\Phi$ มีพารามิเตอร์ $\delta_H$ (แอมพลิจูด) กับ $n$ (spectral index) — (6.100) หน้า 171</li>
+    <li>ค่าเริ่มต้นแบบ adiabatic: $\Phi = 2\Theta_0$ (6.12) และ $\delta = 3\Theta_0$ (6.15) หน้า 141–142 ⇒ ตอนต้น $\delta = 3\Phi/2$</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<h2>3. เดินตามหนังสือ</h2>
+
+<h3>บทนำของบท · หน้า 180</h3>
+<p>ผู้เขียนอธิบายว่าทำไมเริ่มที่ dark matter ก่อนโฟตอน: dark matter รับรู้รังสีผ่านศักย์เท่านั้น
+และช่วงที่รังสีสำคัญ รังสีเองก็ทำตัวง่าย (ใช้แค่ monopole กับ dipole) จึงแก้ dark matter ได้โดยไม่ต้องรู้รายละเอียดของโฟตอน
+แต่กลับกันไม่ได้ — จะเข้าใจโฟตอนในบทที่ 8 ต้องรู้ $\Phi$ ที่สสารสร้างก่อน</p>
+
+<h3>§7.1 Prelude · หน้า 180–189</h3>
+<p>ภาพตั้งต้นคือ gravitational instability: แรงโน้มถ่วงดูดสสารเข้าบริเวณที่หนาแน่น ส่วนความดันดันออก (รูป 7.1)
+หนังสือเขียนเป็น "สมการการ์ตูน" ไว้ให้จำ</p>
+
+<div class="eq">
+$$\ddot\delta + \bigl[\text{Pressure} - \text{Gravity}\bigr]\,\delta = 0 \qquad \text{(Dodelson 7.1)}$$
+<p><strong>อ่านว่า:</strong> ถ้าวงเล็บติดลบ (gravity ชนะ) $\delta$ โตแบบ exponential ถ้าวงเล็บเป็นบวก (pressure ชนะ) $\delta$ สั่น
+ในเอกภพที่ขยายตัว การโตจะช้าลงเป็นกำลังของเวลา (ยุค matter) หรือแค่ log (ยุค radiation) ตามที่จะพิสูจน์</p>
+</div>
+
+<p><strong>§7.1.1 สามช่วงชีวิต (หน้า 182–185).</strong> รูป 7.2 พล็อต $\Phi$ เทียบ $a$ ของสาม mode:
+ตอนต้นทุก mode อยู่นอก horizon ($k\eta \ll 1$) และ $\Phi$ คงที่ ช่วงกลาง (แถบแรเงา) มีสองเหตุการณ์ซ้อนกัน คือ mode เข้า horizon
+และเอกภพเปลี่ยนจาก radiation เป็น matter domination (ที่ $a_{eq}$) ลำดับของสองเหตุการณ์นี้คือตัวกำหนดว่า mode จะเสียแอมพลิจูดไปเท่าไร
+ช่วงท้ายทุก mode กลับมาวิวัฒน์เหมือนกันหมด หนังสือจึงแยกผลเป็นสามตัวคูณ</p>
+
+<div class="eq">
+$$\Phi(\vec k,a) = \frac{9}{10}\,\Phi_p(\vec k)\,T(k)\,\frac{D_1(a)}{a} \qquad (a > a_\text{late}) \qquad \text{(Dodelson 7.5)}$$
+<p><strong>อ่านว่า:</strong> $T(k)$ = transfer function นิยามใน (7.3) ให้เท่ากับ 1 ที่สเกลใหญ่ ·
+$9/10$ = การที่ $\Phi$ สเกลใหญ่ลดลง 10% ตอนผ่าน $a_{eq}$ (พิสูจน์ใน §7.2.1) ถูกดึงออกมาเป็นตัวคูณแยก ·
+$D_1(a)$ = growth function นิยามใน (7.4) ให้ $D_1 = a$ ในเอกภพแบนที่มีแต่สสาร ·
+$a_\text{late}$ = เวลาที่ทุก mode พ้นช่วง transfer function แล้ว</p>
+</div>
+
+<p>ชื่อ "growth" ฟังแปลกเพราะในยุค matter $\Phi$ คงที่ แต่สิ่งที่โตคือ $\delta$ (รูป 7.3: หลังเข้า horizon ทุก mode โตตาม $a$)
+สะพานระหว่าง $\Phi$ กับ $\delta$ คือ Poisson equation ในลิมิต $k$ ใหญ่</p>
+
+<div class="eq">
+$$\Phi = \frac{4\pi G\rho_m a^2\delta}{k^2} \quad\Longrightarrow\quad \delta(\vec k,a) = \frac{k^2\Phi(\vec k,a)\,a}{(3/2)\Omega_m H_0^2} \qquad \text{(Dodelson 7.6, 7.7)}$$
+<p><strong>อ่านว่า:</strong> $\rho_m$ = ความหนาแน่นสสารเฉลี่ย $= \Omega_m\rho_{cr}/a^3$ · $\Omega_m$ = สัดส่วนสสารวันนี้ ·
+$H_0$ = Hubble rate วันนี้ · ใช้ $4\pi G\rho_{cr} = (3/2)H_0^2$ · ตัว $a$ ที่โผล่ใน (7.7) คือเหตุที่ $\delta\propto a$ ขณะ $\Phi$ คงที่</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (7.8)→(7.9).</strong> แทน (7.5) ลงใน (7.7) ได้
+$\delta = \tfrac35\,\tfrac{k^2}{\Omega_m H_0^2}\,\Phi_p T D_1$ (7.8) จากนั้นยกกำลังสองแล้วคูณ $P_\Phi$ จาก (6.100):
+$\left(\tfrac{3k^2}{5\Omega_mH_0^2}\right)^2\cdot\tfrac{50\pi^2}{9k^3}\left(\tfrac{k}{H_0}\right)^{n-1}\delta_H^2\left(\tfrac{\Omega_m}{D_1(1)}\right)^2 T^2D_1^2$
+ตัวเลข $\tfrac{9}{25}\cdot\tfrac{50}{9} = 2$ และ $\Omega_m$ ตัดกันพอดี (นี่คือเหตุที่บทที่ 6 แอบใส่ $\Omega_m/D_1$ ไว้ในนิยาม $\delta_H$) เหลือ</p>
+
+<div class="eq">
+$$P(k,a) = 2\pi^2\delta_H^2\,\frac{k^n}{H_0^{n+3}}\,T^2(k)\left(\frac{D_1(a)}{D_1(a=1)}\right)^2 \qquad \text{(Dodelson 7.9)}$$
+<p><strong>อ่านว่า:</strong> $P(k)$ = power spectrum ของสสาร (หน่วย ความยาว³) · $n = 1$ คือสเปกตรัม Harrison–Zel'dovich–Peebles ·
+ที่สเกลใหญ่ $T = 1$ จึง $P \propto k$ · ที่สเกลเล็ก $T$ ตก จึงเกิด "จุดหักเลี้ยว" (turnover) ในรูป 7.4</p>
+</div>
+
+<p>ถ้าอยากได้ตัวเลขไร้หน่วย ใช้ $\Delta^2(k) \equiv k^3P(k)/2\pi^2$ (7.10) ซึ่งมาจาก $d^3k/(2\pi)^3 = 4\pi k^2dk/(2\pi)^3 = (dk/k)\cdot k^3/2\pi^2$
+$\Delta \sim 1$ คือเส้นแบ่งเข้าสู่ nonlinear ซึ่งหนังสือบอกว่าอยู่ราว $k_{nl}\approx 0.2\,h\,\text{Mpc}^{-1}$
+รูป 7.4 เทียบ sCDM ($\Omega_m = 1$) กับ ΛCDM: ΛCDM มีสสารน้อยกว่า $a_{eq}$ จึงมาช้ากว่า จุดหักเลี้ยวเลื่อนไปสเกลใหญ่กว่า</p>
+
+<p><strong>§7.1.2 วิธีทำ (หน้า 185–189).</strong> ก่อน recombination โฟตอนผูกแน่นกับอิเล็กตรอนจึงเหลือแค่ $\Theta_0,\Theta_1$
+หลัง recombination โฟตอนไม่มีผลกับสสารแล้วเพราะศักย์ถูกคุมโดย dark matter เอง ระบบจึงเหลือห้าตัวแปร
+$\delta, v, \Theta_{r,0}, \Theta_{r,1}, \Phi$</p>
+
+<div class="eq">
+$$\dot\Theta_{r,0} + k\Theta_{r,1} = -\dot\Phi,\quad \dot\Theta_{r,1} - \frac k3\Theta_{r,0} = -\frac k3\Phi,\quad \dot\delta + ikv = -3\dot\Phi,\quad \dot v + \frac{\dot a}{a}v = ik\Phi \qquad \text{(Dodelson 7.11–7.14)}$$
+<p><strong>อ่านว่า:</strong> สองสมการแรกคือรังสี (โฟตอน+นิวตริโน) ไม่มี collision term — หนังสือให้พิสูจน์ในแบบฝึกหัด 1 ว่าทิ้งได้ถ้า baryon น้อย ·
+สองสมการหลังคือ (4.103)–(4.104) ที่แทน $\Psi = -\Phi$ แล้ว · $\dot a/a$ = Hubble rate ใน conformal time (คือ $aH$)</p>
+</div>
+
+<p>ตัวปิดระบบเลือกได้สองตัวจากสมการ Einstein: แบบมีอนุพันธ์เวลา (7.15) หรือแบบพีชคณิต (7.16)
+$k^2\Phi = 4\pi Ga^2\bigl[\rho_{dm}\delta + 4\rho_r\Theta_{r,0} + \tfrac{3aH}{k}(i\rho_{dm}v + 4\rho_r\Theta_{r,1})\bigr]$
+ตัวแรกเหมาะกับตัวเลข ตัวหลังเหมาะกับการวิเคราะห์ ผู้เขียนบอกตรง ๆ ว่าไม่มีคำตอบเชิงวิเคราะห์ที่ใช้ได้ทุกสเกลทุกเวลา
+จึงต้องแก้เป็นลิมิต ๆ แล้ว "เย็บ" เข้าด้วยกัน รูป 7.5 คือแผนที่ว่าลิมิตไหนใช้ได้ตรงไหน (เส้นทแยงคือ horizon แถบลายคือบริเวณที่มีสูตร)</p>
+
+<h3>§7.2.1 Super-horizon Solution · หน้า 189–192</h3>
+<p>นอก horizon ($k\eta\ll1$) ทิ้งทุกพจน์ที่มี $k$ ได้ ความเร็วหลุดออกจากระบบ เหลือ (7.17)–(7.19)
+และเพราะ $\dot\Theta_{r,0} = -\dot\Phi$ กับ $\dot\delta = -3\dot\Phi$ ผลต่าง $\delta - 3\Theta_{r,0}$ จึงคงที่ ค่าเริ่มต้น adiabatic ทำให้มันเป็นศูนย์
+ใส่ $\Theta_{r,0} = \delta/3$ ลงใน (7.19) แล้วเปลี่ยนตัวแปรเวลาเป็น</p>
+
+<div class="eq">
+$$y \equiv \frac{a}{a_{eq}} = \frac{\rho_{dm}}{\rho_r}, \qquad \frac{d}{d\eta} = aHy\,\frac{d}{dy} \qquad \text{(Dodelson 7.21, 7.22)}$$
+<p><strong>อ่านว่า:</strong> $y = 1$ คือวันที่ความหนาแน่นสสารเท่ารังสี (equality) · $y\ll1$ ยุครังสี · $y\gg1$ ยุคสสาร ·
+บรรทัดสองมาจาก chain rule กับ $\dot a = a^2H$ · ไพรม์ ($'$) ตั้งแต่นี้ = $d/dy$</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (7.20)→(7.23).</strong> ด้านซ้ายของ (7.20) คือ $3(aH)\bigl(aHy\Phi' + aH\Phi\bigr) = 3(aH)^2(y\Phi'+\Phi)$
+ด้านขวา ใช้ $4\pi Ga^2\rho_{dm} = \tfrac32(aH)^2\,\tfrac{y}{y+1}$ (เพราะ $\rho_{dm}/\rho_\text{total} = y/(y+1)$)
+หารสองข้างด้วย $3(aH)^2$ แล้ว $\tfrac{y}{2(y+1)}\bigl(1+\tfrac{4}{3y}\bigr) = \tfrac{3y+4}{6(y+1)}$ ได้ (7.23)
+$y\Phi' + \Phi = \tfrac{3y+4}{6(y+1)}\delta$</p>
+
+<p>ต่อจากนั้นใช้ "เทคนิคมาตรฐาน" สองตัวติดกัน: (1) แก้ (7.23) หา $\delta$ แล้วอนุพันธ์ ใช้ $\delta' = -3\Phi'$ ได้ ODE อันดับสองของ $\Phi$ ล้วน
+(2) Kodama–Sasaki เปลี่ยนตัวแปรให้พจน์ $\Phi$ เปล่า ๆ หายไป</p>
+
+<div class="eq">
+$$\Phi'' + \frac{21y^2+54y+32}{2y(y+1)(3y+4)}\Phi' + \frac{\Phi}{y(y+1)(3y+4)} = 0, \qquad u \equiv \frac{y^3}{\sqrt{1+y}}\Phi \qquad \text{(Dodelson 7.25, 7.26)}$$
+<p><strong>อ่านว่า:</strong> (7.25) ได้จาก (7.24) หลังคูณด้วยตัวคูณ $3y+4\over 6y(y+1)$ (sympy ยืนยัน) ·
+ในตัวแปร $u$ สมการกลายเป็น $u'' + u'[\dots] = 0$ (7.27) คือสมการอันดับหนึ่งของ $u'$ อินทิเกรตได้เป็น (7.30)
+$u' = A\,y^2(3y+4)/(1+y)^{3/2}$</p>
+</div>
+
+<p>อินทิเกรตอีกครั้ง (หนังสือแนะ $x = \sqrt{1+y}$ ในแบบฝึกหัด 4c) ค่าคงที่ตัวที่สองเป็นศูนย์เพราะ $y^3\Phi\to0$
+และที่ $y$ เล็ก integrand ≈ $4y'^2$ ทำให้ $\Phi \to 4A/3$ จึง $A = 3\Phi(0)/4$ ได้</p>
+
+<div class="eq">
+$$\Phi = \frac{\Phi(0)}{10}\,\frac{1}{y^3}\Bigl[16\sqrt{1+y} + 9y^3 + 2y^2 - 8y - 16\Bigr] \qquad \text{(Dodelson 7.32)}$$
+<p><strong>อ่านว่า:</strong> $\Phi(0)$ = ค่าตอนต้น ($=\Phi_p$) · ที่ $y\to0$ วงเล็บเหลือ $\tfrac{9}{10}\cdot$… ต้องกระจาย $\sqrt{1+y}$ ถึง $y^3$ ถึงจะเห็นว่าได้ $\Phi(0)$ ·
+ที่ $y\to\infty$ พจน์ $9y^3$ ชนะ ได้ $\tfrac{9}{10}\Phi(0)$ = ที่มาของ 9/10 ใน (7.5)</p>
+</div>
+
+<p>รูป 7.6 เทียบสูตรนี้กับคำตอบตัวเลข: แม่นมากที่ $k = 0.001\,h\,\text{Mpc}^{-1}$ และพอใช้ (ผิดไม่เกิน 10%) ถึง $k = 0.01$
+ข้อสังเกตสำคัญสำหรับบทที่ 8: ช่วงเปลี่ยนจากรังสีเป็นสสาร<strong>ยาวมาก</strong> แม้ $a \approx 10^{-3}$ (ใกล้ recombination) $\Phi$ ก็ยังลดอยู่</p>
+
+<h3>§7.2.2 Through Horizon Crossing · หน้า 192–194</h3>
+<p>คำถามคือ เมื่อ mode สเกลใหญ่เข้า horizon ในยุคสสาร $\Phi$ ยังคงที่หรือไม่ หนังสือใช้กลอุบาย:
+ไม่ต้องแก้หาคำตอบทั่วไปสองตัว แค่แสดงว่า "$\Phi$ = ค่าคงที่" เป็นหนึ่งในคำตอบ เพราะค่าเริ่มต้น (จาก §7.2.1) เลือก mode นั้นอยู่แล้ว
+ระบบคือ (7.33) $\dot\delta + ikv = 0$, (7.34) $\dot v + aHv = ik\Phi$, (7.35) $k^2\Phi = \tfrac32a^2H^2[\delta + 3aHiv/k]$
+หนังสือกำจัด $\delta$ และ $v$ ออกได้ (7.36)–(7.38) แล้วโชว์ว่าสมการอันดับสองไม่มีพจน์ $\Phi$ เปล่า</p>
+
+<p><strong>ขั้นที่หนังสือข้าม — ตรวจอีกทางให้เห็นกับตา (นอกหนังสือ แต่ใช้แค่สมการของหนังสือ).</strong>
+ในยุคสสาร $H\propto a^{-3/2}$ ทำให้ $a\propto\eta^2$ และ $aH = 2/\eta$ (สอดคล้องกับที่หนังสือใช้ $\tfrac{d}{d\eta}(aH)^{-1} = \tfrac12$)
+ลองให้ $\Phi$ คงที่ แล้วแก้ (7.34) ได้ $v = ik\Phi\eta/3$ ใส่ใน (7.35) ได้ $\delta = 2\Phi + k^2\eta^2\Phi/6$
+แล้วเช็ก (7.33): $\dot\delta = k^2\eta\Phi/3$ และ $ikv = -k^2\eta\Phi/3$ รวมเป็นศูนย์พอดี — $\Phi$ คงที่จึงเป็นคำตอบจริง
+ผลพลอยได้: ที่ $k\eta\ll1$ ได้ $\delta = 2\Phi$ (บทที่ 8 ใช้ซ้ำใน (8.7)) และเมื่อเข้า horizon $\delta \propto \eta^2 \propto a$ ตามที่สัญญาไว้</p>
+
+<div class="eq">
+$$k_{eq} = 0.073\,\text{Mpc}^{-1}\,\Omega_m h^2 \qquad \text{(Dodelson 7.39)}$$
+<p><strong>อ่านว่า:</strong> $k_{eq} \equiv a_{eq}H(a_{eq})$ = เลขคลื่นของ mode ที่เข้า horizon พอดีตอน equality · $h$ = $H_0$ ในหน่วย 100 km/s/Mpc ·
+transfer function ≈ 1 สำหรับ $k \ll k_{eq}$ และถ้าทิ้ง baryon กับ anisotropic stress $T$ ขึ้นกับ $k/k_{eq}$ อย่างเดียว ·
+หนังสือสรุปว่าถ้ายอมผิด 10% ใช้ "$T = 1$" ได้ถึง $k \lesssim k_{eq}/3$</p>
+</div>
+
+<h3>§7.3.1 Horizon Crossing (สเกลเล็ก) · หน้า 194–199</h3>
+<p>สเกลเล็กเข้า horizon ตอนยุครังสียังครอง ศักย์ถูกกำหนดโดยรังสีอย่างเดียว ส่วนสสารเป็นแค่ "ผู้ถูกลาก" (รูป 7.7)
+งานจึงแบ่งสองขั้น: หา $\Phi$ จากรังสีก่อน แล้วค่อยหา $\delta$ ที่ถูก $\Phi$ ขับ</p>
+<p>ขั้นแรก ใช้ (7.16) ที่ทิ้งสสาร (7.40) กับ $aH = 1/\eta$ (ยุครังสี) กำจัด $\Theta_{r,0}$ ได้ (7.41)–(7.42)
+แล้วจาก (7.43) $\Theta_{r,1} = -\tfrac{k\eta^2}{6}(\dot\Phi + \Phi/\eta)$ แทนกลับเข้า (7.42) ได้</p>
+
+<div class="eq">
+$$\ddot\Phi + \frac4\eta\dot\Phi + \frac{k^2}{3}\Phi = 0 \quad\Longrightarrow\quad \Phi = 3\Phi_p\left(\frac{\sin(k\eta/\sqrt3) - (k\eta/\sqrt3)\cos(k\eta/\sqrt3)}{(k\eta/\sqrt3)^3}\right) \qquad \text{(Dodelson 7.44, 7.46)}$$
+<p><strong>อ่านว่า:</strong> $k^2/3$ = (เลขคลื่น × ความเร็วเสียงของรังสี $1/\sqrt3$)² จึงเป็นสมการการสั่นแบบมีหน่วง ·
+ตั้ง $u = \Phi\eta$ ได้สมการ spherical Bessel อันดับ 1 (7.45) เลือก $j_1$ (ไม่ระเบิดที่ $\eta\to0$) ·
+เลข 3 ข้างหน้ามาจากวงเล็บ → 1/3 เมื่อ $\eta\to0$ ·
+ผล: เข้า horizon แล้ว $\Phi$ <strong>ลดลงและสั่น</strong> แอมพลิจูดตกแบบ $\eta^{-2}$ (รูป 7.8)</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (7.42)+(7.43)→(7.44).</strong> อนุพันธ์ $\Theta_{r,1}$ ใน (7.43) แล้วแทน $\dot\Theta_{r,1}$ และ $\Theta_{r,1}$ ลงใน (7.42)
+พจน์ทั้งหมดรวมแล้วเท่ากับ $-\tfrac{k\eta^2}{6}\times$[ด้านซ้ายของ (7.44)] (sympy ยืนยันตัวคูณนี้) จึงได้ (7.44)</p>
+
+<p>ขั้นที่สอง รวม (7.13)–(7.14) เป็นสมการเดียวของ $\delta$ ที่มีแหล่งขับ</p>
+
+<div class="eq">
+$$\ddot\delta + \frac1\eta\dot\delta = S(k,\eta), \qquad S = -3\ddot\Phi + k^2\Phi - \frac3\eta\dot\Phi \qquad \text{(Dodelson 7.48, 7.49)}$$
+<p><strong>อ่านว่า:</strong> ไม่มีพจน์ $\delta$ เปล่าเลย = ไม่มีทั้งแรงดึงกลับ (สสารไม่มีความดัน) และไม่มีแรงโน้มถ่วงของตัวเอง (รังสีคุมศักย์) ·
+คำตอบ homogeneous สองตัวคือ $\delta = $ ค่าคงที่ และ $\delta = \ln\eta$</p>
+</div>
+
+<p>คำตอบเต็มสร้างด้วย Green's function (7.50) ซึ่งเมื่อ mode เข้า horizon ลึกแล้ว แหล่งขับดับไปพร้อม $\Phi$
+ทำให้คำตอบล็อกเข้ารูป "ค่าคงที่ + log"</p>
+
+<div class="eq">
+$$\delta(k,\eta) = A\Phi_p\ln(Bk\eta) \qquad \text{(Dodelson 7.51)}$$
+<p><strong>อ่านว่า:</strong> $A$, $B$ = ค่าคงที่ไร้หน่วยที่ได้จากอินทิกรัล (7.52)–(7.53) ของแหล่งขับ ·
+ผู้เขียนคำนวณจาก (7.46) ได้ $A = 9.0$, $B = 0.62$ ส่วน Hu & Sugiyama (1996) ใช้ศักย์ที่แม่นกว่าได้ $A = 9.6$, $B = 0.44$ ·
+สาระคือสสาร<strong>ยังโตได้แบบ log</strong> แม้ในยุครังสี (รูป 7.9)</p>
+</div>
+
+<h3>§7.3.2 Sub-horizon Evolution · หน้า 199–203</h3>
+<p>เมื่อ $\rho_{dm}\delta$ (ที่โตแบบ log) แซง $\rho_r\Theta_{r,0}$ (ที่ไม่โต) สสารก็คุมศักย์เอง ไม่สนรังสีอีกต่อไป
+ใช้ $y$ เป็นตัวแปรเวลาอีกครั้ง (7.54)–(7.56) อนุพันธ์ (7.54) แล้วทิ้งพจน์ที่เล็กกว่าด้วยตัวคูณ $(aH/k)^2$ ได้</p>
+
+<div class="eq">
+$$\delta'' + \frac{2+3y}{2y(y+1)}\,\delta' - \frac{3}{2y(y+1)}\,\delta = 0 \qquad \text{(Dodelson 7.58)}$$
+<p><strong>อ่านว่า:</strong> นี่คือ <em>Meszaros equation</em> ของ dark matter ใต้ horizon เมื่อรังสีไม่กระเพื่อมแล้ว ·
+ไม่มี $k$ เลย ⇒ ทุก mode ใต้ horizon โตเท่ากัน · ไพรม์ = $d/dy$</p>
+</div>
+
+<p>คำตอบตัวแรกเดาจาก "ยุคสสาร $\delta\propto a$" คือพหุนามดีกรี 1 ใน $y$ ซึ่ง $\delta'' = 0$ เหลือ $D_1'/D_1 = 3/(2+3y)$ ได้ $D_1 = y + 2/3$ (7.59)
+ตัวที่สองใช้เทคนิค $u = \delta/D_1$ (เชิงอรรถ 4 ของหนังสือบอกว่าเป็นท่ามาตรฐาน) แล้วอินทิเกรตสองรอบ</p>
+
+<div class="eq">
+$$D_2(y) = D_1(y)\ln\left[\frac{\sqrt{1+y}+1}{\sqrt{1+y}-1}\right] - 2\sqrt{1+y} \qquad \text{(Dodelson 7.62)}$$
+<p><strong>อ่านว่า:</strong> $D_2$ = decaying mode · ที่ $y\gg1$ $D_1\propto y$ ส่วน $D_2\propto y^{-3/2}$ (sympy ได้สัมประสิทธิ์ $8/45$) ·
+คำตอบทั่วไป $\delta = C_1D_1 + C_2D_2$ (7.63) ใช้ได้เมื่อ $y \gg y_H$ โดย $y_H$ = ค่า $y$ ตอน mode เข้า horizon</p>
+</div>
+
+<div class="warn">
+  <strong>จุดที่หนังสือน่าจะพิมพ์ผิด — (7.60) หน้า 201.</strong> แทน $\delta = D_1u$ ลงใน (7.58) แล้วคูณ 3/2 จะได้
+  $(1+\tfrac32y)u'' + \tfrac{u'}{y(y+1)}\bigl[\tfrac{21}{4}y^2 + 6y + 1\bigr] = 0$
+  แต่หนังสือพิมพ์ "$+3y$" แทน "$+6y$" · ตรวจซ้ำด้วยการแทน (7.61) $u'\propto(y+2/3)^{-2}y^{-1}(y+1)^{-1/2}$ กลับเข้าไป: ผ่านกับ $6y$ ไม่ผ่านกับ $3y$
+  ผลลัพธ์ (7.61)–(7.62) ของหนังสือถูก มีแค่บรรทัดกลางทางที่ผิด
+</div>
+
+<p>สุดท้ายจับคู่ (match) กับคำตอบ log ของ §7.3.1 ที่เวลา $y_m$ ซึ่ง $y_H \ll y_m \ll 1$ ทั้งค่าและอนุพันธ์ (7.64)
+โดยเปลี่ยน $k\eta$ ในลอการิทึมเป็น $y/y_H$</p>
+
+<h3>§7.4 Numerical Results and Fits · หน้า 203–205</h3>
+<p>หลัง equality decaying mode หายไป เหลือ $C_1$ อย่างเดียว แก้ (7.64) หา $C_1$ ได้ (7.65)</p>
+
+<p><strong>ขั้นที่หนังสือข้าม (7.65)→(7.67).</strong> ใช้ลิมิต $y_m\ll1$ ที่หนังสือบอก: ตัวส่วน $\approx -4/(9y_m)$,
+$D_2 \approx \tfrac23\ln(4/y_m) - 2$, $D_2' \approx -2/(3y_m)$ แทนแล้ว
+$C_1 = \tfrac94A\Phi_p\bigl[\tfrac23\ln(By_m/y_H) + \tfrac23\ln(4/y_m) - 2\bigr]$ — $y_m$ ใน log สองตัวตัดกันพอดี (หนังสือเรียกว่า "fortuitously")
+เหลือ $C_1 = \tfrac32A\Phi_p\ln\bigl(4Be^{-3}/y_H\bigr)$ คูณ $D_1 \approx y = a/a_{eq}$ ได้</p>
+
+<div class="eq">
+$$\delta(\vec k,a) = \frac{3A\Phi_p(\vec k)}{2}\,\ln\left[\frac{4Be^{-3}a_{eq}}{a_H}\right]D_1(a) \qquad (a\gg a_{eq}) \qquad \text{(Dodelson 7.67)}$$
+<p><strong>อ่านว่า:</strong> $a_H$ = scale factor ตอน mode เข้า horizon (นิยามในแบบฝึกหัด 6: $a_HH(a_H) = k$) ·
+⚠️ $D_1$ ในบรรทัดนี้ต้องอ่านเป็น $D_1(y)\approx a/a_{eq}$ ของ (7.59) ไม่ใช่ $D_1(a) = a$ ของ (7.4) — ต่างกันตัวคูณ $a_{eq}$
+และ (7.68) ถัดไปถูกต้องก็ต่อเมื่ออ่านแบบแรก (ตรวจด้วย sympy)</p>
+</div>
+
+<p>เทียบ (7.67) กับ (7.8) ได้ transfer function ที่สเกลเล็ก (7.68) $T = \tfrac{5A\Omega_mH_0^2}{2k^2a_{eq}}\ln[\dots]$ แล้วแทนตัวเลข</p>
+
+<div class="eq">
+$$T(k) = \frac{12k_{eq}^2}{k^2}\ln\left[\frac{k}{8k_{eq}}\right] \qquad k\gg k_{eq} \qquad \text{(Dodelson 7.69)}$$
+<p><strong>อ่านว่า:</strong> <strong>ขั้นที่หนังสือข้าม:</strong> $k_{eq}^2 = 2\Omega_mH_0^2/a_{eq}$ ทำให้ตัวหน้า $= 5Ak_{eq}^2/(4k^2) = 12k_{eq}^2/k^2$ เมื่อ $A = 9.6$ ·
+และ $a_{eq}/a_H = \sqrt2k/k_{eq}$ ทำให้ log $= \ln[4Be^{-3}\sqrt2\,k/k_{eq}]$ ซึ่ง $1/(4Be^{-3}\sqrt2) = 8.07$ เมื่อ $B = 0.44$ ·
+รูปร่าง $\ln k/k^2$ คือหัวใจ: ถ้าไม่มีการโตแบบ log ในยุครังสี จะตกแบบ $(k_{eq}/k)^2$ ล้วน ๆ</p>
+</div>
+
+<p>หนังสือให้สูตร fit ยอดนิยม BBKS (7.70)–(7.71) ในตัวแปร $x = k/k_{eq}$ หรือ $q = k/(\Gamma\,h\,\text{Mpc}^{-1})$ โดย $\Gamma \equiv \Omega_m h$ คือ shape parameter
+(ไม่ต้องจำตัวเลขใน fit) ที่ $k$ ใหญ่ BBKS ตกแบบ $\ln k/k^2$ ด้วยสัมประสิทธิ์เดียวกับ (7.69)
+ข้อสังเกตท้าย section: ถ้าไม่ทิ้ง anisotropic stress ตัวเลข 9/10 จะกลายเป็น 0.86, baryon ทำให้เปลี่ยนมากกว่านั้น (§7.6)
+และรูป 7.11 ชี้ว่าข้อมูล (ค่าปี 2003) ต้องการ $k_{eq}$ ที่เล็กกว่า sCDM — sCDM "ผิดรูปร่าง"</p>
+
+<h3>§7.5 Growth Function · หน้า 205–207</h3>
+<p>ตอนปลาย ($z\lesssim10$) ทุก mode ที่สนใจอยู่ใต้ horizon แล้ว ถ้ามี dark energy หรือความโค้ง ต้องทำ Meszaros ใหม่โดยไม่ทิ้งส่วนอื่นใน $H$
+ผลคือสมการที่ไม่มี $k$ อีกเช่นเคย เพราะ cold dark matter ไม่มีความดันมาเกลี่ยความไม่สม่ำเสมอ</p>
+
+<div class="eq">
+$$\frac{d^2\delta}{da^2} + \left(\frac{d\ln H}{da} + \frac3a\right)\frac{d\delta}{da} - \frac{3\Omega_mH_0^2}{2a^5H^2}\,\delta = 0 \qquad \text{(Dodelson 7.73)}$$
+<p><strong>อ่านว่า:</strong> ตัวแปรเวลาเป็น $a$ แล้ว · $H(a)$ ขึ้นกับสิ่งที่อยู่ในเอกภพ · คำตอบหนึ่งคือ $\delta\propto H$ (decaying — $H$ ลดตามเวลา) ·
+เช็กกรณีสสารล้วน $H\propto a^{-3/2}$: สามพจน์มีสัมประสิทธิ์ $15/4,\,-9/4,\,-3/2$ คูณ $a^{-7/2}$ รวมเป็นศูนย์</p>
+</div>
+
+<p>ตัวที่สองหาด้วย $u = \delta/H$ (ท่าเดิม) ได้ $du/da \propto (aH)^{-3}$ (7.75) แล้วปรับค่าคงที่ให้ $D_1 = a$ ตอนต้น</p>
+
+<div class="eq">
+$$D_1(a) = \frac{5\Omega_m}{2}\,\frac{H(a)}{H_0}\int_0^a\frac{da'}{\bigl(a'H(a')/H_0\bigr)^3} \qquad \text{(Dodelson 7.77)}$$
+<p><strong>อ่านว่า:</strong> $a'$ = ตัวแปรหุ่นของอินทิกรัล · ตัวคูณ $5\Omega_m/2$ มาจากการบังคับ $D_1\to a$ ในยุคสสาร (ที่ $H = H_0\Omega_m^{1/2}a^{-3/2}$) ·
+รูป 7.12: ในเอกภพเปิดหรือมี Λ การโตถูกกดตอนปลาย (คำนวณเองได้ $D_1(1)\approx0.78$ ที่ $\Omega_m = 0.3$ แบน) ⇒ โครงสร้างในเอกภพแบบนี้เกิดเร็วกว่า</p>
+</div>
+
+<h3>§7.6 Beyond Cold Dark Matter · หน้า 207–211</h3>
+<p>รูป 7.13 พล็อต $T(k)$ หารด้วย BBKS เพื่อดูผลของสามส่วนผสม</p>
+<p><strong>Baryons (§7.6.1).</strong> ก่อน decoupling baryon ผูกกับโฟตอน จึงสั่นและไม่โตเหมือนรังสี (ไม่ตกลงในหลุม)
+หลัง decoupling ค่อยตกลงไปในหลุมที่ dark matter ขุดไว้ ซึ่งตื้นกว่าที่ §7.3 คำนวณ เพราะมีแค่ส่วน $\Omega_{cdm}/\Omega_m$ ที่ช่วยยุบ ⇒ $T$ ตกที่สเกลเล็ก
+ผลที่สองคือ<strong>ระลอกคลื่นเล็ก ๆ</strong>รอบ $k\approx0.1\,h\,\text{Mpc}^{-1}$ ซึ่งเป็นรอยของการสั่นของของไหล baryon–photon (บทที่ 8)</p>
+<p><strong>Massive neutrinos (§7.6.2).</strong> นิวตริโนเบาวิ่งเร็ว free-stream ออกจากบริเวณหนาแน่น จึงกดกำลังที่สเกลเล็กกว่า free-streaming scale
+ถ้ามวลระดับ eV ความเร็วเฉลี่ย $T_\nu/m_\nu$ ราว 1 ตอน equality จึงกดทุกสเกลที่เล็กกว่า $k_{eq}$
+ตัวเลขในหนังสือ (ค่าปี 2003): นิวตริโนหนักสุดราว 0.05 eV ($\Omega_\nu\sim10^{-3}$) และขีดบนจากโครงสร้างราว 2 eV</p>
+<p><strong>Dark energy (§7.6.3).</strong> มีสามผล: (1) เอกภพแบนแต่ $\Omega_m &lt; 1$ ⇒ $k_{eq}$ เล็กลง จุดหักเลี้ยวเลื่อนไปสเกลใหญ่ — ตรงกับข้อมูลในรูป 7.11
+(2) จาก (7.7) ที่ $\Phi$ คงที่ $\delta\propto1/\Omega_m$ ⇒ เมื่อ normalize กับ CMB มุมกว้าง สเปกตรัมสูงขึ้น
+(3) growth function ตอนปลายเปลี่ยน ขึ้นกับสมการสถานะ $w$ ผ่าน
+$H(z)/H_0 = [\Omega_m/a^3 + \Omega_{de}/a^{3(1+w)}]^{1/2}$ (7.78) ในเอกภพแบน</p>
+
+<!-- ============================================================ -->
+<h2>4. ศัพท์และสำนวนอังกฤษของบทนี้</h2>
+<table>
+  <tr><th>คำ / วลี</th><th>ความหมาย</th><th>หน้า</th></tr>
+  <tr><td>inhomogeneities</td><td>ความไม่สม่ำเสมอเชิงพื้นที่ (ตรงข้ามกับ homogeneous)</td><td>180</td></tr>
+  <tr><td>gravitational instability</td><td>การที่ก้อนหนาแน่นดึงสสารเพิ่มจนโตขึ้นเรื่อย ๆ</td><td>180</td></tr>
+  <tr><td>the F = ma of …</td><td>"สมการพื้นฐานที่สุดของ…" (เปรียบเปรย)</td><td>181</td></tr>
+  <tr><td>let's cheat and look at the solutions</td><td>ขอแอบดูคำตอบก่อน (แล้วค่อยพิสูจน์)</td><td>182</td></tr>
+  <tr><td>transfer function / growth function</td><td>ตัวคูณที่ขึ้นกับสเกล / ขึ้นกับเวลา ใน (7.5)</td><td>183</td></tr>
+  <tr><td>turns over</td><td>(กราฟ) ขึ้นถึงยอดแล้วหักลง</td><td>185</td></tr>
+  <tr><td>as much art as science</td><td>ต้องใช้ฝีมือ/สัญชาตญาณพอ ๆ กับหลักการ</td><td>187</td></tr>
+  <tr><td>splining … together</td><td>เย็บสองเส้นโค้งให้ต่อกันเรียบ</td><td>189</td></tr>
+  <tr><td>super-horizon / sub-horizon</td><td>ความยาวคลื่นใหญ่กว่า / เล็กกว่า horizon ($k\eta\ll1$ / $\gg1$)</td><td>189</td></tr>
+  <tr><td>tedious but straightforward</td><td>ยืดยาวแต่ไม่มีอะไรยาก (= หนังสือข้ามขั้น)</td><td>190</td></tr>
+  <tr><td>we can cheat using our knowledge of the initial conditions</td><td>ใช้ค่าเริ่มต้นเลือกคำตอบแทนการแก้ทั่วไป</td><td>193</td></tr>
+  <tr><td>external driving force</td><td>แรงขับจากภายนอก (ในที่นี้คือ $\Phi$ ที่รังสีสร้าง)</td><td>195</td></tr>
+  <tr><td>in the absence of a revelation</td><td>ถ้าเดาคำตอบเฉพาะไม่ออก</td><td>198</td></tr>
+  <tr><td>lock onto (the growing mode)</td><td>เข้าไปติดอยู่กับ mode นั้น</td><td>199</td></tr>
+  <tr><td>growing mode / decaying mode</td><td>คำตอบที่โต / ที่หายไปตามเวลา</td><td>201</td></tr>
+  <tr><td>fortuitously</td><td>บังเอิญดีที่ (ตัดกันพอดี)</td><td>203</td></tr>
+  <tr><td>ameliorates (this suppression)</td><td>ช่วยบรรเทา</td><td>205</td></tr>
+  <tr><td>energy budget</td><td>ส่วนประกอบพลังงานของเอกภพ</td><td>205</td></tr>
+  <tr><td>trace amounts of other stuff</td><td>ของอื่นที่มีปริมาณเล็กน้อย</td><td>207</td></tr>
+  <tr><td>free-stream</td><td>วิ่งออกไปโดยไม่ชน (จึงเกลี่ยความไม่สม่ำเสมอ)</td><td>209</td></tr>
+  <tr><td>top down</td><td>โครงสร้างใหญ่เกิดก่อนแล้วแตกเป็นเล็ก (ตรงข้าม hierarchical)</td><td>209</td></tr>
+  <tr><td>theoretical prejudice</td><td>ความเชื่อล่วงหน้าทางทฤษฎี</td><td>210</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>5. convention และจุดที่มักสะดุด</h2>
+<ul>
+  <li>หน่วย $\hbar = c = k_B = 1$ · จุดบน = $d/d\eta$ (conformal time) · ไพรม์ = $d/dy$ ใน §7.2.1 และ §7.3.2 แต่ใน §7.5 หนังสือเขียน $d/da$ ตรง ๆ</li>
+  <li>บทนี้ใช้ $\Psi = -\Phi$ ทั้งบท (ไม่มี anisotropic stress) — บทที่ 8 กลับมาแยก $\Psi$ กับ $\Phi$ อีก</li>
+  <li>$\Phi$ ของหนังสือมีเครื่องหมายแบบ (4.9): บริเวณหนาแน่น $\Psi&lt;0$ แต่ $\Phi&gt;0$ — Poisson (7.6) จึงไม่มีเครื่องหมายลบ</li>
+  <li>convention Fourier คือ (4.59): $f(\vec x) = \int\frac{d^3k}{(2\pi)^3}e^{i\vec k\cdot\vec x}\tilde f(\vec k)$ และหนังสือทิ้งตัวหมวก ~ ทั้งบท</li>
+  <li>"$D_1$" มีสองความหมายในบทนี้: $D_1(a)$ ที่ normalize ให้ $= a$ ตอนต้น (7.4, 7.77) กับ $D_1(y) = y + 2/3$ ของ Meszaros (7.59) — ดูกล่องเตือนที่ (7.67)</li>
+  <li>เลขคลื่นในรูปทั้งหมดอยู่ในหน่วย $h\,\text{Mpc}^{-1}$ ⇒ $k/k_{eq}$ ขึ้นกับ $\Omega_mh$ ซึ่งคือเหตุที่ BBKS เขียนด้วย $\Gamma = \Omega_m h$</li>
+  <li>ตัวเลขสังเกตการณ์ทั้งบท (เช่น $k_{nl}\approx0.2$, มวลนิวตริโน, $\Omega_{de}\approx0.6$–$0.7$) เป็นค่าปี 2003 และโมเดลตัวอย่างในรูปส่วนใหญ่คือ sCDM $h=0.5$ ซึ่งถูกตัดทิ้งไปแล้ว — ผู้เขียนใช้เพื่อสอน</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>6. โจทย์ท้ายบทที่ควรทำ</h2>
+<ul>
+  <li><strong>ข้อ 4</strong> (เติมพีชคณิตของ §7.2.1: (7.24)→(7.25), $u$ ของ Kodama–Sasaki, อินทิกรัล (7.31)) — ฝึกท่าลดอันดับ ODE ซึ่งใช้ซ้ำทั้งบท · ตรวจคำตอบกับ <code>dodelson_ch07.py</code> ได้</li>
+  <li><strong>ข้อ 3</strong> (เติมตารางว่าลิมิตไหนใช้ได้ที่ช่องไหน) — ข้อสั้นที่ทำให้เห็นแผนที่ของทั้งบท ทำก่อนข้ออื่น</li>
+  <li><strong>ข้อ 5, 6</strong> (หา $k_{eq}$ และ $a_H/a_{eq}$) — ได้ตัวเลข (7.39) และขั้น $a_{eq}/a_H = \sqrt2k/k_{eq}$ ที่ (7.69) ใช้</li>
+  <li><strong>ข้อ 7</strong> ($\delta\propto H$ แก้ (7.73) เมื่อมี Λ หรือความโค้ง) — สั้นและเป็นการใช้ Friedmann จริง</li>
+  <li><strong>ข้อ 2</strong> (เขียนโค้ดแก้ห้าสมการเชิงตัวเลข) — ข้อใหญ่ที่สุดและคุ้มที่สุดสำหรับคนเขียนโปรแกรมเป็น ทำหลังข้อ 3–6</li>
+  <li>ข้อ 9–11 (σ<sub>8</sub>, $k_{nl}$, growth กับ $w$) — ต่อเนื่องไปบทที่ 9 ทำเมื่ออ่านถึง §9.5</li>
+  <li>บทนี้ไม่มีข้อที่หนังสือระบุว่ามีเฉลยใน Appendix A (ยังไม่ได้เปิด Appendix A ตรวจ)</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>7. ตรวจแล้วอย่างไร</h2>
+<p>สคริปต์ <code>scripts/verify/dodelson_ch07.py</code> (sympy + mpmath · 53 ข้อ ผ่านหมด) ยืนยัน:</p>
+<ul>
+  <li>(7.20)+(7.22) ⇒ (7.23) · (7.24) ⇒ (7.25) (ตัวคูณ $6y(y+1)/(3y+4)$) · (7.25) ⇒ (7.27) ด้วย $u$ ของ (7.26) · (7.30) แก้ (7.27)</li>
+  <li>(7.31) อินทิเกรตด้วย $A = 3\Phi(0)/4$ ได้ (7.32) ตรงตัว · (7.32) แก้ (7.25) · ลิมิต $y\to0$ และ $y\to\infty$ (= 9/10)</li>
+  <li>§7.2.2: $\Phi$ คงที่ + $v = ik\Phi\eta/3$ + $\delta = 2\Phi + k^2\eta^2\Phi/6$ แก้ (7.33)–(7.35) ในยุคสสาร (เส้นทางของคู่มือ ไม่ใช่ของหนังสือ)</li>
+  <li>(7.42)+(7.43) ⇒ (7.44) · $u = \Phi\eta$ ⇒ (7.45) · (7.46) แก้ (7.44) และ → $\Phi_p$</li>
+  <li>(7.47) ⇒ (7.48)–(7.49) · คำตอบ homogeneous · อินทิกรัลใน (7.50) เป็น particular solution จริง</li>
+  <li>Meszaros: $D_1$, $D_2$ แก้ (7.58) · Wronskian · ลิมิต $D_2$ ทั้งสองปลาย · <strong>พบที่พิมพ์ผิดใน (7.60)</strong> · (7.61) แก้ฉบับที่แก้แล้ว</li>
+  <li>(7.65) ⇒ (7.66) ⇒ (7.67) และ (7.68) · ตัวเลข 12 และ 8 ใน (7.69) จาก $A=9.6$, $B=0.44$</li>
+  <li>(7.5)+(7.7) ⇒ (7.8) · (7.8)+(6.100) ⇒ (7.9) · (7.10)</li>
+  <li>(7.73): $\delta\propto H$ เป็นคำตอบ (สสารล้วน, แบน+Λ, เปิด) · (7.76) แก้ (7.73) · (7.77) ให้ $D_1\to a$ (ตัวเลข)</li>
+</ul>
+<p><strong>ยังไม่ได้ตรวจ</strong> (อ่านจากหนังสืออย่างเดียว):</p>
+<ul>
+  <li>(7.11)–(7.12) ว่าทิ้ง collision term ได้ (แบบฝึกหัด 1) และ (7.15)–(7.16) ที่ยกมาจากบทที่ 5</li>
+  <li>(7.36)–(7.38) ทีละบรรทัดของหนังสือ — ตรวจผลสรุปด้วยเส้นทางอื่นแทน</li>
+  <li>(7.40)–(7.41) การกำจัด $\Theta_{r,0}$ (ตรวจแค่ (7.42)+(7.43) ⇒ (7.44))</li>
+  <li>ค่า $A = 9.0$, $B = 0.62$ จากอินทิกรัล (7.52)–(7.53) และค่าของ Hu–Sugiyama</li>
+  <li>(7.54)–(7.57) การเปลี่ยนตัวแปรและการทิ้งพจน์เล็ก · (7.72) · ตัวเลข $0.073$ ใน (7.39) (ต้องใช้ (2.87) ของบทที่ 2) · BBKS (7.70)–(7.71)</li>
+  <li>เนื้อหาเชิงคุณภาพของ §7.6 และค่าสังเกตการณ์ทั้งหมด (ค่าปี 2003)</li>
+</ul>
+
+<div class="ask">
+  อ่านหนังสือแล้วติดประโยคไหน สมการไหน <strong>ถามได้เลย</strong> — บอกเลขหน้ามา Claude เปิดดูหน้าเดียวกันได้
+  <div class="nav">
+    <a href="dodelson-index.html">🗺️ แผนที่ทั้งเล่ม</a>
+    <a href="dodelson-ch06.html">← บทที่ 6</a>
+    <a href="dodelson-ch08.html">บทที่ 8 →</a>
+  </div>
+</div>
+
+</body>
+</html>
