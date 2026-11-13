@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>คู่มืออ่าน Dodelson · บทที่ 3</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+</head>
+<body>
+
+<h1>คู่มืออ่าน Dodelson · บทที่ 3</h1>
+<p class="meta">Beyond Equilibrium · หน้า 58–83 · คู่มืออ่าน ไม่ใช่ฉบับแปล — เปิดคู่กับหนังสือ</p>
+
+<h2>บทนี้ตอบคำถามอะไร</h2>
+<p>บทที่ 2 สมมติว่าทุกอย่างอยู่ใน equilibrium เพราะเอกภพยุคต้นแน่นจนอนุภาคชนกันถี่มาก
+บทนี้ดูช่วงเวลาที่สมมติฐานนั้น<strong>พัง</strong> คือเมื่ออัตราปฏิกิริยาตกต่ำกว่าอัตราการขยาย $H$
+และบอกว่าช่วงเหล่านี้คือช่วงที่น่าสนใจที่สุด: ธาตุเบาเกิด (BBN), อิเล็กตรอนจับ proton เป็นไฮโดรเจน (recombination)
+และ dark matter เหลือรอดมาถึงวันนี้ (freeze-out) ทั้งสามเรื่องใช้สมการเดียวกันคือ Boltzmann equation ฉบับลดรูป (3.9)
+บทนี้ยังเป็นสะพานไปบทที่ 4 ซึ่งจะใช้ Boltzmann equation ตัวเต็มกับการกระเพื่อม</p>
+
+<h2>ต้องรู้อะไรก่อน</h2>
+<ul>
+  <li>Friedmann equation (2.39), $T \propto a^{-1}$, entropy $sa^3$ คงที่, การนับ $g$ ของ boson/fermion —
+      <a href="dodelson-ch02.html">คู่มือบทที่ 2</a></li>
+  <li>การกระจาย Bose–Einstein / Fermi–Dirac, chemical potential $\mu$ — ปูไว้ในคู่มือบทที่ 2 §2.3
+      แต่ใน workspace นี้ยัง<strong>ยังไม่ได้สอน</strong>เป็นบทเรียนพร้อมข้อฝึก</li>
+  <li>amplitude $\mathcal{M}$ ของการชน, Dirac delta ของการอนุรักษ์พลังงาน-โมเมนตัม, $d^3p/(2\pi)^3 2E$ —
+      ผู้เรียนเคยเห็นใน QFT (<a href="../lessons/0032-interaction.html">บทที่ 21 · อนุภาคชนกัน</a>)
+      แต่ "cross section" และ "thermally averaged cross section" <strong>ยังไม่ได้สอน</strong></li>
+  <li>Boltzmann equation (สมการนับอนุภาคใน phase space) — <strong>ยังไม่ได้สอน</strong> หนังสือใช้รูปลดรูปเท่านั้น</li>
+  <li>ฟิสิกส์นิวเคลียร์และอะตอมพื้นฐาน (binding energy, ระดับพลังงานไฮโดรเจน) — ระดับ ม.ปลาย หนังสือมีกล่องทวนหน้า 63</li>
+</ul>
+
+<h2>เดินตามหนังสือ</h2>
+
+<h3>บทนำของบท · หน้า 58–59</h3>
+<p>ตัวอย่างเปิดเรื่อง: วันนี้โฟตอนวิ่งข้ามเอกภพที่สังเกตได้โดยไม่ชนอะไร แต่ตอนเอกภพอายุหนึ่งวินาที
+ระยะเฉลี่ยระหว่างการชนของโฟตอนสั้นราวขนาดอะตอม — ในเวลาที่เอกภพขยายสองเท่า มันชนนับไม่ถ้วน
+ผู้เขียนชี้ว่าสามปรากฏการณ์ (BBN, recombination, dark matter) มักถูกศึกษาแยกกัน
+แต่จริง ๆ เป็นฟิสิกส์นอก equilibrium ชนิดเดียวกัน และในบทนี้เราจะต้องปล่อยให้ $\mu \ne 0$
+เพื่อติดตามจำนวนอนุภาคที่หลุดจากพลาสมา</p>
+
+<h3>§3.1 Boltzmann Equation for Annihilation · หน้า 59–62</h3>
+<p>หลักการ: อัตราเปลี่ยนจำนวนของอนุภาคชนิดหนึ่ง = อัตราสร้าง − อัตราทำลาย
+หนังสือใช้ตัวอย่างนามธรรม $1 + 2 \leftrightarrow 3 + 4$ (อนุภาค 1 กับ 2 ชนกันได้ 3 กับ 4 หรือย้อนกลับ)
+และสนใจความหนาแน่นจำนวน $n_1$ ของชนิด 1</p>
+<div class="eq" data-eqno="Dodelson 3.1">$$\begin{aligned}a^{-3}\frac{d(n_1a^3)}{dt} &= \int\frac{d^3p_1}{(2\pi)^32E_1}\int\frac{d^3p_2}{(2\pi)^32E_2}\int\frac{d^3p_3}{(2\pi)^32E_3}\int\frac{d^3p_4}{(2\pi)^32E_4}\\ &\times(2\pi)^4\delta^3(p_1 + p_2 - p_3 - p_4)\,\delta(E_1 + E_2 - E_3 - E_4)\,|\mathcal{M}|^2\\ &\times\{f_3f_4[1 \pm f_1][1 \pm f_2] - f_1f_2[1 \pm f_3][1 \pm f_4]\}\end{aligned}$$</div>
+<p><strong>อ่านว่า</strong> (อ่านจากล่างขึ้นบนตามที่หนังสือแนะนำ)</p>
+<ul>
+  <li>บรรทัดสาม: $f_i$ = distribution function ของชนิด $i$ (ขึ้นกับโมเมนตัมของมัน) · $f_3f_4$ = อัตราสร้าง 1 · $f_1f_2$ = อัตราทำลาย ·
+      $[1 \pm f]$: บวกสำหรับ boson (Bose enhancement — มีอยู่แล้วยิ่งเกิดง่าย) ลบสำหรับ fermion (Pauli blocking — มีอยู่แล้วเกิดยาก)</li>
+  <li>บรรทัดสอง: delta บังคับการอนุรักษ์โมเมนตัมและพลังงาน · $|\mathcal{M}|^2$ = amplitude กำลังสองจากฟิสิกส์ของปฏิกิริยานั้น
+      (สมมติว่าเท่ากันทั้งไปและกลับ — reversible)</li>
+  <li>บรรทัดแรก: บวกทุกโมเมนตัม · $(2\pi)^3$ คือขนาดหนึ่งช่องของ phase space (เหมือนรูป 2.4) ·
+      ซ้ายมือ: ถ้าไม่มีปฏิกิริยา $n_1a^3$ คงที่ คือเจือจางแบบ $a^{-3}$ อย่างเดียว</li>
+</ul>
+<div class="eq" data-eqno="Dodelson 3.2">$$\int d^3p\int_0^\infty dE\,\delta(E^2 - p^2 - m^2) = \int d^3p\int_0^\infty dE\,\frac{\delta\big(E - \sqrt{p^2 + m^2}\big)}{2E}$$</div>
+<p><strong>อ่านว่า</strong> ที่มาของ $2E$ ในตัวส่วน: อินทิกรัลที่แท้เป็นสี่มิติ (สามโมเมนตัม + พลังงาน) แต่ถูกบังคับให้อยู่บน $E^2 = p^2 + m^2$</p>
+<div class="key">
+<p><strong>ขั้นที่หนังสือข้าม — (3.2)</strong></p>
+<p>กฎของ Dirac delta: $\delta(f(E)) = \delta(E - E_0)/|f'(E_0)|$ เมื่อ $E_0$ เป็นรากของ $f$
+(นับเฉพาะรากบวกเพราะอินทิเกรตจาก 0) · ที่นี่ $f = E^2 - p^2 - m^2$ จึง $f' = 2E$ ได้ตัวส่วน $2E$ ✓</p>
+</div>
+
+<p><strong>ลดรูปสองชั้น (หน้า 60).</strong> (ก) <strong>kinetic equilibrium</strong>: การกระเจิงเร็วมากจน $f$ ของทุกชนิดมีรูป Bose/Fermi
+ความไม่รู้เหลือแค่ฟังก์ชันของเวลาตัวเดียว คือ $\mu(t)$ (ถ้าการสร้าง/ทำลายอยู่ใน equilibrium ด้วย $\mu$ จะสมดุลกัน
+เช่น $e^+e^- \leftrightarrow \gamma\gamma$ ให้ $\mu_{e^+} + \mu_{e^-} = 2\mu_\gamma$ แต่บทนี้สนใจกรณีที่ไม่เป็นเช่นนั้น)
+(ข) $T \ll E - \mu$: ตัวเอกซ์โพเนนเชียลใหญ่จน $\pm1$ ตัดได้ และตัด $[1 \pm f]$ ได้ด้วย</p>
+<div class="eq" data-eqno="Dodelson 3.3">$$f(E) \to e^{\mu/T}e^{-E/T}$$</div>
+<div class="eq" data-eqno="Dodelson 3.4">$$f_3f_4[1 \pm f_1][1 \pm f_2] - f_1f_2[1 \pm f_3][1 \pm f_4] \to e^{-(E_1 + E_2)/T}\left\{e^{(\mu_3 + \mu_4)/T} - e^{(\mu_1 + \mu_2)/T}\right\}$$</div>
+<p><strong>อ่านว่า</strong> แทน (3.3) ทุกตัวแล้วใช้ $E_3 + E_4 = E_1 + E_2$ (delta ของพลังงาน) ให้ดึงตัวพลังงานร่วมออกมาได้</p>
+<div class="eq" data-eqno="Dodelson 3.5">$$n_i = g_ie^{\mu_i/T}\int\frac{d^3p}{(2\pi)^3}e^{-E_i/T}$$</div>
+<div class="eq" data-eqno="Dodelson 3.6">$$n_i^{(0)} \equiv g_i\int\frac{d^3p}{(2\pi)^3}e^{-E_i/T} = \begin{cases}g_i\left(\dfrac{m_iT}{2\pi}\right)^{3/2}e^{-m_i/T} & m_i \gg T\\[2mm] g_i\dfrac{T^3}{\pi^2} & m_i \ll T\end{cases}$$</div>
+<p><strong>อ่านว่า</strong> $n_i^{(0)}$ = ความหนาแน่นจำนวน "ถ้า $\mu = 0$" (ตัวยก $(0)$ ไม่ใช่กำลัง!) ·
+จาก (3.5) จึงได้ $e^{\mu_i/T} = n_i/n_i^{(0)}$ — เราจะใช้ $n_i$ เป็นตัวแปรแทน $\mu_i$ ·
+ตาราง 3.1 สรุปว่าอนุภาค 1–4 คืออะไรในสามการใช้งานของบท (n–p, recombination, dark matter)</p>
+<div class="key">
+<p><strong>ขั้นที่หนังสือข้าม — สองลิมิตของ (3.6)</strong></p>
+<p>$m \gg T$: ใช้ $E \approx m + p^2/2m$ ⇒ $e^{-m/T}$ ออกนอกอินทิกรัล เหลือ Gaussian
+$\tfrac{4\pi}{(2\pi)^3}\int_0^\infty p^2e^{-p^2/2mT}dp = (mT/2\pi)^{3/2}$ ·
+$m \ll T$: $E \approx p$ ⇒ $\tfrac{4\pi}{(2\pi)^3}\int_0^\infty p^2e^{-p/T}dp = \tfrac{4\pi\cdot2T^3}{8\pi^3} = T^3/\pi^2$ ✓ (sympy ตรวจทั้งคู่)</p>
+</div>
+<div class="eq" data-eqno="Dodelson 3.8">$$\langle\sigma v\rangle \equiv \frac{1}{n_1^{(0)}n_2^{(0)}}\int\frac{d^3p_1}{(2\pi)^32E_1}\cdots\int\frac{d^3p_4}{(2\pi)^32E_4}\,e^{-(E_1 + E_2)/T}(2\pi)^4\delta^3(\ldots)\,\delta(\ldots)\,|\mathcal{M}|^2$$</div>
+<div class="eq" data-eqno="Dodelson 3.9">$$a^{-3}\frac{d(n_1a^3)}{dt} = n_1^{(0)}n_2^{(0)}\langle\sigma v\rangle\left\{\frac{n_3n_4}{n_3^{(0)}n_4^{(0)}} - \frac{n_1n_2}{n_1^{(0)}n_2^{(0)}}\right\}$$</div>
+<p><strong>อ่านว่า</strong> $\langle\sigma v\rangle$ = thermally averaged cross section — ก้อนอินทิกรัลทั้งหมดที่ไม่ขึ้นกับ $\mu$ ถูกห่อไว้ในตัวเดียว
+($\sigma$ = ภาคตัดขวาง หน่วยพื้นที่, $v$ = ความเร็วสัมพัทธ์ · ใน $c = 1$ ผลคูณมีหน่วยพื้นที่ — ใช้มากใน §3.4) ·
+(3.9) = สมการหลักของบท: ODE ตัวเดียวแทนสมการอินทิกรัล-อนุพันธ์ (3.1)</p>
+<p><strong>อ่านเชิงคุณภาพ (หน้า 61–62).</strong> ซ้ายมือมีขนาดราว $n_1H$ (เวลาจักรวาลคือ $1/H$) ขวามือราว $n_1n_2\langle\sigma v\rangle$
+ถ้าอัตราปฏิกิริยา $n_2\langle\sigma v\rangle \gg H$ ขวามือใหญ่กว่ามาก ทางเดียวที่สมการจะสมดุลได้คือวงเล็บปีกกาเป็นศูนย์</p>
+<div class="eq" data-eqno="Dodelson 3.10">$$\frac{n_3n_4}{n_3^{(0)}n_4^{(0)}} = \frac{n_1n_2}{n_1^{(0)}n_2^{(0)}}$$</div>
+<p><strong>อ่านว่า</strong> สมการเดียวมีสามชื่อตามวงการ: chemical equilibrium (ฟิสิกส์อนุภาค),
+nuclear statistical equilibrium (BBN), Saha equation (recombination) — จะเจอทั้งสามชื่อในบทนี้</p>
+
+<h3>§3.2 Big Bang Nucleosynthesis · หน้า 62–70</h3>
+<p>ที่ $T \sim 1$ MeV พลาสมามีสามกลุ่ม: (1) อนุภาคสัมพัทธภาพที่ยังอยู่ใน equilibrium — โฟตอน, $e^\pm$;
+(2) neutrino ที่เพิ่งหลุดออกไป (ยังมีจำนวนพอ ๆ กันแต่ไม่ชนแล้ว); (3) baryon ซึ่งไม่สัมพัทธภาพและมีน้อยมาก
+เพราะมี asymmetry เล็ก ๆ ระหว่าง baryon กับ anti-baryon ($\sim10^{-10}$ ต่อ entropy) แอนติแบริออนสลายหมดไปแล้ว</p>
+<div class="eq" data-eqno="Dodelson 3.11">$$\eta_b \equiv \frac{n_b}{n_\gamma} = 5.5\times10^{-10}\left(\frac{\Omega_bh^2}{0.020}\right)$$</div>
+<p><strong>อ่านว่า</strong> $\eta_b$ = baryon-to-photon ratio (ระวัง: ไม่ใช่ conformal time $\eta$ ของบทที่ 2 — ดูตัวห้อย $b$) ·
+คงที่ตลอดการขยายเพราะทั้ง $n_b$ และ $n_\gamma$ ลดแบบ $a^{-3}$ · โจทย์ข้อ 6 ให้พิสูจน์ (สคริปต์ตรวจตัวเลขแล้ว)</p>
+<p>ถ้าอยู่ใน equilibrium ตลอด baryon ทั้งหมดควรกลายเป็นเหล็ก (พลังงานยึดเหนี่ยวต่อ nucleon สูงสุด — รูป 3.1:
+แกนนอนเลขมวล $A$ สเกล log, แกนตั้ง MeV ต่อ nucleon มี ⁴He เป็นยอดเล็ก ๆ ในกลุ่มธาตุเบา)
+แต่ปฏิกิริยานิวเคลียร์ขึ้นกับความหนาแน่นกำลังสองขึ้นไปจึงช้าเกิน หนังสือใช้สองการลดรูป:
+ไม่มีธาตุหนักกว่าฮีเลียม (ยกเว้นลิเทียมระดับร่องรอย) และเหนือ $T \simeq 0.1$ MeV มีแต่ neutron/proton อิสระ
+⇒ หาอัตราส่วน n/p ก่อน แล้วค่อยใช้เป็นวัตถุดิบของฮีเลียม</p>
+<p><strong>กล่อง Lightning Introduction to Nuclear Physics (หน้า 63)</strong> ทวนชื่อไอโซโทป (D, T, ³He, ⁴He)
+และนิยาม binding energy</p>
+<div class="eq" data-eqno="Dodelson 3.12">$$B \equiv Zm_p + (A - Z)m_n - m$$</div>
+<p><strong>อ่านว่า</strong> $Z$ = จำนวน proton · $A$ = จำนวน nucleon ทั้งหมด · $m$ = มวลนิวเคลียส ·
+deuterium: $1877.84 - 1875.62 = 2.22$ MeV · ระดับ MeV นี้คือเหตุที่ BBN เกิดต่ำกว่า 1 MeV ทั้งที่มวล nucleon ระดับ GeV
+· (3.13) ในกล่องเดียวกันคือปฏิกิริยา weak ที่แปลง n ↔ p</p>
+
+<p><strong>ทำไมนิวเคลียสยังไม่เกิด (หน้า 64–65).</strong> ใช้ (3.10) กับ $n + p \leftrightarrow D + \gamma$ โดยโฟตอนมี $n_\gamma = n_\gamma^{(0)}$</p>
+<div class="eq" data-eqno="Dodelson 3.15">$$\frac{n_D}{n_nn_p} = \frac34\left(\frac{2\pi m_D}{m_nm_pT}\right)^{3/2}e^{[m_n + m_p - m_D]/T}$$</div>
+<div class="eq" data-eqno="Dodelson 3.16">$$\frac{n_D}{n_nn_p} = \frac34\left(\frac{4\pi}{m_pT}\right)^{3/2}e^{B_D/T}$$</div>
+<div class="eq" data-eqno="Dodelson 3.17">$$\frac{n_D}{n_b} \sim \eta_b\left(\frac{T}{m_p}\right)^{3/2}e^{B_D/T}$$</div>
+<div class="key">
+<p><strong>ขั้นที่หนังสือข้าม — (3.14) ถึง (3.17)</strong></p>
+<p>(3.10) กับ $n_\gamma = n_\gamma^{(0)}$ ให้ $n_D/(n_nn_p) = n_D^{(0)}/(n_n^{(0)}n_p^{(0)})$ (3.14) ·
+แทนลิมิตไม่สัมพัทธภาพของ (3.6): $g_D = 3$, $g_n = g_p = 2$ ได้ $3/4$ ·
+$(m_DT/2\pi)^{3/2}/[(m_nT/2\pi)(m_pT/2\pi)]^{3/2} = (2\pi m_D/m_nm_pT)^{3/2}$ ✓ (3.15) ·
+ในตัวคูณแทน $m_D = 2m_p = 2m_n$ ได้ $4\pi/(m_pT)$ (3.16) แต่ในเลขชี้กำลังห้ามประมาณ เพราะผลต่างคือ $B_D$ ·
+(3.17): $n_n, n_p \sim n_b = \eta_bn_\gamma \sim \eta_bT^3$ แล้วทิ้งตัวคูณเลขขนาดหนึ่ง</p>
+</div>
+<p>ใจความ: ตราบที่ $B_D/T$ ไม่ใหญ่มาก ตัวคูณ $\eta_b \sim 10^{-9}$ ทำให้ deuterium น้อยนิด —
+โฟตอนมีมากกว่า baryon พันล้านเท่า มีโฟตอนพลังงานสูงพอตีแตกเสมอ นิวเคลียสจึงรอจน $T$ ต่ำกว่า $B_D$ มาก
+และไม่มีไอโซโทปเสถียรที่ $A = 5$ (และ triple-alpha ต้องการความหนาแน่นที่ไม่มีในเอกภพยุคต้น) จึงหยุดที่ฮีเลียม</p>
+
+<p><strong>§3.2.1 Neutron Abundance (หน้า 65–67).</strong></p>
+<div class="eq" data-eqno="Dodelson 3.19">$$\frac{n_p^{(0)}}{n_n^{(0)}} = e^{\mathcal{Q}/T}$$</div>
+<p><strong>อ่านว่า</strong> $\mathcal{Q} \equiv m_n - m_p = 1.293$ MeV · ได้จาก (3.18) (อัตราส่วนของ (3.6) สองตัว)
+โดยตัด $(m_p/m_n)^{3/2} \approx 0.998$ ทิ้ง แต่เก็บผลต่างมวลในเลขชี้กำลัง ·
+$T \gg \mathcal{Q}$: n กับ p เท่ากัน · $T$ ต่ำลง neutron ลดลง</p>
+<div class="eq" data-eqno="Dodelson 3.20">$$X_n \equiv \frac{n_n}{n_n + n_p}$$</div>
+<div class="eq" data-eqno="Dodelson 3.21">$$X_n \to X_{n,\rm EQ} \equiv \frac{1}{1 + n_p^{(0)}/n_n^{(0)}}$$</div>
+<div class="eq" data-eqno="Dodelson 3.23">$$\frac{dX_n}{dt} = \lambda_{np}\left\{(1 - X_n)e^{-\mathcal{Q}/T} - X_n\right\}$$</div>
+<p><strong>อ่านว่า</strong> $X_n$ = สัดส่วน neutron ต่อ nucleon ทั้งหมด · $\lambda_{np} \equiv n_l^{(0)}\langle\sigma v\rangle$ = อัตราแปลง neutron → proton
+(หน่วย 1/เวลา) · $l$ = lepton ที่อยู่ใน equilibrium เต็มที่ (ตาราง 3.1) · (3.22) คือ (3.9) ที่ 1 = n, 3 = p</p>
+<div class="key">
+<p><strong>ขั้นที่หนังสือข้าม — (3.22) ⇒ (3.23)</strong></p>
+<p>เพราะ lepton อยู่ใน equilibrium จึง $n_l/n_l^{(0)} = 1$ เหลือ $a^{-3}d(n_na^3)/dt = \lambda_{np}\{n_pe^{-\mathcal{Q}/T} - n_n\}$ ·
+เขียน $n_n = (n_n + n_p)X_n$ และ $(n_n + n_p)a^3$ คงที่ (จำนวน baryon อนุรักษ์) จึงดึงออกจากอนุพันธ์ได้ ·
+หารทั้งสองข้างด้วย $n_n + n_p$: $n_p/(n_n+n_p) = 1 - X_n$ ได้ (3.23) ✓</p>
+</div>
+<p>เปลี่ยนตัวแปรเวลาเป็น $x \equiv \mathcal{Q}/T$ (3.24) และใช้ $\dot T/T = -H$ (3.25) กับความหนาแน่นยุค radiation</p>
+<div class="eq" data-eqno="Dodelson 3.26">$$\rho = \frac{\pi^2}{30}T^4\left[\sum_{\rm bosons}g_i + \frac78\sum_{\rm fermions}g_i\right] \equiv g_*\frac{\pi^2}{30}T^4$$</div>
+<p><strong>อ่านว่า</strong> $g_*$ = จำนวน degree of freedom ที่สัมพัทธภาพ (นับเฉพาะชนิดที่ $m \ll T$) ·
+ที่ $T \sim 1$ MeV: $\gamma$ 2, $\nu$ 6, $e^\pm$ 2+2 ⇒ $g_* = 2 + \tfrac78\cdot10 = 10.75$</p>
+<div class="eq" data-eqno="Dodelson 3.27">$$\frac{dX_n}{dx} = \frac{x\lambda_{np}}{H(x = 1)}\left\{e^{-x} - X_n(1 + e^{-x})\right\}$$</div>
+<div class="eq" data-eqno="Dodelson 3.28">$$H(x = 1) = \sqrt{\frac{4\pi^3G\mathcal{Q}^4}{45}}\times\sqrt{10.75} = 1.13\ {\rm sec}^{-1}$$</div>
+<div class="key">
+<p><strong>ขั้นที่หนังสือข้าม — (3.23) ⇒ (3.27) และตัวเลข (3.28)</strong></p>
+<p>$dx/dt = -\mathcal{Q}\dot T/T^2 = -x\dot T/T = xH$ · ยุค radiation $H \propto T^2 \propto x^{-2}$ ⇒ $H(x) = H(1)/x^2$ ·
+$dX_n/dx = (dX_n/dt)/(xH) = x\lambda_{np}\{\ldots\}/H(1)$ · วงเล็บ: $(1 - X_n)e^{-x} - X_n = e^{-x} - X_n(1 + e^{-x})$ ✓</p>
+<p>$H$ จาก (2.39) กับ (3.26): $H = \sqrt{8\pi G g_*\pi^2T^4/90} = \sqrt{4\pi^3Gg_*/45}\,T^2$ ·
+ใส่ $T = \mathcal{Q}$, $G = 1/m_{\rm Pl}^2$ ($m_{\rm Pl} \approx 1.22\times10^{19}$ GeV) และหารด้วย $\hbar$ เพื่อแปลง eV เป็น s⁻¹ ได้ 1.13 s⁻¹ ✓</p>
+</div>
+<div class="eq" data-eqno="Dodelson 3.29">$$\lambda_{np} = \frac{255}{\tau_nx^5}\left(12 + 6x + x^2\right)$$</div>
+<p><strong>อ่านว่า</strong> $\tau_n = 886.7$ s = อายุขัย neutron (ค่าปี 2003) · ที่มาเป็นโจทย์ข้อ 3 ·
+ที่ $x = 1$: $255\cdot19/886.7 \approx 5.5$ s⁻¹ มากกว่า $H$ เล็กน้อย แต่ลดเร็วแบบ $x^{-5}$ จึงตกต่ำกว่า $H$ ในไม่ช้า</p>
+<p>อินทิเกรต (3.27) เชิงตัวเลข (โจทย์ข้อ 4) ได้รูป 3.2 (แกนนอน $T$ เป็น MeV จาก 1 ลงไป, แกนตั้งสัดส่วน log;
+เส้น $2X_{n,\rm EQ}$ ดิ่งลง ส่วน $2X_n$ แบนค้าง แล้ว ⁴He กับ D โผล่แถว 0.1 MeV)
+$X_n$ หลุดจาก equilibrium ใต้ 1 MeV และค้างที่ 0.15 เมื่อ $T$ ต่ำกว่า 0.5 MeV
+ต่ำกว่า 0.1 MeV มีสองเรื่องเพิ่ม: neutron สลายตัว (คูณ $e^{-t/\tau_n}$) และเริ่มสร้าง deuterium</p>
+<div class="eq" data-eqno="Dodelson 3.30">$$t = 132\ {\rm sec}\left(\frac{0.1\ {\rm MeV}}{T}\right)^2$$</div>
+<div class="eq" data-eqno="Dodelson 3.31">$$X_n(T_{\rm nuc}) = 0.11$$</div>
+<div class="key">
+<p><strong>ขั้นที่หนังสือข้าม — (3.30) และ (3.31)</strong></p>
+<p>หลัง $e^\pm$ หายไป $g_* = 2 + \tfrac78\cdot6\cdot(4/11)^{4/3} = 3.36$ (neutrino เย็นกว่าตาม (2.76) จึงคูณ $(T_\nu/T)^4$) ·
+ยุค radiation $a \propto t^{1/2}$ ⇒ $H = 1/(2t)$ (คู่มือบทที่ 1) ⇒ $t = 1/(2H)$ ·
+แทน $H = \sqrt{4\pi^3G\cdot3.36/45}\,T^2$ ที่ $T = 0.1$ MeV ได้ 132 s ✓ ·
+สลายตัวถึง $T = 0.07$ MeV: $\exp[-(132/886.7)(0.1/0.07)^2] = 0.74$ · $0.15\times0.74 = 0.11$ ✓</p>
+</div>
+
+<p><strong>§3.2.2 Light Element Abundances (หน้า 68–70).</strong> ประมาณว่าธาตุเบาเกิดทันทีที่ $T_{\rm nuc}$
+ซึ่งคือเมื่อ (3.17) ขึ้นมาถึงระดับหนึ่ง</p>
+<div class="eq" data-eqno="Dodelson 3.32">$$\ln(\eta_b) + \frac32\ln(T_{\rm nuc}/m_p) \sim -\frac{B_D}{T_{\rm nuc}}$$</div>
+<p><strong>อ่านว่า</strong> ได้จากตั้ง log ของ (3.17) ให้เป็นศูนย์ · ให้ $T_{\rm nuc} \sim 0.07$ MeV ขึ้นกับ $\eta_b$ แบบ log เท่านั้น
+(ถ้าแก้ "~" เป็น "=" ตรง ๆ ที่ $\eta_b = 5.5\times10^{-10}$ สคริปต์ได้ 0.062 MeV — ระดับเดียวกัน)</p>
+<p>ฮีเลียมมี binding energy มากกว่า deuterium จึงเกิดตามทันที neutron ที่เหลือแทบทั้งหมดไปอยู่ใน ⁴He
+(สอง neutron ต่อหนึ่งนิวเคลียส)</p>
+<div class="eq" data-eqno="Dodelson 3.33">$$X_4 \equiv \frac{4n_{^4\rm He}}{n_b} = 2X_n(T_{\rm nuc})$$</div>
+<div class="eq" data-eqno="Dodelson 3.34">$$Y_p = 0.2262 + 0.0135\ln(\eta_b/10^{-10})$$</div>
+<p><strong>อ่านว่า</strong> $X_4$ = สัดส่วนโดย<strong>มวล</strong>ของ ⁴He (คูณ 4 เพราะมวลราว 4 nucleon) ·
+ได้ $2\times0.11 = 0.22$ · (3.34) คือสูตร fit ของผลคำนวณเต็ม ($Y_p$ ตัวเดียวกับ $X_4$) ขึ้นกับ $\eta_b$ แบบ log ·
+เหตุที่ไม่เป็นเชิงเส้นแม้การสลายตัวเป็นเอกซ์โพเนนเชียล: ณ $T_{\rm nuc}$ neutron สลายไปน้อย เอกซ์โพเนนเชียลยังประมาณเป็นเส้นตรงได้</p>
+<p>รูป 3.3 (แกนนอน O/H, แกนตั้ง $Y$; ระบบที่ออกซิเจนน้อยผ่านดาวมาน้อย ใกล้ค่าดั้งเดิม) ให้ $Y_p$ ราว 0.22–0.25 (ค่าปี 2003)
+deuterium ที่เผาไม่หมดค้างระดับ $10^{-5}$–$10^{-4}$ และยิ่ง baryon น้อยยิ่งเหลือมาก จึงเป็นตัววัด baryon ที่ไว:
+D/H $= 3.0 \pm 0.4\times10^{-5}$ ให้ $\Omega_bh^2 = 0.0205 \pm 0.0018$ (ค่าปี 2003)</p>
+
+<h3>§3.3 Recombination · หน้า 70–73</h3>
+<p>ที่ $T \sim 1$ eV โฟตอนผูกกับอิเล็กตรอน (Compton) อิเล็กตรอนผูกกับ proton (Coulomb)
+แม้ไฮโดรเจนมีพลังงานยึด $\epsilon_0 = 13.6$ eV โฟตอนจำนวนมหาศาลก็ตีให้แตกทันที — เรื่องเดียวกับ deuterium ในสเกลอะตอม</p>
+<div class="eq" data-eqno="Dodelson 3.36">$$X_e \equiv \frac{n_e}{n_e + n_H} = \frac{n_p}{n_p + n_H}$$</div>
+<div class="eq" data-eqno="Dodelson 3.37">$$\frac{X_e^2}{1 - X_e} = \frac{1}{n_e + n_H}\left[\left(\frac{m_eT}{2\pi}\right)^{3/2}e^{-[m_e + m_p - m_H]/T}\right]$$</div>
+<p><strong>อ่านว่า</strong> $X_e$ = free electron fraction · $H$ ในตัวห้อย = ไฮโดรเจนเป็นกลาง (ไม่ใช่ Hubble rate!) ·
+$n_e = n_p$ เพราะเอกภพเป็นกลางทางไฟฟ้า · เลขชี้กำลัง $= -\epsilon_0/T$ · นี่คือ Saha equation</p>
+<div class="key">
+<p><strong>ขั้นที่หนังสือข้าม — (3.35) ⇒ (3.37)</strong></p>
+<p>(3.10) กับ $e + p \leftrightarrow H + \gamma$: $n_en_p/n_H = n_e^{(0)}n_p^{(0)}/n_H^{(0)}$ (3.35) ·
+ซ้าย: $n_e = n_p = X_e n_{\rm tot}$, $n_H = (1 - X_e)n_{\rm tot}$ ได้ $X_e^2n_{\rm tot}/(1 - X_e)$ ·
+ขวา: degeneracy $g_eg_p/g_H = 2\cdot2/4 = 1$ (ค่า $g_H = 4$ นอกหนังสือ — สถานะ spin ของ e กับ p รวมกัน) ·
+ตัวคูณ $(m_em_pT/2\pi m_H)^{3/2}$ แล้วตั้ง $m_p \approx m_H$ ได้ $(m_eT/2\pi)^{3/2}$ · หารด้วย $n_{\rm tot}$ ได้ (3.37) ✓</p>
+</div>
+<p>ใจความ (หน้า 71): $n_e + n_H = n_b = \eta_bn_\gamma \sim 10^{-9}T^3$ ทำให้ขวามือใหญ่ราว $10^{15}$ ที่ $T \sim \epsilon_0$
+⇒ $X_e \approx 1$ ไฮโดรเจนเกิดจริงต่อเมื่อ $T \ll \epsilon_0$ และเมื่อ $X_e$ ลด อัตรารวมตัวก็ลด หลุด equilibrium ⇒ ต้องใช้ Boltzmann</p>
+<div class="eq" data-eqno="Dodelson 3.39">$$\frac{dX_e}{dt} = \left\{(1 - X_e)\beta - X_e^2n_b\alpha^{(2)}\right\}$$</div>
+<div class="eq" data-eqno="Dodelson 3.40">$$\beta \equiv \langle\sigma v\rangle\left(\frac{m_eT}{2\pi}\right)^{3/2}e^{-\epsilon_0/T}$$</div>
+<div class="eq" data-eqno="Dodelson 3.42">$$\alpha^{(2)} = 9.78\,\frac{\alpha^2}{m_e^2}\left(\frac{\epsilon_0}{T}\right)^{1/2}\ln\left(\frac{\epsilon_0}{T}\right)$$</div>
+<p><strong>อ่านว่า</strong> $\beta$ = ionization rate · $\alpha^{(2)} \equiv \langle\sigma v\rangle$ (3.41) = recombination rate ·
+ตัวยก (2): นับเฉพาะการจับลงสถานะกระตุ้น เพราะการจับลง $n = 1$ ปล่อยโฟตอนที่ไปตีอะตอมอื่นแตกทันที ผลสุทธิศูนย์ ·
+$\alpha$ ตัวไม่มีตัวยกใน (3.42) = fine structure constant (คนละตัว!) · (3.38) คือ (3.9) ที่ 1 = e, 2 = p, 3 = H และ (3.39) ได้จากหาร $n_b$ แบบเดียวกับ (3.23)</p>
+<p>รูป 3.4 (แกนนอน $z$ จาก 1000 ลงไป, แกนตั้ง $X_e$ สเกล log) เทียบ Saha (เส้นประดิ่งลง) กับคำตอบจริงที่ค้างราว $10^{-3}$–$10^{-4}$:
+Saha บอกตำแหน่งของ recombination ถูก ($z \sim 1000$, $T \sim 1/4$ eV) แต่บอกหางผิด (พารามิเตอร์ในรูปเป็นแบบจำลองเก่า $\Omega_m = 1$, $h = 0.5$)</p>
+
+<p><strong>Decoupling (หน้า 72–73).</strong> โฟตอนหลุดเมื่ออัตรา Compton scattering ต่ำกว่า $H$</p>
+<div class="eq" data-eqno="Dodelson 3.43">$$n_e\sigma_T = X_en_b\sigma_T$$</div>
+<div class="eq" data-eqno="Dodelson 3.45">$$\frac{n_e\sigma_T}{H} = 0.0692\,a^{-3}X_e\Omega_bh\,\frac{H_0}{H}$$</div>
+<div class="eq" data-eqno="Dodelson 3.46">$$\frac{n_e\sigma_T}{H} = 113X_e\left(\frac{\Omega_bh^2}{0.02}\right)\left(\frac{0.15}{\Omega_mh^2}\right)^{1/2}\left(\frac{1 + z}{1000}\right)^{3/2}\left[1 + \frac{1 + z}{3600}\frac{0.15}{\Omega_mh^2}\right]^{-1/2}$$</div>
+<p><strong>อ่านว่า</strong> $\sigma_T = 0.665\times10^{-24}$ cm² = Thomson cross section · ไม่นับฮีเลียม ·
+(3.44) แทน $n_b = \Omega_b\rho_{\rm cr}a^{-3}/m_p$ ได้ $7.477\times10^{-30}$ cm⁻¹ $X_e\Omega_bh^2a^{-3}$ ·
+(3.45) หารด้วย $H$ (ในหน่วย cm⁻¹ คือ $H/c$) · (3.46) แทน $H/H_0 = \Omega_m^{1/2}a^{-3/2}[1 + a_{\rm eq}/a]^{1/2}$ (matter + radiation)</p>
+<div class="key">
+<p><strong>ขั้นที่หนังสือข้าม — ตัวเลข 113 และ 3600</strong></p>
+<p>$0.0692\,X_e\Omega_bh\,a^{-3}/(\Omega_m^{1/2}a^{-3/2}) = 0.0692\,X_e(\Omega_bh^2)(\Omega_mh^2)^{-1/2}(1+z)^{3/2}$
+($h$ จัดใหม่: $\Omega_bh/\Omega_m^{1/2} = \Omega_bh^2/(\Omega_mh^2)^{1/2}$) ·
+แทนค่าอ้างอิง: $0.0692\times0.02\times0.15^{-1/2}\times1000^{3/2} \approx 113$ ✓ ·
+$a_{\rm eq}/a = (1+z)\cdot4.15\times10^{-5}/\Omega_mh^2$ และ $0.15/3600 = 4.17\times10^{-5} \approx 4.15\times10^{-5}$ ✓</p>
+</div>
+<p>$X_e$ ร่วงจาก 1 ไปถึง $10^{-3}$ อย่างรวดเร็ว และโฟตอนหลุดเมื่อ $X_e$ ต่ำกว่าราว $10^{-2}$ ⇒ decoupling เกิด<strong>ระหว่าง</strong> recombination
+(เชิงอรรถ 4: อิเล็กตรอนยังชนโฟตอนต่ออีกนานเพราะโฟตอนมากกว่า · เชิงอรรถ 5: บทที่ 8 นิยามให้แม่นกว่าด้วย visibility function)
+การทดลองทางความคิด: ถ้าไม่มี recombination เลย ($X_e = 1$) และตัดวงเล็บสุดท้าย</p>
+<div class="eq" data-eqno="Dodelson 3.47">$$1 + z_{\rm decouple} = 43\left(\frac{0.02}{\Omega_bh^2}\right)^{2/3}\left(\frac{\Omega_mh^2}{0.15}\right)^{1/3}$$</div>
+<p><strong>อ่านว่า</strong> ตั้ง (3.46) = 1 แล้วยกกำลัง $2/3$: $1 + z = 1000\times113^{-2/3} \approx 43$ ·
+ความหมาย: ต่อให้ไม่มีอะตอมเกิด โฟตอนก็หลุดในที่สุดเพราะอิเล็กตรอนเจือจาง · สำคัญเพราะเอกภพถูก reionize ภายหลัง
+ถ้า reionize ก่อน $z \sim 43$ ลายของ CMB จะถูกลบมาก · quasar ไกลสุดบอกว่า reionize ราว $z \simeq 6$ (ค่าปี 2003) ผลจึงเล็ก</p>
+
+<h3>§3.4 Dark Matter · หน้า 73–78</h3>
+<p>ผู้สมัครยอดนิยมคือ WIMP (weakly interacting massive particle) ซึ่งเคยอยู่ใน equilibrium ตอนร้อน
+แล้ว <strong>freeze-out</strong> เมื่อ $T$ ตกต่ำกว่ามวล: การสลายเป็นคู่ไม่ทันรักษา equilibrium
+(ถ้ารักษาได้ตลอด จำนวนจะถูกกด $e^{-m/T}$ จนไม่เหลือ) แบบจำลอง: $X + X \leftrightarrow l + l$ โดย $l$ เบาและอยู่ใน equilibrium เต็มที่</p>
+<div class="eq" data-eqno="Dodelson 3.48">$$a^{-3}\frac{d(n_Xa^3)}{dt} = \langle\sigma v\rangle\left\{\big(n_X^{(0)}\big)^2 - n_X^2\right\}$$</div>
+<div class="eq" data-eqno="Dodelson 3.49">$$Y \equiv \frac{n_X}{T^3}$$</div>
+<div class="eq" data-eqno="Dodelson 3.50">$$\frac{dY}{dt} = T^3\langle\sigma v\rangle\left\{Y_{\rm EQ}^2 - Y^2\right\}, \qquad Y_{\rm EQ} \equiv n_X^{(0)}/T^3$$</div>
+<p><strong>อ่านว่า</strong> เพราะ $aT$ คงที่ (โดยประมาณ) $n_Xa^3 = Y\cdot(aT)^3$ จึงดึง $(aT)^3$ ออกจากอนุพันธ์ได้ ·
+$Y$ = จำนวนต่อ "หน่วยอุณหภูมิกำลังสาม" ซึ่งคงที่ถ้าไม่มีปฏิกิริยา</p>
+<div class="eq" data-eqno="Dodelson 3.51">$$x \equiv m/T$$</div>
+<div class="eq" data-eqno="Dodelson 3.52">$$\frac{dY}{dx} = -\frac{\lambda}{x^2}\left\{Y^2 - Y_{\rm EQ}^2\right\}$$</div>
+<div class="eq" data-eqno="Dodelson 3.53">$$\lambda \equiv \frac{m^3\langle\sigma v\rangle}{H(m)}$$</div>
+<p><strong>อ่านว่า</strong> $x$ ตัวนี้คนละความหมายกับ $x = \mathcal{Q}/T$ ของ §3.2 (หนังสือใช้ซ้ำ) · $H(m)$ = Hubble rate ตอน $T = m$ ·
+$\lambda$ = อัตราสลายเทียบอัตราขยาย (ไร้หน่วย มักใหญ่มาก — คนละตัวกับ $\lambda_{np}$) ·
+$x \ll 1$: $Y \approx Y_{\rm EQ} \approx 1$ · $x$ ใหญ่: $Y_{\rm EQ} \propto e^{-x}$</p>
+<div class="key">
+<p><strong>ขั้นที่หนังสือข้าม — (3.50) ⇒ (3.52)</strong></p>
+<p>$dx/dt = Hx$ (เหมือน §3.2) · ยุค radiation $H = H(m)/x^2$ · $T^3 = m^3/x^3$ ·
+$dY/dx = \dfrac{(m^3/x^3)\langle\sigma v\rangle}{x\cdot H(m)/x^2}\{Y_{\rm EQ}^2 - Y^2\} = \dfrac{\lambda}{x^2}\{Y_{\rm EQ}^2 - Y^2\}$ ✓</p>
+</div>
+<p>(3.52) เป็นสมการ Riccati ไม่มีคำตอบรูปปิด แต่ใช้ความเข้าใจได้: ตอนแรก $\lambda$ ใหญ่บังคับ $Y = Y_{\rm EQ}$
+เมื่อ $Y_{\rm EQ}$ ดิ่งลง $Y$ ตามไม่ทันและ $Y \gg Y_{\rm EQ}$ ⇒ ทิ้ง $Y_{\rm EQ}$ ได้</p>
+<div class="eq" data-eqno="Dodelson 3.54">$$\frac{dY}{dx} \simeq -\frac{\lambda Y^2}{x^2} \qquad (x \gg 1)$$</div>
+<div class="eq" data-eqno="Dodelson 3.55">$$\frac{1}{Y_\infty} - \frac{1}{Y_f} = \frac{\lambda}{x_f}$$</div>
+<div class="eq" data-eqno="Dodelson 3.56">$$Y_\infty \simeq \frac{x_f}{\lambda}$$</div>
+<div class="key">
+<p><strong>ขั้นที่หนังสือข้าม — แยกตัวแปร (3.54)</strong></p>
+<p>$dY/Y^2 = -\lambda\,dx/x^2$ ⇒ $d(-1/Y) = d(\lambda/x)$ · อินทิเกรตจาก $x_f$ ถึง $\infty$:
+$-1/Y_\infty + 1/Y_f = 0 - \lambda/x_f$ ⇒ (3.55) · $Y_f \gg Y_\infty$ ⇒ ตัด $1/Y_f$ ได้ (3.56)</p>
+</div>
+<p>$x_f$ = ค่า $x$ ตอน freeze-out ประมาณ 10 (ละเอียดกว่านี้คือโจทย์ข้อ 10) ·
+รูป 3.5 (แกนนอน $m/T$, แกนตั้ง $n/T^3$, เส้นประคือ equilibrium, สองเส้นทึบที่ $\lambda = 10^5$ และ $10^{10}$, กล่องเล็กเทียบสถิติ boson/fermion/Boltzmann)
+แสดงว่า $\lambda$ ใหญ่ (สลายเก่ง) freeze-out ช้ากว่าและ<strong>เหลือน้อยกว่า</strong> และสถิติควอนตัมสำคัญเฉพาะตอน $T > m$</p>
+<div class="eq" data-eqno="Dodelson 3.57">$$\rho_X = mY_\infty T_0^3\left(\frac{a_1T_1}{a_0T_0}\right)^3 \simeq \frac{mY_\infty T_0^3}{30}$$</div>
+<p><strong>อ่านว่า</strong> หลัง freeze-out จำนวนเจือจาง $a^{-3}$ · $a_1, T_1$ = ช่วงที่ $Y$ ค้างแล้ว · $a_0 = 1$, $T_0$ = วันนี้ ·
+$aT$ <strong>ไม่</strong>คงที่จริงเพราะอนุภาคมวล 1 MeV–100 GeV ทยอยสลายและให้ความร้อนโฟตอน (แบบเดียวกับ $e^\pm$ ในบทที่ 2)
+ผลคือตัวคูณราว $1/30$ (โจทย์ข้อ 11)</p>
+<div class="eq" data-eqno="Dodelson 3.58">$$\Omega_X = \frac{x_f}{\lambda}\frac{mT_0^3}{30\rho_{\rm cr}} = \frac{H(m)x_fT_0^3}{30m^2\langle\sigma v\rangle\rho_{\rm cr}}$$</div>
+<div class="eq" data-eqno="Dodelson 3.59">$$\Omega_X = \left[\frac{4\pi^3Gg_*(m)}{45}\right]^{1/2}\frac{x_fT_0^3}{30\langle\sigma v\rangle\rho_{\rm cr}}$$</div>
+<p><strong>อ่านว่า</strong> (3.58) แทน (3.56) กับ (3.53) · (3.59) แทน $H(m) = \sqrt{4\pi^3Gg_*/45}\,m^2$ (สูตรเดียวกับขั้นของ (3.28)) แล้ว $m^2$ ตัดกัน ·
+ข้อสรุป: ปริมาณ dark matter ที่เหลือแทบไม่ขึ้นกับมวล ขึ้นกับ $\langle\sigma v\rangle$ เป็นหลัก (เชิงอรรถ 6: ขึ้นกับมวลอ้อม ๆ ผ่าน $x_f$, $g_*$) ·
+$g_*(m) \sim 100$ ที่ $T \sim 100$ GeV (นับอนุภาคทั้ง Standard Model)</p>
+<div class="eq" data-eqno="Dodelson 3.60">$$\Omega_X = 0.3h^{-2}\left(\frac{x_f}{10}\right)\left(\frac{g_*(m)}{100}\right)^{1/2}\frac{10^{-39}\,{\rm cm}^2}{\langle\sigma v\rangle}$$</div>
+<div class="warn">
+<p><strong>ตัวเลขใน (3.60) ไม่ตรงกับที่เราแทนค่าเอง</strong> — สคริปต์แทน $x_f = 10$, $g_* = 100$, $T_0 = 2.725$ K,
+$\rho_{\rm cr} = 8.098\times10^{-11}h^2$ eV⁴ และ $G = 1/m_{\rm Pl}^2$ ลงใน (3.59) ได้ $\Omega_Xh^2 \approx 28$ ที่ $\langle\sigma v\rangle = 10^{-39}$ cm²
+(ห่างจาก 0.3 ราว 100 เท่า) และได้ $\approx 0.28$ เมื่อ $\langle\sigma v\rangle = 10^{-37}$ cm²
+ขั้นแปลงหน่วยแบบเดียวกันให้ (3.28) ถูกต้อง (1.13 s⁻¹) จึงไม่น่าเป็นความผิดของวิธีแปลง
+เราสงสัยว่าเลขชี้กำลังใน (3.60) พิมพ์ผิด แต่<strong>ยังไม่ได้ยืนยันกับ errata ของหนังสือ</strong> —
+ใจความเชิงคุณภาพ ("cross section ระดับ weak ให้ dark matter พอดี") ไม่เปลี่ยน
+(หน้า 79 ในสรุปบทยังเขียนเป็น $10^{-40}$ ซึ่งไม่ตรงกับ (3.60) เองด้วย)</p>
+</div>
+<p><strong>Supersymmetry และการตรวจจับ (หน้า 77–78).</strong> ทฤษฎีที่ให้ cross section ระดับนี้ได้เองคือ supersymmetry
+ซึ่งให้อนุภาคทุกตัวมีคู่ที่สถิติตรงข้าม (เช่น Higgsino คู่ของ Higgs) ต้องหนักเกิน 10–100 GeV จึงยังไม่พบ
+dark matter ต้องเป็นกลางและเสถียร ⇒ ตัวที่เบาที่สุด (LSP) ในกลุ่มคู่ของอนุภาคเป็นกลาง
+WIMP ที่เหลือวันนี้ควรกระเจิงกับสสารธรรมดาได้บ้าง รูป 3.6 (แกนนอนมวล, แกนตั้ง cross section หน่วย pb) แสดงขอบเขตจากการทดลอง
+ซึ่งตอนนั้นมีแค่ขอบบน (ยกเว้นสัญญาณ DAMA ที่ CDMS ดูเหมือนจะตัดทิ้ง — ค่าปี 2003)</p>
+
+<h3>§3.5 Summary · หน้า 78–79</h3>
+<p>ทวนสามผล: ธาตุเบาเกิดที่ $T \sim 0.1$ MeV ได้ ⁴He ราวหนึ่งในสี่โดยมวล · recombination ที่ $z \sim 1000$, $T \sim 0.25$ eV
+หลังจากนั้น CMB คือภาพถ่ายของเอกภพ ณ เวลานั้น · dark matter แบบ freeze-out ที่ cross section เล็กยิ่งเหลือมาก
+(เรื่องตัวเลข $10^{-40}$ ดูกล่องเตือนใน §3.4)</p>
+
+<h3>Suggested Reading · หน้า 80</h3>
+<p>Kolb &amp; Turner (<em>The Early Universe</em>) สำหรับ freeze-out และ BBN · Bernstein (<em>Kinetic Theory in an Expanding Universe</em>) สำหรับ Boltzmann ·
+Peebles (1968) งานต้นฉบับ recombination · Jungman, Kamionkowski &amp; Griest (1996) ทบทวน supersymmetric dark matter</p>
+
+<h2>ศัพท์และสำนวนอังกฤษของบทนี้</h2>
+<table>
+  <tr><th>คำ/วลี</th><th>ความหมาย</th><th>หน้า</th></tr>
+  <tr><td>mean free path</td><td>ระยะเฉลี่ยระหว่างการชนสองครั้ง</td><td>58</td></tr>
+  <tr><td>perhaps not coincidentally</td><td>"คงไม่ใช่เรื่องบังเอิญ"</td><td>58</td></tr>
+  <tr><td>out-of-equilibrium</td><td>นอกสมดุล</td><td>58</td></tr>
+  <tr><td>imaginatively called</td><td>"ตั้งชื่ออย่างสร้างสรรค์ว่า" (ประชดว่าชื่อจืด 3, 4)</td><td>59</td></tr>
+  <tr><td>Bose enhancement / Pauli blocking</td><td>boson ชอบเข้าสถานะที่มีอยู่แล้ว / fermion ถูกห้าม</td><td>59</td></tr>
+  <tr><td>reversible</td><td>amplitude เท่ากันทั้งไปและกลับ</td><td>59</td></tr>
+  <tr><td>integrodifferential equation</td><td>สมการที่มีทั้งอินทิกรัลและอนุพันธ์</td><td>60</td></tr>
+  <tr><td>kinetic equilibrium</td><td>รูป $f$ เป็น Bose/Fermi แต่ $\mu$ ยังไม่สมดุล</td><td>60</td></tr>
+  <tr><td>chemical equilibrium</td><td>$\mu$ สมดุลตามปฏิกิริยาด้วย</td><td>60</td></tr>
+  <tr><td>dwarfs</td><td>"ใหญ่จนอีกตัวดูเล็กจิ๋ว"</td><td>60</td></tr>
+  <tr><td>thermally averaged cross section</td><td>$\langle\sigma v\rangle$ ภาคตัดขวางเฉลี่ยตามการกระจายความร้อน</td><td>61</td></tr>
+  <tr><td>by inspection</td><td>"ดูก็รู้" ไม่ต้องคำนวณ</td><td>62</td></tr>
+  <tr><td>goes under different names in different venues</td><td>"แต่ละวงการเรียกต่างกัน"</td><td>62</td></tr>
+  <tr><td>nuclear statistical equilibrium (NSE)</td><td>ชื่อของ (3.10) ในบริบท BBN</td><td>62</td></tr>
+  <tr><td>Saha equation</td><td>ชื่อของ (3.10) ในบริบท recombination</td><td>62</td></tr>
+  <tr><td>asymmetry</td><td>ความไม่เท่ากันของ baryon กับ anti-baryon</td><td>62</td></tr>
+  <tr><td>obviate the need</td><td>"ทำให้ไม่ต้อง"</td><td>63</td></tr>
+  <tr><td>binding energy</td><td>พลังงานยึดเหนี่ยว (3.12)</td><td>63</td></tr>
+  <tr><td>freezes out</td><td>ค่าค้างคงที่เพราะปฏิกิริยาหยุด</td><td>67</td></tr>
+  <tr><td>in earnest</td><td>"อย่างจริงจัง" (เริ่มเกิดเต็มที่)</td><td>67</td></tr>
+  <tr><td>mass fraction</td><td>สัดส่วนโดยมวล</td><td>68</td></tr>
+  <tr><td>metallicity</td><td>ปริมาณธาตุหนักกว่าฮีเลียม (ตัวบอกว่าผ่านดาวมามากแค่ไหน)</td><td>69</td></tr>
+  <tr><td>free electron fraction</td><td>$X_e$ สัดส่วนอิเล็กตรอนอิสระ</td><td>70</td></tr>
+  <tr><td>ionization / recombination rate</td><td>$\beta$ / $\alpha^{(2)}$</td><td>71</td></tr>
+  <tr><td>decoupling</td><td>โฟตอนเลิกชนกับ matter</td><td>72</td></tr>
+  <tr><td>shy away from</td><td>"เลี่ยงไม่ใช้"</td><td>72</td></tr>
+  <tr><td>reionized</td><td>ถูกทำให้แตกตัวเป็นไอออนอีกครั้งในยุคหลัง</td><td>73</td></tr>
+  <tr><td>WIMP</td><td>weakly interacting massive particle</td><td>74</td></tr>
+  <tr><td>freeze-out</td><td>การสลายไม่ทันรักษาสมดุล จำนวนค้าง</td><td>74</td></tr>
+  <tr><td>relic abundance</td><td>ปริมาณที่เหลือรอดมาถึงวันนี้</td><td>74</td></tr>
+  <tr><td>Riccati equation</td><td>ODE อันดับหนึ่งที่มีพจน์กำลังสองของตัวแปร</td><td>75</td></tr>
+  <tr><td>order-of-magnitude estimate</td><td>ประมาณระดับขนาด</td><td>75</td></tr>
+  <tr><td>LSP</td><td>lightest supersymmetric partner</td><td>77</td></tr>
+  <tr><td>tantalizing</td><td>"ยั่วใจ" น่าตื่นเต้นแต่ยังไม่ยืนยัน</td><td>78</td></tr>
+</table>
+
+<h2>convention และจุดที่มักสะดุด</h2>
+<ul>
+  <li><strong>หน่วย</strong> $\hbar = c = k_B = 1$ ต่อจากบทที่ 2 · ตัวเลขอย่าง 1.13 s⁻¹ หรือ $7.477\times10^{-30}$ cm⁻¹ แปลงกลับด้วย $\hbar$ และ $\hbar c$ (ค่าคงตัวนอกหนังสือ)</li>
+  <li><strong>ตัวยก $(0)$</strong> ใน $n^{(0)}$ = ค่าที่ $\mu = 0$ ไม่ใช่กำลัง · ตัวยก $(2)$ ใน $\alpha^{(2)}$ = จับลงระดับ $n \ge 2$</li>
+  <li><strong>ตัวอักษรซ้ำความหมายเยอะมากในบทนี้:</strong> $x$ ($\mathcal{Q}/T$ ใน §3.2 · $m/T$ ใน §3.4) ·
+      $\lambda$ ($\lambda_{np}$ อัตรา · $\lambda$ ไร้หน่วยใน (3.53)) · $\alpha$ (fine structure · $\alpha^{(2)}$ อัตรารวมตัว) ·
+      $H$ (Hubble · ไฮโดรเจนในตัวห้อย) · $\eta_b$ (baryon/photon) กับ $\eta$ (conformal time) · $X_n, X_e, X_4$ (สัดส่วน) กับ $X$ (ชื่อ WIMP)</li>
+  <li><strong>สถิติ Boltzmann</strong> (3.3) ใช้ได้เมื่อ $T \ll E - \mu$ — ทุกการใช้งานในบทนี้อยู่ในช่วงนั้น (รูป 3.5 กล่องเล็กยืนยันสำหรับ dark matter)</li>
+  <li><strong>$\langle\sigma v\rangle$ ใน $c = 1$</strong> มีหน่วยพื้นที่ (cm²) · paper ส่วนใหญ่ใช้ cm³/s (คูณ $c$) — ระวังเมื่อเทียบตัวเลข</li>
+  <li><strong>ตัวเลขทั้งหมด</strong> ($\tau_n$, D/H, $Y_p$, $\Omega_bh^2$, $z$ ของ reionization, ผลการทดลอง dark matter) เป็นค่าปี 2003</li>
+  <li><strong>(3.60)</strong> — ดูกล่องเตือนใน §3.4: ตัวเลขที่พิมพ์ไม่ตรงกับ (3.59) ที่เราแทนเอง</li>
+</ul>
+
+<h2>โจทย์ท้ายบทที่ควรทำ</h2>
+<table>
+  <tr><th>ข้อ</th><th>ฝึกทักษะอะไร</th><th>เฉลยใน Appendix A</th></tr>
+  <tr><td>1</td><td>$n^{(0)}$ สามสถิติ สองลิมิต — ต่อยอดกล่องขั้นที่ข้ามของ (3.6)</td><td>มี</td></tr>
+  <tr><td>2</td><td>ติดตามความหนาแน่น $e^\pm$ ผ่านการสลาย</td><td>ไม่มี</td></tr>
+  <tr><td>3</td><td>คำนวณ $\lambda_{np}$ จาก (3.8) ให้ได้ (3.29) — อินทิกรัล phase space เต็มรูป</td><td>ไม่มี</td></tr>
+  <tr><td>4</td><td>แก้ (3.27) เชิงตัวเลข (หรือกึ่งวิเคราะห์) ให้ได้ $X_n \to 0.15$ — <strong>แนะนำให้เขียนโค้ด</strong></td><td>ไม่มี</td></tr>
+  <tr><td>5, 6</td><td>พิสูจน์ (3.30) · หา $\eta_b$ จาก $\Omega_bh^2$ (3.11)</td><td>5 ไม่มี · 6 มี</td></tr>
+  <tr><td>7</td><td>อัตราส่วน baryon/photon $R$ และ sound speed — เตรียมบทที่ 8</td><td>ไม่มี</td></tr>
+  <tr><td>8, 9</td><td>แก้ (3.39) เชิงตัวเลขเทียบรูป 3.4 · redshift ของ decoupling</td><td>ไม่มี</td></tr>
+  <tr><td>10</td><td>ประมาณ $x_f$ จาก $n^{(0)}\langle\sigma v\rangle = H$</td><td>ไม่มี</td></tr>
+  <tr><td>11</td><td>ใช้ entropy คำนวณ $(aT)^3$ ที่ 10 GeV เทียบวันนี้ (ที่มาของ $1/30$)</td><td>มี</td></tr>
+  <tr><td>12, 13</td><td>ถ้าไม่มี baryon asymmetry · ขอบบนของมวล WIMP จาก unitarity</td><td>ไม่มี</td></tr>
+</table>
+
+<h2>ตรวจแล้วอย่างไร</h2>
+<p>สคริปต์ <code>scripts/verify/dodelson_ch03.py</code> (ผ่าน 40 ข้อ) ยืนยันด้วย sympy/mpmath:</p>
+<ul>
+  <li>(3.2) ตัวคูณ $1/2E$ · (3.4) · (3.6) ทั้งสองลิมิต (อินทิเกรตจริง)</li>
+  <li>(3.15) จาก (3.6) และ (3.16) · $B_D = 2.22$ MeV · $(m_p/m_n)^{3/2} \approx 0.998$ · $X_{n,\rm EQ} \to 1/2$</li>
+  <li>(3.22) ⇒ (3.23) ⇒ (3.27) · $H \propto \sqrt{g_*}T^2$ · (3.28) = 1.13 s⁻¹ · $g_* = 10.75$ และ 3.36 · $\lambda_{np}(1) \approx 5.5$ · (3.30) = 132 s · 0.74 · (3.31) · (3.33)</li>
+  <li>(3.11) $\eta_b \approx 5.5\times10^{-10}$ · (3.32) ให้ 0.062 MeV · (3.34) ที่ $\eta_b = 5.5\times10^{-10}$</li>
+  <li>(3.37) จาก (3.35) · ระดับ $10^{15}$ · (3.39) · (3.44) · (3.45) · ตัวเลข 113, 3600 ใน (3.46) · (3.47) ทั้งค่า 43 และกำลัง</li>
+  <li>(3.52) จาก (3.50) · (3.55) ด้วย dsolve · (3.56) · (3.58) · (3.59) ไม่ขึ้นกับ $m$ · <strong>(3.60) ไม่ผ่าน — ต่างราว 100 เท่า</strong> (สคริปต์บันทึกความต่างนี้เป็นข้อตรวจ)</li>
+</ul>
+<p><strong>ยังไม่ได้ตรวจ</strong> (อ่านจากหนังสืออย่างเดียว):</p>
+<ul>
+  <li>(3.1) ทั้งก้อน และนิยาม (3.8) — รับตามหนังสือ</li>
+  <li>(3.29) $\lambda_{np}$ และ (3.42) $\alpha^{(2)}$ — สูตรสำเร็จจากหนังสือ (ตรวจแค่ค่าที่ $x = 1$)</li>
+  <li>ค่า $X_n = 0.15$ (ต้องแก้ (3.27) เชิงตัวเลข — โจทย์ข้อ 4) · ตัวคูณ $1/30$ ใน (3.57) (โจทย์ข้อ 11) · $x_f \sim 10$</li>
+  <li>รูปร่างของกราฟในรูป 3.2, 3.4, 3.5 และค่าสังเกตการณ์ทั้งหมด (ค่าปี 2003)</li>
+  <li>สาเหตุของความต่างใน (3.60) — ยังไม่ได้เทียบ errata</li>
+</ul>
+
+<div class="ask">
+  อ่านหนังสือแล้วติดประโยคไหน สมการไหน <strong>ถามได้เลย</strong> — บอกเลขหน้ามา Claude เปิดดูหน้าเดียวกันได้
+  <div class="nav">
+    <a href="dodelson-ch02.html">← บทที่ 2</a>
+    <a href="dodelson-index.html">🗺️ แผนที่ทั้งเล่ม</a>
+    <a href="dodelson-ch04.html">บทที่ 4 →</a>
+  </div>
+</div>
+
+</body>
+</html>

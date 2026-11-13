@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>คู่มืออ่าน Dodelson · บทที่ 6 Initial Conditions</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+</head>
+<body>
+
+<h1>คู่มืออ่าน Dodelson · บทที่ 6 Initial Conditions</h1>
+<p class="meta">หนังสือหน้า 139–179 (PDF หน้า 152–192) · คู่มืออ่าน ไม่ใช่ฉบับแปล — เปิดหนังสือไว้ข้าง ๆ
+แล้วอ่านหน้านี้ประกอบ</p>
+
+<!-- ============================================================ -->
+<h2>1. บทนี้ตอบคำถามอะไร</h2>
+
+<p>บท 4–5 ให้สมการเก้าตัวที่บอกว่าการกระเพื่อม "เปลี่ยนไปอย่างไร" แต่สมการเชิงอนุพันธ์ต้องมี<strong>ค่าเริ่มต้น</strong>
+บทนี้ตอบสองคำถาม:</p>
+<ol>
+  <li>ตอนเริ่มต้น ($k\eta \ll 1$) ตัวแปรทั้งเก้าสัมพันธ์กันอย่างไร — คำตอบ: ทุกตัวเขียนได้ด้วย $\Phi$ ตัวเดียว (§6.1)</li>
+  <li>แล้ว $\Phi$ มาจากไหน มีขนาดเท่าไร — คำตอบของหนังสือ: จาก<strong>ความผันผวนเชิงควอนตัม</strong>ระหว่าง inflation
+    ซึ่งถูกยืดจนใหญ่กว่า horizon แล้ว "แข็งตัว" ไว้ (§6.2–6.5) ผลสุดท้ายคือ power spectrum (6.82) ของ scalar
+    และ (6.59) ของ gravity wave</li>
+</ol>
+<p>ผู้เขียนเตือนตั้งแต่หน้าแรกว่ายังไม่แน่ว่า inflation คือกลไกจริง แต่เป็นคำอธิบายที่น่าเชื่อที่สุด (ตามมุมมองปี 2003)</p>
+
+<!-- ============================================================ -->
+<h2>2. ต้องรู้อะไรก่อน</h2>
+
+<ul>
+  <li><strong>สมการ Boltzmann (4.100)–(4.107) และ Einstein (5.27), (5.33)</strong> — จากบท 4–5 ของหนังสือ
+      (<a href="dodelson-ch04.html">คู่มือบท 4</a>, <a href="dodelson-ch05.html">คู่มือบท 5</a>)</li>
+  <li><strong>Friedmann equation, $H$, $\eta$ (conformal time), $a\propto\eta$ ในยุค radiation</strong> — หนังสือบท 2 ·
+      ใน workspace ดู <a href="../lessons/0041-expanding-universe.html">บทที่ 28 · เอกภพขยายตัว</a></li>
+  <li><strong>Scalar field, Lagrangian, $T^\mu{}_\nu$ ของสนาม</strong> — สอนแล้วใน
+      <a href="../lessons/0016-fields.html">บทที่ 7 · จากอนุภาคไปสนาม</a> และ
+      <a href="../lessons/0019-current-T.html">บทที่ 8 · ขวามือของสมการไอน์สไตน์</a> ·
+      แต่<strong>รูปใน curved spacetime ($\sqrt{-g}$, $g^{\mu\nu}$ ที่มี $a(t)$) ยังไม่ได้สอน</strong> — ในบทนี้ใช้แค่ผล (6.25)–(6.27)</li>
+  <li><strong>Harmonic oscillator เชิงควอนตัม, $\hat a$, $\hat a^\dagger$, $[\hat a,\hat a^\dagger]=1$</strong> — สอนแล้วใน
+      <a href="../lessons/0028-oscillator.html">บทที่ 17 · อนุภาคคืออะไร</a>,
+      <a href="../lessons/0029-ladder.html">บทที่ 18 · ปุ่มสร้างอนุภาค</a> และ
+      <a href="../lessons/0030-field-operator.html">บทที่ 19 · สนามคือผลรวมของปุ่ม</a> ·
+      §6.4.1 ทบทวนให้อีกครั้งแบบสั้น</li>
+  <li><strong>GR (Christoffel, Ricci)</strong> — <strong>ยังไม่ได้สอน</strong> · บทนี้ไม่คำนวณใหม่ ใช้ผลของบท 5 อย่างเดียว</li>
+  <li><strong>กลศาสตร์สถิติ (equilibrium, entropy)</strong> — <strong>ยังไม่ได้สอน</strong> · โผล่แค่ใน Exercise 5 และคำว่า adiabatic</li>
+  <li><strong>Spherical Bessel $j_l$</strong> — ใช้ใน Exercise 11 · ถ้าไม่คุ้น ข้ามได้ เพราะสคริปต์ตรวจแทนคำตอบ (6.57) ลงสมการโดยตรง</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>3. เดินตามหนังสือ</h2>
+
+<p><strong>ตัวอักษรที่ต้องแยกให้ออกตลอดบท:</strong> จุด ($\dot{x}$) = อนุพันธ์ตาม $\eta$ ·
+$\phi$ (เล็ก) = สนาม inflaton แต่ $\Phi$ (ใหญ่) = ศักย์โน้มถ่วง · $\delta$ มีสองความหมาย: overdensity ของ dark matter (§6.1)
+และ slow-roll parameter ตัวที่สอง (§6.3.3 เป็นต้นไป) · $\epsilon$ = slow-roll parameter ตัวแรก</p>
+
+<h3>§6.1 สมการ Einstein–Boltzmann ช่วงต้น · หน้า 139–142</h3>
+
+<p>เงื่อนไข $k\eta\ll1$ แปลว่าทุก mode ยังใหญ่กว่า horizon มาก พจน์ที่คูณ $k$ จึงเล็กกว่าพจน์อนุพันธ์เวลาราว $1/(k\eta)$ เท่า
+ทิ้งได้หมด ทางฟิสิกส์คือ "ยังไม่มีเวลาให้อะไรวิ่งข้ามความยาวคลื่น" ท้องฟ้าของผู้สังเกตแต่ละคนจึงสม่ำเสมอ
+เหลือแต่ monopole</p>
+
+<div class="eq">
+$$\dot\Theta_0 + \dot\Phi = 0, \qquad \dot{\mathcal N}_0 + \dot\Phi = 0 \qquad \text{(Dodelson 6.1)}$$
+$$\dot\delta = -3\dot\Phi, \qquad \dot\delta_b = -3\dot\Phi \qquad (6.2)$$
+<p><strong>อ่านว่า:</strong> $\Theta_0$ = monopole ของอุณหภูมิ photon · $\mathcal N_0$ = monopole ของ neutrino ·
+$\delta,\delta_b$ = overdensity ของ dark matter และ baryon · ความเร็วและ dipole เล็กกว่าอีก $k\eta$ เท่า ตั้งเป็นศูนย์ไปก่อน</p>
+</div>
+
+<p>ฝั่ง Einstein: ใน (5.27) พจน์ $k^2\Phi$ ทิ้งได้ และสสารเล็กกว่ารังสี เหลือ (6.3) · ยุค radiation มี $a\propto\eta$
+จึง $\dot a/a = 1/\eta$ และใช้ Friedmann แปลงสัมประสิทธิ์เป็น $2/\eta^2$ (6.4) · นิยามสัดส่วน neutrino</p>
+
+<div class="eq">
+$$f_\nu \equiv \frac{\rho_\nu}{\rho_\gamma+\rho_\nu} \qquad (6.5), \qquad
+\dot\Phi\,\eta - \Psi = 2\left([1-f_\nu]\Theta_0 + f_\nu\mathcal N_0\right) \qquad (6.6)$$
+<p><strong>อ่านว่า:</strong> $f_\nu$ = เศษส่วนของพลังงานรังสีที่เป็น neutrino (ราว 0.4 สำหรับ neutrino สามชนิด — Exercise 1) ·
+$\Psi$ = ศักย์ในองค์ประกอบ $g_{00}$</p>
+</div>
+
+<p>หาอนุพันธ์ (6.6) แล้วใช้ (6.1) กำจัด monopole และตั้ง $\Psi = -\Phi$ (ทิ้ง quadrupole ของ neutrino — เชิงอรรถ 1 ชี้ไป Exercise 2) ได้</p>
+
+<div class="eq">
+$$\ddot\Phi\,\eta + 4\dot\Phi = 0 \quad (6.8), \qquad \Phi\propto\eta^p \Rightarrow p(p-1)+4p = 0 \Rightarrow p = 0,\,-3 \quad (6.9)$$
+<p><strong>อ่านว่า:</strong> $p=-3$ คือ decaying mode (หายไปเอง) · $p=0$ คือ mode ที่ $\Phi$ คงที่ — mode ที่สนใจ
+และเป็นสิ่งที่ inflation ต้องไปกระตุ้นให้เกิด</p>
+</div>
+
+<div class="eq">
+$$\Phi(k,\eta_i) = 2\Theta_0(k,\eta_i) \qquad (6.12), \qquad \delta = 3\Theta_0 + \text{const} \qquad (6.13)$$
+$$\Theta_1 = \mathcal N_1 = \frac{iv_b}{3} = \frac{iv}{3} = -\frac{k\Phi}{6aH} \qquad (6.16)$$
+<p><strong>อ่านว่า:</strong> (6.12) ได้จาก (6.6) เมื่อ $\dot\Phi = 0$ และสมมติ $\Theta_0 = \mathcal N_0$ (6.11) ·
+(6.13) ค่าคงที่เป็นศูนย์ = <strong>adiabatic</strong> (อัตราส่วนจำนวนสสารต่อ photon เท่ากันทุกที่ จึงได้ $\delta = 3\Theta_0$ (6.15)) ·
+ไม่เป็นศูนย์ = <strong>isocurvature</strong> ซึ่งหนังสือไม่ใช้ · (6.16) คือค่าเริ่มของความเร็วและ dipole (พิสูจน์ใน Exercise 3) ·
+$v,v_b$ = ความเร็วของ dark matter และ baryon</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม:</strong> (6.7)→(6.8): ฝั่งขวาของ (6.6) หาอนุพันธ์แล้วได้ $2(-\dot\Phi)$ ส่วนฝั่งซ้ายได้
+$\ddot\Phi\eta + \dot\Phi + \dot\Phi$ ย้ายข้างได้ $\ddot\Phi\eta + 4\dot\Phi = 0$ ·
+(6.14)→(6.15): $(1+\delta)/(1+3\Theta_0) \simeq 1 + \delta - 3\Theta_0$ — ตัว 3 มาจาก $n_\gamma\propto T^3$ · sympy ตรวจทั้งสองข้อ</p>
+
+<h3>§6.2 Horizon · หน้า 142–144</h3>
+
+<p>หัวข้อนี้เปิดด้วยอุปมายาวหนึ่งหน้าเรื่องคนที่ชีวิตเรียบร้อยแล้วเกิดสงสัยทุกอย่าง (ใช้บอกว่า "ทฤษฎีที่ดูดีมาตลอดมีรูรั่วที่ฐาน")
+อ่านผ่านได้ · ประเด็นจริงคือ <strong>horizon problem</strong>:</p>
+<ul>
+  <li>รูป 6.1: comoving horizon $\eta$ (แกนตั้ง log) โตตาม $a$ ตลอดยุค radiation/matter · เส้นแนวนอนสองเส้นคือความยาวคลื่น comoving
+    ของสเกล quadrupole ของ CMB และสเกลที่เริ่ม non-linear ในปัจจุบัน · ณ last scattering ($a\simeq10^{-3}$)
+    สเกลใหญ่ยังอยู่นอก horizon</li>
+  <li>รูป 6.2: กรวยแสง — photon ที่เรารับจากสองทิศตรงข้ามไม่เคยอยู่ใน horizon ของกันและกัน แต่อุณหภูมิเท่ากันถึงราว 1 ส่วนใน $10^5$
+    (ค่าสังเกต ค่าปี 2003)</li>
+</ul>
+<p>คำถาม: อะไรทำให้บริเวณที่ไม่เคยติดต่อกันมีอุณหภูมิเท่ากัน — ที่ผ่านมาเรา "สมมติเอา" มาตลอด</p>
+
+<h3>§6.3 Inflation · หน้า 144–155</h3>
+
+<p>ผู้เขียนออกตัวสองข้อ: field theory ที่ใช้ง่ายมาก และยังไม่รู้ว่าสนามที่ขับ inflation คืออะไร (ยังไม่พบ scalar พื้นฐานใด
+ตามมุมมองปี 2003) แต่ใช้ scalar field เพราะทฤษฎีอนุภาคแทบทุกแบบมี</p>
+
+<p><strong>§6.3.1 ทางออกของ horizon problem</strong> — เขียน horizon ใหม่เป็นอินทิกรัลเชิง log</p>
+
+<div class="eq">
+$$\eta = \int_0^a \frac{da'}{a'}\,\frac{1}{a'H(a')} \qquad \text{(Dodelson 6.17)}$$
+<p><strong>อ่านว่า:</strong> $1/(aH)$ = comoving Hubble radius — ระยะที่สื่อสารกันได้ "ตอนนี้" ·
+$\eta$ = ระยะที่ "เคย" สื่อสารกันได้ · ถ้า $1/(aH)$ ในอดีตเคยใหญ่มาก $\eta$ ก็ใหญ่กว่า $1/(aH)$ ปัจจุบันได้</p>
+</div>
+
+<div class="eq">
+$$\frac{d}{dt}\left(a\,\frac{da/dt}{a}\right) = \frac{d^2a}{dt^2} > 0 \qquad (6.18)$$
+<p><strong>อ่านว่า:</strong> ให้ $1/(aH)$ ลดลง ⇔ $aH$ เพิ่ม ⇔ การขยายตัว<strong>เร่ง</strong> — ที่มาของชื่อ inflation</p>
+</div>
+
+<p>ประเมินขนาด: ถ้า inflation จบที่อุณหภูมิ $\sim10^{15}$ GeV (ค่าที่หนังสือสมมติ) และหลังจากนั้นเป็น radiation ตลอด
+$a_e \simeq T_0/10^{15}\,\text{GeV}\simeq10^{-28}$ · ต้องลด $1/(aH)$ ลง 28 อันดับ ·
+ถ้า $H$ คงที่ $a = a_e e^{H(t-t_e)}$ (6.19) ต้องขยายราว $\ln(10^{28})\approx64$ เท่าของ e-fold ⇒ ข้อเรียกร้องที่คุ้นหู
+"มากกว่า 60 e-folds" (Exercise 6 ปรับแก้ตัวเลขนี้) · รูป 6.3–6.5 แสดงภาพ Hubble radius ลดลงแล้วเพิ่มขึ้น
+และกรวยแสงที่ขยายออกเมื่อมี inflation</p>
+
+<div class="warn">ตั้งแต่ (6.20) หนังสือย้ายจุดศูนย์ของ $\eta$ ไปที่ <strong>ปลาย inflation</strong> ระหว่าง inflation จึงมี $\eta &lt; 0$
+และ $|\eta|$ ลดลงเข้าหาศูนย์ — ทุกสูตรใน §6.4–6.5 ใช้ข้อตกลงนี้ (เช่น $\eta\simeq-1/(aH)$)</div>
+
+<p><strong>§6.3.2 ต้องมีความดันติดลบ</strong> — สมการ Einstein ส่วน space–space ให้</p>
+
+<div class="eq">
+$$\frac{1}{a}\frac{d^2a}{dt^2} = -\frac{4\pi G}{3}(\rho + 3P) \qquad (6.22)$$
+<p><strong>อ่านว่า:</strong> $\rho$ = ความหนาแน่นพลังงาน · $P$ = ความดัน · เร่งได้ก็ต่อเมื่อ $P &lt; -\rho/3$ (6.23) — สสารและรังสีทำไม่ได้</p>
+</div>
+<p><strong>ขั้นที่หนังสือข้าม:</strong> (6.21) เป็นสมการที่สองของ Friedmann · ลบด้วย $H^2/2 = 4\pi G\rho/3$ ก็ได้ (6.22) · sympy ตรวจแล้ว</p>
+
+<p><strong>§6.3.3 Scalar field</strong> — สนามสม่ำเสมอ $\phi^{(0)}(t)$ กับศักย์ $V(\phi)$:</p>
+
+<div class="eq">
+$$\rho = \frac12\left(\frac{d\phi^{(0)}}{dt}\right)^2 + V(\phi^{(0)}), \qquad
+P = \frac12\left(\frac{d\phi^{(0)}}{dt}\right)^2 - V(\phi^{(0)}) \qquad (6.26)\text{–}(6.27)$$
+<p><strong>อ่านว่า:</strong> $\phi^{(0)}$ = ส่วนอันดับศูนย์ของสนาม (ไม่ขึ้นกับตำแหน่ง) ·
+ถ้าพลังงานศักย์ชนะพลังงานจลน์ $P\approx-\rho$ ความดันติดลบมาฟรี · ได้จาก $T^\mu{}_\nu$ ใน (6.24)</p>
+</div>
+
+<p>กรณีสุดโต่ง: สนามติดอยู่ใน <strong>false vacuum</strong> (รูป 6.6 — หลุมเล็กที่ไม่ใช่จุดต่ำสุดจริง) ⇒ $\rho$ คงที่ ⇒ $H$ คงที่ (6.28)
+⇒ ขยายแบบ exponential และ horizon ที่สร้างระหว่างนั้นคือ</p>
+
+<div class="eq">
+$$\eta_{\text{prim}} = \frac{1}{Ha_e}\left(e^{H(t_e-t_b)} - 1\right) \qquad (6.29)$$
+<p><strong>อ่านว่า:</strong> $t_b$ = เวลาเริ่ม inflation · $t_e$ = เวลาจบ · ถ้า $H(t_e-t_b) > 60$ ก็พอ</p>
+</div>
+
+<p>แต่ old inflation (Guth 1981) ใช้ไม่ได้: ออกจาก false vacuum ได้ทางเดียวคือ tunnel เป็นฟองเล็ก ๆ ซึ่งไม่รวมกันทันการขยาย ·
+ทางออกคือ <strong>slow roll</strong>: สนามกลิ้งช้า ๆ บนศักย์ที่ราบ</p>
+
+<div class="eq">
+$$\frac{d^2\phi^{(0)}}{dt^2} + 3H\frac{d\phi^{(0)}}{dt} + V' = 0 \qquad (6.32), \qquad
+\ddot\phi^{(0)} + 2aH\dot\phi^{(0)} + a^2V' = 0 \qquad (6.33)$$
+<p><strong>อ่านว่า:</strong> $V' = dV/d\phi$ · (6.32) เหมือนลูกบอลกลิ้งบนศักย์โดยมี "แรงเสียดทาน" $3H$ จากการขยายตัว ·
+(6.33) คือตัวเดียวกันเขียนด้วย $\eta$ (จุด = $d/d\eta$; Exercise 8)</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม:</strong> (6.30)–(6.31) ได้ (6.32) จากสมการอนุรักษ์พลังงาน $d\rho/dt + 3H(\rho+P)=0$ —
+แทน (6.26)–(6.27) แล้วได้ $\dot\phi\,\times$(6.32) = 0 · และผลพลอยได้ที่จะใช้ทั้งบท: $dH/dt = -4\pi G\,(d\phi^{(0)}/dt)^2$
+(ไม่ได้เขียนแยกในหนังสือ) · sympy ตรวจทั้งสอง</p>
+
+<div class="eq">
+$$\eta \simeq -\frac{1}{aH} \qquad (6.34)$$
+$$\epsilon \equiv \frac{d}{dt}\left(\frac1H\right) = -\frac{\dot H}{aH^2} \qquad (6.35)$$
+$$\delta \equiv \frac{1}{H}\frac{d^2\phi^{(0)}/dt^2}{d\phi^{(0)}/dt}
+= \frac{-1}{aH\dot\phi^{(0)}}\left(aH\dot\phi^{(0)} - \ddot\phi^{(0)}\right) \qquad (6.36)$$
+<p><strong>อ่านว่า:</strong> (6.34) อินทิเกรต (6.17) จาก $a_e$ ย้อนกลับเมื่อ $H$ คงที่ แล้วใช้ $a\ll a_e$ ·
+$\epsilon$ = อัตราที่ $H$ เปลี่ยน (de Sitter แท้: $\epsilon=0$; ยุค radiation: $\epsilon=2$) ·
+$\delta$ = อัตราเร่งของสนามเทียบกับความเร็ว · slow roll คือ $\epsilon,|\delta|\ll1$ ·
+หนังสือเลือกตัว $\delta$ เพราะ $\eta$ ถูกใช้เป็น conformal time แล้ว (ตำราอื่นมักเรียก $\eta_V$ — <em>นอกหนังสือ</em>)</p>
+</div>
+
+<h3>§6.4 Gravity waves · หน้า 155–162</h3>
+
+<p><strong>§6.4.1 ทบทวน harmonic oscillator</strong> (มวลหนึ่งหน่วย ความถี่ $\omega$)</p>
+
+<div class="eq">
+$$\hat x = v(\omega,t)\,\hat a + v^*(\omega,t)\,\hat a^\dagger, \qquad v = \frac{e^{-i\omega t}}{\sqrt{2\omega}}, \qquad
+\langle|\hat x|^2\rangle = |v(\omega,t)|^2 = \frac{1}{2\omega} \qquad (6.38)\text{–}(6.44)$$
+<p><strong>อ่านว่า:</strong> $v$ = mode function (คำตอบคลาสสิกของ $\ddot v + \omega^2v = 0$) ·
+normalization $1/\sqrt{2\omega}$ เลือกให้ $[\hat x,\hat p] = i$ · แม้ใน ground state ค่าเฉลี่ยของ $x$ เป็นศูนย์ แต่ variance ไม่เป็นศูนย์
+— นี่คือ "ความผันผวนเชิงควอนตัม" ที่ inflation จะยืดออก</p>
+</div>
+
+<p>เทียบ workspace: <a href="../lessons/0029-ladder.html">บทที่ 18</a> เขียน $\hat x$ ด้วย $\hat a,\hat a^\dagger$ แบบเดียวกัน ·
+<strong>ขั้นที่หนังสือข้าม</strong> (Exercise 9): $[\hat x,\hat p] = (v\dot v^* - v^*\dot v)[\hat a,\hat a^\dagger] = i$ · sympy ตรวจแล้ว</p>
+
+<p><strong>§6.4.2 Tensor perturbation</strong> — สมการของ $h$ (ทั้ง $h_+$ และ $h_\times$) จากบท 5 คือ
+$\ddot h + 2(\dot a/a)\dot h + k^2h = 0$ (6.45) · เปลี่ยนตัวแปรเพื่อให้หน้าตาเหมือน oscillator</p>
+
+<div class="eq">
+$$\tilde h \equiv \frac{ah}{\sqrt{16\pi G}}, \qquad
+\frac1a\left[\ddot{\tilde h} + \left(k^2 - \frac{\ddot a}{a}\right)\tilde h\right] = 0 \qquad (6.46)\text{–}(6.49)$$
+<p><strong>อ่านว่า:</strong> $\tilde h$ = $h$ ที่ปรับขนาด — คูณ $a$ เพื่อกำจัดพจน์หน่วง และหาร $\sqrt{16\pi G}$ เพื่อให้เป็นสนาม scalar
+แบบมาตรฐาน (เชิงอรรถ 4: ได้จาก action อันดับสอง หรือเดาจากมิติ — $h$ ไร้มิติ สนามมาตรฐานมีมิติมวล จึงต้องมี $m_{\text{Pl}} = G^{-1/2}$) ·
+เป็น oscillator ที่ "ความถี่" เปลี่ยนตามเวลา</p>
+</div>
+
+<p>quantize $\tilde h = v\,\hat a + v^*\hat a^\dagger$ (6.50) โดย $v$ ทำตาม (6.51) ซึ่งคือวงเล็บข้างบน · variance ของ $h$ ให้ power spectrum (6.52)–(6.54)</p>
+
+<div class="eq">
+$$P_h(k) = \frac{16\pi G}{a^2}\,|v(k,\eta)|^2 \quad (6.54), \qquad \frac{\ddot a}{a} = \frac{2}{\eta^2} \quad (6.55), \qquad
+\ddot v + \left(k^2 - \frac{2}{\eta^2}\right)v = 0 \quad (6.56)$$
+$$v = \frac{e^{-ik\eta}}{\sqrt{2k}}\left(1 - \frac{i}{k\eta}\right) \qquad (6.57)$$
+<p><strong>อ่านว่า:</strong> $P_h$ = power spectrum ของ $h$ (นิยามผ่าน $\langle\tilde h\tilde h^\dagger\rangle$) ·
+$\ddot a/a = 2/\eta^2$ ใช้ $a = -1/(H\eta)$ ของ de Sitter · (6.57) เลือกให้ตอนต้น ($|k\eta|\gg1$, mode ยังเล็กกว่า horizon)
+กลายเป็น $e^{-ik\eta}/\sqrt{2k}$ ของ oscillator ปกติ (Exercise 11 ให้ derive ผ่าน spherical Bessel)</p>
+</div>
+
+<div class="eq">
+$$P_h(k) = \frac{8\pi GH^2}{k^3}\bigg|_{aH=k} \qquad \text{(Dodelson 6.59)}$$
+<p><strong>อ่านว่า:</strong> หลัง mode ออกนอก horizon ($|k\eta|\ll1$) เทอม $1/(k\eta)$ ชนะ $|v|^2 \to 1/(2k^3\eta^2)$
+ทำให้ $P_h$ คงที่ · ค่า $H$ ให้ประเมินตอน $aH = k$ (horizon crossing) เพราะ $H$ เปลี่ยนช้า ๆ ·
+$k^3P_h$ ไม่ขึ้นกับ $k$ = <strong>scale-free</strong> · นับทั้งสอง polarization ต้องคูณ 2</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม:</strong> (6.47)–(6.48) แทน $h = \sqrt{16\pi G}\,\tilde h/a$ ลง (6.45) พจน์ $\dot{\tilde h}$ หักกันพอดี
+เหลือ $-\ddot a/a$ · (6.58): $|v|^2 = \frac{1}{2k}\left(1 + \frac{1}{k^2\eta^2}\right)$ และ $a^2\eta^2 = 1/H^2$ ·
+sympy ตรวจว่า (6.57) แก้ (6.56), มี Wronskian $v\dot v^* - v^*\dot v = i$ (normalization เดียวกับ 6.41) และให้ (6.59)</p>
+
+<p>รูป 6.7 พล็อต $k^{3/2}$ × รากของ variance เทียบ $|\eta|/\eta_0$ สำหรับ $k = 10^4/\eta_0$ และ $100/\eta_0$:
+สั่นและลดลงขณะอยู่ใน horizon แล้วแบนราบหลังออก และสองเส้นแบนที่ค่าเดียวกัน = scale-free ·
+ท้าย §6.4 หนังสือชี้ว่า ground state ของ oscillator เป็น Gaussian ดังนั้นการกระเพื่อมจาก inflation ก็เป็น Gaussian</p>
+
+<h3>§6.5 Scalar perturbations · หน้า 162–170</h3>
+
+<p><strong>§6.5.1 ความผันผวนของสนาม</strong> — แยก $\phi = \phi^{(0)}(t) + \delta\phi(\vec x,t)$ ·
+$\delta\phi$ = ส่วนที่ขึ้นกับตำแหน่ง · ตอนแรกทิ้งการรบกวน metric (§6.5.2 จะกลับมาอ้างว่าทำได้)</p>
+
+<div class="eq">
+$$\ddot{\delta\phi} + 2aH\dot{\delta\phi} + k^2\delta\phi = 0 \qquad (6.71), \qquad
+P_{\delta\phi}(k) = \frac{H^2}{2k^3}\bigg|_{aH=k} \qquad (6.72)$$
+<p><strong>อ่านว่า:</strong> สมการเดียวกับ $h$ ใน (6.45) ทุกตัวอักษร ⇒ คำตอบเหมือนกัน ต่างแค่ตัวคูณ $16\pi G$ ที่หายไป ·
+ได้จากการอนุรักษ์ $T^\mu{}_\nu$ (6.62) ใช้ $\delta T^0{}_0$, $\delta T^0{}_i$, $\delta T^i{}_j$ จาก (6.64)–(6.68)</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (6.69)→(6.71):</strong> คูณ $a^3$, ใช้ $\partial V'/\partial\eta = V''\dot\phi^{(0)}$,
+แล้วใช้ (6.33) แทน $\ddot\phi^{(0)}$ สัมประสิทธิ์ของ $\dot{\delta\phi}$ ยุบเหลือ $-2aH\dot\phi^{(0)}$ ·
+ทิ้งพจน์ $a^2V''\delta\phi$ (เล็กเมื่อศักย์ราบ) แล้วหารด้วย $-\dot\phi^{(0)}$ · sympy ตรวจแล้ว (โดยรับ 6.67–6.69 ตามหนังสือ)</p>
+
+<p><strong>§6.5.2 เชื่อม $\delta\phi$ กับ $\Psi$</strong> — สิ่งที่ต้องการคือ $\Phi$ หลัง inflation ไม่ใช่ $\delta\phi$ ·
+ข้ออ้างว่าทิ้ง $\Psi$ ได้ (6.74) จริงขณะ mode อยู่ใน horizon เพราะ</p>
+
+<div class="eq">
+$$\frac{P+\rho}{\rho} = \frac{2\epsilon}{3} \qquad \text{(prefactor in 6.76)}$$
+<p><strong>อ่านว่า:</strong> ระหว่าง slow roll $P\approx-\rho$ ตัวประกอบนี้เล็ก จึงทิ้ง $\Psi$ ได้ · แต่หลัง inflation เงื่อนไขพังแน่
+(ตอนนั้น $\Psi = -2\Theta_0$ จาก 6.12)</p>
+</div>
+
+<p>ทางออกคือหาปริมาณที่<strong>คงที่</strong>ตอนอยู่นอก horizon:</p>
+
+<div class="eq">
+$$\zeta \equiv -\frac{ik_i\,\delta T^0{}_i\,H}{k^2(P+\rho)} - \Psi \qquad \text{(Dodelson 6.77)}$$
+$$\zeta = -\frac{aH\,\delta\phi}{\dot\phi^{(0)}}\ \ \text{(horizon crossing, 6.78)}, \qquad
+\zeta = -\frac{3aH\Theta_1}{k} - \Psi = -\frac32\Psi\ \ \text{(post inflation, 6.79)}$$
+<p><strong>อ่านว่า:</strong> $\zeta$ = ผสมระหว่าง "ความเร็ว" ของสสาร (ผ่าน $\delta T^0{}_i$) กับศักย์ ·
+ตอนต้น $\Psi$ เล็ก เหลือแต่ส่วนของ $\delta\phi$ · ตอนท้ายรังสีครอง $\delta T^0{}_i$ เป็น dipole $\Theta_1$
+แล้ว (6.16) แปลงเป็น $\Psi$ · รูป 6.8 การ์ตูนแสดงเรื่องนี้</p>
+</div>
+
+<p>เมื่อ $\zeta$ คงที่ เอาสองค่าเท่ากัน:</p>
+
+<div class="eq">
+$$P_\Psi = P_\Phi(k) = \frac{8\pi G}{9k^3}\frac{H^2}{\epsilon}\bigg|_{aH=k} \qquad \text{(Dodelson 6.82)}$$
+$$P_\Phi(k) = \frac{128\pi^2G^2}{9k^3}\frac{H^2V^2}{(V')^2}\bigg|_{aH=k} \qquad (6.83)$$
+<p><strong>อ่านว่า:</strong> (6.80) $\Psi = \frac23 aH\delta\phi/\dot\phi^{(0)}$ → (6.81) ยกกำลังสองแล้วใช้ (6.72) →
+(6.82) ใช้ $(aH/\dot\phi^{(0)})^2 = 4\pi G/\epsilon$ (Exercise 12b) · $P_\Psi = P_\Phi$ เพราะไม่มี anisotropic stress ($\Psi=-\Phi$) ·
+(6.83) ใช้ Exercise 14 แทน $\epsilon$ ด้วยศักย์ · เทียบ (6.59): $P_h/P_\Phi = 9\epsilon$ ⇒ scalar ใหญ่กว่า tensor ราว $1/\epsilon$</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (6.78), (6.79):</strong> สำหรับสนาม $ik_i\delta T^0{}_i$ เป็นสัดส่วนกับ $k^2\dot\phi^{(0)}\delta\phi$ (จาก 6.64) และ
+$P+\rho = (\dot\phi^{(0)}/a)^2$ (จาก 6.26–6.27) ตัว $k^2$ และ $\dot\phi^{(0)}$ หนึ่งตัวหักกัน เหลือ $-aH\delta\phi/\dot\phi^{(0)}$ · สำหรับรังสี $ik_i\delta T^0{}_i = 4ak\rho_r\Theta_1$
+และ $P+\rho = \frac43\rho_r$ · แทน (6.16) และ $\Psi=-\Phi$ ได้ $\frac32\Phi = -\frac32\Psi$ · sympy ตรวจแล้ว ·
+<strong>ส่วนที่ยังไม่ได้ตรวจ</strong>: การพิสูจน์ว่า $\zeta$ คงที่ (6.84)–(6.90) — หนังสือใช้ (6.85) จาก Exercise 13
+และข้ออ้างว่า adiabatic perturbation ทำให้ $\delta P = (dP/d\rho)\delta\rho$ ในวงเล็บ (6.90)</p>
+
+<p><strong>§6.5.3 Spatially flat slicing</strong> — วิธีที่สวยกว่า: เลือก gauge ที่ $g_{ij} = a^2\delta_{ij}$ ไม่ถูกรบกวน (6.91)
+เหลือแค่ $A$ และ $B$ (สัญลักษณ์เดียวกับ 5.67) · ใน gauge นี้สมการของ $\delta\phi$ คือ (6.71) <strong>แบบเป๊ะ</strong>
+(Exercise 16) ไม่ต้องประมาณ จึงใช้ (6.72) ได้ตรง ๆ</p>
+
+<div class="eq">
+$$\zeta \equiv -\Phi_H - \frac{iaH}{k}v \qquad (6.93), \qquad
+P_\zeta = \left(\frac{aH}{\dot\phi^{(0)}}\right)^2P_{\delta\phi} = \frac{2\pi GH^2}{\epsilon k^3}\bigg|_{aH=k} \qquad (6.95)\text{–}(6.96)$$
+<p><strong>อ่านว่า:</strong> $\Phi_H$ = ตัวแปร Bardeen จาก (5.76) · $v$ = ความเร็ว invariant ของ Bardeen (5.78) ·
+ทั้งคู่ gauge-invariant ดังนั้น $\zeta$ ก็ invariant · ใน conformal Newtonian $\Phi_H = -\Phi$ ทำให้ (6.93) ตรงกับ (6.77) ·
+ใช้ $\zeta = 3\Phi/2$ ได้ $P_\Phi = \frac49P_\zeta$ = (6.97) ตรงกับ (6.82)</p>
+</div>
+
+<p>ท้ายหัวข้อ: ความโค้งของปริภูมิสามมิติที่เวลาคงที่คือ $4k^2\Phi_H/a^2$ (Exercise 17) และใน comoving gauge (ความเร็วเป็นศูนย์)
+$\zeta = \Phi_H$ จึงเรียกการรบกวนแบบนี้ว่า <strong>curvature perturbation</strong> · <strong>ยังไม่ได้ตรวจ</strong> (6.92)–(6.94)
+และข้อความเรื่องความโค้ง</p>
+
+<h3>§6.6 สรุปและ spectral index · หน้า 170–173</h3>
+
+<p>สรุปภาพรวม: inflation สร้างความผันผวนตอนสเกลยังอยู่ใน horizon, ยืดออกไปนอก horizon, แล้วสเกลกลับเข้ามาภายหลัง
+เป็นค่าเริ่มต้นของบท 7–8 · แต่ละ Fourier mode มีค่าเฉลี่ยศูนย์ (6.98) และ mode ต่างกันไม่สัมพันธ์กัน (6.99, ตัว delta function)</p>
+
+<div class="eq">
+$$P_\Phi(k) = \frac{50\pi^2}{9k^3}\left(\frac{k}{H_0}\right)^{n-1}\delta_H^2\left(\frac{\Omega_m}{D_1(a=1)}\right)^2, \qquad
+P_h(k) = A_T\,k^{-3}\left(\frac{k}{H_0}\right)^{n_T} \qquad (6.100)$$
+<p><strong>อ่านว่า:</strong> สูตรนี้<strong>นิยาม</strong> amplitude $\delta_H$, $A_T$ และ spectral index $n$, $n_T$ ·
+scale-free คือ $n=1$, $n_T=0$ (เรียก Harrison–Zel'dovich–Peebles) · $\Omega_m$ = สัดส่วนสสารวันนี้ ·
+$D_1$ = growth function ที่จะนิยามในบท 7 — หนังสือยอมรับว่าใส่มาตอนนี้ไม่สะดวก แต่เป็นธรรมเนียมที่ทำให้สูตรภายหลังสั้น ·
+<strong>ยังไม่ได้ตรวจ</strong> ตัวคูณ $50\pi^2/9$ (รูปที่ sympy ตรวจคือ $P_h$ และ $P_\Phi$ ในหน่วย $m_{\text{Pl}} = G^{-1/2}$)</p>
+</div>
+
+<div class="eq">
+$$n_T = -2\epsilon \qquad (6.104), \qquad n = 1 - 4\epsilon - 2\delta \qquad \text{(Dodelson 6.106)}$$
+<p><strong>อ่านว่า:</strong> ทั้งสองได้จาก $d\ln P/d\ln k$ โดยใช้ว่าที่ horizon crossing $d\ln H/d\ln k = -\epsilon$ (6.103) ·
+ข้อทำนายที่ "แข็ง" ของ inflation: ทั้ง $P_h/P_\Phi$ และ $n_T$ เป็นสัดส่วนกับ $\epsilon$ จึงผูกกัน ·
+ศักย์ที่ขับ inflation อยู่ราว $10^{15}$ GeV (Exercise 18 · ค่าประมาณของหนังสือ)</p>
+</div>
+
+<div class="warn"><strong>เครื่องหมายที่ไม่สอดคล้องกันในหนังสือ:</strong> Exercise 12(c) สมการ (6.113) และข้อความหน้า 172 เขียนว่า
+$d\epsilon/d\eta = -2aH\epsilon(\epsilon+\delta)$ และ $d\ln\epsilon/d\ln k = -2(\epsilon+\delta)$ ·
+แต่ถ้าใช้ตามนั้น (6.105) จะได้ $n-1 = -2\epsilon + 2(\epsilon+\delta) = 2\delta$ ไม่ใช่ (6.106) ·
+sympy derive จากนิยาม (6.35)–(6.36) ได้ <strong>$d\epsilon/d\eta = +2aH\epsilon(\epsilon+\delta)$</strong> ซึ่งให้
+$n - 1 = -2\epsilon - 2(\epsilon+\delta) = -4\epsilon - 2\delta$ ตรงกับ (6.106) ·
+สรุป: ผลสุดท้าย (6.106) ใช้ได้ ส่วนเครื่องหมายใน (6.113) น่าจะพิมพ์ผิด
+(คู่มือนี้ไม่ได้ตรวจกับ errata อย่างเป็นทางการ)</div>
+
+<!-- ============================================================ -->
+<h2>4. ศัพท์และสำนวนอังกฤษของบทนี้</h2>
+
+<table>
+  <tr><th>คำ / วลี</th><th>ความหมาย</th><th>หน้า</th></tr>
+  <tr><td>detour into the world of inflation</td><td>แวะออกนอกเส้นทางไปเรื่อง inflation</td><td>139</td></tr>
+  <tr><td>by far the most plausible</td><td>น่าเชื่อที่สุดอย่างทิ้งห่าง</td><td>139</td></tr>
+  <tr><td>stringent tests</td><td>การทดสอบที่เข้มงวด</td><td>139</td></tr>
+  <tr><td>decaying mode</td><td>คำตอบที่ลดลงจนหายไปเอง</td><td>141</td></tr>
+  <tr><td>adiabatic / isocurvature</td><td>อัตราส่วนสสารต่อรังสีเท่ากันทุกที่ / ไม่เท่า</td><td>142</td></tr>
+  <tr><td>Midlife Crisis</td><td>วิกฤตวัยกลางคน (ชื่อเล่นของ §6.2)</td><td>142</td></tr>
+  <tr><td>glossed over</td><td>ข้ามไปแบบไม่พูดถึง</td><td>143</td></tr>
+  <tr><td>freestream</td><td>วิ่งอิสระไม่ชนอะไร</td><td>143</td></tr>
+  <tr><td>comoving Hubble radius</td><td>$1/(aH)$ ระยะสื่อสารได้ตอนนี้ (พิกัด comoving)</td><td>146</td></tr>
+  <tr><td>give away the punch line</td><td>บอกตอนจบก่อนเลย</td><td>147</td></tr>
+  <tr><td>e-folds</td><td>จำนวนครั้งที่ $a$ โตขึ้น $e$ เท่า</td><td>147</td></tr>
+  <tr><td>false vacuum / true vacuum</td><td>จุดต่ำสุดเทียม / จุดต่ำสุดจริงของศักย์</td><td>153</td></tr>
+  <tr><td>tunnels quantum mechanically</td><td>ทะลุกำแพงศักย์แบบควอนตัม</td><td>154</td></tr>
+  <tr><td>slow roll</td><td>สนามกลิ้งช้า ๆ บนศักย์ที่ราบ</td><td>154</td></tr>
+  <tr><td>the paucity of Greek letters</td><td>ตัวอักษรกรีกมีไม่พอใช้ (เหตุที่เลือกชื่อ $\delta$)</td><td>155</td></tr>
+  <tr><td>tantamount to</td><td>เท่ากับเป็นการ…</td><td>160</td></tr>
+  <tr><td>horizon crossing</td><td>ตอนที่ $k = aH$ (mode ออกนอก horizon)</td><td>165</td></tr>
+  <tr><td>ubiquitous assumption</td><td>สมมติฐานที่ใช้ทุกที่</td><td>167</td></tr>
+  <tr><td>gauge-invariant variable</td><td>ตัวแปรที่ค่าไม่ขึ้นกับการเลือก gauge</td><td>169</td></tr>
+  <tr><td>curvature perturbations</td><td>การรบกวนแบบความโค้งของปริภูมิ</td><td>170</td></tr>
+  <tr><td>whisked outside the horizon</td><td>ถูกพัดออกไปนอก horizon อย่างรวดเร็ว</td><td>170</td></tr>
+  <tr><td>scale-free / scale-invariant</td><td>$k^3P(k)$ ไม่ขึ้นกับ $k$</td><td>171</td></tr>
+  <tr><td>a blessing and a curse</td><td>เป็นทั้งข้อดีและข้อเสีย</td><td>171</td></tr>
+  <tr><td>spectral index</td><td>เลขชี้กำลังที่บอกว่า spectrum เอียงแค่ไหน</td><td>171</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>5. convention และจุดที่มักสะดุด</h2>
+
+<ul>
+  <li><strong>จุดหมายถึง $d/d\eta$</strong> ทั้งเล่ม · อนุพันธ์ตาม $t$ หนังสือเขียนเต็ม $d/dt$ · แปลงด้วย $d/dt = (1/a)\,d/d\eta$</li>
+  <li><strong>$\eta &lt; 0$ ระหว่าง inflation</strong> (จุดศูนย์อยู่ที่ปลาย inflation) · $|k\eta|\gg1$ = ใน horizon, $|k\eta|\ll1$ = นอก</li>
+  <li><strong>"$|_{aH=k}$"</strong> แปลว่า ให้ประเมิน $H$, $\epsilon$ ตอนที่ mode นั้นออกนอก horizon — คนละเวลาสำหรับ $k$ แต่ละค่า
+    นี่คือที่มาของการเอียงเล็กน้อย ($n\neq1$)</li>
+  <li><strong>นิยาม power spectrum (6.52)–(6.53)</strong>: $(2\pi)^3$ อยู่หน้า delta function และ $P$ มีมิติ $k^{-3}$ แบบสาย large-scale structure ·
+    หนังสือบอกเองว่าสาย early universe มักคูณ $k^3$ ให้ไร้มิติ — ตรวจนิยามก่อนเทียบตัวเลขกับ paper อื่น</li>
+  <li><strong>$P_h$ นับ polarization เดียว</strong> · รวม $h_+$ และ $h_\times$ ต้องคูณ 2</li>
+  <li><strong>$\delta$ สองความหมาย</strong> (overdensity vs slow-roll) · <strong>$\Psi = -\Phi$</strong> ใช้ตลอด (ไม่มี anisotropic stress)</li>
+  <li><strong>เครื่องหมายของ $\zeta$</strong>: หนังสือได้ $\zeta = -\frac32\Psi = +\frac32\Phi$ · ตำราอื่นมักนิยามต่างเครื่องหมาย
+    หรือต่างตัวประกอบ <em>(นอกหนังสือ)</em></li>
+  <li><strong>$m_{\text{Pl}} = G^{-1/2}$</strong> (ไม่มี $8\pi$) เมื่อหนังสือเขียนรูปที่ใช้มวลพลังค์</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>6. โจทย์ท้ายบทที่ควรทำ</h2>
+
+<table>
+  <tr><th>ข้อ</th><th>ทักษะที่ได้</th><th>เฉลยใน Appendix A</th></tr>
+  <tr><td>1</td><td>คำนวณ $f_\nu$ สำหรับ neutrino สามชนิด</td><td>ไม่มี</td></tr>
+  <tr><td>2</td><td>เก็บ quadrupole ของ neutrino ตอนตั้งค่าเริ่ม (ทำให้ $\Phi+\Psi\neq0$ เล็กน้อย)</td><td>ไม่มี</td></tr>
+  <tr><td>3</td><td>พิสูจน์ค่าเริ่มของความเร็วและ dipole (6.16)</td><td>ไม่มี</td></tr>
+  <tr><td>4</td><td>inflation แก้ flatness problem</td><td>ไม่มี</td></tr>
+  <tr><td>5</td><td>นับ photon ใน Hubble volume — มุมมองเชิง entropy</td><td>มี</td></tr>
+  <tr><td>6</td><td>แก้ตัวเลข "60 e-folds" โดยรวมยุค matter</td><td>ไม่มี</td></tr>
+  <tr><td>7</td><td>สนามมวล $m\gg H$ สั่นและเจือจางแบบสสาร $a^{-3}$</td><td>ไม่มี</td></tr>
+  <tr><td>8</td><td>(6.32) → (6.33) เปลี่ยนตัวแปร $t\to\eta$</td><td>ไม่มี</td></tr>
+  <tr><td>9</td><td>คุณสมบัติ oscillator เชิงควอนตัม $[\hat x,\hat p]=i$</td><td>ไม่มี</td></tr>
+  <tr><td>10</td><td>scalar field ไม่เป็นแหล่งของ gravity wave</td><td>ไม่มี</td></tr>
+  <tr><td>11</td><td>derive (6.57) ผ่านสมการ spherical Bessel</td><td>มี</td></tr>
+  <tr><td>12</td><td>เอกลักษณ์ของ slow-roll · ระวังเครื่องหมายข้อ (c) (ดูกล่องเตือนใน §6.6)</td><td>ไม่มี</td></tr>
+  <tr><td>13</td><td>พิสูจน์ (6.85) บนสเกลใหญ่ จาก (5.27) และ time–space</td><td>มี</td></tr>
+  <tr><td>14</td><td>$\epsilon = \frac{1}{16\pi G}(V'/V)^2$, $\delta = \epsilon - \frac{1}{8\pi G}V''/V$</td><td>ไม่มี</td></tr>
+  <tr><td>15</td><td>equation of state เทียบ sound speed</td><td>ไม่มี</td></tr>
+  <tr><td>16</td><td>สมการของ $\delta\phi$ ใน spatially flat gauge</td><td>ไม่มี</td></tr>
+  <tr><td>17</td><td>ความโค้งสามมิติ $4k^2\Phi/a^2$</td><td>ไม่มี</td></tr>
+  <tr><td>18</td><td>ทำนาย $n$, $n_T$ ของศักย์ $\lambda\phi^4$ ครบวงจร</td><td>ไม่มี</td></tr>
+</table>
+
+<p>ลำดับแนะนำ: 8 → 9 → 11 → 12 → 14 → 18 (ข้อ 18 รวมทุกอย่างของบทในโจทย์เดียว) · ข้อ 12, 14 ทำคู่กับสคริปต์ตรวจได้</p>
+
+<!-- ============================================================ -->
+<h2>7. ตรวจแล้วอย่างไร</h2>
+
+<p>สคริปต์ <code>scripts/verify/dodelson_ch06.py</code> (sympy) ผ่านทุกข้อ:</p>
+<ul>
+  <li>§6.1: (6.3)–(6.4) สัมประสิทธิ์ $2/\eta^2$ · (6.7)–(6.9) สมการและรากของ $\Phi$ · (6.10)–(6.12) · (6.14)–(6.15)</li>
+  <li>§6.3: (6.21)–(6.22) · (6.24)–(6.27) จาก $T^\mu{}_\nu$ ของสนามใน FRW · (6.30)–(6.32) ผ่านการอนุรักษ์พลังงาน ·
+    $dH/dt = -4\pi G(d\phi/dt)^2$ · (6.33) (Exercise 8) · (6.29) · $\ln 10^{28}\approx64$ ·
+    (6.34) · (6.35) ค่า $\epsilon$ ในยุค radiation และ de Sitter · (6.36) สามรูปของ $\delta$ เท่ากัน</li>
+  <li>Exercise 12(a)(b)(c) — ข้อ (c) ได้เครื่องหมาย + (ดูกล่องเตือนใน §6.6) · Exercise 14</li>
+  <li>§6.4: oscillator (6.38)–(6.44) · (6.46)–(6.49) · (6.55)–(6.59) รวม Wronskian และลิมิต $|k\eta|\to\infty$</li>
+  <li>§6.5: (6.69)→(6.71) · (6.72) · (6.76) · (6.78)–(6.79) · (6.80)–(6.83) · (6.95)–(6.97) · $P_h/P_\Phi = 9\epsilon$</li>
+  <li>§6.6: (6.104) $n_T = -2\epsilon$ และ (6.106) $n = 1-4\epsilon-2\delta$ ถึงอันดับหนึ่ง</li>
+</ul>
+
+<p><strong>ยังไม่ได้ตรวจ</strong> (อ่านจากหนังสืออย่างเดียว):</p>
+<ul>
+  <li>(6.62)–(6.68) การ derive $\delta T^\mu{}_\nu$ ของสนาม และ (6.73) สมการอนุรักษ์ที่มี $\Psi$ — ใช้ตามหนังสือ</li>
+  <li>(6.75) และ (6.84)–(6.90) การพิสูจน์ว่า $\zeta$ คงที่ รวมถึง (6.85) (Exercise 13)</li>
+  <li>(6.92)–(6.94) ความเร็ว Bardeen ใน spatially flat gauge และข้ออ้างเรื่องความโค้ง $4k^2\Phi_H/a^2$</li>
+  <li>ตัวคูณ $50\pi^2/9$ และ $(\Omega_m/D_1)^2$ ใน (6.100)</li>
+  <li>รูป 6.1–6.8 (อ่านเชิงคุณภาพเท่านั้น) และตัวเลข $a_e\simeq10^{-28}$, $10^{15}$ GeV (ค่าประมาณของหนังสือ)</li>
+  <li>ข้อความว่า $f_\nu$ ราว 0.4 ใน §6.1 ของคู่มือนี้ เป็นค่า<em>นอกหนังสือ</em> (Exercise 1 ให้คำนวณเอง)</li>
+</ul>
+
+<div class="ask">
+  อ่านหนังสือแล้วติดประโยคไหน สมการไหน <strong>ถามได้เลย</strong> — บอกเลขหน้ามา Claude เปิดดูหน้าเดียวกันได้
+  <div class="nav">
+    <a href="dodelson-index.html">🗺️ แผนที่ทั้งเล่ม</a>
+    <a href="dodelson-ch05.html">← บทที่ 5</a>
+    <a href="dodelson-ch07.html">บทที่ 7 →</a>
+  </div>
+</div>
+
+</body>
+</html>

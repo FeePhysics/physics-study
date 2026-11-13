@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>คู่มืออ่าน Dodelson · บทที่ 9</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+</head>
+<body>
+
+<h1>คู่มืออ่าน Dodelson · บทที่ 9</h1>
+<p class="meta">Probes of Inhomogeneities · หน้า 261–291 · คู่มืออ่าน ไม่ใช่ฉบับแปล — เปิดคู่กับหนังสือ</p>
+
+<!-- ============================================================ -->
+<h2>1. บทนี้ตอบคำถามอะไร</h2>
+
+<p>บทที่ 7 ทำนาย power spectrum ของสสาร $P(k)$ ไว้แล้ว บทนี้ถามว่า<strong>เราจะเอามันไปเทียบกับการสำรวจจริงได้อย่างไร</strong>
+ปัญหาคือการสำรวจไม่ได้ให้ $P(k)$ ตรง ๆ: การสำรวจเชิงมุมให้แค่ตำแหน่งบนท้องฟ้า (ไม่มีระยะ)
+การสำรวจ redshift ให้ระยะที่ถูกบิดด้วยความเร็วเฉพาะตัว (peculiar velocity) ของดาราจักร
+และนับจำนวนกระจุกดาราจักรก็ต้องข้ามไปยังเรื่อง nonlinear เล็กน้อย
+บทนี้สร้างสะพานสี่เส้น: angular correlation $w(\theta)$ (§9.1) · ความเร็วเฉพาะตัว (§9.2–9.3) · การบิดใน redshift space (§9.4) · จำนวนกระจุก (§9.5)
+ทั้งหมดเป็นอินทิกรัลของ $P(k)$ ถ่วงด้วย kernel ต่าง ๆ และผลพลอยได้สำคัญคือการวัด $\Omega_m$ ผ่านอัตราการโตของโครงสร้าง</p>
+
+<!-- ============================================================ -->
+<h2>2. ต้องรู้อะไรก่อน</h2>
+<ul>
+  <li>Fourier transform 2 และ 3 มิติ, Dirac delta, การเปลี่ยนตัวแปรในอินทิกรัล (Jacobian) — คณิตที่ผู้เรียนมีแล้ว
+      (ดู <a href="../lessons/0030-field-operator.html">บทที่ 19</a> สำหรับ Fourier ของสนาม)</li>
+  <li>ฟังก์ชัน correlation และความแปรปรวนของตัวแปรสุ่ม Gaussian, ฟังก์ชัน erfc — ความน่าจะเป็นที่ผู้เรียนมีแล้ว</li>
+  <li>Legendre polynomial และความตั้งฉากของมัน — ใช้ใน §9.4 (สูตรใน Appendix C)</li>
+  <li><strong>Bessel function</strong> $J_0$ และ <strong>spherical Bessel</strong> $j_0(x) = \sin x/x$ — <strong>ยังไม่ได้สอน</strong>
+      บทนี้ใช้เฉพาะ $j_0$ ซึ่งเขียนเป็น sin ได้ และ $J_0$ ที่ใช้เพียงเป็น "ชื่อ" ของอินทิกรัลมุม $\int_0^{2\pi}d\phi\,e^{iz\cos\phi} = 2\pi J_0(z)$</li>
+  <li>virial theorem และอุณหภูมิของแก๊ส ($\langle v^2\rangle = 3T/m_p$) — stat mech <strong>ยังไม่ได้สอน</strong> ใช้แค่ใน §9.5 สองบรรทัด</li>
+  <li>ผลของบทที่ 7: $\delta \propto D_1(a)$ ในยุคหลัง, $P(k)$ (7.9), $\sigma_8$ (แบบฝึกหัด 7.9) · และ comoving distance $\chi(z)$ (2.42) หน้า 34
+      — ดูคู่มือ <a href="dodelson-ch07.html">บทที่ 7</a> และ <a href="../lessons/0041-expanding-universe.html">บทที่ 28</a></li>
+</ul>
+
+<div class="key">
+<p><strong>สัญลักษณ์ที่บทนี้ยืมมาจากบทก่อน</strong></p>
+<ul>
+  <li>$\eta$ = conformal time (2.41) หน้า 34 · จุดบน = $d/d\eta$ · $d/d\eta = a^2H\,d/da$</li>
+  <li>$\chi$ = comoving distance (2.42) หน้า 34 · $H_0$ = Hubble rate วันนี้ · $h$ = $H_0/(100$ km/s/Mpc$)$</li>
+  <li>$\delta$ = density contrast ของ<strong>สสาร</strong> และ $v$ = ความเร็วของสสาร (สมการ (4.103) ของบทที่ 4) · $\delta_g$ = ของ<strong>ดาราจักร</strong> (ใหม่ใน §9.4)</li>
+  <li>$P(k)$ = power spectrum ของสสาร (7.9) ใน §7.1.1 · $D_1(a)$ = growth function (7.4), (7.77) · $T(k)$ = transfer function · $\Gamma = \Omega_mh$ (BBKS ในบทที่ 7)</li>
+  <li>$\sigma_R$, $\sigma_8$ = rms ของ $\delta$ ที่เกลี่ยในทรงกลมรัศมี $R$ (หรือ $8\,h^{-1}$Mpc) — นิยามในแบบฝึกหัด 7.9</li>
+</ul>
+</div>
+
+<!-- ============================================================ -->
+<h2>3. เดินตามหนังสือ</h2>
+
+<h3>บทนำของบท · หน้า 261–262</h3>
+<p>ผู้เขียนวางปัญหาสามข้อของการวัด $P(k)$: (1) วัด redshift ช้า การวัดแค่ตำแหน่งเชิงมุมได้ข้อมูลมากกว่าหลายเท่าในเวลาเท่ากัน
+(2) redshift ไม่ใช่ระยะที่สมบูรณ์ เพราะความเร็วที่วัดได้คือ</p>
+
+<div class="eq">
+$$\vec v = \vec v_\text{pec} + \hat x\,v_H ,\qquad v_H \equiv \chi\frac{da}{dt} = \chi aH \qquad \text{(Dodelson 9.1)}$$
+<p><strong>อ่านว่า:</strong> ความเร็วรวม = ความเร็วเฉพาะตัว (เดินบนตาราง comoving) + ความเร็วจากการขยายตัว (ตามแนวสายตา $\hat x$) ·
+ถ้าไม่มี $\vec v_\text{pec}$ redshift จะบอกระยะได้สมบูรณ์</p>
+</div>
+
+<p>แต่ผู้เขียนชี้ว่าปัญหาข้อสองคือโอกาส: ในทฤษฎีเชิงเส้น ความเร็วถูกกำหนดโดยความหนาแน่นรอบ ๆ และอัตราการโต จึงใช้วัด $\Omega_m$ ได้
+(3) จำนวนดาราจักรทำนายไม่ได้ แต่จำนวนกระจุกพอทำนายได้ด้วย Press–Schechter</p>
+
+<h3>§9.1 Angular Correlations · หน้า 262–270</h3>
+<p>รูป 9.1 คือดาราจักรนับล้านของการสำรวจ APM ตัวสถิติที่ง่ายที่สุดคือ two-point function: $w(\theta)$ ในพื้นที่จริง หรือ power spectrum สองมิติ $P_2(l)$ ใน Fourier
+ใช้การประมาณมุมเล็ก (รูป 9.2): ตำแหน่งดาราจักรเขียนเป็น $\vec x = \chi(\theta_1,\theta_2,1)$ (9.2) โดยแกน 3 ชี้ไปกลางกลุ่มดาราจักร
+ความหนาแน่นเกินที่เห็นในทิศ $\vec\theta$ คือผลรวมตามแนวสายตา</p>
+
+<div class="eq">
+$$\delta_2(\vec\theta) = \int_0^{\chi_\infty}d\chi\,W(\chi)\,\delta\big(\vec x(\chi,\vec\theta)\big) \qquad \text{(Dodelson 9.3)}$$
+<p><strong>อ่านว่า:</strong> ตัวห้อย 2 = สองมิติ (บนท้องฟ้า) · $W(\chi)$ = selection function = ความน่าจะเป็นที่จะเห็นดาราจักรที่ระยะ $\chi$
+(ไกลไปก็มืดเกิน ใกล้ไปปริมาตรก็น้อย) normalize ให้ $\int W\,d\chi = 1$ · $\chi_\infty = 2/H_0$ ในเอกภพแบนสสารล้วน</p>
+</div>
+
+<p>นิยาม Fourier สองมิติด้วยตัวแปร $\vec l$ คู่กับ $\vec\theta$ (9.4) และ $P_2(l)$ แบบเดียวกับสามมิติ (9.5) แล้วแทน (9.3) ลงไป (9.6)
+ค่าเฉลี่ยของ $\delta\delta$ ให้ correlation function สามมิติ</p>
+
+<div class="eq">
+$$\xi(\vec x - \vec x') \equiv \langle\delta(\vec x)\delta(\vec x')\rangle = \int\frac{d^3k}{(2\pi)^3}P(k)\,e^{i\vec k\cdot(\vec x - \vec x')} \qquad \text{(Dodelson 9.7)}$$
+<p><strong>อ่านว่า:</strong> correlation function คือ Fourier transform ของ power spectrum (แบบฝึกหัด 1) · ระยะใกล้ $\xi &gt; 0$ (ดาราจักรเกาะกลุ่ม) ไกลขึ้นลดลงจนติดลบ</p>
+</div>
+
+<p>อินทิกรัลมุมให้ delta function ที่บังคับ $l_1 = \chi k_1$, $l_2 = \chi k_2$ ได้ (9.8)–(9.9) จากนั้นมาถึงขั้นที่เป็นฟิสิกส์จริง:
+mode ที่มี $k_3$ (ตามแนวสายตา) ใหญ่กว่า $1/\chi$ หักล้างกันเองระหว่างทาง (รูป 9.3) เหลือเฉพาะ $k_3$ เล็ก จึงตั้ง $P(\sqrt{k_3^2 + l^2/\chi^2}) \approx P(l/\chi)$
+(ตรวจอย่างเป็นระบบในแบบฝึกหัด 2) อินทิกรัลของ $k_3$ ก็กลายเป็น delta ใน $\chi - \chi'$</p>
+
+<div class="eq">
+$$P_2(l) = \int_0^{\chi_\infty}d\chi\,\frac{W^2(\chi)}{\chi^2}\,P(l/\chi) = \frac1l\int_0^\infty dk\,P(k)\,W^2(l/k) \qquad \text{(Dodelson 9.10, 9.11)}$$
+<p><strong>อ่านว่า:</strong> $P_2(l)$ = ผลรวมตามแนวสายตาของ $P$ ที่เลขคลื่น $l/\chi$ · บรรทัดสองเปลี่ยนตัวแปร $k = l/\chi$
+(ขั้นที่ข้าม: $d\chi = l\,dk/k^2$ และ $1/\chi^2 = k^2/l^2$ คูณกันเหลือ $dk/l$) · เชิงอรรถหน้า 265: $P_2(l)$ คล้าย $C_l$ ของ CMB มาก (แบบฝึกหัด 5)</p>
+</div>
+
+<div class="eq">
+$$w(\theta) = \int_0^\infty\frac{dl}{2\pi}\,l\,P_2(l)\,J_0(l\theta) = \int_0^\infty dk\,k\,P(k)\,F(k,\theta),\qquad F(k,\theta) \equiv \frac1k\int_0^\infty\frac{dl}{2\pi}\,J_0(l\theta)\,W^2(l/k) \qquad \text{(Dodelson 9.13, 9.14)}$$
+<p><strong>อ่านว่า:</strong> $w$ = Fourier transform 2 มิติของ $P_2$ (9.12) · $J_0$ มาจากอินทิกรัลมุมของ $d^2l$ เพราะ $P_2$ ขึ้นกับขนาดของ $\vec l$ เท่านั้น ·
+บรรทัดสองสลับลำดับอินทิกรัล · $F$ = kernel ที่ขึ้นกับ $k\theta$ เท่านั้น (แบบฝึกหัด 3)</p>
+</div>
+
+<p>รูป 9.4 แสดง kernel ของสองการสำรวจ: คงที่ที่ $k\theta$ เล็ก แล้วสั่นแบบหน่วง ส่วนที่ $k$ เล็กมีน้ำหนักน้อยเพราะ $kP(k) \to 0$
+หนังสือยกตัวอย่างว่า $w$ ที่ 5° ของ APM ไวต่อ $k \approx 0.04\,h\,\text{Mpc}^{-1}$ ส่วนการสำรวจที่ลึกกว่า (SDSS) มุมเดียวกันไวต่อสเกลใหญ่กว่า
+รูป 9.5 คือผลที่มีชื่อเสียง: APM มี clustering ที่สเกลใหญ่มากกว่าที่ sCDM ทำนาย (sCDM "ตาย" ครั้งที่ดังที่สุด) ส่วน ΛCDM เข้ากันดีกว่า
+ความคลาดที่มุมเล็กเป็นภาพลวงเพราะใช้ $P$ เชิงเส้นในที่ที่ไม่เชิงเส้นแล้ว และที่มุมใหญ่ จุดข้อมูลมีสหสัมพันธ์กันสูงจึงดูแย่กว่าที่เป็นจริง
+สุดท้าย (รูป 9.6) การกลับ $w$ เป็น $P(k)$ ให้ข้อจำกัดบน shape parameter $\Gamma = \Omega_mh$
+— เพราะ $T(k)$ ขึ้นกับ $k/k_{eq}$ และ $k$ วัดในหน่วย $h\,\text{Mpc}^{-1}$ · sCDM ($\Gamma = 0.5$) ถูกตัดที่ 2σ ส่วน ΛCDM มี $\Gamma \approx 0.2$ (ค่าปี 2003)</p>
+
+<h3>§9.2 Peculiar Velocities · หน้า 270–271</h3>
+<p>ในทฤษฎีเชิงเส้น สมการความต่อเนื่อง (4.103) บนสเกลเล็กกว่า horizon เหลือ $\dot\delta + ikv = 0$ (9.15)
+และเพราะ $\delta \propto D_1$ ในยุคหลัง</p>
+
+<div class="eq">
+$$v(k,\eta) = \frac{i\delta(k,\eta)}{kD_1}\frac{dD_1}{d\eta} ,\qquad f \equiv \frac{a}{D_1}\frac{dD_1}{da} ,\qquad v(k,a) = \frac{ifaH\,\delta(k,a)}{k} \qquad \text{(Dodelson 9.16–9.18)}$$
+<p><strong>อ่านว่า:</strong> $f$ = linear growth rate $= d\ln D_1/d\ln a$ (ไร้หน่วย) · บรรทัดสุดท้ายใช้ $d/d\eta = a^2H\,d/da$ ·
+ความเร็วใหญ่ $\propto 1/k$ — สเกลใหญ่มีน้ำหนักในความเร็วมากกว่าในความหนาแน่น</p>
+</div>
+
+<p>รูป 9.7: $f$ วันนี้ขึ้นกับ $\Omega_m$ แทบอย่างเดียว ไม่ขึ้นกับ Λ และประมาณได้ดีด้วย</p>
+
+<div class="eq">
+$$f \simeq \Omega_m^{0.6} \qquad \text{(Dodelson 9.19)}$$
+<p><strong>อ่านว่า:</strong> $\Omega_m$ น้อย ⇒ แรงดึงของก้อนหนาแน่นอ่อน ⇒ สสารไหลเข้าช้า ·
+คู่มือคำนวณจาก (7.77) เอง: แบน $\Omega_m = 0.3$ ได้ $f \approx 0.513$ เทียบ $0.3^{0.6} \approx 0.486$ (คลาดราว 5–6%) · เปิด $\Omega_m = 0.3$ ได้ $0.492$ ·
+ความแม่นของสูตรที่หนังสือว่า "ดีมาก" จึงหมายถึงระดับไม่กี่เปอร์เซ็นต์ · แบบฝึกหัด 7 ให้สูตรที่ดีกว่าสำหรับเอกภพแบน</p>
+</div>
+
+<div class="eq">
+$$\vec v(\vec k) = if H_0\,\delta(\vec k)\,\frac{\vec k}{k^2} \qquad \text{(Dodelson 9.20)}$$
+<p><strong>อ่านว่า:</strong> รูปเวกเตอร์ที่ $z$ ต่ำ ($a = 1$, $H = H_0$) · ความเร็วขนานกับ $\vec k$ (การไหลเข้า/ออกตามคลื่นความหนาแน่น) ·
+ข้อเตือนของผู้เขียน: ใช้ได้แค่ในทฤษฎีเชิงเส้น ทั้งที่ความเร็ววัดง่ายที่สุดที่สเกลเล็ก</p>
+</div>
+
+<h3>§9.3 Direct Measurements of Peculiar Velocities · หน้า 271–275</h3>
+<p>วัดความเร็วตามแนวสายตาได้ง่ายจากสเปกตรัม แต่จะแยกส่วน Hubble ออกต้องรู้ระยะจากวิธีอื่น ความเร็วเฉพาะตัวทั่วไปราว 500 km/s
+ขณะที่ $H_0\chi = 100\,h$ km/s ต่อ Mpc ที่ 50 Mpc ความเร็ว Hubble จึงใหญ่กว่าราวสิบเท่า ตัวบอกระยะต้องแม่น 10% ซึ่งคือขีดจำกัดที่ทำได้
+การสำรวจความเร็วจึงไปได้ไกลแค่ราว 50 Mpc สถิติที่ใช้คือ</p>
+
+<div class="eq">
+$$\xi_v(\vec x_1,\vec x_2) \equiv \left\langle\big(\vec v(\vec x_1)\cdot\hat x_1\big)\big(\vec v(\vec x_2)\cdot\hat x_2\big)\right\rangle \qquad \text{(Dodelson 9.21)}$$
+<p><strong>อ่านว่า:</strong> วัดได้แค่ส่วนประกอบตามแนวสายตาของแต่ละดาราจักร · เสน่ห์คือความเร็วมาจาก<em>สสาร</em>ทั้งหมด ไม่ใช่เฉพาะดาราจักร</p>
+</div>
+
+<p>แทน Fourier (9.22) และ (9.20) ได้ (9.23) เคล็ดคือเขียน $\hat k\cdot\hat x$ เป็นอนุพันธ์ของ exponential (9.24) ดึงอนุพันธ์ออกนอกอินทิกรัล
+อินทิกรัลมุมที่เหลือให้ $4\pi j_0(kx)$ (9.26) แล้วหาอนุพันธ์สองครั้ง</p>
+
+<div class="eq">
+$$\frac{\partial^2 j_0(kx)}{\partial x_i\,\partial x_j} = k^2\left[\left(\delta_{ij} - \hat x_i\hat x_j\right)\frac{j_0'(kx)}{kx} + \hat x_i\hat x_j\,j_0''(kx)\right] \qquad \text{(Dodelson 9.27, 9.28)}$$
+<p><strong>อ่านว่า:</strong> $\vec x = \vec x_1 - \vec x_2$ · ไพรม์ = อนุพันธ์เทียบอาร์กิวเมนต์ · ส่วนแรก = ทิศตั้งฉากกับเส้นเชื่อมสองดาราจักร ส่วนที่สอง = ทิศขนาน ·
+ผู้เรียนที่ถนัด index notation หาเองได้ในสามบรรทัด (คู่มือตรวจตัวเลขแล้ว)</p>
+</div>
+
+<p>รวมเป็น (9.29) จากนั้นนิยามมุม $\theta_1,\theta_2$ ระหว่างแนวสายตาแต่ละเส้นกับ $\vec x$ (9.30, รูป 9.8)
+การบวกบน $i,j$ ให้ $\sin\theta_1\sin\theta_2$ คูณส่วนตั้งฉาก และ $\cos\theta_1\cos\theta_2$ คูณส่วนขนาน (9.31)
+ทั้งสองส่วนเป็นอินทิกรัลของ $P(k)$ ด้วย kernel $j_0'/kx$ และ $j_0''$ (9.32) เทียบกับ density correlation ที่ใช้ $j_0$ ตรง ๆ</p>
+
+<p>รูป 9.9 คือประเด็นหลัก: ที่ระยะเดียวกัน ความเร็วไวต่อสเกลใหญ่กว่าความหนาแน่น (ตัวคูณ $1/k$)
+และผู้เขียนแวะชี้ว่า $\xi(50\,h^{-1}\text{Mpc})$ ได้ส่วนร่วมจาก $k$ ไกลถึง $0.3\,h\,\text{Mpc}^{-1}$ ซึ่งไม่เชิงเส้นแล้ว — เหตุที่ $P(k)$ ได้รับความนิยมมากกว่า $\xi$
+ตัวอย่างข้อมูล (รูป 9.10): การสำรวจ SFI ราว 1300 ดาราจักร ตัด sCDM ที่ COBE-normalize แล้ว ($A = 0.29A_0$, $\Gamma = 0.5$) ทิ้งหลาย sigma (ค่าปี 2003)</p>
+
+<h3>§9.4 Redshift Space Distortions · หน้า 275–282</h3>
+<p>redshift space คือการวางดาราจักรที่ระยะ $\chi_s = z/H_0$ (9.33) ในทิศที่เห็น (9.34) ซึ่งผิดสองอย่าง:
+$z/H_0$ ใช้ได้แค่ที่ $z$ ต่ำ (ผิดถึง 50% ที่ $z = 1$ แต่การสำรวจส่วนใหญ่ $z \lesssim 0.1$) และละความเร็วเฉพาะตัว
+รูป 9.11: ก้อนที่เริ่มยุบดู "แบน" ตามแนวสายตา (ดาราจักรฝั่งเราไหลเข้าหาศูนย์กลางจึงดูไกลกว่าจริง) ส่วนก้อนที่ยุบแล้ว (nonlinear) ดู "ยืด" ตามแนวสายตา</p>
+
+<p>Kaiser แก้กรณีเชิงเส้น เริ่มจากจำนวนดาราจักรเท่ากันในสองพิกัด (9.35) ปริมาตรต่างกันแค่ส่วนรัศมี จึงได้ $n_s = nJ$ (9.36) กับ Jacobian (9.37)
+redshift = Hubble + ความเร็วตามแนวสายตา (9.38) หารด้วย $H_0$ ได้</p>
+
+<div class="eq">
+$$x_s = x + \frac{\vec v\cdot\hat x}{H_0} ,\qquad J = \left(1 + \frac{\partial}{\partial x}\frac{\vec v\cdot\hat x}{H_0}\right)^{-1}\left(1 + \frac{\vec v\cdot\hat x}{H_0x}\right)^{-2} \qquad \text{(Dodelson 9.39, 9.40)}$$
+<p><strong>อ่านว่า:</strong> $x$ = ระยะจริง (comoving, หน่วยที่ $c = 1$) · $J$ = $|d^3x/d^3x_s|$ · วงเล็บแรกจากอนุพันธ์ตามรัศมี วงเล็บสองจาก $x^2/x_s^2$ ·
+ข้อโต้แย้งของ Kaiser: วงเล็บแรกใหญ่กว่าราว $kx$ เท่า และ mode ที่วัดได้ดีมี $kx \gg 1$ จึงทิ้งวงเล็บสอง</p>
+</div>
+
+<div class="eq">
+$$J \simeq 1 - \frac{\partial}{\partial x}\left[\frac{\vec v\cdot\hat x}{H_0}\right] ,\qquad \delta_s(\vec x) = \delta(\vec x) - \frac{\partial}{\partial x}\left[\frac{\vec v\cdot\hat x}{H_0}\right] \qquad \text{(Dodelson 9.41, 9.43)}$$
+<p><strong>อ่านว่า:</strong> ขั้นที่ข้าม: $1 + \delta_s = (1+\delta)J$ (9.42) แล้วตัดผลคูณของสองตัวเล็ก</p>
+</div>
+
+<p>ต่อด้วย distant observer approximation: ดาราจักรที่สนใจอยู่ใกล้กันบนท้องฟ้า จึงแทนทุก $\hat x$ ด้วยทิศคงที่ $\hat z$
+จากนั้น Fourier transform (9.44)–(9.45): อนุพันธ์ตาม $x$ ดึง $ik\mu$ ลงมา และ (9.20) ให้ $\vec v\cdot\hat z = ifH_0\delta\mu/k$ ผลคูณจึงเป็น</p>
+
+<div class="eq">
+$$\tilde\delta_s(\vec k) = \left[1 + f\mu_k^2\right]\tilde\delta(\vec k) ,\qquad \mu_k \equiv \hat z\cdot\hat k \qquad \text{(Dodelson 9.46)}$$
+<p><strong>อ่านว่า:</strong> ขั้นที่ข้าม: $-(ik\mu)(ifH_0\mu/k)/H_0 = +f\mu^2$ · ความหนาแน่นเกินใน redshift space <strong>ใหญ่กว่า</strong>ของจริง (รูป 9.12)
+และเพิ่มเฉพาะคลื่นที่ $\vec k$ ขนานกับแนวสายตา · คลื่นที่ $\vec k$ ตั้งฉาก ($\mu = 0$) ไม่ถูกบิดเลย</p>
+</div>
+
+<div class="eq">
+$$P_s(k,\mu_k) = \left[1 + \beta\mu_k^2\right]^2P(k) ,\qquad b \equiv \frac{\delta_g}{\delta} ,\qquad \beta \equiv \frac{f}{b} \qquad \text{(Dodelson 9.47–9.49)}$$
+<p><strong>อ่านว่า:</strong> $b$ = bias = ดาราจักรเกาะกลุ่มมากกว่าสสารกี่เท่า · ความเร็วตอบสนองต่อ<em>สสาร</em> แต่เราเห็นแค่ดาราจักร
+ตัวที่วัดได้จาก redshift distortion จึงเป็น $\beta \approx \Omega_m^{0.6}/b$ ไม่ใช่ $f$ เดี่ยว ๆ</p>
+</div>
+
+<p>วิธีวัด $\beta$ คือกระจาย $P_s$ เป็น Legendre ใน $\mu_k$ (9.50) ใช้</p>
+
+<div class="eq">
+$$(1 + \beta\mu^2)^2 = \left[1 + \tfrac23\beta + \tfrac15\beta^2\right]\mathcal{P}_0 + \left[\tfrac43\beta + \tfrac47\beta^2\right]\mathcal{P}_2 + \tfrac{8}{35}\beta^2\,\mathcal{P}_4 \qquad \text{(Dodelson 9.51)}$$
+<p><strong>อ่านว่า:</strong> ใช้ $\mathcal{P}_2 = (3\mu^2-1)/2$ และ $\mathcal{P}_4 = 35\mu^4/8 - 15\mu^2/4 + 3/8$ (แบบฝึกหัด 11) ·
+อัตราส่วน quadrupole/monopole $= \dfrac{\frac43\beta + \frac47\beta^2}{1 + \frac23\beta + \frac15\beta^2}$ (9.52) ขึ้นกับ $\beta$ อย่างเดียว</p>
+</div>
+
+<p>รูป 9.13 (Hamilton): สำรวจ IRAS อัตราส่วนเข้าใกล้ราว 0.75 เมื่อ $k \sim 0.1\,h\,\text{Mpc}^{-1}$ ⇒ $\beta \approx 0.7$
+ส่วนดาราจักรที่เลือกด้วยแสงต้องตัดโครงสร้าง nonlinear ออกก่อน จึงได้ราว 0.4 ⇒ $\beta \approx 0.3$ (คู่มือคำนวณจาก (9.52): $\beta = 0.7$ ให้ 0.775, $\beta = 0.3$ ให้ 0.371)
+รูป 9.14 รวบรวมค่า $\beta$ จากหลายการสำรวจ (ค่าปี 2003) ข่าวร้ายคือแม้ไม่สนใจ $\beta$ ก็ต้องแก้ผลนี้ เพราะการเฉลี่ยทุกทิศได้</p>
+
+<div class="eq">
+$$P_s^{(0)}(k) = \left[1 + \tfrac23\beta + \tfrac15\beta^2\right]P(k) \qquad \text{(Dodelson 9.53)}$$
+<p><strong>อ่านว่า:</strong> monopole ของ redshift space โอเวอร์เอสติเมต $P$ ได้ถึงราวสองเท่า (ที่ $\beta = 1$ ตัวคูณคือ $28/15 \approx 1.87$) และนี่คือแค่ส่วนเชิงเส้น</p>
+</div>
+
+<h3>§9.5 Galaxy Clusters · หน้า 282–287</h3>
+<p>ผู้เขียนเปิดด้วยมุกว่าทำนาย "ความหนาแน่นของคน" ในเอกภพไม่ได้ เพราะต้องรู้ตั้งแต่การเกิดดาวถึงวิวัฒนาการของชีวิต จำนวนดาราจักรก็ทำนายยากด้วยเหตุผลคล้ายกัน
+คือสเกลดาราจักรไม่เชิงเส้นไปนานแล้ว มวลดาราจักรทั่วไปมาจากทรงกลมรัศมี</p>
+
+<div class="eq">
+$$R = 0.951\,h^{-1}\text{Mpc}\left(\frac{M}{10^{12}\,\Omega_m\,h^{-1}M_\odot}\right)^{1/3} ,\qquad M = 1.16\times10^{15}\,\Omega_mh^{-1}M_\odot\left(\frac{R}{10\,h^{-1}\text{Mpc}}\right)^3 \qquad \text{(Dodelson 9.55, 9.56)}$$
+<p><strong>อ่านว่า:</strong> ได้จาก $M = \frac{4\pi}3R^3\rho_m$ (9.54) และ $\rho_m = \Omega_m\rho_{cr}$ · $M_\odot$ = มวลดวงอาทิตย์ ·
+ดาราจักร ($10^{12}M_\odot$) มาจาก ~1 Mpc ⇒ $k \sim 1\,h\,\text{Mpc}^{-1}$ ไม่เชิงเส้นแน่ ๆ · กระจุก (~$10^{15}M_\odot$) มาจาก ~10 Mpc ใกล้เส้นแบ่งพอดี ·
+คู่มือคำนวณสัมประสิทธิ์ทั้งสองตัวเองด้วยค่า $G$, $M_\odot$, Mpc มาตรฐาน (นอกหนังสือ) ได้ตรง</p>
+</div>
+
+<p>ไอเดียของ Press–Schechter (รูป 9.15): บริเวณที่ความหนาแน่นเกิน (เชิงเส้น เกลี่ยที่สเกล $R$) สูงกว่าค่าวิกฤต $\delta_c$ ถือว่ายุบแล้ว
+ถ้า $\delta$ เป็น Gaussian ที่มี rms $\sigma(R,z)$</p>
+
+<div class="eq">
+$$f_\text{coll}(M(R),z) = \frac{2}{\sqrt{2\pi}\,\sigma(R,z)}\int_{\delta_c}^\infty d\delta\,e^{-\delta^2/2\sigma^2(R,z)} = \operatorname{erfc}\!\left(\frac{\delta_c}{\sqrt2\,\sigma}\right) \qquad \text{(Dodelson 9.57)}$$
+<p><strong>อ่านว่า:</strong> สัดส่วนปริมาตรที่ยุบเป็นวัตถุมวลอย่างน้อย $M$ · รูป erfc เป็นของคู่มือ ·
+ผู้เขียนเตือน "เวทมนตร์" สามข้อ: (1) $\delta$ ไม่ Gaussian จริง (ต่ำกว่า −1 ไม่ได้) (2) ตัวคูณ 2 เป็นการโกง normalization (3) ใช้ $\sigma$ เชิงเส้นทั้งที่ของจริงไม่เชิงเส้น
+— แต่ simulation ยืนยันว่ามันใช้ได้ดีมาก</p>
+</div>
+
+<p>หาอนุพันธ์เทียบ $M$ คูณความหนาแน่นจำนวน $\rho_m/M$ (9.58) และใช้ $dM/dR = 3M/R$ ได้</p>
+
+<div class="eq">
+$$\frac{dn}{dM} = \sqrt{\frac2\pi}\,\frac{\rho_m\,\delta_c}{3M^2\sigma}\,e^{-\delta_c^2/2\sigma^2}\left[-\frac{d\ln\sigma}{d\ln R}\right] \qquad \text{(Dodelson 9.59)}$$
+<p><strong>อ่านว่า:</strong> $dn/dM$ = จำนวนกระจุกต่อปริมาตรต่อช่วงมวล · ตัวควบคุมคือ exponential: ถ้า $\sigma$ ที่สเกลนั้นเล็ก จำนวนถูกกดแบบ exponential ·
+$\delta_c = 1.686$ จาก spherical collapse (และตรงกับ simulation)</p>
+</div>
+
+<p>ต่อมาเป็นปัญหาการวัดมวลของกระจุก หนังสือแจกสามวิธี: อุณหภูมิ X-ray, Sunyaev–Zel'dovich (CMB ถูกแก๊สร้อนกระเจิง) และ weak lensing
+สองวิธีแรกวัดอุณหภูมิ จึงต้องมีความสัมพันธ์มวล–อุณหภูมิ: virial ให้ $\tfrac12Mv^2 = \tfrac{3}{10}GM^2/R_\text{vir}$ (9.60)
+ใช้ $\Delta_{cl} = \rho_{cl}/\rho_m$ กำจัด $R_\text{vir}$ (9.61) และ $v^2 = 3T/m_p$</p>
+
+<div class="eq">
+$$T = \frac{m_p}{5}\left(GMH_0\sqrt{\Delta_{cl}/2}\right)^{2/3} \qquad (\Omega_m = 1) \qquad \text{(Dodelson 9.62)}$$
+<p><strong>อ่านว่า:</strong> $m_p$ = มวลโปรตอน · $T$ ในหน่วยพลังงาน ($k_B = 1$) · กลับด้านได้ $M \propto T^{3/2}$ (9.63) — คู่มือคำนวณได้สัมประสิทธิ์ราว $8.2\times10^{13}\,h^{-1}M_\odot$
+ที่ $T = 1$ keV และ $\Delta_{cl} = 178$ (ค่าจาก spherical collapse)</p>
+</div>
+
+<p>รูป 9.16: sCDM ที่ normalize ด้วย COBE ทำนายกระจุก<em>มากเกินไป</em> — จำนวนกระจุกจึงกลายเป็นวิธี normalize $P(k)$ ที่ดี
+ค่าที่หนังสืออ้าง (9.64) อยู่ในรูป $\sigma_8 \approx 0.5\,\Omega_m^{-0.33-0.35\Omega_m}$ (ค่าปี 2003 จาก Wang &amp; Steinhardt ความไม่แน่นอนตั้งแต่ไม่กี่ % ถึง 20%)
+และสุดท้ายวิวัฒนาการตาม $z$ (รูป 9.17): เอกภพ $\Omega_m = 1$ โตเร็ว จึงมีกระจุกมวลเกิน $3.5\times10^{14}M_\odot$ ที่ $z = 0.5$ น้อยกว่าวันนี้ราว 700 เท่า
+ขณะที่ ΛCDM ลดแค่ราว 4 เท่า — การนับกระจุกตาม $z$ จึงวัด $\Omega_m$ ได้แรง</p>
+
+<p><strong>Suggested Reading (หน้า 287–289).</strong> ชี้ไปที่ตำราของ Peebles (angular correlation), Peacock (velocity และ cluster), Liddle–Lyth,
+บทความทบทวนของ Strauss–Willick และ Hamilton และงานต้นฉบับของ Kaiser (1987) — อ่านเมื่อจะลงมือกับข้อมูลจริง</p>
+
+<!-- ============================================================ -->
+<h2>4. ศัพท์และสำนวนอังกฤษของบทนี้</h2>
+<table>
+  <tr><th>คำ / วลี</th><th>ความหมาย</th><th>หน้า</th></tr>
+  <tr><td>probes</td><td>เครื่องมือ/วิธีหยั่งวัด</td><td>261</td></tr>
+  <tr><td>redshift survey / angular survey</td><td>การสำรวจที่วัดทั้ง redshift / วัดแค่ตำแหน่งบนฟ้า</td><td>261</td></tr>
+  <tr><td>peculiar velocity</td><td>ความเร็วเฉพาะตัวเทียบกับการขยายตัว</td><td>261</td></tr>
+  <tr><td>gleaning information</td><td>เก็บเล็กผสมน้อยข้อมูล</td><td>262</td></tr>
+  <tr><td>selection function</td><td>ความน่าจะเป็นที่ดาราจักรที่ระยะนั้นจะถูกนับ</td><td>263</td></tr>
+  <tr><td>magnitude-limited</td><td>เลือกเฉพาะดาราจักรที่สว่างกว่าค่าหนึ่ง</td><td>263</td></tr>
+  <tr><td>cancellations along the line of sight</td><td>การหักล้างกันตามแนวสายตา</td><td>265</td></tr>
+  <tr><td>kernel</td><td>ฟังก์ชันถ่วงน้ำหนักในอินทิกรัล</td><td>266</td></tr>
+  <tr><td>has died many deaths</td><td>ถูกหักล้างมาหลายครั้งแล้ว</td><td>267</td></tr>
+  <tr><td>illusory</td><td>เป็นภาพลวง ไม่จริง</td><td>267</td></tr>
+  <tr><td>shape parameter</td><td>$\Gamma = \Omega_mh$ ที่คุมรูปร่างของ $P(k)$</td><td>268</td></tr>
+  <tr><td>linear growth rate</td><td>$f = d\ln D_1/d\ln a$</td><td>270</td></tr>
+  <tr><td>distance indicator</td><td>วิธีหาระยะที่ไม่พึ่ง redshift</td><td>271</td></tr>
+  <tr><td>daunting · alluring</td><td>น่าหวั่น · น่าดึงดูด</td><td>272</td></tr>
+  <tr><td>pack an extra punch</td><td>ให้ผลมากกว่าที่คาด</td><td>273</td></tr>
+  <tr><td>pernicious</td><td>ร้ายกาจ (ปัญหาที่แก้ยาก)</td><td>275</td></tr>
+  <tr><td>squashed · elongated</td><td>ถูกบีบแบน · ถูกยืด</td><td>276</td></tr>
+  <tr><td>distant observer approximation</td><td>ถือว่าแนวสายตาขนานกันหมด</td><td>277</td></tr>
+  <tr><td>bias</td><td>อัตราส่วน $\delta_g/\delta$</td><td>278</td></tr>
+  <tr><td>beyond the scope of</td><td>เกินขอบเขตของ</td><td>282</td></tr>
+  <tr><td>collapsed fraction</td><td>สัดส่วนที่ยุบตัวแล้ว</td><td>284</td></tr>
+  <tr><td>ad-hoc</td><td>ตั้งขึ้นเฉพาะกิจ ไม่มีเหตุผลรองรับ</td><td>285</td></tr>
+  <tr><td>virialized</td><td>เข้าสู่สมดุลที่พลังงานจลน์ = −½ พลังงานศักย์</td><td>286</td></tr>
+  <tr><td>plain-vanilla model</td><td>โมเดลพื้นฐานที่สุด ไม่ปรุงแต่ง</td><td>286</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>5. convention และจุดที่มักสะดุด</h2>
+<ul>
+  <li>$l$ ใน §9.1 คือตัวแปร Fourier ของมุม (ต่อเนื่อง เป็นเวกเตอร์ 2 มิติ) ไม่ใช่ $l$ ของ Legendre แต่ที่มุมเล็กมีความหมายเดียวกัน (เชิงอรรถหน้า 265)</li>
+  <li>ตัวห้อย 2 = สองมิติ: $\delta_2$, $P_2$ — อย่าสับสนกับ $\mathcal P_2$ (Legendre อันดับ 2) ใน §9.4</li>
+  <li>เลขคลื่นและระยะในบทนี้ใช้หน่วย $h\,\text{Mpc}^{-1}$ และ $h^{-1}\text{Mpc}$ ตลอด · มวลใช้ $h^{-1}M_\odot$</li>
+  <li>$v$ ใน (9.18) คือส่วนประกอบของความเร็วที่ขนานกับ $\vec k$ ส่วน (9.20) เป็นรูปเวกเตอร์</li>
+  <li>ใน (9.44)–(9.45) หนังสือใช้ตัวอักษรต่างจากเนื้อความเพื่อแยก Fourier ของ $\delta_s$ — เครื่องหมายระหว่างบรรทัดสองบรรทัดนั้นอ่านยาก คู่มือจึงเล่าแค่ผลสุดท้าย (9.46) ซึ่งตรวจแล้ว</li>
+  <li>$\beta$ (§9.4) คือ $f/b$ ไม่ใช่ $f$ · และ $\Omega_m^{0.6}$ เป็นสูตรประมาณ (คลาดราว 5% ในบางกรณี)</li>
+  <li>ตัวเลขข้อมูลทั้งบท (APM, SFI, IRAS, $\Gamma$, $\beta$, $\sigma_8$ จากกระจุก) เป็นค่าปี 2003 หรือก่อนนั้น · โมเดล sCDM ($\Omega_m = 1$, $h = 0.5$) ใช้เพื่อสอนและถูกตัดทิ้งแล้วในหนังสือเอง</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>6. โจทย์ท้ายบทที่ควรทำ</h2>
+<ul>
+  <li><strong>ข้อ 1</strong> (correlation function = Fourier transform ของ $P$) — ใช้ (9.7) ซ้ำทั้งบท ทำก่อนอ่าน §9.1</li>
+  <li><strong>ข้อ 11</strong> (พิสูจน์ (9.51) และนิยามของ moment) — ล้วนพีชคณิต Legendre ตรวจกับ <code>dodelson_ch09.py</code> ได้</li>
+  <li><strong>ข้อ 7</strong> (คำนวณ $f$ เชิงตัวเลขเทียบ $\Omega_m^{0.6}$) — ใช้ (7.77) จากบทที่ 7 · คู่มือคำนวณกรณี $\Omega_m = 0.3, 0.5$ ไว้ให้เทียบในหัวข้อ 7</li>
+  <li><strong>ข้อ 3</strong> (เขียน kernel เป็นอินทิกรัลบน $\chi$ แล้วแสดงว่าขึ้นกับ $k\theta$) และ <strong>ข้อ 4</strong> (ประมาณ kernel ด้วยลำดับขนาด) — ฝึกความเข้าใจ §9.1</li>
+  <li><strong>ข้อ 10</strong> (กระจายระยะ comoving รอบ $z = 0$) — สั้น ได้พจน์แก้ของ redshift space</li>
+  <li>ข้อ 2, 5, 6 (ละเอียดของ §9.1) · ข้อ 8–9 (ต้องใช้ CMBFAST หรือ BBKS) · ข้อ 12 (ต้องอ่าน Hamilton 1992 ประกอบ)</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>7. ตรวจแล้วอย่างไร</h2>
+<p>สคริปต์ <code>scripts/verify/dodelson_ch09.py</code> (sympy + mpmath · 32 ข้อ ผ่านหมด) ยืนยัน:</p>
+<ul>
+  <li>(9.10) ⇒ (9.11) การเปลี่ยนตัวแปร · อินทิกรัลมุม $2\pi J_0$ ของ (9.13) (ตัวเลข)</li>
+  <li>(9.15) ⇒ (9.16) · (9.16)+(9.17) ⇒ (9.18)</li>
+  <li>$f$ จาก (7.77) เทียบ $\Omega_m^{0.6}$ (ภายใน 6% ที่ $\Omega_m = 0.3, 0.5$ ทั้งแบนและเปิด) · $\Omega_m = 1$ ⇒ $f = 1$</li>
+  <li>(9.27)–(9.28) อนุพันธ์สองชั้นของ $j_0(kx)$ · เรขาคณิตของ (9.30)–(9.31) · มุมของ $d^3k$ ให้ $4\pi j_0$ ในแถวแรกของ (9.32)</li>
+  <li>(9.37)+(9.39) ⇒ (9.40) · (9.41) · (9.42) ⇒ (9.43) · (9.46) ผ่านเครื่องหมายของ $\partial_z$ และ (9.20)</li>
+  <li>$\mathcal P_4$ · (9.51) · อัตราส่วน (9.52) · (9.53) · $\beta = 1$ ⇒ 28/15 · อัตราส่วนของ Hamilton ที่ $\beta = 0.7$ และ 0.3</li>
+  <li>สัมประสิทธิ์ 0.951 ใน (9.55) และ $1.16\times10^{15}$ ใน (9.56) (ค่าคงตัวมาตรฐาน: นอกหนังสือ)</li>
+  <li>(9.57) = erfc · (9.58) ⇒ (9.59) · (9.60)+(9.61) ⇒ (9.62) · สัมประสิทธิ์ของ (9.63)</li>
+</ul>
+<p><strong>ยังไม่ได้ตรวจ</strong> (อ่านจากหนังสืออย่างเดียว):</p>
+<ul>
+  <li>(9.4)–(9.9) ทีละบรรทัด และการประมาณ $k_3 \approx 0$ (แบบฝึกหัด 2) · รูปร่างของ kernel ในรูป 9.4 · ตัวเลข $k \approx 0.04$</li>
+  <li>(9.22)–(9.26) ทีละบรรทัด และเครื่องหมายรวมหน้าอินทิกรัลของ (9.29) และ (9.32)</li>
+  <li>(9.33)–(9.34) อ่านจาก OCR เท่านั้น · (9.44)–(9.45) รายบรรทัด</li>
+  <li>รูปเต็มของ (9.63) (ตรวจเฉพาะสัมประสิทธิ์ที่ $T = 1$ keV, $\Delta = 178$) · สูตร $\sigma_8$ (9.64)</li>
+  <li>ตัวเลข 700 เท่า / 4 เท่า ในรูป 9.17 · $\delta_c = 1.686$, $\Delta = 178$ (หนังสืออ้าง spherical collapse) · ค่าสังเกตการณ์ทั้งหมด (ค่าปี 2003)</li>
+</ul>
+
+<div class="ask">
+  อ่านหนังสือแล้วติดประโยคไหน สมการไหน <strong>ถามได้เลย</strong> — บอกเลขหน้ามา Claude เปิดดูหน้าเดียวกันได้
+  <div class="nav">
+    <a href="dodelson-index.html">🗺️ แผนที่ทั้งเล่ม</a>
+    <a href="dodelson-ch08.html">← บทที่ 8</a>
+    <a href="dodelson-ch10.html">บทที่ 10 →</a>
+  </div>
+</div>
+
+</body>
+</html>

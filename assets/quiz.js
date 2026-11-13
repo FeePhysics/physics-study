@@ -116,7 +116,8 @@
       if (got !== null && want !== null) {
         // ยอมให้ปัดเศษได้ 0.5% — โจทย์บอกว่าตอบเป็นทศนิยมก็ได้ แล้ว 4/15 → 0.2666
         // ต่างจากค่าจริง 6.7e-5 ซึ่งเกิน tolerance แบบสัมบูรณ์ที่แคบไป
-        var tol = Math.max(1e-9, Math.abs(want) * 5e-3);
+        // เพดาน 0.5 — ไม่งั้นคีย์ตั้งแต่ 200 ขึ้นไปรับค่าที่คลาดไปหนึ่ง (500 รับ 501 · เจอตอนทำบทที่ 28)
+        var tol = Math.max(1e-9, Math.min(Math.abs(want) * 5e-3, 0.5));
         if (Math.abs(got - want) <= tol) return 'right';
       }
       else if (norm(typed) === norm(keys[i])) return 'right';

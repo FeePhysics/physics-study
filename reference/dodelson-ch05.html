@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>คู่มืออ่าน Dodelson · บทที่ 5 Einstein Equations</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+</head>
+<body>
+
+<h1>คู่มืออ่าน Dodelson · บทที่ 5 Einstein Equations</h1>
+<p class="meta">หนังสือหน้า 117–138 (PDF หน้า 130–151) · คู่มืออ่าน ไม่ใช่ฉบับแปล — เปิดหนังสือไว้ข้าง ๆ
+แล้วอ่านหน้านี้ประกอบ</p>
+
+<!-- ============================================================ -->
+<h2>1. บทนี้ตอบคำถามอะไร</h2>
+
+<p>บท 4 ให้สมการว่า "แรงโน้มถ่วง ($\Phi,\Psi$) ทำอะไรกับสสารและแสง" บทนี้ตอบทิศกลับ:
+<strong>"สสารและแสงที่กระเพื่อม ทำให้ $\Phi,\Psi$ เป็นเท่าไร"</strong> โดยกระจายสมการ Einstein
+ถึงอันดับหนึ่ง ได้สองสมการ (5.27) กับ (5.33) ซึ่งปิดระบบของบท 4 ได้พอดี
+นอกจากนั้นยังหาสมการของ gravity wave (tensor perturbation, 5.63) ที่บท 6 จะใช้
+แสดงว่า scalar กับ tensor ไม่ยุ่งกัน (decomposition theorem) และสอนวิธีย้ายจาก gauge หนึ่งไปอีก gauge</p>
+
+<p>ผู้เขียนบอกตั้งแต่ต้นบทว่าการคำนวณนี้ "ยาวแต่ตรงไปตรงมา" และเป็นสิ่งที่ควรทำเองสักครั้ง</p>
+
+<!-- ============================================================ -->
+<h2>2. ต้องรู้อะไรก่อน</h2>
+
+<ul>
+  <li><strong>Index notation, Einstein summation, $(-+++)$</strong> — สอนแล้วใน
+      <a href="../lessons/0004-indices.html">บทที่ 3 · ดัชนีและหน่วยธรรมชาติ</a></li>
+  <li><strong>Christoffel symbol $\Gamma^\mu{}_{\alpha\beta}$, Ricci tensor $R_{\mu\nu}$, Ricci scalar $\mathcal R$,
+      Einstein tensor $G_{\mu\nu}$</strong> — <strong>ยังไม่ได้สอน</strong> ใน workspace นี้ ·
+      หนังสือให้นิยามไว้ในบท 2 (สมการ 2.19, 2.31) และบทนี้ใช้สูตรเหล่านั้นแบบกดเครื่องคิดเลข
+      ถ้ายังไม่เคยเห็น ให้ถือว่าเป็น "สูตรที่ป้อน metric เข้าไปแล้วได้ตัวเลขออกมา" ไปก่อน</li>
+  <li><strong>Energy–momentum tensor $T^\mu{}_\nu$</strong> — <strong>ยังไม่ได้สอน</strong>ในรูป GR ·
+      ใน workspace เคยเจอ $T^{\mu\nu}$ ของสนามใน <a href="../lessons/0019-current-T.html">บทที่ 8 · ขวามือของสมการไอน์สไตน์</a>
+      ที่นี่ใช้แค่ $-T^0{}_0$ = ความหนาแน่นพลังงาน</li>
+  <li><strong>ตัวแปรของบท 4</strong>: $\delta, \delta_b, v, v_b, \Theta_l, \mathcal N_l$ และ metric (4.9) —
+      ดู <a href="dodelson-ch04.html">คู่มือบทที่ 4</a></li>
+  <li><strong>Gauge ในแม่เหล็กไฟฟ้า</strong> — สอนแล้วใน <a href="../lessons/0023-gauge.html">บทที่ 12 · แสงมาจากไหน</a>
+      ช่วยเป็นภาพเทียบใน §5.5</li>
+  <li><strong>Spherical Bessel function $j_l$</strong> — โผล่ในโจทย์ (5.87) · <strong>ยังไม่ได้ปู</strong>
+      (ภาคผนวก C ของหนังสือมีสูตร)</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>3. เดินตามหนังสือ</h2>
+
+<h3>บทนำ และ §5.1 Ricci tensor กับ Ricci scalar ที่ถูกรบกวน · หน้า 117–120</h3>
+
+<p>สมการ Einstein เป็นสมการเทนเซอร์ 4×4 ซึ่งสมมาตร จึงมี 10 สมการที่ต่างกัน แต่ metric (4.9) มีฟังก์ชันไม่รู้ค่าแค่สองตัว
+($\Phi$, $\Psi$) จึงต้องการแค่สองสมการ ปัญหาคือแม้จะเอาแค่สององค์ประกอบ ก็ต้องคำนวณ $R_{\mu\nu}$ <strong>ทุกตัว</strong>
+เพราะ $G_{\mu\nu} = R_{\mu\nu} - g_{\mu\nu}\mathcal R/2$ มี $\mathcal R$ ซึ่งรวม $R_{\mu\nu}$ ทุกตัวไว้
+ขั้นตอนมีสามขั้น: Christoffel → Ricci tensor → Ricci scalar</p>
+
+<p><strong>สัญกรณ์สองอย่างที่ต้องรู้ก่อนอ่านหน้า 118:</strong> (1) จุลภาคในตัวห้อย เช่น $\Psi_{,0}$ หรือ $g_{\mu\nu,\alpha}$
+แปลว่าอนุพันธ์ย่อยเทียบ $x^\alpha$ และในบทนี้ $x^0 = t$ (เวลาจักรวาล <em>ไม่ใช่</em> conformal) ดังนั้น
+$\Psi_{,0} = \dot\Psi/a$ (เชิงอรรถ 1) (2) ตั้งแต่ (5.4) หนังสืออยู่ใน Fourier space ตลอด: $\partial_i \to ik_i$</p>
+
+<div class="eq">
+$$\Gamma^0{}_{00} = \Psi_{,0}, \quad \Gamma^0{}_{0i} = ik_i\Psi, \quad
+\Gamma^0{}_{ij} = \delta_{ij}a^2\left[H + 2H(\Phi-\Psi) + \Phi_{,0}\right] \qquad (5.3)\text{–}(5.6)$$
+$$\Gamma^i{}_{00} = \frac{ik^i}{a^2}\Psi, \quad \Gamma^i{}_{j0} = \delta_{ij}(H + \Phi_{,0}), \quad
+\Gamma^i{}_{jk} = i\Phi\left[\delta_{ij}k_k + \delta_{ik}k_j - \delta_{jk}k_i\right] \qquad (5.7)$$
+<p><strong>อ่านว่า:</strong> $\Gamma^\mu{}_{\alpha\beta}$ = Christoffel symbol (สมมาตรในสองตัวล่าง) ·
+$H = (da/dt)/a$ · ตัวที่มีแต่ $H$ คืออันดับศูนย์ (ของ FRW ล้วน) ที่เหลืออันดับหนึ่ง ·
+$k_i$ อยู่ในปริภูมิ Euclid ยก/ลดดัชนีได้อิสระ</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม:</strong> (5.2) ใช้ $g^{00} = 1/g_{00} \simeq -1+2\Psi$ (อนุกรมเรขาคณิตอันดับหนึ่ง)
+และใน (5.6) กระจาย $(1-2\Psi)\,\partial_t[a^2(1+2\Phi)]/2$ ได้ $a^2[H(1+2\Phi-2\Psi) + \Phi_{,0}]$ ·
+ส่วน $\Gamma^i{}_{\mu\nu}$ (5.7) หนังสือยกให้เป็น Exercise 1 · สคริปต์ตรวจคำนวณทุกตัวจาก metric ตรง ๆ แล้วตรงหมด</p>
+
+<p>จากนั้นประกอบ Ricci tensor ด้วยสูตร (5.8)
+$R_{\mu\nu} = \Gamma^\alpha{}_{\mu\nu,\alpha} - \Gamma^\alpha{}_{\mu\alpha,\nu} + \Gamma^\alpha{}_{\beta\alpha}\Gamma^\beta{}_{\mu\nu} - \Gamma^\alpha{}_{\beta\nu}\Gamma^\beta{}_{\mu\alpha}$
+หนังสือไล่ $R_{00}$ ทีละพจน์ (5.9)–(5.12) โดยใช้หลักการเดียวซ้ำ ๆ คือ <strong>ผลคูณของสองตัวที่เป็นอันดับหนึ่งทิ้งได้</strong>
+เลยเลือกเก็บเฉพาะชิ้นที่ตัวหนึ่งเป็นอันดับศูนย์</p>
+
+<div class="eq">
+$$R_{00} = -3\frac{d^2a/dt^2}{a} - \frac{k^2}{a^2}\Psi - 3\Phi_{,00} + 3H(\Psi_{,0} - 2\Phi_{,0}) \qquad \text{(Dodelson 5.13)}$$
+$$R_{ij} = \delta_{ij}\left[\left(2a^2H^2 + a\frac{d^2a}{dt^2}\right)(1+2\Phi-2\Psi) + a^2H(6\Phi_{,0}-\Psi_{,0}) + a^2\Phi_{,00} + k^2\Phi\right] + k_ik_j(\Phi+\Psi) \qquad (5.14)$$
+$$\delta\mathcal R = -12\Psi\left(H^2 + \frac{d^2a/dt^2}{a}\right) + \frac{2k^2}{a^2}\Psi + 6\Phi_{,00} - 6H(\Psi_{,0} - 4\Phi_{,0}) + 4\frac{k^2\Phi}{a^2} \qquad (5.17)$$
+<p><strong>อ่านว่า:</strong> $\Phi_{,00}$ = อนุพันธ์อันดับสองเทียบ $t$ · $k^2 = k_ik_i$ ·
+$\mathcal R = g^{\mu\nu}R_{\mu\nu}$ = Ricci scalar (อันดับศูนย์ของมันคือ $6(H^2 + \ddot a/a)$ ตรงกับบท 2) ·
+$\delta\mathcal R$ = ส่วนอันดับหนึ่ง · $R_{ij}$ ยกเป็น Exercise 2</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม:</strong> (5.15)→(5.16) ต้องใช้ $g^{ij} = \delta_{ij}(1-2\Phi)/a^2$ (Exercise 1)
+แล้วคูณกระจายเก็บอันดับหนึ่ง · สคริปต์ตรวจคำนวณ $R_{00}$, $R_{ij}$ และ $\mathcal R$ ทั้งตัวจาก Christoffel
+แล้วเทียบโดยแปลง $k^2X \to -\nabla^2X$, $k_ik_jX \to -\partial_i\partial_jX$ — ตรงทั้ง (5.13), (5.14), (5.17)</p>
+
+<h3>§5.2 สององค์ประกอบของสมการ Einstein · หน้า 121–124</h3>
+
+<p><strong>สมการแรก: องค์ประกอบ time–time</strong> หนังสือใช้รูปที่ยกดัชนีหนึ่งตัว $G^0{}_0 = 8\pi G\,T^0{}_0$
+(5.18)–(5.19) เพราะ $-T^0{}_0$ คือความหนาแน่นพลังงานตรง ๆ</p>
+
+<div class="eq">
+$$\delta G^0{}_0 = -6H\Phi_{,0} + 6\Psi H^2 - 2\frac{k^2\Phi}{a^2} \qquad \text{(Dodelson 5.21)}$$
+<p><strong>อ่านว่า:</strong> $\delta G^0{}_0$ = ส่วนอันดับหนึ่งของ $G^0{}_0$ · สังเกตว่าพจน์ $\ddot a$ และ $\Phi_{,00}$ หักล้างหมด</p>
+</div>
+
+<p>ฝั่งขวาคือ $T^0{}_0$ (5.22) = ผลรวมทุกชนิดอนุภาคของ $-g_i\int\frac{d^3p}{(2\pi)^3}E_if_i$
+($g_i$ ตรงนี้คือ spin degeneracy ไม่ใช่ metric) สำหรับ dark matter และ baryon ได้ $-\rho(1+\delta)$ ทันที
+สำหรับ photon ต้องคำนวณ (5.23):</p>
+
+<div class="eq">
+$$T^0{}_0 = -\rho_\gamma\,[1 + 4\Theta_0] \quad\text{(photons, 5.24)}, \qquad
+T^0{}_0 = -\rho_\nu\,[1 + 4\mathcal N_0] \quad\text{(neutrinos, 5.25)}$$
+<p><strong>อ่านว่า:</strong> ทำไมมีเลข 4? เพราะ $\Theta = \delta T/T$ แต่ $\rho\propto T^4$ ดังนั้น
+$\delta\rho/\rho = 4\,\delta T/T$ · <strong>ระวัง:</strong> หนังสือเตือนว่า paper แบ่งเป็นสองค่ายพอ ๆ กัน
+ค่ายหนึ่งนิยาม $\Theta$ เป็น $\delta\rho/\rho$ (ไม่มีเลข 4) อีกค่ายแบบหนังสือนี้</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (5.23→5.24):</strong> อินทิเกรตมุมเหลือ $\Theta_0$ แล้วอินทิเกรตทีละส่วน
+$\int_0^\infty p^3\cdot(-p\,\partial_pf^{(0)})\,dp = 4\int_0^\infty p^3f^{(0)}dp$ · sympy ตรวจเชิงตัวเลขแล้ว (รวม $g=2$)</p>
+
+<p>dark energy ไม่ใส่เพราะแบบจำลองส่วนใหญ่ให้มันเรียบและสำคัญแค่ช่วงหลัง ๆ เอาทุกอย่างมาประกอบ หารด้วย 2 (5.26)
+แล้วเปลี่ยนเป็น conformal time:</p>
+
+<div class="eq">
+$$k^2\Phi + 3\frac{\dot a}{a}\left(\dot\Phi - \Psi\frac{\dot a}{a}\right) = 4\pi Ga^2\left[\rho_{\text{dm}}\delta + \rho_b\delta_b + 4\rho_\gamma\Theta_0 + 4\rho_\nu\mathcal N_0\right] \qquad \text{(Dodelson 5.27)}$$
+<p><strong>อ่านว่า:</strong> จุด = $d/d\eta$ อีกครั้ง · $G$ = ค่าคงตัวโน้มถ่วงของ Newton ·
+ถ้าไม่มีการขยายตัว ($a$ คงที่) เหลือ $k^2\Phi = 4\pi G\,\delta\rho$ ซึ่งคือสมการ Poisson ใน Fourier space
+($-\nabla^2 \to k^2$) · พจน์ $\dot a/a$ สำคัญกับ mode ที่ความยาวคลื่น ($\sim a/k$) ใหญ่พอ ๆ หรือใหญ่กว่า Hubble radius $H^{-1}$</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (5.26→5.27):</strong> แทน $\Phi_{,0} = \dot\Phi/a$ และ $H = \dot a/a^2$
+แล้วคูณทั้งสมการด้วย $-a^2$ · sympy ตรวจแล้ว</p>
+
+<p><strong>สมการที่สอง: ส่วน spatial ที่ไม่มี trace</strong> — $G^i{}_j$ มีพจน์ $\propto\delta_{ij}$ เกือบโหล (หนังสือเรียกรวมว่า $A$ ใน 5.29)
+ที่ไม่อยากเขียน จึงใช้ <em>projection operator</em> $\hat k_i\hat k^j - \tfrac13\delta^j_i$ ซึ่งฆ่าทุกพจน์ที่เป็น $\propto\delta_{ij}$
+ทิ้ง (ดึงเฉพาะส่วน longitudinal traceless — Exercise 4)</p>
+
+<div class="eq">
+$$\left(\hat k_i\hat k^j - \tfrac13\delta^j_i\right)G^i{}_j = \frac{2}{3a^2}k^2(\Phi+\Psi) \qquad (5.30)$$
+$$k^2(\Phi+\Psi) = -32\pi Ga^2\left[\rho_\gamma\Theta_2 + \rho_\nu\mathcal N_2\right] \qquad \text{(Dodelson 5.33)}$$
+<p><strong>อ่านว่า:</strong> $\hat k = \vec k/k$ เวกเตอร์หนึ่งหน่วย · $\Theta_2, \mathcal N_2$ = quadrupole ของ photon/neutrino (นิยาม 4.99) ·
+ฝั่งขวาเรียกว่า <em>anisotropic stress</em> · สสารไม่สัมพัทธภาพไม่มีส่วนนี้ ·
+ข้อสรุป: $\Phi = -\Psi$ เว้นแต่มี quadrupole · ในทางปฏิบัติมีแค่ neutrino ช่วง radiation domination
+ที่มี quadrupole มากพอ (photon ถูก Compton ลบ quadrupole ตามที่เห็นในบท 4)</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม:</strong> (5.30) $\hat k_i\hat k^j(k_ik_j) = k^2$ ลบ $\tfrac13k^2$ เหลือ $\tfrac23k^2$ ·
+(5.31)–(5.32) ใช้ $\mu^2 - \tfrac13 = \tfrac23\mathcal P_2(\mu)$ และจาก (4.99) ที่ $l=2$: $\int\tfrac{d\mu}2\mathcal P_2\Theta = -\Theta_2$
+แล้วอินทิเกรตทีละส่วนได้ $-\tfrac83\rho_\gamma\Theta_2$ · สุดท้ายตั้ง $\tfrac{2}{3a^2}k^2(\Phi+\Psi) = 8\pi G\times(-\tfrac83)(\cdots)$
+แก้หา $k^2(\Phi+\Psi)$ · ทั้งหมด sympy ตรวจแล้ว</p>
+
+<h3>§5.3 Tensor perturbations · หน้า 124–131</h3>
+
+<p>scalar perturbation ($\Phi$, $\Psi$) ไม่เปลี่ยนเมื่อเปลี่ยนพิกัดอวกาศ และผูกกับความหนาแน่น
+แต่หลายทฤษฎี (โดยเฉพาะ inflation ในบท 6) ยังผลิต tensor perturbation ซึ่งอาจเห็นได้ใน CMB บนสเกลใหญ่
+หนังสือมีโจทย์เรื่อง tensor กระจายทั้งเล่ม และ section นี้ทำส่วน Einstein ให้ดูเพื่อแสดงว่า tensor วิวัฒน์แยกจาก scalar</p>
+
+<div class="eq">
+$$g_{00} = -1,\quad g_{0i}=0,\quad g_{ij} = a^2\begin{pmatrix}1+h_+ & h_\times & 0\\ h_\times & 1-h_+ & 0\\ 0&0&1\end{pmatrix} = a^2(\delta_{ij} + \mathcal H_{ij}) \qquad (5.34),(5.37)$$
+<p><strong>อ่านว่า:</strong> $h_+, h_\times$ = สองโหมด (polarization) ของ gravity wave อ่านว่า "h plus" กับ "h cross" ·
+เลือกแกน $z$ ตาม $\vec k$ · $\mathcal H_{ij}$ = เมทริกซ์การรบกวน ซึ่ง <strong>traceless</strong> (ผลรวมแนวทแยงเป็นศูนย์)
+<strong>divergenceless</strong> ($k^i\mathcal H_{ij} = 0$ เพราะไม่มีแถว/หลักที่ $z$) และสมมาตร ·
+อย่าสับสน $\mathcal H$ (ตัวเขียน) กับ Hubble rate $H$</p>
+</div>
+
+<p>ขั้นตอนเหมือนเดิม: Christoffel (5.35)–(5.43) → Ricci → scalar ผลสำคัญเป็นข่าวดีสามข้อ:</p>
+<ul>
+  <li>$R_{00} = -3\,\ddot a/a$ (ในเวลา $t$) ไม่มี $h$ เลยในอันดับหนึ่ง (5.47) เพราะ trace ของ $\mathcal H$ เป็นศูนย์</li>
+  <li>$R_{ij}$ มี $h$ (5.57) แต่เมื่อหา trace เป็น $\mathcal R$ ส่วน $h$ หายหมด ⇒ $\delta\mathcal R = 0$</li>
+  <li>ดังนั้นองค์ประกอบ time–time ไม่มี tensor ⇒ ความหนาแน่นที่กระเพื่อม<strong>ไม่ผลิต</strong> gravity wave</li>
+</ul>
+
+<div class="eq">
+$$R_{ij} = g_{ij}\left(\frac{d^2a/dt^2}{a} + 2H^2\right) + \frac32a^2H\mathcal H_{ij,0} + a^2\frac{\mathcal H_{ij,00}}{2} + \frac{k^2}{2}\mathcal H_{ij} \qquad (5.57)$$
+$$\ddot h_\alpha + 2\frac{\dot a}{a}\dot h_\alpha + k^2h_\alpha = 0, \qquad \alpha = +,\times \qquad \text{(Dodelson 5.63)}$$
+<p><strong>อ่านว่า:</strong> (5.63) ได้จาก $\delta G^1{}_1 - \delta G^2{}_2$ (5.61) แปลงเป็น conformal time (5.62)
+และฝั่งขวาเป็นศูนย์ (Exercise 8) · $h_\times$ ได้สมการเดียวกันจาก $G^1{}_2$ (Exercise 9) ·
+เป็นสมการคลื่นที่มี "แรงหน่วง" $2(\dot a/a)\dot h$ จากการขยายตัว · ถ้าไม่ขยายตัวคำตอบคือ $e^{\pm ik\eta}$ (5.64)
+= คลื่นวิ่งทิศ $\pm z$ ด้วยความเร็วแสง</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม:</strong> Christoffel $\Gamma^i{}_{jk}$ (5.43) และพจน์สุดท้ายของ $R_{ij}$ (5.54) เป็น Exercise 7 ·
+สคริปต์ตรวจคำนวณ Christoffel และ $R_{\mu\nu}$ จาก metric (5.34) ที่ $h_{+,\times}$ เป็นฟังก์ชันของ $(t,z)$ ได้ตรงกับ
+(5.35)–(5.43), (5.47), (5.57) และ $\delta\mathcal R = 0$ · ส่วน (5.61)→(5.62):
+$h_{,0} = \dot h/a$ และ $h_{,00} = \ddot h/a^2 - (\dot a/a^3)\dot h$ คูณ $a^2$ แล้วพจน์ $\dot h$ รวมเป็น $3-1 = 2$ · sympy ตรวจแล้ว</p>
+
+<p>รูป 5.1 พล็อต $h$ (แกนตั้ง เริ่มที่ 1) เทียบ $\eta/\eta_0$ (แกนนอนแบบ log จาก $10^{-4}$ ถึง 1) สามเส้นที่
+$k\eta_0 = 10, 100, 1000$ ทุกเส้นคงที่ตอนต้น (ความยาวคลื่นใหญ่กว่า horizon, $k\eta < 1$) แล้วเริ่มสั่นและลดลง
+เมื่อ $k\eta \sim 1$ — mode เล็ก (ค่า $k$ ใหญ่) เข้า horizon ก่อนจึงลดก่อน ผลต่อ CMB: ที่ decoupling
+($\eta/\eta_0 \simeq 0.02$ ตามหนังสือ) เหลือแต่ mode ที่ $k\eta_0 \lesssim 100$ ⇒ gravity wave มีผลแค่ anisotropy บนสเกลมุมใหญ่</p>
+
+<p><strong>คำตอบเฉพาะยุค (Exercise 12):</strong> หนังสือไม่ได้เฉลย แต่ (5.87) ใบ้ว่ายุค matter domination คำตอบคือ
+$3j_1(k\eta)/(k\eta)$ (เริ่มที่ 1 เมื่อ $k\eta\to0$) · <em>นอกหนังสือ</em>: ยุค radiation ($a\propto\eta$) คำตอบที่จำกัดที่
+$\eta\to0$ คือ $j_0(k\eta) = \sin(k\eta)/(k\eta)$ · ทั้งสองข้อ sympy ตรวจแล้วว่าแก้สมการ (5.63) จริง</p>
+
+<h3>§5.4 Decomposition theorem · หน้า 131–132</h3>
+
+<p>ทฤษฎีบทบอกว่าการรบกวน metric แบ่งเป็น scalar, vector, tensor และแต่ละแบบวิวัฒน์อิสระต่อกัน
+หนังสือไม่พิสูจน์แบบนามธรรม แต่ "ทำตัวอย่างให้ดู" ด้วยการตรวจว่า tensor ไม่เข้าไปในสององค์ประกอบที่ให้สมการ scalar (5.65)</p>
+<ul>
+  <li>$G^0{}_0$: ขึ้นกับ $R_{00}$ และ $\mathcal R$ ซึ่งไม่มี $h$ แล้ว</li>
+  <li>$(\hat k_i\hat k_j - \tfrac13\delta_{ij})\delta G^i{}_j$ (5.66): เมื่อ $\hat k = \hat z$ เหลือแค่ $\mathcal H_{33} = 0$ กับ trace ของ $\mathcal H$ = 0</li>
+</ul>
+<p>ทิศกลับ (scalar ไม่เข้าสมการ tensor) คือ Exercise 10 และ vector คือ Exercise 11 · สคริปต์ตรวจยืนยันสองข้อในรายการข้างบน</p>
+
+<h3>§5.5 จาก gauge สู่ gauge · หน้า 132–135</h3>
+
+<p>metric (4.9) คือการเลือกพิกัดแบบหนึ่ง (conformal Newtonian gauge) คนทำ inflation ชอบ gauge ที่ $g_{ij}$ ไม่ถูกรบกวน
+(spatially flat slicing — จะใช้ใน §6.5.3) และโปรแกรมคำนวณ anisotropy ที่นิยม (ตามหนังสือปี 2003) ใช้ synchronous gauge
+จึงต้องรู้วิธีแปลง รูปทั่วไปที่สุดของ scalar perturbation มีสี่ฟังก์ชัน:</p>
+
+<div class="eq">
+$$g_{00} = -(1+2A), \qquad g_{0i} = -aB_{,i}, \qquad g_{ij} = a^2\left(\delta_{ij}[1+2\psi] - 2E_{,ij}\right) \qquad \text{(Dodelson 5.67)}$$
+<p><strong>อ่านว่า:</strong> $A, B, \psi, E$ = scalar ทั้งสี่ (ทุกตัวขึ้นกับ $\vec x$ และ $t$) ·
+$B_{,i}$ คืออนุพันธ์ของ scalar — ไม่ใช่ vector อิสระ · conformal Newtonian คือ $A=\Psi$, $\psi=\Phi$, $B=E=0$</p>
+</div>
+
+<p>หลักคือระยะ $ds^2$ ไม่ขึ้นกับพิกัด (5.68) ⇒ กฎแปลง metric (5.69) ใช้การแปลงพิกัดเล็ก ๆ ที่สุดทั่วไป</p>
+
+<div class="eq">
+$$t\to\tilde t = t + \xi^0(t,\vec x), \qquad x^i \to \tilde x^i = x^i + \delta^{ij}\xi_{,j}(t,\vec x) \qquad (5.70)$$
+$$\tilde A = A - \frac{1}{a}\dot\xi^0, \qquad \tilde\psi = \psi - H\xi^0, \qquad \tilde B = B - \frac{\xi^0}{a} + \dot\xi, \qquad \tilde E = E + \xi \qquad (5.74)\text{–}(5.75)$$
+<p><strong>อ่านว่า:</strong> $\xi^0$, $\xi$ = ฟังก์ชันเล็กอันดับเดียวกับการรบกวน · จุด = $\partial/\partial\eta$
+(ดังนั้น $\dot\xi^0/a = \partial_t\xi^0$) · พิกัดมีอิสระสองฟังก์ชัน จึงเหลือ "ของจริง" $4-2=2$ ฟังก์ชัน —
+นี่คือเหตุที่ conformal Newtonian มีแค่ $\Phi,\Psi$</p>
+</div>
+
+<p>หนังสือทำองค์ประกอบ 00 ให้ดู (5.71)–(5.73): ฝั่งซ้ายเหลือเฉพาะ $\alpha=\beta=0$ เพราะชิ้นอื่นเป็นผลคูณของอันดับหนึ่งสองตัว
+ส่วนที่เหลือคือ Exercise 14 ข้อสังเกตทางเทคนิคของหนังสือ: สูตรเหล่านี้บอกว่า "ชิ้นส่วนของ metric" เปลี่ยนอย่างไร
+ไม่ได้บอกว่าตัว $A$ ในฐานะ scalar เปลี่ยนอย่างไร — สองเรื่องนี้ไม่เหมือนกัน</p>
+
+<p><strong>ขั้นที่หนังสือข้าม (5.75):</strong> จุดที่ลืมง่ายคือ $g_{ij}$ ฝั่งซ้ายต้องประเมินที่ $\tilde t = t+\xi^0$
+จึงมี $a(t+\xi^0) \simeq a + \xi^0\,da/dt$ ซึ่งเป็นที่มาของ $-H\xi^0$ ใน $\tilde\psi$ · สคริปต์ตรวจแทนทั้งสี่สูตรลงใน (5.69) ครบ 16 องค์ประกอบ
+แล้วได้ metric เดิมถึงอันดับหนึ่ง</p>
+
+<div class="eq">
+$$\Phi_A \equiv A + \frac1a\frac{\partial}{\partial\eta}\left[a(\dot E - B)\right], \qquad \Phi_H \equiv -\psi + aH(B - \dot E) \qquad \text{(Dodelson 5.76)}$$
+<p><strong>อ่านว่า:</strong> ตัวแปร gauge-invariant ของ Bardeen (1980) — ค่าเท่าเดิมไม่ว่าเลือก gauge ไหน ·
+ใน conformal Newtonian: $\Phi_A = \Psi$ และ $\Phi_H = -\Phi$ (มีเครื่องหมายลบ!) ·
+ใช้เป็น "สูตรแปลง": คำนวณใน gauge ที่ง่าย แล้วย้ายไป gauge อื่นผ่านตัวแปรนี้ (ทำจริงใน §6.5.3)</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม:</strong> แทน (5.74)–(5.75) ลงใน (5.76): ใน $\Phi_A$ ได้ $a(\dot{\tilde E}-\tilde B) = a(\dot E - B) + \xi^0$
+อนุพันธ์ของ $\xi^0$ หักกับ $-\dot\xi^0/a$ ใน $\tilde A$ พอดี · ใน $\Phi_H$ พจน์ $+H\xi^0$ จาก $-\tilde\psi$ หักกับ $-aH\xi^0/a$ · sympy ตรวจแล้ว</p>
+
+<p>$T_{\mu\nu}$ ก็แปลงแบบเดียวกัน (5.77) และมีตัวแปร invariant ของสสาร: ความเร็ว $v$ (5.78) และ
+$\epsilon_m$ (5.79) ซึ่งใน conformal Newtonian สำหรับสสารคือ $\delta + 3aHv/k$ (บนสเกลเล็กกว่า horizon เหลือ $\delta$)
+และสำหรับรังสีคือ $4\Theta_{r,0} - 12i\Theta_{r,1}aH/k$ · <strong>ยังไม่ได้ตรวจ</strong> สองสูตรนี้</p>
+
+<h3>§5.6 Summary · หน้า 135</h3>
+
+<p>สองสมการที่ปิดระบบของบท 4 คือ (5.27) กับ (5.33) โดยรวมชนิดอนุภาคเป็นสองกลุ่ม</p>
+
+<div class="eq">
+$$\rho_m\delta_m \equiv \rho_{\text{dm}}\delta + \rho_b\delta_b,\quad \rho_r\Theta_{r,0} \equiv \rho_\gamma\Theta_0 + \rho_\nu\mathcal N_0,\quad
+\rho_mv_m \equiv \rho_{\text{dm}}v + \rho_bv_b,\quad \rho_r\Theta_{r,1} \equiv \rho_\gamma\Theta_1 + \rho_\nu\mathcal N_1 \qquad (5.80)$$
+$$k^2\Phi = 4\pi Ga^2\left[\rho_m\delta_m + 4\rho_r\Theta_{r,0} + \frac{3aH}{k}\left(i\rho_mv_m + 4\rho_r\Theta_{r,1}\right)\right] \qquad (5.81)$$
+<p><strong>อ่านว่า:</strong> $m$ = สสารทั้งหมด (dm + baryon) · $r$ = รังสีทั้งหมด (photon + neutrino) ·
+(5.81) ไม่มีอนุพันธ์เวลา (สมการพีชคณิต) ได้จากการรวม (5.27) กับองค์ประกอบ time–space (5.84, Exercise 5–6) ·
+สมการ tensor (5.63) อยู่ในสรุปด้วย: gravity wave ลดลงเมื่อเข้า horizon</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (5.81):</strong> แก้ (5.84) หา $\dot\Phi - aH\Psi$ แทนลงใน (5.27) (ซึ่ง $\dot a/a = aH$)
+ตัว $-3aH/(ik) = 3aHi/k$ และ $i\cdot(-4i) = 4$ ทำให้ได้วงเล็บใน (5.81) · sympy ตรวจแล้ว (โดยใช้ (5.84) ตามหนังสือ —
+ตัว (5.84) เองยังไม่ได้ derive)</p>
+
+<!-- ============================================================ -->
+<h2>4. ศัพท์และสำนวนอังกฤษของบทนี้</h2>
+
+<table>
+  <tr><th>คำ / วลี</th><th>ความหมาย</th><th>หน้า</th></tr>
+  <tr><td>far from being subtle</td><td>ไม่ได้ลึกลับซับซ้อนอย่างที่คิดเลย</td><td>117</td></tr>
+  <tr><td>a "must-do-once" exercise</td><td>แบบฝึกที่ต้องทำเองให้ได้สักครั้ง</td><td>117</td></tr>
+  <tr><td>pre-steps</td><td>ขั้นเตรียมก่อนถึงงานหลัก</td><td>117</td></tr>
+  <tr><td>take each component in turn</td><td>ไล่ดูทีละองค์ประกอบ</td><td>118</td></tr>
+  <tr><td>the by-now-familiar routine</td><td>ขั้นตอนเดิมที่ทำจนคุ้นแล้ว</td><td>120</td></tr>
+  <tr><td>redundant</td><td>ซ้ำซ้อน ไม่ให้ข้อมูลใหม่</td><td>121</td></tr>
+  <tr><td>obvious in retrospect</td><td>มองย้อนกลับไปแล้วชัดเจน</td><td>122</td></tr>
+  <tr><td>it falls out of the algebra</td><td>มันโผล่ออกมาเองจากพีชคณิต</td><td>122</td></tr>
+  <tr><td>I harp on it</td><td>ที่ย้ำเรื่องนี้ซ้ำ ๆ ก็เพราะ…</td><td>122</td></tr>
+  <tr><td>virtually split</td><td>แบ่งเป็นสองฝ่ายพอ ๆ กัน</td><td>122</td></tr>
+  <tr><td>longitudinal, traceless part</td><td>ส่วนตามแนว $\vec k$ ที่ trace เป็นศูนย์</td><td>123</td></tr>
+  <tr><td>projection operator</td><td>ตัวดำเนินการที่ดึงเฉพาะส่วนที่ต้องการ</td><td>123</td></tr>
+  <tr><td>anisotropic stress</td><td>ความเค้นที่ไม่เท่ากันทุกทิศ (มาจาก quadrupole)</td><td>124</td></tr>
+  <tr><td>sprinkled throughout the book</td><td>กระจายอยู่ทั่วเล่ม</td><td>124</td></tr>
+  <tr><td>to alleviate the homework load</td><td>เพื่อลดภาระการบ้าน</td><td>125</td></tr>
+  <tr><td>decouple / decomposition theorem</td><td>แยกขาดกัน / ทฤษฎีบทการแยกส่วน</td><td>125</td></tr>
+  <tr><td>needless to say</td><td>ไม่ต้องพูดก็รู้ว่า…</td><td>125</td></tr>
+  <tr><td>divergenceless, traceless, symmetric</td><td>$k^i\mathcal H_{ij}=0$ · ผลรวมแนวทแยงศูนย์ · สมมาตร</td><td>125</td></tr>
+  <tr><td>blast away</td><td>ลุยคำนวณไปเลย</td><td>125</td></tr>
+  <tr><td>a glimmer of</td><td>เริ่มเห็นแวว ๆ ของ…</td><td>127</td></tr>
+  <tr><td>its cousin</td><td>พจน์คู่แฝดของมัน (หน้าตาคล้ายกัน)</td><td>128</td></tr>
+  <tr><td>gravity waves</td><td>คลื่นโน้มถ่วง</td><td>130</td></tr>
+  <tr><td>enters the horizon</td><td>ความยาวคลื่นเล็กลงจนพอ ๆ กับ horizon</td><td>131</td></tr>
+  <tr><td>spatially flat slicing / synchronous gauge</td><td>ชื่อ gauge สองแบบที่ต่างจาก conformal Newtonian</td><td>132</td></tr>
+  <tr><td>gauge invariant</td><td>ไม่เปลี่ยนเมื่อเปลี่ยน gauge</td><td>134</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>5. convention และจุดที่มักสะดุด</h2>
+
+<ul>
+  <li><strong>เวลาในการคำนวณ</strong>: §5.1–5.3 ใช้ $x^0 = t$ (เวลาจักรวาล) ดัชนี $_{,0}$ = $\partial_t$
+    แต่ผลลัพธ์สุดท้ายเขียนด้วยจุด = $\partial_\eta$ · ความสัมพันธ์ $\Psi_{,0} = \dot\Psi/a$ ใช้ตลอด</li>
+  <li><strong>Fourier ตั้งแต่ (5.4)</strong> และไม่มีตัวหยัก · ถ้าอยากเทียบใน real space: $k^2 \to -\nabla^2$, $ik_i \to \partial_i$</li>
+  <li><strong>$H$ กับ $\mathcal H_{ij}$</strong>: ตัวแรก Hubble rate ตัวหลัง tensor perturbation</li>
+  <li><strong>$g_i$ ใน (5.22)</strong> คือ spin degeneracy ไม่ใช่ metric</li>
+  <li><strong>เลข 4 ใน $4\Theta_0$</strong>: paper ครึ่งหนึ่งใช้ $\delta\rho/\rho$ แทน $\delta T/T$ — ตรวจนิยามก่อนเทียบ</li>
+  <li><strong>เครื่องหมายของ $\Phi$</strong>: $\Phi_H = -\Phi$ ในตัวแปร Bardeen · บทถัดไปจะเห็นการสลับ $\Phi\leftrightarrow-\Psi$ บ่อย</li>
+  <li><strong>Ricci convention</strong> (5.8) เป็นแบบที่ให้ $\mathcal R = 6(H^2+\ddot a/a) > 0$ สำหรับ FRW · ตำราที่ใช้ convention อื่นอาจได้เครื่องหมายต่าง
+    <em>(นอกหนังสือ · ยังไม่ได้เทียบกับตำราเล่มใด)</em></li>
+  <li><strong>metric ของ tensor (5.34)</strong> ไม่มีเลข 2 หน้า $h$ (ต่างจาก $2\Phi$ ใน scalar) — ระวังตอนเทียบกับบท 6</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>6. โจทย์ท้ายบทที่ควรทำ</h2>
+
+<table>
+  <tr><th>ข้อ</th><th>ทักษะที่ได้</th><th>เฉลยใน Appendix A</th></tr>
+  <tr><td>1–2</td><td>หา $\Gamma^i{}_{\mu\nu}$ และ $R_{ij}$ ของ metric (4.9) เอง — ฝึก Christoffel/Ricci ตัวจริง</td><td>ไม่มี</td></tr>
+  <tr><td>3</td><td>ลด $T^\mu{}_\nu$ แบบ GR เป็น (5.22) และหา $T^0{}_i$</td><td>ไม่มี</td></tr>
+  <tr><td>4</td><td>พิสูจน์ว่า projection ให้ส่วน longitudinal traceless</td><td>มี</td></tr>
+  <tr><td>5–6</td><td>องค์ประกอบ time–space (5.83)–(5.84) → สมการพีชคณิต (5.81) → Poisson ที่ $k\eta\gg1$</td><td>ไม่มี</td></tr>
+  <tr><td>7</td><td>เติมช่องว่างของ tensor ($\Gamma^i{}_{jk}$, พจน์สุดท้ายของ $R_{ij}$)</td><td>มี</td></tr>
+  <tr><td>8–11</td><td>decomposition theorem ครบทุกทิศ (scalar↔tensor, vector)</td><td>ไม่มี</td></tr>
+  <tr><td>12–13</td><td>แก้สมการ gravity wave ยุค matter/radiation · transfer function เชิงตัวเลข</td><td>ไม่มี</td></tr>
+  <tr><td>14</td><td>derive กฎแปลง gauge และพิสูจน์ว่า $\Phi_A, \Phi_H$ invariant</td><td>ไม่มี</td></tr>
+</table>
+
+<p>ลำดับแนะนำ: 1 → 2 (ทำคู่กับสคริปต์ตรวจ ซึ่งคำนวณตัวเดียวกัน) → 6 → 12 → 14</p>
+
+<!-- ============================================================ -->
+<h2>7. ตรวจแล้วอย่างไร</h2>
+
+<p>สคริปต์ <code>scripts/verify/dodelson_ch05.py</code> (sympy) คำนวณทุกอย่างใน real space แล้วเทียบด้วยกฎ $k_i \to -i\partial_i$:</p>
+<ul>
+  <li>(5.3)–(5.7) Christoffel ทุกตัวของ metric (4.9) อันดับหนึ่ง</li>
+  <li>(5.13) $R_{00}$ · (5.14) $R_{ij}$ · (5.15)–(5.17) $\mathcal R$ · (5.21) $\delta G^0{}_0$</li>
+  <li>(5.29) ส่วนที่เหลือของ $G^i{}_j$ เป็นสัดส่วนกับ $\delta_{ij}$ จริง · (5.30) projection</li>
+  <li>(5.26)→(5.27) การแปลงเป็น conformal time · (5.24) เลข 4 · (5.31)–(5.33) anisotropic stress</li>
+  <li>(5.81) การรวม (5.27) กับ (5.84)</li>
+  <li>tensor: (5.35)–(5.43) Christoffel · (5.47) $R_{00}$ · (5.57) $R_{ij}$ · $\delta\mathcal R = 0$ ·
+    (5.60)–(5.62) สมการ $h_+$ และ $h_\times$ (Exercise 9) · (5.65)–(5.66) tensor ไม่เข้าสมการ scalar</li>
+  <li>(5.63)–(5.64) คำตอบ $e^{\pm ik\eta}$, $3j_1(x)/x$ (matter), $j_0(x)$ (radiation · นอกหนังสือ)</li>
+  <li>(5.69)–(5.75) กฎแปลง gauge ทั้งสี่ฟังก์ชัน (Exercise 14) · (5.76) $\Phi_A$, $\Phi_H$ invariant</li>
+</ul>
+
+<p><strong>ยังไม่ได้ตรวจ</strong> (อ่านจากหนังสืออย่างเดียว):</p>
+<ul>
+  <li>(5.78)–(5.79) ตัวแปร invariant ของ $T_{\mu\nu}$ และรูปเฉพาะของ $\epsilon_m$ ใน conformal Newtonian</li>
+  <li>(5.83)–(5.84) องค์ประกอบ time–space (ใช้ตามหนังสือในการตรวจ 5.81)</li>
+  <li>Exercise 8: ข้ออ้างว่า $T^1{}_1 - T^2{}_2 = 0$ เมื่อ $\Theta$ ขึ้นกับ $\mu$ อย่างเดียว</li>
+  <li>รูป 5.1 (ผลเชิงตัวเลข) และค่า $\eta/\eta_0\simeq0.02$ ที่ decoupling</li>
+  <li>(5.88) fit ของ transfer function</li>
+</ul>
+
+<div class="ask">
+  อ่านหนังสือแล้วติดประโยคไหน สมการไหน <strong>ถามได้เลย</strong> — บอกเลขหน้ามา Claude เปิดดูหน้าเดียวกันได้
+  <div class="nav">
+    <a href="dodelson-index.html">🗺️ แผนที่ทั้งเล่ม</a>
+    <a href="dodelson-ch04.html">← บทที่ 4</a>
+    <a href="dodelson-ch06.html">บทที่ 6 →</a>
+  </div>
+</div>
+
+</body>
+</html>

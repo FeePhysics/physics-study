@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ชุดฝึกบทที่ 28 · x คงที่ กับ ตัวคูณ 1 + z</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>ชุดฝึกบทที่ 28 · $x$ คงที่ กับ ตัวคูณ $1 + z$</h1>
+<p class="meta">ชุดฝึก · ~12 นาที · ต่อจาก <a href="./0041-expanding-universe.html">บทที่ 28 · เอกภพขยายตัว</a> · เก็บสองจุดที่พลาดในรอบแรก</p>
+
+<h2>① comoving distance เป็นป้ายของ "คู่ดาราจักร" ไม่ใช่ของ "เวลา"</h2>
+<p>
+ดาราจักรสองแห่งคู่หนึ่งมีจำนวนช่องกริดคั่นอยู่ค่าเดียวตลอดกาล ค่านั้นคือ $x$ ถามที่เวลาไหนก็ได้ค่าเดิม
+สิ่งที่ขึ้นกับเวลามีสองตัวเท่านั้น คือ $a$ กับ $d$ สมการ $d = a\,x$ จึงอ่านได้ว่า
+"ตัวเลขสองตัวที่เปลี่ยน ($d$ กับ $a$) เปลี่ยนไปด้วยกันในอัตราส่วนคงที่ และอัตราส่วนนั้นคือ $x$"
+</p>
+<div class="eq" data-eqno="1">$$ x = \frac{d}{a} $$</div>
+<p>ค่าทางขวามือได้ผลเดียวกันทุกเวลา ดูจากตารางนี้</p>
+<table>
+  <tr><th>เวลา</th><th>$a$</th><th>$d$ (Mpc)</th><th>$x = d/a$ (Mpc)</th></tr>
+  <tr><td>วันนี้</td><td>$1$</td><td>$6$</td><td>$6$</td></tr>
+  <tr><td>อดีต</td><td>$\tfrac13$</td><td>$2$</td><td>$6$</td></tr>
+</table>
+<p>
+คอลัมน์ขวาสุดไม่เปลี่ยน นี่คือเหตุที่หนังสือชอบทำงานด้วย $x$ เพราะมันไม่ต้องตามแก้ทุกครั้งที่เอกภพโตขึ้น
+วันนี้ $a = 1$ จึงจำง่าย ๆ ได้ว่า <strong>$x$ คือระยะจริงของวันนี้</strong>
+</p>
+
+<h2>② แสงยืด $1 + z$ เท่า ไม่ใช่ $z$ เท่า</h2>
+<p>
+สมการของบทที่ 28 คือ $\lambda_{\text{obs}} / \lambda_{\text{emit}} = 1 + z$ ตัวที่เอาไปคูณความยาวคลื่นจึงเป็น $1 + z$
+ส่วน $z$ ตัวเดียวบอกว่าความยาวคลื่น<strong>เพิ่มขึ้น</strong>กี่เท่าของของเดิม
+(เหมือนของขึ้นราคา 300% ราคาใหม่คือ 4 เท่าของราคาเดิม ไม่ใช่ 3 เท่า)
+</p>
+<div class="eq" data-eqno="2">$$ \lambda_{\text{obs}} = (1 + z)\,\lambda_{\text{emit}} $$</div>
+<div class="key">
+  <p><strong>วิธีตรวจตัวเองในสามวินาที: ลองใส่ $z = 0$</strong> — แสงจากข้างบ้านไม่ได้ถูกยืดเลย ต้องได้ $\lambda_{\text{obs}} = \lambda_{\text{emit}}$
+  สูตรที่คูณด้วย $1 + z$ ให้ตัวคูณ $1$ ถูกต้อง ส่วนสูตรที่คูณด้วย $z$ ให้ความยาวคลื่นเป็นศูนย์ ซึ่งเป็นไปไม่ได้</p>
+</div>
+<table>
+  <tr><th>ถ้าโจทย์ให้</th><th>ขั้นแรกเสมอ</th><th>แล้วจึง</th></tr>
+  <tr><td>$z$ และถามความยาวคลื่น</td><td>หาตัวคูณ $1 + z$</td><td>คูณ (หา obs) หรือหาร (หา emit)</td></tr>
+  <tr><td>ความยาวคลื่นสองค่า และถาม $z$</td><td>หาอัตราส่วน obs ÷ emit</td><td>ลบ 1</td></tr>
+</table>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+<p class="meta">ทุกข้อเป็นแบบ "ใช้สมการที่ระบุ ทำตามขั้น" · ตอบเป็นตัวเลข · เศษส่วนพิมพ์แบบ <code>1/4</code> ได้ · ระยะหน่วย Mpc · ความยาวคลื่นหน่วย Å</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · คู่เดียว สามเวลา &nbsp;<span class="hint">(สมการ (1))</span></h3>
+  <p class="hint">ดาราจักรคู่หนึ่ง วันนี้ ($a = 1$) วัดระยะจริงได้ $d = 12$</p>
+  <ol class="steps">
+    <li data-answer="12" data-alt="12.0">
+      <p><strong>ขั้น 1</strong> — $x = d/a$ ของคู่นี้</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$12 \div 1 = 12$</p>
+    </li>
+    <li data-answer="3" data-alt="3.0">
+      <p><strong>ขั้น 2</strong> — ตอนที่ $a = \tfrac14$ ระยะจริง $d$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac14 \times 12 = 3$</p>
+    </li>
+    <li data-answer="12" data-alt="12.0">
+      <p><strong>ขั้น 3</strong> — ตอนที่ $a = \tfrac14$ นั้น $x$ เท่าไร (คิดจาก $d \div a$ ของขั้น 2)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 \div \tfrac14 = 12$ เท่ากับขั้น 1</p>
+    </li>
+    <li data-answer="12" data-alt="12.0">
+      <p><strong>ขั้น 4</strong> — ตอนที่ $a = \tfrac12$ ล่ะ $x$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$12$ อีกครั้ง ไม่ต้องคำนวณ เพราะ $x$ ไม่ขึ้นกับเวลา</p>
+    </li>
+  </ol>
+  <p class="fb">ถามหา $x$ ที่เวลาไหนก็ตอบค่าเดิม</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · เริ่มจากอดีต &nbsp;<span class="hint">(สมการ (1))</span></h3>
+  <p class="hint">ตอนที่ $a = \tfrac15$ ดาราจักรอีกคู่หนึ่งอยู่ห่างกันจริง $d = 2$</p>
+  <ol class="steps">
+    <li data-answer="10" data-alt="10.0">
+      <p><strong>ขั้น 1</strong> — $x = d/a$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \div \tfrac15 = 10$</p>
+    </li>
+    <li data-answer="10" data-alt="10.0">
+      <p><strong>ขั้น 2</strong> — ระยะจริง $d$ ของคู่นี้วันนี้</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 \times 10 = 10$ · $x$ คือระยะจริงของวันนี้</p>
+    </li>
+    <li data-answer="5" data-alt="5.0">
+      <p><strong>ขั้น 3</strong> — ระยะจริง $d$ ตอนที่ $a = \tfrac12$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12 \times 10 = 5$</p>
+    </li>
+  </ol>
+  <p class="fb">รู้ $d$ กับ $a$ ที่เวลาเดียว ก็รู้ $d$ ทุกเวลา โดยผ่าน $x$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · ทดสอบด้วย $z = 0$ &nbsp;<span class="hint">(สมการ (2))</span></h3>
+  <p class="hint">แสงจากดาราจักรข้างบ้าน $z = 0$ ปล่อยออกมาที่ $\lambda_{\text{emit}} = 500$</p>
+  <ol class="steps">
+    <li data-answer="1" data-alt="1.0">
+      <p><strong>ขั้น 1</strong> — ตัวคูณ $1 + z$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + 0 = 1$</p>
+    </li>
+    <li data-answer="500" data-alt="500.0">
+      <p><strong>ขั้น 2</strong> — $\lambda_{\text{obs}}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 \times 500 = 500$ ไม่ถูกยืด ตรงกับที่ควรเป็น</p>
+    </li>
+    <li data-answer="0" data-alt="0.0">
+      <p><strong>ขั้น 3</strong> — ถ้าคูณด้วย $z$ เฉย ๆ แทน จะได้เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0 \times 500 = 0$ ความยาวคลื่นศูนย์ เป็นไปไม่ได้ ⇒ ตัวคูณต้องเป็น $1 + z$</p>
+    </li>
+  </ol>
+  <p class="fb">ไม่แน่ใจสูตรเมื่อไร ลอง $z = 0$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · หาตัวคูณก่อนเสมอ &nbsp;<span class="hint">(สมการ (2))</span></h3>
+  <ol class="steps">
+    <li data-answer="4" data-alt="4.0">
+      <p><strong>ขั้น 1</strong> — $z = 3$ · ตัวคูณ $1 + z$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + 3 = 4$</p>
+    </li>
+    <li data-answer="4864" data-alt="4864.0|4,864">
+      <p><strong>ขั้น 2</strong> — $\lambda_{\text{emit}} = 1216$ · $\lambda_{\text{obs}}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4 \times 1216 = 4864$ · ($3 \times 1216 = 3648$ คือส่วนที่<em>เพิ่มขึ้น</em> ไม่ใช่ค่าที่วัดได้)</p>
+    </li>
+    <li data-answer="3/2" data-alt="1.5">
+      <p><strong>ขั้น 3</strong> — อีกแหล่งหนึ่ง $z = \tfrac12$ · ตัวคูณ $1 + z$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + \tfrac12 = \tfrac32$</p>
+    </li>
+    <li data-answer="600" data-alt="600.0">
+      <p><strong>ขั้น 4</strong> — แหล่งนั้นปล่อย $\lambda_{\text{emit}} = 400$ · $\lambda_{\text{obs}}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac32 \times 400 = 600$</p>
+    </li>
+  </ol>
+  <p class="fb">$z$ เล็กกว่า 1 ก็ยังยืด เพราะตัวคูณ $1 + z$ มากกว่า 1 เสมอ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · ย้อนกลับ: จากความยาวคลื่นหา $z$ &nbsp;<span class="hint">(สมการ (2) และ $1 + z = 1/a$)</span></h3>
+  <p class="hint">เส้นหนึ่งมี $\lambda_{\text{emit}} = 500$ แต่เราวัดได้ $\lambda_{\text{obs}} = 2500$</p>
+  <ol class="steps">
+    <li data-answer="5" data-alt="5.0">
+      <p><strong>ขั้น 1</strong> — อัตราส่วน obs ÷ emit</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2500 \div 500 = 5$ นี่คือ $1 + z$</p>
+    </li>
+    <li data-answer="4" data-alt="4.0">
+      <p><strong>ขั้น 2</strong> — $z$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5 - 1 = 4$</p>
+    </li>
+    <li data-answer="1/5" data-alt="0.2|.2">
+      <p><strong>ขั้น 3</strong> — $a$ ตอนแสงออกเดินทาง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$a = \dfrac{1}{1+z} = \tfrac15$</p>
+    </li>
+  </ol>
+  <p class="fb">อัตราส่วนคือ $1 + z$ · ลบ 1 จึงได้ $z$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · รวมสองเรื่อง &nbsp;<span class="hint">(สมการ (1) และ (2))</span></h3>
+  <p class="hint">ดาราจักรคู่หนึ่งมี $x = 20$ · เรามองมันที่ $z = 4$</p>
+  <ol class="steps">
+    <li data-answer="1/5" data-alt="0.2|.2">
+      <p><strong>ขั้น 1</strong> — $a$ ตอนนั้น</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\dfrac{1}{1+4} = \tfrac15$</p>
+    </li>
+    <li data-answer="4" data-alt="4.0">
+      <p><strong>ขั้น 2</strong> — ระยะจริง $d$ ตอนนั้น</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac15 \times 20 = 4$</p>
+    </li>
+    <li data-answer="20" data-alt="20.0">
+      <p><strong>ขั้น 3</strong> — comoving distance ตอนนั้น</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$20$ เท่าเดิม</p>
+    </li>
+    <li data-answer="1000" data-alt="1000.0|1,000">
+      <p><strong>ขั้น 4</strong> — แสงที่มันปล่อยที่ $\lambda_{\text{emit}} = 200$ เราวัดได้เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(1 + 4) \times 200 = 1000$ · ระยะจริงหดเหลือ $\tfrac15$ และแสงยืด $5$ เท่า ตัวเลขเดียวกันคือ $1/a$</p>
+    </li>
+  </ol>
+  <p class="fb">$1 + z = 1/a$ คือตัวเลขเดียวที่ใช้ทั้งกับระยะและกับแสง</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · ถ้าขั้นไหนตอบถูกแต่ยังงง บอกเลขข้อมาได้เลย
+  <div class="nav">
+    <a href="./0041-expanding-universe.html">← บทที่ 28 · เอกภพขยายตัว</a>
+    <a href="../reference/dodelson-ch01.html">📎 คู่มืออ่าน Dodelson บทที่ 1</a>
+  </div>
+</div>
+
+</body>
+</html>
