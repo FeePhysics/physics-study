@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 29 · สมการ Friedmann</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 29 · สมการ Friedmann</h1>
+<p class="meta">บทเรียน · ~25 นาที · ตรงกับ Dodelson §1.1 สมการ (1.2)–(1.6) · เลข $\tfrac23$ ใน $a \propto t^{2/3}$ มาจากไหน</p>
+
+<h2>① คำถามของบทนี้</h2>
+<p>
+<a href="./0041-expanding-universe.html">บทที่ 28</a> บอกว่าถ้าเอกภพแบนและมีแต่สสาร จะได้ $a \propto t^{2/3}$ แล้วให้เชื่อไว้ก่อน
+บทนี้หาเลข $\tfrac23$ เอง โดยใช้ของสองชิ้น ชิ้นแรกคือสมการ Friedmann ซึ่งบอกว่าเอกภพขยายเร็วแค่ไหนเมื่อมีพลังงานอยู่เท่านี้
+ชิ้นที่สองคือการนับว่าความหนาแน่นพลังงานลดลงอย่างไรเมื่อเอกภพโตขึ้น พอเอาสองชิ้นมาประกบกัน เลข $\tfrac23$ จะออกมาเอง
+</p>
+
+<h2>② สมการ Friedmann</h2>
+<p>
+หนังสือให้สมการนี้ในบทที่ 1 โดยยังไม่พิสูจน์ ที่มาของมันต้องใช้ general relativity ซึ่งอยู่ในบทที่ 2
+<span class="src">Dodelson สมการ (1.2) §1.1</span>
+</p>
+<div class="key">
+  <div class="eq" data-eqno="1">$$ H^2 = \frac{8\pi G}{3}\left[\rho + \frac{\rho_{\rm cr} - \rho_0}{a^2}\right] $$</div>
+  <p>ซ้ายมือคือ Hubble rate ยกกำลังสอง ($H = \dot a/a$ จากบทที่ 28) · $G$ คือค่าคงตัวความโน้มถ่วงของนิวตัน ·
+  $\rho$ คือความหนาแน่นพลังงานรวมทุกชนิด ณ เวลานั้น · $\rho_0$ คือค่าของ $\rho$ วันนี้ (ตัวห้อย 0 = วันนี้) ·
+  $\rho_{\rm cr}$ คือ critical density นิยามในสมการ (2)</p>
+</div>
+<p>
+อ่านเป็นประโยค: <strong>ยิ่งพลังงานอัดแน่นมาก เอกภพยิ่งขยายเร็ว</strong>
+พจน์ที่สองในวงเล็บเกี่ยวกับความโค้งของอวกาศ หนังสือนิยาม $\rho_{\rm cr}$ ให้เป็นค่าคงตัวที่คำนวณจาก $H_0$ ของวันนี้
+<span class="src">Dodelson สมการ (1.3) §1.1</span>
+</p>
+<div class="key">
+  <div class="eq" data-eqno="2">$$ \rho_{\rm cr} = \frac{3H_0^2}{8\pi G} $$</div>
+  <p>$\rho_{\rm cr}$ ไม่เปลี่ยนตามเวลา เป็นตัวเลขตัวเดียว</p>
+</div>
+<p>
+ถ้าความหนาแน่นวันนี้เท่ากับค่าวิกฤตพอดี ($\rho_0 = \rho_{\rm cr}$) ตัวเศษของพจน์ความโค้งจะเป็นศูนย์ และเอกภพแบบนี้คือเอกภพ <strong>flat</strong>
+หนังสือทำงานกับเอกภพ flat เกือบทั้งเล่ม <span class="src">Dodelson §1.1</span> สมการ (1) จึงเหลือแค่
+</p>
+<div class="key">
+  <div class="eq" data-eqno="3">$$ H^2 = \frac{8\pi G}{3}\,\rho \qquad \text{(flat)} $$</div>
+  <p>ถ้ารู้ว่า $\rho$ ขึ้นกับ $a$ อย่างไร สมการนี้จะบอกว่า $a$ ขึ้นกับ $t$ อย่างไร</p>
+</div>
+<p>
+สมการ (2) ไม่ได้ตั้งขึ้นมาลอย ๆ ลองใส่ "วันนี้" ลงใน (3): ซ้ายมือเป็น $H_0^2$ และขวามือมี $\rho_0$
+แก้หา $\rho_0$ ก็จะได้รูปของ (2) พอดี critical density จึงคือ "ความหนาแน่นที่เอกภพ flat ต้องมีวันนี้"
+</p>
+
+<h2>③ ความหนาแน่นลดลงอย่างไรเมื่อเอกภพโต</h2>
+<p>
+ในบทนี้ "$\rho \propto a^{k}$" แปลว่า $\rho$ = (ค่าคงตัว) $\times\, a^{k}$ ตัวเลข $k$ เรียกว่า<strong>กำลังของ $a$</strong>
+วิธีอ่าน $k$ คือถามว่าถ้า $a$ เล็กลงครึ่งหนึ่ง $\rho$ ถูกคูณด้วยเท่าไร คำตอบคือ $2^{-k}$
+</p>
+<p>
+<strong>สสาร (matter).</strong> นึกถึงกล่องลูกบาศก์ที่มีด้านยาว $x$ ช่องบนกริด (comoving · ไม่เปลี่ยน) ในกล่องมีอนุภาค $N$ ตัว มวลตัวละ $m$
+อนุภาคไม่หายไปไหน จำนวน $N$ จึงคงที่ ส่วนกล่องโตตามกริด
+</p>
+<table>
+  <tr><th>ขั้น</th><th>ทำอะไร</th><th>ได้</th></tr>
+  <tr><td>1</td><td>ด้านยาวจริงของกล่อง (สมการ (1) ของบทที่ 28)</td><td>$a\,x$</td></tr>
+  <tr><td>2</td><td>ปริมาตรจริง</td><td>$(a x)^3 = a^3 x^3$</td></tr>
+  <tr><td>3</td><td>มวลรวมหารปริมาตร</td><td>$\rho_m = \dfrac{N m}{x^3}\, a^{-3}$</td></tr>
+</table>
+<div class="key">
+  <div class="eq" data-eqno="4">$$ \rho_m \propto a^{-3} $$</div>
+  <p>ตัวอย่าง: ตอน $a = \tfrac1{10}$ สสารหนาแน่นกว่าวันนี้ $10^3$ เท่า</p>
+</div>
+<p>
+<strong>รังสี (radiation).</strong> โฟตอนก็เจือจางเพราะกล่องโตเหมือนกัน แต่มีอีกอย่างซ้อนเข้ามา:
+บทที่ 28 สมการ (4) บอกว่าความยาวคลื่นถูกยืดตามกริด $\lambda \propto a$
+และพลังงานของโฟตอนหนึ่งตัวคือ $E = hc/\lambda$ (ฟิสิกส์ ม.ปลาย) โฟตอนแต่ละตัวจึงอ่อนลงตาม $a$ ด้วย
+<span class="src">Dodelson หน้า 4</span>
+</p>
+<div class="key">
+  <div class="eq" data-eqno="5">$$ \rho_r \propto a^{-4} \qquad T = \frac{T_0}{a} $$</div>
+  <p>สมการขวาคือ Dodelson (1.4): อุณหภูมิของแก๊สโฟตอนลดตาม $a$ · $T_0 = 2.725$ K คืออุณหภูมิ CMB วันนี้ (ค่าที่หนังสืออ้าง)</p>
+</div>
+<table>
+  <tr><th>$a$</th><th>$\rho_m$ เทียบวันนี้</th><th>$\rho_r$ เทียบวันนี้</th></tr>
+  <tr><td>$1$</td><td>$1$</td><td>$1$</td></tr>
+  <tr><td>$1/10$</td><td>$10^3$</td><td>$10^4$</td></tr>
+  <tr><td>$1/100$</td><td>$10^6$</td><td>$10^8$</td></tr>
+</table>
+<p>
+ย้อนเวลากลับไป รังสีโตเร็วกว่าสสาร วันนี้สสารมากกว่า แต่ในอดีตไกลพอ รังสีต้องแซงขึ้นมาครองแน่นอน
+จุดที่ทั้งสองเท่ากันพอดีหนังสือเรียก $a_{\rm eq}$ <span class="src">Dodelson §1.1 · รูป 1.3</span>
+</p>
+
+<h2>④ หาเลข $\tfrac23$</h2>
+<p>
+เดารูปคำตอบไว้ก่อนว่า $a = C\,t^{p}$ ($C$ เป็นค่าคงตัว) แล้วหา $p$ ที่ทำให้สมการ (3) เป็นจริงทุกเวลา
+วิธีคือเขียนทั้งสองข้างของ (3) ให้อยู่ในรูป (ค่าคงตัว) $\times\, t^{k}$ แล้วจับกำลังของ $t$ ให้เท่ากัน
+ใช้กรณีสสาร ($\rho \propto a^{-3}$)
+</p>
+<table>
+  <tr><th>ขั้น</th><th>ทำอะไร</th><th>ได้</th></tr>
+  <tr><td>1</td><td>ซ้ายมือ · $\dot a = Cp\,t^{p-1}$ หารด้วย $a$ (บทที่ 28 ทำกรณี $p = \tfrac23$)</td><td>$H = p/t$ ⇒ $H^2 \propto t^{-2}$</td></tr>
+  <tr><td>2</td><td>ขวามือ · แทน $a = Ct^p$ ลงใน $a^{-3}$</td><td>$C^{-3}\,t^{-3p}$ ⇒ $\rho \propto t^{-3p}$</td></tr>
+  <tr><td>3</td><td>สองข้างเท่ากันทุก $t$ ⇒ กำลังของ $t$ ต้องเท่ากัน</td><td>$-2 = -3p$</td></tr>
+  <tr><td>4</td><td>แก้หา $p$</td><td>$p = \tfrac23$</td></tr>
+</table>
+<div class="key">
+  <div class="eq" data-eqno="6">$$ \text{matter: } a \propto t^{2/3} $$</div>
+  <div class="eq">$$ \text{radiation: } a \propto t^{1/2} $$</div>
+  <p>กรณี radiation ทำแบบเดียวกัน เปลี่ยนแค่ $-3$ เป็น $-4$ (ข้อ 4 ให้ทำเอง)</p>
+</div>
+<p>
+การเดารูป $Ct^p$ จะหาคำตอบเจอเฉพาะเมื่อคำตอบเป็นกำลังของ $t$ จริง สองกรณีนี้เป็นเช่นนั้น
+ถ้าแก้สมการเชิงอนุพันธ์ตรง ๆ โดยเริ่มจาก $a = 0$ ที่ $t = 0$ ก็ได้ผลเดียวกัน (สคริปต์ <code>scripts/verify/0044_friedmann.py</code> ทำทั้งสองวิธี)
+นี่คือสิ่งที่รูป 1.2 ของหนังสือแสดง: ช่วงต้น $a \propto t^{1/2}$ เพราะรังสีครอง แล้วเปลี่ยนเป็น $t^{2/3}$ เมื่อสสารขึ้นมาครอง
+<span class="src">Dodelson §1.1 · รูป 1.2</span>
+</p>
+
+<h2>⑤ critical density เป็นตัวเลข</h2>
+<p>
+หนังสือเขียน $H_0$ ในรูปที่ห่อความไม่แน่นอนไว้ในตัวเลขไร้หน่วย $h$ (ไม่ใช่ค่าคงตัวของ Planck)
+ส่วน Mpc $= 3.0856\times10^{24}$ cm และ $G = 6.67\times10^{-8}$ cm³ g⁻¹ s⁻²
+<span class="src">Dodelson สมการ (1.5) (1.6) หน้า 5–6</span>
+</p>
+<div class="key">
+  <div class="eq" data-eqno="7">$$ H_0 = 100\,h\ \frac{\rm km/s}{\rm Mpc} $$</div>
+  <div class="eq">$$ \rho_{\rm cr} = 1.88\,h^2 \times 10^{-29}\ {\rm g/cm^3} $$</div>
+  <p>สมการล่างคือสมการ (2) หลังแทนตัวเลข · ข้อ 6 ให้คำนวณเองที่ $h = 1$</p>
+</div>
+
+<h2>⑥ ยังไม่แตะโดยตั้งใจ</h2>
+<p>
+ที่มาของสมการ (1) จาก general relativity และเหตุที่พจน์ความโค้งมี $1/a^2$ (Dodelson บทที่ 2) ·
+เหตุที่แสงถูกยืดตามกริด (ต้องใช้ metric) · dark energy ที่ความหนาแน่นไม่ลดเลย และอายุของเอกภพสมการ (1.10) ·
+สามเรื่องแรกคือชุดบทถัดไปที่ปู GR ไปพร้อมกับบทที่ 2 ของหนังสือ
+</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+<p class="meta">ทุกข้อเป็น "ใช้สมการที่ระบุ ทำตามขั้น" · <strong>ข้อ 4 ขั้นน้อยกว่าข้อ 3</strong> (ทำแบบเดียวกันเอง) · ข้อ 6 ใช้เครื่องคิดเลข · ข้อ 5 และ 7 ใช้ตัวเลขสมมุติ · เศษส่วนพิมพ์แบบ <code>1/4</code> ได้</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · สสารเจือจาง &nbsp;<span class="hint">(สมการ (4))</span></h3>
+  <p class="hint">กล่องมีด้าน comoving $x$ คงที่ มีอนุภาค $N$ ตัว · "$\propto a^k$" แปลว่า (ค่าคงตัว) $\times\, a^k$</p>
+  <ol class="steps">
+    <li data-answer="3" data-alt="3.0">
+      <p><strong>ขั้น 1</strong> — ปริมาตรจริงของกล่อง $\propto a^{k}$ · $k$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(ax)^3 = a^3x^3$ ⇒ $k = 3$</p>
+    </li>
+    <li data-answer="-3" data-alt="-3.0">
+      <p><strong>ขั้น 2</strong> — $\rho_m$ = $Nm$ หารด้วยปริมาตร $\propto a^{k}$ · $k$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ปริมาตรอยู่ตัวส่วน ⇒ $k = -3$</p>
+    </li>
+    <li data-answer="8" data-alt="8.0">
+      <p><strong>ขั้น 3</strong> — ตอน $a = \tfrac12$ ความหนาแน่น $\rho_m$ เป็นกี่เท่าของวันนี้</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(\tfrac12)^{-3} = 8$ · กล่องเล็กลงด้านละครึ่ง ปริมาตรเหลือ $\tfrac18$</p>
+    </li>
+  </ol>
+  <p class="fb">จำนวนอนุภาคคงที่ ปริมาตรโตแบบ $a^3$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · รังสีเจือจาง &nbsp;<span class="hint">(สมการ (5) · ทวน $1+z$ ของบทที่ 28)</span></h3>
+  <ol class="steps">
+    <li data-answer="-1" data-alt="-1.0">
+      <p><strong>ขั้น 1</strong> — $\lambda \propto a$ และ $E = hc/\lambda$ · พลังงานของโฟตอนหนึ่งตัว $\propto a^{k}$ · $k$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\lambda$ อยู่ตัวส่วน ⇒ $E \propto a^{-1}$</p>
+    </li>
+    <li data-answer="-3" data-alt="-3.0">
+      <p><strong>ขั้น 2</strong> — จำนวนโฟตอนต่อปริมาตร $\propto a^{k}$ · $k$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">เหมือนอนุภาคในข้อ 1 ⇒ $-3$</p>
+    </li>
+    <li data-answer="-4" data-alt="-4.0">
+      <p><strong>ขั้น 3</strong> — $\rho_r$ = (พลังงานต่อตัว) × (จำนวนต่อปริมาตร) $\propto a^{k}$ · $k$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">คูณกัน ⇒ กำลังบวกกัน $-1 + (-3) = -4$</p>
+    </li>
+    <li data-answer="1101" data-alt="1101.0|1,101">
+      <p><strong>ขั้น 4</strong> — CMB ออกเดินทางที่ $z = 1100$ · ตอนนั้น $1/a$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/a = 1 + z = 1101$</p>
+    </li>
+    <li data-answer="3000.2" data-alt="3000|3,000|3000.23">
+      <p><strong>ขั้น 5</strong> — $T = T_0/a$ กับ $T_0 = 2.725$ K · ตอนนั้นร้อนกี่ K</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2.725 \times 1101 \approx 3000$ K · หารด้วย $a$ = คูณด้วย $1/a$ จากขั้น 4</p>
+    </li>
+  </ol>
+  <p class="fb">รังสีมีกำลังลบมากกว่าสสารหนึ่ง เพราะแต่ละตัวถูกยืดด้วย</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · หาเลข $\tfrac23$ &nbsp;<span class="hint">(สมการ (3) (4) (6))</span></h3>
+  <p class="hint">เดา $a = C\,t^{p}$ · "$\propto t^{k}$" แปลว่า (ค่าคงตัว) $\times\, t^{k}$</p>
+  <ol class="steps">
+    <li data-answer="-1" data-alt="-1.0">
+      <p><strong>ขั้น 1</strong> — $H = p/t \propto t^{k}$ · $k$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$p/t = p\,t^{-1}$</p>
+    </li>
+    <li data-answer="-2" data-alt="-2.0">
+      <p><strong>ขั้น 2</strong> — ซ้ายมือของ (3): $H^2 \propto t^{k}$ · $k$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(t^{-1})^2 = t^{-2}$ ⇒ $k = -2$</p>
+    </li>
+    <li data-answer="-3p" data-alt="-p3">
+      <p><strong>ขั้น 3</strong> — ขวามือ: $\rho \propto a^{-3} = (Ct^p)^{-3} \propto t^{k}$ · เขียน $k$ ด้วย $p$</p>
+      <div class="ans"><input type="text" placeholder="เช่น 5p" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(t^p)^{-3} = t^{-3p}$ · $C^{-3}$ เป็นค่าคงตัว</p>
+    </li>
+    <li data-answer="2/3" data-alt="0.667|0.6667|0.67">
+      <p><strong>ขั้น 4</strong> — ให้กำลังของสองข้างเท่ากัน · $p$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-2 = -3p$ ⇒ $p = \tfrac23$</p>
+    </li>
+  </ol>
+  <p class="fb">$\tfrac23$ มาจาก "$H^2$ มี $t^{-2}$" หารด้วย "สสารมี $a^{-3}$"</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · รังสีครอง &nbsp;<span class="hint">(ทำแบบข้อ 3 · $\rho \propto a^{-4}$)</span></h3>
+  <ol class="steps">
+    <li data-answer="-4p" data-alt="-p4">
+      <p><strong>ขั้น 1</strong> — $\rho \propto t^{k}$ · เขียน $k$ ด้วย $p$</p>
+      <div class="ans"><input type="text" placeholder="เช่น 5p" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(t^p)^{-4} = t^{-4p}$</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5|.5">
+      <p><strong>ขั้น 2</strong> — $p$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-2 = -4p$ ⇒ $p = \tfrac12$</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5|.5">
+      <p><strong>ขั้น 3</strong> — ผลคูณ $H\,t$ ของเอกภพนี้</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$H = p/t$ ⇒ $Ht = p = \tfrac12$ (สสารได้ $\tfrac23$ ในบทที่ 28)</p>
+    </li>
+  </ol>
+  <p class="fb">$\rho \propto a^{-n}$ ⇒ $a \propto t^{2/n}$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · อ่านสมการ (1) &nbsp;<span class="hint">(สมการ (1) (2) (3))</span></h3>
+  <p class="hint">เอกภพสมมุติ: $\rho_{\rm cr} = 10$ และ $\rho_0 = 3$ (หน่วยสมมุติ)</p>
+  <ol class="steps">
+    <li data-answer="10" data-alt="10.0">
+      <p><strong>ขั้น 1</strong> — วันนี้ ($a = 1$, $\rho = \rho_0$) ในวงเล็บของ (1) รวมได้เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 + (10 - 3)/1 = 10 = \rho_{\rm cr}$ · คูณ $8\pi G/3$ แล้วได้ $H_0^2$ พอดีตาม (2)</p>
+    </li>
+    <li data-answer="28" data-alt="28.0">
+      <p><strong>ขั้น 2</strong> — พจน์ความโค้ง $(\rho_{\rm cr} - \rho_0)/a^2$ ตอน $a = \tfrac12$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$7 \div \tfrac14 = 28$</p>
+    </li>
+    <li data-answer="10" data-alt="10.0">
+      <p><strong>ขั้น 3</strong> — ถ้าจะให้เอกภพนี้ flat ต้องมี $\rho_0$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\rho_0 = \rho_{\rm cr} = 10$ ⇒ พจน์ความโค้งเป็นศูนย์ เหลือสมการ (3)</p>
+    </li>
+  </ol>
+  <p class="fb">วันนี้ (1) ให้ $H_0$ เสมอ · flat คือ $\rho_0 = \rho_{\rm cr}$</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · critical density เป็นตัวเลข &nbsp;<span class="hint">(สมการ (2) (7) · $h = 1$ · หน่วย cgs)</span></h3>
+  <p class="hint">ตอบเฉพาะตัวเลขหน้า $\times 10^{n}$ ทศนิยม 2–3 ตำแหน่ง</p>
+  <ol class="steps">
+    <li data-answer="3.24" data-alt="3.241|3.2409">
+      <p><strong>ขั้น 1</strong> — $H_0 = 10^7\ {\rm cm/s} \div 3.0856\times10^{24}\ {\rm cm} = \square \times 10^{-18}$ s⁻¹</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$100$ km/s $= 10^7$ cm/s · $10^7 / 3.0856\times10^{24} = 3.24\times10^{-18}$</p>
+    </li>
+    <li data-answer="1.676" data-alt="1.68|1.6764|1.677">
+      <p><strong>ขั้น 2</strong> — $8\pi G = \square \times 10^{-6}$ (ใช้ $G = 6.67\times10^{-8}$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$8 \times 3.1416 \times 6.67 = 167.6$ ⇒ $1.676\times10^{-6}$</p>
+    </li>
+    <li data-answer="1.88" data-alt="1.880|1.879|1.875">
+      <p><strong>ขั้น 3</strong> — $\rho_{\rm cr} = 3H_0^2 / (8\pi G) = \square \times 10^{-29}$ g/cm³</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3 \times 10.50\times10^{-36} \div 1.676\times10^{-6} = 1.88\times10^{-29}$ ตรงกับหนังสือ</p>
+    </li>
+  </ol>
+  <p class="fb">ภาพให้จำ (นอกหนังสือ): หารด้วยมวล proton $1.67\times10^{-24}$ g ได้ราว 11 proton ต่อลูกบาศก์<strong>เมตร</strong></p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 7 · ใครครองเมื่อไร &nbsp;<span class="hint">(สมการ (4) (5) (6) · ทวน $1+z$)</span></h3>
+  <p class="hint">สมมุติวันนี้ $\rho_r/\rho_m = 1/1000$ (ตัวเลขสมมุติให้คิดง่าย ไม่ใช่ค่าจริง)</p>
+  <ol class="steps">
+    <li data-answer="-1" data-alt="-1.0">
+      <p><strong>ขั้น 1</strong> — $\rho_r/\rho_m \propto a^{k}$ · $k$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$a^{-4}/a^{-3} = a^{-1}$</p>
+    </li>
+    <li data-answer="1/1000" data-alt="0.001|.001">
+      <p><strong>ขั้น 2</strong> — $\rho_r/\rho_m = \dfrac{1/1000}{a}$ · ที่ $a$ เท่าไรสองค่าเท่ากัน ($a_{\rm eq}$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ตั้งให้อัตราส่วน $= 1$ ⇒ $a = \tfrac1{1000}$</p>
+    </li>
+    <li data-answer="999" data-alt="999.0">
+      <p><strong>ขั้น 3</strong> — $z$ ของ $a_{\rm eq}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + z = 1000$ ⇒ $z = 999$</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5|.5">
+      <p><strong>ขั้น 4</strong> — ก่อน $a_{\rm eq}$ ($a$ เล็กกว่า) เอกภพนี้มี $a \propto t^{p}$ · $p$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$a$ เล็ก ⇒ $\rho_r/\rho_m$ มากกว่า 1 ⇒ รังสีครอง ⇒ $p = \tfrac12$ (ข้อ 4)</p>
+    </li>
+  </ol>
+  <p class="fb">ก่อน $a_{\rm eq}$ ได้ $t^{1/2}$ · หลังจากนั้นได้ $t^{2/3}$ · นี่คือหักมุมในรูป 1.2</p>
+</div>
+
+<h2>อ่านต่อ</h2>
+<p>
+เปิดหนังสือ §1.1 ช่วงสมการ (1.2)–(1.6) อ่านคู่กับ <a href="../reference/dodelson-ch01.html">คู่มืออ่านบทที่ 1</a>
+สมการ (1.2) (1.3) (1.4) คือสมการ (1) (2) (5) ของบทนี้ · ส่วนรูป 1.3 ให้ดูว่าเส้นของ radiation ชันกว่า matter ตามกำลัง $-4$ กับ $-3$
+<span class="src">S. Dodelson, <em>Modern Cosmology</em> (2003) บทที่ 1</span>
+</p>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · อ่านหนังสือแล้วติดประโยคไหน บอกเลขหน้ามาได้เลย
+  <div class="nav">
+    <a href="../reference/dodelson-index.html">📎 แผนที่หนังสือ Dodelson</a>
+    <a href="./0041-expanding-universe.html">← บทที่ 28 · เอกภพขยายตัว</a>
+    <a href="./0042-expansion-drill.html">ชุดฝึกบทที่ 28</a>
+  </div>
+</div>
+
+</body>
+</html>
