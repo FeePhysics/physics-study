@@ -12,7 +12,7 @@
 ผลลัพธ์ไปที่ build/ ซึ่งไม่เข้า git · **ห้ามแก้ไฟล์ใน build/ โดยตรง**
 มันถูกสร้างใหม่ทับทุกครั้ง — แก้ที่ lessons/ แล้วรันใหม่
 """
-import pathlib, re, sys
+import html as htmlmod, pathlib, re, sys
 
 try:
     from latex2mathml.converter import convert as tex2mml
@@ -28,6 +28,21 @@ FONTS = ('<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>\n
          '&family=IBM+Plex+Mono:wght@400&family=STIX+Two+Math&display=swap">')
 
 
+def tex(src: str) -> str:
+    """ถอด HTML entity ก่อนส่งให้ latex2mathml
+
+    ⚠️ ใน HTML ต้องเขียน `$7 &gt; 5$` (หรือ `&lt;`) แต่ latex2mathml อ่าน `&gt;` เป็นตัวอักษร
+    สี่ตัว ⇒ ฉบับ build ขึ้น "7&gt;5" บนจอ (เกิดจริง 2026-11-15 · บท P1 บนมือถือแบ ·
+    และค้างอยู่ในคู่มือ Dodelson หลายบทโดยไม่มีประตูไหนจับ) · KaTeX ฝั่ง lessons/ ไม่เป็น
+    เพราะเบราว์เซอร์ถอด entity ให้ก่อน ⇒ เห็นแค่ใน build/"""
+    src = htmlmod.unescape(src)
+    # latex2mathml ไม่รู้จัก aligned ⇒ & ขึ้นเป็นตัวอักษรบนจอ (Dodelson บทที่ 3 · ค้างมาตั้งแต่สร้าง)
+    #   array{rl} ให้ผลเดียวกัน (ขวาชิด | ซ้ายชิด) และแปลงได้
+    src = src.replace(r"\begin{aligned}", r"\begin{array}{rl}").replace(r"\end{aligned}", r"\end{array}")
+    # \\[2mm] (ระยะห่างแถว) ขึ้นเป็น "[2mm]" บนจอ ⇒ ตัดระยะทิ้ง เหลือขึ้นบรรทัดใหม่
+    return re.sub(r"\\\\\[[^\]]*\]", r"\\\\", src)
+
+
 def to_mathml(html: str) -> str:
     """แทน $$...$$ และ $...$ ด้วย MathML
 
@@ -41,9 +56,12 @@ def to_mathml(html: str) -> str:
 
     def block(m):
         return f'<math xmlns="http://www.w3.org/1998/Math/MathML" display="block">' \
-               + tex2mml(m.group(1).strip()).split(">", 1)[1]
+               + tex2mml(tex(m.group(1).strip())).split(">", 1)[1]
     html = re.sub(r"\$\$(.+?)\$\$", block, html, flags=re.S)
-    html = re.sub(r"(?<!\\)\$([^$]+?)\$", lambda m: tex2mml(m.group(1)), html)
+    html = re.sub(r"(?<!\\)\$([^$]+?)\$", lambda m: tex2mml(tex(m.group(1))), html)
+    # ด่าน: entity ที่หลุดเข้าไปจะกลายเป็น <mi>&</mi><mi>g</mi><mi>t</mi> ⇒ จอขึ้น "7&gt;5"
+    if "<mi>&</mi>" in html:
+        sys.exit("❌ มี HTML entity หลุดเข้าไปใน MathML — ตรวจ tex() ใน build_standalone.py")
 
     # latex2mathml ทำ | เป็นตัวดำเนินการที่มีช่องว่างสองข้าง ⇒ เค็ต $a^\dagger|2\rangle$
     # ขึ้นเป็น "a† | 2⟩" ดูเหมือนพิมพ์ผิด (บทที่ 18 · ผู้เรียนทักมา) · ค่าสัมบูรณ์ $|x|$ ก็ควรชิดอยู่แล้ว

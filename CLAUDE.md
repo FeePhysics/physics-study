@@ -219,6 +219,7 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 - ล่าสุด: **บทที่ 27** `lessons/0040-time-order.html` (time ordering $T$ ⇒ Feynman propagator $D_F$ · เส้น = $D_F$) · learning record `0047` — **"ผลรอบแรก" ยังรอผล**
 - งานถัดไป: ผลบทที่ 27 → แก้ → ต่อช่วง C (amplitude ของการชน · เช็คพอยต์อ่าน Tong บทที่ 3) · แวะ GR ยังเปิดอยู่
 - ⚠️ `quiz.js` รับตัว O แทนเลข 0 แล้ว (iPad · 2026-11-11)
+- ⚠️ **2026-11-15 `build/` ขึ้น `7&gt;5` บนจอ** — latex2mathml ไม่ถอด HTML entity ใน `$...$` (และไม่รู้จัก `aligned` · `\\[2mm]`) ⇒ แก้ที่ `tex()` ใน `build_standalone.py` + ด่านในตัว build · กระทบคู่มือ Dodelson บท 3, 6, 7, 8, 9 ด้วย (ไฟล์ build เก่าที่ส่งไปแล้วยังผิด)
 - ⚠️ งานเสร็จแต่ละชิ้นต้อง merge เข้า `main` — session ใหม่เริ่มจาก `main` (เคยค้างที่บทที่ 23 ทั้งที่เรียนถึงบทที่ 26)
 - ⚠️ `build_standalone.py` เคยปล่อยสคริปต์ KaTeX CDN ค้างในทุกไฟล์ build ⇒ iPad ขึ้น "Script error." · แก้แล้ว + ด่านกันในตัว build (2026-11-10)
 - ⚠️ ลิงก์ artifact ch25 เปิดจาก session 2026-11-10 ไม่ได้ (not found) ⇒ ส่งเป็นไฟล์ `build/` แทน
