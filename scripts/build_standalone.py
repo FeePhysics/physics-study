@@ -68,7 +68,7 @@ def build(src: pathlib.Path) -> pathlib.Path:
     # ตัดก่อนแปลง MathML — ไม่งั้น $$ ใน onload ของ auto-render ถูกแปลงเป็น <math>
     # จน regex ข้างล่างจับแท็ก katex ไม่ได้ ⇒ สคริปต์ CDN ค้าง ⇒ "Script error." (iPad 2026-11-10)
     # ตัด <link>/<script> ที่ชี้ไฟล์ข้าง ๆ และ CDN ออกให้หมด แล้วฝังของจริงแทน
-    html = re.sub(r'\s*<link rel="stylesheet" href="\.\./assets/lesson\.css">', "", html)
+    html = re.sub(r'\s*<link rel="stylesheet" href="(?:\.\./)+assets/lesson\.css">', "", html)
     html = re.sub(r'\s*<link[^>]*katex[^>]*>', "", html)
     html = re.sub(r'\s*<script[^>]*katex[^>]*>\s*</script>', "", html, flags=re.S)
     html = re.sub(r'\s*<script[^>]*quiz\.js[^>]*>\s*</script>', "", html)
@@ -102,7 +102,7 @@ def build(src: pathlib.Path) -> pathlib.Path:
 if __name__ == "__main__":
     args = sys.argv[1:]
     if args == ["--all"]:
-        srcs = sorted((ROOT/"lessons").glob("*.html")) + sorted((ROOT/"reference").glob("*.html"))
+        srcs = sorted((ROOT/"lessons").glob("*.html")) + sorted((ROOT/"reference").glob("*.html")) + sorted((ROOT/"olympiad").glob("*/*.html"))  # ชุดโอลิมปิก (lessons/ worksheets/ reference/)
     elif args:
         srcs = [ROOT / a for a in args]
     else:

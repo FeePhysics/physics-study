@@ -17,7 +17,7 @@ import pathlib, shutil, subprocess, sys, tempfile, filecmp
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 BUILD = ROOT / "build"
-srcs = sorted((ROOT/"lessons").glob("*.html")) + sorted((ROOT/"reference").glob("*.html"))
+srcs = sorted((ROOT/"lessons").glob("*.html")) + sorted((ROOT/"reference").glob("*.html")) + sorted((ROOT/"olympiad").glob("*/*.html"))  # ชุดโอลิมปิก (lessons/ worksheets/ reference/)
 
 if not BUILD.exists():
     sys.exit("ยังไม่เคยสร้าง build/ — รัน: python3 scripts/build_standalone.py --all")

@@ -79,7 +79,7 @@ def check(f: pathlib.Path, html: str):
     # ── โครงที่ทุกบทต้องมี ────────────────────────────────
     if 'assets/lesson.css' not in html:
         bad("ไม่ได้ link assets/lesson.css — บทนี้จะหน้าตาไม่เหมือนบทอื่น")
-    if 'class="ask"' not in html:
+    if 'class="ask"' not in html and f.parent.name != 'worksheets':   # ใบงานนักเรียนเป็นกระดาษ ไม่มีครู Claude
         bad('ไม่มีกล่อง .ask — สกิลกำหนดว่าทุกบทต้องเตือนให้ผู้เรียนถามครูได้')
     if not re.search(r'<h1[ >]', html):
         bad("ไม่มี <h1>")
@@ -205,6 +205,7 @@ def check(f: pathlib.Path, html: str):
 
 
 targets = sorted((ROOT / 'lessons').glob('*.html')) + sorted((ROOT / 'reference').glob('*.html'))
+targets += sorted((ROOT / 'olympiad').glob('*/*.html'))   # ชุดโอลิมปิก
 tpl = ROOT / 'assets' / '_template.html'
 if tpl.exists():
     targets.append(tpl)

@@ -371,7 +371,7 @@ def keys_of(tag: str):
 
 
 def main():
-    files = sorted((ROOT / "lessons").glob("*.html"))
+    files = sorted((ROOT / "lessons").glob("*.html")) + sorted((ROOT / "olympiad" / "lessons").glob("*.html"))
     bad, n_keys, n_cases = [], 0, 0
 
     for f in files:
