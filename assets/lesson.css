@@ -107,6 +107,15 @@ math { max-width: 100%; overflow-x: auto; }
   font-size: .7rem; letter-spacing: .09em; color: var(--flag);
 }
 
+/* โจทย์เต็มของข้อฝึก — วางบนสุดของ .quiz ก่อนขั้นย่อย
+   ⚠️ เกิดจริง 2026-11-18 (P2 รอบแรก 2/6): หัวข้อสั้น ๆ + คำถามย่อยที่ใช้ศัพท์ย่อ
+   ⇒ "ไม่เข้าใจคำถาม" สองข้อ · ผู้เรียนต้องเห็นภาพทั้งโจทย์ก่อนจะตอบขั้นย่อยได้ */
+.prob { background: var(--panel); border-left: 2px solid var(--accent); padding: .7rem 1rem; margin: .5rem 0 1rem; }
+.prob::before {
+  content: "โจทย์"; display: block; font-family: "IBM Plex Mono", monospace;
+  font-size: .7rem; letter-spacing: .09em; color: var(--accent); margin-bottom: .3rem;
+}
+
 .src { font-size: .85rem; color: var(--ink-soft); }
 .src::before { content: "— ที่มา: "; }
 

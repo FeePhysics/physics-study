@@ -338,12 +338,19 @@ HAND = [
     ("0037-vertex.html", "1/8", "8", "wrong"),
     ("0037-vertex.html", "A", "B", "wrong"),
     ("0037-vertex.html", "A", "รูป A", "right"),
+
+    # ── โอลิมปิก P2 · รังจากเศษที่จับคู่ (ผลจริงรอบแรก 2/6 · 2026-11-18) ──────
+    ("p02-paired-residues.html", "6", "5", "wrong"),         # ลืมรังเดี่ยว {5} (ผลจริงของแบ)
+    ("p02-paired-residues.html", "8", "14", "wrong"),        # คิดว่า "หรือ" ทำให้ต้องใช้มากขึ้น (ผลจริงของแบ)
+    ("p02-paired-residues.html", "4", "5", "wrong"),         # ใช้ m/2+1 กับ m คี่
 ]
 
 
 def run_hand(bad):
     for fname, key, typed, want in HAND:
         f = ROOT / "lessons" / fname
+        if not f.exists():
+            f = ROOT / "olympiad" / "lessons" / fname   # ชุดโอลิมปิก
         src = f.read_text(encoding="utf-8")
         hit = None
         for tag in re.findall(r"<(?:div|li)[^>]*data-answer=[^>]*>", src):

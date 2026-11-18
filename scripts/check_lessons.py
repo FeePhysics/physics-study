@@ -108,6 +108,14 @@ def check(f: pathlib.Path, html: str):
             continue
         attrs, block = hm.group(1), chunk[hm.end():]
 
+        # ── ชุดโอลิมปิก: ทุกข้อต้องมี <p class="prob"> โจทย์เต็ม ก่อนขั้นย่อย/ตัวเลือก ──
+        # ⚠️ P2 รอบแรก (2026-11-18): หัวข้อสั้น + ขั้นย่อยศัพท์ย่อ ⇒ "ไม่เข้าใจคำถาม" สองข้อ
+        if 'olympiad' in f.parts and f.parent.name == 'lessons':
+            pm = block.find('class="prob"')
+            first = min([i for i in (block.find('<ol'), block.find('class="choices"'), block.find('class="ans"')) if i != -1] or [len(block)])
+            if pm == -1 or pm > first:
+                bad('ข้อฝึกไม่มี <p class="prob"> โจทย์เต็มก่อนขั้นย่อย — ผู้เรียนต้องเห็นทั้งโจทย์ก่อน')
+
         # ── ขั้นที่คำตอบเป็น "ตัวเลข" ช่องพิมพ์ต้องบอกว่าขอตัวเลข ──
         # ⚠️ ไม่บอก = ผู้เรียนตอบเป็น *นิพจน์* ซึ่งถูกตามที่คำถามเขียน แต่ถูกนับว่าผิด
         #    (เกิดจริง 2026-09-24 · บทที่ 10 ข้อ 4: ถาม "ค่า off-shell" ตอบ ptt-pxx
