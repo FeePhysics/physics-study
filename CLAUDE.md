@@ -216,8 +216,8 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 - ชุดฝึกจุดยอด `0038-vertex-drill.html` ผ่าน 6/6
 - บทที่ 26 `0039-dyson.html` (Dyson series) ผ่าน 6/6 (รอบสาม)
 - ล่าสุด: **บทที่ 27** `lessons/0040-time-order.html` (time ordering $T$ ⇒ Feynman propagator $D_F$ · เส้น = $D_F$) · learning record `0047` — **ผ่าน 6/6** (รอบสอง · รอบแรก 5/6 ข้อ 6 อ้างรูปที่บทไม่ได้วาด ⇒ เพิ่มรูป)
-- ล่าสุด (สาย QFT): **บทที่ 29** `lessons/0043-feynman-rules.html` (อ่านรูปเป็นสูตร · ประกอบกติกา Feynman) + ชีท `reference/0002-feynman-rules.html` · learning record `0049` — **"ผลรอบแรก" ยังรอผล**
-- งานถัดไป (สาย QFT): ผลบทที่ 29 → **เช็คพอยต์อ่าน Tong บทที่ 3 = ปิดช่วง C** · ต้องให้แบแนบ `three.pdf` (คลาวด์โหลดจาก damtp ไม่ได้ · 403)
+- ล่าสุด (สาย QFT): **บทที่ 30** `lessons/0044-feynman-rules.html` (อ่านรูปเป็นสูตร · ประกอบกติกา Feynman) + ชีท `reference/0002-feynman-rules.html` · learning record `0050` — **"ผลรอบแรก" ยังรอผล**
+- งานถัดไป (สาย QFT): ผลบทที่ 30 → **เช็คพอยต์อ่าน Tong บทที่ 3 = ปิดช่วง C** · ต้องให้แบแนบ `three.pdf` (คลาวด์โหลดจาก damtp ไม่ได้ · 403)
 - ⚠️ `quiz.js` รับตัว O แทนเลข 0 แล้ว (iPad · 2026-11-11)
 - ⚠️ งานเสร็จแต่ละชิ้นต้อง merge เข้า `main` — session ใหม่เริ่มจาก `main` (เคยค้างที่บทที่ 23 ทั้งที่เรียนถึงบทที่ 26)
 - ⚠️ `build_standalone.py` เคยปล่อยสคริปต์ KaTeX CDN ค้างในทุกไฟล์ build ⇒ iPad ขึ้น "Script error." · แก้แล้ว + ด่านกันในตัว build (2026-11-10)
