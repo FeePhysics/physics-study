@@ -16,8 +16,257 @@
 <body>
 
 <h1>Thesis บทที่ 1 · Bayes กับพารามิเตอร์ต่อเนื่อง</h1>
-<p class="meta">เส้นทาง thesis (เรียนขนานกับเส้น QFT) · ~15 นาที · Trotta (2008) §2.2-2.3 สมการ (5)-(10) ·
+<p class="meta">เส้นทาง thesis (เรียนขนานกับเส้น QFT) · ~20 นาที · Trotta (2008) §2.2-2.3 สมการ (5)-(10) ·
 แผนที่ทั้งเส้นทางอยู่ใน <a href="../reference/thesis-roadmap.html">ชีทแผนที่ paper</a></p>
+
+
+<h2>⓪ เดิมพันสองครั้งของ Laplace</h2>
+
+<p>Pierre-Simon Laplace อยากรู้มวลของดาวเสาร์ ไม่มีใครเอาดาวเสาร์ขึ้นตาชั่งได้ สิ่งที่มีคือข้อมูลการโคจรของดาวเคราะห์
+ซึ่ง Alexis Bouvard นักดาราศาสตร์ร่วมยุคคำนวณออกมาว่ามวลดาวเสาร์เท่ากับ $1/3512$ ของมวลดวงอาทิตย์
+Laplace ไม่หยุดแค่ตัวเลขนั้น เขาเอาสูตรความน่าจะเป็นแบบเดียวกับที่บทนี้จะสอน มาคำนวณว่าตัวเลขนี้<em>น่าเชื่อแค่ไหน</em>
+แล้วประกาศว่า <strong>"พนันได้ 11,000 ต่อ 1 ว่าค่านี้คลาดจากความจริงไม่ถึงหนึ่งในร้อย"</strong>
+เขาทำแบบเดียวกันกับดาวพฤหัสซึ่งได้ $1/1070$ และพนันสูงกว่าเดิมอีก คือล้านต่อหนึ่ง</p>
+
+
+<p><strong>ลองทายก่อนเลื่อนลงไป</strong> สองเดิมพันนี้ Laplace ชนะกี่ครั้ง</p>
+
+<figure>
+<!--FIG:laplace-->
+<svg role="img" aria-label="Laplace พนันว่ามวลดาวเสาร์คลาดไม่ถึง 1 เปอร์เซ็นต์ ค่าจริงห่าง 0.4 เปอร์เซ็นต์ ชนะ ดาวพฤหัสค่าจริงห่าง 2.2 เปอร์เซ็นต์ แพ้" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 540 244.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ 
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 244.8 
+L 540 244.8 
+L 540 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 18.36 161.401914 
+L 521.64 161.401914 
+L 521.64 18.36 
+L 18.36 18.36 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 205.292571 75.576766 
+L 349.086857 75.576766 
+L 349.086857 49.169028 
+L 205.292571 49.169028 
+z
+" clip-path="url(#pa7bff607b5)" style="fill: #c9e7c9; stroke: #2ca02c; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 205.292571 148.931593 
+L 349.086857 148.931593 
+L 349.086857 122.523855 
+L 205.292571 122.523855 
+z
+" clip-path="url(#pa7bff607b5)" style="fill: #c9e7c9; stroke: #2ca02c; stroke-linejoin: miter"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m35ac661e00" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m35ac661e00" x="61.498286" y="161.401914" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="61.498286" y="187.933652" transform="rotate(-0 61.498286 187.933652)">-3</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m35ac661e00" x="133.395429" y="161.401914" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="133.395429" y="187.933652" transform="rotate(-0 133.395429 187.933652)">-2</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#m35ac661e00" x="205.292571" y="161.401914" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="205.292571" y="187.933652" transform="rotate(-0 205.292571 187.933652)">-1</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m35ac661e00" x="277.189714" y="161.401914" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="277.189714" y="187.933652" transform="rotate(-0 277.189714 187.933652)">0</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#m35ac661e00" x="349.086857" y="161.401914" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="349.086857" y="187.933652" transform="rotate(-0 349.086857 187.933652)">1</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m35ac661e00" x="420.984" y="161.401914" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="420.984" y="187.933652" transform="rotate(-0 420.984 187.933652)">2</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#m35ac661e00" x="492.881143" y="161.401914" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="492.881143" y="187.933652" transform="rotate(-0 492.881143 187.933652)">3</text>
+     </g>
+    </g>
+    <g id="text_8">
+     <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="270" y="218.952695" transform="rotate(-0 270 218.952695)">ห่างจากค่าของ Laplace (%)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2"/>
+   <g id="line2d_8">
+    <defs>
+     <path id="m27e0e2deab" d="M 0 5 
+C 1.326016 5 2.597899 4.473168 3.535534 3.535534 
+C 4.473168 2.597899 5 1.326016 5 0 
+C 5 -1.326016 4.473168 -2.597899 3.535534 -3.535534 
+C 2.597899 -4.473168 1.326016 -5 0 -5 
+C -1.326016 -5 -2.597899 -4.473168 -3.535534 -3.535534 
+C -4.473168 -2.597899 -5 -1.326016 -5 0 
+C -5 1.326016 -4.473168 2.597899 -3.535534 3.535534 
+C -2.597899 4.473168 -1.326016 5 0 5 
+z
+" style="stroke: #000000"/>
+    </defs>
+    <g clip-path="url(#pa7bff607b5)">
+     <use xlink:href="#m27e0e2deab" x="277.189714" y="62.372897" style="stroke: #000000"/>
+    </g>
+   </g>
+   <g id="line2d_9">
+    <defs>
+     <path id="m3147924472" d="M 0 -11 
+L -2.469654 -3.399187 
+L -10.461622 -3.399187 
+L -3.995984 1.298374 
+L -6.465638 8.899187 
+L -0 4.201626 
+L 6.465638 8.899187 
+L 3.995984 1.298374 
+L 10.461622 -3.399187 
+L 2.469654 -3.399187 
+z
+" style="stroke: #000000; stroke-linejoin: bevel"/>
+    </defs>
+    <g clip-path="url(#pa7bff607b5)">
+     <use xlink:href="#m3147924472" x="306.175508" y="62.372897" style="fill: #2ca02c; stroke: #000000; stroke-linejoin: bevel"/>
+    </g>
+   </g>
+   <g id="line2d_10">
+    <g clip-path="url(#pa7bff607b5)">
+     <use xlink:href="#m27e0e2deab" x="277.189714" y="135.727724" style="stroke: #000000"/>
+    </g>
+   </g>
+   <g id="line2d_11">
+    <defs>
+     <path id="m6103c36664" d="M 0 -11 
+L -2.469654 -3.399187 
+L -10.461622 -3.399187 
+L -3.995984 1.298374 
+L -6.465638 8.899187 
+L -0 4.201626 
+L 6.465638 8.899187 
+L 3.995984 1.298374 
+L 10.461622 -3.399187 
+L 2.469654 -3.399187 
+z
+" style="stroke: #000000; stroke-linejoin: bevel"/>
+    </defs>
+    <g clip-path="url(#pa7bff607b5)">
+     <use xlink:href="#m6103c36664" x="432.684355" y="135.727724" style="fill: #d62728; stroke: #000000; stroke-linejoin: bevel"/>
+    </g>
+   </g>
+   <g id="patch_5">
+    <path d="M 18.36 161.401914 
+L 521.64 161.401914 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'" transform="translate(25.549714 54.885592)">ดาวเสาร์</text>
+    <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'" transform="translate(25.549714 81.904635)">11,000 : 1</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 15px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="306.175508" y="40.366448" transform="rotate(-0 306.175508 40.366448)">ชนะ  (ค่าจริง +0.4%)</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'" transform="translate(25.549714 128.24042)">ดาวพฤหัส</text>
+    <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'" transform="translate(25.549714 155.259463)">1,000,000 : 1</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 15px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="432.684355" y="113.721276" transform="rotate(-0 432.684355 113.721276)">แพ้  (ค่าจริง +2.2%)</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pa7bff607b5">
+   <rect x="18.36" y="18.36" width="503.28" height="143.041914"/>
+  </clipPath>
+ </defs>
+</svg>
+
+<!--/FIG:laplace-->
+<figcaption>แถบเขียวคือช่วง ±1% ที่ Laplace พนัน จุดดำคือค่าของ Laplace ดาวคือค่าที่วัดได้ทุกวันนี้ ได้แก่ $1/3497.9$ สำหรับดาวเสาร์ และ $1/1047.35$ สำหรับดาวพฤหัส</figcaption>
+</figure>
+
+<p>สองร้อยปีต่อมาเราตรวจคำตอบได้ ดาวเสาร์คลาดไปแค่ 0.4% Laplace <strong>ชนะ</strong>
+ส่วนดาวพฤหัสคลาดไป 2.2% ซึ่งเกินหนึ่งในร้อย เดิมพันล้านต่อหนึ่ง<strong>แพ้</strong></p>
+
+<p>เรื่องนี้สอนสองอย่าง และ thesis ของแบจะได้ใช้ทั้งคู่ อย่างแรก ปริมาณที่จับต้องไม่ได้ก็ยังบอกได้เป็นตัวเลขว่า
+"มั่นใจแค่ไหน" ไม่ใช่แค่ "ประมาณเท่านี้" อย่างที่สอง ความมั่นใจนั้นคิดภายใต้สมมติฐานว่าความคลาดเคลื่อนของข้อมูลหน้าตาเป็นอย่างไร
+ถ้าสมมติฐานนั้นไม่ตรงกับความจริง ตัวเลขล้านต่อหนึ่งก็ผิดได้ การตรวจว่าสมมติฐานไหนน่าเชื่อกว่ากันคือเรื่องของครึ่งหลังของ Trotta
+(§4 การเทียบโมเดล) ซึ่งจะมาถึงในเส้นทางนี้</p>
+
+<p>ทุกวันนี้คำถามใหญ่ขึ้นเป็น "เอกภพทำจากอะไร" ดาวเทียม Planck วัดแสงที่หลงเหลือจากเอกภพยุคแรก แล้วรายงานว่า
+ความหนาแน่นของสสารมืดคือ $\Omega_c h^2 = 0.120 \pm 0.001$ และของสสารธรรมดาคือ $\Omega_b h^2 = 0.0224 \pm 0.0001$
+ตอนนี้อ่าน $\Omega_c h^2$ กับ $\Omega_b h^2$ เป็นชื่อของตัวเลขสองตัวไปก่อน ความหมายเต็มอยู่ในช่วงฟิสิกส์จักรวาลวิทยาของแผน
+สิ่งที่ควรสังเกตตอนนี้คือเครื่องหมาย $\pm$ ซึ่งเป็นความกว้างของ posterior แบบที่บทนี้จะคำนวณ
+งานนี้เหมาะกับ Bayes เป็นพิเศษ เพราะเรามีเอกภพให้วัดแค่หนึ่งเดียว ย้อนไปทดลองซ้ำไม่ได้
+การตีความความน่าจะเป็นเป็น "ความถี่เมื่อทำซ้ำหลายครั้ง" จึงใช้ยาก แต่การตีความเป็น "ระดับความเชื่อ" ใช้ได้เสมอ
+<span class="src">Planck Collaboration, <em>Planck 2018 results. VI</em>, A&amp;A 641 (2020) A6 · arXiv:1807.06209 ·
+เดิมพันของ Laplace อยู่ใน <em>Théorie analytique des probabilités</em> ของเขาเอง ·
+ค่ามวลปัจจุบันจากระบบค่าคงที่ IAU (ค่า refined)</span></p>
+
+<p>โปรแกรมที่ใช้หาตัวเลขแบบนั้นในงานวิจัยทุกวันนี้ เช่น Cobaya ในเปเปอร์ที่อาจารย์ให้มา ทำสิ่งเดียวกับที่ Laplace ทำ
+คือเอาความเชื่อเดิมคูณกับข้อมูล ต่างกันแค่ทำกับพารามิเตอร์หลายตัวพร้อมกัน บทนี้คือแกนกลางนั้นในรูปที่เล็กที่สุด
+มีพารามิเตอร์ตัวเดียวและคำนวณด้วยมือได้ทุกขั้น ปลายทางของเส้นทางนี้คือแบรัน Cobaya หา posterior ของโมเดลตัวเองได้</p>
 
 <p>paper ทั้งสองอันที่อาจารย์ให้มาเริ่มจากสมการเดียวกัน คือ Trotta สมการ (5) กับ Cobaya สมการ (1)
 ส่วนที่เหลือของทั้งสอง paper เป็นวิธีคำนวณสมการนี้เมื่อมันยากขึ้น บทนี้ทำกรณีที่คำนวณด้วยมือได้ทั้งหมด

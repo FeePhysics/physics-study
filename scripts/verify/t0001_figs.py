@@ -96,6 +96,28 @@ assert abs(res[("Bob", 99)] - 10.1) < 1e-12 and abs(res[("Alice", 99)] - 990/(1/
 fig.tight_layout()
 figs["converge"] = to_svg(fig, "Alice เริ่มที่ 0 Bob เริ่มที่ 20 หลังวัด 1 ครั้งได้ 9 กับ 15 หลังวัด 99 ครั้งได้ราว 9.99 กับ 10.1")
 
+
+# ---------- รูป 0: เดิมพันของ Laplace (ดาวเสาร์ชนะ · ดาวพฤหัสแพ้) ----------
+# Laplace: เสาร์ 1/3512 · พฤหัส 1/1070 ของมวลดวงอาทิตย์ · พนันว่าคลาดไม่ถึง 1/100
+# ค่าปัจจุบัน (IAU refined): ดวงอาทิตย์/เสาร์ = 3497.898 · ดวงอาทิตย์/พฤหัส = 1047.3486
+bets = [("ดาวเสาร์\n11,000 : 1", 3512, 3497.898), ("ดาวพฤหัส\n1,000,000 : 1", 1070, 1047.3486)]
+dev = {}
+fig, ax = plt.subplots(figsize=(7.5, 3.4))
+for i, (name, L, M) in enumerate(bets):
+    d = (1/M - 1/L)/(1/L)*100                 # ค่าจริงห่างจากค่าของ Laplace กี่ %
+    dev[L] = d; y = 1 - i
+    ax.add_patch(Rectangle((-1, y - .18), 2, .36, fc="#c9e7c9", ec="#2ca02c"))
+    ax.plot([0], [y], "o", ms=10, c="k")
+    ax.plot([d], [y], "*", ms=22, c="#d62728" if abs(d) > 1 else "#2ca02c", mec="k")
+    ax.text(-3.5, y, name, ha="left", va="center", fontsize=17)
+    ax.text(d, y + .3, ("แพ้" if abs(d) > 1 else "ชนะ") + f"  (ค่าจริง {d:+.1f}%)", ha="center", fontsize=15)
+assert abs(dev[3512] - 0.40) < 0.01 and abs(dev[1070] - 2.16) < 0.01
+ax.set_xlim(-3.6, 3.4); ax.set_ylim(-.35, 1.6); ax.set_yticks([])
+ax.set_xlabel("ห่างจากค่าของ Laplace (%)")
+for sp in ("left", "right", "top"): ax.spines[sp].set_visible(False)
+fig.tight_layout()
+figs["laplace"] = to_svg(fig, "Laplace พนันว่ามวลดาวเสาร์คลาดไม่ถึง 1 เปอร์เซ็นต์ ค่าจริงห่าง 0.4 เปอร์เซ็นต์ ชนะ ดาวพฤหัสค่าจริงห่าง 2.2 เปอร์เซ็นต์ แพ้")
+
 # ---------- ฝังลงบท ----------
 html = open(LESSON, encoding="utf-8").read()
 for k, s in figs.items():
