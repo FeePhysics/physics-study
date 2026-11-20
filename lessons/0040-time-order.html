@@ -76,8 +76,30 @@
 </p>
 <p>
 ภาพที่ควรจำไว้คือ <strong>เส้นหนึ่งเส้นใน Feynman diagram = $D_F$ ระหว่างปลายสองข้างของเส้น</strong>
-เช่นรูป A ของบทที่ 25 มีสามเส้น คือ เส้น 1–$z$ ได้ $D_F(1 - z)$ เส้น $z$–2 ได้ $D_F(z - 2)$
-และห่วงที่ $z$ ได้ $D_F(0)$ เพราะปลายทั้งสองอยู่ที่จุดเดียวกัน (ห่วงของบทที่ 22)
+ดูรูป A ของบทที่ 25 อีกครั้ง (จุด 1 กับจุด 2 เชื่อมผ่านจุดยอด $z$ และมีห่วงหนึ่งวงที่ $z$):
+</p>
+<svg viewBox="0 0 330 130" width="330" role="img" aria-label="รูป A: เส้นจากจุด 1 ไปจุดยอด z, เส้นจาก z ไปจุด 2, และห่วงที่ z ซึ่งเริ่มและจบที่ z">
+  <g fill="none" stroke="currentColor" stroke-width="1.6">
+    <path d="M30 100 L300 100"/>
+    <circle cx="165" cy="66" r="34"/>
+  </g>
+  <g fill="currentColor">
+    <circle cx="30" cy="100" r="4"/><circle cx="300" cy="100" r="4"/><circle cx="165" cy="100" r="5.5"/>
+  </g>
+  <g fill="currentColor" font-size="12" text-anchor="middle" font-family="IBM Plex Mono, monospace">
+    <text x="30" y="122">1</text><text x="300" y="122">2</text><text x="165" y="122">z</text>
+    <text x="95" y="92">เส้น ①</text><text x="235" y="92">เส้น ②</text><text x="165" y="22">ห่วง ③</text>
+  </g>
+</svg>
+<table class="mono">
+<tr><th>เส้น</th><th>ปลายสองข้าง</th><th>ค่า</th></tr>
+<tr><td>①</td><td>จุด 1 กับ $z$</td><td>$D_F(1 - z)$</td></tr>
+<tr><td>②</td><td>$z$ กับจุด 2</td><td>$D_F(z - 2)$</td></tr>
+<tr><td>③ ห่วง</td><td>$z$ กับ $z$ (ออกจาก $z$ แล้ววนกลับมา $z$)</td><td>$D_F(0)$</td></tr>
+</table>
+<p>
+ห่วงเป็นเส้นที่ปลายทั้งสองข้างอยู่ที่จุดเดียวกัน ระยะระหว่างปลายจึงเป็นศูนย์ ทั้งในเวลาและในอวกาศ นี่คือห่วงที่บทที่ 22 คำนวณไว้
+ทั้งรูปจึงเป็นผลคูณของ $D_F$ สามตัว ตรงกับที่หกปลาย (จุด 1, จุด 2 และขาสี่ขาของ $z$) จับได้เป็นสามคู่
 </p>
 
 <div class="warn">
@@ -199,12 +221,12 @@
       <p class="fb">$|-2| = 2$</p>
     </li>
     <li data-answer="3" data-alt="3.0">
-      <p><strong>ขั้น 2</strong> — รูป A ของบทที่ 25 มี $D_F$ คูณกันกี่ตัว (นับเส้น รวมห่วง)</p>
+      <p><strong>ขั้น 2</strong> — รูป A ในข้อ ④ มี $D_F$ คูณกันกี่ตัว (นับเส้นในรูป รวมห่วง)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$3$ — เส้น 1–$z$ · เส้น $z$–2 · ห่วงที่ $z$ (หกปลายจับเป็นสามคู่)</p>
     </li>
     <li data-answer="0" data-alt="0.0">
-      <p><strong>ขั้น 3</strong> — ห่วงที่ $z$ ได้ $D_F$ ที่ระยะ $r$ เท่าไร</p>
+      <p><strong>ขั้น 3</strong> — ห่วง ③ มีปลายทั้งสองข้างอยู่ที่ $z$ · ระยะ $r$ ระหว่างปลายสองข้างเท่ากับเท่าไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">ปลายทั้งสองอยู่ที่ $z$ ⇒ $r = 0$ และเวลาต่างกัน $0$ ด้วย</p>
     </li>
