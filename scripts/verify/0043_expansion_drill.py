@@ -1,4 +1,4 @@
-"""ชุดฝึกบทที่ 30 — x = d/a คงที่ · λ_obs = (1+z) λ_emit"""
+"""ชุดฝึกบทที่ 29 — x = d/a คงที่ · λ_obs = (1+z) λ_emit"""
 from sympy import Rational as R
 ok = 0
 def check(n, c):
