@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 31 · หมุนครบรอบแล้วติดลบ</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 31 · หมุนครบรอบแล้วติดลบ</h1>
+<p class="meta">บทเรียน · ~25 นาที · เริ่มช่วง D · สามเมทริกซ์ Pauli แล้วคำนวณเองว่า spin ½ หมุน 360° แล้วกลายเป็นลบของตัวเอง</p>
+
+<h2>① คำถามของช่วง D</h2>
+<p>
+สนามทุกตัวที่ผ่านมาตั้งแต่บทที่ 7 เป็นตัวเลขตัวเดียวที่แต่ละจุด หมุนอวกาศไปเท่าไร ค่าที่จุดนั้นก็ยังเป็นเลขเดิม
+ควอนไทซ์แล้วได้อนุภาคที่ไม่มี spin (spin 0) แต่อิเล็กตรอน ควาร์ก และนิวทริโนมี spin ½
+สนามของพวกมันจึงต้องเป็น<strong>คอลัมน์หลายช่องที่เปลี่ยนค่าเมื่อหมุน</strong> (Tong หน้า 81)
+ช่วง D จะไล่จากตรงนี้ไปจนถึงสมการ Dirac บทแรกนี้ใช้แค่เมทริกซ์ $2\times2$ กับการกาง $e^x$ ของบทที่ 26
+</p>
+
+<h2>② สามเมทริกซ์ Pauli</h2>
+<p>
+ในบทที่ 14 เราหมุนคอลัมน์สองช่องด้วยเมทริกซ์ $U \approx 1 + i\alpha$ โดย $\alpha$ เป็นเมทริกซ์ $2\times2$ ที่ Hermitian และเทรซเป็นศูนย์
+และนับได้ว่าเมทริกซ์แบบนี้มีพารามิเตอร์จริง $3$ ตัว ฐานสามตัวที่ใช้กันทั่วไปชื่อ<strong>เมทริกซ์ Pauli</strong> (Tong สมการ (4.17)):
+</p>
+<div class="eq" data-eqno="1">$$ \begin{array}{c} \sigma_1 = \begin{pmatrix}0&1\\1&0\end{pmatrix} \qquad \sigma_2 = \begin{pmatrix}0&-i\\i&0\end{pmatrix} \\ \sigma_3 = \begin{pmatrix}1&0\\0&-1\end{pmatrix} \end{array} $$</div>
+<p>
+เลขใต้ $\sigma$ เป็นแค่ชื่อ บอกว่าเป็นตัวที่หนึ่ง สอง หรือสาม (Tong เขียนเป็นตัวยก $\sigma^1, \sigma^2, \sigma^3$ ซึ่งไม่ใช่การยกกำลัง บทนี้ใช้ตัวห้อยเพื่อไม่ให้สับสนกับ "กำลังสอง")
+เมทริกซ์ $\alpha$ ของบทที่ 14 ทุกตัวเขียนได้เป็น $a_1\sigma_1 + a_2\sigma_2 + a_3\sigma_3$ โดย $a_1, a_2, a_3$ เป็นจำนวนจริงสามตัวที่นับไว้
+</p>
+<p>
+คูณกันเองแล้วได้ตารางที่ต้องใช้ทั้งช่วง D ตรวจเองได้ด้วยการคูณเมทริกซ์ $2\times 2$ ธรรมดา:
+</p>
+<table class="mono">
+<tr><th>ผลคูณ</th><th>ได้</th></tr>
+<tr><td>$\sigma_1^2,\ \sigma_2^2,\ \sigma_3^2$</td><td>$1$ (เมทริกซ์เอกลักษณ์)</td></tr>
+<tr><td>$\sigma_1\sigma_2$ · $\sigma_2\sigma_3$ · $\sigma_3\sigma_1$</td><td>$i\sigma_3$ · $i\sigma_1$ · $i\sigma_2$</td></tr>
+<tr><td>สลับลำดับ เช่น $\sigma_2\sigma_1$</td><td>$-i\sigma_3$ (เครื่องหมายกลับ)</td></tr>
+</table>
+<p>
+แถวสุดท้ายบอกว่าสองตัวที่ต่างกันสลับที่แล้วติดลบ ตำราเขียนรวมทั้งตารางเป็น $\sigma_a\sigma_b + \sigma_b\sigma_a = 2\delta_{ab}$
+คือได้ $2$ เมื่อเป็นตัวเดียวกัน และได้ $0$ เมื่อต่างกัน
+</p>
+
+<h2>③ spin ½ อ่านจากเมทริกซ์ได้ยังไง</h2>
+<p>
+บทเรื่อง <a href="./0003-noether.html">Noether</a> บอกว่าสมมาตรการหมุนคู่กับโมเมนตัมเชิงมุม ในกลศาสตร์ควอนตัม การหมุนรอบแกน $z$ ด้วยมุม $\theta$ เขียนเป็น $e^{i\theta J}$
+และเมทริกซ์ $J$ ที่คูณ $\theta$ อยู่ในเลขชี้กำลังก็คือโมเมนตัมเชิงมุมรอบแกนนั้น (โครงเดียวกับ $e^{-iEt}$ ของบทที่ 26 ที่ตัวคูณเวลาคือพลังงาน)
+สำหรับคอลัมน์สองช่อง ตัวนั้นคือ $\frac12\sigma_3$ (Tong สมการ (4.26) มี $\vec\sigma/2$ ในเลขชี้กำลัง)
+</p>
+<p>
+ค่าโมเมนตัมเชิงมุมที่วัดได้คือค่าเฉพาะของเมทริกซ์นั้น $\sigma_3$ เป็นเมทริกซ์ทแยง ค่าเฉพาะจึงอ่านได้จากแนวทแยงเลยว่าเป็น $+1$ กับ $-1$
+หารสองแล้วได้ $\pm\frac12$ นี่คือที่มาของชื่อ <strong>spin ½</strong>: วัด spin รอบแกนไหนก็ได้แค่ $+\frac12$ หรือ $-\frac12$ (หน่วย $\hbar = 1$)
+</p>
+
+<h2>④ หมุน 360° แล้วได้ลบ</h2>
+<p>
+หมุนคอลัมน์สองช่องรอบแกน $z$ ด้วยมุม $\theta$:
+</p>
+<div class="eq" data-eqno="2">$$ U(\theta) = e^{\,i\theta\sigma_3/2} = \begin{pmatrix} e^{i\theta/2} & 0 \\ 0 & e^{-i\theta/2} \end{pmatrix} $$</div>
+<p>
+ขั้นที่สองทำได้เพราะ $\sigma_3$ เป็นเมทริกซ์ทแยง เมื่อกาง $e^x$ เป็นอนุกรม ทุกพจน์ยังทแยงอยู่ แต่ละช่องบนแนวทแยงจึงเป็นอนุกรมของตัวเลขธรรมดา
+ช่องบนได้ $e^{i\theta/2}$ ช่องล่างได้ $e^{-i\theta/2}$
+</p>
+<p>
+ใส่ $\theta = 2\pi$ ซึ่งคือหมุนครบรอบพอดี: ช่องบนได้ $e^{i\pi} = -1$ ช่องล่างได้ $e^{-i\pi} = -1$ ดังนั้น $U(2\pi) = -1$
+<strong>คอลัมน์ทั้งคอลัมน์กลายเป็นลบของตัวเอง</strong> (Tong (4.27)–(4.28))
+เทียบกับลูกศรธรรมดาในระนาบ หมุนด้วยเมทริกซ์ $\begin{pmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{pmatrix}$
+พอ $\theta = 2\pi$ ได้ $\cos 2\pi = 1$, $\sin 2\pi = 0$ ลูกศรกลับมาที่เดิม
+</p>
+<table class="mono">
+<tr><th>หมุนไป</th><th>ลูกศร (เวกเตอร์)</th><th>spin ½</th></tr>
+<tr><td>$2\pi$ (หนึ่งรอบ)</td><td>กลับมาเหมือนเดิม</td><td>ได้ $-1$ เท่า</td></tr>
+<tr><td>$4\pi$ (สองรอบ)</td><td>กลับมาเหมือนเดิม</td><td>กลับมาเหมือนเดิม</td></tr>
+</table>
+<p>
+ต้นเหตุคือเลข $\frac12$ ในเลขชี้กำลัง มุมที่คอลัมน์ "รู้สึก" เป็นครึ่งหนึ่งของมุมที่อวกาศหมุน
+ของที่หมุนแบบนี้เรียกว่า <strong>spinor</strong> ซึ่งเป็นคำที่ช่วง D จะใช้ตลอด
+</p>
+
+<h2>⑤ แกนไหนก็ได้ผลเดียวกัน</h2>
+<p>
+ถ้าหมุนรอบแกนทิศ $\vec n = (n_1, n_2, n_3)$ ที่ยาว $1$ ตัวในเลขชี้กำลังจะเป็น $\vec n\cdot\vec\sigma = n_1\sigma_1 + n_2\sigma_2 + n_3\sigma_3$ ซึ่งไม่ทแยงแล้ว
+แต่ตารางในข้อ ② ทำให้ $(\vec n\cdot\vec\sigma)^2 = n_1^2 + n_2^2 + n_3^2 = 1$ (พจน์ไขว้หักกันหมดเพราะสลับแล้วติดลบ)
+อนุกรมของ $e^x$ จึงแยกเป็นสองกองเหมือน $e^{i\varphi} = \cos\varphi + i\sin\varphi$ พจน์กำลังคู่ไปรวมเป็น $\cos$ พจน์กำลังคี่รวมเป็น $\sin$:
+</p>
+<div class="eq" data-eqno="3">$$ e^{\,i\theta\,\vec n\cdot\vec\sigma/2} = \cos\tfrac{\theta}{2}\;1 \;+\; i\sin\tfrac{\theta}{2}\;\vec n\cdot\vec\sigma $$</div>
+<p>
+ใส่ $\theta = 2\pi$ ได้ $\cos\pi = -1$ กับ $\sin\pi = 0$ เหลือ $-1$ ทุกแกน ไม่ได้เป็นเรื่องบังเอิญของแกน $z$
+</p>
+
+<div class="warn">
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — ทำไม $-1$ นี้ไม่ขัดกับการทดลอง (ของที่วัดได้มี $\psi$ คูณกันสองตัว เครื่องหมายจึงหักกันเอง) ·
+  boost (การวิ่ง) ซึ่งทำให้ต้องใช้คอลัมน์สี่ช่องและเมทริกซ์ $\gamma$ ของ Tong (4.16) · สมการ Dirac ·
+  เครื่องหมายในเลขชี้กำลัง: Tong ใช้ $e^{+i\theta\sigma/2}$ ตำรากลศาสตร์ควอนตัมหลายเล่มใช้ $e^{-i\theta\sigma/2}$ ผลที่ $2\pi$ เป็น $-1$ เหมือนกัน
+</div>
+
+<p class="src">ตรวจด้วย sympy: ทั้งสามตัว Hermitian เทรซศูนย์ กำลังสองเป็น $1$ · ตาราง ② ครบเก้าคู่ · ค่าเฉพาะ $\pm\frac12$ · สมการ (2) และ $U(2\pi) = -1$, $U(4\pi) = 1$ ·
+สมการ (3) ตรวจเชิงตัวเลขกับแกนเอียง — <code>scripts/verify/0047_spin_half.py</code> (37/37) ·
+อ้างอิง: Tong, <em>Quantum Field Theory</em> §4.1 สมการ (4.17), (4.26)–(4.28) · Peskin &amp; Schroeder §3.2</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ตอบเป็นตัวเลข หรือ <code>i</code> / <code>-i</code> · เศษส่วนพิมพ์แบบ <code>1/2</code> ได้ · มีคำถามให้พิมพ์ในแชต</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · กำลังสองของ $\sigma_2$ &nbsp;<span class="hint">(สมการ (1))</span></h3>
+  <p class="hint">ช่องบนซ้ายของ $\sigma_2\sigma_2$ = (แถวบนของ $\sigma_2$) คูณ (หลักซ้ายของ $\sigma_2$)</p>
+  <ol class="steps">
+    <li data-answer="-i" data-alt="-1i|-1*i">
+      <p><strong>ขั้น 1</strong> — แถวบนของ $\sigma_2$ คือ $(0,\ ?)$ · ช่องที่สองคืออะไร</p>
+      <div class="ans"><input type="text" placeholder="เช่น 5i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-i$</p>
+    </li>
+    <li data-answer="i" data-alt="1i|+i|1*i">
+      <p><strong>ขั้น 2</strong> — หลักซ้ายของ $\sigma_2$ คือ $(0,\ ?)$ (อ่านจากบนลงล่าง) · ช่องที่สองคืออะไร</p>
+      <div class="ans"><input type="text" placeholder="เช่น 5i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$i$</p>
+    </li>
+    <li data-answer="1" data-alt="1.0">
+      <p><strong>ขั้น 3</strong> — ช่องบนซ้าย $= 0\cdot0 + (-i)(i)$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-i^2 = 1$ · ช่องอื่นทำแบบเดียวกันได้ $\sigma_2^2 = 1$</p>
+    </li>
+  </ol>
+  <p class="fb">Pauli ทุกตัวกำลังสองได้เมทริกซ์เอกลักษณ์</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · สลับลำดับแล้วติดลบ &nbsp;<span class="hint">(ตาราง ②)</span></h3>
+  <ol class="steps">
+    <li data-answer="i" data-alt="1i|+i|1*i">
+      <p><strong>ขั้น 1</strong> — ช่องบนซ้ายของ $\sigma_1\sigma_2$ = แถวบนของ $\sigma_1$ $(0, 1)$ คูณหลักซ้ายของ $\sigma_2$ $(0, i)$</p>
+      <div class="ans"><input type="text" placeholder="เช่น 5i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0\cdot 0 + 1\cdot i = i$ · ตรงกับช่องบนซ้ายของ $i\sigma_3$</p>
+    </li>
+    <li data-answer="-i" data-alt="-1i|-1*i">
+      <p><strong>ขั้น 2</strong> — ช่องบนซ้ายของ $\sigma_2\sigma_1$ = แถวบนของ $\sigma_2$ $(0, -i)$ คูณหลักซ้ายของ $\sigma_1$ $(0, 1)$</p>
+      <div class="ans"><input type="text" placeholder="เช่น 5i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-i$ · เครื่องหมายกลับ</p>
+    </li>
+    <li data-answer="0" data-alt="0.0">
+      <p><strong>ขั้น 3</strong> — ช่องบนซ้ายของ $\sigma_1\sigma_2 + \sigma_2\sigma_1$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$i + (-i) = 0$ ⇒ $\sigma_a\sigma_b + \sigma_b\sigma_a = 0$ เมื่อ $a \neq b$</p>
+    </li>
+  </ol>
+  <p class="fb">Pauli สองตัวที่ต่างกันสลับที่แล้วติดลบ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · ค่า spin ที่วัดได้ &nbsp;<span class="hint">(ข้อ ③)</span></h3>
+  <ol class="steps">
+    <li data-answer="1" data-alt="1.0|+1">
+      <p><strong>ขั้น 1</strong> — ค่าเฉพาะที่มากกว่าของ $\sigma_3$ (อ่านจากแนวทแยง)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$+1$ (อีกตัวคือ $-1$)</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5">
+      <p><strong>ขั้น 2</strong> — spin รอบแกน $z$ ค่าที่มากกว่า (ค่าเฉพาะของ $\frac12\sigma_3$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac12$ ⇒ ชื่อ spin ½</p>
+    </li>
+  </ol>
+  <p class="fb">ตัวที่คูณ $\theta$ ในเลขชี้กำลังของการหมุน = โมเมนตัมเชิงมุม</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · หมุนรอบแกน $z$ &nbsp;<span class="hint">(สมการ (2))</span></h3>
+  <p class="hint">ดูช่องบนซ้าย $e^{i\theta/2}$</p>
+  <ol class="steps">
+    <li data-answer="i" data-alt="1i|+i|1*i">
+      <p><strong>ขั้น 1</strong> — ที่ $\theta = \pi$ (ครึ่งรอบ): $e^{i\pi/2}$</p>
+      <div class="ans"><input type="text" placeholder="เช่น 5i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\cos\frac\pi2 + i\sin\frac\pi2 = i$</p>
+    </li>
+    <li data-answer="-1" data-alt="-1.0">
+      <p><strong>ขั้น 2</strong> — ที่ $\theta = 2\pi$ (หนึ่งรอบ): $e^{i\pi}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-1$ · ช่องล่าง $e^{-i\pi}$ ก็ได้ $-1$ ⇒ $U(2\pi) = -1$</p>
+    </li>
+    <li data-answer="1" data-alt="1.0">
+      <p><strong>ขั้น 3</strong> — ลูกศรธรรมดาที่ $\theta = 2\pi$: $\cos 2\pi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1$ — ลูกศรกลับที่เดิม แต่ spinor ติดลบ</p>
+    </li>
+  </ol>
+  <p class="fb">$\frac12$ ในเลขชี้กำลัง ⇒ spinor รู้สึกครึ่งมุม</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · กี่รอบถึงกลับที่เดิม &nbsp;<span class="hint">(ตาราง ④)</span></h3>
+  <ol class="steps">
+    <li data-answer="4" data-alt="4.0">
+      <p><strong>ขั้น 1</strong> — $e^{i\theta/2} = 1$ ครั้งแรกเมื่อ $\theta/2 = 2\pi$ · $\theta$ เท่ากับกี่ $\pi$ (ตอบตัวเลขหน้า $\pi$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\theta = 4\pi$</p>
+    </li>
+    <li data-answer="2" data-alt="2.0">
+      <p><strong>ขั้น 2</strong> — นั่นคือหมุนกี่รอบ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4\pi / 2\pi = 2$ รอบ</p>
+    </li>
+  </ol>
+  <p class="fb">spinor ต้องหมุนสองรอบถึงกลับมาเหมือนเดิม</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · แกนเอียง &nbsp;<span class="hint">(สมการ (3) · $\theta = 2\pi$)</span></h3>
+  <ol class="steps">
+    <li data-answer="1" data-alt="1.0">
+      <p><strong>ขั้น 1</strong> — แกน $\vec n = (0.6,\ 0,\ 0.8)$ · คำนวณ $n_1^2 + n_2^2 + n_3^2$ (= $(\vec n\cdot\vec\sigma)^2$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0.36 + 0 + 0.64 = 1$ ⇒ ใช้สมการ (3) ได้</p>
+    </li>
+    <li data-answer="-1" data-alt="-1.0">
+      <p><strong>ขั้น 2</strong> — ตัวคูณหน้า $1$ ในสมการ (3): $\cos\frac{2\pi}{2}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\cos\pi = -1$</p>
+    </li>
+    <li data-answer="0" data-alt="0.0">
+      <p><strong>ขั้น 3</strong> — ตัวคูณหน้า $\vec n\cdot\vec\sigma$: $\sin\frac{2\pi}{2}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sin\pi = 0$ ⇒ เหลือ $-1$ เหมือนแกน $z$</p>
+    </li>
+  </ol>
+  <p class="fb">หมุนหนึ่งรอบรอบแกนไหนก็ได้ spinor ติดลบ</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · ถ้าอ่านแล้วยังไม่เห็นภาพตรงไหน บอกเลขหัวข้อมาได้เลย
+  <div class="nav">
+    <a href="./0025-nonabelian.html">บทที่ 14 · แรงที่คุยกับตัวเอง (เมทริกซ์ 2×2)</a>
+    <a href="./0039-dyson.html">บทที่ 26 · Dyson series (กาง $e^x$)</a>
+    <a href="./0003-noether.html">Noether</a>
+  </div>
+</div>
+
+</body>
+</html>

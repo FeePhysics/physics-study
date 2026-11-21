@@ -67,6 +67,12 @@ def check(f: pathlib.Path, html: str):
         if re.search('[\u0E00-\u0E7F]', tm.group(1)):
             bad(f'ภาษาไทยใน \\text{{}}: {tm.group(0)!r} — ย้ายออกนอกสมการ')
 
+    # ── ห้ามระยะบรรทัดแบบ \\[8pt] ──
+    # KaTeX รับ แต่ตัวแปลง MathML ของ build_standalone.py ไม่รู้จัก ⇒ ฉบับ build/ ขึ้น "[8pt]" ดิบบนจอ
+    # โดยไม่มีประตูไหนฟ้อง (เกิดจริง 2026-11-21 บทที่ 31 สมการ Pauli) · ใช้ \\ เปล่า ๆ แทน
+    for sm in re.finditer(r'\\\\\[[\d.]+(?:pt|em|ex|mm)\]', html):
+        bad(f'ระยะบรรทัด {sm.group(0)!r} ในสมการ — ฉบับ build ขึ้นเป็นข้อความดิบ · ใช้ \\\\ เปล่า ๆ')
+
 
     # ── ไฟล์ที่ลิงก์ต้องมีอยู่จริง ─────────────────────────
     for rel in re.findall(r'(?:href|src)="((?!https?:|#|mailto:)[^"]+)"', html):
