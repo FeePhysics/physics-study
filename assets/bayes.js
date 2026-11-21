@@ -3,7 +3,7 @@
 
    ── เกมกล่องลับ ─────────────────────────────────────────
      <div class="bayes-game" data-ra="0.3" data-rb="0.7" data-pb="0.5"></div>
-     ra / rb = สัดส่วนลูกแดงในกล่อง A / B · pb = โอกาสที่เหรียญเลือกกล่อง B
+     ra / rb = สัดส่วนลูกแดงในกล่อง A / B · pb = สัดส่วนกล่อง B ในถุง (คอมพิวเตอร์สุ่มหยิบกล่องจากถุง 1 ใบ)
 
    ── ตาราง 100 รอบ ──────────────────────────────────────
      <div class="bayes-grid" data-ra="0.3" data-rb="0.7" data-pb="0.5"></div>
@@ -67,7 +67,7 @@
       secret = Math.random() < pb ? "B" : "A";
       drawn = 0; pB = pb; over = false;
       row.textContent = ""; result.textContent = "";
-      prompt.textContent = "คอมพิวเตอร์โยนเหรียญเลือกกล่องไว้แล้ว 1 ใบ แต่ไม่บอกว่าใบไหน · หยิบลูกดูก่อน แล้วค่อยทาย";
+      prompt.textContent = "คอมพิวเตอร์สุ่มหยิบกล่องจากถุงไว้แล้ว 1 ใบ แต่ไม่บอกว่าใบไหน · หยิบลูกดูก่อน แล้วค่อยทาย";
       bDraw.disabled = gA.disabled = gB.disabled = false;
       boxes.classList.remove("reveal-A", "reveal-B");
       paint();
@@ -117,7 +117,7 @@
       ctrls.append(w);
       return out;
     };
-    const oPB = mk("pb", "เหรียญเลือก B"), oRA = mk("ra", "แดงในกล่อง A"), oRB = mk("rb", "แดงในกล่อง B");
+    const oPB = mk("pb", "กล่อง B ในถุง"), oRA = mk("ra", "ลูกแดงในกล่อง A"), oRB = mk("rb", "ลูกแดงในกล่อง B");
     const bSeen = el("button", "bgr-seen"); bSeen.type = "button";
     bSeen.onclick = () => { st.seen = !st.seen; draw(); };
     const field = el("div", "bgr-field");
@@ -128,7 +128,9 @@
       // ทีละ 0.1 ⇒ nB เป็นพหุคูณของ 10 ⇒ nB·rb เป็นจำนวนเต็มพอดี
       const nB = Math.round(st.pb * 100), nA = 100 - nB;
       const redA = Math.round(nA * st.ra), redB = Math.round(nB * st.rb), red = redA + redB;
-      oPB.textContent = st.pb.toFixed(1); oRA.textContent = st.ra.toFixed(1); oRB.textContent = st.rb.toFixed(1);
+      // แสดงเป็น "กี่ใบ/กี่ลูก จาก 10" — นับได้ด้วยตา ไม่ต้องแปลทศนิยม
+      oPB.textContent = Math.round(st.pb * 10) + " / 10"; oRA.textContent = Math.round(st.ra * 10) + " / 10";
+      oRB.textContent = Math.round(st.rb * 10) + " / 10";
       bSeen.textContent = st.seen ? "↺ ดูทั้ง 100 รอบอีกครั้ง" : "👁 สมมติว่าหยิบได้แดง — ตัดรอบที่ไม่แดงทิ้ง";
       field.textContent = "";
       [["A", nA, redA], ["B", nB, redB]].forEach(([n, tot, r]) => {

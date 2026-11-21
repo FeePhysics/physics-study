@@ -290,7 +290,7 @@ table.mono td { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size
 .bg-result { font-weight: 600; }
 .bg-score { color: var(--ink-soft); font-size: .9rem; }
 .bgr-ctrls { display: flex; flex-direction: column; gap: .3rem; }
-.bgr-slider { display: grid; grid-template-columns: 8.5rem 1fr 2rem; align-items: center; gap: .5rem; font-size: .92rem; }
+.bgr-slider { display: grid; grid-template-columns: 8.5rem 1fr 3.2rem; align-items: center; gap: .5rem; font-size: .92rem; }
 .bgr-slider input { width: 100%; }
 .bgr-field { display: flex; gap: .8rem; flex-wrap: wrap; }
 .bgr-group { flex: 1 1 140px; border-radius: 6px; padding: .4rem; }
