@@ -220,8 +220,9 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 - แผน 21 หัวข้อ: `reference/thesis-roadmap.html` (อัปเดต ✅ ทุกครั้งที่สอนเสร็จ)
 - ⚠️ แบ**ไม่มีพื้น Bayes** (มีแค่ความน่าจะเป็น ม.ปลาย) และชอบ **เล่นเองได้ · เกมทาย · เรื่องเล่า** (2026-11-21)
 - ล่าสุด **T0** `lessons/t0000-bayes-boxes.html` (กล่องสองใบ · เกม · นับ 100 รอบ) แทรกก่อน T1 · record `t0000-bayes-boxes.md` — **ผ่าน 6/6** (2026-11-21)
-  · แล้วค่อย **T1** `lessons/t0001-bayes-gauss.html` (Gaussian · เปิดด้วย Planck) · ถัดไป: T2 prior และการเปลี่ยนตัวแปร (Trotta (11))
-- ของเล่นใช้ซ้ำ: `assets/bayes.js` (`.bayes-game` · `.bayes-grid`) · build ฝัง `../assets/*.js` ทุกตัวให้เอง
+  · **T1** `lessons/t0001-bayes-gauss.html` เขียนใหม่แบบ T0 (ทายก่อน · ระฆังลากได้ · เกม Alice–Bob · กฎสองข้อ) — **รอผล**
+  · ถัดไป: T2 prior และการเปลี่ยนตัวแปร (Trotta (11))
+- ของเล่นใช้ซ้ำ: `assets/bayes.js` (`.bayes-game` · `.bayes-grid` · `.bayes-bell` · `.bayes-duel`) · build ฝัง `../assets/*.js` ทุกตัวให้เอง
 - ⚠️ เขียนบทผ่านสตริง Python ต้องใช้ raw string — `\times` เคยกลายเป็น TAB (`check_lessons` จับแล้ว)
 - Artifact: T1 `Wrgdh2fegJsw8aYfWrrMmF` · แผนที่ `VCojs8XZedFFWL5hSp5mWy`
 

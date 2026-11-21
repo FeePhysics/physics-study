@@ -95,9 +95,11 @@ fig.tight_layout()
 figs["laplace"] = to_svg(fig, "Laplace พนันว่ามวลดาวเสาร์คลาดไม่ถึง 1 เปอร์เซ็นต์ ค่าจริงห่าง 0.4 เปอร์เซ็นต์ ชนะ ดาวพฤหัสค่าจริงห่าง 2.2 เปอร์เซ็นต์ แพ้")
 
 # ---------- ฝังลงบท ----------
-WHERE = {"laplace": "lessons/t0000-bayes-boxes.html",
-         "product": "lessons/t0001-bayes-gauss.html", "converge": "lessons/t0001-bayes-gauss.html"}
+# T1 เปลี่ยนเป็นระฆังแบบลากได้ (assets/bayes.js) แล้ว ⇒ รูป product/converge ไม่ได้ฝังที่ไหน (เก็บโค้ดไว้ตรวจตัวเลข)
+WHERE = {"laplace": "lessons/t0000-bayes-boxes.html"}
 for k, s_ in figs.items():
+    if k not in WHERE:
+        continue
     path = WHERE[k]; html = open(path, encoding="utf-8").read()
     pat = re.compile(rf"(<!--FIG:{k}-->).*?(<!--/FIG:{k}-->)", re.S)
     assert pat.search(html), f"ไม่เจอ marker FIG:{k} ใน {path}"

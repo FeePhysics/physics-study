@@ -9,6 +9,8 @@
      <div class="bayes-grid" data-ra="0.3" data-rb="0.7" data-pb="0.5"></div>
      มีแถบเลื่อนปรับทั้งสามค่า (ทีละ 0.1 ⇒ ทุกจำนวนรอบเป็นจำนวนเต็มพอดี ไม่ต้องปัด)
 
+   ── ระฆัง Gaussian / Alice กับ Bob ── ดู comment ที่ bell() และ duel() ข้างล่าง
+
    ⚠️ build_standalone.py ฝังไฟล์นี้ลงฉบับ build/ ให้เอง (ทุกสคริปต์ที่ชี้ไป ../assets/*.js) */
 (function () {
   "use strict";
@@ -158,9 +160,172 @@
     draw();
   }
 
+  /* ---------- ระฆัง Gaussian: prior × likelihood → posterior ----------
+     <div class="bayes-bell" data-mu="0" data-sw="3" data-m="10" data-s="1" data-n="1" data-hide="n"></div>
+     mu/sw = จุดกลาง/ความกว้างของ prior (Σ) · m/s = ค่าที่วัดได้/ความคลาดของเครื่อง (σ)
+     n = จำนวนครั้งที่วัด (m คือค่าเฉลี่ย) · data-hide = ชื่อแถบที่ซ่อน คั่นด้วยช่องว่าง */
+  const COL = { prior: "#3b6fb6", like: "#d62728", post: "#2ca02c", bob: "#c8692a" };
+  const gauss = (x, c, w) => Math.exp(-(x - c) * (x - c) / (2 * w * w)) / (w * Math.sqrt(2 * Math.PI));
+  // สูตร (3)(4): precision บวกกัน · ค่ากลางถ่วงด้วย precision
+  const update = (mu, S, m, s, n) => {
+    const P = 1 / (S * S), D = n / (s * s), T = P + D;
+    return { P, D, T, c: (mu * P + m * D) / T, w: Math.sqrt(1 / T) };
+  };
+  function canvasFor(root, h) {
+    const cv = el("canvas", "bb-canvas");
+    const ctx = cv.getContext("2d");
+    const size = () => {
+      const W = Math.max(260, root.clientWidth - 32), r = window.devicePixelRatio || 1;
+      cv.width = W * r; cv.height = h * r; cv.style.width = W + "px"; cv.style.height = h + "px";
+      ctx.setTransform(r, 0, 0, r, 0, 0);
+      return W;
+    };
+    return { cv, ctx, size };
+  }
+  function axes(ctx, W, H, x0, x1) {
+    const ink = getComputedStyle(document.body).color || "#555";
+    ctx.strokeStyle = ink; ctx.fillStyle = ink; ctx.globalAlpha = .6; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(0, H - 18); ctx.lineTo(W, H - 18); ctx.stroke();
+    ctx.font = "12px sans-serif"; ctx.textAlign = "center";
+    const step = (x1 - x0) > 30 ? 10 : 5;
+    for (let t = Math.ceil(x0 / step) * step; t <= x1; t += step) {
+      const X = (t - x0) / (x1 - x0) * W;
+      ctx.fillText(String(t), X, H - 3);
+      ctx.beginPath(); ctx.moveTo(X, H - 18); ctx.lineTo(X, H - 14); ctx.stroke();
+    }
+    ctx.textAlign = "right"; ctx.fillText("θ", W - 2, H - 22);
+    ctx.globalAlpha = 1;
+  }
+  function curve(ctx, W, H, x0, x1, f, ymax, col, dash, fill) {
+    ctx.beginPath();
+    for (let i = 0; i <= 400; i++) {
+      const x = x0 + (x1 - x0) * i / 400, X = W * i / 400, Y = (H - 18) - f(x) / ymax * (H - 30);
+      i ? ctx.lineTo(X, Y) : ctx.moveTo(X, Y);
+    }
+    ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.setLineDash(dash ? [7, 5] : []); ctx.stroke(); ctx.setLineDash([]);
+    if (fill) {
+      ctx.lineTo(W, H - 18); ctx.lineTo(0, H - 18); ctx.closePath();
+      ctx.globalAlpha = .15; ctx.fillStyle = col; ctx.fill(); ctx.globalAlpha = 1;
+    }
+  }
+
+  function bell(root) {
+    const st = { mu: num(root, "mu", 0), sw: num(root, "sw", 3), m: num(root, "m", 10), s: num(root, "s", 1),
+                 n: num(root, "n", 1), boxes: false };
+    const hide = (root.dataset.hide || "").split(/\s+/);
+    const x0 = num(root, "xmin", -6), x1 = num(root, "xmax", 16);
+    const ctrls = el("div", "bgr-ctrls");
+    const mk = (key, label, lo, hi, step) => {
+      const w = el("label", "bgr-slider");
+      const s = el("input"); s.type = "range"; s.min = lo; s.max = hi; s.step = step; s.value = st[key];
+      const out = el("output");
+      s.oninput = () => { st[key] = parseFloat(s.value); draw(); };
+      w.append(el("span", null, label), s, out);
+      if (!hide.includes(key)) ctrls.append(w);
+      return out;
+    };
+    const o = {
+      mu: mk("mu", "prior: เชื่อว่าราว ๆ", -5, 15, 0.5), sw: mk("sw", "prior: คลาดได้ ±", 0.5, 6, 0.5),
+      m: mk("m", "วัดได้", -5, 15, 0.5), s: mk("s", "เครื่องคลาดได้ ±", 0.5, 6, 0.5),
+      n: mk("n", "วัดกี่ครั้ง", 1, 100, 1)
+    };
+    const tg = el("label", "bg-toggle"); const cb = el("input"); cb.type = "checkbox";
+    tg.append(cb, document.createTextNode(" แสดงเป็นกล่อง (θ = จำนวนเต็ม แต่ละค่าคือกล่องหนึ่งใบแบบ T0)"));
+    cb.onchange = () => { st.boxes = cb.checked; draw(); };
+    const legend = el("p", "bb-legend");
+    [["prior", COL.prior, false], ["likelihood", COL.like, true], ["posterior", COL.post, false]].forEach(([t, c, d]) => {
+      const k = el("span", "bb-key"); k.style.borderTop = `3px ${d ? "dashed" : "solid"} ${c}`; legend.append(k, document.createTextNode(" " + t + "  "));
+    });
+    const { cv, ctx, size } = canvasFor(root, 220);
+    const out = el("div", "bgr-out");
+    root.append(ctrls, tg, legend, cv, out);
+
+    function draw() {
+      const W = size(), H = 220;
+      ctx.clearRect(0, 0, W, H);
+      for (const k in o) o[k].textContent = String(st[k]);
+      const r = update(st.mu, st.sw, st.m, st.s, st.n);
+      const sd = st.s / Math.sqrt(st.n);                       // ข้อมูล n ตัว = วัดครั้งเดียวที่แม่นขึ้น √n เท่า
+      const fP = x => gauss(x, st.mu, st.sw), fL = x => gauss(x, st.m, sd), fQ = x => gauss(x, r.c, r.w);
+      const ymax = Math.max(fP(st.mu), fL(st.m), fQ(r.c)) * 1.08;
+      axes(ctx, W, H, x0, x1);
+      if (st.boxes) {
+        // T0 ทุกขั้น: กล่องละ prior × likelihood แล้วหารด้วยผลรวม ⇒ แท่งต้องทับเส้นเขียวพอดี
+        const xs = []; for (let t = Math.ceil(x0); t <= x1; t++) xs.push(t);
+        const prod = xs.map(t => fP(t) * fL(t)), Z = prod.reduce((a, b) => a + b, 0);
+        const bw = W / (x1 - x0) * 0.6;
+        ctx.fillStyle = COL.post; ctx.globalAlpha = .45;
+        xs.forEach((t, i) => {
+          const hh = Z ? prod[i] / Z / ymax * (H - 30) : 0, X = (t - x0) / (x1 - x0) * W;
+          ctx.fillRect(X - bw / 2, (H - 18) - hh, bw, hh);
+        });
+        ctx.globalAlpha = 1;
+      }
+      curve(ctx, W, H, x0, x1, fP, ymax, COL.prior, false, false);
+      curve(ctx, W, H, x0, x1, fL, ymax, COL.like, true, false);
+      curve(ctx, W, H, x0, x1, fQ, ymax, COL.post, false, true);
+      out.textContent = "";
+      const line = (t, cls) => out.append(el("p", cls || null, t));
+      const f = x => (Math.round(x * 100) / 100).toString();
+      line("precision ของ prior = 1/" + f(st.sw * st.sw) + " = " + f(r.P));
+      line("precision ของข้อมูล = " + st.n + "/" + f(st.s * st.s) + " = " + f(r.D));
+      line("precision ของ posterior = " + f(r.P) + " + " + f(r.D) + " = " + f(r.T) + "  ⇒ คลาดได้ ±" + f(r.w));
+      line("posterior อยู่ราว ๆ " + f(r.c) + " ± " + f(r.w), "bgr-answer");
+    }
+    window.addEventListener("resize", draw);
+    draw();
+  }
+
+  /* ---------- Alice กับ Bob: วัดเพิ่มทีละครั้ง ----------
+     <div class="bayes-duel" data-truth="10"></div>
+     Alice prior 0 ± 3 · Bob prior 20 ± 1 · เครื่องคลาด ±1 · ค่าจริงซ่อนอยู่ */
+  function duel(root) {
+    const truth = num(root, "truth", 10), s = 1, A = [0, 3], B = [20, 1], x0 = -6, x1 = 26;
+    let data = [];
+    const randn = () => { // Box–Muller
+      let u = 0; while (!u) u = Math.random();
+      return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * Math.random());
+    };
+    const btns = el("div", "bg-btns");
+    const b1 = el("button", "bg-draw", "📏 วัดเพิ่ม 1 ครั้ง"), b10 = el("button", null, "+10 ครั้ง"),
+          b0 = el("button", "bg-new", "↻ เริ่มใหม่");
+    [b1, b10, b0].forEach(b => b.type = "button");
+    btns.append(b1, b10, b0);
+    const legend = el("p", "bb-legend");
+    [["Alice (เริ่ม 0 ± 3)", COL.prior], ["Bob (เริ่ม 20 ± 1)", COL.bob]].forEach(([t, c]) => {
+      const k = el("span", "bb-key"); k.style.borderTop = `3px solid ${c}`; legend.append(k, document.createTextNode(" " + t + "  "));
+    });
+    const { cv, ctx, size } = canvasFor(root, 200);
+    const out = el("div", "bgr-out");
+    root.append(btns, legend, cv, out);
+    function draw() {
+      const W = size(), H = 200, n = data.length;
+      const mean = n ? data.reduce((a, b) => a + b, 0) / n : 0;
+      const a = n ? update(A[0], A[1], mean, s, n) : { c: A[0], w: A[1] };
+      const b = n ? update(B[0], B[1], mean, s, n) : { c: B[0], w: B[1] };
+      const fa = x => gauss(x, a.c, a.w), fb = x => gauss(x, b.c, b.w);
+      const ymax = Math.max(fa(a.c), fb(b.c)) * 1.08;
+      ctx.clearRect(0, 0, W, H);
+      axes(ctx, W, H, x0, x1);
+      curve(ctx, W, H, x0, x1, fa, ymax, COL.prior, false, true);
+      curve(ctx, W, H, x0, x1, fb, ymax, COL.bob, false, true);
+      out.textContent = "";
+      const f = x => (Math.round(x * 100) / 100).toString();
+      out.append(el("p", null, "วัดไปแล้ว " + n + " ครั้ง" + (n ? " · ค่าเฉลี่ยของข้อมูล " + f(mean) : "")));
+      out.append(el("p", null, "Alice: " + f(a.c) + " ± " + f(a.w) + " · Bob: " + f(b.c) + " ± " + f(b.w)));
+      out.append(el("p", "bgr-answer", "สองคนห่างกัน " + f(Math.abs(a.c - b.c))));
+    }
+    const add = k => { for (let i = 0; i < k; i++) data.push(truth + s * randn()); draw(); };
+    b1.onclick = () => add(1); b10.onclick = () => add(10); b0.onclick = () => { data = []; draw(); };
+    window.addEventListener("resize", draw);
+    draw();
+  }
+
   function init() {
     document.querySelectorAll(".bayes-game").forEach(game);
     document.querySelectorAll(".bayes-grid").forEach(grid);
+    document.querySelectorAll(".bayes-bell").forEach(bell);
+    document.querySelectorAll(".bayes-duel").forEach(duel);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();

@@ -57,7 +57,8 @@ def judge(keys, typed: str) -> str:
     for k in keys:
         want = num(k)
         if got is not None and want is not None:
-            tol = max(1e-9, abs(want) * 5e-3)
+            # ต้องตรงกับ quiz.js: คีย์จำนวนเต็มเทียบเป๊ะ
+            tol = 1e-9 if float(want).is_integer() else max(1e-9, abs(want) * 5e-3)
             if abs(got - want) <= tol:
                 return "right"
         elif norm(typed) == norm(k):

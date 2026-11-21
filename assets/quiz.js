@@ -116,7 +116,9 @@
       if (got !== null && want !== null) {
         // ยอมให้ปัดเศษได้ 0.5% — โจทย์บอกว่าตอบเป็นทศนิยมก็ได้ แล้ว 4/15 → 0.2666
         // ต่างจากค่าจริง 6.7e-5 ซึ่งเกิน tolerance แบบสัมบูรณ์ที่แคบไป
-        var tol = Math.max(1e-9, Math.abs(want) * 5e-3);
+        // คีย์จำนวนเต็ม ⇒ ต้องตรงเป๊ะ — ไม่มีอะไรให้ปัด และ 0.5% ของ 505 คือ ±2.5
+        //   ซึ่งดันรับ 506 (เจอ 2026-11-21 T1 ข้อ 3 · check_matcher จับได้)
+        var tol = Number.isInteger(want) ? 1e-9 : Math.max(1e-9, Math.abs(want) * 5e-3);
         if (Math.abs(got - want) <= tol) return 'right';
       }
       else if (norm(typed) === norm(keys[i])) return 'right';
