@@ -36,8 +36,8 @@
 
 <p>ก่อนอ่านต่อ ลองทายดูข้อหนึ่ง</p>
 
-<div class="quiz" data-answer="2">
-  <h3>ทายก่อน · Alice เชื่อว่าค่า θ อยู่ราว ๆ 0 คลาดได้ ±3 แล้วไปวัดด้วยเครื่องที่คลาดได้ ±1 วัดได้ 10 ตอนนี้เธอควรเชื่อว่า θ อยู่ราว ๆ เท่าไร</h3>
+<div class="quiz" data-warmup data-answer="2">
+  <h3>ทายก่อน (ไม่นับคะแนน) · Alice เชื่อว่าค่า θ อยู่ราว ๆ 0 คลาดได้ ±3 แล้วไปวัดด้วยเครื่องที่คลาดได้ ±1 วัดได้ 10 ตอนนี้เธอควรเชื่อว่า θ อยู่ราว ๆ เท่าไร</h3>
   <div class="choices">
     <button>0 เพราะเชื่อแบบนี้มาตั้งแต่แรก</button>
     <button>5 ครึ่งทางระหว่างความเชื่อกับผลวัด</button>
@@ -88,8 +88,10 @@ $\theta = 8$ เป็นกล่องหนึ่ง $\theta = 9$ เป็�
 <div class="key">
   <p><strong>กฎข้อ 1 · precision บวกกัน</strong></p>
   <div class="eq" data-eqno="1">$$ \frac{1}{\tau^2} = \frac{1}{\Sigma^2} + \frac{1}{\sigma^2} $$</div>
-  <p><strong>กฎข้อ 2 · จุดกลางใหม่คือค่าเฉลี่ยถ่วงด้วย precision</strong></p>
+  <p><strong>กฎข้อ 2 · จุดกลางใหม่คือค่าเฉลี่ยถ่วงน้ำหนัก โดยใช้ precision เป็นน้ำหนัก</strong></p>
+  <p>แบบเดียวกับเกรดเฉลี่ยที่ใช้หน่วยกิตเป็นน้ำหนัก เอาค่าแต่ละตัวคูณน้ำหนักของมัน บวกกัน แล้วหารด้วยน้ำหนักรวม</p>
   <div class="eq" data-eqno="2">$$ \bar\mu = \frac{\mu \cdot \frac{1}{\Sigma^2} + m \cdot \frac{1}{\sigma^2}}{\frac{1}{\tau^2}} $$</div>
+  <p>อ่านเป็นคำพูดได้ว่า จุดกลางใหม่ = (จุดกลาง prior × precision ของ prior + ผลวัด × precision ของข้อมูล) ÷ precision รวม</p>
   <p style="margin-bottom:0">กฎข้อ 1 อธิบายว่าทำไมเส้นเขียวแคบกว่าทุกเส้น precision รวมมากกว่าแต่ละตัว ความคลาดจึงน้อยกว่าแต่ละตัว
   กฎข้อ 2 อธิบายว่าทำไมเส้นเขียวถูกดึงไปทางที่แม่นกว่า ใครมี precision มากก็มีน้ำหนักมาก</p>
 </div>
@@ -150,7 +152,8 @@ precision ของข้อมูลจึงโตตามจำนวนค�
 <h2>ลองเอง</h2>
 <div id="score"></div>
 
-<p class="meta">ทุกข้อใช้แค่กฎสองข้อใน ② และ (3) ทำทีละขั้นตามที่บอก · ตอบเป็นตัวเลข เศษส่วนพิมพ์แบบ <code>4/5</code> ได้ ·
+<p class="meta">ทุกข้อใช้แค่กฎสองข้อใน ② และ (3) ทำทีละขั้นตามที่บอก · จำไว้ว่า precision = 1 ÷ ความแปรปรวน
+(ระฆังแคบ precision มาก) และ "น้ำหนัก" ในกฎข้อ 2 ก็คือ precision · ตอบเป็นตัวเลข เศษส่วนพิมพ์แบบ <code>4/5</code> ได้ ·
 ถ้าอยากเช็กคำตอบด้วยตา ลากระฆังข้างบนไปที่ค่าเดียวกันได้</p>
 
 <div class="quiz" data-steps>
@@ -190,18 +193,28 @@ precision ของข้อมูลจึงโตตามจำนวนค�
   <h3>ข้อ 2 · Bob กับผลวัดเดียวกัน</h3>
   <p class="hint">prior ของ Bob ราว ๆ $\mu = 10$ คลาด $\Sigma = 1$ · ผลวัดเดียวกับข้อ 1: $m = 5$ เครื่องคลาด $\sigma = 1$</p>
   <ol class="steps">
-    <li data-answer="2">
-      <p><strong>ขั้น 1</strong> — precision ของ posterior</p>
+    <li data-answer="1">
+      <p><strong>ขั้น 1</strong> — precision ของ prior ของ Bob $1/\Sigma^2$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$1 + 1 = 2$</p>
+      <p class="fb">$1/1^2 = 1$</p>
+    </li>
+    <li data-answer="1">
+      <p><strong>ขั้น 2</strong> — precision ของข้อมูล $1/\sigma^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/1^2 = 1$</p>
+    </li>
+    <li data-answer="2">
+      <p><strong>ขั้น 3</strong> — precision ของ posterior = ขั้น 1 + ขั้น 2 (ยังไม่ต้องกลับเศษส่วน)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + 1 = 2$ · ถ้าได้ $1/2$ นั่นคือความแปรปรวน $\tau^2$ ซึ่งเป็นส่วนกลับของ precision</p>
     </li>
     <li data-answer="15">
-      <p><strong>ขั้น 2</strong> — ตัวเศษของกฎข้อ 2</p>
+      <p><strong>ขั้น 4</strong> — ตัวเศษของกฎข้อ 2: 10 × (ขั้น 1) + 5 × (ขั้น 2)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$10 \cdot 1 + 5 \cdot 1 = 15$</p>
     </li>
     <li data-answer="15/2" data-alt="7.5">
-      <p><strong>ขั้น 3</strong> — $\bar\mu$</p>
+      <p><strong>ขั้น 5</strong> — $\bar\mu$ = ขั้น 4 ÷ ขั้น 3</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$15 / 2 = 7.5$ · precision เท่ากัน จึงได้ครึ่งทางพอดี · Alice ได้ 4 สองคนยังห่างกัน 3.5</p>
     </li>
@@ -223,13 +236,23 @@ precision ของข้อมูลจึงโตตามจำนวนค�
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$1 + 99 = 100$</p>
     </li>
-    <li data-answer="505">
-      <p><strong>ขั้น 3</strong> — ตัวเศษของกฎข้อ 2 (น้ำหนักของข้อมูลคือ 99)</p>
+    <li data-answer="10">
+      <p><strong>ขั้น 3</strong> — จุดกลาง prior × precision ของ prior: 10 × 1</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$10 \cdot 1 + 5 \cdot 99 = 505$</p>
+      <p class="fb">$10 \times 1 = 10$</p>
+    </li>
+    <li data-answer="495">
+      <p><strong>ขั้น 4</strong> — ค่าเฉลี่ยของข้อมูล × precision ของข้อมูล (จากขั้น 1)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5 \times 99 = 495$ · ข้อมูล 99 ครั้งจึงมีน้ำหนัก 99 เท่าของการวัดครั้งเดียว</p>
+    </li>
+    <li data-answer="505">
+      <p><strong>ขั้น 5</strong> — ตัวเศษของกฎข้อ 2 = ขั้น 3 + ขั้น 4</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$10 + 495 = 505$</p>
     </li>
     <li data-answer="101/20" data-alt="5.05">
-      <p><strong>ขั้น 4</strong> — $\bar\mu$ (ตอบทศนิยมได้)</p>
+      <p><strong>ขั้น 6</strong> — $\bar\mu$ = ขั้น 5 ÷ ขั้น 2 (ตอบทศนิยมได้)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$505 / 100 = 5.05$ · Alice ได้ราว 4.99 จากระยะห่าง 3.5 เหลือไม่ถึง 0.07</p>
     </li>

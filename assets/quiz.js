@@ -15,6 +15,8 @@
 
    data-answer = ดัชนีของตัวเลือกที่ถูก เริ่มที่ 0
 
+   ข้อทายก่อนกลางเนื้อบท (ไม่นับคะแนน): <div class="quiz" data-warmup data-answer="2">…
+
    ⚠️ ตัวนับคะแนน — วาง <div id="score"></div> ไว้ที่ไหนก็ได้ในหน้า
    แล้วมันจะอัปเดตเอง พร้อมปุ่ม "📋 คัดลอกผล" + "↻ เริ่มใหม่" เมื่อทำครบทุกข้อ
    **บังคับสำหรับบทที่มีแบบฝึก** (เดิมเขียนว่า "ไม่บังคับ" — ไม่จริง)
@@ -65,9 +67,12 @@
   function board() {
     var box = document.getElementById('score');
     if (!box) return;
-    var all = document.querySelectorAll('.quiz');
-    var done = document.querySelectorAll('.quiz[data-result]');
-    var ok = document.querySelectorAll('.quiz[data-result="right"]');
+    // .quiz[data-warmup] = ข้อ "ทายก่อน" กลางเนื้อบท — ให้ feedback แต่ไม่นับคะแนน
+    //   (เกิดจริง T1 2026-11-21: ข้อทายอยู่เหนือหัวข้อ "ลองเอง" ⇒ แถบบอก "4 จาก 5"
+    //    ผู้เรียนเห็นแค่ 4 ข้อ ปุ่มคัดลอกผลไม่โผล่ และเลขข้อในผลที่คัดลอกเลื่อนไปหนึ่ง)
+    var all = document.querySelectorAll('.quiz:not([data-warmup])');
+    var done = document.querySelectorAll('.quiz:not([data-warmup])[data-result]');
+    var ok = document.querySelectorAll('.quiz:not([data-warmup])[data-result="right"]');
     var pct = all.length ? Math.round(done.length / all.length * 100) : 0;
 
     box.innerHTML =
@@ -229,7 +234,7 @@
     /* คัดลอกผลเป็นข้อความสั้น ๆ ให้วางกลับไปบอกครูได้ในคลิกเดียว
        — ไม่งั้นต้องไล่ถามว่าผิดข้อไหน ซึ่งเป็นงานที่ไม่ควรตกเป็นของผู้เรียน */
     if (e.target.id === 'copy') {
-      var all = [].slice.call(document.querySelectorAll('.quiz'));
+      var all = [].slice.call(document.querySelectorAll('.quiz:not([data-warmup])'));
       var wrong = [];
       all.forEach(function (q, i) {
         if (q.dataset.result !== 'wrong') return;
