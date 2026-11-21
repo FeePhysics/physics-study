@@ -1,4 +1,4 @@
-"""บทที่ 30 · เอกภพขยายตัว — scale factor ⇒ กฎ Hubble ⇒ redshift (Dodelson §1.1–1.2)"""
+"""บทที่ 29 · เอกภพขยายตัว — scale factor ⇒ กฎ Hubble ⇒ redshift (Dodelson §1.1–1.2)"""
 import sympy as sp
 ok = 0
 def check(n, c):

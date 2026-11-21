@@ -1,4 +1,4 @@
-"""บทที่ 31 · สมการ Friedmann ⇒ a ∝ t^(2/3) — ตรวจทุกขั้นและทุกเฉลยของ lessons/0043-friedmann.html
+"""บทที่ 30 · สมการ Friedmann ⇒ a ∝ t^(2/3) — ตรวจทุกขั้นและทุกเฉลยของ lessons/0043-friedmann.html
 
 รัน: python scripts/verify/0044_friedmann.py   (ทุกบรรทัดต้องขึ้น ✅ · assert ล้มเมื่อผิด)
 ตรวจสองทางเสมอ: (ก) จับคู่กำลังของ t แบบที่บทสอน  (ข) แก้สมการเชิงอนุพันธ์ตรง ๆ ด้วย sympy
@@ -54,7 +54,7 @@ check("ข้อ 1 ขั้น 3: a=1/2 ⇒ ρ_m = 8 เท่าของว�
 
 # ── ③ ρ ∝ a^-4 (radiation) · T ∝ 1/a ───────────────────────
 lam_emit, hP, c = sp.symbols('lambda_emit h c', positive=True)
-lam = lam_emit * a                  # จากบทที่ 30: λ ∝ a (1+z = 1/a)
+lam = lam_emit * a                  # จากบทที่ 29: λ ∝ a (1+z = 1/a)
 E1 = hP * c / lam                   # พลังงานต่อโฟตอน (E = hc/λ · ฟิสิกส์ ม.ปลาย)
 n_ph = N / V
 rho_r = E1 * n_ph
