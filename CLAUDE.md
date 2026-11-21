@@ -208,21 +208,17 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 
 เว็บที่บล็อกด้วย: `goodtheorist.science`, `webspace.science.uu.nl` (ดู `RESOURCES.md`)
 
-## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-11-10)
+## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-11-21)
 
-- ⚠️ **2026-11-13 เปลี่ยนลำดับ:** อาจารย์สั่งอ่าน Dodelson *Modern Cosmology* ⇒ เริ่มชุด cosmology · **บทที่ 28** `lessons/0041-expanding-universe.html` (Dodelson §1.1–1.2) · learning record `0048` — รอบแรก 4/6 (พลาด: $x$ คงที่ · คูณ $z$ แทน $1+z$) ⇒ ชุดฝึก `lessons/0042-expansion-drill.html` **ผ่าน 6/6**
-- ล่าสุด (2026-11-14): **บทที่ 29** `lessons/0043-friedmann.html` (Friedmann (1.2)–(1.6) · $\rho \propto a^{-3}, a^{-4}$ ⇒ $t^{2/3}, t^{1/2}$ ด้วยการจับคู่กำลัง · $\rho_{\rm cr}$) · learning record `0049` — **ผลรอบแรกยังรอ** · ถัดไป: Dodelson บทที่ 2 ปู GR (metric → geodesic → Einstein ⇒ Friedmann) · คู่มืออ่านรายบท `reference/dodelson-*.html` (สเปก `reference/DODELSON-FORMAT.md` · **ไม่ใช่ฉบับแปล — ลิขสิทธิ์**) · PDF อยู่ที่ `Downloads/` ของเครื่องแบเท่านั้น
+- 🗺 **ดูภาพรวมทั้งหมดที่ `ROADMAP.md`** (ตารางช่วง A–H · บทไหนอยู่ช่วงไหน · สถานะ)
+- ⚠️ **2026-11-21 เรียงเลขบทใหม่เป็นหมวด** (แบขอ): อ่านรูปเป็นสูตร 30→**28** · อ่าน Tong บทที่ 3 31→**29** · เอกภพขยายตัว 28→**30** · Friedmann 29→**31** · ชื่อไฟล์ไม่เปลี่ยน · learning record 0048–0052 เขียนด้วยเลขเดิม (ตารางแปลงใน `ROADMAP.md`)
+- **สาย cosmology (G2 · อาจารย์สั่งอ่าน Dodelson 2026-11-13):** บทที่ 30 `lessons/0041-expanding-universe.html` + ชุดฝึก `0042` ผ่าน 6/6 · **บทที่ 31** `lessons/0043-friedmann.html` (learning record `0049`) — **ผลรอบแรกยังรอ** · ถัดไป: Dodelson บทที่ 2 ปู GR (metric → geodesic → Einstein ⇒ Friedmann) · คู่มืออ่านรายบท `reference/dodelson-*.html` (สเปก `reference/DODELSON-FORMAT.md` · **ไม่ใช่ฉบับแปล — ลิขสิทธิ์**) · PDF อยู่ที่ `Downloads/` ของเครื่องแบเท่านั้น
+- **สาย QFT:** ช่วง C (บทที่ 24–29) **ปิดแล้ว 2026-11-21** · บทที่ 28 `lessons/0044-feynman-rules.html` + ชีท `reference/0002-feynman-rules.html` ผ่าน 5/6 · บทที่ 29 `lessons/0045-tong-read-ch3.html` (เช็คพอยต์อ่าน Tong) **พักไว้** — แบเลือกพิสูจน์ละเอียดต่อแต่**เลื่อนการอ่านต้นฉบับอังกฤษ**ไปหลังเลือกหัวข้อ · **บทใหม่ห้ามสั่งให้เปิดต้นฉบับ** (ยังอ้าง citation ตามเดิม) · learning record `0052`
+- งานถัดไป (สาย QFT): ช่วง D (spin · Lorentz group · Dirac ⇒ Tong บทที่ 4 หน้าพิมพ์ 81) · **บทใหม่ใช้เลข 32 ขึ้นไป** (ไล่ทุก branch ก่อน)
 - ⚠️ `check_layout.py` หา Chrome/Edge ในเครื่องเองแล้ว (เดิมผูก path คลาวด์) · `quiz.js` tolerance มีเพดาน 0.5 (คีย์ใหญ่ไม่รับค่าคลาดหนึ่ง)
-- บทที่ 25 `lessons/0037-vertex.html` **ผ่าน 6/6** (รอบสอง) · บทที่ 24 + ชุดฝึก Wick ผ่านแล้ว
-- ชุดฝึกจุดยอด `0038-vertex-drill.html` ผ่าน 6/6
-- บทที่ 26 `0039-dyson.html` (Dyson series) ผ่าน 6/6 (รอบสาม)
-- ล่าสุด: **บทที่ 27** `lessons/0040-time-order.html` (time ordering $T$ ⇒ Feynman propagator $D_F$ · เส้น = $D_F$) · learning record `0047` — **ผ่าน 6/6** (รอบสอง · รอบแรก 5/6 ข้อ 6 อ้างรูปที่บทไม่ได้วาด ⇒ เพิ่มรูป)
-- ล่าสุด (สาย QFT): **บทที่ 30** `lessons/0044-feynman-rules.html` (อ่านรูปเป็นสูตร · ประกอบกติกา Feynman) + ชีท `reference/0002-feynman-rules.html` · learning record `0050` — **ผ่าน 5/6** (พลั้ง $(-i)^2 = 1$)
-- **ช่วง C ปิดแล้ว (2026-11-21)** · บทที่ 31 `lessons/0045-tong-read-ch3.html` (เช็คพอยต์อ่าน Tong) **พักไว้** — แบเลือกพิสูจน์ละเอียดต่อแต่**เลื่อนการอ่านต้นฉบับอังกฤษ**ไปหลังเลือกหัวข้อ · **บทใหม่ห้ามสั่งให้เปิดต้นฉบับ** (ยังอ้าง citation ตามเดิม) · learning record `0052`
-- งานถัดไป (สาย QFT): ช่วง D (spin · Lorentz group · Dirac ⇒ Tong บทที่ 4 หน้าพิมพ์ 81)
 - ⚠️ แบสะดุดภาษาอังกฤษเวลาอ่าน Tong (2026-11-21) ⇒ พักการอ่านต้นฉบับ · เมื่อกลับมาอ่าน (ช่วง H) ต้องมีคู่มืออ่านคู่กัน · Tong บทที่ 3: `reference/tong-ch03.html` · ดู `NOTES.md`
 - Tong ฉบับเต็ม: https://davidtong.org/pdfs/teaching/quantum-field-theory/qft.pdf (155 หน้า) · **หน้า PDF = เลขพิมพ์ + 6** · คลาวด์โหลดเองไม่ได้ ต้องให้แบแนบ
-- ⚠️ **ก่อนตั้งเลขบท/ไฟล์/record ใหม่ ให้ไล่ทุก branch บน remote ไม่ใช่แค่ `main`** (`git fetch` แล้ว `git ls-tree --name-only <branch> lessons/` ทุก branch) — 2026-11-20 บทกติกา Feynman ตั้งเป็น "บทที่ 29" ชนกับบท Friedmann ที่อยู่ใน branch ที่ยังไม่ merge ⇒ ย้ายเป็นบทที่ 30
+- ⚠️ **ก่อนตั้งเลขบท/ไฟล์/record ใหม่ ให้ไล่ทุก branch บน remote ไม่ใช่แค่ `main`** (`git fetch` แล้ว `git ls-tree --name-only <branch> lessons/` ทุก branch) — 2026-11-20 บทกติกา Feynman ตั้งเลขชนกับบท Friedmann ที่อยู่ใน branch ที่ยังไม่ merge
 - ⚠️ `quiz.js` รับตัว O แทนเลข 0 แล้ว (iPad · 2026-11-11)
 - ⚠️ งานเสร็จแต่ละชิ้นต้อง merge เข้า `main` — session ใหม่เริ่มจาก `main` (เคยค้างที่บทที่ 23 ทั้งที่เรียนถึงบทที่ 26)
 - ⚠️ `build_standalone.py` เคยปล่อยสคริปต์ KaTeX CDN ค้างในทุกไฟล์ build ⇒ iPad ขึ้น "Script error." · แก้แล้ว + ด่านกันในตัว build (2026-11-10)

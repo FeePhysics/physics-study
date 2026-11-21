@@ -1,4 +1,4 @@
-"""บทที่ 31 · เช็คพอยต์อ่าน Tong บทที่ 3 — ตรวจทุกตัวเลขที่ถามในบท"""
+"""บทที่ 29 · เช็คพอยต์อ่าน Tong บทที่ 3 — ตรวจทุกตัวเลขที่ถามในบท"""
 import sympy as sp
 from itertools import combinations
 from math import comb
