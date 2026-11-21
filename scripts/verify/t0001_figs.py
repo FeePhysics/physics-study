@@ -1,4 +1,4 @@
-"""Python · matplotlib — รูปประกอบ T1 (ฝังเป็น inline SVG ในบท)
+"""Python · matplotlib — รูปประกอบ T0 (Laplace) และ T1 (Gaussian) · ฝังเป็น inline SVG ในบท
 ตัวเลขในรูปตั้งใจให้ "ไม่ซ้ำ" กับข้อฝึก ไม่งั้นรูปจะเฉลยคำตอบ · ทุกค่า assert
 รัน: python3 scripts/verify/t0001_figs.py  → เขียน SVG ทับระหว่าง <!--FIG:x--> ... <!--/FIG:x--> ในบท
 """
@@ -9,7 +9,6 @@ from matplotlib.patches import Rectangle
 from fractions import Fraction as F
 plt.rcParams.update({"font.family": ["Loma", "DejaVu Sans"], "font.size": 17,
                      "axes.unicode_minus": False, "svg.fonttype": "none", "svg.hashsalt": "t0001"})
-LESSON = "lessons/t0001-bayes-gauss.html"
 g = lambda x, c, v: np.exp(-(x-c)**2/(2*v))/np.sqrt(2*np.pi*v)
 figs = {}
 
@@ -23,30 +22,7 @@ def to_svg(fig, label):
     assert "$" not in s                                       # กฎ workspace: ห้าม $ ใน svg
     return s
 
-# ---------- รูป 1: กล่องสองใบ (prior 1/2 · แดง 0.3 กับ 0.7) ----------
-pA = pB = F(1, 2); LA, LB = F(3, 10), F(7, 10)
-ev = LA*pA + LB*pB
-assert ev == F(1, 2) and LA*pA == F(3, 20) and LB*pB == F(7, 20) and LB*pB/ev == F(7, 10)
-fig, axs = plt.subplots(1, 3, figsize=(11, 5.0))
-def box(ax, title, grey=False):
-    ax.set_xlim(0, 1); ax.set_ylim(0, 1); ax.set_aspect("equal"); ax.axis("off"); ax.set_title(title, fontsize=17)
-    ax.add_patch(Rectangle((0, 0), .5, 1, fc="#eeeeee" if grey else "#cfe0f5", ec="k"))
-    ax.add_patch(Rectangle((.5, 0), .5, 1, fc="#eeeeee" if grey else "#f5dcc8", ec="k"))
-box(axs[0], "① ก่อนหยิบ = prior\nโยนเหรียญเลือกกล่อง")
-axs[0].text(.25, .5, "กล่อง A\n½", ha="center", va="center", fontsize=19)
-axs[0].text(.75, .5, "กล่อง B\n½", ha="center", va="center", fontsize=19)
-for i, (grey, a, b, t) in enumerate([(False, "0.3", "0.7", "② ถ้าหยิบจากกล่องนี้ ได้แดงกี่ส่วน\n= likelihood"),
-                                     (True, "0.15", "0.35", "③ เห็นว่าได้แดง ตัดส่วนอื่นทิ้ง\n= posterior")], start=1):
-    box(axs[i], t, grey)
-    axs[i].add_patch(Rectangle((0, 0), .5, float(LA), fc="#d62728", ec="k"))
-    axs[i].add_patch(Rectangle((.5, 0), .5, float(LB), fc="#d62728", ec="k"))
-    axs[i].text(.25, float(LA)/2, a, ha="center", va="center", color="w", fontsize=18)
-    axs[i].text(.75, float(LB)/2, b, ha="center", va="center", color="w", fontsize=18)
-axs[1].text(.25, .65, "A", ha="center", fontsize=19); axs[1].text(.75, .85, "B", ha="center", fontsize=19)
-axs[2].text(.5, .80, "แดงทั้งหมด 0.15 + 0.35 = 0.5\n(evidence)\nB ในส่วนแดง 0.35 / 0.5 = 0.7",
-            ha="center", va="center", fontsize=15, bbox=dict(fc="w", ec="k"))
-fig.tight_layout()
-figs["boxes"] = to_svg(fig, "สี่เหลี่ยมพื้นที่ 1 แบ่งครึ่งเป็นกล่อง A กับ B แต่ละครึ่งมีส่วนแดง 0.3 และ 0.7 พอเห็นว่าได้แดงก็เหลือแค่ส่วนแดง 0.15 กับ 0.35 ได้ B เท่ากับ 0.7")
+# รูปกล่องสองใบเดิม → แทนด้วยตาราง 100 รอบแบบเลื่อนได้ (assets/bayes.js) ใน T0
 
 # ---------- รูป 2: ตัวอย่างในเนื้อบท μ=0 Σ²=9 · m=10 σ²=1 → μ̄=9 τ²=0.9 ----------
 mu, S2, m, s2 = 0.0, 9.0, 10.0, 1.0
@@ -119,10 +95,12 @@ fig.tight_layout()
 figs["laplace"] = to_svg(fig, "Laplace พนันว่ามวลดาวเสาร์คลาดไม่ถึง 1 เปอร์เซ็นต์ ค่าจริงห่าง 0.4 เปอร์เซ็นต์ ชนะ ดาวพฤหัสค่าจริงห่าง 2.2 เปอร์เซ็นต์ แพ้")
 
 # ---------- ฝังลงบท ----------
-html = open(LESSON, encoding="utf-8").read()
-for k, s in figs.items():
+WHERE = {"laplace": "lessons/t0000-bayes-boxes.html",
+         "product": "lessons/t0001-bayes-gauss.html", "converge": "lessons/t0001-bayes-gauss.html"}
+for k, s_ in figs.items():
+    path = WHERE[k]; html = open(path, encoding="utf-8").read()
     pat = re.compile(rf"(<!--FIG:{k}-->).*?(<!--/FIG:{k}-->)", re.S)
-    assert pat.search(html), f"ไม่เจอ marker FIG:{k} ในบท"
-    html = pat.sub(lambda mt: mt.group(1) + "\n" + s + "\n" + mt.group(2), html)
-open(LESSON, "w", encoding="utf-8").write(html)
+    assert pat.search(html), f"ไม่เจอ marker FIG:{k} ใน {path}"
+    html = pat.sub(lambda mt: mt.group(1) + "\n" + s_ + "\n" + mt.group(2), html)
+    open(path, "w", encoding="utf-8").write(html)
 print("ok", {k: len(v)//1024 for k, v in figs.items()}, "KB", res)
