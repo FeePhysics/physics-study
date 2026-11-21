@@ -35,6 +35,14 @@ egress proxy บล็อกไว้ — ถ้าจะให้ Claude อ่
 - **จุดอ่อน:** เป็นวิดีโอ ⇒ ค้นย้อนกลับยาก · ใช้เป็นตัวปูความเข้าใจ แล้วไปเอา
   ความแม่นยำจาก lecture notes
 
+### Quantum Field Theory — David Tong (Cambridge Part III lecture notes)
+- **ฉบับเต็ม 155 หน้า:** https://davidtong.org/pdfs/teaching/quantum-field-theory/qft.pdf (แบส่งลิงก์มา 2026-11-21) ·
+  หน้าคอร์สเดิม http://www.damtp.cam.ac.uk/user/tong/qft.html · ⚠️ คลาวด์โหลดเองไม่ได้ (damtp 403) ต้องให้แบแนบไฟล์
+- **⚠️ เลขหน้า:** ในไฟล์ฉบับเต็ม หน้า PDF = เลขหน้าพิมพ์ **+ 6** (เช่นหน้าพิมพ์ 51 = PDF 57)
+- **คืออะไร:** แกนของสาย QFT (`ROADMAP.md`) · บทที่ 2 Free Fields (หน้า 21) · บทที่ 3 Interacting Fields (หน้า 47) · บทที่ 4 Dirac (หน้า 81)
+- **จุดแข็ง:** สั้น ตรง เดินตาม Peskin & Schroeder ภาคแรก · เครื่องหมายสอดคล้องกับที่เราคำนวณเอง ($H_{\rm int} = +\frac{\lambda}{4!}\phi^4$ · จุดยอด $-i\lambda$) · ตรวจแล้วในเช็คพอยต์บทที่ 23 และ 31
+- **จุดอ่อน:** ตัวอย่างหลักของบทที่ 3 คือ scalar Yukawa ไม่ใช่ $\phi^4$ · กติกา Feynman เขียนฉบับโมเมนตัมทันที · ใช้ $\Delta_F$ (เราใช้ $D_F$)
+
 ### MIT OpenCourseWare 8.323 — Relativistic Quantum Field Theory I
 - https://ocw.mit.edu/courses/8-323-relativistic-quantum-field-theory-i-spring-2023/
 - รุ่น 2023 มี **วิดีโอ + problem sets + เฉลย** · รุ่น 2008 มี lecture notes แยก
