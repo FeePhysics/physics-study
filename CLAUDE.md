@@ -218,7 +218,9 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 - บทที่ 26 `0039-dyson.html` (Dyson series) ผ่าน 6/6 (รอบสาม)
 - ล่าสุด: **บทที่ 27** `lessons/0040-time-order.html` (time ordering $T$ ⇒ Feynman propagator $D_F$ · เส้น = $D_F$) · learning record `0047` — **ผ่าน 6/6** (รอบสอง · รอบแรก 5/6 ข้อ 6 อ้างรูปที่บทไม่ได้วาด ⇒ เพิ่มรูป)
 - ล่าสุด (สาย QFT): **บทที่ 30** `lessons/0044-feynman-rules.html` (อ่านรูปเป็นสูตร · ประกอบกติกา Feynman) + ชีท `reference/0002-feynman-rules.html` · learning record `0050` — **ผ่าน 5/6** (พลั้ง $(-i)^2 = 1$)
-- งานถัดไป (สาย QFT): **เช็คพอยต์อ่าน Tong บทที่ 3 = ปิดช่วง C** · ต้องให้แบแนบ `three.pdf` (คลาวด์โหลดจาก damtp ไม่ได้ · 403)
+- ล่าสุด (สาย QFT): **บทที่ 31** `lessons/0045-tong-read-ch3.html` (เช็คพอยต์อ่าน Tong บทที่ 3 = ปิดช่วง C) · learning record `0051` — **"ผลรอบแรก" ยังรอผล**
+- งานถัดไป (สาย QFT): ผลบทที่ 31 → ช่วง D (spin · Lorentz group · Dirac ⇒ Tong บทที่ 4 หน้าพิมพ์ 81)
+- Tong ฉบับเต็ม: https://davidtong.org/pdfs/teaching/quantum-field-theory/qft.pdf (155 หน้า) · **หน้า PDF = เลขพิมพ์ + 6** · คลาวด์โหลดเองไม่ได้ ต้องให้แบแนบ
 - ⚠️ **ก่อนตั้งเลขบท/ไฟล์/record ใหม่ ให้ไล่ทุก branch บน remote ไม่ใช่แค่ `main`** (`git fetch` แล้ว `git ls-tree --name-only <branch> lessons/` ทุก branch) — 2026-11-20 บทกติกา Feynman ตั้งเป็น "บทที่ 29" ชนกับบท Friedmann ที่อยู่ใน branch ที่ยังไม่ merge ⇒ ย้ายเป็นบทที่ 30
 - ⚠️ `quiz.js` รับตัว O แทนเลข 0 แล้ว (iPad · 2026-11-11)
 - ⚠️ งานเสร็จแต่ละชิ้นต้อง merge เข้า `main` — session ใหม่เริ่มจาก `main` (เคยค้างที่บทที่ 23 ทั้งที่เรียนถึงบทที่ 26)
