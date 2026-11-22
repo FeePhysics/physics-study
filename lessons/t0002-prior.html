@@ -95,8 +95,28 @@ $p_A\,dA = p_L\,dL$ หรือเขียนให้หาความหน
 
 <p>prior ตัวนี้มีชื่อว่า <strong>Jeffreys prior</strong> สัญลักษณ์ $\propto$ อ่านว่า "แปรผันตรงกับ" คือเท่ากับ $1/A$ คูณค่าคงตัวที่ทำให้รวมได้ 1
 คุณสมบัติเด่นคือทุกช่วงสิบเท่า เช่น 1 ถึง 10 กับ 10 ถึง 100 มีความน่าจะเป็นเท่ากัน ใช้กับพารามิเตอร์ที่ไม่รู้แม้แต่ขนาด
-Trotta พูดเรื่องนี้ที่สมการ (11) และเตือนเรื่องการเลือก prior อีกครั้งใน §5.4 ส่วนการตั้งค่าใน Cobaya (รูป 9 ของ [C])
-ก็ตั้ง prior บน log ของ amplitude ด้วยเหตุผลเดียวกัน</p>
+ส่วนการตั้งค่าใน Cobaya (รูป 9 ของ [C]) ก็ตั้ง prior บน log ของ amplitude ด้วยเหตุผลเดียวกัน</p>
+
+<h2>④ อ่านของจริง · Trotta หน้า 78</h2>
+
+<p>ทั้งหมดที่ผ่านมาอยู่ในย่อหน้าเดียวของ Trotta (§2.3 หน้า 78) ซึ่งเขียนกฎการเปลี่ยนตัวแปรไว้แบบนี้</p>
+
+<div class="eq">$$ p(\psi) = p(\theta)\left|\frac{d\theta}{d\psi}\right| \qquad \text{(Trotta 11)} $$</div>
+
+<p>Trotta ใช้ $\theta$ เป็นตัวแปรเดิมและ $\psi$ (psi) เป็นตัวแปรใหม่ที่เป็นฟังก์ชันของ $\theta$ ถ้าเทียบกับสี่เหลี่ยม
+$\theta$ คือด้านยาว $L$ และ $\psi$ คือพื้นที่ $A$ ข้อที่ต่างจากสมการ (1) ของเราคือ Trotta <em>คูณ</em>ด้วย $|d\theta/d\psi|$
+ส่วนเรา<em>หาร</em>ด้วย $|d\psi/d\theta|$ สองแบบนี้เท่ากัน เพราะ $d\theta/d\psi$ เป็นส่วนกลับของ $d\psi/d\theta$
+เช่นที่ $L = 2$ แกนยืด $dA/dL = 4$ เท่า ก็เท่ากับ $dL/dA = \tfrac14$ จะหารด้วย 4 หรือคูณด้วย $\tfrac14$ ก็ได้ผลเดียวกัน</p>
+
+<p>ย่อหน้าเดียวกันบอกอีกสามเรื่อง เรื่องแรก prior ต้อง normalize ได้ (Trotta เรียกว่า <em>proper</em>) จึงต้องมีขอบเขต
+เช่น $A$ จาก 1 ถึง 100 ในข้อ 3 ข้างล่าง เรื่องที่สอง ถ้าหลายมิติ อนุพันธ์ตัวเดียวจะกลายเป็น determinant ของ Jacobian
+เรื่องที่สาม Jeffreys prior เหมาะกับพารามิเตอร์ที่ไม่รู้ขนาด เช่นอัตราการเกิดเหตุการณ์ใน Poisson
+ส่วนใน §5.4 (หน้า 95-96) Trotta เตือนซ้ำสองข้อ ข้อ 1 flat prior เหมาะกับ<em>ค่าเฉลี่ย</em>ของ Gaussian แบบที่เราใช้ใน T1
+แต่ถ้าไม่รู้<em>ส่วนเบี่ยงเบนมาตรฐาน</em> $\sigma$ ควรใช้ prior ที่แบนบน $\ln\sigma$ และ prior ที่ดูไม่บอกอะไรบนพารามิเตอร์พื้นฐาน
+อาจบอกอะไรมากมายเกี่ยวกับปริมาณที่คำนวณจากมัน วิธีตรวจคือสุ่มจาก prior อย่างเดียวโดยยังไม่ใส่ข้อมูล แล้วดูว่าออกมาหน้าตาแบบไหน
+ซึ่งก็คือสิ่งที่ของเล่นใน ① ทำ ข้อ 2 พารามิเตอร์ประเภท amplitude มักเขียนได้หลายแบบที่ดูสมเหตุสมผลพอกัน
+และ prior ที่แบนบนแบบหนึ่งจะไม่แบนบนอีกแบบ ตามสมการ (11) จึงได้ผลต่างกันมาก
+<span class="src">R. Trotta, <em>Bayes in the sky</em> (2008) หน้า 78 สมการ (11) และ §5.4 ข้อ (1)-(2) หน้า 95-96</span></p>
 
 <div class="warn">
   <strong>แล้วจะเลือกแบบไหน</strong> — ไม่มี prior ที่ "ไม่รู้อะไรเลย" แบบเดียวที่ถูกเสมอ การเลือกแกนที่จะแบนคือการตัดสินใจของคนทำวิจัย
@@ -145,7 +165,7 @@ Trotta พูดเรื่องนี้ที่สมการ (11) แล�
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 2 · ความหนาแน่นของคุณแดงบนแกนพื้นที่ (สมการ 1)</h3>
+  <h3>ข้อ 2 · ความหนาแน่นของคุณแดงบนแกนพื้นที่ (สมการ 1 และ Trotta 11)</h3>
   <p class="hint">คุณแดงแบนบนด้านยาว $L$ จาก 1 ถึง 3 จึงมี $p_L = \tfrac12$ · พื้นที่ $A = L^2$ ยืดด้วยอัตรา $dA/dL = 2L$</p>
   <ol class="steps">
     <li data-answer="4">
@@ -153,18 +173,23 @@ Trotta พูดเรื่องนี้ที่สมการ (11) แล�
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$2 \times 2 = 4$</p>
     </li>
-    <li data-answer="1/8" data-alt="0.125">
-      <p><strong>ขั้น 2</strong> — ความหนาแน่น $p_A$ ที่ $A = 4$ (สมการ 1)</p>
+    <li data-answer="1/4" data-alt="0.25|.25">
+      <p><strong>ขั้น 2</strong> — ตัวที่ Trotta (11) ใช้คูณ: $|dL/dA|$ ที่ $A = 4$ (ส่วนกลับของขั้น 1)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\tfrac12 \div 4 = \tfrac18$ · ถ้าได้ 2 แปลว่าคูณแทนการหาร</p>
+      <p class="fb">$1/4$</p>
+    </li>
+    <li data-answer="1/8" data-alt="0.125">
+      <p><strong>ขั้น 3</strong> — ความหนาแน่น $p_A$ ที่ $A = 4$ แบบ Trotta: $p_L \times$ (ขั้น 2)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12 \times \tfrac14 = \tfrac18$ · เท่ากับ $\tfrac12 \div 4$ ตามสมการ (1) · ถ้าได้ 2 แปลว่าคูณด้วยอัตราการยืดแทนส่วนกลับของมัน</p>
     </li>
     <li data-answer="6">
-      <p><strong>ขั้น 3</strong> — อัตราการยืดที่ $L = 3$</p>
+      <p><strong>ขั้น 4</strong> — อัตราการยืด $dA/dL$ ที่ $L = 3$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$2 \times 3 = 6$</p>
     </li>
     <li data-answer="1/12" data-alt="0.083|0.0833">
-      <p><strong>ขั้น 4</strong> — ความหนาแน่น $p_A$ ที่ $A = 9$</p>
+      <p><strong>ขั้น 5</strong> — ความหนาแน่น $p_A$ ที่ $A = 9$ (สมการ 1)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$\tfrac12 \div 6 = \tfrac1{12}$ · ปลายขวาบางกว่าตรงกลาง เพราะแกนถูกยืดมากกว่า</p>
     </li>
@@ -237,7 +262,7 @@ Trotta พูดเรื่องนี้ที่สมการ (11) แล�
 </div>
 
 <h2>อ่านต่อ</h2>
-<p>ตอนนี้อ่าน Trotta ได้ถึงสมการ (11) แล้ว และอ่าน §5.4 ข้อ 1-2 เรื่องการเลือก prior ได้
+<p>ตอนนี้อ่าน Trotta §2.3 ได้ทั้งหมด (หน้า 77-78 ถึงสมการ 11) และ §5.4 ข้อ (1)-(2) หน้า 95-96 ได้
 <span class="src">R. Trotta, <em>Bayes in the sky</em>, Contemp. Phys. 49 (2008) 71 · doi:10.1080/00107510802066753</span></p>
 
 <div class="ask">

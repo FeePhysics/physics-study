@@ -47,4 +47,8 @@ ok(a == sp.Rational(25, 4) and a - 1 == sp.Rational(21, 4), "ข้อ1 ขั�
 ok((a - 1) / 8 == sp.Rational(21, 32), "ข้อ1 ขั้น4 = 21/32")
 ok(sp.integrate(pA, (A, 1, a)) == sp.Rational(3, 4), "แดง (แบนบน L) ได้ 0.75 — ตัวควบคุมใน fb")
 ok(sp.Rational(21, 32) != sp.Rational(3, 4), "สองคำตอบไม่บังเอิญเท่ากัน")
+# ④ รูปของ Trotta (11): p(ψ) = p(θ)|dθ/dψ| · θ = L, ψ = A
+dLdA = sp.diff(sp.sqrt(A), A)
+ok(dLdA.subs(A, 4) == sp.Rational(1, 4), "|dL/dA| ที่ A = 4 = 1/4")
+ok(sp.simplify(pL * dLdA - pA) == 0, "Trotta (11) = สมการ (1) ของบท ทุกจุด")
 print(f"{n}/{n}")
