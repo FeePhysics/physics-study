@@ -232,8 +232,9 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
   · **T1** `lessons/t0001-bayes-gauss.html` เขียนใหม่แบบ T0 (ทายก่อน · ระฆังลากได้ · เกม Alice–Bob · กฎสองข้อ) — รอบแรก 2/4 (precision↔τ² · "น้ำหนัก" ไม่นิยาม) → **รอบสองผ่าน 4/4** (2026-11-21)
   · `quiz.js` มี `.quiz[data-warmup]` = ข้อทายกลางบท ไม่นับคะแนน
   · **T2** `lessons/t0002-prior.html` (แดง/เขียวกับสี่เหลี่ยม · ยืดแกนยาง · Jacobian · Jeffreys) · record `t0002-prior.md` — รอบแรก 3/6 → รอบสอง 6/6 แต่ "ชี้นำเกินไป" ⇒ คืนคำถามเดิม แก้แค่จุดกำกวม (กฎ 16) · รอบสามถ้าแบอยากทำ
-  · ถัดไป: T3 สองพารามิเตอร์ · marginalise
-- ของเล่นใช้ซ้ำ: `assets/bayes.js` (`.bayes-game` · `.bayes-grid` · `.bayes-bell` · `.bayes-duel` · `.bayes-stretch`) · build ฝัง `../assets/*.js` ทุกตัวให้เอง
+  · **T3** `lessons/t0003-marginal.html` (กาแล็กซี + แสงท้องฟ้า · ตารางที่ maximise ≠ marginalise · ภูเขาสองมิติ · σ² บวกกัน) · record `t0003-marginal.md` — **รอผล**
+  · ถัดไป: T4 สร้าง likelihood ($\chi^2$)
+- ของเล่นใช้ซ้ำ: `assets/bayes.js` (`.bayes-game` · `.bayes-grid` · `.bayes-bell` · `.bayes-duel` · `.bayes-stretch` · `.bayes-mountain`) · build ฝัง `../assets/*.js` ทุกตัวให้เอง
 - ⚠️ เขียนบทผ่านสตริง Python ต้องใช้ raw string — `\times` เคยกลายเป็น TAB (`check_lessons` จับแล้ว)
 - Artifact: T1 `Wrgdh2fegJsw8aYfWrrMmF` · แผนที่ `VCojs8XZedFFWL5hSp5mWy`
 

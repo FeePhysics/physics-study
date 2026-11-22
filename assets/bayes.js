@@ -9,7 +9,7 @@
      <div class="bayes-grid" data-ra="0.3" data-rb="0.7" data-pb="0.5"></div>
      มีแถบเลื่อนปรับทั้งสามค่า (ทีละ 0.1 ⇒ ทุกจำนวนรอบเป็นจำนวนเต็มพอดี ไม่ต้องปัด)
 
-   ── ระฆัง Gaussian / Alice กับ Bob / ยืดแกน ── ดู comment ที่ bell() · duel() · stretch() ข้างล่าง
+   ── ระฆัง Gaussian / Alice กับ Bob / ยืดแกน ── ดู comment ที่ bell() · duel() · stretch() · mountain() ข้างล่าง
 
    ⚠️ build_standalone.py ฝังไฟล์นี้ลงฉบับ build/ ให้เอง (ทุกสคริปต์ที่ชี้ไป ../assets/*.js) */
 (function () {
@@ -394,12 +394,89 @@
     roll();
   }
 
+  /* ---------- ภูเขาสองมิติ: แสงรวม T = s + b · ส่องเงาลงแกน s ----------
+     <div class="bayes-mountain" data-t="10" data-st="1" data-mb="3" data-sb="2"></div>
+     t ± st = แสงรวมที่วัดได้ (มีแถบเลื่อนทั้งสี่ค่า) · mb ± sb = ความรู้เรื่องพื้นหลัง b · prior บน s แบน
+     บน = ภูเขา p(s, b) · ล่าง = เงา (marginal ของ s · เขียว) กับรอยตัดที่ b = mb (แดงประ = ถ้ารู้ b แน่นอน) */
+  function mountain(root) {
+    const st = { t: num(root, "t", 10), st: num(root, "st", 1), mb: num(root, "mb", 3), sb: num(root, "sb", 2) };
+    const s0 = -4, s1 = 18, b0 = -6, b1 = 12, H = 330, top = 200;
+    const ctrls = el("div", "bgr-ctrls");
+    const mk = (key, label, lo, hi, step) => {
+      const w = el("label", "bgr-slider");
+      const sl = el("input"); sl.type = "range"; sl.min = lo; sl.max = hi; sl.step = step; sl.value = st[key];
+      const out = el("output");
+      sl.oninput = () => { st[key] = parseFloat(sl.value); draw(); };
+      w.append(el("span", null, label), sl, out); ctrls.append(w);
+      return out;
+    };
+    const o = { t: mk("t", "แสงรวมวัดได้", 6, 14, 0.5), st: mk("st", "แสงรวมคลาดได้ ±", 0.5, 4, 0.5),
+                mb: mk("mb", "พื้นหลังราว ๆ", 0, 6, 0.5), sb: mk("sb", "พื้นหลังคลาดได้ ±", 0.25, 4, 0.25) };
+    const legend = el("p", "bb-legend");
+    [["เงาบนแกน s (marginal)", COL.post, false], ["ถ้ารู้พื้นหลังแน่นอน", COL.like, true]].forEach(([t, c, d]) => {
+      const k = el("span", "bb-key"); k.style.borderTop = `3px ${d ? "dashed" : "solid"} ${c}`; legend.append(k, document.createTextNode(" " + t + "  "));
+    });
+    const { cv, ctx, size } = canvasFor(root, H);
+    const out = el("div", "bgr-out");
+    root.append(ctrls, cv, legend, out);
+    function draw() {
+      const W = size(), L = 40, w = W - L - 6;
+      const ink = getComputedStyle(document.body).color || "#555";
+      for (const k in o) o[k].textContent = String(st[k]);
+      ctx.clearRect(0, 0, W, H);
+      const X = s => L + (s - s0) / (s1 - s0) * w, Y = b => top - (b - b0) / (b1 - b0) * top;
+      const joint = (s, b) => Math.exp(-((s + b - st.t) ** 2) / (2 * st.st ** 2) - ((b - st.mb) ** 2) / (2 * st.sb ** 2));
+      // ภูเขา: ระบายช่องเล็ก ๆ ความเข้มตามความสูง
+      const nx = 90, ny = 60, cw = w / nx, ch = top / ny;
+      ctx.fillStyle = COL.prior;
+      for (let i = 0; i < nx; i++) for (let j = 0; j < ny; j++) {
+        const sv = s0 + (i + .5) / nx * (s1 - s0), bv = b1 - (j + .5) / ny * (b1 - b0);
+        const z = joint(sv, bv); if (z < .02) continue;
+        ctx.globalAlpha = .85 * z; ctx.fillRect(L + i * cw, j * ch, cw + .5, ch + .5);
+      }
+      ctx.globalAlpha = 1;
+      // แกน
+      ctx.strokeStyle = ink; ctx.fillStyle = ink; ctx.lineWidth = 1; ctx.font = "12px sans-serif";
+      ctx.globalAlpha = .6;
+      ctx.beginPath(); ctx.moveTo(L, 0); ctx.lineTo(L, top); ctx.lineTo(W - 6, top); ctx.stroke();
+      ctx.textAlign = "right";
+      [0, 4, 8].forEach(v => ctx.fillText(String(v), L - 4, Y(v) + 4));
+      ctx.save(); ctx.translate(11, top / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillText("พื้นหลัง b", 0, 0); ctx.restore();
+      ctx.globalAlpha = 1;
+      // เส้น b = mb (ถ้ารู้พื้นหลังแน่นอน)
+      ctx.strokeStyle = COL.like; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(L, Y(st.mb)); ctx.lineTo(W - 6, Y(st.mb)); ctx.stroke(); ctx.setLineDash([]);
+      // ด้านล่าง: เงา (marginal) กับรอยตัด · normalize ให้ยอดเท่ากับความสูงตามพื้นที่จริง
+      const mW = Math.sqrt(st.st ** 2 + st.sb ** 2), c = st.t - st.mb;
+      const g = (x, m, sd) => Math.exp(-((x - m) ** 2) / (2 * sd * sd)) / sd;
+      const base = H - 22, hh = H - top - 40, ymax = 1 / st.st;
+      [[x => g(x, c, mW), COL.post, false], [x => g(x, c, st.st), COL.like, true]].forEach(([f, col, dash]) => {
+        ctx.beginPath();
+        for (let i = 0; i <= 300; i++) { const x = s0 + (s1 - s0) * i / 300, yy = base - f(x) / ymax * hh; i ? ctx.lineTo(X(x), yy) : ctx.moveTo(X(x), yy); }
+        ctx.strokeStyle = col; ctx.lineWidth = 3; ctx.setLineDash(dash ? [7, 5] : []); ctx.stroke(); ctx.setLineDash([]);
+      });
+      ctx.strokeStyle = ink; ctx.globalAlpha = .6; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(L, base); ctx.lineTo(W - 6, base); ctx.stroke();
+      ctx.textAlign = "center"; ctx.fillStyle = ink;
+      [0, 5, 10, 15].forEach(v => ctx.fillText(String(v), X(v), base + 15));
+      ctx.textAlign = "right"; ctx.fillText("แหล่ง s", W - 6, base - 4);
+      ctx.globalAlpha = 1;
+      const f2 = x => (Math.round(x * 100) / 100).toString();
+      out.textContent = "";
+      out.append(el("p", null, "ถ้ารู้พื้นหลังแน่นอน: s ราว ๆ " + f2(c) + " ± " + f2(st.st)));
+      out.append(el("p", "bgr-answer", "ไม่รู้พื้นหลังแน่นอน (marginalise): s ราว ๆ " + f2(c) + " ± " + f2(mW)));
+    }
+    window.addEventListener("resize", draw);
+    draw();
+  }
+
   function init() {
     document.querySelectorAll(".bayes-game").forEach(game);
     document.querySelectorAll(".bayes-grid").forEach(grid);
     document.querySelectorAll(".bayes-bell").forEach(bell);
     document.querySelectorAll(".bayes-duel").forEach(duel);
     document.querySelectorAll(".bayes-stretch").forEach(stretch);
+    document.querySelectorAll(".bayes-mountain").forEach(mountain);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
