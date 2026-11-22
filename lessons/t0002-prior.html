@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thesis บทที่ 2 · prior ที่ไม่รู้อะไรเลย</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+<script defer src="../assets/bayes.js"></script>
+</head>
+<body>
+
+<h1>Thesis บทที่ 2 · prior ที่ "ไม่รู้อะไรเลย" มีจริงไหม</h1>
+<p class="meta">เส้นทาง thesis · ต่อจาก <a href="t0001-bayes-gauss.html">T1 กล่องนับไม่ถ้วน</a> · ~25 นาที · Trotta (2008) สมการ (11) และ §5.4 ·
+แผนที่ทั้งเส้นทางอยู่ใน <a href="../reference/thesis-roadmap.html">ชีทแผนที่ paper</a></p>
+
+<h2>⓪ สองคนที่ "ไม่รู้อะไรเลย" แต่เถียงกัน</h2>
+
+<p>ใน T1 Alice กับ Bob มีความเชื่อเดิมคนละแบบ แล้วข้อมูลค่อย ๆ ทำให้สองคนเห็นตรงกัน คำถามที่ค้างอยู่คือ
+ถ้าเราไม่มีความเชื่อเดิมเลย จะตั้ง prior ยังไง คำตอบแรกที่ทุกคนคิดคือ "ให้ทุกค่าเท่ากัน" ซึ่งเรียกว่า <strong>flat prior</strong>
+(prior แบบแบนราบ) ลองดูว่ามันง่ายอย่างที่คิดไหม</p>
+
+<p>มีสี่เหลี่ยมจัตุรัสรูปหนึ่ง รู้แค่ว่าด้านยาวอยู่ระหว่าง 1 ถึง 3 เซนติเมตร คุณแดงบอกว่า "ฉันไม่รู้อะไรเลย ให้ด้านยาวทุกค่าเท่ากัน"
+คุณเขียวบอกว่า "ฉันก็ไม่รู้อะไรเลยเหมือนกัน แต่ขอให้<em>พื้นที่</em>ทุกค่าเท่ากัน" ซึ่งพื้นที่อยู่ระหว่าง 1 ถึง 9 ตารางเซนติเมตร
+ทั้งสองคนต่างก็ไม่รู้อะไรเลยจริง ๆ</p>
+
+<div class="quiz" data-warmup data-answer="2">
+  <h3>ทายก่อน (ไม่นับคะแนน) · ถามสองคนว่า "โอกาสที่ด้านยาวน้อยกว่า 2 เซนติเมตรเป็นเท่าไร" จะได้คำตอบแบบไหน</h3>
+  <div class="choices">
+    <button>ได้ 1/2 เท่ากันทั้งสองคน</button>
+    <button>ได้ 3/8 เท่ากันทั้งสองคน</button>
+    <button>แดงได้ 1/2 แต่เขียวได้ 3/8</button>
+    <button>แดงได้ 3/8 แต่เขียวได้ 1/2</button>
+  </div>
+  <p class="fb">แดงได้ 1/2 เพราะช่วง 1 ถึง 2 คือครึ่งหนึ่งของ 1 ถึง 3 · ส่วนเขียว ด้านยาวน้อยกว่า 2 แปลว่าพื้นที่น้อยกว่า 4
+  ช่วงพื้นที่ 1 ถึง 4 ยาว 3 จากทั้งหมด 8 จึงได้ 3/8 · "ไม่รู้อะไรเลย" สองแบบให้คำตอบไม่เท่ากัน</p>
+</div>
+
+<h2>① เล่นก่อน · ยืดแกนยาง</h2>
+
+<p>ของเล่นข้างล่างสุ่มสี่เหลี่ยม 2000 รูป แต่ละรูปโผล่เป็นจุดบนสองแกน แกนบนคือด้านยาว $L$ แกนล่างคือพื้นที่ $A = L^2$
+เส้นบาง ๆ เชื่อมจุดของรูปเดียวกันบนสองแกน (วาดแค่ 60 เส้นพอให้เห็นการยืด) แท่งสีน้ำเงินนับว่าแต่ละช่องของแกนบนมีกี่จุด แท่งสีส้มนับของแกนล่าง
+เส้นประแดงคือ $L = 2$ ซึ่งตรงกับ $A = 4$</p>
+
+<div class="bayes-stretch" data-n="2000"></div>
+
+<p><strong>ลองเล่นสองอย่างนี้</strong> อย่างแรก สุ่มแบบแบนบนด้านยาว แท่งน้ำเงินจะสูงเท่า ๆ กัน แต่แท่งส้มสูงทางซ้ายแล้วเตี้ยลงทางขวา
+อย่างที่สอง สุ่มแบบแบนบนพื้นที่ คราวนี้แท่งส้มเท่ากัน แต่แท่งน้ำเงินกลับเอียง ดูตัวเลขด้านล่างด้วย
+จะได้ราว 50% กับราว 37.5% (คือ 3/8) ตามที่ข้อทายบอก กดสุ่มใหม่หลายครั้งได้ ตัวเลขจะแกว่งนิดหน่อยแต่อยู่แถวนั้น</p>
+
+<p>ที่เป็นแบบนี้เพราะการยกกำลังสองยืดแกนไม่เท่ากัน ดูจากเส้นเชื่อม ช่วงด้านยาว 1 ถึง 1.2 ถูกยืดเป็นพื้นที่ 1 ถึง 1.44
+กว้างแค่ 0.44 ส่วนช่วงด้านยาว 2.8 ถึง 3 ซึ่งกว้างเท่ากัน ถูกยืดเป็นพื้นที่ 7.84 ถึง 9 กว้างถึง 1.16
+สองช่วงนี้มีจุดจำนวนเท่ากัน เพราะเป็นสี่เหลี่ยมชุดเดียวกัน แต่ช่วงหลังถูกยืดออกจนจุดบางลง
+"แบน" บนแกนหนึ่ง จึง "ไม่แบน" บนอีกแกนเสมอ ถ้าสองแกนยืดไม่เท่ากัน</p>
+
+<h2>② กฎการเปลี่ยนตัวแปร</h2>
+
+<p>เขียนเป็นตัวเลขได้ด้วยวิธีเดียวกับ T0 คือนับรอบ สี่เหลี่ยมที่ตกในแถบด้านยาวแคบ ๆ ก็คือสี่เหลี่ยมชุดเดียวกับที่ตกในแถบพื้นที่ที่ตรงกัน
+ความน่าจะเป็นในแถบสองแถบนี้จึงต้องเท่ากัน ให้ $p_L(L)$ คือความหนาแน่นบนแกนด้านยาว (ความน่าจะเป็นต่อความยาวหนึ่งหน่วย)
+และ $p_A(A)$ คือความหนาแน่นบนแกนพื้นที่ ถ้าแถบด้านยาวกว้าง $dL$ ไปตรงกับแถบพื้นที่กว้าง $dA$ จะได้
+$p_A\,dA = p_L\,dL$ หรือเขียนให้หาความหนาแน่นใหม่ได้ตรง ๆ ว่า</p>
+
+<div class="key">
+  <div class="eq" data-eqno="1">$$ p_A(A) = \frac{p_L(L)}{\left|\,dA/dL\,\right|} $$</div>
+  <p style="margin-bottom:0">อ่านว่า ความหนาแน่นใหม่ = ความหนาแน่นเดิม ÷ อัตราการยืดของแกน ตรงไหนแกนถูกยืดมาก ($dA/dL$ ใหญ่)
+  จุดก็บางลงมาก ตัว $dA/dL$ มีชื่อว่า <strong>Jacobian</strong> ซึ่งเป็นคำที่จะเจอบ่อยในเปเปอร์</p>
+</div>
+
+<p>ลองใช้กับคุณแดง ซึ่งแบนบนด้านยาว ช่วง 1 ถึง 3 ยาว 2 หน่วย จึงได้ $p_L = \tfrac12$ ส่วน $A = L^2$ ยืดด้วยอัตรา $dA/dL = 2L$
+ที่ $L = 1$ ยืด 2 เท่า จึงได้ $p_A = \tfrac12 \div 2 = \tfrac14$ ที่ $L = 3$ ยืด 6 เท่า จึงได้ $p_A = \tfrac1{12}$
+ความหนาแน่นบนแกนพื้นที่ลดลงสามเท่าจากซ้ายไปขวา ตรงกับแท่งส้มที่เตี้ยลงในของเล่น
+เขียนเป็นสูตรของ $A$ ได้ว่า $p_A(A) = \dfrac{1}{4\sqrt A}$ ซึ่งอินทิเกรตจาก 1 ถึง 9 แล้วได้ 1 พอดี</p>
+
+<h2>③ ทำไมนักจักรวาลวิทยาต้องสนใจ</h2>
+
+<p>ในจักรวาลวิทยามีพารามิเตอร์ตัวหนึ่งชื่อ $A_s$ ซึ่งบอกว่าคลื่นความหนาแน่นในเอกภพยุคแรกแรงแค่ไหน ความหมายเต็มอยู่ในช่วงฟิสิกส์จักรวาลวิทยาของแผน
+ตอนนี้ให้รู้แค่ว่ามันเป็นตัวเลขเล็กมาก สมมติว่าก่อนวัดเรารู้แค่ว่ามันอยู่ระหว่าง $10^{-10}$ ถึง $10^{-8}$
+ซึ่งแปลว่าไม่รู้แม้แต่ว่ามันมีศูนย์หลังจุดทศนิยมกี่ตัว</p>
+
+<p>ถ้าตั้ง flat prior บน $A_s$ ตรง ๆ โอกาสที่ $A_s$ จะน้อยกว่า $10^{-9}$ คือความยาวช่วง $10^{-10}$ ถึง $10^{-9}$ หารด้วยความยาวทั้งหมด
+ได้ $\tfrac{9}{99} = \tfrac{1}{11}$ แปลว่า prior นี้ "เชื่อ" อยู่แล้วว่าค่าจริงอยู่ในช่วงบนเกือบแน่ ๆ ทั้งที่เราบอกว่าไม่รู้อะไร
+แบบที่ตรงกับความไม่รู้จริงกว่าคือตั้ง flat prior บน $\log_{10} A_s$ ซึ่งอยู่ระหว่าง $-10$ ถึง $-8$
+แบบนี้ช่วง $10^{-10}$ ถึง $10^{-9}$ กับช่วง $10^{-9}$ ถึง $10^{-8}$ ได้คนละครึ่งพอดี</p>
+
+<p>ถ้าใช้กฎ (1) แปลง prior ที่แบนบน $\ln A$ กลับมาเป็นแกน $A$ อัตราการยืดคือ $\dfrac{d(\ln A)}{dA} = \dfrac1A$
+จึงได้ prior ที่หน้าตาเป็นแบบนี้</p>
+
+<div class="eq" data-eqno="2">$$ p(A) \propto \frac{1}{A} $$</div>
+
+<p>prior ตัวนี้มีชื่อว่า <strong>Jeffreys prior</strong> สัญลักษณ์ $\propto$ อ่านว่า "แปรผันตรงกับ" คือเท่ากับ $1/A$ คูณค่าคงตัวที่ทำให้รวมได้ 1
+คุณสมบัติเด่นคือทุกช่วงสิบเท่า เช่น 1 ถึง 10 กับ 10 ถึง 100 มีความน่าจะเป็นเท่ากัน ใช้กับพารามิเตอร์ที่ไม่รู้แม้แต่ขนาด
+Trotta พูดเรื่องนี้ที่สมการ (11) และเตือนเรื่องการเลือก prior อีกครั้งใน §5.4 ส่วนการตั้งค่าใน Cobaya (รูป 9 ของ [C])
+ก็ตั้ง prior บน log ของ amplitude ด้วยเหตุผลเดียวกัน</p>
+
+<div class="warn">
+  <strong>แล้วจะเลือกแบบไหน</strong> — ไม่มี prior ที่ "ไม่รู้อะไรเลย" แบบเดียวที่ถูกเสมอ การเลือกแกนที่จะแบนคือการตัดสินใจของคนทำวิจัย
+  ซึ่งต้องเขียนบอกไว้ในเปเปอร์ ข่าวดีคือจาก T1 ถ้าข้อมูลมากพอ prior แบบไหนก็ได้ posterior ใกล้กัน
+  prior จึงสำคัญที่สุดตอนที่ข้อมูลยังน้อยหรือหยาบ
+  <br><strong>ยังไม่แตะโดยตั้งใจ</strong> — การเปลี่ยนตัวแปรหลายมิติ (Jacobian ที่เป็น determinant) ไว้ T3 ·
+  วิธีหา Jeffreys prior จาก Fisher information ไม่จำเป็นต้องใช้ในการอ่านสองเปเปอร์นี้
+</div>
+
+<p class="src">ตรวจด้วย <code>sympy</code>: ข้อทาย 1/2 กับ 3/8 · กฎ (1) ให้ $p_A = 1/(4\sqrt A)$ ซึ่ง normalize ได้ 1 ·
+ความกว้างแถบ 0.44 กับ 1.16 · ตัวอย่าง $A_s$ ได้ 1/11 · Jeffreys $\propto 1/A$ และทุกช่วงสิบเท่าเท่ากัน · ทุกคำตอบข้างล่าง —
+<code>scripts/verify/t0002_prior.py</code></p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ข้อ 1 และ 3 คือการหาความยาวช่วงแล้วหาร ข้อ 2 และ 4 ใช้กฎ (1) ทำทีละขั้นตามที่บอก ·
+ข้อ 5 ให้เลือก · ตอบเป็นตัวเลข เศษส่วนพิมพ์แบบ <code>3/8</code> ได้</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · คุณเขียวกับด้านยาวน้อยกว่า 2.5</h3>
+  <p class="hint">คุณเขียวแบนบนพื้นที่ $A$ จาก 1 ถึง 9 · ถามว่าโอกาสที่ด้านยาว $L$ น้อยกว่า 2.5 เป็นเท่าไร</p>
+  <ol class="steps">
+    <li data-answer="25/4" data-alt="6.25">
+      <p><strong>ขั้น 1</strong> — ด้านยาว 2.5 ตรงกับพื้นที่เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2.5^2 = 6.25$</p>
+    </li>
+    <li data-answer="21/4" data-alt="5.25">
+      <p><strong>ขั้น 2</strong> — ความยาวของช่วงพื้นที่จาก 1 ถึงค่าในขั้น 1</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$6.25 - 1 = 5.25$</p>
+    </li>
+    <li data-answer="8">
+      <p><strong>ขั้น 3</strong> — ความยาวของช่วงพื้นที่ทั้งหมด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$9 - 1 = 8$</p>
+    </li>
+    <li data-answer="21/32" data-alt="0.656|0.66|0.6563|0.65625">
+      <p><strong>ขั้น 4</strong> — โอกาสที่ด้านยาวน้อยกว่า 2.5 ตามความเชื่อของคุณเขียว</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5.25 / 8 = 21/32 \approx 0.66$ · คุณแดงได้ $1.5/2 = 0.75$ · ถ้าได้ 0.75 แปลว่าใช้ความยาวบนแกนด้านยาวแทน</p>
+    </li>
+  </ol>
+  <p class="fb">แปลงเงื่อนไขไปเป็นแกนที่แบน แล้วหาความยาวช่วงหารความยาวทั้งหมด</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · ความหนาแน่นของคุณแดงบนแกนพื้นที่ (สมการ 1)</h3>
+  <p class="hint">คุณแดงแบนบนด้านยาว $L$ จาก 1 ถึง 3 จึงมี $p_L = \tfrac12$ · พื้นที่ $A = L^2$ ยืดด้วยอัตรา $dA/dL = 2L$</p>
+  <ol class="steps">
+    <li data-answer="4">
+      <p><strong>ขั้น 1</strong> — อัตราการยืด $dA/dL$ ที่ $L = 2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 2 = 4$</p>
+    </li>
+    <li data-answer="1/8" data-alt="0.125">
+      <p><strong>ขั้น 2</strong> — ความหนาแน่น $p_A$ ที่ $A = 4$ (สมการ 1)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12 \div 4 = \tfrac18$ · ถ้าได้ 2 แปลว่าคูณแทนการหาร</p>
+    </li>
+    <li data-answer="6">
+      <p><strong>ขั้น 3</strong> — อัตราการยืดที่ $L = 3$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 3 = 6$</p>
+    </li>
+    <li data-answer="1/12" data-alt="0.083|0.0833">
+      <p><strong>ขั้น 4</strong> — ความหนาแน่น $p_A$ ที่ $A = 9$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac12 \div 6 = \tfrac1{12}$ · ปลายขวาบางกว่าตรงกลาง เพราะแกนถูกยืดมากกว่า</p>
+    </li>
+  </ol>
+  <p class="fb">ความหนาแน่นใหม่ = ความหนาแน่นเดิม ÷ อัตราการยืดของแกน</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · amplitude ที่ไม่รู้แม้แต่ขนาด</h3>
+  <p class="hint">พารามิเตอร์ $A$ อยู่ระหว่าง 1 ถึง 100 · ถามโอกาสที่ $A$ น้อยกว่า 10 ด้วย prior สองแบบ</p>
+  <ol class="steps">
+    <li data-answer="9">
+      <p><strong>ขั้น 1</strong> — แบนบน $A$: ความยาวช่วง 1 ถึง 10</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$10 - 1 = 9$</p>
+    </li>
+    <li data-answer="1/11" data-alt="9/99|0.091|0.0909">
+      <p><strong>ขั้น 2</strong> — แบนบน $A$: โอกาสที่ $A$ น้อยกว่า 10 (ช่วงทั้งหมดยาว 99)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$9/99 = 1/11$</p>
+    </li>
+    <li data-answer="1">
+      <p><strong>ขั้น 3</strong> — แบนบน $\log_{10} A$: ซึ่งอยู่ระหว่าง 0 ถึง 2 · ความยาวช่วงของ $\log_{10} A$ ที่ตรงกับ $A$ จาก 1 ถึง 10</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\log_{10}10 - \log_{10}1 = 1 - 0 = 1$</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5|.5">
+      <p><strong>ขั้น 4</strong> — แบนบน $\log_{10} A$: โอกาสที่ $A$ น้อยกว่า 10</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/2$ · ช่วงสิบเท่าแรกกับช่วงสิบเท่าที่สองได้เท่ากัน</p>
+    </li>
+  </ol>
+  <p class="fb">prior แบนบน $A$ เทน้ำหนักเกือบทั้งหมดไปที่ค่าใหญ่ · แบนบน log ให้ทุกช่วงสิบเท่าเท่ากัน</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · Jeffreys prior (สมการ 1 และ 2)</h3>
+  <p class="hint">ให้ $u = \ln A$ แบน ความหนาแน่นบนแกน $u$ คือค่าคงตัว $c$ · อัตราการยืดจากแกน $A$ ไปแกน $u$ คือ $du/dA = 1/A$
+  ดังนั้นความหนาแน่นบนแกน $A$ คือ $c \times du/dA$</p>
+  <ol class="steps">
+    <li data-answer="1">
+      <p><strong>ขั้น 1</strong> — $du/dA$ ที่ $A = 1$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/1 = 1$</p>
+    </li>
+    <li data-answer="1/10" data-alt="0.1|.1">
+      <p><strong>ขั้น 2</strong> — $du/dA$ ที่ $A = 10$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/10$</p>
+    </li>
+    <li data-answer="1/10" data-alt="0.1|.1">
+      <p><strong>ขั้น 3</strong> — ความหนาแน่นที่ $A = 10$ เป็นกี่เท่าของที่ $A = 1$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\dfrac{c/10}{c/1} = \tfrac1{10}$ · ค่า $c$ ตัดกันหายไป จึงไม่ต้องรู้ค่าของมัน · นี่คือความหมายของ $p(A) \propto 1/A$</p>
+    </li>
+  </ol>
+  <p class="fb">แบนบน $\ln A$ ⇔ ความหนาแน่นบนแกน $A$ แปรผกผันกับ $A$</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <h3>ข้อ 5 · ตอนไหนการเลือก prior สำคัญที่สุด</h3>
+  <div class="choices">
+    <button>ตอนที่มีข้อมูลแม่นยำจำนวนมาก</button>
+    <button>ตอนที่ข้อมูลยังน้อยหรือหยาบมาก</button>
+    <button>สำคัญเท่ากันทุกสถานการณ์เสมอ</button>
+    <button>ไม่เคยสำคัญ เพราะผลออกมาเท่ากัน</button>
+  </div>
+  <p class="fb">จาก T1 precision ของข้อมูลโตตามจำนวนครั้งจนกลบ prior ⇒ ข้อมูลมากแล้ว prior แทบไม่มีผล ·
+  ตอนข้อมูลน้อย posterior ยังอยู่ใกล้ prior ตัวเลือก prior จึงเปลี่ยนคำตอบได้มาก</p>
+</div>
+
+<h2>อ่านต่อ</h2>
+<p>ตอนนี้อ่าน Trotta ได้ถึงสมการ (11) แล้ว และอ่าน §5.4 ข้อ 1-2 เรื่องการเลือก prior ได้
+<span class="src">R. Trotta, <em>Bayes in the sky</em>, Contemp. Phys. 49 (2008) 71 · doi:10.1080/00107510802066753</span></p>
+
+<div class="ask">
+  ตรงไหนไม่ชัด <strong>ถามได้เลย</strong> · เสร็จแล้วกด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา
+  <div class="nav">
+    <a href="t0001-bayes-gauss.html">← T1 กล่องนับไม่ถ้วน</a>
+    <a href="../reference/thesis-roadmap.html">🗺️ แผนที่ paper ทั้งสอง</a>
+  </div>
+</div>
+
+</body>
+</html>

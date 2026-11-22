@@ -224,8 +224,9 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 - ล่าสุด **T0** `lessons/t0000-bayes-boxes.html` (กล่องสองใบ · เกม · นับ 100 รอบ) แทรกก่อน T1 · record `t0000-bayes-boxes.md` — **ผ่าน 6/6** (2026-11-21)
   · **T1** `lessons/t0001-bayes-gauss.html` เขียนใหม่แบบ T0 (ทายก่อน · ระฆังลากได้ · เกม Alice–Bob · กฎสองข้อ) — รอบแรก 2/4 (precision↔τ² · "น้ำหนัก" ไม่นิยาม) → **รอบสองผ่าน 4/4** (2026-11-21)
   · `quiz.js` มี `.quiz[data-warmup]` = ข้อทายกลางบท ไม่นับคะแนน
-  · ถัดไป: T2 prior และการเปลี่ยนตัวแปร (Trotta (11))
-- ของเล่นใช้ซ้ำ: `assets/bayes.js` (`.bayes-game` · `.bayes-grid` · `.bayes-bell` · `.bayes-duel`) · build ฝัง `../assets/*.js` ทุกตัวให้เอง
+  · **T2** `lessons/t0002-prior.html` (แดง/เขียวกับสี่เหลี่ยม · ยืดแกนยาง · Jacobian · Jeffreys) · record `t0002-prior.md` — **รอผล**
+  · ถัดไป: T3 สองพารามิเตอร์ · marginalise
+- ของเล่นใช้ซ้ำ: `assets/bayes.js` (`.bayes-game` · `.bayes-grid` · `.bayes-bell` · `.bayes-duel` · `.bayes-stretch`) · build ฝัง `../assets/*.js` ทุกตัวให้เอง
 - ⚠️ เขียนบทผ่านสตริง Python ต้องใช้ raw string — `\times` เคยกลายเป็น TAB (`check_lessons` จับแล้ว)
 - Artifact: T1 `Wrgdh2fegJsw8aYfWrrMmF` · แผนที่ `VCojs8XZedFFWL5hSp5mWy`
 

@@ -9,7 +9,7 @@
      <div class="bayes-grid" data-ra="0.3" data-rb="0.7" data-pb="0.5"></div>
      มีแถบเลื่อนปรับทั้งสามค่า (ทีละ 0.1 ⇒ ทุกจำนวนรอบเป็นจำนวนเต็มพอดี ไม่ต้องปัด)
 
-   ── ระฆัง Gaussian / Alice กับ Bob ── ดู comment ที่ bell() และ duel() ข้างล่าง
+   ── ระฆัง Gaussian / Alice กับ Bob / ยืดแกน ── ดู comment ที่ bell() · duel() · stretch() ข้างล่าง
 
    ⚠️ build_standalone.py ฝังไฟล์นี้ลงฉบับ build/ ให้เอง (ทุกสคริปต์ที่ชี้ไป ../assets/*.js) */
 (function () {
@@ -321,11 +321,85 @@
     draw();
   }
 
+  /* ---------- ยืดแกน: สุ่มด้านยาว L แล้วดูพื้นที่ A = L² ----------
+     <div class="bayes-stretch" data-n="2000"></div>
+     ปุ่มเลือกว่าจะสุ่ม "แบนบน L" หรือ "แบนบน A" · จุดเดียวกันโผล่บนสองแกน มีเส้นเชื่อม
+     histogram 8 ช่องบนแต่ละแกน ⇒ เห็นว่าแบนบนแกนหนึ่ง ไม่แบนบนอีกแกน */
+  function stretch(root) {
+    const N = num(root, "n", 2000), L0 = 1, L1 = 3, A0 = 1, A1 = 9, H = 260;
+    let mode = "L", pts = [];
+    const btns = el("div", "bg-btns");
+    const bL = el("button", null, "สุ่มแบบแบนบนด้านยาว L"), bA = el("button", null, "สุ่มแบบแบนบนพื้นที่ A"),
+          bR = el("button", "bg-new", "↻ สุ่มใหม่");
+    [bL, bA, bR].forEach(b => b.type = "button");
+    btns.append(bL, bA, bR);
+    const { cv, ctx, size } = canvasFor(root, H);
+    const out = el("div", "bgr-out");
+    root.append(btns, cv, out);
+    function roll() {
+      pts = [];
+      for (let i = 0; i < N; i++) {
+        const L = mode === "L" ? L0 + (L1 - L0) * Math.random() : Math.sqrt(A0 + (A1 - A0) * Math.random());
+        pts.push(L);
+      }
+      draw();
+    }
+    function hist(vals, lo, hi, k) {
+      const h = new Array(k).fill(0);
+      vals.forEach(v => { h[Math.min(k - 1, Math.floor((v - lo) / (hi - lo) * k))]++; });
+      return h;
+    }
+    function draw() {
+      const W = size(), pad = 16, w = W - 2 * pad;
+      const ink = getComputedStyle(document.body).color || "#555";
+      ctx.clearRect(0, 0, W, H);
+      const yL = 95, yA = 185, bh = 70;
+      const xL = L => pad + (L - L0) / (L1 - L0) * w, xA = A => pad + (A - A0) / (A1 - A0) * w;
+      // histogram 8 ช่อง: L ขึ้นด้านบนแกน · A ลงด้านล่างแกน
+      const hL = hist(pts, L0, L1, 8), hA = hist(pts.map(L => L * L), A0, A1, 8);
+      const mx = Math.max(...hL, ...hA, 1);
+      ctx.globalAlpha = .35;
+      ctx.fillStyle = COL.prior;
+      hL.forEach((c, i) => { const h = c / mx * bh; ctx.fillRect(pad + i * w / 8 + 1, yL - h, w / 8 - 2, h); });
+      ctx.fillStyle = COL.bob;
+      hA.forEach((c, i) => { const h = c / mx * bh; ctx.fillRect(pad + i * w / 8 + 1, yA, w / 8 - 2, h); });
+      // เส้นเชื่อม: จุดเดียวกันบนสองแกน (วาดแค่ 60 เส้นแรกพอให้เห็นการยืด)
+      ctx.globalAlpha = .25; ctx.strokeStyle = ink; ctx.lineWidth = 1;
+      pts.slice(0, 60).forEach(L => { ctx.beginPath(); ctx.moveTo(xL(L), yL); ctx.lineTo(xA(L * L), yA); ctx.stroke(); });
+      ctx.globalAlpha = 1;
+      // แกน + ขีดเลข
+      ctx.strokeStyle = ink; ctx.fillStyle = ink; ctx.font = "12px sans-serif"; ctx.textAlign = "center";
+      [[yL, L0, L1, xL, "ด้านยาว L", [1, 1.5, 2, 2.5, 3]], [yA, A0, A1, xA, "พื้นที่ A = L²", [1, 3, 5, 7, 9]]].forEach(([y, lo, hi, X, name, ticks]) => {
+        ctx.beginPath(); ctx.moveTo(pad, y); ctx.lineTo(W - pad, y); ctx.stroke();
+        ticks.forEach(t => { ctx.beginPath(); ctx.moveTo(X(t), y - 3); ctx.lineTo(X(t), y + 3); ctx.stroke(); ctx.fillText(String(t), X(t), y === yL ? y + 15 : y - 6); });
+        // ป้ายชื่อแกน: L อยู่มุมซ้ายบน · A อยู่ชิดขวาเหนือแกน (มุมซ้ายล่างทับแท่ง)
+        if (y === yL) { ctx.textAlign = "left"; ctx.fillText(name, pad, 14); }
+        else { ctx.textAlign = "right"; ctx.fillText(name, W - pad, y - 20); }
+        ctx.textAlign = "center";
+      });
+      // เส้นแบ่ง L = 2 ⇔ A = 4
+      ctx.strokeStyle = COL.like; ctx.setLineDash([5, 4]); ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(xL(2), yL - bh); ctx.lineTo(xL(2), yL); ctx.lineTo(xA(4), yA); ctx.lineTo(xA(4), yA + bh); ctx.stroke();
+      ctx.setLineDash([]);
+      const k = pts.filter(L => L < 2).length;
+      out.textContent = "";
+      out.append(el("p", null, "กำลังสุ่มแบบ: แบนบน" + (mode === "L" ? "ด้านยาว L" : "พื้นที่ A") + " · " + N + " จุด"));
+      out.append(el("p", "bgr-answer", "ด้านยาวน้อยกว่า 2 (เส้นประแดง): " + k + " จาก " + N + " = " + Math.round(k / N * 100) + "%"));
+      bL.classList.toggle("bg-draw", mode === "L"); bA.classList.toggle("bg-draw", mode === "A");
+    }
+    bL.onclick = () => { mode = "L"; roll(); };
+    bA.onclick = () => { mode = "A"; roll(); };
+    bR.onclick = roll;
+    window.addEventListener("resize", draw);
+    roll();
+  }
+
   function init() {
     document.querySelectorAll(".bayes-game").forEach(game);
     document.querySelectorAll(".bayes-grid").forEach(grid);
     document.querySelectorAll(".bayes-bell").forEach(bell);
     document.querySelectorAll(".bayes-duel").forEach(duel);
+    document.querySelectorAll(".bayes-stretch").forEach(stretch);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();

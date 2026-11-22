@@ -300,10 +300,10 @@ table.mono td { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size
 .bgr-out { font-size: .95rem; }
 .bgr-answer { font-weight: 600; color: var(--accent); }
 @media print { .bayes-game { display: none; } }
-.bayes-bell, .bayes-duel { background: var(--panel); border: 1px solid var(--rule);
+.bayes-bell, .bayes-duel, .bayes-stretch { background: var(--panel); border: 1px solid var(--rule);
   border-radius: 8px; padding: 1rem; display: flex; flex-direction: column; gap: .6rem; }
-.bayes-bell p, .bayes-duel p { margin: 0; }
-.bayes-duel button { font: inherit; padding: .35rem .8rem; border-radius: 6px;
+.bayes-bell p, .bayes-duel p, .bayes-stretch p { margin: 0; }
+.bayes-duel button, .bayes-stretch button { font: inherit; padding: .35rem .8rem; border-radius: 6px;
   border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
 .bb-canvas { display: block; max-width: 100%; }
 .bb-legend { font-size: .85rem; color: var(--ink-soft); }
