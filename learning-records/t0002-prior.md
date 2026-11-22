@@ -27,6 +27,11 @@
 - T1 ตรงต้นฉบับทุกจุดที่อ้าง: (5)-(10) · แทน σ²→σ²/N ใต้ (10) · รูป 2(d) หลัง 100 ข้อมูล · "data not strong enough to override the prior"
 - ⚠️ PDF: เลขหน้าวารสาร 76 = หน้า PDF 7 (PDF = วารสาร − 69) · ไม่ได้ commit (ลิขสิทธิ์ Taylor & Francis) · `t0002_prior.py` 22/22
 
+- **Cobaya (แบแนบ PDF 2026-11-22):** รูป 9 = YAML จริงของ §VI A · `logamplitude: prior: [-2, -0.6]` + `amplitude: value: 'lambda logamplitude: 10**logamplitude'`
+  (ทำแบบเดียวกันกับ wavelength, centre) · `As: value: 'lambda logA: 1e-10*np.exp(logA)'` · รูป 5 แกน log10 ทั้งหมด
+  ⇒ ยืนยันข้อความใน roadmap ("prior บน log A ใน Cobaya") · เพิ่ม ⑤ "อ่านไฟล์ตั้งค่า Cobaya" + **ข้อ 5 ใหม่** จากตัวเลขในไฟล์จริง
+  (P(amplitude < 0.1) = 5/7 · fb เทียบแบนบน amplitude ≈ 0.37) · ข้อเลือกเดิมเลื่อนเป็นข้อ 6 · `t0002_prior.py` 27/27
+
 ## ผลรอบแรก
 
 (รอผล)

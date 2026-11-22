@@ -17,7 +17,7 @@
 <body>
 
 <h1>Thesis บทที่ 2 · prior ที่ "ไม่รู้อะไรเลย" มีจริงไหม</h1>
-<p class="meta">เส้นทาง thesis · ต่อจาก <a href="t0001-bayes-gauss.html">T1 กล่องนับไม่ถ้วน</a> · ~25 นาที · Trotta (2008) สมการ (11) และ §5.4 ·
+<p class="meta">เส้นทาง thesis · ต่อจาก <a href="t0001-bayes-gauss.html">T1 กล่องนับไม่ถ้วน</a> · ~30 นาที · Trotta (2008) สมการ (11) และ §5.4 ·
 แผนที่ทั้งเส้นทางอยู่ใน <a href="../reference/thesis-roadmap.html">ชีทแผนที่ paper</a></p>
 
 <h2>⓪ สองคนที่ "ไม่รู้อะไรเลย" แต่เถียงกัน</h2>
@@ -95,7 +95,7 @@ $p_A\,dA = p_L\,dL$ หรือเขียนให้หาความหน
 
 <p>prior ตัวนี้มีชื่อว่า <strong>Jeffreys prior</strong> สัญลักษณ์ $\propto$ อ่านว่า "แปรผันตรงกับ" คือเท่ากับ $1/A$ คูณค่าคงตัวที่ทำให้รวมได้ 1
 คุณสมบัติเด่นคือทุกช่วงสิบเท่า เช่น 1 ถึง 10 กับ 10 ถึง 100 มีความน่าจะเป็นเท่ากัน ใช้กับพารามิเตอร์ที่ไม่รู้แม้แต่ขนาด
-ส่วนการตั้งค่าใน Cobaya (รูป 9 ของ [C]) ก็ตั้ง prior บน log ของ amplitude ด้วยเหตุผลเดียวกัน</p>
+Cobaya ใช้วิธีนี้จริงในไฟล์ตั้งค่าของเปเปอร์ ซึ่งจะได้อ่านใน ⑤</p>
 
 <h2>④ อ่านของจริง · Trotta หน้า 78</h2>
 
@@ -118,6 +118,28 @@ $\theta$ คือด้านยาว $L$ และ $\psi$ คือพื้�
 และ prior ที่แบนบนแบบหนึ่งจะไม่แบนบนอีกแบบ ตามสมการ (11) จึงได้ผลต่างกันมาก
 <span class="src">R. Trotta, <em>Bayes in the sky</em> (2008) หน้า 78 สมการ (11) และ §5.4 ข้อ (1)-(2) หน้า 95-96</span></p>
 
+<h2>⑤ อ่านของจริง · ไฟล์ตั้งค่า Cobaya</h2>
+
+<p>รูป 9 ของเปเปอร์ Cobaya คือไฟล์ตั้งค่า (เขียนแบบ YAML) ที่ใช้รันตัวอย่างจริงในเปเปอร์ ซึ่งหา "feature"
+หรือรอยหยักเล็ก ๆ ในสเปกตรัมของเอกภพยุคแรก ไม่ต้องเข้าใจฟิสิกส์ของมันตอนนี้ ดูแค่บรรทัดเหล่านี้ที่ยกมาจากรูป</p>
+
+<pre><code>params:
+  logamplitude:
+    prior: [-2, -0.6]
+  amplitude:
+    value: 'lambda logamplitude: 10**logamplitude'
+  ...
+  As:
+    value: 'lambda logA: 1e-10*np.exp(logA)'</code></pre>
+
+<p>อ่านทีละบรรทัดได้ว่า Cobaya ไม่ได้สุ่ม <code>amplitude</code> ตรง ๆ แต่สุ่ม <code>logamplitude</code> ซึ่งคือ $\log_{10}$ ของ amplitude
+แบบแบนในช่วง $-2$ ถึง $-0.6$ (บรรทัด <code>prior: [-2, -0.6]</code> คือ flat prior ช่วงนี้) แล้วค่อยแปลงกลับเป็น
+<code>amplitude</code> ด้วย $10^{\text{logamplitude}}$ (คำว่า <code>lambda</code> คือฟังก์ชันใน Python และ <code>**</code> คือยกกำลัง)
+นี่คือ prior ที่แบนบน log ซึ่งก็คือ Jeffreys prior ตามสมการ (2) ส่วน <code>As</code> บรรทัดล่างคือ $A_s$ ใน ③
+เขียนเป็น $10^{-10} e^{\log A}$ แปลว่าพารามิเตอร์ที่ถูกสุ่มจริงคือ $\ln(10^{10} A_s)$ ไม่ใช่ $A_s$ ตรง ๆ
+ไฟล์เดียวกันทำแบบนี้กับความยาวคลื่นและตำแหน่งของ feature ด้วย และรูป 5 ของเปเปอร์ก็วาด posterior บนแกน $\log_{10}$ ทั้งหมด
+<span class="src">J. Torrado &amp; A. Lewis, <em>Cobaya</em>, arXiv:2005.05290v2 · §VI A และรูป 5, 9</span></p>
+
 <div class="warn">
   <strong>แล้วจะเลือกแบบไหน</strong> — ไม่มี prior ที่ "ไม่รู้อะไรเลย" แบบเดียวที่ถูกเสมอ การเลือกแกนที่จะแบนคือการตัดสินใจของคนทำวิจัย
   ซึ่งต้องเขียนบอกไว้ในเปเปอร์ ข่าวดีคือจาก T1 ถ้าข้อมูลมากพอ prior แบบไหนก็ได้ posterior ใกล้กัน
@@ -134,7 +156,7 @@ $\theta$ คือด้านยาว $L$ และ $\psi$ คือพื้�
 <div id="score"></div>
 
 <p class="meta">ข้อ 1 และ 3 คือการหาความยาวช่วงแล้วหาร ข้อ 2 และ 4 ใช้กฎ (1) ทำทีละขั้นตามที่บอก ·
-ข้อ 5 ให้เลือก · ตอบเป็นตัวเลข เศษส่วนพิมพ์แบบ <code>3/8</code> ได้</p>
+ข้อ 5 ใช้ไฟล์ Cobaya ใน ⑤ · ข้อ 6 ให้เลือก · ตอบเป็นตัวเลข เศษส่วนพิมพ์แบบ <code>3/8</code> ได้</p>
 
 <div class="quiz" data-steps>
   <h3>ข้อ 1 · คุณเขียวกับด้านยาวน้อยกว่า 2.5</h3>
@@ -249,8 +271,36 @@ $\theta$ คือด้านยาว $L$ และ $\psi$ คือพื้�
   <p class="fb">แบนบน $\ln A$ ⇔ ความหนาแน่นบนแกน $A$ แปรผกผันกับ $A$</p>
 </div>
 
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · prior ของ amplitude ในไฟล์ Cobaya จริง</h3>
+  <p class="hint">จาก ⑤: <code>logamplitude</code> $= \log_{10}(\text{amplitude})$ แบนในช่วง $-2$ ถึง $-0.6$ · ถามโอกาสที่ amplitude น้อยกว่า 0.1</p>
+  <ol class="steps">
+    <li data-answer="1/100" data-alt="0.01|.01">
+      <p><strong>ขั้น 1</strong> — amplitude ที่เล็กที่สุดที่ prior นี้ยอมให้ ($10^{-2}$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$10^{-2} = 0.01$</p>
+    </li>
+    <li data-answer="7/5" data-alt="1.4">
+      <p><strong>ขั้น 2</strong> — ความยาวช่วงของ <code>logamplitude</code> ทั้งหมด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-0.6 - (-2) = 1.4$</p>
+    </li>
+    <li data-answer="-1">
+      <p><strong>ขั้น 3</strong> — amplitude $= 0.1$ ตรงกับ <code>logamplitude</code> เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\log_{10} 0.1 = -1$</p>
+    </li>
+    <li data-answer="5/7" data-alt="0.714|0.71|0.7143">
+      <p><strong>ขั้น 4</strong> — โอกาสที่ amplitude น้อยกว่า 0.1 (ความยาวช่วง $-2$ ถึงขั้น 3 หารด้วยขั้น 2)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 / 1.4 = 5/7 \approx 0.71$ · ถ้าแบนบน amplitude ตรง ๆ จาก 0.01 ถึง $10^{-0.6} \approx 0.25$ จะได้แค่ราว 0.37</p>
+    </li>
+  </ol>
+  <p class="fb">ไฟล์ตั้งค่าจริงคือข้อ 3 ที่ใช้ตัวเลขอีกชุด แปลงเงื่อนไขไปเป็นแกน log แล้วหาความยาวช่วง</p>
+</div>
+
 <div class="quiz" data-answer="1">
-  <h3>ข้อ 5 · ตอนไหนการเลือก prior สำคัญที่สุด</h3>
+  <h3>ข้อ 6 · ตอนไหนการเลือก prior สำคัญที่สุด</h3>
   <div class="choices">
     <button>ตอนที่มีข้อมูลแม่นยำจำนวนมาก</button>
     <button>ตอนที่ข้อมูลยังน้อยหรือหยาบมาก</button>
@@ -262,7 +312,8 @@ $\theta$ คือด้านยาว $L$ และ $\psi$ คือพื้�
 </div>
 
 <h2>อ่านต่อ</h2>
-<p>ตอนนี้อ่าน Trotta §2.3 ได้ทั้งหมด (หน้า 77-78 ถึงสมการ 11) และ §5.4 ข้อ (1)-(2) หน้า 95-96 ได้
+<p>ตอนนี้อ่าน Trotta §2.3 ได้ทั้งหมด (หน้า 77-78 ถึงสมการ 11) และ §5.4 ข้อ (1)-(2) หน้า 95-96 ได้ ·
+ส่วน Cobaya อ่านบล็อก <code>params</code> ในรูป 9 ได้แล้ว แม้จะยังไม่รู้ฟิสิกส์ของ feature
 <span class="src">R. Trotta, <em>Bayes in the sky</em>, Contemp. Phys. 49 (2008) 71 · doi:10.1080/00107510802066753</span></p>
 
 <div class="ask">

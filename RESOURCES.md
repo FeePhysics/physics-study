@@ -37,7 +37,8 @@ egress proxy บล็อกไว้ — ถ้าจะให้ Claude อ่
 ### Torrado & Lewis — *Cobaya* (arXiv:2005.05290v2, 2021)
 - paper ของโปรแกรม Cobaya · เอกสาร https://cobaya.readthedocs.io · โค้ด https://github.com/CobayaSampler/cobaya
 - **คุณภาพ:** สูง — Lewis เขียน CAMB/CosmoMC/GetDist เอง · แต่เป็น paper ของซอฟต์แวร์ ⇒ สมมติว่ารู้สถิติแล้ว
-- ใช้ตัวอย่างวงแหวน (รูป 2-4) เป็นแบบฝึกที่รันจริงได้ · `pip install cobaya` ในคลาวด์ยังไม่ได้ลอง
+- ใช้ตัวอย่างวงแหวน (รูป 2-4) เป็นแบบฝึกที่รันจริงได้
+- แบแนบ PDF อีกครั้ง 2026-11-22 (19 หน้า) · รูป 9 = YAML ของ §VI A (log-uniform prior บน amplitude/wavelength/centre · `As` จาก `logA`) ใช้ใน T2 ⑤ · `pip install cobaya` ในคลาวด์ยังไม่ได้ลอง
 
 ## วิดีโอ / คอร์ส
 

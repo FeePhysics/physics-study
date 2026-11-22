@@ -51,4 +51,12 @@ ok(sp.Rational(21, 32) != sp.Rational(3, 4), "สองคำตอบไม่�
 dLdA = sp.diff(sp.sqrt(A), A)
 ok(dLdA.subs(A, 4) == sp.Rational(1, 4), "|dL/dA| ที่ A = 4 = 1/4")
 ok(sp.simplify(pL * dLdA - pA) == 0, "Trotta (11) = สมการ (1) ของบท ทุกจุด")
+# ⑤ / ข้อ 5: Cobaya รูป 9 · logamplitude แบนบน [-2, -0.6]
+lo, hi = sp.Integer(-2), sp.Rational(-3, 5)
+ok(sp.Integer(10)**lo == sp.Rational(1, 100), "ข้อ5 ขั้น1")
+ok(hi - lo == sp.Rational(7, 5), "ข้อ5 ขั้น2")
+ok(sp.log(sp.Rational(1, 10), 10) == -1, "ข้อ5 ขั้น3")
+ok((-1 - lo) / (hi - lo) == sp.Rational(5, 7), "ข้อ5 ขั้น4 = 5/7")
+flat = (sp.Rational(1, 10) - sp.Rational(1, 100)) / (10**hi - sp.Rational(1, 100))
+ok(abs(float(flat) - 0.37) < 0.01, "ตัวควบคุมใน fb: แบนบน amplitude ได้ราว 0.37")
 print(f"{n}/{n}")
