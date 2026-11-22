@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>คู่มืออ่าน Dodelson · บทที่ 11 Analysis</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+</head>
+<body>
+
+<h1>คู่มืออ่าน Dodelson · บทที่ 11 Analysis</h1>
+<p class="meta">หนังสือหน้า 336–391 · คู่มืออ่านภาษาไทย ไม่ใช่ฉบับแปล — เปิดคู่กับหนังสือ · เลขหน้าในคู่มือ = เลขที่พิมพ์บนหน้าหนังสือ</p>
+
+<h2>บทนี้ตอบคำถามอะไร</h2>
+
+<p>สิบบทแรกทำนายว่า power spectrum ($P(k)$ ของดาราจักร, $C_l$ ของ CMB) ควรหน้าตาอย่างไรเมื่อรู้พารามิเตอร์ของเอกภพ
+บทนี้ถามกลับ: <strong>เมื่อมีข้อมูลดิบ (แผนที่อุณหภูมิหลายแสนพิกเซล หรือแคตตาล็อกดาราจักร) จะบอกพารามิเตอร์และความคลาดเคลื่อนของมันได้อย่างไร</strong>
+คำตอบทั้งบทคือ likelihood แบบ Gaussian ในหลายมิติ — สำหรับผู้เรียนที่แน่นความน่าจะเป็นและพีชคณิตเชิงเส้น บทนี้คือบทที่<em>อ่านง่ายที่สุด</em>ในเล่ม
+เพราะฟิสิกส์แทบไม่มี มีแต่ covariance matrix, trace, inverse และ eigenvector</p>
+
+<p>เส้นเรื่อง: likelihood และ Bayes (§11.1) → covariance ของข้อมูล CMB และดาราจักร (§11.2) → ปัญหาว่าเมทริกซ์ใหญ่เกินจะกลับได้ จึงต้องบีบข้อมูล
+ด้วย Karhunen-Loève และ quadratic estimator (§11.3) → Fisher matrix บอกความคลาดเคลื่อนก่อนทำการทดลอง (§11.4) → การทำแผนที่จากข้อมูลตามเวลา (§11.5)
+→ การกำจัด foreground และ systematic (§11.6)</p>
+
+<h2>ต้องรู้อะไรก่อน</h2>
+
+<ul>
+  <li><strong>Gaussian หลายตัวแปร, covariance, Bayes' theorem</strong> — ผู้เรียนรู้ดีอยู่แล้ว</li>
+  <li><strong>พีชคณิตเมทริกซ์</strong>: inverse, determinant, trace, eigenvalue, เมทริกซ์สมมาตร, การแปลง similarity — ผู้เรียนรู้ดีอยู่แล้ว
+    · สูตรที่ใช้บ่อยมากในบทนี้: $\partial\ln\det C = \mathrm{Tr}(C^{-1}\partial C)$ และ $\partial C^{-1} = -C^{-1}(\partial C)C^{-1}$</li>
+  <li><strong>Fourier transform 3 มิติและ power spectrum</strong> (บท 7 + Appendix C) — ยังไม่ได้สอนเป็นบทเรียน · ดู convention ใน <a href="dodelson-glossary.html">glossary</a></li>
+  <li><strong>$C_l$, $a_{lm}$, Legendre polynomial $\mathcal P_l$</strong> (บท 8) — ยังไม่ได้สอน · §11.2 ใช้สูตรบวกของ $Y_{lm}$ (C.12) และใช้ $\mathcal P_l(\cos\theta)\approx J_0(l\theta)$</li>
+  <li><strong>spherical harmonics</strong> — ยังไม่ได้สอน (§11.4.1 และ §11.6 ใช้บ้างแต่อ่านผ่านได้)</li>
+  <li><strong>GR</strong> — ไม่ใช้เลยในบทนี้</li>
+</ul>
+
+<h2>เดินตามหนังสือ</h2>
+
+<h3>§11.1 The likelihood function · หน้า 337–344</h3>
+
+<p><strong>11.1.1 Simple example (หน้า 337)</strong>: หนังสือเริ่มจากตัวอย่างชั่งน้ำหนัก — ชั่งวัตถุ $N$ ครั้ง ได้ $d_i$ แต่ละครั้งคลาดด้วย Gaussian ความกว้าง $\sigma$
+likelihood ของน้ำหนักจริง $w$ คือ</p>
+
+<div class="eq" data-eqno="11.1">$$\mathcal L_w(\{d_i\}) = \prod_{i=1}^{N}\frac{1}{\sqrt{2\pi\sigma^2}}\exp\left\{-\frac{(d_i-w)^2}{2\sigma^2}\right\}$$</div>
+
+<p><strong>อ่านว่า</strong>: $\mathcal L$ คือความน่าจะเป็นของข้อมูล<em>เมื่อกำหนด</em>พารามิเตอร์ $w$ · ผู้เขียนเน้นว่าสิ่งที่เราอยากรู้จริงคือกลับกัน
+— ความน่าจะเป็นของ $w$ เมื่อมีข้อมูล — ซึ่งต้องผ่าน Bayes' theorem และต้องมี <strong>prior</strong> (11.6–11.7)
+ถ้าเลือก prior ราบเรียบ สองอย่างนี้เป็นสัดส่วนกัน</p>
+
+<p>เติมกำลังสองใน exponent ได้ $\mathcal L\propto\exp\{-N(w-\bar d)^2/2\sigma^2\}$ (11.8) เมื่อ $\bar d$ คือค่าเฉลี่ยของข้อมูล
+จึงเห็นทันทีว่า $w$ ที่ดีที่สุดคือ $\bar d$ และความคลาดเคลื่อนคือ $\sigma/\sqrt N$ ตามที่คาด · หนังสือแนะวิธีอ่าน error จาก likelihood ที่ไม่เป็น Gaussian:
+หาช่วงรอบยอดที่บรรจุพื้นที่ใต้กราฟ 68% (11.10–11.11)</p>
+
+<p><strong>ขั้นที่หนังสือข้าม</strong> (11.8): $\sum_i(d_i-w)^2 = N(w-\bar d)^2 + \sum_i(d_i-\bar d)^2$ พจน์หลังไม่มี $w$ จึงเป็นแค่ค่าคงตัวคูณ</p>
+
+<p>ตัวอย่างที่สองยากขึ้น (11.12 เป็นต้นไป): ข้อมูลเป็นจำนวนสุ่มที่มี<em>ความแปรปรวน</em>ไม่ทราบค่า $\sigma_s^2$ (signal) บวก noise $\sigma_n^2$ ที่ทราบ
+นี่คือแบบจำลองย่อส่วนของ cosmology: สัญญาณคือความแปรปรวนของ $\Theta$ ไม่ใช่ค่าเฉลี่ย ผลรวมของ Gaussian อิสระสองตัว (11.17–11.19)
+เป็น Gaussian ที่ความแปรปรวนบวกกัน และ likelihood ของ $\sigma_s$ ไม่สมมาตร (รูป 11.2) — ต้องเลือก prior ให้ดี (ข้อ 1 ท้ายบท)</p>
+
+<p><strong>11.1.2 CMB likelihood (หน้า 340)</strong>: ขยายเป็นหลายมิติ ข้อมูลคือ $\Delta_i$ = อุณหภูมิที่วัดในพิกเซล $i$ ($i = 1,\dots,N_p$) และ</p>
+
+<div class="eq" data-eqno="11.24">$$\mathcal L_\Theta(\{\Delta_i\}) = \frac{1}{(2\pi)^{N_p/2}\sqrt{\det C}}\exp\left\{-\frac12\Delta\,C^{-1}\Delta\right\},\qquad C = C_S + C_N$$</div>
+
+<p><strong>อ่านว่า</strong>: $\Delta$ เป็นเวกเตอร์ยาว $N_p$ · $C$ คือ covariance matrix ขนาด $N_p\times N_p$ ·
+$C_S$ (signal) ขึ้นกับพารามิเตอร์ cosmology ผ่าน $C_l$ ส่วน $C_N$ (noise) มาจากเครื่องมือ — ปกติทแยงมุม ($\sigma_n^2\delta_{ij}$) ถ้า noise ของแต่ละพิกเซลไม่สัมพันธ์กัน ·
+นี่คือสมการที่ทั้งบทวนรอบ ปัญหาคือ $N_p$ ระดับแสนถึงล้าน การกลับเมทริกซ์และหา determinant ต้องการการคำนวณราว $N_p^3$</p>
+
+<p><strong>11.1.3 Galaxy surveys (หน้า 343)</strong>: โครงเดียวกัน ข้อมูลคือจำนวนดาราจักรในแต่ละเซลล์ลบค่าเฉลี่ย ส่วน noise คือ Poisson (shot noise) ·
+ข้อต่างคือ $P(k)$ ของดาราจักรไม่เป็น Gaussian ที่สเกลเล็ก จึงต้องระวัง</p>
+
+<h3>§11.2 Signal covariance matrix · หน้า 344–356</h3>
+
+<p>หาก้อน $C_S$ ด้วยมือ ซึ่งเป็นการฝึกบท 7–8 อีกรอบ</p>
+
+<p><strong>11.2.1 CMB window functions (หน้า 345)</strong>: อุณหภูมิในพิกเซลเป็นค่าเฉลี่ยถ่วงด้วย beam ของกล้อง $B$ (11.33)
+แทนการกระจาย $\Theta$ เป็น $a_{lm}$ แล้วใช้ $\langle a_{lm}a^*_{l'm'}\rangle = \delta_{ll'}\delta_{mm'}C_l$ กับสูตรบวก (C.12) ได้</p>
+
+<div class="eq" data-eqno="11.38">$$C_{S,ij} = \sum_l\frac{2l+1}{4\pi}\,C_l\,W_{l,ij}$$</div>
+
+<p><strong>อ่านว่า</strong>: $W_{l,ij}$ คือ <strong>window function</strong> ของคู่พิกเซล $i,j$ — บอกว่าคู่นั้น "ไว" ต่อ multipole $l$ แค่ไหน
+ถ้าพิกเซลเป็นจุด (beam เป็น delta) มันคือ $\mathcal P_l(\hat x_i\cdot\hat x_j)$ เฉย ๆ · beam จริงตัด $l$ สูงทิ้ง</p>
+
+<p>beam แบบ Gaussian ความกว้าง $\sigma$ ใน small-angle limit ให้ $W_l\simeq e^{-l^2\sigma^2}$ (11.45 เมื่อ $i=j$)
+หนังสือแปลง FWHM เป็น $\sigma$ ด้วยตัวคูณ 0.4245 และตัวอย่างการทดลองแบบ differencing สองบีม (11.46–11.49) ได้ window ของ "ผลต่าง" ที่เป็นศูนย์ที่ $l$ ต่ำ
+(ข้อมูลเชิงผลต่างไม่ไวต่อสเกลใหญ่) · รูป 11.4–11.5 คือภาพของ window ของการทดลองเหล่านั้น</p>
+
+<p><strong>11.2.2 Window functions for galaxy surveys (หน้า 347)</strong>: เปลี่ยนจาก $\mathcal P_l$ เป็น Fourier: เซลล์ $i$ มีฟังก์ชันน้ำหนัก $\psi_i(\vec x)$ และ</p>
+
+<div class="eq" data-eqno="11.52">$$C_{S,ij} = \int\frac{d^3k}{(2\pi)^3}\,\tilde\psi_i(\vec k)\,\tilde\psi_j^*(\vec k)\,P(k)$$</div>
+
+<p><strong>อ่านว่า</strong>: $\tilde\psi_i$ คือ Fourier transform ของรูปทรงเซลล์ · เซลล์ทรงกลมรัศมี $R$ ให้ $\tilde\psi\propto 3j_1(kR)/(kR)$ (11.57) ·
+ส่วนที่เหลือของ section คือสูตรประมาณของคู่เซลล์ที่อยู่ไกลกัน (11.58–11.59) และตัวอย่าง pencil beam (11.60–11.66)</p>
+
+<p><strong>11.2.3–11.2.4 (หน้า 350–356)</strong>: ดูว่า covariance พฤติกรรมอย่างไรเมื่อเซลล์ใหญ่หรือเล็ก — ข้อสำคัญคือ diagonal $\approx P/V$ (ข้อ 7)
+และคู่เซลล์ที่ไกลมีค่า correlation เล็ก แต่ไม่เป็นศูนย์ ซึ่งทำให้เมทริกซ์ไม่ทแยงมุม</p>
+
+<h3>§11.3 Estimating the likelihood function · หน้า 356–368</h3>
+
+<p>ปัญหาเชิงคำนวณ: likelihood เต็ม (11.24) ต้องคำนวณใหม่ทุกครั้งที่ลองพารามิเตอร์ใหม่ ซึ่งแพงเกินไป สองเครื่องมือในส่วนนี้ลดภาระนั้น</p>
+
+<p><strong>11.3.1 Karhunen-Loève (หน้า 356)</strong>: หาเวกเตอร์ฐานใหม่ที่ทำให้ $C_N$ และ $C_S$ <em>ทแยงพร้อมกัน</em> แล้วทิ้งโหมดที่สัญญาณต่อ noise ต่ำ
+ขั้นตอนคือ "ฟอก" noise ก่อน ด้วย $C_N^{-1/2}$ ให้ noise กลายเป็น identity แล้วหา eigenvector ของ signal ในฐานใหม่:</p>
+
+<div class="eq" data-eqno="11.80">$$C_N^{-1/2}C_S\,C_N^{-1/2}\,\vec v_k = \lambda_k\vec v_k$$</div>
+
+<p><strong>อ่านว่า</strong>: $\lambda_k$ คืออัตราส่วนสัญญาณต่อ noise ของโหมด $k$ · ข้อมูลในฐานใหม่มี covariance $\mathrm{diag}(1+\lambda_k)$ ·
+นี่คือ generalized eigenvalue problem $C_S\vec u = \lambda C_N\vec u$ ที่ผู้เรียนเคยเห็นในพีชคณิตเชิงเส้น · เก็บแค่โหมดที่ $\lambda$ ใหญ่ เมทริกซ์ก็เล็กลงมาก ·
+ผู้เขียนชี้จุดอ่อน: ต้องเลือก cosmology แบบหนึ่งมาสร้าง $C_S$ ก่อน (แต่ผลไม่ค่อยไวต่อตัวเลือกนั้น)</p>
+
+<p><strong>11.3.2 Optimal quadratic estimator (หน้า 362)</strong>: แทนการหาจุดสูงสุดของ likelihood ด้วยการค้นทุกจุด ใช้ Newton-Raphson ใน $\ln\mathcal L$
+ด้วยพารามิเตอร์คือ "band power" $\lambda_\alpha$ (ค่า $C_l$ ในช่วง $l$ หนึ่ง) ได้ขั้นการปรับปรุง</p>
+
+<div class="eq" data-eqno="11.93">$$\delta\lambda_\alpha = \frac12\sum_\beta\big(F^{-1}\big)_{\alpha\beta}\,\mathrm{Tr}\Big[\big(\Delta\Delta^T - C\big)\,C^{-1}C_{,\beta}\,C^{-1}\Big]$$</div>
+
+<p><strong>อ่านว่า</strong>: $C_{,\beta} = \partial C/\partial\lambda_\beta$ · $F$ คือ Fisher matrix (หัวข้อถัดไป) ซึ่งแทนอนุพันธ์อันดับสองของ $-\ln\mathcal L$ ด้วยค่าคาดหมาย ·
+ชื่อ "quadratic" มาจากว่าตัวประมาณเป็นกำลังสองของข้อมูล $\Delta$ · พจน์ $-C$ ในวงเล็บคือการหัก "ส่วนที่คาดหวัง" (noise bias) ออก ·
+ถ้าเริ่มใกล้คำตอบ ทำซ้ำไม่กี่รอบก็ลู่เข้า</p>
+
+<p><strong>ขั้นที่หนังสือข้าม</strong> (11.89–11.90):</p>
+<ol>
+  <li>$\ln\mathcal L = -\frac12\ln\det C - \frac12\Delta^TC^{-1}\Delta + $ ค่าคงตัว</li>
+  <li>ใช้ $\partial_\alpha\ln\det C = \mathrm{Tr}(C^{-1}C_{,\alpha})$ และ $\partial_\alpha C^{-1} = -C^{-1}C_{,\alpha}C^{-1}$</li>
+  <li>เขียน $\Delta^TM\Delta = \mathrm{Tr}(\Delta\Delta^TM)$ แล้วรวมได้ $\partial_\alpha\ln\mathcal L = \frac12\mathrm{Tr}\big[(\Delta\Delta^T-C)C^{-1}C_{,\alpha}C^{-1}\big]$</li>
+  <li>เมื่อหาค่าคาดหมายของอนุพันธ์อันดับสอง พจน์ที่มี $\langle\Delta\Delta^T\rangle - C$ เป็นศูนย์ เหลือ $F_{\alpha\beta} = \frac12\mathrm{Tr}\big[C^{-1}C_{,\alpha}C^{-1}C_{,\beta}\big]$ (11.100)</li>
+</ol>
+
+<h3>§11.4 Fisher matrix: limits and applications · หน้า 368–375</h3>
+
+<p>Fisher matrix นิยามจากค่าคาดหมายของความโค้งของ $-\ln\mathcal L$ รอบจุดสูงสุด และ <strong>Cramér-Rao inequality</strong> บอกว่าไม่มี unbiased estimator ใดทำได้ดีกว่า:</p>
+
+<div class="eq" data-eqno="11.97">$$\Delta\lambda_\alpha \ge \sqrt{\big(F^{-1}\big)_{\alpha\alpha}}$$</div>
+
+<p><strong>อ่านว่า</strong>: $\Delta\lambda_\alpha$ คือ error ของพารามิเตอร์ $\alpha$ เมื่อ<em>ให้ส่วนที่เหลือลอยได้</em> (marginalized) ·
+ถ้ารู้พารามิเตอร์อื่นแน่นอนแล้ว error จะเป็น $1/\sqrt{F_{\alpha\alpha}}$ ซึ่งเล็กกว่าเสมอ · ข้อดีมหาศาลของ Fisher:
+คำนวณได้<strong>ก่อน</strong>มีข้อมูล ใช้ออกแบบการทดลอง</p>
+
+<p><strong>ตัวอย่างที่คู่มือเพิ่มเอง</strong> (ตรวจด้วย sympy): ถ้า $F = \begin{pmatrix}4&2\\2&3\end{pmatrix}$ error ของพารามิเตอร์แรกเมื่อรู้ตัวที่สองคือ $1/\sqrt4 = 0.5$
+แต่เมื่อ marginalize คือ $\sqrt{(F^{-1})_{11}} = \sqrt{3/8}\approx0.61$ — correlation ระหว่างพารามิเตอร์ทำให้ error โตขึ้น ·
+อีกตัวอย่าง: ข้อมูล Gaussian $N$ จุดที่ไม่ทราบค่าเฉลี่ยมี Fisher $N/\sigma^2$ (ตรงกับ $\sigma/\sqrt N$ ของ 11.1.1) ส่วนที่ไม่ทราบความแปรปรวนมี Fisher ของ $\sigma^2$ เป็น $N/(2\sigma^4)$</p>
+
+<p><strong>11.4.1 CMB (หน้า 368)</strong>: ถ้าฟ้าทั้งท้องฟ้า (full sky) และ noise ไม่ขึ้นกับทิศ $C$ ทแยงในฐาน $a_{lm}$ และสูตร (11.100) ให้ผลปิด</p>
+
+<div class="eq" data-eqno="11.110">$$\Delta C_l = \sqrt{\frac{2}{(2l+1)f_{\text{sky}}}}\left(C_l + \frac{w^{-1}}{W_l}\right)$$</div>
+
+<p><strong>อ่านว่า</strong>: $f_{\text{sky}}$ คือสัดส่วนท้องฟ้าที่สังเกต · $w^{-1}$ คือระดับ noise ต่อหน่วยมุมตัน ($w$ ใหญ่ = noise น้อย) · $W_l$ คือ window ของ beam ·
+พจน์แรกในวงเล็บคือ <strong>cosmic variance</strong>: แม้ไม่มี noise ก็มีแค่ $2l+1$ ค่า $a_{lm}$ ให้เฉลี่ย ส่วนพจน์ที่สองคือ noise ที่พุ่งเมื่อ beam ตัด $l$ สูง ·
+ตาราง 11.1 ในหนังสือเทียบ COBE, MAP, Planck ด้วยตัวเลขเหล่านี้ (<em>ค่าปี 2003</em> · คู่มือไม่คัดตาราง)</p>
+
+<p><strong>ขั้นที่หนังสือข้าม</strong>: เมื่อ $C$ ทแยงด้วยค่า $C_l + N_l$ ที่ซ้ำ $2l+1$ ครั้ง และ $\partial C/\partial C_l$ คือ 1 ในบล็อกนั้น ·
+$F_{ll} = \frac12(2l+1)/(C_l+N_l)^2$ แล้ว $\Delta C_l = 1/\sqrt{F_{ll}}$ คูณ $1/\sqrt{f_{\text{sky}}}$ เพราะจำนวนโหมดลดลงตามพื้นที่</p>
+
+<p><strong>11.4.2 Galaxy surveys (หน้า 370)</strong>: แนวคิดเดียวกันใน Fourier space — error ของ $P(k)$ ขึ้นกับจำนวนโหมดในเปลือก $k$ และ shot noise $1/\bar n$ (11.112–11.119)</p>
+
+<p><strong>11.4.3 Forecasting (หน้า 371)</strong>: ใช้ Fisher กับพารามิเตอร์ cosmology โดยตรงผ่าน chain rule:
+$F_{ij} = \sum_l(\partial C_l/\partial p_i)(\partial C_l/\partial p_j)/(\Delta C_l)^2$ (เทียบได้กับ $\chi^2$ — 11.122–11.124) ·
+แล้ว <strong>marginalize</strong> ด้วยการกลับเมทริกซ์ (11.127) รูป 11.8–11.9 แสดง ellipse ของความคลาดเคลื่อนและ degeneracy ของพารามิเตอร์</p>
+
+<h3>§11.5 Mapmaking and inversion · หน้า 375–378</h3>
+
+<p>กล้องไม่ได้ให้แผนที่ ให้ข้อมูลตามเวลา (time-ordered data) $d_t$ ยาวเป็นล้านจุด แบบจำลองคือ</p>
+
+<div class="eq" data-eqno="11.130">$$d = P\Delta + n$$</div>
+
+<p><strong>อ่านว่า</strong>: $d$ ยาว $N_t$ (จำนวนช่วงเวลา) · $\Delta$ คือแผนที่จริงยาว $N_p$ · $P$ คือ <strong>pointing matrix</strong> ขนาด $N_t\times N_p$ —
+แถวที่ $t$ มีเลข 1 ที่คอลัมน์ของพิกเซลที่กล้องชี้ ณ เวลา $t$ · $n$ คือ noise ที่มี covariance $N$ · นี่คือ linear least squares ธรรมดา คำตอบคือ</p>
+
+<div class="eq" data-eqno="11.135">$$\hat\Delta = \big(P^TN^{-1}P\big)^{-1}P^TN^{-1}d,\qquad C_N = \big(P^TN^{-1}P\big)^{-1}$$</div>
+
+<p><strong>อ่านว่า</strong>: $C_N$ ที่ได้คือ noise covariance ของ<em>แผนที่</em> — ตัวเดียวกับที่ต้องใช้ใน likelihood (11.24) ·
+แผนที่นี้เป็น lossless: ไม่มีข้อมูลเกี่ยวกับ cosmology หายไประหว่างการบีบจาก $N_t$ เป็น $N_p$ (11.139–11.146 คือข้อพิสูจน์)</p>
+
+<p><strong>ขั้นที่หนังสือข้าม</strong>: เขียน $\chi^2 = (d-P\Delta)^TN^{-1}(d-P\Delta)$ อนุพันธ์ตาม $\Delta$ เท่ากับศูนย์ได้ normal equation $P^TN^{-1}P\,\Delta = P^TN^{-1}d$ —
+สคริปต์ตรวจตัวอย่าง $P$ ขนาด 5×2 ให้แล้ว</p>
+
+<h3>§11.6 Systematics · หน้า 378–388</h3>
+
+<p><strong>11.6.1 Foregrounds (หน้า 378)</strong>: CMB ไม่ใช่สิ่งเดียวบนท้องฟ้า ฝุ่นในกาแล็กซี, synchrotron, free-free emission (รูป 11.11) ปนเข้ามาด้วย
+แต่ละชนิดมี spectrum ต่างกันตามความถี่ เขียนข้อมูลที่ความถี่ $\nu$ เป็นผลรวมของ CMB บวก foreground ที่รู้รูปร่าง spectrum ($\vec f$ เป็น "shape vector")
+แล้วใช้ least squares หาสัมประสิทธิ์แต่ละตัวได้ (11.148–11.153) ราคาที่ต้องจ่ายคือ noise ของ CMB สูงขึ้น — วัดได้ด้วย foreground degradation factor (FDF)
+· <code>T_ant</code> (antenna temperature) เป็นหน่วยที่คนวิทยุดาราศาสตร์ใช้ ต่างจากอุณหภูมิ thermodynamic ของ CMB</p>
+
+<p><strong>11.6.2 Mode subtraction (หน้า 384)</strong>: ถ้าไม่รู้แอมพลิจูดของ systematic บางรูปแบบ $m$ (เช่น ค่าเฉลี่ย หรือ dipole)
+ก็เติม $\kappa\,m_im_j$ เข้า covariance แล้วให้ $\kappa\to\infty$ (11.156) — โหมดนั้นถูก "ไม่เชื่อ" โดยสมบูรณ์ และไม่มีผลกับ likelihood ·
+นี่คือเคล็ดเดียวกับการ marginalize ด้วย prior แบนในพีชคณิตเชิงเส้น</p>
+
+<div class="warn">
+  <p><strong>จุดที่คู่มือยังไม่ยืนยัน</strong> (11.158 หน้า 386): ในตัวอย่างสองพิกเซลที่หักค่าเฉลี่ยออก คู่มือคำนวณได้ exponent
+  $-(\Delta_1-\Delta_2)^2/\big[4(\sigma_n^2+\sigma_s^2)\big]$ — เพราะ $\Delta_1-\Delta_2$ มีความแปรปรวน $2(\sigma_n^2+\sigma_s^2)$
+  แต่หนังสือพิมพ์ตัวหารเป็น $2(\sigma_n^2+\sigma_s^2)$ · ข้อสรุปของหนังสือ (เหลือแต่ข้อมูลเชิงผลต่าง) ไม่กระทบ · ยังไม่ได้ตรวจกับ errata</p>
+</div>
+
+<h2>ศัพท์และสำนวนอังกฤษของบทนี้</h2>
+
+<table>
+  <tr><th>คำ / วลี</th><th>ความหมาย</th><th>หน้าแรก</th></tr>
+  <tr><td>likelihood function</td><td>ความน่าจะเป็นของข้อมูลเมื่อกำหนดพารามิเตอร์ (มองเป็นฟังก์ชันของพารามิเตอร์)</td><td>337</td></tr>
+  <tr><td>prior</td><td>ความเชื่อเรื่องพารามิเตอร์ก่อนเห็นข้อมูล</td><td>338</td></tr>
+  <tr><td>a posteriori / posterior</td><td>ความน่าจะเป็นของพารามิเตอร์หลังเห็นข้อมูล</td><td>338</td></tr>
+  <tr><td>with a grain of salt</td><td>(สำนวน) เชื่อแค่ครึ่ง ๆ ระวังไว้</td><td>338</td></tr>
+  <tr><td>a la</td><td>แบบเดียวกับ… (คำยืมฝรั่งเศส)</td><td>339</td></tr>
+  <tr><td>signal / noise</td><td>ส่วนที่มาจากฟ้า / ส่วนที่มาจากเครื่องมือ</td><td>339</td></tr>
+  <tr><td>cosmic variance</td><td>ความไม่แน่นอนที่หลีกเลี่ยงไม่ได้เพราะมีท้องฟ้าเดียว</td><td>339</td></tr>
+  <tr><td>pixel</td><td>ช่องเล็ก ๆ บนแผนที่ฟ้า</td><td>340</td></tr>
+  <tr><td>beam</td><td>รูปแบบความไวของกล้องรอบทิศที่ชี้</td><td>345</td></tr>
+  <tr><td>FWHM</td><td>ความกว้างที่ครึ่งความสูง (full width at half maximum)</td><td>346</td></tr>
+  <tr><td>differencing experiment</td><td>การทดลองที่วัดผลต่างระหว่างสองจุดบนฟ้า</td><td>346</td></tr>
+  <tr><td>shot noise / Poisson noise</td><td>noise จากการนับวัตถุจำนวนเต็ม</td><td>343</td></tr>
+  <tr><td>pencil beam survey</td><td>การสำรวจดาราจักรในกรวยแคบมากแต่ลึก</td><td>352</td></tr>
+  <tr><td>brute force</td><td>(สำนวน) ใช้แรงคำนวณล้วน ๆ ไม่มีเคล็ด</td><td>356</td></tr>
+  <tr><td>data compression</td><td>การบีบข้อมูลให้เล็กลงโดยไม่เสียข้อมูลสำคัญ</td><td>356</td></tr>
+  <tr><td>signal-to-noise eigenmodes</td><td>เวกเตอร์ฐานของ KL เรียงตามอัตราส่วนสัญญาณต่อ noise</td><td>358</td></tr>
+  <tr><td>band power</td><td>ค่า $C_l$ เฉลี่ยในช่วง $l$ หนึ่ง</td><td>362</td></tr>
+  <tr><td>iterate / converge</td><td>ทำซ้ำ / ลู่เข้า</td><td>364</td></tr>
+  <tr><td>curvature matrix</td><td>อนุพันธ์อันดับสองของ $-\ln\mathcal L$</td><td>365</td></tr>
+  <tr><td>Fisher matrix</td><td>ค่าคาดหมายของ curvature matrix</td><td>366</td></tr>
+  <tr><td>marginalize</td><td>อินทิเกรตพารามิเตอร์ที่ไม่สนใจทิ้ง</td><td>373</td></tr>
+  <tr><td>degeneracy</td><td>พารามิเตอร์สองตัวที่เปลี่ยนพร้อมกันแล้วข้อมูลแทบไม่เปลี่ยน</td><td>373</td></tr>
+  <tr><td>back-of-the-envelope</td><td>(สำนวน) คำนวณคร่าว ๆ ด้วยมือ</td><td>371</td></tr>
+  <tr><td>time-ordered data</td><td>ข้อมูลดิบเรียงตามเวลา ก่อนทำเป็นแผนที่</td><td>375</td></tr>
+  <tr><td>pointing matrix</td><td>เมทริกซ์ที่บอกว่าเวลาใดกล้องชี้พิกเซลใด</td><td>375</td></tr>
+  <tr><td>lossless</td><td>ไม่สูญเสียข้อมูล</td><td>377</td></tr>
+  <tr><td>foreground</td><td>แหล่งรังสีที่อยู่หน้า CMB (ฝุ่น synchrotron ฯลฯ)</td><td>378</td></tr>
+  <tr><td>antenna temperature</td><td>หน่วยความเข้มแบบวิทยุดาราศาสตร์</td><td>379</td></tr>
+  <tr><td>the devil is in the details</td><td>(สำนวน) ปัญหาซ่อนอยู่ในรายละเอียด</td><td>378</td></tr>
+  <tr><td>constraint matrix</td><td>$\kappa\,m_im_j$ ที่เติมเพื่อลบโหมดที่ไม่เชื่อ</td><td>384</td></tr>
+</table>
+
+<h2>convention และจุดที่มักสะดุด</h2>
+
+<ul>
+  <li><strong>$C$ หลายตัว</strong>: $C_l$ (power spectrum เชิงมุม), $C$ (covariance matrix ของพิกเซล), $C_S$ และ $C_N$ (ส่วน signal/noise), $\mathcal C$ (band power ในข้อ 12) — อย่าสับสน</li>
+  <li><strong>$\Delta$ สองบทบาท</strong>: $\Delta_i$ คือข้อมูลในพิกเซล $i$ แต่ $\Delta\lambda$ หรือ $\Delta C_l$ คือ error · ส่วน $\Delta^2(k)$ ในบท 7 เป็นอีกเรื่องหนึ่ง</li>
+  <li><strong>$P$ สามบทบาท</strong>: $P(k)$ (power spectrum), $\mathcal P_l$ (Legendre), $P$ (pointing matrix ใน §11.5)</li>
+  <li><strong>$F$ สองบทบาท</strong>: $F_{\alpha\beta}$ คือ Fisher matrix แต่หนังสือใช้ $F$ ตอนแรกสำหรับ curvature matrix (หน้า 365) ก่อนจะหาค่าคาดหมาย</li>
+  <li><strong>Fourier</strong>: $(2\pi)^3$ อยู่ฝั่ง $d^3k$ ตาม Appendix C (C.19) และ $\langle\tilde\delta\tilde\delta^*\rangle = (2\pi)^3\delta^3P$ (C.20)</li>
+  <li><strong>เครื่องหมายของ Fourier ใน (11.48)</strong>: ด้วย convention $e^{-i\vec l\cdot\vec x}$ คู่มือได้ $-2i\sin$ ไม่ใช่ $+2i\sin$ — ไม่มีผลกับ $|\tilde B|^2$ ที่ใช้จริง</li>
+  <li><strong>ตัวคูณ FWHM</strong>: หนังสือพิมพ์ 0.4245 ค่าแม่น $1/\sqrt{8\ln2} = 0.4247$ — ไม่มีผลเชิงปฏิบัติ</li>
+  <li><strong>การนับโหมด (11.118)</strong>: <em>นอกหนังสือ</em> การนับโหมดในกล่องปริมาตร $V$ ปกติหารด้วย $(2\pi)^3$ — ถ้าเทียบกับตำราอื่นให้ตรวจ convention ของ $V$ และ $P$ ก่อน (คู่มือยังไม่ได้ตรวจบรรทัดนี้)</li>
+  <li><strong>ทุกอย่างสมมุติ Gaussian</strong>: ใช้ได้ดีกับ CMB แต่สำหรับดาราจักรที่สเกลเล็ก (nonlinear) เป็นแค่การประมาณ</li>
+</ul>
+
+<h2>โจทย์ท้ายบทที่ควรทำ</h2>
+
+<table>
+  <tr><th>ข้อ</th><th>ทักษะที่ได้</th><th>เฉลยใน App. A</th></tr>
+  <tr><td>1</td><td>ผลของการเลือก prior (ราบใน $\sigma$ vs ราบใน $\sigma^2$)</td><td>—</td></tr>
+  <tr><td>2</td><td>อ่าน error ของ $\sigma$ จาก likelihood ที่ไม่สมมาตร</td><td>—</td></tr>
+  <tr><td>3</td><td>covariance ของ Poisson noise</td><td>—</td></tr>
+  <tr><td>4</td><td>noise ของ counts-in-cells</td><td>มี</td></tr>
+  <tr><td>5</td><td>likelihood ของข้อมูลจริงจากการทดลองหนึ่ง (ใช้ตารางในหนังสือ · เขียนโค้ดสั้น ๆ)</td><td>—</td></tr>
+  <tr><td>6</td><td>Fourier transform ของ top-hat</td><td>—</td></tr>
+  <tr><td>7</td><td>$(C_S)_{ii}\approx P/V$</td><td>มี</td></tr>
+  <tr><td>8</td><td>window ของคู่เซลล์ (นอกทแยง)</td><td>—</td></tr>
+  <tr><td>9</td><td>พิสูจน์ Fisher (11.100) — พีชคณิตเมทริกซ์ล้วน แนะนำที่สุด</td><td>มี</td></tr>
+  <tr><td>10</td><td>หา quadratic estimator ด้วย Lagrange multiplier</td><td>—</td></tr>
+  <tr><td>11</td><td>noise ของ $a_{lm}$</td><td>—</td></tr>
+  <tr><td>12</td><td>error ของ band power ของการทดลองหลายตัว</td><td>—</td></tr>
+  <tr><td>13</td><td>optimal estimator บนท้องฟ้าเต็ม</td><td>—</td></tr>
+  <tr><td>14</td><td>noise ของแผนที่จาก mapmaking</td><td>—</td></tr>
+  <tr><td>15</td><td>prior สำหรับ foreground</td><td>มี</td></tr>
+</table>
+
+<p>ลำดับที่แนะนำ: <strong>9 → 1 → 14 → 15</strong> — ทั้งหมดเป็นพีชคณิตเชิงเส้นและความน่าจะเป็นตรง ๆ</p>
+
+<h2>ตรวจแล้วอย่างไร</h2>
+
+<p>สคริปต์ <code>scripts/verify/dodelson_ch11.py</code> (sympy + mpmath · ผ่าน 61 ข้อ) ยืนยัน:</p>
+<ul>
+  <li>(11.8), (11.10)–(11.11) ตัวอย่างชั่งน้ำหนัก · (11.17)/(11.19) convolution ของ Gaussian · (11.23), (11.25)–(11.26)</li>
+  <li>(11.45) FT ของ beam Gaussian และตัวคูณ FWHM · (11.48)–(11.49) window ของ differencing (ตรวจเชิงตัวเลข)</li>
+  <li>$\mathcal P_l(\cos\theta)\approx J_0(l\theta)$ (ใช้ $l+\tfrac12$ แม่นกว่า — <em>นอกหนังสือ</em>)</li>
+  <li>(11.57) FT ของทรงกลม · (11.58)→(11.59) สัมประสิทธิ์ $9/(2kk_iR^2)$</li>
+  <li>KL (11.79)–(11.82) · (11.89)–(11.90), (11.93) ด้วยเมทริกซ์ 3×3 ตรรกยะ · สูตร $\partial\ln\det C$ · Fisher ของค่าเฉลี่ยและความแปรปรวน</li>
+  <li>(11.109)–(11.110) ที่ $l = 7$ · (11.122)=(11.124) · (11.127) marginalization พร้อมตัวอย่าง</li>
+  <li>mapmaking (11.130)–(11.137) · foreground (11.148)–(11.153) · constraint matrix (11.156)–(11.157)</li>
+</ul>
+
+<p><strong>ยังไม่ได้ตรวจ</strong>: (11.35)–(11.43) การไล่ window function · (11.53)–(11.55), (11.60)–(11.66) pencil beam · (11.96)–(11.100) ข้อพิสูจน์ทั่วไป (เป็นข้อ 9) ·
+(11.112)–(11.119) error ของ $P(k)$ · (11.139)–(11.146) ข้อพิสูจน์ lossless · ตัวเลขการทดลองทั้งหมดในรูปและตาราง 11.1 (<em>ค่าปี 2003</em>) · และจุดที่สงสัยใน (11.158)</p>
+
+<div class="ask">
+  <p>อ่านหนังสือแล้วติดประโยคไหน สมการไหน <strong>ถามได้เลย</strong> — บอกเลขหน้ามา Claude เปิดดูหน้าเดียวกันได้</p>
+  <div class="nav">
+    <a href="dodelson-index.html">🗺️ แผนที่ทั้งเล่ม</a>
+    <a href="dodelson-ch10.html">← บทที่ 10</a>
+    <a href="dodelson-glossary.html">ภาคผนวก B–D →</a>
+    <a href="dodelson-glossary.html">📖 สัญลักษณ์ทั้งเล่ม</a>
+  </div>
+</div>
+
+</body>
+</html>

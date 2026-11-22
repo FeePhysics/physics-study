@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>คู่มืออ่าน Dodelson · บทที่ 10 Weak Lensing and Polarization</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+</head>
+<body>
+
+<h1>คู่มืออ่าน Dodelson · บทที่ 10 Weak Lensing and Polarization</h1>
+<p class="meta">หนังสือหน้า 292–335 · คู่มืออ่านภาษาไทย ไม่ใช่ฉบับแปล — เปิดคู่กับหนังสือ · เลขหน้าในคู่มือ = เลขที่พิมพ์บนหน้าหนังสือ</p>
+
+<h2>บทนี้ตอบคำถามอะไร</h2>
+
+<p>บท 9 วัดการกระเพื่อมของเอกภพผ่าน<em>ดาราจักร</em> ซึ่งมีจุดอ่อนว่าเราไม่รู้แน่ว่าดาราจักรเกาะตาม<em>มวล</em>มากน้อยแค่ไหน
+บทนี้เสนอเครื่องมือสองอย่างที่เลี่ยงปัญหานั้นได้ อย่างแรกคือ <strong>weak lensing</strong> — มวลที่อยู่ระหว่างทางบิดรูปร่างดาราจักรไกล ๆ เล็กน้อย
+และสถิติของการบิดนั้นผูกตรงกับ power spectrum ของ<em>มวล</em> (ไม่ใช่ของแสง) อย่างที่สองคือ <strong>polarization ของ CMB</strong>
+ซึ่งเกิดจาก Compton scattering ก่อน decoupling และมีรูปแบบชนิดหนึ่ง (B-mode) ที่ scalar perturbation สร้างไม่ได้
+จึงเป็นช่องทางหา gravity wave จากยุค inflation</p>
+
+<p>ผู้เขียนเอาสองเรื่องนี้มาไว้บทเดียวกันเพราะคณิตเหมือนกันแทบทุกบรรทัด: ทั้งคู่ถูกบรรยายด้วย<strong>เมทริกซ์สมมาตรขนาด 2×2</strong>
+ที่มีองค์ประกอบอิสระสองตัว ($\gamma_1,\gamma_2$ ในฝั่ง lensing และ $Q,U$ ในฝั่ง polarization) และทั้งคู่แยกได้เป็นโหมด E กับ B แบบเดียวกัน
+บทนี้รับเครื่องมือมาจากบท 4 (Boltzmann equation ของโฟตอนและ polarization), บท 7 (power spectrum), บท 8 ($C_l$) และบท 9 (การฉาย 3D ลง 2D)
+แล้วส่งต่อให้บท 11 ในฐานะ "ข้อมูลอีกชนิด" ที่วิเคราะห์ด้วย likelihood แบบเดียวกัน</p>
+
+<h2>ต้องรู้อะไรก่อน</h2>
+
+<ul>
+  <li><strong>index notation และการบวกซ้ำดัชนี</strong> — สอนแล้วใน <a href="../lessons/0004-indices.html">บทที่ 3 · ดัชนีและหน่วยธรรมชาติ</a></li>
+  <li><strong>เมทริกซ์ 2×2, inverse, การหมุนแกน</strong> — ผู้เรียนแน่นอยู่แล้ว (ส่วนนี้คือหัวใจของ §10.3 และ §10.4)</li>
+  <li><strong>geodesic equation และ Christoffel symbol</strong> — <span class="nowrap">ยังไม่ได้สอน</span> (§10.2 ใช้ Christoffel ของ metric ที่ถูกรบกวนจากบท 5 แบบสำเร็จรูป อ่านผ่านได้ถ้ายอมรับผลของแต่ละพจน์)</li>
+  <li><strong>Fourier transform 2 มิติ และ power spectrum</strong> — ใช้จากบท 7 และบท 9 · ยังไม่ได้สอนเป็นบทเรียนใน workspace</li>
+  <li><strong>spherical harmonics $Y_{lm}$ และ Legendre polynomial</strong> — ยังไม่ได้สอน (§10.6 และ §10.9 ใช้ $Y_{2,\pm2}$ หนัก ๆ)</li>
+  <li><strong>Bessel function $J_n$ และ spherical Bessel $j_l$</strong> — ยังไม่ได้สอน · ใช้เป็นกล่องสูตรสำเร็จจาก Appendix C ได้ (ดู <a href="dodelson-glossary.html">glossary</a>)</li>
+  <li><strong>Boltzmann equation ของ polarization $\Theta_P$ (บท 4) และ tight coupling (บท 8)</strong> — ยังไม่ได้สอน · §10.7 ยกมาใช้ต่อทันที</li>
+</ul>
+
+<h2>เดินตามหนังสือ</h2>
+
+<h3>§10.1 Gravitational distortion of images · หน้า 293–296</h3>
+
+<p>ใจความ: แสงจากวัตถุไกลเดินผ่านสนามโน้มถ่วงของมวลที่อยู่ระหว่างทาง แล้วเลี้ยวเล็กน้อย ถ้าวัดการเลี้ยวนั้นได้ ก็อนุมานการกระจายของมวลได้ตรง ๆ
+โดยไม่ต้องหวังว่าดาราจักรเกาะตามมวล ผู้เขียนไล่ประวัติสั้น ๆ (การเบนแสงดาวตอนสุริยุปราคา 1919, ควอซาร์ภาพซ้อนปี 1979, microlensing ที่ใช้หา MACHO,
+time delay ที่ใช้วัด $H_0$) แล้วแยกให้ชัดว่าเรื่องที่บทนี้สนใจคือ <em>weak</em> lensing: การบิดที่เล็กมากจนดูดาราจักรเดียวไม่เห็น
+ต้องเฉลี่ยดาราจักรจำนวนมากถึงจะเห็นสัญญาณ</p>
+
+<p>รูป 10.2 อธิบายว่าทำไมดาราจักรกลมกลายเป็นส่วนโค้ง: แสงจากขอบที่อยู่ใกล้มวลถูกดัดมากกว่า และเมื่อย้อนเส้นแสงกลับ
+ขอบนั้นจึง<em>ดูเหมือน</em>อยู่ไกลจากมวลออกไป ภาพจึงยืดในแนวสัมผัสรอบมวล รูป 10.3 ให้ข้อสังเกตที่จะพิสูจน์ใน §10.3:
+ภาพสองภาพที่ถูก lens อาจยืดขนานกับเส้นที่เชื่อมกันหรือตั้งฉากกับเส้นนั้นก็ได้ แต่<strong>ไม่มีทาง</strong>เป็นแบบหนึ่งขนานอีกหนึ่งตั้งฉาก
+— ข้อนี้ใช้เป็นตัวตรวจ systematic error ของการวัด</p>
+
+<p>เป้าหมายของเราไม่ใช่การชี้ว่ามวลอยู่ตรงไหน แต่เป็นการหาสถิติ (correlation function หรือ power spectrum) ของการบิด แล้วโยงกลับไปหา power spectrum ของมวล</p>
+
+<h3>§10.2 Geodesics and shear · หน้า 296–300</h3>
+
+<p>ตั้งพิกัดให้แนวเล็งเป็นแกนที่สาม: ตำแหน่งโฟตอนคือ $\vec x$ โดยส่วนตามแนวเล็ง $x^3$ เท่ากับระยะ comoving $\chi$
+และส่วนตามขวางเขียนเป็น $\chi\vec\theta$ ซึ่ง $\vec\theta$ คือเวกเตอร์มุม 2 มิติ (หน่วยเรเดียน) ที่วัดจากแนวเล็ง
+ดาราจักรที่<em>ภาพ</em>ปรากฏที่มุม $\vec\theta$ ความจริงอยู่ที่มุม $\vec\theta_S$ (S = source) และความเข้มแสงไม่เปลี่ยนตามทาง (สมการ 10.1)</p>
+
+<p>หนังสือแทนอนุพันธ์ตาม affine parameter $\lambda$ ในสมการ geodesic ด้วยอนุพันธ์ตาม $\chi$ ไล่พจน์ Christoffel ทีละแบบ (10.6–10.9)
+แล้วได้สมการการเคลื่อนที่ตามขวางในรูปที่ดูเหมือนกฎข้อสองของนิวตันในระนาบ:</p>
+
+<div class="eq" data-eqno="10.11">$$\frac{d^2}{d\chi^2}\big(\chi\theta^i\big) = 2\,\Phi_{,i}$$</div>
+
+<p><strong>อ่านว่า</strong>: $\chi\theta^i$ คือระยะตามขวาง (หน่วยความยาว comoving) ของแสงในทิศ $i = 1,2$ ·
+$\Phi$ คือ potential ในส่วนเชิงพื้นที่ของ metric ที่ถูกรบกวน (บท 4–5 · ไม่มีหน่วย) · $\Phi_{,i} = \partial\Phi/\partial x^i$ ·
+ข้อสังเกตเรื่องเครื่องหมาย: ในหนังสือเล่มนี้ $g_{00} = -1-2\Psi$ และ $g_{ij} = a^2\delta_{ij}(1+2\Phi)$ (หน้า 87) และช่วงหลังของเอกภพ $\Phi = -\Psi$
+ดังนั้นตรงกลางก้อนมวลเกิน $\Phi > 0$ และแรงดึงชี้เข้าหาก้อนมวล ตรงกับที่หนังสืออธิบายท้ายหน้า 298</p>
+
+<p><strong>ขั้นที่หนังสือข้าม</strong> (จาก 10.10 ไป 10.11 หนังสือบอกแค่ว่า "หักล้างกันพอดี"):</p>
+<ol>
+  <li>จาก $d\chi/dt = -1/a$ ได้ $da/d\chi = (da/dt)(dt/d\chi) = -a^2H$</li>
+  <li>ฝั่งซ้ายของ (10.10): $\dfrac{d}{d\chi}\!\left[a^{-2}X'\right] = a^{-2}X'' + \dfrac{d(a^{-2})}{d\chi}X' = a^{-2}X'' + \dfrac{2H}{a}X'$ โดย $X = \chi\theta^i$</li>
+  <li>ฝั่งขวาของ (10.10): $\dfrac{2}{a^2}\Phi_{,i} + \dfrac{2H}{a}X'$</li>
+  <li>พจน์ $\tfrac{2H}{a}X'$ อยู่ทั้งสองฝั่ง ตัดทิ้งแล้วคูณ $a^2$ ได้ (10.11)</li>
+</ol>
+
+<p>อินทิเกรตสองรอบแล้วสลับลำดับอินทิเกรต (รูป 10.5 คือภาพของบริเวณสามเหลี่ยม $0<\chi'<\chi''<\chi$) ได้มุมจริงของแหล่งกำเนิดเป็นมุมที่เห็นบวกส่วนแก้:</p>
+
+<div class="eq" data-eqno="10.14">$$\theta_S^i = \theta^i + 2\int_0^{\chi} d\chi'\,\Phi_{,i}\big(\vec x(\chi')\big)\left(1-\frac{\chi'}{\chi}\right)$$</div>
+
+<p><strong>อ่านว่า</strong>: $\chi$ ที่ขอบบนคือระยะถึงแหล่งกำเนิด · $\chi'$ คือตำแหน่งของ "เลนส์" ตามทาง · น้ำหนัก $(1-\chi'/\chi)$
+เป็นศูนย์ที่ตัวแหล่งกำเนิดเอง (มวลที่อยู่ติดแหล่งกำเนิดไม่ทำให้มุมเปลี่ยน) ·
+<strong>ขั้นที่หนังสือข้าม</strong>: เมื่อสลับลำดับ อินทิเกรตชั้นใน $\int_{\chi'}^{\chi} d\chi''$ ของค่าคงที่ได้ $(\chi-\chi')$ หารด้วย $\chi$ ที่อยู่ข้างหน้าจึงได้ $(1-\chi'/\chi)$</p>
+
+<p>ต่อจากนั้นหนังสือนิยาม<strong>เมทริกซ์การแปลง</strong> $A_{ij} = \partial\theta_S^i/\partial\theta^j$ ซึ่งบอกว่าวงกลมเล็ก ๆ บนท้องฟ้าถูกบิดเป็นอะไร
+และเขียนมันด้วยสามตัวแปร:</p>
+
+<div class="eq" data-eqno="10.15">$$A = \begin{pmatrix} 1-\kappa-\gamma_1 & -\gamma_2 \\ -\gamma_2 & 1-\kappa+\gamma_1 \end{pmatrix}$$</div>
+
+<p><strong>อ่านว่า</strong>: $\kappa$ (kappa) คือ <strong>convergence</strong> — ส่วนที่ขยาย/ย่อภาพเท่ากันทุกทิศ ·
+$\gamma_1,\gamma_2$ คือสององค์ประกอบของ <strong>shear</strong> — ส่วนที่ยืดภาพไม่เท่ากันในสองทิศ ($\gamma_1$ ยืดตามแกน $x$/$y$, $\gamma_2$ ยืดตามแนวทแยง 45°) ·
+ทั้งสามไม่มีหน่วยและเล็กมาก (ราว $10^{-2}$) · อ่านกลับได้ตาม (10.16): $\gamma_1 = -(A_{11}-A_{22})/2$, $\gamma_2 = -A_{12}$</p>
+
+<p>เพราะ $\Phi$ ขึ้นกับ $\vec\theta$ ผ่าน $\vec x(\chi') = \chi'\vec\theta$ เท่านั้น การหาอนุพันธ์ตาม $\theta^j$ จึงเท่ากับอนุพันธ์ตาม $x^j$ คูณ $\chi'$
+ผลคือ $A_{ij}-\delta_{ij}$ เป็นอินทิเกรตของ <em>อนุพันธ์อันดับสอง</em> $\Phi_{,ij}$ ตามแนวเล็ง (10.17) — ข้อนี้สำคัญ เพราะเมทริกซ์ $\Phi_{,ij}$ สมมาตร
+และนั่นคือที่มาของข้อจำกัดในรูป 10.3 กับการไม่มี B-mode ใน §10.4 · เชิงอรรถหน้า 300 ยอมรับว่าเราประเมิน $\Phi$ ตามทางเดินที่ยังไม่ถูกบิด (ประมาณลำดับหนึ่ง)</p>
+
+<h3>§10.3 Ellipticity as an estimator of shear · หน้า 300–302</h3>
+
+<p>วัด shear ตรง ๆ ไม่ได้ สิ่งที่วัดได้คือรูปร่างของภาพ หนังสือจึงนิยาม quadrupole moment ของภาพ
+$q_{ij} = \int d^2\theta\, I_{\text{obs}}(\theta)\,\theta_i\theta_j$ (10.18 · วัดรอบจุดศูนย์กลางแสงของภาพ) แล้วสร้าง<strong>ค่าความรี</strong>สองตัว:</p>
+
+<div class="eq" data-eqno="10.19">$$\epsilon_1 = \frac{q_{xx}-q_{yy}}{q_{xx}+q_{yy}},\qquad \epsilon_2 = \frac{2q_{xy}}{q_{xx}+q_{yy}}$$</div>
+
+<p><strong>อ่านว่า</strong>: วงกลมได้ $\epsilon_1=\epsilon_2=0$ · วงรีที่แกนยาวตามแกน $x$ ได้ $\epsilon_1>0$ ตามแกน $y$ ได้ $\epsilon_1<0$ ·
+วงรีเอียง 45° ให้ $\epsilon_2 \ne 0$ (รูป 10.6) · โครงเดียวกับ $\gamma_1,\gamma_2$ ทุกประการ</p>
+
+<p>สมมุติแหล่งกำเนิดกลม แล้วเปลี่ยนตัวแปรอินทิเกรตจาก $\vec\theta$ เป็น $\vec\theta_S$ ด้วย $\theta_i = (A^{-1})_{ij}\theta_{Sj}$
+อินทิเกรตรอบภาพกลมจริงให้ $\delta_{ij}$ จึงเหลือแต่สมาชิกของ $A^{-1}$ (10.21–10.22) ได้ผลปิด</p>
+
+<div class="eq" data-eqno="10.24">$$\epsilon_1 = \frac{4\gamma_1(1-\kappa)}{2(1-\kappa)^2+2\gamma_1^2+2\gamma_2^2}\;\approx\; 2\gamma_1$$</div>
+
+<p><strong>อ่านว่า</strong>: เมื่อ $\kappa,\gamma$ เล็กทั้งหมด ความรีที่วัดได้คือสองเท่าของ shear (10.25) — นี่คือเหตุที่เรียก ellipticity ว่าเป็น
+<em>estimator</em> ของ shear · ใช้ได้เพราะเฉลี่ยดาราจักรจำนวนมาก (ดาราจักรจริงไม่กลม แต่ความรีโดยกำเนิดเฉลี่ยกันหายไป)</p>
+
+<p><strong>ขั้นที่หนังสือข้าม</strong>:</p>
+<ol>
+  <li>inverse ของเมทริกซ์ 2×2: สลับทแยงหลัก กลับเครื่องหมายนอกทแยง หารด้วย determinant $(1-\kappa)^2-\gamma_1^2-\gamma_2^2$ ได้ (10.23)</li>
+  <li>determinant หารทิ้งได้เพราะอยู่ทั้งเศษและส่วนของ $\epsilon_1$</li>
+  <li>เศษ: $(1-\kappa+\gamma_1)^2-(1-\kappa-\gamma_1)^2 = 4\gamma_1(1-\kappa)$ (ผลต่างกำลังสอง) · ส่วน: บวกกำลังสองทั้งสองแล้วบวก $2\gamma_2^2$</li>
+  <li>เก็บเฉพาะลำดับหนึ่ง: เศษ $\approx 4\gamma_1$ ส่วน $\approx 2$ ⇒ $\epsilon_1\approx 2\gamma_1$</li>
+</ol>
+
+<h3>§10.4 Weak lensing power spectrum · หน้า 302–310</h3>
+
+<p>ตัด identity ออกจาก $A$ ได้ <strong>distortion tensor</strong> $\psi_{ij} = A_{ij}-\delta_{ij}$ (10.26) ซึ่งเป็นศูนย์ถ้าไม่มีการกระเพื่อม
+ดาราจักรจริงกระจายในระยะต่าง ๆ ตามการแจกแจง $W(\chi)$ (นอร์มัลไลซ์ให้ $\int W\,d\chi = 1$ แบบบท 9) สลับลำดับอินทิเกรตอีกครั้งได้</p>
+
+<div class="eq" data-eqno="10.28">$$\psi_{ij}(\vec\theta) = \int_0^{\chi_\infty} d\chi\;\Phi_{,ij}\big(\vec x(\chi)\big)\,g(\chi),\qquad g(\chi) \equiv 2\chi\int_\chi^{\chi_\infty} d\chi'\left(1-\frac{\chi}{\chi'}\right)W(\chi')$$</div>
+
+<p><strong>อ่านว่า</strong>: $g(\chi)$ คือ "น้ำหนักของเลนส์" ที่ระยะ $\chi$ — มากที่สุดเมื่อเลนส์อยู่ราวกลางทางระหว่างเรากับดาราจักร ·
+$\chi_\infty$ คือระยะ comoving ถึง redshift อนันต์ · $\langle\psi_{ij}\rangle = 0$ จึงต้องไปดู two-point function</p>
+
+<p>ตาราง 10.1 ในหนังสือจับคู่ขั้นตอนกับ §9.1 ทีละแถว: บทบาทของ $W$ ถูกแทนด้วย $g$ และสนาม 3D $\delta$ ถูกแทนด้วย $\Phi_{,ij}$
+ส่วนใหม่จริง ๆ มีแค่ว่า Fourier transform ของ $\Phi_{,ij}$ คือ $-k_ik_j\tilde\Phi$ จึงพก $k_ik_jk_lk_m$ ติดมาด้วย (10.30) ผลลัพธ์ในขีด small-angle คือ</p>
+
+<div class="eq" data-eqno="10.32">$$P^{\psi}_{ijlm}(\vec l) = \int_0^{\chi_\infty} d\chi\,\frac{g^2(\chi)}{\chi^2}\,\frac{l_il_jl_ll_m}{\chi^4}\,P_\Phi(l/\chi)$$</div>
+
+<p><strong>อ่านว่า</strong>: $\vec l$ คือเวกเตอร์ 2 มิติที่ conjugate กับ $\vec\theta$ (บทบาทเดียวกับ multipole $l$ ของ CMB) · $P_\Phi$ คือ power spectrum ของ potential ·
+หนังสือบอกว่าถ้าอยากใช้ power spectrum ของความหนาแน่นแทน ให้คูณ $P_\Phi$ ด้วย $9\Omega_m^2H_0^4(1+z)^2/(4k^4)$ (จากสมการ 7.7)</p>
+
+<p>เขียน $\vec l = (l\cos\phi_l,\,l\sin\phi_l)$ แล้วประกอบ $\gamma_1 = (\psi_{22}-\psi_{11})/2$ ได้ว่า power spectrum ของ shear แต่ละตัว
+เท่ากับ power spectrum ของ convergence คูณตัวประกอบเชิงมุม:</p>
+
+<div class="eq" data-eqno="10.34">$$P_\kappa(l) = \frac{l^4}{4}\int_0^{\chi_\infty} d\chi\,\frac{g^2(\chi)}{\chi^6}\,P_\Phi(l/\chi)$$</div>
+<div class="eq" data-eqno="10.35–36">$$P_{\gamma_1} = \cos^2(2\phi_l)\,P_\kappa,\qquad P_{\gamma_2} = \sin^2(2\phi_l)\,P_\kappa$$</div>
+
+<p><strong>ขั้นที่หนังสือข้าม</strong> (ตัวประกอบเชิงมุมของ $P_{\gamma_1}$):</p>
+<ol>
+  <li>$P_{\gamma_1} = \tfrac14\big(P^\psi_{2222}+P^\psi_{1111}-2P^\psi_{2211}\big)$ และแต่ละตัวพก $l_il_jl_ll_m$</li>
+  <li>แทน $l_1 = l\cos\phi_l$, $l_2 = l\sin\phi_l$: วงเล็บเป็น $l^4(\sin^4\phi_l+\cos^4\phi_l-2\sin^2\phi_l\cos^2\phi_l) = l^4(\cos^2\phi_l-\sin^2\phi_l)^2$</li>
+  <li>และ $\cos^2\phi_l-\sin^2\phi_l = \cos 2\phi_l$ จึงได้ $\cos^2(2\phi_l)$ คูณก้อน $\tfrac{l^4}{4}\int\cdots$ ซึ่งก็คือ $P_\kappa$</li>
+</ol>
+
+<p>หนังสือชี้ว่าเพราะทั้งสองขึ้นกับทิศของ $\vec l$ จึงหมุนรวมกันเป็นสองโหมดได้ — <strong>E-mode</strong> และ <strong>B-mode</strong>:</p>
+
+<div class="eq" data-eqno="10.37">$$E(\vec l) = \cos(2\phi_l)\gamma_1(\vec l)+\sin(2\phi_l)\gamma_2(\vec l),\qquad B(\vec l) = -\sin(2\phi_l)\gamma_1(\vec l)+\cos(2\phi_l)\gamma_2(\vec l)$$</div>
+
+<p><strong>อ่านว่า</strong>: นี่คือการหมุนคู่ $(\gamma_1,\gamma_2)$ ไปด้วยมุม $2\phi_l$ ให้แกนแรกชี้ตามทิศของ $\vec l$ ·
+ผลคือ $P_E = P_\kappa$ ไม่ขึ้นกับมุม และ $P_B = 0$ (10.39–10.40) รวมทั้ง cross spectrum $\langle EB\rangle = 0$ ·
+ความหมายเชิงปฏิบัติ: lensing ไม่สร้าง B-mode เลย ดังนั้น B-mode ที่วัดได้ในข้อมูล lensing คือ<strong>ตัวชี้ systematic</strong>
+(เครื่องมือ บรรยากาศ การวัดรูปร่างผิด) — ข้อนี้คือรูปแบบทางคณิตของข้อสังเกตในรูป 10.3</p>
+
+<p><strong>ขั้นที่หนังสือข้าม</strong>: ต้องรู้ cross spectrum $P_{\gamma_1\gamma_2} = \cos(2\phi_l)\sin(2\phi_l)P_\kappa$ ก่อน
+(มาจาก $\gamma_2 = -\psi_{12}$) แล้ว $P_E = c^2\cdot c^2 + s^2\cdot s^2 + 2sc\cdot sc = (c^2+s^2)^2 = 1$ เท่าของ $P_\kappa$ เมื่อ $c=\cos2\phi_l$, $s=\sin2\phi_l$ ·
+ส่วน $P_B = s^2c^2 + c^2s^2 - 2sc\cdot sc = 0$</p>
+
+<p>ครึ่งหลังของ section แปลง power spectrum เป็น correlation function เชิงมุมที่ผู้สังเกตรายงาน (10.41–10.46) เคล็ดคือวัดมุมของ $\vec l$
+จากทิศของ $\vec\theta$ แทนจากแกน $x$ แล้วใช้อินทิเกรต $\int_0^{2\pi}\cos(n\phi')e^{iz\cos\phi'}d\phi' = 2\pi i^nJ_n(z)$ (C.21) ได้ kernel</p>
+
+<div class="eq" data-eqno="10.46">$$F_\pm(k\theta) \equiv \frac{1}{16\pi}\int_0^{\chi_\infty} d\chi\,g^2(\chi)\big[J_0(k\chi\theta)\pm J_4(k\chi\theta)\big]$$</div>
+
+<p><strong>อ่านว่า</strong>: $J_0,J_4$ คือ Bessel function อันดับ 0 และ 4 · ถ้าวางแกน $x$ ตามเส้นเชื่อมดาราจักรคู่หนึ่ง ($\phi = 0$)
+correlation ของ $\gamma_1$ ใช้ kernel $F_+$ ซึ่ง (ตามรูป 10.9) เป็นบวกตลอด ส่วนของ $\gamma_2$ ใช้ $F_-$ ซึ่งติดลบได้ที่มุมกว้าง ·
+อีกข้อที่ควรจำ: shear ที่สเกลราวหนึ่งในสิบองศาสะท้อน power spectrum ที่ $k\sim 1\,h\,\text{Mpc}^{-1}$ · หนังสือเตือนว่าสูตรนี้สมมุติ $\Phi$ ไม่เปลี่ยนตามเวลา</p>
+
+<p>รูป 10.10 คือการวัดจริงครั้งแรก ๆ (ปี 2000) ความแรงของ shear ราว $10^{-2}$ ที่มุม 1 arcmin ถึงราว 1° — <em>ค่าปี 2003</em></p>
+
+<h3>§10.5 Polarization: the quadrupole and the Q/U decomposition · หน้า 310–313</h3>
+
+<p>ใจความเชิงภาพล้วน ๆ (รูป 10.11–10.14): Compton scattering ปล่อยสนามที่ตั้งฉากกับทิศขาออกผ่านไปหมด และตัดส่วนที่ขนานกับทิศขาออกทิ้ง
+แสงที่ไม่โพลาไรซ์ซึ่งเข้ามาทิศเดียวจึงออกไปเป็นแสงโพลาไรซ์ แต่เมื่อแสงเข้ามาทุกทิศ ผลอาจหักล้างกัน หนังสือไล่สามกรณี:
+แสงเข้ามาเท่ากันทุกทิศ (isotropic) — ไม่มี polarization · มีแค่ dipole (ร้อนด้านหนึ่ง เย็นด้านตรงข้าม) — ยังหักล้าง ·
+มี <strong>quadrupole</strong> (ร้อนตามแกน $x$ เย็นตามแกน $y$) — จึงเกิด polarization</p>
+
+<p>ผลสืบเนื่องสำคัญ: polarization ต้องเกิดตอนที่ยังมี scattering แต่ช่วงนั้นโฟตอนกับอิเล็กตรอนผูกกันแน่น (tight coupling) ซึ่งกด quadrupole ให้เล็ก
+จึงคาดว่าสัญญาณ polarization เล็กกว่า anisotropy ของอุณหภูมิมาก (reionization ทีหลังเพิ่มสัญญาณที่สเกลใหญ่ได้บ้าง)</p>
+
+<div class="eq" data-eqno="10.47">$$I_{ij} = \begin{pmatrix} T+Q & U \\ U & T-Q\end{pmatrix}$$</div>
+
+<p><strong>อ่านว่า</strong>: $I_{ij}$ คือความเข้มแยกตามทิศในระนาบที่ตั้งฉากกับทิศเดินทาง · $T$ คืออุณหภูมิ (ส่วนเรียบบวก $\Theta$ จากบท 8) ·
+$Q$ และ $U$ คือ <strong>Stokes parameter</strong> สองตัวที่บอก polarization: $Q$ คือผลต่างความเข้มระหว่างแกน $x$ กับ $y$, $U$ คือผลต่างระหว่างสองแนวทแยง ·
+โครงเหมือน $(\epsilon_1,\epsilon_2)$ และ $(\gamma_1,\gamma_2)$ เป๊ะ · Stokes parameter ตัวที่สี่ $V$ (polarization แบบวงกลม) ไม่คาดว่าจะเกิดในเอกภพยุคแรก หนังสือจึงตั้ง $V=0$ ·
+polarization วาดเป็น "เวกเตอร์ไม่มีหัว" (headless vector) — มีความยาวและแนว แต่ไม่มีทิศหน้า-หลัง</p>
+
+<h3>§10.6 Polarization from a single plane wave · หน้า 313–320</h3>
+
+<p>ทำให้ภาพใน §10.5 เป็นตัวเลข: รวมแสงขาเข้าจากทุกทิศ $\hat n'$ ที่กระเจิงออกไปทางแกน $z$ แกน polarization ขาเข้าเลือกเป็นเวกเตอร์หนึ่งหน่วย
+$\hat\epsilon'_1 = \hat\theta'$, $\hat\epsilon'_2 = \hat\phi'$ ส่วนขาออกเป็น $\hat x,\hat y$ (รูป 10.15) แล้วใช้ว่าภาคตัดขวางของการกระเจิงเป็นสัดส่วนกับ
+$\sum_j|\hat\epsilon_i\cdot\hat\epsilon'_j|^2$ (10.48) ผลคือ</p>
+
+<div class="eq" data-eqno="10.52–53">$$Q(\hat z) = -A\int d\Omega_{n'}\,f(\hat n')\sin^2\theta'\cos 2\phi',\qquad U(\hat z) = -A\int d\Omega_{n'}\,f(\hat n')\sin^2\theta'\sin 2\phi'$$</div>
+
+<p><strong>อ่านว่า</strong>: $A$ คือค่าคงตัว normalization ที่ไม่สนใจ · $f(\hat n')$ คือความเข้มของแสงที่เข้ามาจากทิศ $\hat n'$ (ไม่โพลาไรซ์) ·
+$\theta',\phi'$ คือมุมทรงกลมของ $\hat n'$ · ตัวคูณ $\sin^2\theta'\cos2\phi'$ และ $\sin^2\theta'\sin2\phi'$ เป็นผลรวม/ผลต่างของ $Y_{2,2}$ กับ $Y_{2,-2}$
+จึงหยิบเอาเฉพาะส่วน quadrupole ($l=2$) ของ $f$ — นี่คือข้อพิสูจน์เชิงคณิตของภาพใน §10.5</p>
+
+<p><strong>ขั้นที่หนังสือข้าม</strong> (บรรทัดกลางของ 10.52): ใช้ (10.51) จะได้ $\hat x\cdot\hat\epsilon'_1 = \cos\theta'\cos\phi'$, $\hat x\cdot\hat\epsilon'_2 = -\sin\phi'$,
+$\hat y\cdot\hat\epsilon'_1 = \cos\theta'\sin\phi'$, $\hat y\cdot\hat\epsilon'_2 = \cos\phi'$ · ยกกำลังสองแล้วลบกัน:
+$\cos^2\theta'(\cos^2\phi'-\sin^2\phi') - (\cos^2\phi'-\sin^2\phi') = -(1-\cos^2\theta')\cos2\phi' = -\sin^2\theta'\cos 2\phi'$</p>
+
+<p>จากนั้นหนังสือค่อย ๆ ขยายจากคลื่นระนาบที่ $\vec k$ ชี้ตามแกน $x$ (ได้ $Q = 4\pi A\Theta_2$ · 10.58 โดย $\Theta_2$ คือ quadrupole ของอุณหภูมิจากบท 4)
+ไปเป็น $\vec k$ ทั่วไปในระนาบ $x$-$z$ แล้วเป็นทิศใด ๆ:</p>
+
+<div class="eq" data-eqno="10.60">$$Q(\hat z,\vec k) = 4\pi A\sin^2\theta_k\cos(2\phi_k)\,\Theta_2(k),\qquad U(\hat z,\vec k) = 4\pi A\sin^2\theta_k\sin(2\phi_k)\,\Theta_2(k)$$</div>
+
+<p><strong>อ่านว่า</strong>: $\theta_k,\phi_k$ คือมุมทรงกลมของ $\hat k$ · ถ้า $\vec k$ ขนานกับแนวเล็ง ($\theta_k = 0$) ไม่มี polarization ·
+แล้วแทน $\cos\theta_k\to\hat n\cdot\hat k$ เพื่อดูทิศใกล้แกน $z$ ได้ (10.61) ซึ่งใช้ได้ใน small-angle limit เท่านั้น</p>
+
+<p><strong>ขั้นที่หนังสือข้าม</strong> (10.57→10.58): อินทิเกรต $\phi'$ คือ $\int_0^{2\pi}\cos^2\phi'\cos2\phi'\,d\phi' = \pi/2$ · อินทิเกรต $\theta'$ คือ
+$\int_0^\pi\sin^5\theta'\,d\theta' = 16/15$ (แทน $\mu' = \cos\theta'$ แล้วอินทิเกรต $(1-\mu'^2)^2$) · ผลคูณ $\tfrac{15}{2}\cdot\tfrac{16}{15}\cdot\tfrac{\pi}{2} = 4\pi$</p>
+
+<p>ข้อสรุปเชิงรูปทรง (รูป 10.16): สำหรับ scalar perturbation ทิศที่ความแรงของ polarization เปลี่ยน กับแนวของ polarization เอง
+<strong>ขนานหรือตั้งฉากกันเสมอ</strong> — นี่คือลักษณะของ E-mode หนังสือเปรียบกับสนามไฟฟ้าจากประจุจุด ซึ่งชี้ไปทางเดียวกับที่ความแรงเปลี่ยน</p>
+
+<h3>§10.7 Boltzmann solution · หน้า 320–323</h3>
+
+<p>ภาพอิเล็กตรอนตัวเดียวไม่พอ ต้องใช้ Boltzmann equation ของ $\Theta_P$ จากบท 4 ($\Theta_P$ คือความแรงของ polarization ส่วน $Q,U$ บอกทั้งความแรงและแนว):</p>
+
+<div class="eq" data-eqno="10.63–64">$$\dot\Theta_P + ik\mu\Theta_P = -\dot\tau\left[-\Theta_P + \tfrac12\big(1-\mathcal P_2(\mu)\big)\Pi\right],\qquad \Pi = \Theta_2+\Theta_{P2}+\Theta_{P0}$$</div>
+
+<p><strong>อ่านว่า</strong>: จุดบนหัว = อนุพันธ์ตาม conformal time $\eta$ · $\mu = \hat k\cdot\hat n$ · $\tau$ คือ optical depth และ $\dot\tau<0$ ·
+$\mathcal P_2$ คือ Legendre polynomial อันดับสอง · $\Theta_{P0},\Theta_{P2}$ คือ monopole และ quadrupole ของ polarization ·
+ความเชื่อมกับ §10.6 คือ $Q = \Theta_P\cos2\phi_k$, $U = \Theta_P\sin2\phi_k$ (10.66)</p>
+
+<p>หนังสือแก้สมการแบบ line-of-sight เหมือนบท 8 ใช้ visibility function $g(\eta) = -\dot\tau e^{-\tau}$ ที่แหลมรอบ decoupling
+แล้วเปลี่ยนตัวคูณ $\mu$ เป็นอนุพันธ์ ได้ moment ของ polarization วันนี้ จากนั้นใช้ (10.75) ทิ้งพจน์ที่เล็กกว่าที่สเกลเล็ก
+และใช้ผลของ tight coupling สองข้อ: $\Pi = 5\Theta_2/2$ (ข้อ 12 ท้ายบท) และ quadrupole เป็นสัดส่วนกับ dipole (สมการ 8.34) ได้</p>
+
+<div class="eq" data-eqno="10.78">$$\Theta_{Pl}(k) \simeq -\frac{5k\Theta_1(k,\eta_*)}{6\dot\tau(\eta_*)}\,\frac{l^2}{(k\eta_0)^2}\,j_l(k\eta_0)$$</div>
+
+<p><strong>อ่านว่า</strong>: $\eta_*$ คือ conformal time ตอน recombination · $\eta_0$ วันนี้ · $\Theta_1$ คือ dipole ของอุณหภูมิ · $j_l$ คือ spherical Bessel function ·
+สามข้อที่ควรจดจาก (10.78): (ก) เล็กกว่า anisotropy ของอุณหภูมิราว $k/\dot\tau$ ตอน decoupling (ข) แกว่งตาม dipole จึง<strong>ต่างเฟส</strong>กับยอดของ
+spectrum อุณหภูมิ (ค) ไม่มีพจน์แบบ integrated Sachs-Wolfe — polarization เป็นภาพที่ "สะอาด" ของยุค decoupling</p>
+
+<p><strong>ขั้นที่หนังสือข้าม</strong> (10.75): จากสมการ spherical Bessel (C.13) $j_l'' = -\tfrac{2}{x}j_l' - \big(1-\tfrac{l(l+1)}{x^2}\big)j_l$
+จึง $j_l + j_l'' = -\tfrac{2}{x}j_l' + \tfrac{l(l+1)}{x^2}j_l$ แล้วแทน $j_l' = j_{l-1}-\tfrac{l+1}{x}j_l$ (C.18) ได้สามพจน์ตามหนังสือ</p>
+
+<div class="warn">
+  <p><strong>จุดที่คู่มือยังไม่ยืนยัน</strong> (10.67–10.68 หน้า 321): บรรทัดแรกของ (10.67) คือ $-\dot\tau\,\tfrac{1-\mathcal P_2}{2}\Pi$
+  และเมื่อไม่มี polarization เดิม $\Pi = \Theta_2$ เราคำนวณได้ $\tfrac{1-\mathcal P_2(\mu)}{2} = \tfrac34(1-\mu^2)$ จึงควรได้สัมประสิทธิ์ $\tfrac34$
+  แต่บรรทัดที่สองและ (10.68) พิมพ์ $\tfrac32$ — ต่างกัน factor 2 · ข้อสรุปเชิงคุณภาพของหนังสือ (polarization $\propto\tau(1-\mu^2)\Theta_2$) ไม่กระทบ
+  · ยังไม่ได้ตรวจกับ errata ของหนังสือ</p>
+</div>
+
+<h3>§10.8 Polarization power spectra · หน้า 323–326</h3>
+
+<p>รวมคลื่นระนาบหลายลูกแบบเดียวกับบท 8: $C_{P,l} = \tfrac{2}{\pi}\int dk\,k^2|\Theta_{Pl}(k)|^2$ (10.79)
+คำถามคือจะได้ spectrum ของ $Q$ และ $U$ อย่างไร เคล็ดของหนังสือคือเขียน $\cos2\phi_k = (k_x^2-k_y^2)/(k_x^2+k_y^2)$ (10.81)
+แล้วเปลี่ยน $k_x,k_y$ เป็นอนุพันธ์ตาม $\vec\theta$ ได้ operator $D_Q(\vec\theta)$ (10.82) ที่ดึงออกนอกอินทิเกรตได้
+เมื่อ Fourier transform ไปที่ $\vec l$ operator นี้กลายเป็นแค่ $\cos2\phi_l$ จึงได้</p>
+
+<div class="eq" data-eqno="10.86">$$C_{QQ}(\vec l) = C_{P,l}\cos^2(2\phi_l),\qquad C_{UU}(\vec l) = C_{P,l}\sin^2(2\phi_l)$$</div>
+
+<p>หน้าตาเหมือน (10.35–36) ทุกตัวอักษร จึงนิยาม E และ B ด้วยการหมุน $(Q,U)$ ไป $2\phi_l$ แบบ (10.87) ได้ $C_{BB} = 0$ และ $C_{EE}\to C_{P,l}$ เมื่อ $l\gg1$
+— <strong>scalar perturbation สร้างแต่ E-mode</strong> รูป 10.18 เทียบ spectrum ของ E กับของอุณหภูมิ: E เล็กกว่าและยอดอยู่คนละตำแหน่ง
+พร้อมการตรวจพบครั้งแรกโดย DASI ปี 2002 (<em>ค่าปี 2003</em>) · ที่สเกลใหญ่ต้องใช้ tensor spherical harmonics ซึ่งหนังสือไม่ลงรายละเอียด</p>
+
+<h3>§10.9 Detecting gravity waves · หน้า 326–329</h3>
+
+<p>เหตุผลที่ scalar ให้แต่ E: คลื่นระนาบ scalar มีทิศพิเศษทิศเดียวคือ $\hat k$ และสมมาตรรอบมัน
+ทั้ง "ทิศที่ความแรงเปลี่ยน" และ "แนวของ polarization" จึงต้องอิงกับ $\hat k$ ตัวเดียวกันและเรียงกัน
+ส่วน tensor perturbation (gravity wave · $h_+,h_\times$ จากบท 4) ทำให้การกระจายของโฟตอนขึ้นกับมุมรอบ $\hat k$ แบบ $\sin2\phi$ หรือ $\cos2\phi$
+มีทิศให้เลือกเพิ่ม สองทิศนั้นจึงไม่จำเป็นต้องเรียงกัน — เกิด <strong>B-mode</strong></p>
+
+<p>ความสำคัญ: tensor ปนอยู่ใน E-mode ด้วย แต่แยกจาก scalar ยาก ส่วน B-mode ไม่มี scalar ปนเลย ดังนั้นถ้าเห็น B-mode (หลังหัก lensing ซึ่งเป็นผลไม่เชิงเส้น)
+ก็คือ gravity wave หนังสืออ้างการประมาณว่า tensor-to-scalar ratio $r$ อาจวัดได้ถึงราว $10^{-4}$ (<em>ค่าปี 2003</em>)</p>
+
+<p>การคำนวณ: หมุนพิกัดด้วยเมทริกซ์ $R$ (10.91) ที่พา $\hat z$ ไปเป็น $\hat k$ แล้วดูว่า $\Theta^T\propto n'_xn'_y$ ของโหมด $h_\times$ กลายเป็นอะไร
+แยกเอาเฉพาะส่วน $Y_{2,\pm2}$ (10.95) แล้วได้ผลสุดท้าย</p>
+
+<div class="eq" data-eqno="10.97">$$\begin{pmatrix}Q(\hat n)\\U(\hat n)\end{pmatrix} \propto \Theta_0^T\,\hat n\cdot\hat k\begin{pmatrix}-\sin(2\phi_k)\\ \cos(2\phi_k)\end{pmatrix}$$</div>
+
+<p><strong>อ่านว่า</strong>: เทียบกับ scalar (10.61) ที่ได้ $(\cos2\phi_k,\sin2\phi_k)$ — ของ tensor หมุนไป 45° (ในภาษา $Q,U$ คือหมุน 90°) ·
+สำหรับ $\vec k$ ในระนาบ $x$-$z$ ($\phi_k = 0$) มีแต่ $U$ ซึ่งตามนิยาม (10.87) คือ B-mode ล้วน ·
+รูป 10.19: ความแรงเปลี่ยนตามแกน $x$ แต่แนว polarization เอียง $\pm45°$ — ไม่ขนานไม่ตั้งฉาก · รูป 10.20 คือ spectrum เมื่อ $r = 1$</p>
+
+<div class="warn">
+  <p><strong>convention ของ $Y_{lm}$</strong>: (10.95) ถูกต้องเมื่อใช้ $Y_{2,\pm2}$ ตาม (C.10) ของหนังสือ ซึ่งมีเครื่องหมายลบนำหน้า
+  สคริปต์ตรวจยืนยันว่าถ้าใช้ $Y_{2,\pm2}$ แบบที่ไม่มีเครื่องหมายลบ เครื่องหมายของ (10.95) จะกลับ
+  · <em>นอกหนังสือ</em>: ตำรากลศาสตร์ควอนตัมส่วนใหญ่เขียน $Y_{lm}$ ด้วยเฟสต่างจาก Appendix C (เช่น $Y_{10}$ ของหนังสือมีตัวคูณ $i$)
+  เวลาเทียบสูตรข้ามตำราให้ใช้นิยามของเล่มที่กำลังอ่าน</p>
+</div>
+
+<h2>ศัพท์และสำนวนอังกฤษของบทนี้</h2>
+
+<table>
+  <tr><th>คำ / วลี</th><th>ความหมาย</th><th>หน้าแรก</th></tr>
+  <tr><td>mass vs light problem</td><td>ปัญหาว่าแสง (ดาราจักร) ไม่จำเป็นต้องบอกตำแหน่งมวล</td><td>292</td></tr>
+  <tr><td>part-in-a-hundred-thousand level</td><td>ระดับหนึ่งส่วนแสน (ขนาดของ anisotropy ใน CMB)</td><td>292</td></tr>
+  <tr><td>cannot be mimicked by</td><td>ของอื่นเลียนแบบไม่ได้</td><td>292</td></tr>
+  <tr><td>cannot be overstated</td><td>สำคัญมากจนพูดเกินไม่ได้ (สำนวนเน้น)</td><td>293</td></tr>
+  <tr><td>strong / weak lensing</td><td>lensing แรงจนเห็นภาพซ้อน/ส่วนโค้ง กับแบบอ่อนที่ต้องเฉลี่ยทางสถิติ</td><td>293</td></tr>
+  <tr><td>multiply imaged quasar</td><td>ควอซาร์ที่เห็นหลายภาพเพราะ lensing</td><td>293</td></tr>
+  <tr><td>time delay</td><td>แสงสองเส้นทางมาถึงไม่พร้อมกัน</td><td>294</td></tr>
+  <tr><td>microlensing</td><td>เลนส์ขนาดเล็กผ่านหน้าแหล่งกำเนิด ทำให้สว่างขึ้นชั่วคราว</td><td>294</td></tr>
+  <tr><td>the hallmark of</td><td>ลักษณะประจำตัวของ</td><td>295</td></tr>
+  <tr><td>to make our money</td><td>(สำนวน) จะได้ผลอะไรจริง ๆ ต้อง…</td><td>303</td></tr>
+  <tr><td>affine parameter</td><td>พารามิเตอร์ที่ใช้ไล่ตามเส้นทางแสงใน geodesic equation</td><td>296</td></tr>
+  <tr><td>convergence</td><td>$\kappa$ · ส่วนขยายภาพเท่ากันทุกทิศ</td><td>300</td></tr>
+  <tr><td>shear</td><td>$\gamma_1,\gamma_2$ · ส่วนยืดภาพไม่เท่ากันสองทิศ</td><td>300</td></tr>
+  <tr><td>ellipticity</td><td>ค่าความรีของภาพ $\epsilon_1,\epsilon_2$</td><td>300</td></tr>
+  <tr><td>estimator</td><td>ปริมาณที่คำนวณจากข้อมูลเพื่อประมาณค่าที่ต้องการ</td><td>300</td></tr>
+  <tr><td>distortion tensor</td><td>$\psi_{ij} = A_{ij}-\delta_{ij}$</td><td>302</td></tr>
+  <tr><td>relegated to a problem</td><td>ยกไปให้ทำเป็นแบบฝึกหัด</td><td>304</td></tr>
+  <tr><td>essentially featureless</td><td>เรียบ ๆ แทบไม่มียอด/หุบ</td><td>305</td></tr>
+  <tr><td>to get ahead of myself</td><td>(สำนวน) ขอพูดล่วงหน้าหน่อย</td><td>305</td></tr>
+  <tr><td>E-mode / B-mode</td><td>สองโหมดที่ได้จากการหมุน shear หรือ $Q,U$ ตามทิศของ $\vec l$</td><td>306</td></tr>
+  <tr><td>kernel</td><td>ฟังก์ชันน้ำหนักในอินทิเกรตที่โยงสเปกตรัมกับสิ่งที่วัด</td><td>307</td></tr>
+  <tr><td>blank field</td><td>บริเวณฟ้าที่ไม่มีกระจุกดาราจักรที่รู้จัก</td><td>308</td></tr>
+  <tr><td>ruled out at many sigma</td><td>ถูกตัดทิ้งด้วยความมั่นใจสูงมาก</td><td>309</td></tr>
+  <tr><td>Stokes parameters</td><td>$T,Q,U,V$ · ตัวเลขบรรยาย polarization</td><td>313</td></tr>
+  <tr><td>headless vector</td><td>เส้นที่มีความยาวและแนว แต่ไม่มีหัวลูกศร</td><td>312</td></tr>
+  <tr><td>caricature</td><td>ภาพวาดอย่างง่ายเกินจริง ไว้สื่อแนวคิด</td><td>310</td></tr>
+  <tr><td>take an intermediate tack</td><td>(สำนวน) เลือกทางสายกลาง</td><td>313</td></tr>
+  <tr><td>takes its cue from</td><td>ยึดตาม / ได้ทิศทางมาจาก</td><td>316</td></tr>
+  <tr><td>visibility function</td><td>$g(\eta)$ · ความน่าจะเป็นที่โฟตอนกระเจิงครั้งสุดท้ายที่เวลา $\eta$</td><td>321</td></tr>
+  <tr><td>out of phase</td><td>ยอดกับหุบไม่ตรงกัน (ต่างเฟส)</td><td>322</td></tr>
+  <tr><td>pristine view</td><td>ภาพที่ไม่ถูกปนเปื้อน</td><td>323</td></tr>
+  <tr><td>a flurry of papers</td><td>บทความออกมาพร้อม ๆ กันจำนวนมาก</td><td>323</td></tr>
+  <tr><td>tensor-to-scalar ratio</td><td>$r$ · อัตราส่วนความแรงของ tensor ต่อ scalar perturbation</td><td>327</td></tr>
+</table>
+
+<h2>convention และจุดที่มักสะดุด</h2>
+
+<ul>
+  <li><strong>หน่วย</strong>: $\hbar = c = k_B = 1$ ตามที่หนังสือตั้งไว้ตั้งแต่บท 2 · มุมทุกตัวเป็นเรเดียน</li>
+  <li><strong>metric</strong>: signature $(-,+,+,+)$ (สมการ 2.3) และ perturbation $g_{00} = -1-2\Psi$, $g_{ij} = a^2\delta_{ij}(1+2\Phi)$ (สมการ 4.9)
+    · ระวัง: บทเรียน QFT ใน workspace นี้ใช้ $(+,-,-,-)$ ตาม Tong (<a href="../lessons/0034-tong-read.html">บทที่ 23</a>)
+    · และเครื่องหมายของ $\Phi$ ในหนังสือนี้ทำให้ $\Phi = -\Psi$ ในเอกภพยุคหลัง (10.7) ซึ่ง<em>นอกหนังสือ</em>ตำราอื่นหลายเล่มนิยามกลับกัน</li>
+  <li><strong>Fourier 2 มิติ</strong>: $\vec l$ conjugate กับ $\vec\theta$ และ $\langle\tilde\psi\tilde\psi^*\rangle = (2\pi)^2\delta^2(\vec l-\vec l')P$ (10.31) ซึ่งเป็นแบบเดียวกับ convention 3 มิติใน Appendix C (มี $(2\pi)$ ไปอยู่ฝั่ง $k$)</li>
+  <li><strong>มุม 2φ ไม่ใช่ φ</strong>: polarization และ shear หมุนครบรอบเมื่อแกนหมุนไป 180° จึงเห็น $\cos2\phi$, $\sin2\phi$ ทุกที่ — นี่คือเหตุที่ "หมุน E/B ด้วยมุม $2\phi_l$"</li>
+  <li><strong>$\phi$ มีสามตัวใน §10.4</strong>: $\phi_l$ (มุมของ $\vec l$ จากแกน $x$), $\phi$ (มุมของ $\vec\theta$ จากแกน $x$), $\phi'$ (มุมระหว่างสองตัวนั้น) — ดูรูป 10.8</li>
+  <li><strong>$g$ สองความหมาย</strong>: $g(\chi)$ ใน (10.29) คือน้ำหนักของ lensing แต่ $g(\eta)$ ใน §10.7 คือ visibility function</li>
+  <li><strong>$A$ สองความหมาย</strong>: $A_{ij}$ คือเมทริกซ์การแปลงของ lensing ส่วน $A$ ใน (10.50) เป็นค่าคงตัว normalization</li>
+  <li><strong>Small-angle</strong>: §10.4 และ §10.6–10.9 ทำในขีดมุมเล็ก (ใกล้แกน $z$) ทั้งหมด</li>
+  <li><strong>เครื่องหมายของ $Y_{lm}$</strong>: ใช้ตาม Appendix C (ดูกล่องเตือนใน §10.9)</li>
+</ul>
+
+<h2>โจทย์ท้ายบทที่ควรทำ</h2>
+
+<table>
+  <tr><th>ข้อ</th><th>ทักษะที่ได้</th><th>เฉลยใน App. A</th></tr>
+  <tr><td>1</td><td>คำนวณปริมาตร comoving เชิงตัวเลขใน ΛCDM แล้วเทียบจำนวนเลนส์ที่คาดหวัง</td><td>—</td></tr>
+  <tr><td>2</td><td>หา magnification จาก det$A$ และขีดเล็กที่ขึ้นกับ $\kappa$ อย่างเดียว</td><td>มี</td></tr>
+  <tr><td>3</td><td>เขียน shear และ convergence ด้วย projected potential 2 มิติ</td><td>มี (ข้อ a)</td></tr>
+  <tr><td>4</td><td>เลนส์ที่ระยะเดียว ⇒ projected potential จาก surface density</td><td>มี</td></tr>
+  <tr><td>5</td><td>หา $\epsilon_2$ ของภาพกลมที่ถูกบิด (แบบฝึกพีชคณิตเมทริกซ์ 2×2 ล้วน — แนะนำที่สุด)</td><td>—</td></tr>
+  <tr><td>6</td><td>(a) พิสูจน์ (10.34)–(10.36) (b) คำนวณ $P_\kappa$ เชิงตัวเลข</td><td>—</td></tr>
+  <tr><td>7</td><td>สูตรทั่วไปของ $C_l$ ของ convergence (ไม่ใช่ small-angle)</td><td>—</td></tr>
+  <tr><td>8</td><td>cross-correlation ระหว่างดาราจักรหน้า-หลังผ่าน magnification</td><td>—</td></tr>
+  <tr><td>9–10</td><td>ไล่ (10.60) และ $U$-polarization ด้วยมือ (อินทิเกรตตรีโกณบนทรงกลม)</td><td>—</td></tr>
+  <tr><td>11</td><td>วาดรูปแบบ polarization ของ scalar สำหรับ $\vec k$ หลายทิศ — ฝึกมองว่า E-mode "เรียงกัน"</td><td>—</td></tr>
+  <tr><td>12</td><td>tight coupling ⇒ $\Pi = 5\Theta_2/2$ (เทียบสัมประสิทธิ์ Legendre)</td><td>—</td></tr>
+  <tr><td>13</td><td>ตรวจและสร้างเมทริกซ์หมุน $R$ ของ (10.91)</td><td>—</td></tr>
+  <tr><td>14</td><td>ทำ §10.9 ซ้ำกับโหมด $h_+$</td><td>—</td></tr>
+  <tr><td>15</td><td>cross spectrum ระหว่างอุณหภูมิกับ polarization ($C_{TE}$)</td><td>—</td></tr>
+</table>
+
+<p>ลำดับที่แนะนำสำหรับผู้เรียนที่แน่นพีชคณิตเชิงเส้น: <strong>5 → 2 → 13a → 12</strong> ทำได้โดยไม่ต้องรู้ GR หรือ spherical harmonics</p>
+
+<h2>ตรวจแล้วอย่างไร</h2>
+
+<p>สคริปต์ <code>scripts/verify/dodelson_ch10.py</code> (sympy + mpmath · ผ่าน 64 ข้อ) ยืนยัน:</p>
+<ul>
+  <li>(10.10)→(10.11) พจน์ $aH$ หักล้างกันเมื่อใช้ $da/d\chi = -a^2H$</li>
+  <li>(10.13)=(10.14) การสลับลำดับอินทิเกรต (ทดสอบกับ $\Phi_{,i}$ ห้ารูปแบบ)</li>
+  <li>(10.16) การอ่าน $\gamma_1,\gamma_2$ จาก $A$ · (10.23) $A^{-1}$ · (10.24) $\epsilon_1$ แบบปิด · (10.25) $\epsilon_1\approx2\gamma_1$ และคู่ของมัน $\epsilon_2\approx2\gamma_2$</li>
+  <li>(10.27)=(10.28) ด้วย $g(\chi)$ ของ (10.29) (ตัวอย่าง $W$ คงที่)</li>
+  <li>(10.35)–(10.40) power spectrum ของ $\gamma_1,\gamma_2$, $P_E = P_\kappa$, $P_B = 0$, $\langle EB\rangle = 0$ (สร้างจาก $l_il_jl_ll_m$ โดยตรง)</li>
+  <li>(10.43) และอินทิเกรต Bessel ที่ให้ $\pi(J_0\pm J_4)$ (ตรวจเชิงตัวเลข)</li>
+  <li>(10.52)–(10.53) จาก dot product ของเวกเตอร์ polarization · (10.58) และ (10.60) ที่สี่ทิศของ $\vec k$</li>
+  <li>(10.75) ที่ $l = 2,3,5$ · ข้อ 12 ($\Theta_{P0},\Theta_{P2},\Pi$) · (10.81) · (10.92) · (10.94) · $R\hat z = \hat k$ · (10.95) กับ convention ของ $Y_{lm}$</li>
+</ul>
+
+<p><strong>ยังไม่ได้ตรวจ</strong> (อ่านจากหนังสืออย่างเดียว): (10.3)–(10.9) พจน์ Christoffel แต่ละตัว · (10.17) · (10.30)–(10.32) การนับ $(2\pi)$ ตอนฉาย 3D ลง 2D ·
+(10.41)–(10.45) การรวมเป็น kernel และค่าคงตัว $1/16\pi$ · (10.69)–(10.74) และ (10.76)–(10.78) (ใช้ผลบท 4 และ 8) · (10.79) · (10.82)–(10.89) ·
+(10.90), (10.96)–(10.98) · ค่าตัวเลขทุกตัวจากรูป · และจุดที่สงสัย factor 2 ใน (10.67)–(10.68) ข้างบน</p>
+
+<div class="ask">
+  <p>อ่านหนังสือแล้วติดประโยคไหน สมการไหน <strong>ถามได้เลย</strong> — บอกเลขหน้ามา Claude เปิดดูหน้าเดียวกันได้</p>
+  <div class="nav">
+    <a href="dodelson-index.html">🗺️ แผนที่ทั้งเล่ม</a>
+    <a href="dodelson-ch09.html">← บทที่ 9</a>
+    <a href="dodelson-ch11.html">บทที่ 11 →</a>
+    <a href="dodelson-glossary.html">📖 สัญลักษณ์ทั้งเล่ม</a>
+  </div>
+</div>
+
+</body>
+</html>

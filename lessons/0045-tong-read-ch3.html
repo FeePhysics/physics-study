@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>เช็คพอยต์ · อ่าน Tong บทที่ 3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>เช็คพอยต์ · อ่าน Tong บทที่ 3</h1>
+<p class="meta">เช็คพอยต์ · ~25 นาที · เปิด lecture notes ของ David Tong บทที่ 3 "Interacting Fields" คู่กัน แล้วชี้ว่าแต่ละสมการคือบทไหนที่ทำมาแล้ว · ปิดช่วง C</p>
+
+<div class="warn"><strong>พักไว้ก่อน (2026-11-21)</strong> — แบเลือกเข้าใจภาพรวมก่อน แล้วค่อยฝึกอ่านต้นฉบับภาษาอังกฤษเมื่อเลือกหัวข้อได้ ช่วง C ถือว่าปิดแล้วโดยไม่ต้องทำบทนี้ เก็บไว้เป็นบทแรกของการฝึกอ่านภายหลัง</div>
+
+<p>
+บทนี้ไม่มีฟิสิกส์ใหม่ งานของบทนี้คือฝึกเปิดต้นฉบับภาษาอังกฤษแล้วจำได้ว่าสมการตรงหน้าคือของที่เราทำมาเองแล้ว ซึ่งเป็นทักษะเดียวกับการอ่าน paper
+เลขหน้าข้างล่างเป็นเลขที่พิมพ์อยู่ท้ายหน้าในเล่ม ในไฟล์ <code>qft.pdf</code> ฉบับเต็มที่แบส่งมา ให้เลื่อนไปที่หน้า PDF เท่ากับเลขพิมพ์บวก $6$
+(เช่นหน้าพิมพ์ 51 อยู่ที่หน้า PDF 57)
+</p>
+<p>
+ถ้าภาษาอังกฤษสะดุด เปิด <a href="../reference/tong-ch03.html">คู่มืออ่าน Tong บทที่ 3</a> ไว้อีกแท็บ มีวิธีอ่านแบบไม่ต้องแปลทุกคำ ใจความภาษาไทยของแต่ละหน้า และตารางวลีที่อ่านสะดุดพร้อมเลขหน้า
+</p>
+
+<h2>① สี่อย่างที่ Tong เขียนต่างจากเรา</h2>
+<table class="mono">
+<tr><th>Tong</th><th>เรา</th><th>อ่านว่า</th></tr>
+<tr><td>$\Delta_F(x - y)$</td><td>$D_F$ (บทที่ 27)</td><td>ตัวเดียวกัน ชื่อต่างกัน</td></tr>
+<tr><td>$H_I(t)$ · $H_{\rm int}$</td><td>$W$ (บทที่ 26)</td><td>พลังงานก้อนเล็กของการชน</td></tr>
+<tr><td>$\overbrace{\phi(x)\,\phi(y)}$ (ปีกกาคร่อม)</td><td>หนึ่งคู่ (บทที่ 24)</td><td>contraction = แทนคู่ด้วย $\Delta_F$</td></tr>
+<tr><td>$:\phi_1\phi_2:$ (ทวิภาคคร่อม)</td><td>—</td><td>normal ordering: ปุ่มลง $a$ ไปอยู่ขวาสุด</td></tr>
+</table>
+<p>
+แถวสุดท้ายเป็นสัญกรณ์เดียวที่ยังไม่เคยเห็น ใช้งานจริงแค่ข้อเดียว คือ <strong>$\langle 0|\,{:}\cdots{:}\,|0\rangle = 0$ เสมอ</strong>
+เหตุผลมาจากบทที่ 18: เมื่อปุ่มลง $a$ ถูกย้ายไปอยู่ขวาสุด มันจะไปเจอ $|0\rangle$ ก่อนตัวอื่น และ $a|0\rangle = 0$
+ส่วนกรณีที่ไม่มีปุ่มลงเลย จะมีแต่ $a^\dagger$ ซึ่งพาออกจาก $|0\rangle$ แล้ว dot กับ $\langle 0|$ ได้ศูนย์
+ดังนั้นพจน์ไหนที่ยังมี $:\;:$ ค้างอยู่ จะหายไปหมดเมื่อเราหาค่าในสุญญากาศ
+</p>
+
+<h2>② หน้า 51–53 · Dyson (§3.1.1)</h2>
+<p>
+(3.8) $\;i\,\frac{d|\psi\rangle}{dt} = H|\psi\rangle$ คือสมการ Schrödinger ของบทที่ 26
+ส่วน (3.17)–(3.18) คือการกาง $e^x$ ของบทที่ 26 สมการ (2) แทบตัวต่อตัว แค่ $W t$ ของเรากลายเป็น $\int H_I\,dt'$
+เพราะ Tong ให้พลังงานเปลี่ยนตามเวลาได้ ในพจน์ที่สองของ (3.18) มี $\frac{(-i)^2}{2}$ ซึ่งก็คือ $\frac{(-i)^2}{2!}$ ของเรา
+</p>
+<p>
+(3.21) คือตาราง $T$ ของบทที่ 27 ทุกตัวอักษร เวลามากอยู่ซ้าย
+ต่อมาที่ (3.22)–(3.23) Tong ทำสิ่งที่บทที่ 26 ข้ามไว้: อินทิกรัลสองชั้นในวงเล็บเหลี่ยมมีสองก้อน ก้อนหนึ่งวิ่งบนสามเหลี่ยม $t'' > t'$ อีกก้อนวิ่งบนสามเหลี่ยม $t'' < t'$
+พอเปลี่ยนชื่อตัวแปรแล้วสองก้อนเท่ากัน $\frac12$ จึงหายไป และ (3.23) เหลือ $(-i)^2$ คูณอินทิกรัลบน<strong>สามเหลี่ยมชิ้นเดียว</strong>
+นี่คือ "สามเหลี่ยมครึ่งจัตุรัส" อ่านจากอีกด้าน: $\frac12 \times$ จัตุรัส $= 1 \times$ สามเหลี่ยม
+</p>
+
+<h2>③ หน้า 38 · Feynman propagator (§2.7.1)</h2>
+<p>
+(2.93) นิยาม $\Delta_F(x - y) = \langle 0|\,T\phi(x)\phi(y)\,|0\rangle$ แล้วแยกสองกรณี ถ้า $x^0 > y^0$ ได้ $D(x - y)$ ถ้า $y^0 > x^0$ ได้ $D(y - x)$
+ตัว $x^0$ อ่านว่าพิกัดเวลาของจุด $x$ และ $D$ คือ propagator ของบทที่ 20 (Tong สมการ (2.90))
+ทั้งหมดนี้คือบทที่ 27 สมการ (4) ส่วน (2.95) ที่เขียนเป็นอินทิกรัลโมเมนตัม $\frac{i}{p^2 - m^2}$ ยังไม่ได้เรียน ข้ามไปได้
+</p>
+
+<h2>④ หน้า 56–58 · Wick (§3.3)</h2>
+<p>
+(3.39) บอกว่าคู่หนึ่งคู่ (contraction) มีค่าเท่ากับ $\Delta_F$ ซึ่งเป็นข้อสรุปของบทที่ 27 ส่วน (3.43) กาง $T(\phi_1\phi_2\phi_3\phi_4)$ ออกเป็นสามแบบ
+คือไม่มีคู่เลย มีหนึ่งคู่ (Tong เขียนให้ดูสองพจน์แล้วบอกว่ามี "four similar terms" อีก) และจับครบสองคู่ (บรรทัดล่างสุด)
+</p>
+<p>
+พอเอาไปหาค่าในสุญญากาศ $\langle 0|\cdots|0\rangle$ กฎในข้อ ① ทำให้ทุกพจน์ที่ยังมี $:\;:$ ค้างอยู่หายไป เหลือเฉพาะบรรทัดล่างสุดที่จับครบแล้ว
+ได้สามพจน์ $\Delta_F\Delta_F$ ซึ่งตรงกับบทที่ 24: สี่จุดจับคู่ได้ $3!! = 3$ วิธี และหนึ่งคู่ = $\Delta_F$ หนึ่งตัว
+</p>
+
+<h2>⑤ หน้า 69–70 · ทฤษฎี $\phi^4$ (§3.5.3–3.5.4)</h2>
+<p>
+(3.74) $\;H_{\rm int} = +\frac{\lambda}{4!}\phi^4$ เครื่องหมายบวกตรงกับที่เราได้ในบทที่ 26 จากการแปลง Legendre ($\mathcal{L}$ มี $-\frac{\lambda}{4!}\phi^4$ ใน (3.5) หน้า 49)
+จากนั้น Tong บอกว่าจุดยอดได้ $-i\lambda$ ไม่ใช่ $-i\lambda/4!$ และให้เหตุผลใน (3.75) ว่า $\phi$ ตัวไหนก็ทำหน้าที่ทำลายหรือสร้างได้ จึงมี $4!$ วิธี ซึ่งตัดกับ $\frac{1}{4!}$
+นี่คือการนับรูป X ของบทที่ 25
+</p>
+<p>
+ต่อด้วยประโยคว่าบางรูปมี symmetry factor "typically 2 or 4" ซึ่งเราเจอแล้วในบทที่ 25 และ 28 (รูป A กับรูปปลาได้ $2$)
+และผลการชนคือ $i\mathcal{A} = -i\lambda$ ตรงกับรูป X ของบทที่ 28 ตำราเขียน amplitude เป็น $i\mathcal{A}$ ดังนั้นตัว $\mathcal{A}$ เองคือ $-\lambda$
+</p>
+<p>
+§3.5.4 มีของใหม่หนึ่งข้อ Tong ให้นับเฉพาะ <strong>connected diagram</strong> คือรูปที่ทุกชิ้นต่อกับเส้นภายนอกอย่างน้อยหนึ่งเส้น
+รูป B ของบทที่ 25 มีห่วงสองวงลอยอยู่ที่ $z$ โดยไม่แตะเส้น 1–2 เลย จึงไม่นับใน amplitude (เหตุผลอยู่ใน §3.7.1 ซึ่งยังไม่อ่าน)
+</p>
+
+<div class="warn">
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — กติกา Feynman ฉบับโมเมนตัมของ Tong (3.54)–(3.55) หน้า 61 ซึ่งมี $(2\pi)^4\delta^{(4)}$ ที่จุดยอดและ $\frac{i}{k^2 - m^2 + i\epsilon}$ ที่เส้น
+  (เป็นกติกาเดียวกับของเรา แต่แปลงเป็นโมเมนตัมแล้ว) · scalar Yukawa theory ($g\psi^\star\psi\phi$) ที่ Tong ใช้เป็นตัวอย่างหลักของ §3.2–3.5 · cross section §3.6
+</div>
+
+<p class="src">ต้นฉบับ: D. Tong, <em>Quantum Field Theory</em>, University of Cambridge Part III lecture notes, บทที่ 2 §2.7.1 และบทที่ 3 —
+<a href="https://davidtong.org/pdfs/teaching/quantum-field-theory/qft.pdf">davidtong.org/…/qft.pdf</a> ·
+ตรวจด้วย sympy: (3.18) เท่ากับ (3.23) เมื่อ $H_I$ สลับได้ (ทดสอบสามฟังก์ชัน) · นับพจน์ของ (3.43) · connected ของสี่รูป —
+<code>scripts/verify/0046_tong_ch3.py</code> (13/13) · ชีทสรุป: <a href="../reference/0002-feynman-rules.html">กติกา Feynman</a></p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">เปิดหน้าที่ระบุในวงเล็บคู่กัน · ตอบเป็นตัวเลข · เศษส่วนพิมพ์แบบ <code>-1/2</code> ได้ · มีคำถามให้พิมพ์ในแชต</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · (3.18) กับ (3.23) &nbsp;<span class="hint">(หน้า 52–53 · ข้อ ②)</span></h3>
+  <ol class="steps">
+    <li data-answer="-1/2" data-alt="-0.5">
+      <p><strong>ขั้น 1</strong> — ตัวเลขหน้าพจน์ที่สองของ (3.18) คือ $\frac{(-i)^2}{2}$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{-1}{2}$ เท่ากับของบทที่ 26</p>
+    </li>
+    <li data-answer="-1" data-alt="-1.0">
+      <p><strong>ขั้น 2</strong> — ตัวเลขหน้าพจน์ที่สองของ (3.23) คือ $(-i)^2$ เท่ากับเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$i^2 = -1$</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5">
+      <p><strong>ขั้น 3</strong> — (3.23) อินทิเกรตบนสามเหลี่ยม $t'' &lt; t'$ ใน $[0,1]^2$ · พื้นที่ของสามเหลี่ยมนั้น</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ครึ่งจัตุรัส ⇒ $\frac12$ · $(-1) \times$ สามเหลี่ยม $= (-\frac12) \times$ จัตุรัส ⇒ สองสมการเท่ากัน</p>
+    </li>
+  </ol>
+  <p class="fb">$\frac12$ ย้ายจากตัวเลขหน้าพจน์ไปอยู่ในพื้นที่ที่อินทิเกรต</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · กติกา $T$ ของ Tong &nbsp;<span class="hint">(หน้า 52 · (3.21))</span></h3>
+  <p class="hint">$T\big(\mathcal{O}_1(4)\,\mathcal{O}_2(7)\big)$ · ตัวเลขในวงเล็บคือเวลา</p>
+  <ol class="steps">
+    <li data-answer="7" data-alt="7.0">
+      <p><strong>ขั้น 1</strong> — หลังเรียง ตัวซ้ายเป็นตัวที่เวลาเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$7 > 4$ ⇒ $\mathcal{O}_2(7)\,\mathcal{O}_1(4)$ = แถวล่างของ (3.21)</p>
+    </li>
+    <li data-answer="2" data-alt="2.0">
+      <p><strong>ขั้น 2</strong> — นั่นคือแถวที่เท่าไรของ (3.21) (ตอบ 1 หรือ 2)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข 1 หรือ 2" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">แถว $2$: เงื่อนไข $t_2 > t_1$</p>
+    </li>
+  </ol>
+  <p class="fb">(3.21) = ตารางสองแถวในบทที่ 27</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · นับพจน์ของ (3.43) &nbsp;<span class="hint">(หน้า 58 · ข้อ ④)</span></h3>
+  <ol class="steps">
+    <li data-answer="6" data-alt="หก|6.0">
+      <p><strong>ขั้น 1</strong> — พจน์ที่มี contraction คู่เดียว มีทั้งหมดกี่พจน์ (สองพจน์ที่เห็น + "four similar terms")</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 + 4 = 6$ = เลือกสองตัวจากสี่ $\binom42$</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 2</strong> — บรรทัดล่างสุด (จับครบสองคู่) มีกี่พจน์</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$3$ = $3!!$ ของบทที่ 24</p>
+    </li>
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 3</strong> — ใน $\langle 0|T(\phi_1\phi_2\phi_3\phi_4)|0\rangle$ เหลือกี่พจน์ (ใช้กฎ $\langle 0|{:}\cdots{:}|0\rangle = 0$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">พจน์ที่มี $:\;:$ หายหมด เหลือ $3$ พจน์ที่จับครบ</p>
+    </li>
+  </ol>
+  <p class="fb">Wick ในสุญญากาศ = จับคู่ครบทุกวิธี = บทที่ 24</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · เครื่องหมายของ $H_{\rm int}$ &nbsp;<span class="hint">(หน้า 49, 69 · $\lambda = 24$)</span></h3>
+  <ol class="steps">
+    <li data-answer="-1" data-alt="-1.0">
+      <p><strong>ขั้น 1</strong> — สัมประสิทธิ์หน้า $\phi^4$ ใน $\mathcal{L}$ ของ (3.5)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-\frac{24}{24} = -1$</p>
+    </li>
+    <li data-answer="1" data-alt="+1|1.0">
+      <p><strong>ขั้น 2</strong> — สัมประสิทธิ์หน้า $\phi^4$ ใน $H_{\rm int}$ ของ (3.74)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$+1$ — กลับเครื่องหมาย ตรงกับ Legendre ในบทที่ 26</p>
+    </li>
+  </ol>
+  <p class="fb">ตำราใช้เครื่องหมายเดียวกับที่เราคำนวณเอง</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · จาก (3.75) ถึง $i\mathcal{A}$ &nbsp;<span class="hint">(หน้า 70 · ข้อ ⑤)</span></h3>
+  <ol class="steps">
+    <li data-answer="24" data-alt="24.0">
+      <p><strong>ขั้น 1</strong> — Tong บอกว่ามี contraction กี่แบบ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4! = 24$</p>
+    </li>
+    <li data-answer="1" data-alt="1.0">
+      <p><strong>ขั้น 2</strong> — คูณ $\frac{1}{4!}$ ที่อยู่หน้า (3.75) แล้วเหลือเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{24}{24} = 1$ ⇒ เหลือ $-i\lambda$</p>
+    </li>
+    <li data-answer="-1" data-alt="-1.0">
+      <p><strong>ขั้น 3</strong> — $i\mathcal{A} = -i\lambda$ · ตัวเลขหน้า $\lambda$ ใน $\mathcal{A}$ (หารทั้งสองข้างด้วย $i$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\mathcal{A} = -\lambda$ ⇒ $-1$</p>
+    </li>
+  </ol>
+  <p class="fb">$-i\lambda$ คือ $i\mathcal{A}$ ไม่ใช่ $\mathcal{A}$ — paper เขียนแบบนี้เสมอ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · connected diagram &nbsp;<span class="hint">(หน้า 70 · §3.5.4)</span></h3>
+  <p class="hint">สี่รูปในชีทสรุป: X · A (สองจุด + ห่วงที่ $z$) · B (เส้น 1–2 + ห่วงลอยสองวงที่ $z$) · ปลา</p>
+  <ol class="steps">
+    <li data-answer="3" data-alt="สาม|3.0">
+      <p><strong>ขั้น 1</strong> — มีกี่รูปที่ทุกชิ้นต่อกับเส้นภายนอกอย่างน้อยหนึ่งเส้น</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">X · A · ปลา = $3$ · ห่วงของ A ติดอยู่ที่ $z$ ซึ่งต่อกับจุด 1 และ 2</p>
+    </li>
+    <li data-answer="0" data-alt="0.0">
+      <p><strong>ขั้น 2</strong> — ในรูป B ห่วงทั้งสองวงแตะเส้นภายนอกกี่เส้น</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0$ ⇒ B ไม่ connected จึงไม่นับใน amplitude</p>
+    </li>
+  </ol>
+  <p class="fb">ของใหม่ข้อเดียวของบทนี้: นับเฉพาะ connected diagram</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · ระหว่างอ่าน Tong ถ้าเจอบรรทัดไหนที่ไม่รู้ว่ามาจากบทไหน ถามในแชตได้เลย
+  <div class="nav">
+    <a href="./0044-feynman-rules.html">← บทที่ 28 · อ่านรูปเป็นสูตร</a>
+    <a href="./0034-tong-read.html">บทที่ 23 · อ่าน Tong บทที่ 2</a>
+    <a href="../reference/0002-feynman-rules.html">ชีทสรุป · กติกา Feynman</a>
+  </div>
+</div>
+
+</body>
+</html>

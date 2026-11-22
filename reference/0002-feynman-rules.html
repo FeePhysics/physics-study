@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ชีทสรุป · กติกา Feynman</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+</head>
+<body>
+
+<h1>ชีทสรุป · กติกา Feynman</h1>
+<p class="meta">ช่วง C · บทที่ 24–28 · ทฤษฎี $\mathcal{L} \supset -\frac{\lambda}{4!}\phi^4$ · ฉบับตำแหน่ง (position space)</p>
+<div class="warn">ชีทนี้มีเฉพาะสิ่งที่<strong>สอนไปแล้ว</strong>เท่านั้น ส่วนฉบับโมเมนตัมที่ paper ใช้ยังไม่ได้สอน</div>
+
+<h2>กติกาสามข้อ</h2>
+<table>
+  <tr><th style="width:34%">ในรูป</th><th>ในสูตร</th><th>มาจาก</th></tr>
+  <tr><td>เส้น ปลาย $a$ กับ $b$</td><td>$D_F(a - b)$</td><td>บทที่ 27</td></tr>
+  <tr><td>ห่วง (ปลายทั้งสองที่ $z$)</td><td>$D_F(0)$</td><td>บทที่ 22, 27</td></tr>
+  <tr><td>จุดยอดที่ $z$</td><td>$(-i\lambda)\displaystyle\int d^4z$ &nbsp;(1+1 มิติ: $d^2z$)</td><td>บทที่ 25–26</td></tr>
+  <tr><td>ทั้งรูป</td><td>$\times\,\frac{1}{S}$</td><td>บทที่ 25</td></tr>
+</table>
+
+<h2>ชิ้นส่วน</h2>
+<table>
+  <tr><th style="width:34%">Feynman propagator</th>
+      <td>$D_F = \langle 0|\,T[\phi\,\phi]\,|0\rangle$ · สปริงตัวเดียว: $\dfrac{e^{-i\omega|t_1 - t_2|}}{2\omega}$ · เวลาเท่ากัน: $\dfrac{1}{2\omega}$</td></tr>
+  <tr><th>$T$ (time ordering)</th><td>เวลามากอยู่ซ้าย ⇒ คู่สลับปลายได้</td></tr>
+  <tr><th>Dyson</th><td>$e^{-iWt} = 1 + (-i)Wt + \frac{(-i)^2}{2!}(Wt)^2 + \cdots$ · พจน์ $W^n$ = จุดยอด $n$ จุด</td></tr>
+  <tr><th>พลังงานของ $\phi^4$</th><td>$+\frac{\lambda}{4!}\phi^4$ (Legendre กลับเครื่องหมายของ $\mathcal{L}$)</td></tr>
+  <tr><th>$\frac{1}{n!}$ ของ Dyson</th><td>ตัดกับการสลับชื่อจุดยอด · $\frac{1}{4!}$ ตัดกับการสลับขา</td></tr>
+</table>
+
+<h2>หา $S$ ด้วยการนับ</h2>
+<table>
+  <tr><th style="width:6%">1</th><td>วางจุดภายนอกกับขาทุกขาเป็นแถว (ขาของจุดยอด $\phi^4$ มีสี่ขา)</td></tr>
+  <tr><th>2</th><td>นับวิธีจับคู่ที่บีบแล้วได้รูปนั้น (เลือกทีละจุด · คูณ)</td></tr>
+  <tr><th>3</th><td>หารด้วย $n!\,(4!)^n$ ได้ $\frac1S$</td></tr>
+</table>
+
+<h2>รูปที่นับไว้แล้ว</h2>
+<table class="mono">
+  <tr><th>รูป</th><th>จุดยอด</th><th>เส้น</th><th>$S$</th><th>ตัวคูณ</th></tr>
+  <tr><td>X (สี่จุด)</td><td>1</td><td>4</td><td>1</td><td>$-i\lambda$</td></tr>
+  <tr><td>A (สองจุด + ห่วง)</td><td>1</td><td>3</td><td>2</td><td>$-\frac{i\lambda}{2}$</td></tr>
+  <tr><td>B (เส้นตรง + ห่วงลอยสองวง)</td><td>1</td><td>3</td><td>8</td><td>$-\frac{i\lambda}{8}$</td></tr>
+  <tr><td>ปลา (สี่จุด สองจุดยอด)</td><td>2</td><td>6</td><td>2</td><td>$-\frac{\lambda^2}{2}$</td></tr>
+</table>
+
+<h2>ตรวจเร็ว</h2>
+<table>
+  <tr><th style="width:34%">นับเส้น</th><td>(ขาทั้งหมด + จุดภายนอก) $\div 2$</td></tr>
+  <tr><th>นับห่วง (loop)</th><td>เส้นภายใน − จุดยอด + 1</td></tr>
+  <tr><th>นับใน amplitude</th><td>เฉพาะ <strong>connected diagram</strong> — ทุกชิ้นต่อเส้นภายนอก · รูป B ไม่นับ (Tong §3.5.4 · เช็คพอยต์อ่าน Tong)</td></tr>
+  <tr><th>ตำราเขียน</th><td>$i\mathcal{A} = -i\lambda$ ⇒ $\mathcal{A} = -\lambda$ · Tong ใช้ $\Delta_F$ แทน $D_F$</td></tr>
+  <tr><th>เครื่องหมาย</th><td>$(-i)^1 = -i$ · $(-i)^2 = -1$ · $(-i)^3 = i$</td></tr>
+</table>
+
+<p class="src">Peskin &amp; Schroeder §4.4 (กติกาฉบับตำแหน่ง สมการ 4.45) · Tong, <em>Quantum Field Theory</em> §3.4–3.5 ·
+ทุกตัวเลขในชีทนี้ตรวจด้วย <code>scripts/verify/0040_dyson.py</code>, <code>0041_time_order.py</code>, <code>0045_feynman_rules.py</code></p>
+
+<div class="ask">
+  ชีทนี้มีไว้ทบทวน ถ้าแถวไหนอ่านแล้วนึกไม่ออกว่ามาจากไหน ถามในแชตได้เลย
+  <div class="nav">
+    <a href="../lessons/0044-feynman-rules.html">บทที่ 28 · อ่านรูปเป็นสูตร</a>
+    <a href="../lessons/0040-time-order.html">บทที่ 27 · เรียงตามเวลา</a>
+    <a href="../lessons/0039-dyson.html">บทที่ 26 · Dyson series</a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -48,12 +48,30 @@ egress proxy บล็อกไว้ — ถ้าจะให้ Claude อ่
 - **จุดอ่อน:** เป็นวิดีโอ ⇒ ค้นย้อนกลับยาก · ใช้เป็นตัวปูความเข้าใจ แล้วไปเอา
   ความแม่นยำจาก lecture notes
 
+### Quantum Field Theory — David Tong (Cambridge Part III lecture notes)
+- **ฉบับเต็ม 155 หน้า:** https://davidtong.org/pdfs/teaching/quantum-field-theory/qft.pdf (แบส่งลิงก์มา 2026-11-21) ·
+  หน้าคอร์สเดิม http://www.damtp.cam.ac.uk/user/tong/qft.html · ⚠️ คลาวด์โหลดเองไม่ได้ (damtp 403) ต้องให้แบแนบไฟล์
+- **⚠️ เลขหน้า:** ในไฟล์ฉบับเต็ม หน้า PDF = เลขหน้าพิมพ์ **+ 6** (เช่นหน้าพิมพ์ 51 = PDF 57)
+- **คืออะไร:** แกนของสาย QFT (`ROADMAP.md`) · บทที่ 2 Free Fields (หน้า 21) · บทที่ 3 Interacting Fields (หน้า 47) · บทที่ 4 Dirac (หน้า 81)
+- **จุดแข็ง:** สั้น ตรง เดินตาม Peskin & Schroeder ภาคแรก · เครื่องหมายสอดคล้องกับที่เราคำนวณเอง ($H_{\rm int} = +\frac{\lambda}{4!}\phi^4$ · จุดยอด $-i\lambda$) · ตรวจแล้วในเช็คพอยต์บทที่ 23 และ 31
+- **จุดอ่อน:** ตัวอย่างหลักของบทที่ 3 คือ scalar Yukawa ไม่ใช่ $\phi^4$ · กติกา Feynman เขียนฉบับโมเมนตัมทันที · ใช้ $\Delta_F$ (เราใช้ $D_F$)
+
 ### MIT OpenCourseWare 8.323 — Relativistic Quantum Field Theory I
 - https://ocw.mit.edu/courses/8-323-relativistic-quantum-field-theory-i-spring-2023/
 - รุ่น 2023 มี **วิดีโอ + problem sets + เฉลย** · รุ่น 2008 มี lecture notes แยก
   (https://ocw.mit.edu/courses/physics/8-323-relativistic-quantum-field-theory-i-spring-2008/lecture-notes/)
 - ฟรีภายใต้ Creative Commons
 - **มีเฉลย = มี feedback loop** ⇒ ใช้เป็นแหล่งโจทย์ฝึกได้ ไม่ใช่แค่อ่าน
+
+## ตำราแกน — cosmology
+
+### Modern Cosmology — Scott Dodelson (Academic Press, 2003)
+- **อาจารย์ของแบสั่งให้อ่าน** (2026-11-13) · PDF อยู่ในเครื่องแบที่ `Downloads/` — มีลิขสิทธิ์ ห้ามเอาเข้า repo
+- **คืออะไร:** ตำราระดับบัณฑิตเริ่มต้น · เอกภพเรียบ → perturbation เชิงเส้น (Boltzmann + Einstein) → inflation → CMB/โครงสร้างขนาดใหญ่ → วิเคราะห์ข้อมูล
+- **จุดแข็ง:** คำนวณให้ดูจากหลักแรก · บท 1–6 เป็นโครง บท 7–8 เป็นผล · บางบทมี Summary ให้ข้ามที่มาได้ · Appendix A มีเฉลยบางข้อ = feedback loop
+- **จุดอ่อน:** ปี 2003 ⇒ ตัวเลขสังเกตการณ์เก่า (ก่อน WMAP/Planck) · ใช้ GR โดยไม่พิสูจน์สมการ Einstein
+- **ใช้อย่างไร:** คู่มืออ่านไทยรายบทที่ `reference/dodelson-index.html` (ไม่ใช่ฉบับแปล — ดู `reference/DODELSON-FORMAT.md`)
+- ⚠️ PDF เป็นสแกน+OCR — สมการในชั้นข้อความเพี้ยน ต้องดูภาพหน้าจริง · หน้า PDF = หน้าหนังสือ + 13 (ถึงหน้า 218) และ + 17 (ตั้งแต่หน้า 219)
 
 ## ยังไม่ได้หา — คิวถัดไป
 

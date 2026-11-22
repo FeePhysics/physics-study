@@ -22,7 +22,11 @@ except ImportError:
     sys.exit("ต้องติดตั้งก่อน: pip install playwright")
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
-CHROME = "/opt/pw-browsers/chromium"
+# คลาวด์ใช้ /opt/pw-browsers · บนเครื่องแบ (Windows) ไม่มี path นั้น ⇒ ใช้ Chrome/Edge ที่ติดตั้งอยู่
+CHROME = next((c for c in ("/opt/pw-browsers/chromium",
+                           r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+                           r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
+               if pathlib.Path(c).exists()), "/opt/pw-browsers/chromium")
 problems = []
 
 # ⚠️ ตรวจ build/ ไม่ใช่ lessons/ — build/ คือไฟล์ที่ถูก publish จริง และเป็นฉบับที่

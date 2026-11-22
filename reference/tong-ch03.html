@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>คู่มืออ่าน Tong บทที่ 3</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+</head>
+<body>
+
+<h1>คู่มืออ่าน Tong บทที่ 3</h1>
+<p class="meta">D. Tong, <em>Quantum Field Theory</em> · บทที่ 3 Interacting Fields (เฉพาะหน้าที่ใช้ในเช็คพอยต์อ่าน Tong) และ §2.7.1 · วางคู่กับต้นฉบับ ไม่ใช่ฉบับแปล</p>
+<div class="warn">เลขหน้าในคู่มือนี้คือเลขที่พิมพ์ท้ายหน้าในเล่ม ในไฟล์ <code>qft.pdf</code> ฉบับเต็ม ให้เปิดหน้า PDF = เลขพิมพ์ <strong>+ 6</strong></div>
+
+<h2>บทนี้ตอบคำถามอะไร</h2>
+<p>
+บทที่ 2 ของ Tong มีแต่สนามอิสระที่ไม่ชนกัน บทที่ 3 ใส่อันตรกิริยาเข้าไป แล้วถามว่าจะคำนวณการชนยังไง
+คำตอบคือ Dyson (กาง exp) แล้ว Wick (จับคู่) แล้วได้ Feynman diagram ซึ่งเราทำครบแล้วในบทที่ 24–30
+คู่มือนี้ช่วยเรื่อง<strong>ภาษา</strong>เป็นหลัก ส่วนฟิสิกส์ แบรู้อยู่แล้วทั้งหมด
+</p>
+
+<h2>วิธีอ่านตำราฟิสิกส์ภาษาอังกฤษ</h2>
+<p>
+ไม่ต้องอ่านทุกคำ ตำราฟิสิกส์มีโครงซ้ำ ๆ ที่ใช้นำทางได้ แบอ่านสมการได้คล่องกว่าร้อยแก้วอยู่แล้ว ให้ใช้สมการเป็นหลักยึด
+</p>
+<table>
+  <tr><th style="width:6%">1</th><td><strong>ดูสมการก่อน</strong> ไล่เลขสมการทั้งหน้า ถามตัวเองว่าแต่ละตัวคือบทไหนของเรา (ตารางในเช็คพอยต์อ่าน Tong)</td></tr>
+  <tr><th>2</th><td><strong>อ่านแค่ประโยคก่อนและหลังสมการ</strong> ประโยคก่อนบอกว่ากำลังจะทำอะไร ประโยคหลังบอกว่าได้อะไร</td></tr>
+  <tr><th>3</th><td><strong>ข้ามได้เลย</strong>: คำพูดยกมาตัวเอียงต้นหัวข้อ (เช่นคำพูดของ Oppenheimer หน้า 51) · มุกตลก · หัวข้อ "A Comment on…"</td></tr>
+  <tr><th>4</th><td><strong>จับคำสัญญาณ</strong> ในตารางข้างล่าง คำพวกนี้บอกว่าประโยคนั้นมีหน้าที่อะไร โดยไม่ต้องเข้าใจทุกคำ</td></tr>
+</table>
+
+<h3>คำสัญญาณ: บอกหน้าที่ของประโยค</h3>
+<table class="mono">
+  <tr><th>คำ</th><th>แปลว่าประโยคนี้…</th></tr>
+  <tr><td>Claim: … Proof: … □</td><td>ประกาศผล แล้วพิสูจน์ · □ = จบการพิสูจน์</td></tr>
+  <tr><td>So we learn that …</td><td>สรุปผลของการคำนวณข้างบน</td></tr>
+  <tr><td>But there's a problem.</td><td>วิธีตรง ๆ ใช้ไม่ได้ กำลังจะบอกว่าทำไม</td></tr>
+  <tr><td>So what's the way around this?</td><td>ถามนำ คำตอบอยู่ย่อหน้าถัดไป</td></tr>
+  <tr><td>Recall that …</td><td>ทวนของเก่า (ถ้ารู้แล้ว ข้ามได้)</td></tr>
+  <tr><td>Notice that … / Note that …</td><td>จุดสำคัญที่ควรสังเกต อ่านให้ดี</td></tr>
+  <tr><td>In contrast, …</td><td>กำลังเทียบกับของก่อนหน้า</td></tr>
+  <tr><td>Let's start simple.</td><td>ตัวอย่างง่ายก่อนกรณีทั่วไป</td></tr>
+  <tr><td>Try it!</td><td>เว้นให้ผู้อ่านคำนวณเอง ไม่มีในเล่ม</td></tr>
+</table>
+
+<h2>เดินตามหนังสือ</h2>
+
+<h3>§2.7.1 · หน้า 38–39 · Feynman propagator</h3>
+<p>
+หน้า 38 เปิดด้วยคำถามเดียวกับบทที่ 20: สร้างอนุภาคที่จุดหนึ่ง แล้วถามว่าไปเจอที่อีกจุดได้แค่ไหน ได้ $D(x - y)$ ใน (2.90)
+จากนั้นอธิบายว่า $D$ ไม่เป็นศูนย์นอก lightcone แต่ไม่ขัดกับความเป็นเหตุเป็นผล (ตรงกับกล่อง "ยังไม่แตะ" ของบทที่ 20)
+แล้ว (2.93) นิยาม $\Delta_F$ ด้วยการเรียงเวลา ซึ่งคือบทที่ 27 ส่วน (2.95) เป็นรูปโมเมนตัมพร้อมรูปเส้นทางอินทิเกรตเชิงซ้อน ข้ามได้ทั้งหมด
+</p>
+
+<h3>§3.1 · หน้า 50–53 · interaction picture และ Dyson</h3>
+<p>
+Tong แบ่ง $H = H_0 + H_{\rm int}$ ใน (3.10) ให้ก้อนอิสระดูแลการเปลี่ยนตามเวลาของตัวดำเนินการ และก้อนชนดูแลการเปลี่ยนของสถานะ
+นี่คือสมการ (1) ของบทที่ 26 ที่ทำให้เป็นทางการ สิ่งเดียวที่ต้องรู้จากหน้า 51 คือได้ (3.14) ซึ่งหน้าตาเหมือนสมการ Schrödinger แต่ใช้ $H_I$ ตัวเดียว
+</p>
+<p>
+หน้า 52 อธิบายว่าทำไมเขียนคำตอบเป็น exp ตรง ๆ ไม่ได้: $H_I$ ที่เวลาต่างกันสลับลำดับกันไม่ได้ วิธีแก้คือใส่ $T$ ไว้หน้า exp ใน (3.20)
+หน้า 53 รวมสามเหลี่ยมสองชิ้นใน (3.22) ทำให้ $\frac12$ หายไปใน (3.23) แล้วปิดด้วยการพิสูจน์สั้น ๆ ว่า (3.20) แก้สมการได้จริง
+</p>
+
+<h3>§3.3 · หน้า 56–58 · Wick</h3>
+<p>
+หน้า 56–57 แยก $\phi$ เป็นส่วนที่มี $a$ ($\phi^+$) กับส่วนที่มี $a^\dagger$ ($\phi^-$) แล้วแสดงว่า $T\phi\phi$ ต่างจาก ${:}\phi\phi{:}$ อยู่หนึ่ง $\Delta_F$ พอดี (3.36)
+จึงนิยามคำว่า contraction ว่าเป็นการแทนคู่ด้วย $\Delta_F$ ใน (3.38)–(3.39) หน้า 58 ให้ทฤษฎีบททั่วไป (3.42) และตัวอย่างสี่ตัว (3.43)
+ซึ่งเมื่อหาค่าในสุญญากาศแล้วเหลือแต่บรรทัดล่าง = บทที่ 24
+</p>
+
+<h3>§3.5.3–3.5.4 · หน้า 69–70 · ทฤษฎี φ⁴</h3>
+<p>
+สั้นที่สุดในบท และตรงกับเราที่สุด (3.74) ให้ $H_{\rm int}$ ส่วนย่อหน้าถัดมาอธิบายว่าทำไมจุดยอดเป็น $-i\lambda$ ไม่ใช่ $-i\lambda/4!$
+§3.5.4 เริ่มบอกว่ารูปไหนควรวาด ข้อแรกคือเอาเฉพาะ connected diagram ส่วนข้อที่สองต่อไปหน้า 71 ซึ่งยังไม่อ่าน
+</p>
+
+<h2>ศัพท์และสำนวนอังกฤษ</h2>
+<p>ศัพท์เทคนิคในเนื้อความคงภาษาอังกฤษตามกฎของ workspace ตารางนี้เน้นวลีธรรมดาที่อ่านสะดุด</p>
+<table class="mono">
+  <tr><th>คำ/วลี</th><th>ความหมาย</th><th>หน้า</th></tr>
+  <tr><td>prepare a particle at …</td><td>สร้างอนุภาคไว้ที่ …</td><td>38</td></tr>
+  <tr><td>decays exponentially</td><td>ลดลงแบบเลขชี้กำลัง</td><td>38</td></tr>
+  <tr><td>leak out of the lightcone</td><td>รั่วออกนอก lightcone</td><td>38</td></tr>
+  <tr><td>words you can drape around …</td><td>คำอธิบายเชิงภาพที่เอามาห่อการคำนวณ (ไม่ใช่ตัวพิสูจน์)</td><td>38</td></tr>
+  <tr><td>hybrid of the two</td><td>ลูกผสมของสองแบบ</td><td>51</td></tr>
+  <tr><td>split … up as</td><td>แบ่ง … ออกเป็น</td><td>51</td></tr>
+  <tr><td>is governed by</td><td>ถูกกำหนดโดย</td><td>51</td></tr>
+  <tr><td>soluble</td><td>แก้ได้ (ไม่ใช่ "ละลายได้")</td><td>51</td></tr>
+  <tr><td>ordering issues</td><td>ปัญหาเรื่องลำดับ (ซ้ายขวา)</td><td>52</td></tr>
+  <tr><td>sits on the wrong side</td><td>อยู่ผิดข้าง (ซ้าย/ขวา)</td><td>52</td></tr>
+  <tr><td>commute it through</td><td>สลับมันข้ามไป</td><td>52</td></tr>
+  <tr><td>placed to the left</td><td>วางไว้ทางซ้าย</td><td>52</td></tr>
+  <tr><td>double up</td><td>ซ้ำกันเป็นสองเท่า</td><td>53</td></tr>
+  <tr><td>a simple relabelling</td><td>แค่เปลี่ยนชื่อตัวแปร</td><td>53</td></tr>
+  <tr><td>I should confess that …</td><td>ต้องยอมรับตรง ๆ ว่า …</td><td>53</td></tr>
+  <tr><td>rather formal</td><td>ค่อนข้างเป็นแค่สัญลักษณ์ (ใช้คำนวณตรง ๆ ยาก)</td><td>53</td></tr>
+  <tr><td>our life will be much simpler if</td><td>จะง่ายขึ้นมากถ้า</td><td>56</td></tr>
+  <tr><td>make little sense</td><td>(ชื่อ) ไม่ค่อยสื่อความหมาย</td><td>57</td></tr>
+  <tr><td>you have … to blame</td><td>โทษ … ได้เลย (มุก ข้ามได้)</td><td>57</td></tr>
+  <tr><td>for our troubles we have picked up</td><td>ผลพลอยได้จากความลำบากคือได้ … เพิ่มมา</td><td>57</td></tr>
+  <tr><td>c-number</td><td>จำนวนธรรมดา (ไม่ใช่ตัวดำเนินการ)</td><td>57</td></tr>
+  <tr><td>a string of operators</td><td>ตัวดำเนินการหลายตัวเรียงต่อกัน</td><td>57</td></tr>
+  <tr><td>leaving … untouched</td><td>ปล่อย … ไว้ตามเดิม</td><td>57</td></tr>
+  <tr><td>proceeds by induction</td><td>พิสูจน์ด้วยอุปนัย</td><td>58</td></tr>
+  <tr><td>make its way past the crowd of</td><td>เคลื่อนผ่านกลุ่มของ … ไปจนหมด</td><td>58</td></tr>
+  <tr><td>four similar terms</td><td>อีกสี่พจน์ที่หน้าตาแบบเดียวกัน</td><td>58</td></tr>
+  <tr><td>comes with a factor of</td><td>มีตัวคูณ … ติดมาด้วย</td><td>69</td></tr>
+  <tr><td>do the job of</td><td>ทำหน้าที่ …</td><td>70</td></tr>
+  <tr><td>sitting out front</td><td>ที่อยู่ข้างหน้า (ตัวคูณหน้านิพจน์)</td><td>70</td></tr>
+  <tr><td>take into account</td><td>นำมาคิดด้วย</td><td>70</td></tr>
+  <tr><td>leading order</td><td>พจน์แรกที่ไม่เป็นศูนย์ในอนุกรม</td><td>70</td></tr>
+  <tr><td>caveat</td><td>ข้อแม้ ข้อควรระวัง</td><td>70</td></tr>
+  <tr><td>go some way towards ameliorating</td><td>ช่วยบรรเทาปัญหาได้บางส่วน</td><td>70</td></tr>
+</table>
+
+<h2>convention และจุดที่มักสะดุด</h2>
+<table>
+  <tr><th style="width:34%">มิติ</th><td>Tong ใช้ 3+1 ทั้งเล่ม ($d^3p$, $d^4x$) · บทเรียนของเราใช้ 1+1 เป็นหลัก</td></tr>
+  <tr><th>เมตริก</th><td>$(+,-,-,-)$ ⇒ $p\cdot x = p^0x^0 - \vec p\cdot\vec x$ (ดูบทที่ 23)</td></tr>
+  <tr><th>ชื่อ</th><td>$\Delta_F$ = $D_F$ ของเรา · $E_{\vec p}$ = $\omega$ ของเรา · $H_I$ = $W$ ของเรา</td></tr>
+  <tr><th>amplitude</th><td>เขียน $i\mathcal{A}$ ⇒ $-i\lambda$ คือ $i\mathcal{A}$ ไม่ใช่ $\mathcal{A}$</td></tr>
+  <tr><th>ตัวอย่างหลัก</th><td>§3.2–3.5.2 ใช้ scalar Yukawa ($g\psi^\star\psi\phi$) ไม่ใช่ $\phi^4$ · ข้ามได้ถ้าเป้าคือ $\phi^4$</td></tr>
+</table>
+
+<h2>ตรวจแล้วอย่างไร</h2>
+<p>
+ทุกสมการในคู่มือนี้เปิดดูจากภาพหน้าจริงของ <code>qft.pdf</code> (ไม่ได้พิมพ์จากความจำ) ·
+<code>scripts/verify/0046_tong_ch3.py</code> ยืนยัน (3.18) = (3.23) ผ่านสามเหลี่ยม และการนับพจน์ของ (3.43) ·
+<strong>ยังไม่ได้ตรวจ</strong>: (2.95) รูปโมเมนตัม · (3.54)–(3.55) กติกาฉบับโมเมนตัม · ทุกอย่างของ scalar Yukawa
+</p>
+
+<div class="ask">
+  เจอประโยคไหนใน Tong ที่อ่านแล้วสะดุด ก๊อปมาถามในแชตได้เลย ผมจะอธิบายและเติมวลีนั้นลงตารางนี้
+  <div class="nav">
+    <a href="../lessons/0045-tong-read-ch3.html">เช็คพอยต์ · อ่าน Tong บทที่ 3</a>
+    <a href="0002-feynman-rules.html">ชีทสรุป · กติกา Feynman</a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -178,6 +178,8 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 `data-answer` อยู่ในช่วง · quiz มี `.fb` · **ตัวเลือกยาวไม่ต่างกันเกิน 1.6 เท่า**
 (ตัวที่ยาวกว่าเพื่อน = เฉลยที่มองเห็นได้โดยไม่ต้องคิด)
 
+· **ห้ามระยะบรรทัด `\\[8pt]` ในสมการ** — ตัวแปลง MathML ขึ้นข้อความดิบ (เจอจริงในคู่มือ Dodelson บทที่ 3) · ใช้ `\\` เปล่า ๆ
+
 · **ห้ามมี `$` ใน `<svg>`** — KaTeX ไม่เดินเข้าไปเรนเดอร์ในนั้น จะขึ้น LaTeX ดิบ
 โดยไม่มีอะไรฟ้อง (เกิดจริงในบทที่ 1 · ใช้ยูนิโคด α β θ − แทน)
 
@@ -208,7 +210,7 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 
 เว็บที่บล็อกด้วย: `goodtheorist.science`, `webspace.science.uu.nl` (ดู `RESOURCES.md`)
 
-## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-11-10)
+## สถานะล่าสุด — session ใหม่อ่านตรงนี้ก่อน (อัปเดต 2026-11-21)
 
 ### 🎓 เส้น thesis — เรียนขนานกับเส้น QFT (เพิ่ม 2026-11-11)
 
@@ -227,13 +229,18 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 - ⚠️ เขียนบทผ่านสตริง Python ต้องใช้ raw string — `\times` เคยกลายเป็น TAB (`check_lessons` จับแล้ว)
 - Artifact: T1 `Wrgdh2fegJsw8aYfWrrMmF` · แผนที่ `VCojs8XZedFFWL5hSp5mWy`
 
-### เส้น QFT
+### เส้น QFT / cosmology
 
-- บทที่ 25 `lessons/0037-vertex.html` **ผ่าน 6/6** (รอบสอง) · บทที่ 24 + ชุดฝึก Wick ผ่านแล้ว
-- ชุดฝึกจุดยอด `0038-vertex-drill.html` ผ่าน 6/6
-- บทที่ 26 `0039-dyson.html` (Dyson series) ผ่าน 6/6 (รอบสาม)
-- ล่าสุด: **บทที่ 27** `lessons/0040-time-order.html` (time ordering $T$ ⇒ Feynman propagator $D_F$ · เส้น = $D_F$) · learning record `0047` — **"ผลรอบแรก" ยังรอผล**
-- งานถัดไป: ผลบทที่ 27 → แก้ → ต่อช่วง C (amplitude ของการชน · เช็คพอยต์อ่าน Tong บทที่ 3) · แวะ GR ยังเปิดอยู่
+- 🗺 **ดูภาพรวมทั้งหมดที่ `ROADMAP.md`** (ตารางช่วง A–H · บทไหนอยู่ช่วงไหน · สถานะ)
+- ⚠️ **2026-11-21 เรียงเลขบทใหม่เป็นหมวด** (แบขอ): อ่านรูปเป็นสูตร 30→**28** · เช็คพอยต์อ่าน Tong บทที่ 3 **ไม่มีเลขบท** (พักไว้) · เอกภพขยายตัว 28→**29** · Friedmann 29→**30** · ชื่อไฟล์ไม่เปลี่ยน · learning record 0048–0052 เขียนด้วยเลขเดิม (ตารางแปลงใน `ROADMAP.md`)
+- **สาย cosmology (G2 · อาจารย์สั่งอ่าน Dodelson 2026-11-13):** บทที่ 29 `lessons/0041-expanding-universe.html` + ชุดฝึก `0042` ผ่าน 6/6 · **บทที่ 30** `lessons/0043-friedmann.html` (learning record `0049`) — **ผลรอบแรกยังรอ** · ถัดไป: Dodelson บทที่ 2 ปู GR (metric → geodesic → Einstein ⇒ Friedmann) · คู่มืออ่านรายบท `reference/dodelson-*.html` (สเปก `reference/DODELSON-FORMAT.md` · **ไม่ใช่ฉบับแปล — ลิขสิทธิ์**) · PDF อยู่ที่ `Downloads/` ของเครื่องแบเท่านั้น
+- **สาย QFT:** ช่วง C (บทที่ 24–28) **ปิดแล้ว 2026-11-21** · บทที่ 28 `lessons/0044-feynman-rules.html` + ชีท `reference/0002-feynman-rules.html` ผ่าน 5/6 · เช็คพอยต์อ่าน Tong บทที่ 3 `lessons/0045-tong-read-ch3.html` (ไม่มีเลขบท) **พักไว้** — แบเลือกพิสูจน์ละเอียดต่อแต่**เลื่อนการอ่านต้นฉบับอังกฤษ**ไปหลังเลือกหัวข้อ · **บทใหม่ห้ามสั่งให้เปิดต้นฉบับ** (ยังอ้าง citation ตามเดิม) · learning record `0052`
+- ล่าสุด (สาย QFT · ช่วง D เริ่ม 2026-11-21): **บทที่ 31** `lessons/0046-spin-half.html` (Pauli · spin ½ · หมุน 2π ได้ −1) · learning record `0053` — **"ผลรอบแรก" ยังรอผล** · Pauli ใช้ **ตัวห้อย** $\sigma_1,\sigma_2,\sigma_3$ ทั้งช่วง D
+- งานถัดไป (สาย QFT): ผลบทที่ 31 → ต่อช่วง D (Lorentz group · boost · ทำไมต้องสี่ช่อง ⇒ Dirac · Tong บทที่ 4) · **บทใหม่ใช้เลข 32 ขึ้นไป** (ไล่ทุก branch ก่อน)
+- ⚠️ `check_layout.py` หา Chrome/Edge ในเครื่องเองแล้ว (เดิมผูก path คลาวด์) · `quiz.js` tolerance มีเพดาน 0.5 (คีย์ใหญ่ไม่รับค่าคลาดหนึ่ง)
+- ⚠️ แบสะดุดภาษาอังกฤษเวลาอ่าน Tong (2026-11-21) ⇒ พักการอ่านต้นฉบับ · เมื่อกลับมาอ่าน (ช่วง H) ต้องมีคู่มืออ่านคู่กัน · Tong บทที่ 3: `reference/tong-ch03.html` · ดู `NOTES.md`
+- Tong ฉบับเต็ม: https://davidtong.org/pdfs/teaching/quantum-field-theory/qft.pdf (155 หน้า) · **หน้า PDF = เลขพิมพ์ + 6** · คลาวด์โหลดเองไม่ได้ ต้องให้แบแนบ
+- ⚠️ **ก่อนตั้งเลขบท/ไฟล์/record ใหม่ ให้ไล่ทุก branch บน remote ไม่ใช่แค่ `main`** (`git fetch` แล้ว `git ls-tree --name-only <branch> lessons/` ทุก branch) — 2026-11-20 บทกติกา Feynman ตั้งเลขชนกับบท Friedmann ที่อยู่ใน branch ที่ยังไม่ merge
 - ⚠️ `quiz.js` รับตัว O แทนเลข 0 แล้ว (iPad · 2026-11-11)
 - ⚠️ งานเสร็จแต่ละชิ้นต้อง merge เข้า `main` — session ใหม่เริ่มจาก `main` (เคยค้างที่บทที่ 23 ทั้งที่เรียนถึงบทที่ 26)
 - ⚠️ `build_standalone.py` เคยปล่อยสคริปต์ KaTeX CDN ค้างในทุกไฟล์ build ⇒ iPad ขึ้น "Script error." · แก้แล้ว + ด่านกันในตัว build (2026-11-10)

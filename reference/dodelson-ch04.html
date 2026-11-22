@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>คู่มืออ่าน Dodelson · บทที่ 4 The Boltzmann Equations</title>
+<link rel="stylesheet" href="../assets/lesson.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[
+          {left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+</head>
+<body>
+
+<h1>คู่มืออ่าน Dodelson · บทที่ 4 The Boltzmann Equations</h1>
+<p class="meta">หนังสือหน้า 84–116 (PDF หน้า 97–129) · คู่มืออ่าน ไม่ใช่ฉบับแปล — เปิดหนังสือไว้ข้าง ๆ
+แล้วอ่านหน้านี้ประกอบ</p>
+
+<!-- ============================================================ -->
+<h2>1. บทนี้ตอบคำถามอะไร</h2>
+
+<p>บท 2–3 ดูเอกภพแบบ "เรียบ" ทุกจุดเหมือนกันหมด บทนี้เริ่มยอมให้มีรอยกระเพื่อมเล็ก ๆ:
+ที่บางจุดสสารหนาแน่นกว่าเฉลี่ยนิดหนึ่ง และแสง (CMB) ที่มาจากบางทิศอุ่นกว่าทิศอื่นนิดหนึ่ง
+คำถามของบทคือ <strong>"รอยกระเพื่อมของแต่ละองค์ประกอบ (photon, dark matter, baryon, neutrino)
+เปลี่ยนไปตามเวลาอย่างไร"</strong> คำตอบออกมาเป็นชุดสมการเชิงเส้น (4.100)–(4.107)
+ซึ่งยังมีศักย์โน้มถ่วง $\Phi, \Psi$ ค้างอยู่ — บทที่ 5 จะหาสมการของ $\Phi, \Psi$ เอง
+(จากสมการ Einstein) ส่วนบทที่ 6 บอกค่าเริ่มต้น แล้วบท 7–8 ค่อยแก้ทั้งระบบ</p>
+
+<!-- ============================================================ -->
+<h2>2. ต้องรู้อะไรก่อน</h2>
+
+<ul>
+  <li><strong>Index notation และ metric signature $(-+++)$</strong> — สอนแล้วใน
+      <a href="../lessons/0004-indices.html">บทที่ 3 · ดัชนีและหน่วยธรรมชาติ</a></li>
+  <li><strong>FRW metric, scale factor $a$, Hubble rate $H = \dot a/a$, conformal time $\eta$</strong>
+      — มาจาก Dodelson บท 2 (สมการ 2.4, 2.41)</li>
+  <li><strong>Christoffel symbol และ geodesic equation</strong> (Dodelson 2.18–2.19) —
+      <strong>ยังไม่ได้สอน</strong> ใน workspace นี้ · §4.2 ใช้หนัก แต่ถ้าเอาแค่ผลข้ามได้</li>
+  <li><strong>Distribution function $f$ ใน phase space และ Bose–Einstein distribution</strong>
+      — เป็นเรื่องของ statistical mechanics ซึ่ง<strong>ยังไม่ได้สอน</strong> · หนังสือใช้ในบท 3 (สมการ 3.1)
+      ความหมายพอใช้: $f(\vec x, \vec p, t)$ คือ "จำนวนอนุภาคต่อช่องเล็ก ๆ ของตำแหน่ง×โมเมนตัม"</li>
+  <li><strong>Compton scattering / Thomson cross-section $\sigma_T$</strong> — <strong>ยังไม่ได้สอน</strong>
+      · ใช้เป็นแค่ค่าคงตัวตัวหนึ่ง (พื้นที่หน้าตัดที่ photon ชน electron)</li>
+  <li><strong>Fourier transform และ Legendre polynomial $\mathcal P_l$</strong> — คณิตที่ครูคณิตอาจไม่เคยใช้ในรูปนี้
+      · Legendre polynomial <strong>ยังไม่ได้ปู</strong> ใน workspace (บอกนิยามสั้น ๆ ไว้ใน §4.7 ด้านล่าง)</li>
+  <li><strong>Harmonic oscillator คลาสสิก</strong> — ใช้ใน §4.1 · เคยเจอแบบควอนตัมใน
+      <a href="../lessons/0028-oscillator.html">บทที่ 17</a> แต่ที่นี่ใช้แค่แบบคลาสสิก</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>3. เดินตามหนังสือ</h2>
+
+<div class="key">
+  <p><strong>ทางลัด: ถ้าจะเอาแค่ผล</strong> — ผู้เขียนบอกเองว่าอ่านข้ามไปที่ §4.7 Summary (หน้า 110–112) ได้
+  ถ้าไม่ต้องการที่มา สิ่งที่ต้องถือติดมือไปบท 5–8 มีแค่นี้:</p>
+  <ul>
+    <li>ตัวแปร 6 ตัว (ทุกตัวเป็น Fourier mode ที่ wavenumber $k$ เวลา conformal $\eta$):
+      $\Theta$ = $\delta T/T$ ของ photon · $\Theta_P$ = ความแรงของ polarization ·
+      $\delta, v$ = ความหนาแน่นส่วนเกิน (สัดส่วน) และความเร็วของ dark matter ·
+      $\delta_b, v_b$ = ของ baryon · $\mathcal N$ = คู่แฝดของ $\Theta$ สำหรับ neutrino</li>
+    <li>สมการ (4.100)–(4.107) ในกล่องของ §4.7 ข้างล่าง</li>
+    <li>ภาพรวม: photon ถูก Compton scattering ดึงให้เหลือแค่ monopole + dipole (ทำตัวเป็น fluid) ·
+      dark matter ไม่ชนกับอะไรเลย · baryon ถูก photon ลากด้วยแรงขนาด $\dot\tau/R$</li>
+  </ul>
+</div>
+
+<h3>บทนำของบท · หน้า 84–85</h3>
+
+<p>รูป 4.1 เป็นแผนผังวงกลมห้าวง (photon, electron, proton, dark matter, neutrino) ล้อมวง "metric"
+ตรงกลาง ลูกศรบอกว่าใครคุยกับใคร: photon คุยกับ electron ผ่าน Compton scattering,
+electron คุยกับ proton ผ่าน Coulomb scattering และ<strong>ทุกตัว</strong>คุยกับ metric (แรงโน้มถ่วง)
+ข้อสรุปคือแก้ทีละตัวไม่ได้ ต้องแก้ทั้งชุดพร้อมกัน</p>
+
+<p>เครื่องมือคือ Boltzmann equation ฉบับ<strong>ไม่อินทิเกรต</strong> บท 3 เคยใช้ฉบับที่อินทิเกรต
+โมเมนตัมทิ้งแล้ว (เหลือแค่ความหนาแน่นจำนวน $n$) แต่บทนี้ต้องรู้ว่าอนุภาคพุ่งไปทิศไหน
+จึงต้องเก็บ $f$ ทั้งฟังก์ชัน</p>
+
+<div class="eq">
+$$\frac{df}{dt} = C[f] \qquad \text{(Dodelson 4.1)}$$
+<p><strong>อ่านว่า:</strong> $f$ = distribution function (จำนวนอนุภาคต่อปริมาตร phase space · ไม่มีหน่วยใน $\hbar=1$) ·
+$d/dt$ = อนุพันธ์รวม คือดู "ก้อนอนุภาคก้อนเดิม" ที่เคลื่อนไปใน phase space ·
+$C[f]$ = collision term รวมทุกกระบวนการชน (วงเล็บเหลี่ยมแปลว่าเป็น functional คือขึ้นกับ $f$ ทั้งฟังก์ชัน)</p>
+</div>
+
+<p>ถ้าไม่มีการชน $df/dt = 0$ แปลว่าจำนวนอนุภาคในช่อง phase space ที่เคลื่อนไปด้วยกันคงที่
+ความยากอยู่ที่ช่องเหล่านั้นเคลื่อนที่อย่างซับซ้อนเพราะ metric ไม่เรียบ งานทั้งบทคือแตก $d/dt$
+ออกเป็นอนุพันธ์ย่อย</p>
+
+<h3>§4.1 ตัวอย่างอุ่นเครื่อง: harmonic oscillator · หน้า 85–87</h3>
+
+<p>ก่อนลงเอกภพ หนังสือเล่นกับ oscillator หนึ่งมิติ ที่พลังงาน $E = p^2/2m + kx^2/2$ (4.2)
+ซึ่ง $f$ ขึ้นกับ $t, x, p$ ใช้ chain rule กับ $df/dt$ แล้วแทน $dx/dt = p/m$ (4.4)
+และ $dp/dt = -kx$ (4.5) ได้</p>
+
+<div class="eq">
+$$\frac{\partial f}{\partial t} + \frac{p}{m}\frac{\partial f}{\partial x} - kx\frac{\partial f}{\partial p} = 0 \qquad \text{(Dodelson 4.6)}$$
+<p><strong>อ่านว่า:</strong> พจน์ที่สองคือ "อนุภาคไหลไปในอวกาศด้วยความเร็ว $p/m$" ·
+พจน์ที่สามคือ "แรง $-kx$ เปลี่ยนโมเมนตัม" · ผลรวมทั้งสามพจน์เป็นศูนย์ แม้แต่ละพจน์ไม่เป็นศูนย์</p>
+</div>
+
+<p>รูป 4.2 เป็นกลุ่มจุดในระนาบ $(x,p)$ ที่เวลา $t_1$ แล้วย้ายไปอยู่อีกที่ตอน $t_2$:
+ก้อนเคลื่อนแต่จำนวนจุดในก้อนเท่าเดิม นั่นคือ $df/dt = 0$</p>
+
+<p>ข้อสังเกตสำคัญ (4.7)–(4.8): ฟังก์ชันใดก็ตามของ $E$ อย่างเดียว เช่น $f = F(E)$
+เป็นคำตอบสมดุล ($\partial f/\partial t = 0$) เสมอ ถ้ามีการชน การชนจะบีบให้ $F$ เป็นรูปเฉพาะ
+เช่น $e^{-E/T}$ (Maxwell–Boltzmann)</p>
+
+<p><strong>ขั้นที่หนังสือข้าม (4.8):</strong> แทน $f = F(E)$ แล้วใช้ chain rule
+$\partial_x F = F'(E)\,kx$ และ $\partial_p F = F'(E)\,p/m$ จะได้
+$\tfrac{p}{m}\,F'kx - kx\,F'\tfrac{p}{m} = 0$ · ตรวจด้วย sympy แล้ว</p>
+
+<h3>§4.2 Boltzmann ฝั่งซ้ายของ photon (ไม่มีการชน) · หน้า 87–95</h3>
+
+<p><strong>metric ที่ถูกรบกวน</strong> — เอกภพเรียบมีฟังก์ชันเดียวคือ $a(t)$ เอกภพที่กระเพื่อมต้องเพิ่มอีกสองฟังก์ชัน
+ที่ขึ้นกับทั้งตำแหน่งและเวลา</p>
+
+<div class="eq">
+$$g_{00} = -1 - 2\Psi(\vec x,t), \qquad g_{0i} = 0, \qquad g_{ij} = a^2\delta_{ij}\,\bigl(1 + 2\Phi(\vec x,t)\bigr) \qquad \text{(Dodelson 4.9)}$$
+<p><strong>อ่านว่า:</strong> $\Psi$ = ศักย์แบบ Newton (ไม่มีหน่วย เพราะ $c=1$) ·
+$\Phi$ = การรบกวนของความโค้งเชิงอวกาศ · $\delta_{ij}$ = Kronecker delta ·
+ทั้งคู่เล็ก ทิ้งทุกพจน์กำลังสอง · ถ้า $\Psi=\Phi=0$ กลับเป็น FRW แบบแบน</p>
+</div>
+
+<p>หน้า 88 มีข้อสังเกตเชิงเทคนิคสองข้อที่ไม่ต้องกังวลตอนนี้: (1) การรบกวนแบ่งเป็น scalar, vector, tensor
+ตามพฤติกรรมเมื่อหมุนพิกัดสามมิติ — (4.9) มีแต่ scalar ซึ่งเป็นชนิดเดียวที่ผูกกับสสาร
+(tensor จะกลับมาในบท 5–6) (2) รูปของ (4.9) คือการเลือก <em>gauge</em> เทียบได้กับเสรีภาพในการเลือก
+$A_\mu$ ในแม่เหล็กไฟฟ้า ชื่อของ gauge นี้คือ <em>conformal Newtonian gauge</em></p>
+
+<p><strong>ตัวแปรโมเมนตัม</strong> — นิยาม $P^\mu \equiv dx^\mu/d\lambda$ (4.10) ($\lambda$ คือพารามิเตอร์ของเส้นทาง)
+photon ไม่มีมวลจึงมีเงื่อนไข $g_{\mu\nu}P^\mu P^\nu = 0$ (4.11) เหลือองค์ประกอบอิสระสามตัว
+หนังสือเลือก "ขนาด $p$" กับ "ทิศ $\hat p^i$"</p>
+
+<div class="eq">
+$$p^2 \equiv g_{ij}P^iP^j \quad\text{(4.13)}, \qquad
+P^0 = \frac{p}{\sqrt{1+2\Psi}} \simeq p\,(1-\Psi) \quad\text{(4.14)}, \qquad
+P^i = p\,\hat p^i\,\frac{1-\Phi}{a} \quad\text{(4.19)}$$
+<p><strong>อ่านว่า:</strong> $p$ = ขนาดโมเมนตัม "ที่วัดจริง" (physical) ·
+$\hat p^i$ = เวกเตอร์หนึ่งหน่วยบอกทิศ ($\delta_{ij}\hat p^i\hat p^j = 1$) ·
+(4.14) คือรุ่นขยายของ $E = pc$ ใน metric ที่ถูกรบกวน</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (4.14):</strong> จาก (4.11) กับ (4.9): $-(1+2\Psi)(P^0)^2 + p^2 = 0$ (4.12)
+ถอดรูท แล้วใช้ $(1+2\Psi)^{-1/2} \simeq 1 - \Psi$ (อนุกรมทวินามอันดับหนึ่ง) ·
+<strong>(4.18)→(4.19):</strong> ตั้ง $P^i = C\hat p^i$ แทนใน (4.13) ได้ $p^2 = a^2(1+2\Phi)C^2$
+จึง $C = p(1+2\Phi)^{-1/2}/a \simeq p(1-\Phi)/a$ · ตรวจด้วย sympy แล้วทั้งคู่</p>
+
+<p>แตก $df/dt$ ด้วย chain rule (4.15) ได้สี่พจน์: $\partial_t f$, $\partial_{x^i}f \cdot dx^i/dt$,
+$\partial_p f \cdot dp/dt$ และ $\partial_{\hat p^i}f\cdot d\hat p^i/dt$ หนังสือจัดการทีละพจน์</p>
+
+<ul>
+  <li><strong>พจน์ทิศ</strong> ทิ้งได้: $f$ อันดับศูนย์ไม่ขึ้นกับทิศ และทิศของ photon เปลี่ยนก็ต่อเมื่อมีศักย์
+    ⇒ เป็นผลคูณของของเล็กสองตัว = อันดับสอง</li>
+  <li><strong>พจน์ไหล</strong>: $dx^i/dt = P^i/P^0 = (\hat p^i/a)(1+\Psi-\Phi)$ (4.20) แต่มันคูณกับ $\partial f/\partial x^i$
+    ซึ่งเป็นอันดับหนึ่งอยู่แล้ว จึงเก็บแค่ $\hat p^i/a$ ได้ (4.21)</li>
+  <li><strong>พจน์ $dp/dt$</strong> คืองานหลัก ต้องใช้ geodesic equation ส่วนเวลา (4.22)
+    $dP^0/d\lambda = -\Gamma^0{}_{\alpha\beta}P^\alpha P^\beta$ · $\Gamma$ คือ Christoffel symbol (สูตร 2.19)</li>
+</ul>
+
+<p>หน้า 91–92 (4.23)–(4.31) เป็นพีชคณิตยาว: แทน $d/d\lambda = P^0\,d/dt$ แทน $P^0$ ด้วย (4.14)
+แล้วคำนวณ $\Gamma^0{}_{\alpha\beta}P^\alpha P^\beta/p$ จาก metric (4.9) ทีละชิ้น ผลคือ</p>
+
+<div class="eq">
+$$\frac{1}{p}\frac{dp}{dt} = -H - \frac{\partial\Phi}{\partial t} - \frac{\hat p^i}{a}\frac{\partial\Psi}{\partial x^i} \qquad \text{(Dodelson 4.32)}$$
+<p><strong>อ่านว่า:</strong> อัตราที่ photon เสียโมเมนตัม (ต่อหน่วยเวลา $t$ ของจักรวาล) มีสามสาเหตุ ·
+$-H$ = redshift จากการขยายตัว · $-\partial_t\Phi$ = บ่อศักย์ที่กำลังลึกขึ้นทำให้ปีนออกยากขึ้น ·
+$-(\hat p^i/a)\partial_i\Psi$ = ตกลงบ่อได้พลังงาน ปีนออกเสียพลังงาน ·
+ตาม convention ของหนังสือ บริเวณหนาแน่นมี $\Phi>0,\ \Psi<0$</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (ทั้งช่วง 4.22→4.32):</strong> แทนที่จะไล่ทีละบรรทัด
+สคริปต์ตรวจคำนวณ $\Gamma^0{}_{\alpha\beta}$ ทั้ง 16 ตัวจาก (4.9) ตรง ๆ คูณด้วย $P^\alpha P^\beta$
+ตัด $\epsilon^2$ ทิ้ง (ใส่ $\epsilon$ หน้า $\Psi,\Phi$ เป็นตัวนับอันดับ) แล้วได้ (4.32) ตรงเป๊ะ ·
+ทำในรูปมีมวลซึ่งได้ (4.68) ด้วย แล้วตั้ง $m=0$ · สองจุดที่หนังสือเร็ว:
+(ก) ใน (4.26) ใช้ว่า $P^\alpha P^\beta$ สมมาตรสองพจน์แรกของ $\Gamma$ จึงรวมเป็น $2\,\partial_\beta g_{\nu\alpha}$
+(ข) ใน (4.29) ใช้ $\delta_{ij}P^iP^j = p^2(1-2\Phi)/a^2$ ซึ่งมาจากยก (4.19) กำลังสอง</p>
+
+<p>เอา (4.32) ใส่ (4.21) ได้ฝั่งซ้ายเต็ม (4.33) ซึ่งหนังสือชี้ว่าพจน์แรก ๆ คือ continuity/Euler
+ของ fluid พจน์ $H$ คือ redshift และสองพจน์ท้ายคือผลของบริเวณหนาแน่น/เบาบาง</p>
+
+<p><strong>เขียน $f$ ด้วยอุณหภูมิที่กระเพื่อม</strong> — หนังสือเลือกเขียน</p>
+
+<div class="eq">
+$$f = \left[\exp\left\{\frac{p}{T(t)\,[1+\Theta(\vec x,\hat p,t)]}\right\} - 1\right]^{-1}
+\;\simeq\; f^{(0)} - p\,\frac{\partial f^{(0)}}{\partial p}\,\Theta \qquad \text{(Dodelson 4.34–4.35)}$$
+<p><strong>อ่านว่า:</strong> $T(t)$ = อุณหภูมิเฉลี่ยทั้งเอกภพ ขึ้นกับเวลาอย่างเดียว ·
+$\Theta = \delta T/T$ = อุณหภูมิที่จุด $\vec x$ เมื่อมองไปทิศ $\hat p$ ต่างจากค่าเฉลี่ยกี่เท่า (ไม่มีหน่วย) ·
+$f^{(0)} = [e^{p/T}-1]^{-1}$ (4.36) คือ Bose–Einstein ที่ chemical potential เป็นศูนย์ ·
+สมมติฐานที่ซ่อนอยู่: $\Theta$ <strong>ไม่ขึ้นกับ $p$</strong> (เหตุผลมาใน §4.3: Compton แทบไม่เปลี่ยนขนาดโมเมนตัม)</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (4.35):</strong> กระจาย Taylor ในตัวแปร $T$ รอบ $T$ ด้วยระยะ $T\Theta$:
+$f \simeq f^{(0)} + (\partial f^{(0)}/\partial T)\,T\Theta$ แล้วใช้เอกลักษณ์
+$T\,\partial_T f^{(0)} = -p\,\partial_p f^{(0)}$ ซึ่งจริงเพราะ $f^{(0)}$ ขึ้นกับ $p/T$ เท่านั้น · sympy ตรวจแล้ว</p>
+
+<p><strong>§4.2.1 อันดับศูนย์ (หน้า 93–94)</strong> — เก็บพจน์ที่ไม่มี $\Phi,\Psi,\Theta$ ได้
+$\partial_t f^{(0)} - Hp\,\partial_p f^{(0)} = 0$ (4.37) ซึ่งบังคับ $dT/T = -da/a$ คือ $T\propto 1/a$ (4.38)–(4.39)
+ตรงกับบท 1–2 · หนังสือย้ำว่าตั้ง collision term เป็นศูนย์ในอันดับนี้ไม่ใช่การโกง:
+การกระจายสมดุลนิยามด้วยเงื่อนไขว่าการชนไปกับชนกลับหักล้างกันพอดี</p>
+
+<p><strong>§4.2.2 อันดับหนึ่ง (หน้า 94–95)</strong> — แทน (4.35) ลงใน (4.33) เก็บพจน์อันดับหนึ่ง (4.40)
+แปลง $\partial_t$ ของ $f^{(0)}$ เป็น $\partial_T$ (4.41) แล้วพจน์ที่มี $H$ หักล้างกันพอดี เหลือ</p>
+
+<div class="eq">
+$$\left.\frac{df}{dt}\right|_{\text{1st}} = -p\frac{\partial f^{(0)}}{\partial p}\left[\frac{\partial\Theta}{\partial t} + \frac{\hat p^i}{a}\frac{\partial\Theta}{\partial x^i} + \frac{\partial\Phi}{\partial t} + \frac{\hat p^i}{a}\frac{\partial\Psi}{\partial x^i}\right] \qquad \text{(Dodelson 4.42)}$$
+<p><strong>อ่านว่า:</strong> สองพจน์แรก = free streaming (photon พุ่งตรงพาความไม่สม่ำเสมอไปยังสเกลเล็กลงเรื่อย ๆ) ·
+สองพจน์หลัง = แรงโน้มถ่วง · สังเกตว่า $x$ มาคู่กับ $a$ เสมอ เพราะระยะจริงคือ $ax$</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (4.40→4.42):</strong> ชิ้น $p\Theta\,(dT/dt)/T\;\partial_p[p\,\partial_p f^{(0)}]$ จาก (4.41)
+กับพจน์ $+Hp\Theta\,\partial_p[p\,\partial_p f^{(0)}]$ ใน (4.40) รวมกันเป็น
+$(\dot T/T + H)(\cdots)$ ซึ่งเป็นศูนย์เพราะ $T\propto 1/a$ · sympy ตรวจแล้วโดยแทน $T = 1/a(t)$</p>
+
+<h3>§4.3 ฝั่งขวา: Compton scattering · หน้า 95–100</h3>
+
+<p>section ที่ยาวและหนักที่สุดของบท เป้าคือ collision term ของกระบวนการ
+$e^-(\vec q) + \gamma(\vec p) \leftrightarrow e^-(\vec q\,') + \gamma(\vec p\,')$ (4.43)
+โครงคือ "ขนาดของ amplitude ยกกำลังสอง × (อัตราที่ถูกเติมเข้า − อัตราที่ถูกดึงออก)" (4.44)
+พร้อม factor ของ $2\pi$ และ delta function รักษาพลังงาน–โมเมนตัม (4.45) หนังสือทิ้ง stimulated emission
+และ Pauli blocking (ข้อหลังพิสูจน์ใน Exercise 4)</p>
+
+<p>แนวคิดหลักที่ทำให้ทุกอย่างง่ายลงคือ <strong>Compton ที่พลังงานต่ำแทบไม่ถ่ายพลังงาน</strong>:
+พลังงานของ electron เปลี่ยนไป $\simeq (\vec p\,'-\vec p)\cdot\vec q/m_e$ (4.47) ซึ่งเป็นสัดส่วนเล็ก ๆ ระดับ $v_b$
+(ความเร็ว baryon) ของพลังงานจลน์ จึงขยาย delta function รอบกรณียืดหยุ่น $\delta(p-p')$ (4.48)
+แล้วสมมติ $|\mathcal M|^2 = 8\pi\sigma_T m_e^2$ คงที่ (4.50)</p>
+
+<p>หนังสือยอมรับเองว่าข้อสมมตินี้ผิดสองทาง: amplitude จริงขึ้นกับมุม $\propto 1+\cos^2$
+(แก้ใน Exercise 7 ซึ่งให้พจน์ $\mathcal P_2$ ใน 4.100) และขึ้นกับ polarization ซึ่งเปิดเรื่อง CMB polarization ทั้งบท 10</p>
+
+<p><strong>ขั้นที่หนังสือข้าม (4.47):</strong> กระจาย $q^2 - (\vec q+\vec p-\vec p\,')^2$ ได้
+$2(\vec p\,'-\vec p)\cdot\vec q - |\vec p-\vec p\,'|^2$ หารด้วย $2m_e$ · พจน์หลังเล็กกว่าพจน์แรก
+เพราะ $q \gg p$ (electron หนักกว่ามาก) · sympy ตรวจแล้ว</p>
+
+<p>หลังอินทิเกรต $\vec q$ (ได้ $n_e$ หรือ $n_e\vec v_b$) แล้วอินทิเกรตมุมตัน $\Omega'$ (4.51)–(4.53)
+ก็ได้ผลที่สวยมาก</p>
+
+<div class="eq">
+$$\Theta_0(\vec x,t) \equiv \frac{1}{4\pi}\int d\Omega'\,\Theta(\hat p\,',\vec x,t) \qquad \text{(Dodelson 4.52)}$$
+$$C[f(\vec p)] = -p\frac{\partial f^{(0)}}{\partial p}\,n_e\sigma_T\,\bigl[\Theta_0 - \Theta(\hat p) + \hat p\cdot\vec v_b\bigr] \qquad \text{(Dodelson 4.54)}$$
+<p><strong>อ่านว่า:</strong> $\Theta_0$ = monopole = ค่าเฉลี่ยของ $\Theta$ ทุกทิศ ณ จุดนั้น ·
+$n_e$ = ความหนาแน่นจำนวน electron อิสระ · $\sigma_T$ = Thomson cross-section ·
+$n_e\sigma_T$ = อัตราชนต่อหน่วยเวลา (หน่วย 1/เวลา) · $\vec v_b$ = ความเร็วรวมของ electron (baryon)</p>
+</div>
+
+<p>ความหมาย: ถ้าชนบ่อยมาก การชนบังคับ $\Theta(\hat p) \to \Theta_0 + \hat p\cdot\vec v_b$ คือเหลือแค่
+monopole กับ dipole ส่วน multipole ที่สูงกว่าถูกลบหมด รูป 4.3 แสดงคลื่นระนาบของอุณหภูมิ electron
+(แถบมืด/สว่าง) กับวงกลมเล็ก ๆ รอบผู้สังเกต: เมื่อ mean free path สั้น photon ทุกตัวที่มาถึงผู้สังเกต
+มาจากบริเวณใกล้ ๆ ที่อุณหภูมิเกือบเท่ากัน ท้องฟ้าจึงเกือบเรียบ แต่ผู้สังเกตต่างจุดเห็นค่าเฉลี่ยต่างกัน
+นี่คือภาพของ "photon กับ electron กลายเป็น fluid เดียว" (tight coupling)</p>
+
+<div class="warn">ช่วง (4.45)→(4.54) มีการอินทิเกรตทีละส่วนกับอนุพันธ์ของ delta function ซึ่งคู่มือนี้
+<strong>ยังไม่ได้ไล่และยังไม่ได้ตรวจด้วย sympy</strong> — ตรวจเฉพาะ (4.47) แล้วใช้ (4.54) ตามหนังสือ</div>
+
+<h3>§4.4 Boltzmann ของ photon ฉบับเต็ม · หน้า 100–101</h3>
+
+<p>ตั้ง (4.42) เท่ากับ (4.54) ได้ (4.55) จากนั้นสามขั้น: เปลี่ยนเวลาเป็น conformal time $\eta$
+(จุดบนตัวแปรต่อจากนี้ = $d/d\eta$ ไม่ใช่ $d/dt$) · Fourier transform ทุกตัวแปร ·
+ใช้ตัวแปรมุมตัวเดียว</p>
+
+<div class="eq">
+$$\Theta(\vec x) = \int\frac{d^3k}{(2\pi)^3}\,e^{i\vec k\cdot\vec x}\,\tilde\Theta(\vec k) \quad\text{(4.59)}, \qquad
+\mu \equiv \frac{\vec k\cdot\hat p}{k} \quad\text{(4.60)}, \qquad
+\tau(\eta) \equiv \int_\eta^{\eta_0} d\eta'\,n_e\sigma_T a \quad\text{(4.61)}$$
+<p><strong>อ่านว่า:</strong> $\vec k$ = wavevector ของ mode (หน่วย 1/ความยาว comoving) · $k = |\vec k|$ ·
+$\mu$ = cosine ของมุมระหว่างทิศ photon กับ $\vec k$ ($-1\le\mu\le1$) ·
+$\tau$ = optical depth จากเวลา $\eta$ ถึงวันนี้ $\eta_0$ (ไม่มีหน่วย · ปลายอินทิเกรตกลับด้าน
+จึงได้ $\dot\tau = -n_e\sigma_T a < 0$ (4.62))</p>
+</div>
+
+<p>ข้อดีของ Fourier: เพราะพื้นหลังเรียบและสมการเชิงเส้น $\partial/\partial x^i$ กลายเป็น $ik_i$
+และแต่ละ $\vec k$ วิวัฒน์แยกกัน (4.57)–(4.58) — แก้ทีละ mode ได้ ใช้ได้ดีกับ CMB ตลอด
+แต่กับสสารใช้ได้แค่ช่วงที่การกระเพื่อมยังเล็ก (เชิงเส้น) ผลสุดท้ายของ photon:</p>
+
+<div class="eq">
+$$\dot{\tilde\Theta} + ik\mu\tilde\Theta + \dot{\tilde\Phi} + ik\mu\tilde\Psi = -\dot\tau\left[\tilde\Theta_0 - \tilde\Theta + \mu\tilde v_b\right] \qquad \text{(Dodelson 4.63)}$$
+<p><strong>อ่านว่า:</strong> ตัวหยัก ($\tilde{\ }$) = Fourier amplitude ·
+$\tilde v_b$ = ขนาดความเร็ว baryon ในทิศ $\hat k$ (สมมติ irrotational คือ $\vec v_b \parallel \vec k$ จึง $\vec v_b\cdot\hat p = v_b\mu$)</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (4.55→4.63):</strong> คูณ (4.55) ทั้งสมการด้วย $a$ เพราะ $dt = a\,d\eta$
+ทำให้ $\partial_t \to \tfrac1a\partial_\eta$ และ $\tfrac{\hat p^i}{a}\partial_i \to \hat p^i\partial_i$ ·
+แทน $\partial_i\to ik_i$ และ $\hat p^ik_i = k\mu$ · ฝั่งขวา $n_e\sigma_T a = -\dot\tau$ · sympy ตรวจแล้ว</p>
+
+<h3>§4.5 Cold dark matter · หน้า 102–106</h3>
+
+<p>dark matter ไม่ชนกับอะไร (ไม่มี $C$) แต่มีมวล จึงต้องทำ kinematics ใหม่:
+$g_{\mu\nu}P^\mu P^\nu = -m^2$ (4.64) นิยามพลังงาน $E = \sqrt{p^2+m^2}$ (4.65) และ
+$P^\mu = [E(1-\Psi),\ p\hat p^i(1-\Phi)/a]$ (4.66) ใช้ $E$ แทน $p$ เป็นตัวแปรของ $f_{\text{dm}}$ ได้</p>
+
+<div class="eq">
+$$\frac{\partial f_{\text{dm}}}{\partial t} + \frac{\hat p^i}{a}\frac{p}{E}\frac{\partial f_{\text{dm}}}{\partial x^i}
+- \frac{\partial f_{\text{dm}}}{\partial E}\left[\frac{da/dt}{a}\frac{p^2}{E} + \frac{p^2}{E}\frac{\partial\Phi}{\partial t} + \frac{\hat p^i p}{a}\frac{\partial\Psi}{\partial x^i}\right] = 0 \qquad \text{(Dodelson 4.68)}$$
+<p><strong>อ่านว่า:</strong> เทียบกับ (4.33): มี $p/E$ (= ความเร็ว) โผล่ขึ้นมาหลายที่ ·
+$m\to0$ จะได้ $E=p$ และกลับเป็น (4.33) · การพิสูจน์คือ Exercise 6</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (4.68):</strong> หนังสือบอกว่า "พีชคณิตเหมือน §4.2" แล้วข้ามไปเลย
+สคริปต์ตรวจทำ geodesic ของอนุภาคมีมวลใน metric (4.9) เต็ม ๆ ได้
+$dE/dt = -\left[H p^2/E + (p^2/E)\partial_t\Phi + (\hat p^ip/a)\partial_i\Psi\right]$ ตรงกับวงเล็บใน (4.68)</p>
+
+<p>dark matter "เย็น" แปลว่า $p/E$ เล็ก ทิ้งได้ทุกพจน์ที่เป็น $(p/E)^2$ แต่ทิ้ง $p/E$ ตัวเดียวไม่ได้
+เพราะการไหลรวม (velocity) ของสสารเป็นอันดับเดียวกับการกระเพื่อม วิธีคือหา <strong>moment</strong>:
+อินทิเกรต (4.68) กับ $d^3p/(2\pi)^3$ (moment ที่ 0) แล้วกับ $d^3p/(2\pi)^3\,(p/E)\hat p^j$ (moment ที่ 1)
+โดยนิยามความหนาแน่น $n_{\text{dm}}$ (4.70) และความเร็ว $v^i$ (4.71)</p>
+
+<ul>
+  <li><strong>moment ที่ 0</strong> → continuity ฉบับจักรวาล (4.73) · อันดับศูนย์ให้ $n_{\text{dm}}^{(0)}\propto a^{-3}$ (4.75)
+    · อันดับหนึ่ง (นิยาม $n_{\text{dm}} = n^{(0)}_{\text{dm}}[1+\delta]$ (4.76)) ให้
+    $\partial_t\delta + \tfrac1a\partial_iv^i + 3\partial_t\Phi = 0$ (4.77)</li>
+  <li><strong>moment ที่ 1</strong> → Euler ฉบับจักรวาล
+    $\partial_tv^j + Hv^j + \tfrac1a\partial_j\Psi = 0$ (4.82) · ไม่มีพจน์ $(\vec v\cdot\nabla)\vec v$ เพราะเป็นอันดับสอง</li>
+</ul>
+
+<p><strong>ขั้นที่หนังสือข้าม:</strong> (4.72) อินทิเกรตทีละส่วน $\int_0^\infty p^3\,\partial_pf\,dp = -3\int_0^\infty p^2f\,dp$
+(พจน์ขอบหายเพราะ $f\to0$ ที่ $p\to\infty$ และ $p^3=0$ ที่ $p=0$) ·
+(4.79) $\partial_p(p^4/E) = 4p^3/E - p^5/E^3$ · (4.80) $\int d\Omega\,\hat p^i\hat p^j = \tfrac{4\pi}{3}\delta^{ij}$ ·
+ทั้งสามข้อ sympy ตรวจแล้ว</p>
+
+<p>ข้อคิดของหนังสือหน้า 106: สมการของ moment ที่ $l$ จะดึง moment ที่ $l+1$ เข้ามาเสมอ
+(ลำดับชั้นไม่รู้จบ — hierarchy) dark matter รอดเพราะ "เย็น" ทำให้ moment สูง ๆ เป็น $(p/E)^2$ ขึ้นไป
+ซึ่งทิ้งหมด ระบบสองสมการจึงปิดตัวเอง แปลงเป็น Fourier + conformal time:</p>
+
+<div class="eq">
+$$\dot{\tilde\delta} + ik\tilde v + 3\dot{\tilde\Phi} = 0 \quad\text{(4.83)}, \qquad
+\dot{\tilde v} + \frac{\dot a}{a}\tilde v + ik\tilde\Psi = 0 \quad\text{(4.84)}$$
+<p><strong>อ่านว่า:</strong> $\delta$ = $\delta\rho/\rho$ ของ dark matter (ไม่มีหน่วย) ·
+$\tilde v$ = ขนาดความเร็วตามทิศ $\hat k$ (สมมติ $\tilde v^i = (k^i/k)\tilde v$) ·
+$\dot a/a$ = อัตราขยายตัวในเวลา conformal (= $aH$)</p>
+</div>
+
+<h3>§4.6 Baryon (electron + proton) · หน้า 106–109</h3>
+
+<p>คำว่า "baryon" ในจักรวาลวิทยาหมายถึง electron + proton รวมกัน (หนังสือเองยังบอกว่าเป็นชื่อที่ไม่สมเหตุสมผล
+เพราะ electron เป็น lepton) Coulomb scattering เร็วกว่าการขยายตัวมาก จึงบังคับให้ทั้งสองมี
+$\delta$ เดียวกัน ($\delta_b$, 4.85) และความเร็วเดียวกัน ($\vec v_b$, 4.86)</p>
+
+<p>สัญกรณ์ใหม่ใน (4.87)–(4.90): วงเล็บมุม $\langle\cdots\rangle_{pp'q'}$ แปลว่าอินทิเกรตเหนือโมเมนตัมที่เขียนเป็นตัวห้อย
+และ $c_{e\gamma}$, $c_{ep}$ คือ "ส่วนข้างใน" ของ collision term ก่อนอินทิเกรต</p>
+
+<ul>
+  <li><strong>moment ที่ 0</strong>: การชนไม่สร้าง/ทำลาย electron ⇒ collision term หายเมื่ออินทิเกรต
+    (หลักทั่วไป: คูณด้วยปริมาณอนุรักษ์แล้วอินทิเกรต ได้ศูนย์) ⇒ ได้รูปเดียวกับ dark matter (4.92)</li>
+  <li><strong>moment ที่ 1</strong>: คูณด้วยโมเมนตัม บวกสมการ electron กับ proton · ฝั่งซ้ายถูก proton ครอบงำ
+    (หนักกว่า) · Coulomb หายเพราะโมเมนตัมรวมอนุรักษ์ · เหลือแต่ Compton หารด้วย $\rho_b$ (4.94)
+    แล้วใช้ (4.95) โมเมนตัมที่ electron ได้ = โมเมนตัมที่ photon เสีย</li>
+</ul>
+
+<p>ต้องนิยาม dipole ของ photon เพื่อเขียนผล:</p>
+
+<div class="eq">
+$$\Theta_1 \equiv i\int_{-1}^{1}\frac{d\mu}{2}\,\mu\,\Theta(\mu) \quad\text{(4.97)}, \qquad
+\dot{\tilde v}_b + \frac{\dot a}{a}\tilde v_b + ik\tilde\Psi = \dot\tau\,\frac{4\rho_\gamma}{3\rho_b}\left[3i\Theta_1 + \tilde v_b\right] \quad\text{(4.98)}$$
+<p><strong>อ่านว่า:</strong> $\Theta_1$ = dipole ($i$ ข้างหน้าเป็นแค่ convention) ·
+$\rho_\gamma, \rho_b$ = ความหนาแน่นพลังงานอันดับศูนย์ของ photon และ baryon ·
+ฝั่งขวาคือแรงลากที่ photon กระทำต่อ baryon</p>
+</div>
+
+<p><strong>ขั้นที่หนังสือข้าม (4.96→4.98):</strong> อินทิเกรตมุม:
+$\int_{-1}^1\tfrac{d\mu}2\,\mu\,[\Theta_0 - \Theta(\mu) + \mu v_b] = 0 + i\Theta_1 + v_b/3$
+(ใช้ (4.97) กลับด้าน: $\int\tfrac{d\mu}{2}\mu\Theta = -i\Theta_1$) ·
+อินทิเกรต $p$ ทีละส่วน: $\int_0^\infty p^4\,\partial_pf^{(0)}dp = -4\int_0^\infty p^3f^{(0)}dp$ ·
+คูณ $a$ เปลี่ยนเป็น $\eta$ แล้ว $-n_e\sigma_Ta = \dot\tau$ ได้ (4.98) · sympy ตรวจทุกขั้นนี้แล้ว
+<em>ยกเว้น</em>การที่ $\int\tfrac{dp}{2\pi^2}p^3f^{(0)}$ เท่ากับ $\rho_\gamma$ — ต้องนับ polarization สองสถานะของ photon
+ซึ่งหนังสือไม่ได้เขียนให้เห็น จุดนี้<strong>ยังไม่ได้ตรวจ</strong></p>
+
+<p>ทำไม $\rho_b$ (ซึ่งเกือบทั้งหมดเป็น proton) โผล่ในตัวส่วน ทั้งที่ photon ชนกับ electron?
+เพราะ electron ถูก proton ยึดไว้ด้วย Coulomb การผลัก electron จึงเท่ากับผลักทั้งก้อน
+หนังสือเสริมว่าแม้หลัง recombination (hydrogen เป็นกลาง) ก็ยังใช้ $\rho_b$ ทั้งหมดได้</p>
+
+<h3>§4.7 Summary · หน้า 110–112</h3>
+
+<p>สรุปตัวแปร: สสารไม่สัมพัทธภาพ (dark matter, baryon) ใช้แค่ $\delta$ กับ $v$ ส่วน photon และ neutrino
+ต้องใช้ทั้งฟังก์ชันของทิศ $\Theta(k,\mu,\eta)$ และ $\mathcal N(k,\mu,\eta)$ หรือเทียบเท่ากับลำดับของ multipole</p>
+
+<div class="eq">
+$$\Theta_l \equiv \frac{1}{(-i)^l}\int_{-1}^1\frac{d\mu}{2}\,\mathcal P_l(\mu)\,\Theta(\mu) \qquad \text{(Dodelson 4.99)}$$
+<p><strong>อ่านว่า:</strong> $\mathcal P_l$ = Legendre polynomial ดีกรี $l$ ($\mathcal P_0=1,\ \mathcal P_1=\mu,\ \mathcal P_2=(3\mu^2-1)/2$) ·
+$l=0$ monopole · $l=1$ dipole · $l=2$ quadrupole · $l=3$ octopole · $l$ สูง = โครงสร้างเชิงมุมละเอียด
+(รูป 4.4: กราฟ $\mathcal P_3, \mathcal P_6, \mathcal P_{40}$ บนช่วง $[-1,1]$ ให้เห็นว่า $\mathcal P_l$ ตัดศูนย์ $l$ ครั้ง) ·
+ตั้ง $l=0,1$ แล้วได้ (4.52) กับ (4.97) กลับมา</p>
+</div>
+
+<p>ชุดสมการทั้งบท (ตั้งแต่นี้หนังสือ<strong>ทิ้งตัวหยัก</strong>ของ Fourier — ทุกตัวเป็น Fourier amplitude):</p>
+
+<div class="eq">
+$$\dot\Theta + ik\mu\Theta = -\dot\Phi - ik\mu\Psi - \dot\tau\left[\Theta_0 - \Theta + \mu v_b - \tfrac12\mathcal P_2(\mu)\Pi\right] \qquad (4.100)$$
+$$\Pi = \Theta_2 + \Theta_{P2} + \Theta_{P0} \qquad (4.101)$$
+$$\dot\Theta_P + ik\mu\Theta_P = -\dot\tau\left[-\Theta_P + \tfrac12\bigl(1-\mathcal P_2(\mu)\bigr)\Pi\right] \qquad (4.102)$$
+$$\dot\delta + ikv = -3\dot\Phi \quad (4.103) \qquad\quad \dot v + \frac{\dot a}{a}v = -ik\Psi \quad (4.104)$$
+$$\dot\delta_b + ikv_b = -3\dot\Phi \quad (4.105) \qquad\quad \dot v_b + \frac{\dot a}{a}v_b = -ik\Psi + \frac{\dot\tau}{R}\left[v_b + 3i\Theta_1\right] \quad (4.106)$$
+$$\dot{\mathcal N} + ik\mu\mathcal N = -\dot\Phi - ik\mu\Psi \qquad (4.107) \qquad\qquad \frac1R \equiv \frac{4\rho^{(0)}_\gamma}{3\rho^{(0)}_b} \qquad (4.108)$$
+<p><strong>อ่านว่า:</strong> $\Theta_P$ = ความแรงของ polarization (นิยามจริงรอบท 10) ·
+$\Theta_{Pl}$ = multipole ที่ $l$ ของ $\Theta_P$ · $\Pi$ = ตัวรวมที่ป้อน quadrupole กลับเข้าการชน ·
+$R$ = อัตราส่วนความหนาแน่น baryon ต่อ photon (คูณ $3/4$) · neutrino (4.107) เหมือน photon แต่ไม่มีพจน์ชน
+(สมมติไม่มีมวล)</p>
+</div>
+
+<p>สิ่งที่ต่างจากที่ derive ใน §4.3 คือพจน์ $\tfrac12\mathcal P_2\Pi$ ใน (4.100): ส่วน $\Theta_2$ มาจากการคิด
+มุมของ Compton (Exercise 7) ส่วนที่เหลือคือ coupling กับ polarization ซึ่ง polarization ถูกป้อนจาก quadrupole
+$\Theta_2$ เท่านั้น — ทั้งสองส่วนนี้ <strong>หนังสือให้ไว้โดยไม่ derive</strong> ในบทนี้</p>
+
+<p><strong>ขั้นที่หนังสือข้าม (4.98→4.106):</strong> แค่ย้ายข้างและเขียน $4\rho_\gamma/3\rho_b = 1/R$ · sympy ตรวจแล้ว</p>
+
+<!-- ============================================================ -->
+<h2>4. ศัพท์และสำนวนอังกฤษของบทนี้</h2>
+
+<table>
+  <tr><th>คำ / วลี</th><th>ความหมาย</th><th>หน้า</th></tr>
+  <tr><td>anisotropies</td><td>ความไม่เท่ากันในแต่ละทิศ (ของอุณหภูมิ CMB)</td><td>84</td></tr>
+  <tr><td>inhomogeneities</td><td>ความไม่เท่ากันในแต่ละตำแหน่ง (ของสสาร)</td><td>84</td></tr>
+  <tr><td>tightly coupled</td><td>ผูกกันแน่น ชนกันถี่จนเคลื่อนเป็นก้อนเดียว</td><td>84</td></tr>
+  <tr><td>schematically</td><td>เขียนแบบโครง ๆ ยังไม่ใส่รายละเอียด</td><td>84</td></tr>
+  <tr><td>functional</td><td>สิ่งที่รับทั้งฟังก์ชันเป็น input (ไม่ใช่รับตัวเลข)</td><td>84</td></tr>
+  <tr><td>seemingly innocent</td><td>ดูเหมือนไม่มีพิษภัย (แต่จริง ๆ ซ่อนความยาก)</td><td>84</td></tr>
+  <tr><td>the catch is that</td><td>ข้อติดอยู่ที่ว่า…</td><td>84</td></tr>
+  <tr><td>when the algebra threatens to obscure the physics</td><td>เมื่อพีชคณิตเริ่มบังภาพฟิสิกส์</td><td>85</td></tr>
+  <tr><td>phase space</td><td>ปริภูมิตำแหน่ง×โมเมนตัม</td><td>84</td></tr>
+  <tr><td>conformal Newtonian gauge</td><td>gauge ที่ใช้ทั้งเล่ม (metric 4.9)</td><td>88</td></tr>
+  <tr><td>for the record</td><td>บอกไว้เป็นข้อมูล (ไม่สำคัญต่อเนื้อหาตอนนี้)</td><td>88</td></tr>
+  <tr><td>overdense region</td><td>บริเวณที่หนาแน่นกว่าเฉลี่ย</td><td>89</td></tr>
+  <tr><td>render (it a second-order term)</td><td>ทำให้ (มัน) กลายเป็น…</td><td>89</td></tr>
+  <tr><td>fortitude</td><td>ความอดทน (ใช้ประชดว่าพีชคณิตยาว)</td><td>90</td></tr>
+  <tr><td>free streaming</td><td>อนุภาคพุ่งไปอิสระโดยไม่ชน</td><td>95</td></tr>
+  <tr><td>stimulated emission / Pauli blocking</td><td>ตัวคูณ $1+f$ ของ boson / $1-f$ ของ fermion</td><td>95</td></tr>
+  <tr><td>it turns out that</td><td>ปรากฏว่า… (ผลที่จะเห็นทีหลัง)</td><td>95</td></tr>
+  <tr><td>optical depth</td><td>ความทึบแสงสะสม ($\tau$)</td><td>101</td></tr>
+  <tr><td>irrotational</td><td>ไม่หมุนวน (ความเร็วขนานกับ $\vec k$)</td><td>101</td></tr>
+  <tr><td>moment (zeroth / first)</td><td>อินทิเกรตคูณด้วย $1$ / ด้วยโมเมนตัม</td><td>103</td></tr>
+  <tr><td>heirarchy (สะกดผิดในหนังสือ = hierarchy)</td><td>ลำดับชั้นของสมการที่ไม่มีที่สิ้นสุด</td><td>106</td></tr>
+  <tr><td>we bow to common usage</td><td>ยอมใช้ตามที่คนทั่วไปใช้กัน</td><td>106</td></tr>
+  <tr><td>nomenclature</td><td>ระบบการตั้งชื่อ</td><td>106</td></tr>
+  <tr><td>abominable</td><td>น่ารังเกียจ (คำของผู้ตรวจที่บ่นเรื่องทิ้งตัวหยัก)</td><td>110</td></tr>
+</table>
+
+<!-- ============================================================ -->
+<h2>5. convention และจุดที่มักสะดุด</h2>
+
+<ul>
+  <li><strong>หน่วย</strong> $\hbar = c = k_B = 1$ ตลอด · metric signature $(-+++)$ ตรงกับ workspace นี้</li>
+  <li><strong>เครื่องหมายของ $\Phi$</strong>: หนังสือใส่ $+2\Phi$ ใน $g_{ij}$ ทำให้บริเวณหนาแน่นมี $\Phi>0$ แต่ $\Psi<0$
+    ตำราและ paper อื่นอาจใช้เครื่องหมายหรือชื่อ $\Phi,\Psi$ สลับกัน <em>(นอกหนังสือ · ยังไม่ได้เปิดเทียบกับตำราเล่มใด)</em>
+    — บท 5 (§5.5) จะเห็นว่าแม้ตัวแปร gauge-invariant ของ Bardeen ก็มีเครื่องหมายลบติดกับ $\Phi$
+    ⇒ ทุกครั้งที่เทียบสมการกับ paper ให้เช็ค $g_{ij}$ ก่อน</li>
+  <li><strong>จุดบนตัวแปร</strong>: §4.1–4.3 เขียนอนุพันธ์เวลาเป็น $\partial_t$ (เวลาจักรวาล $t$) ·
+    ตั้งแต่ (4.56) เป็นต้นไป จุดบนตัวแปรหมายถึง $d/d\eta$ (conformal time) ไม่ใช่ $d/dt$</li>
+  <li><strong>$\dot\tau < 0$</strong> เพราะนิยาม $\tau$ จาก $\eta$ ไปถึงวันนี้ ระวังเครื่องหมายใน (4.63), (4.106)</li>
+  <li><strong>Fourier</strong>: $e^{+i\vec k\cdot\vec x}$ ใน (4.59) และ $d^3k/(2\pi)^3$ อยู่ฝั่งแปลงกลับ</li>
+  <li><strong>ตัวหยักหาย</strong> หลัง §4.7 — ตัวแปรทุกตัวใน (4.100)–(4.107) เป็น Fourier amplitude</li>
+  <li><strong>$\Theta_l$ มี $(-i)^{-l}$</strong> ข้างหน้า (4.99) ทำให้ $\Theta_1$ มี $i$ และ $\Theta_2$ มีเครื่องหมายลบ — เลขนี้จะโผล่ในบท 8</li>
+  <li><strong>$\rho_b$</strong> ใน §4.6 คือความหนาแน่นอันดับศูนย์ ความหนาแน่นรวมคือ $\rho_b(1+\delta_b)$ (เชิงอรรถ 7)</li>
+  <li><strong>"$H$" vs "$\dot a/a$"</strong>: $H = (da/dt)/a$ ในเวลาจักรวาล · $\dot a/a = aH$ ในเวลา conformal</li>
+</ul>
+
+<!-- ============================================================ -->
+<h2>6. โจทย์ท้ายบทที่ควรทำ</h2>
+
+<table>
+  <tr><th>ข้อ</th><th>ทักษะที่ได้</th><th>เฉลยใน Appendix A</th></tr>
+  <tr><td>1</td><td>หา moment ของ Boltzmann ใน oscillator → continuity + Euler (ฝึกก่อนทำ §4.5)</td><td>มี</td></tr>
+  <tr><td>2</td><td>ทำ §4.2 ซ้ำใน synchronous gauge (ฝึก gauge)</td><td>ไม่มี</td></tr>
+  <tr><td>3</td><td>อินทิเกรตสมการอันดับศูนย์ → $n\propto a^{-3}$</td><td>ไม่มี</td></tr>
+  <tr><td>4</td><td>ประมาณขนาด $f_e$ เพื่อทิ้ง Pauli blocking</td><td>มี</td></tr>
+  <tr><td>5</td><td>เทียบ $df/d\lambda$ กับ $df/dt$ (ที่มาของ $1/p$ ใน 4.45)</td><td>ไม่มี</td></tr>
+  <tr><td>6</td><td>derive (4.68) เอง — ทำคู่กับสคริปต์ตรวจ</td><td>ไม่มี</td></tr>
+  <tr><td>7</td><td>ใส่มุมของ Compton → พจน์ $\mathcal P_2\Theta_2/2$</td><td>มี</td></tr>
+  <tr><td>8–9</td><td>อุณหภูมิของสสารไม่สัมพัทธภาพ $\propto a^{-2}$ · ประมาณความเร็วความร้อนของ CDM</td><td>ไม่มี</td></tr>
+  <tr><td>10</td><td>ได้สมการ 2.55 (อนุรักษ์พลังงาน) จาก Boltzmann</td><td>ไม่มี</td></tr>
+  <tr><td>11–12</td><td>neutrino มีมวล · พิสูจน์ tight coupling ของ baryon</td><td>ไม่มี</td></tr>
+  <tr><td>13</td><td>Boltzmann ของ photon เมื่อมี tensor perturbation (เตรียมบท 6, 10)</td><td>ไม่มี</td></tr>
+</table>
+
+<p>ลำดับแนะนำถ้าเวลาน้อย: 1 → 3 → 6 (6 ยาก แต่ทำแล้วเข้าใจ §4.2 ทั้ง section)</p>
+
+<!-- ============================================================ -->
+<h2>7. ตรวจแล้วอย่างไร</h2>
+
+<p>สคริปต์ <code>scripts/verify/dodelson_ch04.py</code> (sympy) ยืนยัน:</p>
+<ul>
+  <li>(4.8) ทุก $F(E)$ เป็นคำตอบสมดุลของ oscillator</li>
+  <li>(4.12)–(4.14), (4.18)–(4.20) การกระจายอันดับหนึ่งของ $P^0$, $C$ และ $dx^i/dt$</li>
+  <li>(4.64)/(4.66) $P^\mu$ ของอนุภาคมีมวลสอดคล้อง $g_{\mu\nu}P^\mu P^\nu = -m^2$</li>
+  <li><strong>(4.22)→(4.32) และ (4.68)</strong>: คำนวณ Christoffel $\Gamma^0{}_{\alpha\beta}$ ของ metric (4.9) ทั้งหมด
+    แล้ว geodesic ให้ $dE/dt$ ตรงกับ (4.68) และ $m\to0$ ตรงกับ (4.32)</li>
+  <li>(4.35) การกระจาย $f$ และเอกลักษณ์ $T\partial_Tf^{(0)} = -p\partial_pf^{(0)}$</li>
+  <li>(4.37)–(4.39) $T\propto1/a$ · (4.40)→(4.42) พจน์ $H$ หักล้างกัน</li>
+  <li>(4.47) การประมาณการถ่ายพลังงานใน Compton</li>
+  <li>(4.72), (4.79), (4.80) อินทิเกรตทีละส่วนและอินทิเกรตมุม · (4.75) $n\propto a^{-3}$</li>
+  <li>(4.56)→(4.63), (4.77)/(4.82)→(4.83)/(4.84) การแปลง Fourier + conformal time</li>
+  <li>(4.96)→(4.98)→(4.106) อินทิเกรตมุมและ $p$ ในพจน์แรงลากของ baryon · นิยาม (4.97)/(4.99) และ $\mathcal P_2$</li>
+</ul>
+
+<p><strong>ยังไม่ได้ตรวจ</strong> (อ่านจากหนังสืออย่างเดียว):</p>
+<ul>
+  <li>ช่วง (4.45)→(4.54) ของ collision term (อินทิเกรตอนุพันธ์ของ delta function) — ใช้ (4.54) ตามหนังสือ</li>
+  <li>การที่ $\int\tfrac{dp}{2\pi^2}p^3f^{(0)} = \rho_\gamma$ ใน (4.96) (ต้องนับ polarization ของ photon)</li>
+  <li>(4.78)→(4.81) อินทิเกรต moment ที่ 1 ของ dark matter ครบทุกพจน์ (ตรวจเฉพาะชิ้น 4.79, 4.80)</li>
+  <li>(4.91)–(4.95) ข้ออ้างเชิงสมมาตรว่า collision term ของปริมาณอนุรักษ์อินทิเกรตเป็นศูนย์</li>
+  <li>พจน์ polarization และ $\mathcal P_2\Pi$ ใน (4.100)–(4.102) — หนังสือให้มาโดยไม่ derive</li>
+</ul>
+
+<div class="ask">
+  อ่านหนังสือแล้วติดประโยคไหน สมการไหน <strong>ถามได้เลย</strong> — บอกเลขหน้ามา Claude เปิดดูหน้าเดียวกันได้
+  <div class="nav">
+    <a href="dodelson-index.html">🗺️ แผนที่ทั้งเล่ม</a>
+    <a href="dodelson-ch03.html">← บทที่ 3</a>
+    <a href="dodelson-ch05.html">บทที่ 5 →</a>
+  </div>
+</div>
+
+</body>
+</html>
