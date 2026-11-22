@@ -60,6 +60,5 @@ ok((-1 - lo) / (hi - lo) == sp.Rational(5, 7), "ข้อ5 ขั้น4 = 5/7")
 flat = (sp.Rational(1, 10) - sp.Rational(1, 100)) / (10**hi - sp.Rational(1, 100))
 ok(abs(float(flat) - 0.37) < 0.01, "ตัวควบคุมใน fb: แบนบน amplitude ได้ราว 0.37")
 # รอบสอง: ขั้นใหม่ของข้อ 3 และตัวควบคุมคำตอบผิดจริง
-ok(sp.Integer(100) - 1 == 99, "ข้อ3 ขั้น2 = 99")
 ok(sp.Rational(1, 12) != sp.Rational(1, 6) and sp.Rational(1, 11) != sp.Rational(1, 10), "คำตอบผิดจริงไม่บังเอิญเท่าคีย์")
 print(f"{n}/{n}")

@@ -211,9 +211,9 @@ $\theta$ คือด้านยาว $L$ และ $\psi$ คือพื้�
       <p class="fb">$2 \times 3 = 6$</p>
     </li>
     <li data-answer="1/12" data-alt="0.083|0.0833">
-      <p><strong>ขั้น 5</strong> — ความหนาแน่น $p_A$ ที่ $A = 9$ = $p_L \div$ (ขั้น 4) โดย $p_L = \tfrac12$ (สมการ 1)</p>
+      <p><strong>ขั้น 5</strong> — ความหนาแน่น $p_A$ ที่ $A = 9$ (สมการ 1)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\tfrac12 \div 6 = \tfrac1{12}$ · ถ้าได้ $\tfrac16$ แปลว่าลืม $p_L = \tfrac12$ ไป (หาร 1 แทน $\tfrac12$) · ปลายขวาบางกว่าตรงกลาง เพราะแกนถูกยืดมากกว่า</p>
+      <p class="fb">$\tfrac12 \div 6 = \tfrac1{12}$ · ถ้าได้ $\tfrac16$ แปลว่าลืม $p_L = \tfrac12$ · ปลายขวาบางกว่าตรงกลาง เพราะแกนถูกยืดมากกว่า</p>
     </li>
   </ol>
   <p class="fb">ความหนาแน่นใหม่ = ความหนาแน่นเดิม ÷ อัตราการยืดของแกน</p>
@@ -224,27 +224,22 @@ $\theta$ คือด้านยาว $L$ และ $\psi$ คือพื้�
   <p class="hint">พารามิเตอร์ $A$ อยู่ระหว่าง 1 ถึง 100 · ถามโอกาสที่ $A$ น้อยกว่า 10 ด้วย prior สองแบบ</p>
   <ol class="steps">
     <li data-answer="9">
-      <p><strong>ขั้น 1</strong> — แบนบน $A$: ความยาวของช่วงที่ $A$ น้อยกว่า 10 = ปลายขวา − ปลายซ้าย (ช่วงเริ่มที่ 1 ไม่ใช่ 0)</p>
+      <p><strong>ขั้น 1</strong> — แบนบน $A$: ความยาวช่วง 1 ถึง 10</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$10 - 1 = 9$ · ขั้นนี้ยังไม่ใช่ความน่าจะเป็น แค่ความยาว</p>
-    </li>
-    <li data-answer="99">
-      <p><strong>ขั้น 2</strong> — แบนบน $A$: ความยาวของช่วงทั้งหมด 1 ถึง 100</p>
-      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$100 - 1 = 99$</p>
+      <p class="fb">$10 - 1 = 9$ · ขั้นนี้ถามความยาว ยังไม่ใช่ความน่าจะเป็น</p>
     </li>
     <li data-answer="1/11" data-alt="9/99|0.091|0.0909">
-      <p><strong>ขั้น 3</strong> — แบนบน $A$: โอกาสที่ $A$ น้อยกว่า 10 = ขั้น 1 ÷ ขั้น 2</p>
+      <p><strong>ขั้น 2</strong> — แบนบน $A$: โอกาสที่ $A$ น้อยกว่า 10 (ช่วงทั้งหมดยาว 99)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$9/99 = 1/11$ · ถ้าได้ $1/10$ แปลว่านับช่วงจาก 0 ($10/100$) ทั้งที่ $A$ เริ่มที่ 1</p>
+      <p class="fb">$9/99 = 1/11$ · ถ้าได้ $1/10$ แปลว่านับช่วงจาก 0 ($10/100$) ทั้งที่ $A$ เริ่มที่ 1 · ดังนั้นโอกาสที่ $A \ge 10$ คือ $10/11$ prior แบนบน $A$ จึง "เชื่อ" อยู่แล้วว่า $A$ น่าจะใหญ่</p>
     </li>
     <li data-answer="1">
-      <p><strong>ขั้น 4</strong> — แบนบน $\log_{10} A$ (อยู่ระหว่าง $\log_{10}1 = 0$ ถึง $\log_{10}100 = 2$): ความยาวของช่วง $\log_{10} A$ ที่ตรงกับ $A$ จาก 1 ถึง 10</p>
+      <p><strong>ขั้น 3</strong> — แบนบน $\log_{10} A$: ซึ่งอยู่ระหว่าง 0 ถึง 2 · ความยาวช่วงของ $\log_{10} A$ ที่ตรงกับ $A$ จาก 1 ถึง 10</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$\log_{10}10 - \log_{10}1 = 1 - 0 = 1$</p>
     </li>
     <li data-answer="1/2" data-alt="0.5|.5">
-      <p><strong>ขั้น 5</strong> — แบนบน $\log_{10} A$: โอกาสที่ $A$ น้อยกว่า 10 = ขั้น 4 ÷ ความยาวทั้งหมด $2 - 0$</p>
+      <p><strong>ขั้น 4</strong> — แบนบน $\log_{10} A$: โอกาสที่ $A$ น้อยกว่า 10</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$1/2$ · ช่วงสิบเท่าแรกกับช่วงสิบเท่าที่สองได้เท่ากัน</p>
     </li>
@@ -255,22 +250,22 @@ $\theta$ คือด้านยาว $L$ และ $\psi$ คือพื้�
 <div class="quiz" data-steps>
   <h3>ข้อ 4 · Jeffreys prior (สมการ 1 และ 2)</h3>
   <p class="hint">ให้ $u = \ln A$ แบน ความหนาแน่นบนแกน $u$ คือค่าคงตัว $c$ · อัตราการยืดจากแกน $A$ ไปแกน $u$ คือ $du/dA = 1/A$
-  ดังนั้นความหนาแน่นบนแกน $A$ คือ $c \times du/dA$ · ค่า $c$ จะตัดกันเองในขั้นสุดท้าย จึงให้ $c = 1$ ไปก่อน</p>
+  ดังนั้นความหนาแน่นบนแกน $A$ คือ $c \times du/dA$</p>
   <ol class="steps">
     <li data-answer="1">
-      <p><strong>ขั้น 1</strong> — ความหนาแน่นที่ $A = 1$: $c \times du/dA = 1 \times \tfrac11$</p>
+      <p><strong>ขั้น 1</strong> — $du/dA$ ที่ $A = 1$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$1/1 = 1$</p>
     </li>
     <li data-answer="1/10" data-alt="0.1|.1">
-      <p><strong>ขั้น 2</strong> — ความหนาแน่นที่ $A = 10$: $1 \times \tfrac1{10}$</p>
+      <p><strong>ขั้น 2</strong> — $du/dA$ ที่ $A = 10$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$1/10$</p>
     </li>
     <li data-answer="1/10" data-alt="0.1|.1">
-      <p><strong>ขั้น 3</strong> — ขั้น 2 ÷ ขั้น 1 (ความหนาแน่นที่ $A = 10$ หารด้วยที่ $A = 1$)</p>
+      <p><strong>ขั้น 3</strong> — ความหนาแน่นที่ $A = 10$ เป็นกี่เท่าของที่ $A = 1$ (ค่าที่ $A = 10$ หารด้วยค่าที่ $A = 1$)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\tfrac1{10} \div 1 = \tfrac1{10}$ · ถ้าได้ 10 แปลว่าหารกลับข้าง · ถ้าใช้ $c$ อื่นก็ได้ $\dfrac{c/10}{c/1} = \tfrac1{10}$ เหมือนเดิม · ค่า $c$ ตัดกันหายไป จึงไม่ต้องรู้ค่าของมัน · นี่คือความหมายของ $p(A) \propto 1/A$</p>
+      <p class="fb">$\dfrac{c/10}{c/1} = \tfrac1{10}$ · ถ้าได้ 10 แปลว่าหารกลับข้าง · ค่า $c$ ตัดกันหายไป จึงไม่ต้องรู้ค่าของมัน · นี่คือความหมายของ $p(A) \propto 1/A$</p>
     </li>
   </ol>
   <p class="fb">แบนบน $\ln A$ ⇔ ความหนาแน่นบนแกน $A$ แปรผกผันกับ $A$</p>
