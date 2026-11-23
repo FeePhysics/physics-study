@@ -50,20 +50,11 @@
 คือได้ $2$ เมื่อเป็นตัวเดียวกัน และได้ $0$ เมื่อต่างกัน
 </p>
 
-<h2>③ spin ½ อ่านจากเมทริกซ์ได้ยังไง</h2>
+<h2>③ หมุน 360° แล้วได้ลบ</h2>
 <p>
-บทเรื่อง <a href="./0003-noether.html">Noether</a> บอกว่าสมมาตรการหมุนคู่กับโมเมนตัมเชิงมุม ในกลศาสตร์ควอนตัม การหมุนรอบแกน $z$ ด้วยมุม $\theta$ เขียนเป็น $e^{i\theta J}$
-และเมทริกซ์ $J$ ที่คูณ $\theta$ อยู่ในเลขชี้กำลังก็คือโมเมนตัมเชิงมุมรอบแกนนั้น (โครงเดียวกับ $e^{-iEt}$ ของบทที่ 26 ที่ตัวคูณเวลาคือพลังงาน)
-สำหรับคอลัมน์สองช่อง ตัวนั้นคือ $\frac12\sigma_3$ (Tong สมการ (4.26) มี $\vec\sigma/2$ ในเลขชี้กำลัง)
-</p>
-<p>
-ค่าโมเมนตัมเชิงมุมที่วัดได้คือค่าเฉพาะของเมทริกซ์นั้น $\sigma_3$ เป็นเมทริกซ์ทแยง ค่าเฉพาะจึงอ่านได้จากแนวทแยงเลยว่าเป็น $+1$ กับ $-1$
-หารสองแล้วได้ $\pm\frac12$ นี่คือที่มาของชื่อ <strong>spin ½</strong>: วัด spin รอบแกนไหนก็ได้แค่ $+\frac12$ หรือ $-\frac12$ (หน่วย $\hbar = 1$)
-</p>
-
-<h2>④ หมุน 360° แล้วได้ลบ</h2>
-<p>
-หมุนคอลัมน์สองช่องรอบแกน $z$ ด้วยมุม $\theta$:
+ในบทที่ 14 คอลัมน์สองช่องหมุนด้วยเมทริกซ์ $U = e^{i\alpha}$ ที่ $\alpha$ เป็นผลรวมของ Pauli ทั้งสามตัว
+การหมุนอวกาศรอบแกน $z$ ด้วยมุม $\theta$ ใช้ $\alpha = \frac{\theta}{2}\sigma_3$ (Tong สมการ (4.26)) ขอรับสูตรนี้ไว้ก่อน
+ข้อ ④ จะอ่านว่า $\frac12$ ตัวนี้มีความหมายทางฟิสิกส์ว่าอะไร ตอนนี้แค่คำนวณดูว่ามันทำอะไร:
 </p>
 <div class="eq" data-eqno="2">$$ U(\theta) = e^{\,i\theta\sigma_3/2} = \begin{pmatrix} e^{i\theta/2} & 0 \\ 0 & e^{-i\theta/2} \end{pmatrix} $$</div>
 <p>
@@ -86,6 +77,36 @@
 ของที่หมุนแบบนี้เรียกว่า <strong>spinor</strong> ซึ่งเป็นคำที่ช่วง D จะใช้ตลอด
 </p>
 
+<h2>④ spin ½ อ่านจากสมการ (2)</h2>
+<p>
+ย้อนไปบทที่ 26: เวลาเดินด้วย $e^{-iEt}$ และตัวที่ยืนคูณเวลา $t$ อยู่ในเลขชี้กำลังคือพลังงาน $E$
+การหมุนมีโครงเดียวกัน ตัวที่ยืนคูณมุม $\theta$ อยู่ในเลขชี้กำลังคือ<strong>โมเมนตัมเชิงมุม</strong>
+(บทเรื่อง <a href="./0003-noether.html">Noether</a> จับคู่พลังงานกับการเลื่อนเวลา และจับคู่โมเมนตัมเชิงมุมกับการหมุน แบบเดียวกัน)
+</p>
+<p>
+เขียนสมการ (2) ใหม่ให้เห็นว่าอะไรยืนคูณ $\theta$:
+</p>
+<div class="eq" data-eqno="2′">$$ e^{\,i\theta\sigma_3/2} \;=\; e^{\,i\,\theta\,\left(\frac12\sigma_3\right)} $$</div>
+<p>
+ตัวในวงเล็บคือ $\frac12\sigma_3$ นี่แหละคือ spin รอบแกน $z$ ของคอลัมน์สองช่อง เลข $\frac12$ ตัวเดียวกับที่ทำให้หมุนครบรอบแล้วได้ $-1$ ในข้อ ③
+(Tong สมการ (4.26) ก็มี $\vec\sigma/2$ ในเลขชี้กำลังด้วยเหตุผลเดียวกัน)
+</p>
+<p>
+ทีนี้ spin มีค่าเท่าไร ในบทที่ 17 สถานะที่มีพลังงานแน่นอนคือสถานะที่ $H$ ทำแล้วได้<strong>ตัวเลขคูณตัวเดิม</strong>
+และตัวเลขนั้นคือพลังงานที่วัดได้ ($E_n$ แต่ละขั้นของบันได) spin ใช้กติกาเดียวกัน ลองคูณ $\frac12\sigma_3$ เข้ากับคอลัมน์จริง ๆ:
+</p>
+<table class="mono">
+<tr><th>คอลัมน์</th><th>คูณ $\frac12\sigma_3$</th><th>spin</th></tr>
+<tr><td>$\begin{pmatrix}1\\0\end{pmatrix}$</td><td>$\begin{pmatrix}\frac12\\0\end{pmatrix} = \frac12\begin{pmatrix}1\\0\end{pmatrix}$</td><td>$+\frac12$</td></tr>
+<tr><td>$\begin{pmatrix}0\\1\end{pmatrix}$</td><td>$\begin{pmatrix}0\\-\frac12\end{pmatrix} = -\frac12\begin{pmatrix}0\\1\end{pmatrix}$</td><td>$-\frac12$</td></tr>
+<tr><td>$\begin{pmatrix}1\\1\end{pmatrix}$</td><td>$\begin{pmatrix}\frac12\\-\frac12\end{pmatrix}$</td><td>ไม่แน่นอน</td></tr>
+</table>
+<p>
+สองแถวแรกได้ตัวเลขคูณตัวเดิม แถวที่สามไม่ได้ ตัวเลขแบบสองแถวแรก ภาษาคณิตเรียกว่า eigenvalue (ค่าเฉพาะ) ของเมทริกซ์ และคอลัมน์นั้นคือ eigenvector
+$\frac12\sigma_3$ มี eigenvalue แค่สองค่าคือ $+\frac12$ กับ $-\frac12$ คอลัมน์อื่นอย่างแถวที่สามเป็นผลบวกของสองแถวแรก
+วัด spin แล้วจะได้ $+\frac12$ หรือ $-\frac12$ ค่าใดค่าหนึ่ง ไม่มีค่าอื่น นี่คือที่มาของชื่อ <strong>spin ½</strong> (หน่วย $\hbar = 1$)
+</p>
+
 <h2>⑤ แกนไหนก็ได้ผลเดียวกัน</h2>
 <p>
 ถ้าหมุนรอบแกนทิศ $\vec n = (n_1, n_2, n_3)$ ที่ยาว $1$ ตัวในเลขชี้กำลังจะเป็น $\vec n\cdot\vec\sigma = n_1\sigma_1 + n_2\sigma_2 + n_3\sigma_3$ ซึ่งไม่ทแยงแล้ว
@@ -103,7 +124,7 @@
   เครื่องหมายในเลขชี้กำลัง: Tong ใช้ $e^{+i\theta\sigma/2}$ ตำรากลศาสตร์ควอนตัมหลายเล่มใช้ $e^{-i\theta\sigma/2}$ ผลที่ $2\pi$ เป็น $-1$ เหมือนกัน
 </div>
 
-<p class="src">ตรวจด้วย sympy: ทั้งสามตัว Hermitian เทรซศูนย์ กำลังสองเป็น $1$ · ตาราง ② ครบเก้าคู่ · ค่าเฉพาะ $\pm\frac12$ · สมการ (2) และ $U(2\pi) = -1$, $U(4\pi) = 1$ ·
+<p class="src">ตรวจด้วย sympy: ทั้งสามตัว Hermitian เทรซศูนย์ กำลังสองเป็น $1$ · ตาราง ② ครบเก้าคู่ · ตาราง ④ ทั้งสามแถว (eigenvalue $\pm\frac12$) · สมการ (2) และ $U(2\pi) = -1$, $U(4\pi) = 1$ ·
 สมการ (3) ตรวจเชิงตัวเลขกับแกนเอียง — <code>scripts/verify/0047_spin_half.py</code> (37/37) ·
 อ้างอิง: Tong, <em>Quantum Field Theory</em> §4.1 สมการ (4.17), (4.26)–(4.28) · Peskin &amp; Schroeder §3.2</p>
 
@@ -158,20 +179,25 @@
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 3 · ค่า spin ที่วัดได้ &nbsp;<span class="hint">(ข้อ ③)</span></h3>
+  <h3>ข้อ 3 · ค่า spin ที่วัดได้ &nbsp;<span class="hint">(ข้อ ④)</span></h3>
   <ol class="steps">
-    <li data-answer="1" data-alt="1.0|+1">
-      <p><strong>ขั้น 1</strong> — ค่าเฉพาะที่มากกว่าของ $\sigma_3$ (อ่านจากแนวทแยง)</p>
+    <li data-answer="1/2" data-alt="0.5">
+      <p><strong>ขั้น 1</strong> — ในสมการ (2′) ตัวที่ยืนคูณ $\theta$ คือ $c\,\sigma_3$ · $c$ เท่ากับเท่าไร</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$+1$ (อีกตัวคือ $-1$)</p>
+      <p class="fb">$\frac12$ ⇒ spin รอบแกน $z$ คือ $\frac12\sigma_3$</p>
     </li>
     <li data-answer="1/2" data-alt="0.5">
-      <p><strong>ขั้น 2</strong> — spin รอบแกน $z$ ค่าที่มากกว่า (ค่าเฉพาะของ $\frac12\sigma_3$)</p>
+      <p><strong>ขั้น 2</strong> — $\frac12\sigma_3$ คูณคอลัมน์ $(1, 0)$ · ช่องบนของผลลัพธ์</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\frac12$ ⇒ ชื่อ spin ½</p>
+      <p class="fb">$\frac12 \times 1 = \frac12$ · ช่องล่างเป็น $0$ ⇒ ได้ $\frac12$ คูณตัวเดิม ⇒ spin $+\frac12$</p>
+    </li>
+    <li data-answer="-1/2" data-alt="-0.5">
+      <p><strong>ขั้น 3</strong> — $\frac12\sigma_3$ คูณคอลัมน์ $(0, 1)$ · ช่องล่างของผลลัพธ์</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac12 \times (-1) = -\frac12$ ⇒ spin $-\frac12$</p>
     </li>
   </ol>
-  <p class="fb">ตัวที่คูณ $\theta$ ในเลขชี้กำลังของการหมุน = โมเมนตัมเชิงมุม</p>
+  <p class="fb">spin ที่วัดได้ = ตัวเลขที่ได้คูณตัวเดิม (eigenvalue) · มีแค่ $\pm\frac12$</p>
 </div>
 
 <div class="quiz" data-steps>
@@ -198,7 +224,7 @@
 </div>
 
 <div class="quiz" data-steps>
-  <h3>ข้อ 5 · กี่รอบถึงกลับที่เดิม &nbsp;<span class="hint">(ตาราง ④)</span></h3>
+  <h3>ข้อ 5 · กี่รอบถึงกลับที่เดิม &nbsp;<span class="hint">(ตาราง ③)</span></h3>
   <ol class="steps">
     <li data-answer="4" data-alt="4.0">
       <p><strong>ขั้น 1</strong> — $e^{i\theta/2} = 1$ ครั้งแรกเมื่อ $\theta/2 = 2\pi$ · $\theta$ เท่ากับกี่ $\pi$ (ตอบตัวเลขหน้า $\pi$)</p>
