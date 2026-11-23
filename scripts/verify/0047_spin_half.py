@@ -38,4 +38,9 @@ check("(σ1)^4 = 1", s1**4==E)
 check("cos π = -1, sin π = 0", (sp.cos(sp.pi),sp.sin(sp.pi))==(-1,0))
 Nq=sp.Rational(3,5)*s1+sp.Rational(4,5)*s3
 check("ข้อ 6: n=(0.6,0,0.8) ⇒ (n·σ)²=1", Nq*Nq==E)
+J=s3/2
+check("J(1,0) = 1/2 (1,0)", J*sp.Matrix([1,0])==sp.Rational(1,2)*sp.Matrix([1,0]))
+check("J(0,1) = -1/2 (0,1)", J*sp.Matrix([0,1])==-sp.Rational(1,2)*sp.Matrix([0,1]))
+v=J*sp.Matrix([1,1]); check("J(1,1) = (1/2,-1/2) ไม่ใช่ตัวเลขคูณ (1,1)", v==sp.Matrix([sp.Rational(1,2),-sp.Rational(1,2)]) and v[0]!=v[1])
+check("(2′): θσ3/2 = θ(½σ3)", th*s3/2==th*(sp.Rational(1,2)*s3))
 print(f"{ok}/{ok}")
