@@ -400,7 +400,7 @@
      บน = ภูเขา p(s, b) · ล่าง = เงา (marginal ของ s · เขียว) กับรอยตัดที่ b = mb (แดงประ = ถ้ารู้ b แน่นอน) */
   function mountain(root) {
     const st = { t: num(root, "t", 10), st: num(root, "st", 1), mb: num(root, "mb", 3), sb: num(root, "sb", 2) };
-    const s0 = -4, s1 = 18, b0 = -6, b1 = 12, H = 330, top = 200;
+    const s0 = -4, s1 = 18, b0 = -6, b1 = 12, H = 360, top = 200;
     const ctrls = el("div", "bgr-ctrls");
     const mk = (key, label, lo, hi, step) => {
       const w = el("label", "bgr-slider");
@@ -442,6 +442,13 @@
       ctx.textAlign = "right";
       [0, 4, 8].forEach(v => ctx.fillText(String(v), L - 4, Y(v) + 4));
       ctx.save(); ctx.translate(11, top / 2); ctx.rotate(-Math.PI / 2); ctx.textAlign = "center"; ctx.fillText("พื้นหลัง b", 0, 0); ctx.restore();
+      // แกนนอนของภาพบน = s ตัวเดียวกับภาพล่าง (เส้นจาง ๆ ลากลงไปให้เห็นว่าเป็นแกนเดียวกัน)
+      ctx.textAlign = "center";
+      [0, 5, 10, 15].forEach(v => ctx.fillText(String(v), X(v), top + 14));
+      ctx.textAlign = "right"; ctx.fillText("กาแล็กซี s →", W - 6, top + 30);
+      ctx.globalAlpha = .15; ctx.setLineDash([2, 4]);
+      [0, 5, 10, 15].forEach(v => { ctx.beginPath(); ctx.moveTo(X(v), 0); ctx.lineTo(X(v), H - 22); ctx.stroke(); });
+      ctx.setLineDash([]);
       ctx.globalAlpha = 1;
       // เส้น b = mb (ถ้ารู้พื้นหลังแน่นอน)
       ctx.strokeStyle = COL.like; ctx.setLineDash([5, 4]); ctx.lineWidth = 1.5;
@@ -449,7 +456,7 @@
       // ด้านล่าง: เงา (marginal) กับรอยตัด · normalize ให้ยอดเท่ากับความสูงตามพื้นที่จริง
       const mW = Math.sqrt(st.st ** 2 + st.sb ** 2), c = st.t - st.mb;
       const g = (x, m, sd) => Math.exp(-((x - m) ** 2) / (2 * sd * sd)) / sd;
-      const base = H - 22, hh = H - top - 40, ymax = 1 / st.st;
+      const base = H - 22, hh = H - top - 62, ymax = 1 / st.st;
       [[x => g(x, c, mW), COL.post, false], [x => g(x, c, st.st), COL.like, true]].forEach(([f, col, dash]) => {
         ctx.beginPath();
         for (let i = 0; i <= 300; i++) { const x = s0 + (s1 - s0) * i / 300, yy = base - f(x) / ymax * hh; i ? ctx.lineTo(X(x), yy) : ctx.moveTo(X(x), yy); }
@@ -459,7 +466,7 @@
       ctx.beginPath(); ctx.moveTo(L, base); ctx.lineTo(W - 6, base); ctx.stroke();
       ctx.textAlign = "center"; ctx.fillStyle = ink;
       [0, 5, 10, 15].forEach(v => ctx.fillText(String(v), X(v), base + 15));
-      ctx.textAlign = "right"; ctx.fillText("แหล่ง s", W - 6, base - 4);
+      ctx.textAlign = "right"; ctx.fillText("กาแล็กซี s", W - 6, base - 4);
       ctx.globalAlpha = 1;
       const f2 = x => (Math.round(x * 100) / 100).toString();
       out.textContent = "";
