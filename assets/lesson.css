@@ -308,3 +308,6 @@ table.mono td { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size
 .bb-canvas { display: block; max-width: 100%; }
 .bb-legend { font-size: .85rem; color: var(--ink-soft); }
 .bb-key { display: inline-block; width: 22px; vertical-align: middle; }
+
+/* ข้อความยกจาก paper (ภาษาอังกฤษตามต้นฉบับ) */
+blockquote { margin: 1rem 0; padding: .4rem 0 .4rem 1rem; border-left: 3px solid currentColor; opacity: .85; font-style: italic; }
