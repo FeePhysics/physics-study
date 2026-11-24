@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thesis บทที่ 0 · Bayes ด้วยกล่องสองใบ</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+<script defer src="../assets/bayes.js"></script>
+</head>
+<body>
+
+<h1>Thesis บทที่ 0 · Bayes ด้วยกล่องสองใบ</h1>
+<p class="meta">เส้นทาง thesis · ~25 นาที · ไม่ต้องรู้อะไรมาก่อนนอกจากความน่าจะเป็น ม.ปลาย ·
+บทถัดไป <a href="t0001-bayes-gauss.html">T1 กล่องนับไม่ถ้วน</a></p>
+
+<h2>⓪ เดิมพันสองครั้งของ Laplace</h2>
+
+<p>Pierre-Simon Laplace อยากรู้มวลของดาวเสาร์ ไม่มีใครเอาดาวเสาร์ขึ้นตาชั่งได้ สิ่งที่มีคือข้อมูลการโคจรของดาวเคราะห์
+ซึ่ง Alexis Bouvard นักดาราศาสตร์ร่วมยุคคำนวณออกมาว่ามวลดาวเสาร์เท่ากับ $1/3512$ ของมวลดวงอาทิตย์
+Laplace ไม่หยุดแค่ตัวเลขนั้น เขาเอาสูตรความน่าจะเป็นแบบเดียวกับที่บทนี้จะสอน มาคำนวณว่าตัวเลขนี้<em>น่าเชื่อแค่ไหน</em>
+แล้วประกาศว่า <strong>"พนันได้ 11,000 ต่อ 1 ว่าค่านี้คลาดจากความจริงไม่ถึงหนึ่งในร้อย"</strong>
+เขาทำแบบเดียวกันกับดาวพฤหัสซึ่งได้ $1/1070$ และพนันสูงกว่าเดิมอีก คือล้านต่อหนึ่ง</p>
+
+
+<p><strong>ลองทายก่อนเลื่อนลงไป</strong> สองเดิมพันนี้ Laplace ชนะกี่ครั้ง</p>
+
+<figure>
+<!--FIG:laplace-->
+<svg role="img" aria-label="Laplace พนันว่ามวลดาวเสาร์คลาดไม่ถึง 1 เปอร์เซ็นต์ ค่าจริงห่าง 0.4 เปอร์เซ็นต์ ชนะ ดาวพฤหัสค่าจริงห่าง 2.2 เปอร์เซ็นต์ แพ้" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 540 244.8" xmlns="http://www.w3.org/2000/svg" version="1.1">
+ 
+ <defs>
+  <style type="text/css">*{stroke-linejoin: round; stroke-linecap: butt}</style>
+ </defs>
+ <g id="figure_1">
+  <g id="patch_1">
+   <path d="M 0 244.8 
+L 540 244.8 
+L 540 0 
+L 0 0 
+z
+" style="fill: #ffffff"/>
+  </g>
+  <g id="axes_1">
+   <g id="patch_2">
+    <path d="M 18.36 161.401914 
+L 521.64 161.401914 
+L 521.64 18.36 
+L 18.36 18.36 
+z
+" style="fill: #ffffff"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 205.292571 75.576766 
+L 349.086857 75.576766 
+L 349.086857 49.169028 
+L 205.292571 49.169028 
+z
+" clip-path="url(#pa7bff607b5)" style="fill: #c9e7c9; stroke: #2ca02c; stroke-linejoin: miter"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 205.292571 148.931593 
+L 349.086857 148.931593 
+L 349.086857 122.523855 
+L 205.292571 122.523855 
+z
+" clip-path="url(#pa7bff607b5)" style="fill: #c9e7c9; stroke: #2ca02c; stroke-linejoin: miter"/>
+   </g>
+   <g id="matplotlib.axis_1">
+    <g id="xtick_1">
+     <g id="line2d_1">
+      <defs>
+       <path id="m35ac661e00" d="M 0 0 
+L 0 3.5 
+" style="stroke: #000000; stroke-width: 0.8"/>
+      </defs>
+      <g>
+       <use xlink:href="#m35ac661e00" x="61.498286" y="161.401914" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_1">
+      <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="61.498286" y="187.933652" transform="rotate(-0 61.498286 187.933652)">-3</text>
+     </g>
+    </g>
+    <g id="xtick_2">
+     <g id="line2d_2">
+      <g>
+       <use xlink:href="#m35ac661e00" x="133.395429" y="161.401914" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_2">
+      <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="133.395429" y="187.933652" transform="rotate(-0 133.395429 187.933652)">-2</text>
+     </g>
+    </g>
+    <g id="xtick_3">
+     <g id="line2d_3">
+      <g>
+       <use xlink:href="#m35ac661e00" x="205.292571" y="161.401914" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_3">
+      <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="205.292571" y="187.933652" transform="rotate(-0 205.292571 187.933652)">-1</text>
+     </g>
+    </g>
+    <g id="xtick_4">
+     <g id="line2d_4">
+      <g>
+       <use xlink:href="#m35ac661e00" x="277.189714" y="161.401914" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_4">
+      <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="277.189714" y="187.933652" transform="rotate(-0 277.189714 187.933652)">0</text>
+     </g>
+    </g>
+    <g id="xtick_5">
+     <g id="line2d_5">
+      <g>
+       <use xlink:href="#m35ac661e00" x="349.086857" y="161.401914" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_5">
+      <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="349.086857" y="187.933652" transform="rotate(-0 349.086857 187.933652)">1</text>
+     </g>
+    </g>
+    <g id="xtick_6">
+     <g id="line2d_6">
+      <g>
+       <use xlink:href="#m35ac661e00" x="420.984" y="161.401914" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_6">
+      <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="420.984" y="187.933652" transform="rotate(-0 420.984 187.933652)">2</text>
+     </g>
+    </g>
+    <g id="xtick_7">
+     <g id="line2d_7">
+      <g>
+       <use xlink:href="#m35ac661e00" x="492.881143" y="161.401914" style="stroke: #000000; stroke-width: 0.8"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="492.881143" y="187.933652" transform="rotate(-0 492.881143 187.933652)">3</text>
+     </g>
+    </g>
+    <g id="text_8">
+     <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="270" y="218.952695" transform="rotate(-0 270 218.952695)">ห่างจากค่าของ Laplace (%)</text>
+    </g>
+   </g>
+   <g id="matplotlib.axis_2"/>
+   <g id="line2d_8">
+    <defs>
+     <path id="m27e0e2deab" d="M 0 5 
+C 1.326016 5 2.597899 4.473168 3.535534 3.535534 
+C 4.473168 2.597899 5 1.326016 5 0 
+C 5 -1.326016 4.473168 -2.597899 3.535534 -3.535534 
+C 2.597899 -4.473168 1.326016 -5 0 -5 
+C -1.326016 -5 -2.597899 -4.473168 -3.535534 -3.535534 
+C -4.473168 -2.597899 -5 -1.326016 -5 0 
+C -5 1.326016 -4.473168 2.597899 -3.535534 3.535534 
+C -2.597899 4.473168 -1.326016 5 0 5 
+z
+" style="stroke: #000000"/>
+    </defs>
+    <g clip-path="url(#pa7bff607b5)">
+     <use xlink:href="#m27e0e2deab" x="277.189714" y="62.372897" style="stroke: #000000"/>
+    </g>
+   </g>
+   <g id="line2d_9">
+    <defs>
+     <path id="m3147924472" d="M 0 -11 
+L -2.469654 -3.399187 
+L -10.461622 -3.399187 
+L -3.995984 1.298374 
+L -6.465638 8.899187 
+L -0 4.201626 
+L 6.465638 8.899187 
+L 3.995984 1.298374 
+L 10.461622 -3.399187 
+L 2.469654 -3.399187 
+z
+" style="stroke: #000000; stroke-linejoin: bevel"/>
+    </defs>
+    <g clip-path="url(#pa7bff607b5)">
+     <use xlink:href="#m3147924472" x="306.175508" y="62.372897" style="fill: #2ca02c; stroke: #000000; stroke-linejoin: bevel"/>
+    </g>
+   </g>
+   <g id="line2d_10">
+    <g clip-path="url(#pa7bff607b5)">
+     <use xlink:href="#m27e0e2deab" x="277.189714" y="135.727724" style="stroke: #000000"/>
+    </g>
+   </g>
+   <g id="line2d_11">
+    <defs>
+     <path id="m6103c36664" d="M 0 -11 
+L -2.469654 -3.399187 
+L -10.461622 -3.399187 
+L -3.995984 1.298374 
+L -6.465638 8.899187 
+L -0 4.201626 
+L 6.465638 8.899187 
+L 3.995984 1.298374 
+L 10.461622 -3.399187 
+L 2.469654 -3.399187 
+z
+" style="stroke: #000000; stroke-linejoin: bevel"/>
+    </defs>
+    <g clip-path="url(#pa7bff607b5)">
+     <use xlink:href="#m6103c36664" x="432.684355" y="135.727724" style="fill: #d62728; stroke: #000000; stroke-linejoin: bevel"/>
+    </g>
+   </g>
+   <g id="patch_5">
+    <path d="M 18.36 161.401914 
+L 521.64 161.401914 
+" style="fill: none; stroke: #000000; stroke-width: 0.8; stroke-linejoin: miter; stroke-linecap: square"/>
+   </g>
+   <g id="text_9">
+    <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'" transform="translate(25.549714 54.885592)">ดาวเสาร์</text>
+    <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'" transform="translate(25.549714 81.904635)">11,000 : 1</text>
+   </g>
+   <g id="text_10">
+    <text style="font-size: 15px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="306.175508" y="40.366448" transform="rotate(-0 306.175508 40.366448)">ชนะ  (ค่าจริง +0.4%)</text>
+   </g>
+   <g id="text_11">
+    <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'" transform="translate(25.549714 128.24042)">ดาวพฤหัส</text>
+    <text style="font-size: 17px; font-family: 'Loma', 'DejaVu Sans'" transform="translate(25.549714 155.259463)">1,000,000 : 1</text>
+   </g>
+   <g id="text_12">
+    <text style="font-size: 15px; font-family: 'Loma', 'DejaVu Sans'; text-anchor: middle" x="432.684355" y="113.721276" transform="rotate(-0 432.684355 113.721276)">แพ้  (ค่าจริง +2.2%)</text>
+   </g>
+  </g>
+ </g>
+ <defs>
+  <clipPath id="pa7bff607b5">
+   <rect x="18.36" y="18.36" width="503.28" height="143.041914"/>
+  </clipPath>
+ </defs>
+</svg>
+
+<!--/FIG:laplace-->
+<figcaption>แถบเขียวคือช่วง ±1% ที่ Laplace พนัน จุดดำคือค่าของ Laplace ดาวคือค่าที่วัดได้ทุกวันนี้ ได้แก่ $1/3497.9$ สำหรับดาวเสาร์ และ $1/1047.35$ สำหรับดาวพฤหัส</figcaption>
+</figure>
+
+<p>สองร้อยปีต่อมาเราตรวจคำตอบได้ ดาวเสาร์คลาดไปแค่ 0.4% Laplace <strong>ชนะ</strong>
+ส่วนดาวพฤหัสคลาดไป 2.2% ซึ่งเกินหนึ่งในร้อย เดิมพันล้านต่อหนึ่ง<strong>แพ้</strong></p>
+
+<p>ความมั่นใจระดับล้านต่อหนึ่งก็ยังแพ้ได้ เพราะตัวเลขนั้นคิดภายใต้สมมติฐานว่าข้อมูลคลาดเคลื่อนแบบไหน
+ถ้าสมมติฐานไม่ตรงกับความจริง ตัวเลขก็ผิดตาม แต่ประเด็นที่น่าทึ่งกว่าคือ Laplace <em>ให้ตัวเลข</em>กับความมั่นใจได้
+ทั้งที่ไม่มีใครเคยแตะดาวเสาร์ เครื่องมือที่ทำแบบนั้นได้คือ Bayes และเป็นเครื่องมือหลักของ thesis ที่แบกำลังจะทำ</p>
+
+<p>Laplace คิดแบบนั้นได้อย่างไร บทนี้ให้แบลองคิดแบบเดียวกันกับเกมเล็ก ๆ ก่อน ยังไม่มีสูตรจนกว่าจะเล่นเสร็จ</p>
+
+<h2>① เล่นก่อน · เกมกล่องลับ</h2>
+
+<p>มีกล่องสองใบ กล่อง A มีลูกแดง 3 ใน 10 ลูก กล่อง B มีลูกแดง 7 ใน 10 ลูก ทั้งสองแบบใส่รวมกันในถุงแบบละ 5 ใบ (รวม 10 ใบ) คอมพิวเตอร์สุ่มหยิบกล่องออกมาหนึ่งใบแล้วซ่อนไว้
+แบกดหยิบลูกจากกล่องลับได้เรื่อย ๆ (หยิบแล้วใส่คืนทุกครั้ง) พอมั่นใจเมื่อไรก็ทายว่าเป็นกล่องไหน
+ลองเล่นสัก 3 ถึง 4 เกมโดยยัง<strong>ไม่ต้องเปิดเครื่องวัดความเชื่อ</strong> แล้วสังเกตว่าตัวเองต้องหยิบกี่ลูกถึงกล้าทาย</p>
+
+<div class="bayes-game" data-ra="0.3" data-rb="0.7" data-pb="0.5"></div>
+
+<p>ตอนลูกแรกออกมาเป็นสีแดง แบน่าจะรู้สึกว่าเอียงไปทาง B แต่เอียงแค่ไหน 60% หรือ 90% เป็นคำถามที่ความรู้สึกตอบไม่ได้
+ส่วนที่เหลือของบทนี้คือการตอบคำถามนั้นเป็นตัวเลข แล้วค่อยกลับไปเปิดเครื่องวัดความเชื่อดู</p>
+
+<h2>② นับเป็นรอบ แทนการคูณความน่าจะเป็น</h2>
+
+<p>สมมติว่าเล่นเกมนี้ 100 รอบ แล้วดูเฉพาะลูกแรกของแต่ละรอบ ในถุงมีกล่อง A กับ B อย่างละครึ่ง จึงหยิบได้กล่อง A ประมาณ 50 รอบ และกล่อง B ประมาณ 50 รอบ
+ใน 50 รอบที่เป็นกล่อง A จะได้ลูกแดงราว 3 ใน 10 คือ 15 รอบ ใน 50 รอบที่เป็นกล่อง B จะได้ลูกแดง 7 ใน 10 คือ 35 รอบ
+ทั้งหมดจึงมีรอบที่ได้แดง $15 + 35 = 50$ รอบ</p>
+
+<p>ทีนี้สมมติว่าเราเห็นลูกแดงแล้ว รอบไหนที่ได้ลูกขาวก็เป็นไปไม่ได้แล้ว ตัดทิ้งได้เลย ที่เหลืออยู่คือ 50 รอบที่ได้แดง
+ในจำนวนนั้นเป็นกล่อง B อยู่ 35 รอบ ดังนั้นโอกาสที่กล่องลับคือ B เมื่อเห็นลูกแดงหนึ่งลูกคือ</p>
+
+<div class="eq">$$ \frac{35}{50} = 0.7 $$</div>
+
+<p>แค่นั้นเอง ไม่มีสูตรเลย มีแค่นับแล้วหาร ลองเลื่อนแถบข้างล่างเปลี่ยนตัวเลข แถบแรกคือจำนวนกล่อง B ในถุง 10 ใบ (ที่เหลือเป็นกล่อง A) อีกสองแถบคือจำนวนลูกแดงในแต่ละกล่องจาก 10 ลูก แล้วกดปุ่มตัดรอบที่ไม่แดงทิ้งดู
+จุดแต่ละจุดคือหนึ่งรอบ จุดแดงคือรอบที่ได้ลูกแดง</p>
+
+<div class="bayes-grid" data-ra="0.3" data-rb="0.7" data-pb="0.5"></div>
+
+<p>ลองสองอย่างนี้ อย่างแรก ดันแดงในกล่อง B ขึ้นไปเป็น 1.0 จะเห็นว่าคำตอบเพิ่มขึ้น แต่ไม่ถึง 1 เพราะกล่อง A ก็ยังให้แดงได้
+อย่างที่สอง คืนค่าเดิมแล้วลด "กล่อง B ในถุง" เหลือ 1 ใน 10 ใบ กล่อง B ยังมีแดงมากกว่า แต่คำตอบตกลงต่ำกว่าครึ่ง
+เพราะกล่อง B แทบไม่ถูกหยิบออกจากถุงตั้งแต่แรก ความเชื่อก่อนเห็นผลจึงมีน้ำหนักไม่น้อยกว่าผลที่เห็น</p>
+
+<h2>③ ตั้งชื่อให้ตัวเลขที่นับมา</h2>
+
+<p>ตัวเลขทุกตัวที่เพิ่งนับมีชื่อเรียกในเปเปอร์ เขียนด้วยสัญลักษณ์ความน่าจะเป็นแบบมีเงื่อนไขที่แบรู้จักอยู่แล้ว
+ให้ $R$ แทนเหตุการณ์ "หยิบได้แดง" แล้วอ่าน $P(R\,|\,B)$ ว่า "โอกาสได้แดง เมื่อรู้ว่าเป็นกล่อง B"
+ส่วน $P(B\,|\,R)$ กลับข้างกัน อ่านว่า "โอกาสเป็นกล่อง B เมื่อเห็นว่าได้แดง" ซึ่งเป็นสิ่งที่เราอยากรู้</p>
+
+<table>
+<thead><tr><th>ชื่อ</th><th>สัญลักษณ์</th><th>นับจาก 100 รอบ</th><th>ความหมาย</th></tr></thead>
+<tbody>
+<tr><td>prior</td><td>$P(B)$</td><td>50 / 100</td><td>เชื่ออะไรก่อนเห็นลูก</td></tr>
+<tr><td>likelihood</td><td>$P(R\,|\,B)$</td><td>35 / 50</td><td>ถ้าเป็น B จะได้แดงแค่ไหน</td></tr>
+<tr><td>evidence</td><td>$P(R)$</td><td>50 / 100</td><td>ได้แดงรวมทุกกล่อง</td></tr>
+<tr><td>posterior</td><td>$P(B\,|\,R)$</td><td>35 / 50</td><td>เชื่ออะไรหลังเห็นลูก</td></tr>
+</tbody>
+</table>
+
+<p>ตัวเลข 35 มาจาก $100 \times P(B) \times P(R\,|\,B)$ และตัวเลข 50 ด้านล่างมาจาก $100 \times P(R)$
+พอหารกัน 100 ก็ตัดกันหายไป เหลือสมการที่ทั้งสองเปเปอร์ใช้เป็นจุดเริ่มต้น</p>
+
+<div class="key">
+  <div class="eq" data-eqno="1">$$ \underbrace{P(B\,|\,R)}_{\text{posterior}} = \frac{\overbrace{P(R\,|\,B)}^{\text{likelihood}}\;\overbrace{P(B)}^{\text{prior}}}{\underbrace{P(R)}_{\text{evidence}}} $$</div>
+  <p style="margin-bottom:0">ตัวอย่างข้างบนคือ $0.7 \times 0.5 / 0.5 = 0.7$ ถ้าจำสูตรไม่ได้ ให้กลับไปนับ 100 รอบ จะได้คำตอบเดียวกันเสมอ</p>
+</div>
+
+<div class="warn">
+  <strong>กับดักที่คนพลาดบ่อย</strong> — likelihood ของสองกล่อง (0.3 กับ 0.7) บวกกันได้ 1 ในตัวอย่างนี้โดยบังเอิญ
+  ถ้ากล่อง B มีแดง 9 ใน 10 ก็จะรวมได้ 1.2 เพราะสองตัวนี้ตอบคนละคำถาม คือ "ถ้าเป็น A ได้แดงเท่าไร" กับ "ถ้าเป็น B ได้แดงเท่าไร"
+  ตัวที่รวมกันได้ 1 เสมอคือ posterior ของ A กับ B
+</div>
+
+<h2>④ ลูกที่สอง · posterior ของวันนี้คือ prior ของพรุ่งนี้</h2>
+
+<p>สมมติลูกแรกได้แดง ตอนนี้เราเชื่อว่าเป็น B อยู่ 0.7 ถ้าหยิบลูกที่สองได้แดงอีก ให้นับใหม่โดยเริ่มจากความเชื่อปัจจุบัน
+คิดเป็น 100 รอบที่ลูกแรกได้แดง จะเป็นกล่อง B อยู่ 70 รอบ และกล่อง A อยู่ 30 รอบ
+ลูกที่สองได้แดงอีกจากกล่อง B $70 \times 0.7 = 49$ รอบ และจากกล่อง A $30 \times 0.3 = 9$ รอบ
+ความเชื่อใหม่จึงเป็น $49 / 58 \approx 0.84$</p>
+
+<p>นี่คือสิ่งที่เครื่องวัดความเชื่อในเกมทำทุกครั้งที่แบกดหยิบ คือเอาความเชื่อหลังลูกก่อนมาเป็นจุดเริ่มต้นของลูกถัดไป
+ลูกแดงแต่ละลูกดันไปทาง B ลูกขาวแต่ละลูกดันไปทาง A พอหยิบไปหลายลูก ความเชื่อเริ่มต้นจะมีผลน้อยลงเรื่อย ๆ
+และข้อมูลเป็นตัวตัดสิน ซึ่งเป็นเหตุผลเดียวกับที่ Laplace กล้าพนันสูงขนาดนั้น เพราะเขามีข้อมูลการสังเกตดาวเคราะห์อยู่มาก</p>
+
+<p><strong>กลับไปเล่นเกมอีกรอบ</strong> คราวนี้เปิดเครื่องวัดความเชื่อ แล้วลองทายเฉพาะตอนที่เครื่องวัดเกิน 90% ทายถูกบ่อยขึ้นไหม
+แล้วมีครั้งไหนที่เกิน 90% แต่ยังทายผิดหรือเปล่า ถ้ามี นั่นไม่ใช่ความผิดของสูตร เพราะ 90% แปลว่าผิดได้ 1 ใน 10 ครั้ง</p>
+
+<h2>⑤ จากกล่องสองใบ ไปสู่ฟิสิกส์</h2>
+
+<p>ในฟิสิกส์ สิ่งที่ไม่รู้ไม่ใช่กล่องใบไหน แต่เป็นตัวเลขของทฤษฎี เช่นมวลของดาวเสาร์ หรือปริมาณสสารมืด เรียกว่า $\theta$
+ทุกค่าของ $\theta$ เปรียบเหมือนกล่องหนึ่งใบ จึงมีกล่องนับไม่ถ้วน prior จากเดิมที่เป็นสองค่าก็กลายเป็นเส้นโค้ง
+และผลบวกใน evidence ก็กลายเป็นอินทิกรัล นั่นคือเรื่องของบทถัดไป ส่วนวิธีคิดยังเป็นแบบเดิมทุกอย่าง
+คือคูณความเชื่อเดิมกับโอกาสที่จะได้ข้อมูลนั้น แล้วหารด้วยผลรวม</p>
+
+<div class="warn">
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — $\theta$ ต่อเนื่อง, Gaussian และสูตรของ Trotta อยู่ใน T1 ·
+  บทนี้ใช้ $P(\cdot)$ ตามที่แบคุ้น ส่วน Trotta เขียน $p(\cdot)$ ตัวเล็ก และเรียก likelihood ว่า $\mathcal L$
+</div>
+
+<p class="src">ตรวจทุกตัวเลขในบทนี้ทั้งแบบนับ 100 รอบและแบบสูตรตรง รวมถึงการหยิบสองลูกต่อกันเทียบกับการหยิบสองลูกพร้อมกัน
+— <code>scripts/verify/t0000_bayes_boxes.py</code></p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ทุกข้อคือการนับรอบจาก 100 รอบแล้วหาร แบบเดียวกับ ② ยกเว้นข้อ 3 ซึ่งให้เลือกชื่อ · ตอบเป็นตัวเลข เศษส่วนพิมพ์แบบ <code>3/4</code> ได้</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · นับ 100 รอบ</h3>
+  <p class="hint">ในถุงมีกล่อง A กับ B อย่างละครึ่ง · กล่อง A มีแดง 0.2 · กล่อง B มีแดง 0.6 · หยิบได้แดง</p>
+  <ol class="steps">
+    <li data-answer="10">
+      <p><strong>ขั้น 1</strong> — ใน 100 รอบ มีกี่รอบที่เป็นกล่อง A <em>และ</em>ได้แดง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">กล่อง A 50 รอบ × 0.2 = 10</p>
+    </li>
+    <li data-answer="30">
+      <p><strong>ขั้น 2</strong> — กี่รอบที่เป็นกล่อง B และได้แดง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">50 × 0.6 = 30</p>
+    </li>
+    <li data-answer="40">
+      <p><strong>ขั้น 3</strong> — รอบที่ได้แดงทั้งหมด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">10 + 30 = 40 · ตัวนี้หารด้วย 100 แล้วคือ evidence 0.4</p>
+    </li>
+    <li data-answer="3/4" data-alt="0.75|.75|30/40">
+      <p><strong>ขั้น 4</strong> — เห็นแดงแล้ว โอกาสที่เป็นกล่อง B</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">30 / 40 = 0.75 · ถ้าได้ 0.3 แปลว่าหารด้วย 100 แทนที่จะหารด้วยรอบที่เหลือหลังตัดทิ้ง</p>
+    </li>
+  </ol>
+  <p class="fb">ตัดรอบที่ไม่ตรงกับสิ่งที่เห็นทิ้ง แล้วดูสัดส่วนในรอบที่เหลือ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · เมื่อ prior ไม่เท่ากัน</h3>
+  <p class="hint">ในถุงมีกล่อง A 4 ใบ กล่อง B 1 ใบ สุ่มหยิบกล่องมาหนึ่งใบ (โอกาสเป็น B = 0.2) · กล่อง A มีแดง 0.25 · กล่อง B มีแดง 0.75 · หยิบลูกได้แดง</p>
+  <ol class="steps">
+    <li data-answer="80">
+      <p><strong>ขั้น 1</strong> — ใน 100 รอบ มีกี่รอบที่เป็นกล่อง A</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">100 × 0.8 = 80</p>
+    </li>
+    <li data-answer="20">
+      <p><strong>ขั้น 2</strong> — กี่รอบที่เป็นกล่อง A และได้แดง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">80 × 0.25 = 20</p>
+    </li>
+    <li data-answer="15">
+      <p><strong>ขั้น 3</strong> — กี่รอบที่เป็นกล่อง B และได้แดง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">20 × 0.75 = 15</p>
+    </li>
+    <li data-answer="35">
+      <p><strong>ขั้น 4</strong> — รอบที่ได้แดงทั้งหมด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">20 + 15 = 35</p>
+    </li>
+    <li data-answer="3/7" data-alt="15/35|0.43|0.429|0.4286">
+      <p><strong>ขั้น 5</strong> — เห็นแดงแล้ว โอกาสที่เป็นกล่อง B <span class="hint">(ตอบเศษส่วนได้)</span></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">15 / 35 = 3/7 ≈ 0.43 · ต่ำกว่าครึ่ง ทั้งที่กล่อง B มีแดงมากกว่าถึงสามเท่า · ถ้าได้ 0.75 แปลว่าลืม prior</p>
+    </li>
+  </ol>
+  <p class="fb">ผลที่เห็นชี้ไปทาง B แต่ prior ชี้ไปทาง A แรงกว่า posterior จึงยังเอียงไปทาง A</p>
+</div>
+
+<div class="quiz" data-answer="0">
+  <h3>ข้อ 3ก · ในข้อ 2 ตัวเลข 0.2 (โอกาสหยิบได้กล่อง B จากถุง) คือตัวไหน</h3>
+  <div class="choices">
+    <button>prior — ความเชื่อก่อนหยิบลูก</button>
+    <button>likelihood — โอกาสได้แดงจากกล่องนั้น</button>
+    <button>evidence — โอกาสได้แดงรวมทุกกล่อง</button>
+    <button>posterior — ความเชื่อหลังเห็นลูก</button>
+  </div>
+  <p class="fb">0.2 รู้ได้ก่อนหยิบลูกเลย จึงเป็น prior · ส่วน 0.75 คือ likelihood · 35/100 คือ evidence · 3/7 คือ posterior</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <h3>ข้อ 3ข · ในข้อ 2 ตัวเลข 35/100 คือตัวไหน</h3>
+  <div class="choices">
+    <button>prior — ความเชื่อก่อนหยิบลูก</button>
+    <button>likelihood — โอกาสได้แดงจากกล่องนั้น</button>
+    <button>evidence — โอกาสได้แดงรวมทุกกล่อง</button>
+    <button>posterior — ความเชื่อหลังเห็นลูก</button>
+  </div>
+  <p class="fb">35 คือรอบที่ได้แดงไม่ว่ากล่องไหน หารด้วย 100 จึงเป็น evidence $P(R)$ ซึ่งเป็นตัวหารในสมการ (1)</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · ลูกที่สองต่อจากข้อ 1</h3>
+  <p class="hint">กล่องเดิมจากข้อ 1 (A แดง 0.2 · B แดง 0.6) ลูกแรกได้แดงไปแล้ว ตอนนี้เชื่อว่าเป็น B อยู่ 0.75 · หยิบลูกที่สองได้แดงอีก</p>
+  <ol class="steps">
+    <li data-answer="75">
+      <p><strong>ขั้น 1</strong> — เริ่มจากความเชื่อปัจจุบัน ใน 100 รอบ มีกี่รอบที่เป็นกล่อง B</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">100 × 0.75 = 75 · ถ้าได้ 50 แปลว่าเริ่มใหม่จาก prior เดิม แทนที่จะใช้ posterior ของลูกแรก</p>
+    </li>
+    <li data-answer="45">
+      <p><strong>ขั้น 2</strong> — กี่รอบที่เป็น B และลูกที่สองได้แดง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">75 × 0.6 = 45</p>
+    </li>
+    <li data-answer="5">
+      <p><strong>ขั้น 3</strong> — กี่รอบที่เป็น A และลูกที่สองได้แดง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">25 × 0.2 = 5</p>
+    </li>
+    <li data-answer="50">
+      <p><strong>ขั้น 4</strong> — รอบที่ลูกที่สองได้แดงทั้งหมด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">45 + 5 = 50</p>
+    </li>
+    <li data-answer="9/10" data-alt="0.9|.9|45/50">
+      <p><strong>ขั้น 5</strong> — ความเชื่อใหม่ว่าเป็นกล่อง B</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">45 / 50 = 0.9 · ลูกแรกพาจาก 0.5 ไป 0.75 · ลูกที่สองพาไป 0.9</p>
+    </li>
+  </ol>
+  <p class="fb">posterior ของลูกก่อนคือ prior ของลูกถัดไป</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · ถ้าได้ลูกขาว</h3>
+  <p class="hint">เริ่มใหม่เหมือนข้อ 1 (ถุงมี A กับ B อย่างละครึ่ง · A แดง 0.2 · B แดง 0.6) แต่ลูกแรกออกมาเป็น<strong>ขาว</strong></p>
+  <ol class="steps">
+    <li data-answer="40">
+      <p><strong>ขั้น 1</strong> — ใน 100 รอบ กี่รอบที่เป็นกล่อง A และได้ขาว</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">กล่อง A มีขาว 1 − 0.2 = 0.8 · 50 × 0.8 = 40</p>
+    </li>
+    <li data-answer="20">
+      <p><strong>ขั้น 2</strong> — กี่รอบที่เป็นกล่อง B และได้ขาว</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">50 × 0.4 = 20</p>
+    </li>
+    <li data-answer="60">
+      <p><strong>ขั้น 3</strong> — รอบที่ได้ขาวทั้งหมด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">40 + 20 = 60</p>
+    </li>
+    <li data-answer="2/3" data-alt="40/60|0.67|0.667|0.6667">
+      <p><strong>ขั้น 4</strong> — เห็นขาวแล้ว โอกาสที่เป็นกล่อง <strong>A</strong></p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">40 / 60 = 2/3 · ลูกขาวดันไปทาง A เพราะ A มีขาวมากกว่า</p>
+    </li>
+  </ol>
+  <p class="fb">likelihood ขึ้นกับว่าเห็นอะไร เห็นขาวก็ต้องใช้สัดส่วนลูกขาว</p>
+</div>
+
+<div class="ask">
+  ตรงไหนไม่ชัด <strong>ถามได้เลย</strong> · เสร็จแล้วกด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา
+  <div class="nav">
+    <a href="t0001-bayes-gauss.html">ถัดไป → T1 กล่องนับไม่ถ้วน</a>
+    <a href="../reference/thesis-roadmap.html">🗺️ แผนที่ paper ทั้งสอง</a>
+  </div>
+</div>
+
+</body>
+</html>

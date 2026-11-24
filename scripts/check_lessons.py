@@ -42,6 +42,15 @@ def _placeholder_declares_number(ph: str) -> bool:
 def check(f: pathlib.Path, html: str):
     def bad(msg): problems.append(f"{f.relative_to(ROOT)}: {msg}")
 
+    # ── อักขระควบคุมในสมการ = LaTeX ถูก Python กิน backslash ──
+    # เขียนบทผ่านสตริง Python ที่ไม่ใช่ raw: "\times" → TAB+"imes" · "\frac" → form feed
+    # · "\bar" → backspace (เกิดจริง T1 2026-11-12: ขึ้นเป็น "0.3imesfrac12" บนมือถือ)
+    for m in re.finditer(r'\$\$.*?\$\$|\$[^$]*\$', html, flags=re.S):
+        if re.search(r'[\x00-\x08\x0b\x0c\x0e-\x1f]|\t', m.group(0)):
+            bad(f"อักขระควบคุม/TAB ในสมการ (backslash หาย?): {m.group(0)[:50]!r}")
+    if re.search(r'[\x00-\x08\x0b\x0c\x0e-\x1f]', html):
+        bad("มีอักขระควบคุม (\\b \\f \\a \\v) ในไฟล์ — น่าจะเป็น LaTeX ที่ backslash ถูก Python กิน")
+
     # ── $ ต้องเป็นคู่ ──────────────────────────────────────
     # $ เดี่ยวทำให้ KaTeX กินข้อความที่เหลือทั้งย่อหน้าเข้าไปในโหมดคณิต
     # นับเฉพาะ $ ที่ไม่ได้ถูก escape และไม่ได้อยู่ใน $$

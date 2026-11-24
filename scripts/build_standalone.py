@@ -72,6 +72,13 @@ def build(src: pathlib.Path) -> pathlib.Path:
     html = re.sub(r'\s*<link[^>]*katex[^>]*>', "", html)
     html = re.sub(r'\s*<script[^>]*katex[^>]*>\s*</script>', "", html, flags=re.S)
     html = re.sub(r'\s*<script[^>]*quiz\.js[^>]*>\s*</script>', "", html)
+    # สคริปต์อื่นใน assets/ (เช่น bayes.js) — ฝังเนื้อจริงแทน src ไม่งั้นด่านข้างล่างฟ้อง
+    extra = []
+    def take(m):
+        extra.append((ROOT / "assets" / m.group(1)).read_text(encoding="utf-8"))
+        return ""
+    html = re.sub(r'\s*<script[^>]*src="\.\./assets/([\w.-]+\.js)"[^>]*>\s*</script>', take, html)
+    js = js + "".join("\n" + e for e in extra)
 
     html = to_mathml(html)
 

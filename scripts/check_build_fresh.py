@@ -41,6 +41,10 @@ with tempfile.TemporaryDirectory() as tmp:
                     stale.append(name)
         shutil.rmtree(BUILD)          # ของสดถูกเขียนทับตอนท้ายอยู่แล้ว
     finally:
+        # build ล้มกลางทาง ⇒ build/ ครึ่ง ๆ ค้างอยู่ ⇒ rename ทับไม่ได้ แล้ว build.checking ค้าง
+        # (เกิดจริง 2026-11-21: รอบถัดไปพังด้วย OSError "Directory not empty")
+        if BUILD.exists():
+            shutil.rmtree(BUILD)
         keep.rename(BUILD)
 
 if missing or stale:

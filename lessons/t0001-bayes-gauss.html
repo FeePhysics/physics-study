@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thesis บทที่ 1 · กล่องนับไม่ถ้วน</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+<script defer src="../assets/bayes.js"></script>
+</head>
+<body>
+
+<h1>Thesis บทที่ 1 · กล่องนับไม่ถ้วน</h1>
+<p class="meta">เส้นทาง thesis · ต่อจาก <a href="t0000-bayes-boxes.html">T0 กล่องสองใบ</a> · ~25 นาที · Trotta (2008) §2.2-2.3 สมการ (5)-(10) ·
+แผนที่ทั้งเส้นทางอยู่ใน <a href="../reference/thesis-roadmap.html">ชีทแผนที่ paper</a></p>
+
+<h2>⓪ ใครเป็นคนบอกว่า ± 0.001</h2>
+
+<p>Laplace ใน T0 ถามเรื่องมวลดาวเสาร์ ทุกวันนี้คำถามใหญ่ขึ้นเป็น "เอกภพทำจากอะไร" ดาวเทียม Planck วัดแสงที่หลงเหลือจากเอกภพยุคแรก แล้วรายงานว่า
+ความหนาแน่นของสสารมืดคือ $\Omega_c h^2 = 0.120 \pm 0.001$ และของสสารธรรมดาคือ $\Omega_b h^2 = 0.0224 \pm 0.0001$
+ตอนนี้อ่าน $\Omega_c h^2$ กับ $\Omega_b h^2$ เป็นชื่อของตัวเลขสองตัวไปก่อน ความหมายเต็มอยู่ในช่วงฟิสิกส์จักรวาลวิทยาของแผน
+สิ่งที่ควรสังเกตตอนนี้คือเครื่องหมาย $\pm$ ซึ่งเป็นความกว้างของ posterior แบบที่บทนี้จะคำนวณ
+งานนี้เหมาะกับ Bayes เป็นพิเศษ เพราะเรามีเอกภพให้วัดแค่หนึ่งเดียว ย้อนไปทดลองซ้ำไม่ได้
+การตีความความน่าจะเป็นเป็น "ความถี่เมื่อทำซ้ำหลายครั้ง" จึงใช้ยาก แต่การตีความเป็น "ระดับความเชื่อ" ใช้ได้เสมอ
+<span class="src">Planck Collaboration, <em>Planck 2018 results. VI</em>, A&amp;A 641 (2020) A6 · arXiv:1807.06209</span></p>
+
+<p>โปรแกรมที่ใช้หาตัวเลขแบบนั้นในงานวิจัยทุกวันนี้ เช่น Cobaya ในเปเปอร์ที่อาจารย์ให้มา ทำสิ่งเดียวกับที่ Laplace ทำ
+คือเอาความเชื่อเดิมคูณกับข้อมูล ต่างกันแค่ทำกับพารามิเตอร์หลายตัวพร้อมกัน บทนี้คือแกนกลางนั้นในรูปที่เล็กที่สุด
+มีพารามิเตอร์ตัวเดียวและคำนวณด้วยมือได้ทุกขั้น ปลายทางของเส้นทางนี้คือแบรัน Cobaya หา posterior ของโมเดลตัวเองได้</p>
+
+<p>ก่อนอ่านต่อ ลองทายดูข้อหนึ่ง</p>
+
+<div class="quiz" data-warmup data-answer="2">
+  <h3>ทายก่อน (ไม่นับคะแนน) · Alice เชื่อว่าค่า θ อยู่ราว ๆ 0 คลาดได้ ±3 แล้วไปวัดด้วยเครื่องที่คลาดได้ ±1 วัดได้ 10 ตอนนี้เธอควรเชื่อว่า θ อยู่ราว ๆ เท่าไร</h3>
+  <div class="choices">
+    <button>0 เพราะเชื่อแบบนี้มาตั้งแต่แรก</button>
+    <button>5 ครึ่งทางระหว่างความเชื่อกับผลวัด</button>
+    <button>9 ใกล้ผลวัด แต่ยังไม่ถึง</button>
+    <button>10 เชื่อผลวัดอย่างเดียว</button>
+  </div>
+  <p class="fb">คำตอบคือ 9 ทายผิดก็ไม่เป็นไร ส่วน ① ถึง ② จะให้แบเห็นเองว่าทำไมไม่ใช่ 5 และไม่ใช่ 10</p>
+</div>
+
+<h2>① จากกล่องสองใบ สู่กล่องนับไม่ถ้วน</h2>
+
+<p>ใน T0 สิ่งที่ไม่รู้คือกล่องลับเป็น A หรือ B ในฟิสิกส์ สิ่งที่ไม่รู้คือ<strong>ตัวเลขหนึ่งตัว</strong> เช่นมวลของดาวเสาร์
+หรือปริมาณสสารมืด เปเปอร์เรียกตัวเลขนี้ว่า $\theta$ (theta) ลองคิดว่าทุกค่าที่ $\theta$ เป็นได้คือกล่องหนึ่งใบ
+$\theta = 8$ เป็นกล่องหนึ่ง $\theta = 9$ เป็นอีกกล่องหนึ่ง และมีกล่องแบบนี้นับไม่ถ้วน วิธีหาคำตอบยังเหมือน T0 ทุกอย่าง</p>
+
+<ol>
+<li><strong>prior</strong> — ก่อนวัด เชื่อว่าแต่ละกล่องน่าจะเป็นแค่ไหน แทนที่จะเป็นถุงกล่อง 10 ใบ ตอนนี้เป็นเส้นโค้งรูประฆัง
+ยอดอยู่ที่ค่าที่เชื่อที่สุด ความกว้างบอกว่าไม่แน่ใจแค่ไหน</li>
+<li><strong>likelihood</strong> — ถ้ากล่องลับคือ $\theta$ นี้จริง โอกาสที่เครื่องจะอ่านได้ 10 เป็นเท่าไร
+เครื่องที่คลาด ±1 ถ้าค่าจริงคือ 9.5 ก็อ่านได้ 10 ง่าย ๆ แต่ถ้าค่าจริงคือ 3 แทบเป็นไปไม่ได้ เส้นนี้จึงเป็นระฆังที่ยอดอยู่ที่ 10</li>
+<li><strong>คูณทีละกล่อง แล้วหารด้วยผลรวม</strong> — เหมือนนับรอบที่ได้แดงในแต่ละกล่องแล้วหารด้วยแดงทั้งหมด ได้ posterior</li>
+</ol>
+
+<p>ระฆังข้างล่างตั้งไว้เป็นโจทย์ของ Alice เส้นน้ำเงินคือ prior เส้นประแดงคือ likelihood เส้นเขียวคือ posterior
+ติ๊ก "แสดงเป็นกล่อง" แล้วจะเห็นแท่งสีเขียว ซึ่งคำนวณแบบ T0 ทีละกล่องที่ $\theta = -6, -5, \dots, 16$
+แท่งพวกนี้ทับเส้นเขียวพอดี แปลว่าเส้นเขียวก็คือ T0 ที่มีกล่องถี่ขึ้นเรื่อย ๆ นั่นเอง</p>
+
+<div class="bayes-bell" data-mu="0" data-sw="3" data-m="10" data-s="1" data-n="1" data-hide="n"></div>
+
+<p><strong>ลองเล่นสี่อย่างนี้</strong> แล้วสังเกตว่าเส้นเขียวไปอยู่ตรงไหน</p>
+<ol>
+<li>ลด "เครื่องคลาดได้" ให้เหลือ 0.5 เส้นเขียวเข้าใกล้ผลวัด เพราะเครื่องแม่นมาก</li>
+<li>คืนเครื่องเป็น 1 แล้วลด "prior คลาดได้" ให้เหลือ 0.5 เส้นเขียวเข้าใกล้ 0 เพราะ Alice มั่นใจมากตั้งแต่แรก</li>
+<li>ตั้งสองความคลาดให้เท่ากัน เส้นเขียวอยู่ครึ่งทางพอดี ซึ่งเป็นกรณีเดียวที่คำตอบ 5 ในข้อทายถูก</li>
+<li>สังเกตความกว้าง เส้นเขียว<strong>แคบกว่าทั้งสองเส้นเสมอ</strong> ไม่ว่าจะตั้งค่าอะไร</li>
+</ol>
+
+<h2>② สองกฎที่เพิ่งเห็น</h2>
+
+<p>ข้อสังเกตทั้งสี่ข้อเขียนเป็นกฎได้สองข้อ ก่อนอื่นต้องมีคำหนึ่งคำ ถ้าระฆังคลาดได้ $\pm w$ ให้เรียก $1/w^2$ ว่า
+<strong>precision</strong> (ความแม่น) ระฆังยิ่งแคบ precision ยิ่งสูง เช่น prior ของ Alice คลาด ±3 จึงมี precision $1/9$
+ส่วนเครื่องคลาด ±1 มี precision $1/1 = 1$ ตัวเลขชุดนี้แสดงอยู่ใต้ระฆังข้างบนแล้ว</p>
+
+<p>เพื่อให้ตรงกับ Trotta จะเขียนความคลาดของ prior ว่า $\Sigma$ (ซิกมาตัวใหญ่) ความคลาดของเครื่องว่า $\sigma$ (ตัวเล็ก)
+และของ posterior ว่า $\tau$ (tau) จุดกลางของ prior คือ $\mu$ ผลวัดคือ $m$ และจุดกลางของ posterior คือ $\bar\mu$ (อ่านว่า มิวบาร์)
+กำลังสองของความคลาด เช่น $\Sigma^2$ คือความแปรปรวน (variance) ที่แบรู้จักจากสถิติ</p>
+
+<div class="key">
+  <p><strong>กฎข้อ 1 · precision บวกกัน</strong></p>
+  <div class="eq" data-eqno="1">$$ \frac{1}{\tau^2} = \frac{1}{\Sigma^2} + \frac{1}{\sigma^2} $$</div>
+  <p><strong>กฎข้อ 2 · จุดกลางใหม่คือค่าเฉลี่ยถ่วงน้ำหนัก โดยใช้ precision เป็นน้ำหนัก</strong></p>
+  <p>แบบเดียวกับเกรดเฉลี่ยที่ใช้หน่วยกิตเป็นน้ำหนัก เอาค่าแต่ละตัวคูณน้ำหนักของมัน บวกกัน แล้วหารด้วยน้ำหนักรวม</p>
+  <div class="eq" data-eqno="2">$$ \bar\mu = \frac{\mu \cdot \frac{1}{\Sigma^2} + m \cdot \frac{1}{\sigma^2}}{\frac{1}{\tau^2}} $$</div>
+  <p>อ่านเป็นคำพูดได้ว่า จุดกลางใหม่ = (จุดกลาง prior × precision ของ prior + ผลวัด × precision ของข้อมูล) ÷ precision รวม</p>
+  <p style="margin-bottom:0">กฎข้อ 1 อธิบายว่าทำไมเส้นเขียวแคบกว่าทุกเส้น precision รวมมากกว่าแต่ละตัว ความคลาดจึงน้อยกว่าแต่ละตัว
+  กฎข้อ 2 อธิบายว่าทำไมเส้นเขียวถูกดึงไปทางที่แม่นกว่า ใครมี precision มากก็มีน้ำหนักมาก</p>
+</div>
+
+<p>ลองใช้กับโจทย์ของ Alice precision รวมคือ $\tfrac19 + 1 = \tfrac{10}{9}$ จึงได้ $\tau^2 = 0.9$
+คลาดได้ราว $\pm 0.95$ ส่วนจุดกลางคือ $\dfrac{0 \cdot \frac19 + 10 \cdot 1}{10/9} = 9$
+ตรงกับระฆังและตรงกับคำตอบของข้อทาย ผลวัดมีน้ำหนัก 1 ส่วน prior มีน้ำหนักแค่ $\tfrac19$ ผลวัดจึงดึงไปได้เกือบหมด</p>
+
+<details>
+<summary><strong>ส่วนเสริม · สองกฎนี้มาจากไหน</strong> (เติมกำลังสอง · ไม่มีข้อฝึกโดยตั้งใจ)</summary>
+
+<p>ระฆังของ prior คือ $e^{-(\theta-\mu)^2/2\Sigma^2}$ และของ likelihood คือ $e^{-(\theta-m)^2/2\sigma^2}$ (Trotta สมการ 7)
+ผลคูณของ exponential คือ exponential ของผลบวก ถ้าคูณ $-2\ln$ เข้าไปจะเหลือพหุนามกำลังสองของ $\theta$
+(ค่าคงตัวที่ไม่มี $\theta$ ตัดทิ้งได้ เพราะมันถูกหารออกไปตอน normalize)</p>
+
+<div class="eq">$$ -2\ln\big[\text{likelihood}\times\text{prior}\big] = \frac{(\theta - \mu)^2}{\Sigma^2} + \frac{(\theta - m)^2}{\sigma^2} + \text{const} $$</div>
+
+<p>posterior ที่เป็นระฆังจุดกลาง $\bar\mu$ ความคลาด $\tau$ ให้ $(\theta - \bar\mu)^2/\tau^2$
+เทียบสัมประสิทธิ์ของ $\theta^2$ ได้กฎข้อ 1 และเทียบสัมประสิทธิ์ของ $\theta$ ได้กฎข้อ 2
+Trotta เขียนผลเดียวกันอีกรูปหนึ่ง (สมการ 9-10) โดยคูณเศษและส่วนด้วย $\sigma^2$
+จนเหลือแต่อัตราส่วน $(\sigma/\Sigma)^2$ ซึ่งบอกว่าเครื่องหยาบกว่า prior กี่เท่า</p>
+
+<div class="eq">$$ \bar\mu = \frac{m + (\sigma/\Sigma)^2\,\mu}{1 + (\sigma/\Sigma)^2} \qquad \tau^2 = \frac{\sigma^2}{1 + (\sigma/\Sigma)^2} $$</div>
+</details>
+
+<h2>③ Alice กับ Bob · ข้อมูลมากพอ ทุกคนเห็นตรงกัน</h2>
+
+<p>ตัวอย่างของ Trotta มีนักวิทยาศาสตร์สองคน Alice เชื่อว่า $\theta$ ราว ๆ 0 แบบไม่ค่อยแน่ใจ (±3)
+ส่วน Bob เชื่อว่าราว ๆ 20 และมั่นใจมาก (±1) ค่าจริงซ่อนอยู่ ทั้งคู่ใช้เครื่องเดียวกันซึ่งคลาด ±1 วัดซ้ำไปเรื่อย ๆ
+กดวัดดูว่าต้องวัดกี่ครั้ง สองคนถึงจะห่างกันไม่ถึง 0.5</p>
+
+<div class="bayes-duel" data-truth="10"></div>
+
+<p>ที่เป็นแบบนี้เพราะการวัด $N$ ครั้งแล้วเอาค่าเฉลี่ย เท่ากับการวัดครั้งเดียวด้วยเครื่องที่แม่นขึ้น
+precision ของข้อมูลจึงโตตามจำนวนครั้ง (Trotta เขียนไว้ใต้สมการ 10)</p>
+
+<p>precision ของข้อมูล $N$ ครั้ง คือ</p>
+<div class="eq" data-eqno="3">$$ \frac{N}{\sigma^2} $$</div>
+
+<p>แล้วใช้กฎสองข้อเดิม โดยให้ $m$ เป็นค่าเฉลี่ยของข้อมูล precision ของ prior คงที่ แต่ของข้อมูลโตไม่หยุด
+สุดท้ายข้อมูลจึงกลบ prior จนหมด ซึ่ง Trotta ใช้ข้อนี้แย้งว่าการเลือก prior ไม่ได้ทำให้วิทยาศาสตร์ลำเอียง (รูปที่ 2(d))
+แต่ก็เตือนไว้ด้วยว่าหลายปัญหาในจักรวาลวิทยามีข้อมูลยังไม่มากพอจะไปถึงจุดนั้น
+ระฆังข้างล่างเหมือนของ ① แต่เพิ่มแถบ "วัดกี่ครั้ง" ให้ลองลากเอง</p>
+
+<div class="bayes-bell" data-mu="0" data-sw="3" data-m="10" data-s="1" data-n="1"></div>
+
+<div class="warn">
+  <strong>สัญกรณ์ในเปเปอร์</strong> — Trotta เขียน prior ว่า $p(\theta)$ เขียน likelihood ว่า $\mathcal L(\theta)$
+  และเขียนสมการของ T0 ว่า $p(\theta\,|\,d) = \mathcal L(\theta)\,p(\theta)/p(d)$ (สมการ 5) โดย $d$ คือข้อมูล
+  ส่วน Cobaya เขียน prior ว่า $\pi(\theta)$ และ posterior ว่า $\mathcal P(\theta)$
+  <br><strong>ยังไม่แตะโดยตั้งใจ</strong> — prior แบบแบนราบ, Jeffreys prior และการเปลี่ยนตัวแปร (Trotta สมการ 11) ไว้ T2
+</div>
+
+<p class="src">ตรวจด้วย <code>sympy</code>: เติมกำลังสองจริงได้กฎ (1)(2) · posterior ที่ normalize ด้วยอินทิเกรลจริงตรงกับระฆัง ·
+กฎ (1)(2) เท่ากับ Trotta (9)(10) · ข้อมูล $N$ ตัวรวมเป็น precision $N/\sigma^2$ · ทุกคำตอบข้างล่าง —
+<code>scripts/verify/t0001_bayes_gauss.py</code> · <code>scripts/verify/t0001_answers.py</code></p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ทุกข้อใช้แค่กฎสองข้อใน ② และ (3) ทำทีละขั้นตามที่บอก · จำไว้ว่า precision = 1 ÷ ความแปรปรวน
+(ระฆังแคบ precision มาก) และ "น้ำหนัก" ในกฎข้อ 2 ก็คือ precision · ตอบเป็นตัวเลข เศษส่วนพิมพ์แบบ <code>4/5</code> ได้ ·
+ถ้าอยากเช็กคำตอบด้วยตา ลากระฆังข้างบนไปที่ค่าเดียวกันได้</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · Alice ชุดใหม่</h3>
+  <p class="hint">prior ของ Alice ราว ๆ $\mu = 0$ คลาด $\Sigma = 2$ (คือ $\Sigma^2 = 4$) · วัดครั้งเดียวได้ $m = 5$ ด้วยเครื่องที่คลาด $\sigma = 1$</p>
+  <ol class="steps">
+    <li data-answer="1/4" data-alt="0.25|.25">
+      <p><strong>ขั้น 1</strong> — precision ของ prior $1/\Sigma^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/4$ · ถ้าได้ $1/2$ แปลว่าลืมยกกำลังสอง</p>
+    </li>
+    <li data-answer="5/4" data-alt="1.25">
+      <p><strong>ขั้น 2</strong> — precision ของ posterior (กฎข้อ 1)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac14 + 1 = \tfrac54$</p>
+    </li>
+    <li data-answer="4/5" data-alt="0.8|.8">
+      <p><strong>ขั้น 3</strong> — ความแปรปรวนของ posterior $\tau^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">กลับเศษส่วน $\tfrac54 \to \tfrac45$ · น้อยกว่าทั้ง 4 และ 1 · ถ้าได้ 5 แปลว่าบวกความแปรปรวนแทนการบวก precision</p>
+    </li>
+    <li data-answer="5">
+      <p><strong>ขั้น 4</strong> — ตัวเศษของกฎข้อ 2: $\mu \cdot \frac{1}{\Sigma^2} + m \cdot \frac{1}{\sigma^2}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$0 \cdot \tfrac14 + 5 \cdot 1 = 5$</p>
+    </li>
+    <li data-answer="4">
+      <p><strong>ขั้น 5</strong> — จุดกลางของ posterior $\bar\mu$ (ตัวเศษหารด้วยขั้น 2)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5 \div \tfrac54 = 4$ · ไม่ใช่ครึ่งทาง 2.5 เพราะผลวัดแม่นกว่า prior</p>
+    </li>
+  </ol>
+  <p class="fb">precision บวกกัน แล้วจุดกลางคือค่าเฉลี่ยถ่วงด้วย precision</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · Bob กับผลวัดเดียวกัน</h3>
+  <p class="hint">prior ของ Bob ราว ๆ $\mu = 10$ คลาด $\Sigma = 1$ · ผลวัดเดียวกับข้อ 1: $m = 5$ เครื่องคลาด $\sigma = 1$</p>
+  <ol class="steps">
+    <li data-answer="1">
+      <p><strong>ขั้น 1</strong> — precision ของ prior ของ Bob $1/\Sigma^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/1^2 = 1$</p>
+    </li>
+    <li data-answer="1">
+      <p><strong>ขั้น 2</strong> — precision ของข้อมูล $1/\sigma^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/1^2 = 1$</p>
+    </li>
+    <li data-answer="2">
+      <p><strong>ขั้น 3</strong> — precision ของ posterior = ขั้น 1 + ขั้น 2 (ยังไม่ต้องกลับเศษส่วน)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + 1 = 2$ · ถ้าได้ $1/2$ นั่นคือความแปรปรวน $\tau^2$ ซึ่งเป็นส่วนกลับของ precision</p>
+    </li>
+    <li data-answer="15">
+      <p><strong>ขั้น 4</strong> — ตัวเศษของกฎข้อ 2: 10 × (ขั้น 1) + 5 × (ขั้น 2)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$10 \cdot 1 + 5 \cdot 1 = 15$</p>
+    </li>
+    <li data-answer="15/2" data-alt="7.5">
+      <p><strong>ขั้น 5</strong> — $\bar\mu$ = ขั้น 4 ÷ ขั้น 3</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$15 / 2 = 7.5$ · precision เท่ากัน จึงได้ครึ่งทางพอดี · Alice ได้ 4 สองคนยังห่างกัน 3.5</p>
+    </li>
+  </ol>
+  <p class="fb">ข้อมูลครั้งเดียวยังไม่พอให้สองคนเห็นตรงกัน</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · Bob วัด 99 ครั้ง</h3>
+  <p class="hint">prior ของ Bob เดิม $\mu = 10$, $\Sigma = 1$ · วัด $N = 99$ ครั้ง เครื่องคลาด $\sigma = 1$ ค่าเฉลี่ยของข้อมูล $m = 5$</p>
+  <ol class="steps">
+    <li data-answer="99">
+      <p><strong>ขั้น 1</strong> — precision ของข้อมูลทั้งชุด (สมการ 3)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$99/1 = 99$ · ถ้าได้ 1 แปลว่าลืมคูณจำนวนครั้ง</p>
+    </li>
+    <li data-answer="100">
+      <p><strong>ขั้น 2</strong> — precision ของ posterior</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1 + 99 = 100$</p>
+    </li>
+    <li data-answer="10">
+      <p><strong>ขั้น 3</strong> — จุดกลาง prior × precision ของ prior: 10 × 1</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$10 \times 1 = 10$</p>
+    </li>
+    <li data-answer="495">
+      <p><strong>ขั้น 4</strong> — ค่าเฉลี่ยของข้อมูล × precision ของข้อมูล (จากขั้น 1)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5 \times 99 = 495$ · ข้อมูล 99 ครั้งจึงมีน้ำหนัก 99 เท่าของการวัดครั้งเดียว</p>
+    </li>
+    <li data-answer="505">
+      <p><strong>ขั้น 5</strong> — ตัวเศษของกฎข้อ 2 = ขั้น 3 + ขั้น 4</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$10 + 495 = 505$</p>
+    </li>
+    <li data-answer="101/20" data-alt="5.05">
+      <p><strong>ขั้น 6</strong> — $\bar\mu$ = ขั้น 5 ÷ ขั้น 2 (ตอบทศนิยมได้)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$505 / 100 = 5.05$ · Alice ได้ราว 4.99 จากระยะห่าง 3.5 เหลือไม่ถึง 0.07</p>
+    </li>
+  </ol>
+  <p class="fb">precision ของข้อมูลโตตามจำนวนครั้ง ส่วนของ prior เท่าเดิม ข้อมูลจึงชนะ</p>
+</div>
+
+<div class="quiz" data-answer="0">
+  <h3>ข้อ 4 · ถ้าเครื่องวัดหยาบมาก (σ ใหญ่มาก) posterior จะอยู่ใกล้อะไร</h3>
+  <div class="choices">
+    <button>จุดกลางของ prior</button>
+    <button>ค่าที่เครื่องวัดได้</button>
+    <button>ครึ่งทางของทั้งสองค่า</button>
+    <button>ศูนย์ ไม่ว่าตั้งค่าอะไร</button>
+  </div>
+  <p class="fb">σ ใหญ่ ⇒ precision ของข้อมูล $1/\sigma^2$ เกือบศูนย์ ⇒ น้ำหนักแทบทั้งหมดอยู่ที่ prior · ลองลาก "เครื่องคลาดได้" ไปที่ 6 ในระฆังดู</p>
+</div>
+
+<h2>อ่านต่อ</h2>
+<p>อ่าน Trotta หน้า 76-78 (§2.2-2.3) ได้แล้ว ยกเว้นสมการ (11) ซึ่งเป็นเรื่องของ T2
+<span class="src">R. Trotta, <em>Bayes in the sky</em>, Contemp. Phys. 49 (2008) 71 · doi:10.1080/00107510802066753</span></p>
+
+<div class="ask">
+  ตรงไหนไม่ชัด <strong>ถามได้เลย</strong> · เสร็จแล้วกด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา
+  <div class="nav">
+    <a href="t0000-bayes-boxes.html">← T0 กล่องสองใบ</a>
+    <a href="t0002-prior.html">ถัดไป → T2 prior ที่ไม่รู้อะไรเลย</a>
+    <a href="../reference/thesis-roadmap.html">🗺️ แผนที่ paper ทั้งสอง</a>
+  </div>
+</div>
+
+</body>
+</html>

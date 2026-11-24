@@ -259,3 +259,55 @@ mtable.bmat {
 
 /* ตารางรายการสั้น ๆ ที่ต้องอ่านเทียบตัวอักษร (เช่น ไล่วิธีจับคู่ "1a · 2b · cd") */
 table.mono td { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: .85rem; white-space: nowrap; }
+
+/* ── bayes.js — เกมกล่องลับ + ตาราง 100 รอบ (เส้น thesis) ───────────── */
+.bayes-game, .bayes-grid { background: var(--panel); border: 1px solid var(--rule);
+  border-radius: 8px; padding: 1rem; display: flex; flex-direction: column; gap: .7rem; }
+.bayes-game p, .bayes-grid p { margin: 0; }
+.ball { display: inline-block; width: 14px; height: 14px; border-radius: 50%;
+  border: 1.5px solid var(--ink-soft); box-sizing: border-box; flex: none; }
+.ball.red { background: #d62728; border-color: #8f1517; }
+.ball.white { background: #fff; }
+.ball.gone { opacity: .12; }
+.bg-boxes { display: flex; gap: .8rem; }
+.bg-box { flex: 1; border: 2px dashed var(--rule); border-radius: 8px; padding: .5rem;
+  text-align: center; display: flex; flex-direction: column; gap: .3rem; align-items: center; }
+.bg-boxes.reveal-A .bg-box-A, .bg-boxes.reveal-B .bg-box-B { border: 2px solid var(--accent); }
+.bg-dots { display: flex; flex-wrap: wrap; gap: 3px; justify-content: center; max-width: 90px; }
+.bg-drawn { display: flex; flex-wrap: wrap; gap: 4px; min-height: 18px; }
+.bg-drawn .ball { width: 18px; height: 18px; }
+.bg-btns { display: flex; flex-wrap: wrap; gap: .5rem; }
+.bayes-game button, .bayes-grid button { font: inherit; padding: .35rem .8rem; border-radius: 6px;
+  border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
+.bayes-game button:disabled { opacity: .45; cursor: default; }
+.bg-draw { border-color: var(--accent) !important; }
+.bg-meter { display: flex; height: 26px; border-radius: 6px; overflow: hidden; font-size: .85rem;
+  line-height: 26px; color: #fff; margin-top: .4rem; }
+.bg-meter[hidden] { display: none; }
+.bg-mA { background: #3b6fb6; text-align: left; padding-left: .4rem; white-space: nowrap; overflow: hidden; }
+.bg-mB { background: #c8692a; text-align: right; padding-right: .4rem; white-space: nowrap; overflow: hidden; }
+.bg-toggle { font-size: .9rem; color: var(--ink-soft); }
+.bg-result { font-weight: 600; }
+.bg-score { color: var(--ink-soft); font-size: .9rem; }
+.bgr-ctrls { display: flex; flex-direction: column; gap: .3rem; }
+.bgr-slider { display: grid; grid-template-columns: 8.5rem 1fr 3.2rem; align-items: center; gap: .5rem; font-size: .92rem; }
+.bgr-slider input { width: 100%; }
+.bgr-field { display: flex; gap: .8rem; flex-wrap: wrap; }
+.bgr-group { flex: 1 1 140px; border-radius: 6px; padding: .4rem; }
+.bgr-A { background: rgba(59,111,182,.15); } .bgr-B { background: rgba(200,105,42,.15); }
+.bgr-label { font-size: .85rem; color: var(--ink-soft); margin-bottom: .25rem; }
+.bgr-dots { display: grid; grid-template-columns: repeat(10, 14px); gap: 3px; }
+.bgr-out { font-size: .95rem; }
+.bgr-answer { font-weight: 600; color: var(--accent); }
+@media print { .bayes-game { display: none; } }
+.bayes-bell, .bayes-duel, .bayes-stretch, .bayes-mountain { background: var(--panel); border: 1px solid var(--rule);
+  border-radius: 8px; padding: 1rem; display: flex; flex-direction: column; gap: .6rem; }
+.bayes-bell p, .bayes-duel p, .bayes-stretch p, .bayes-mountain p { margin: 0; }
+.bayes-duel button, .bayes-stretch button { font: inherit; padding: .35rem .8rem; border-radius: 6px;
+  border: 1px solid var(--rule); background: var(--paper); color: var(--ink); cursor: pointer; }
+.bb-canvas { display: block; max-width: 100%; }
+.bb-legend { font-size: .85rem; color: var(--ink-soft); }
+.bb-key { display: inline-block; width: 22px; vertical-align: middle; }
+
+/* ข้อความยกจาก paper (ภาษาอังกฤษตามต้นฉบับ) */
+blockquote { margin: 1rem 0; padding: .4rem 0 .4rem 1rem; border-left: 3px solid currentColor; opacity: .85; font-style: italic; }
