@@ -135,7 +135,7 @@ $\frac12\sigma_3$ มี eigenvalue แค่สองค่าคือ $+\frac
 
 <div class="quiz" data-steps>
   <h3>ข้อ 1 · กำลังสองของ $\sigma_2$ &nbsp;<span class="hint">(สมการ (1))</span></h3>
-  <p class="hint">ช่องบนซ้ายของ $\sigma_2\sigma_2$ = (แถวบนของ $\sigma_2$) คูณ (หลักซ้ายของ $\sigma_2$)</p>
+  <p class="hint">ใช้: $\;\sigma_2 = \begin{pmatrix}0&-i\\i&0\end{pmatrix}$ · ช่องบนซ้ายของ $\sigma_2\sigma_2$ = (แถวบนของ $\sigma_2$) คูณ (หลักซ้ายของ $\sigma_2$) ช่องต่อช่องแล้วบวก</p>
   <ol class="steps">
     <li data-answer="-i" data-alt="-1i|-1*i">
       <p><strong>ขั้น 1</strong> — แถวบนของ $\sigma_2$ คือ $(0,\ ?)$ · ช่องที่สองคืออะไร</p>
@@ -158,6 +158,7 @@ $\frac12\sigma_3$ มี eigenvalue แค่สองค่าคือ $+\frac
 
 <div class="quiz" data-steps>
   <h3>ข้อ 2 · สลับลำดับแล้วติดลบ &nbsp;<span class="hint">(ตาราง ②)</span></h3>
+  <p class="hint">ใช้: $\;\sigma_1 = \begin{pmatrix}0&1\\1&0\end{pmatrix}\quad \sigma_2 = \begin{pmatrix}0&-i\\i&0\end{pmatrix}$</p>
   <ol class="steps">
     <li data-answer="i" data-alt="1i|+i|1*i">
       <p><strong>ขั้น 1</strong> — ช่องบนซ้ายของ $\sigma_1\sigma_2$ = แถวบนของ $\sigma_1$ $(0, 1)$ คูณหลักซ้ายของ $\sigma_2$ $(0, i)$</p>
@@ -180,6 +181,7 @@ $\frac12\sigma_3$ มี eigenvalue แค่สองค่าคือ $+\frac
 
 <div class="quiz" data-steps>
   <h3>ข้อ 3 · ค่า spin ที่วัดได้ &nbsp;<span class="hint">(ข้อ ④)</span></h3>
+  <p class="hint">ใช้: การหมุนรอบแกน $z$ คือ $e^{\,i\theta\sigma_3/2}$ · spin = ตัวที่ยืนคูณ $\theta$ ในเลขชี้กำลัง · $\sigma_3 = \begin{pmatrix}1&0\\0&-1\end{pmatrix}$</p>
   <ol class="steps">
     <li data-answer="1/2" data-alt="0.5">
       <p><strong>ขั้น 1</strong> — ในสมการ (2′) ตัวที่ยืนคูณ $\theta$ คือ $c\,\sigma_3$ · $c$ เท่ากับเท่าไร</p>
@@ -202,7 +204,7 @@ $\frac12\sigma_3$ มี eigenvalue แค่สองค่าคือ $+\frac
 
 <div class="quiz" data-steps>
   <h3>ข้อ 4 · หมุนรอบแกน $z$ &nbsp;<span class="hint">(สมการ (2))</span></h3>
-  <p class="hint">ดูช่องบนซ้าย $e^{i\theta/2}$</p>
+  <p class="hint">ใช้: spinor $\;U(\theta) = \begin{pmatrix} e^{i\theta/2} & 0 \\ 0 & e^{-i\theta/2}\end{pmatrix}$<br>ลูกศร $\;R(\theta) = \begin{pmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{pmatrix}$<br>$e^{i\varphi} = \cos\varphi + i\sin\varphi$</p>
   <ol class="steps">
     <li data-answer="i" data-alt="1i|+i|1*i">
       <p><strong>ขั้น 1</strong> — ที่ $\theta = \pi$ (ครึ่งรอบ): $e^{i\pi/2}$</p>
@@ -225,6 +227,7 @@ $\frac12\sigma_3$ มี eigenvalue แค่สองค่าคือ $+\frac
 
 <div class="quiz" data-steps>
   <h3>ข้อ 5 · กี่รอบถึงกลับที่เดิม &nbsp;<span class="hint">(ตาราง ③)</span></h3>
+  <p class="hint">ใช้: ช่องบนซ้ายของ spinor คือ $e^{i\theta/2}$ · $e^{i\varphi} = 1$ ครั้งแรก (หลัง $0$) เมื่อ $\varphi = 2\pi$ · หนึ่งรอบ $= 2\pi$</p>
   <ol class="steps">
     <li data-answer="4" data-alt="4.0">
       <p><strong>ขั้น 1</strong> — $e^{i\theta/2} = 1$ ครั้งแรกเมื่อ $\theta/2 = 2\pi$ · $\theta$ เท่ากับกี่ $\pi$ (ตอบตัวเลขหน้า $\pi$)</p>
@@ -242,6 +245,7 @@ $\frac12\sigma_3$ มี eigenvalue แค่สองค่าคือ $+\frac
 
 <div class="quiz" data-steps>
   <h3>ข้อ 6 · แกนเอียง &nbsp;<span class="hint">(สมการ (3) · $\theta = 2\pi$)</span></h3>
+  <p class="hint">ใช้: $\;e^{\,i\theta\,\vec n\cdot\vec\sigma/2} = \cos\tfrac{\theta}{2}\;1 + i\sin\tfrac{\theta}{2}\;\vec n\cdot\vec\sigma\;$ ใช้ได้เมื่อ $(\vec n\cdot\vec\sigma)^2 = n_1^2 + n_2^2 + n_3^2 = 1$ · ในข้อนี้ $\theta = 2\pi$</p>
   <ol class="steps">
     <li data-answer="1" data-alt="1.0">
       <p><strong>ขั้น 1</strong> — แกน $\vec n = (0.6,\ 0,\ 0.8)$ · คำนวณ $n_1^2 + n_2^2 + n_3^2$ (= $(\vec n\cdot\vec\sigma)^2$)</p>
