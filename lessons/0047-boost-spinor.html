@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>บทที่ 32 · วิ่งแล้วยืด</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>บทที่ 32 · วิ่งแล้วยืด</h1>
+<p class="meta">บทเรียน · ~25 นาที · ช่วง D · boost คืออะไร ทำอะไรกับ spinor และทำไม Dirac ต้องใช้สี่ช่อง</p>
+
+<h2>① คำถามของบทนี้</h2>
+<p>
+บทที่ 31 หมุน spinor แล้วได้ $-1$ ที่ $2\pi$ แต่สัมพัทธภาพมีการแปลงอีกแบบที่การหมุนไม่ครอบคลุม คือการมองจากคนที่<strong>วิ่ง</strong>ด้วยความเร็วคงที่
+ตำราเรียกการแปลงนี้ว่า <strong>boost</strong> การหมุนกับ boost รวมกันคือ Lorentz transformation ทั้งหมด (Tong หน้า 82: หมุนสามแบบ boost สามแบบ)
+บทนี้ถามว่า boost ทำอะไรกับคอลัมน์สองช่อง คำตอบจะบอกว่าทำไมสมการ Dirac ใช้คอลัมน์<strong>สี่</strong>ช่อง
+</p>
+
+<h2>② boost คือการหมุนที่ใช้ cosh กับ sinh</h2>
+<p>
+การหมุนในระนาบ $(x, y)$ ใช้ $\cos\theta$ กับ $\sin\theta$ และรักษาระยะ $x^2 + y^2$ ไว้ได้เพราะ $\cos^2\theta + \sin^2\theta = 1$
+ส่วน boost ในกาลอวกาศ 1+1 มิติ $(t, x)$ ต้องรักษา $t^2 - x^2$ ไว้ ซึ่งคือระยะกาลอวกาศที่บทที่ 3 บอกว่าทุกคนวัดได้เท่ากัน
+เครื่องหมายลบตรงกลางเปลี่ยน $\cos, \sin$ เป็น $\cosh, \sinh$ เพราะ $\cosh^2\chi - \sinh^2\chi = 1$:
+</p>
+<div class="eq" data-eqno="1">$$ \begin{array}{l} t' = \cosh\chi\;t - \sinh\chi\;x \\ x' = -\sinh\chi\;t + \cosh\chi\;x \end{array} $$</div>
+<div class="eq">$$ \cosh\chi = \frac{e^{\chi} + e^{-\chi}}{2} \qquad \sinh\chi = \frac{e^{\chi} - e^{-\chi}}{2} $$</div>
+<p>
+$\chi$ (อ่านว่า "ไค") เรียกว่า rapidity มันบอกว่าวิ่งเร็วแค่ไหน ความเร็วคือ $v = \tanh\chi = \sinh\chi / \cosh\chi$ (หน่วย $c = 1$)
+ตัวอย่าง $\chi = \ln 2$: $e^\chi = 2$ และ $e^{-\chi} = \frac12$ จึงได้ $\cosh\chi = \frac54$, $\sinh\chi = \frac34$ และ $v = \frac35$ คือ 60% ของความเร็วแสง
+</p>
+
+<h2>③ boost spinor: ไม่มี $i$ แล้วจึงยืด</h2>
+<p>
+ในบทที่ 31 การหมุน spinor รอบแกน $z$ คือ $e^{i\theta\sigma_3/2}$ ส่วน boost ตามแนว $z$ คือสูตรเดิมที่<strong>ตัด $i$ ทิ้ง</strong> (Tong สมการ (4.31)):
+</p>
+<div class="eq" data-eqno="2">$$ e^{\,\chi\sigma_3/2} = \begin{pmatrix} e^{\chi/2} & 0 \\ 0 & e^{-\chi/2} \end{pmatrix} $$</div>
+<p>
+ครึ่งยังอยู่เหมือนเดิม spinor รู้สึกแค่ $\frac{\chi}{2}$ ไม่ใช่ $\chi$ แต่เพราะไม่มี $i$ ช่องบนซ้ายจึงเป็นจำนวนจริงที่ไม่ใช่ $1$
+ตัวอย่าง $\chi = \ln 4$: ครึ่งของมันคือ $\ln 2$ ช่องบนได้ $e^{\ln 2} = 2$ ช่องล่างได้ $\frac12$
+คอลัมน์ $(1, 0)$ ที่ยาวกำลังสอง $1$ กลายเป็น $(2, 0)$ ที่ยาวกำลังสอง $4$
+</p>
+<p>
+เทียบกับการหมุน ช่องบนซ้าย $e^{i\theta/2}$ มีขนาด $|e^{i\theta/2}| = 1$ เสมอ คอลัมน์จึงหมุนอยู่บนวงกลมโดยไม่ยืด ตำราเรียกเมทริกซ์ที่ไม่ยืดว่า unitary
+<strong>การหมุนเป็น unitary แต่ boost ไม่ใช่</strong> (Tong หน้า 86)
+</p>
+
+<h2>④ สองครึ่งที่ boost ต่างกัน ⇒ ต้องใช้สี่ช่อง</h2>
+<p>
+มีคอลัมน์สองช่องได้<strong>สองแบบ</strong>ที่หมุนเหมือนกันทุกประการ แต่ตอบสนองต่อ boost ตรงข้ามกัน Tong เรียกว่า $u_+$ กับ $u_-$ (สมการ (4.60)–(4.61)):
+</p>
+<table class="mono">
+<tr><th>การแปลง</th><th>$u_+$</th><th>$u_-$</th></tr>
+<tr><td>หมุนรอบ $z$</td><td>$e^{+i\theta\sigma_3/2}$</td><td>$e^{+i\theta\sigma_3/2}$ (เหมือนกัน)</td></tr>
+<tr><td>boost ตาม $z$</td><td>$e^{+\chi\sigma_3/2}$</td><td>$e^{-\chi\sigma_3/2}$ (ตรงข้าม)</td></tr>
+</table>
+<p>
+ถ้าดูแค่การหมุน (แบบบทที่ 31) จะแยกสองแบบนี้ไม่ออก ต้อง boost ถึงจะเห็นว่าต่างกัน ทั้งสองแบบชื่อ <strong>Weyl spinor</strong>
+อิเล็กตรอนมีมวล และ Tong แสดงว่ามวลผูก $u_+$ กับ $u_-$ เข้าด้วยกัน (หน้า 92) อิเล็กตรอนจึงต้องมีทั้งสองครึ่ง
+วางซ้อนกันได้คอลัมน์ $\psi = (u_+,\ u_-)$ ที่มี $2 + 2 = 4$ ช่อง นี่คือ <strong>Dirac spinor</strong> (Tong สมการ (4.59)) และคือเหตุผลที่สมการ Dirac ใช้เมทริกซ์ $4\times 4$
+</p>
+
+<div class="warn">
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — สมการ Dirac เอง (บทถัดไป) · มวลผูกสองครึ่งเข้าด้วยกันยังไง (Lagrangian (4.62)) ·
+  ชื่อ left-handed / right-handed ของสองครึ่ง (Tong หน้า 93) · boost ทิศอื่นที่ไม่ใช่แกน $z$ (ใช้สูตรแบบข้อ ⑤ ของบทที่ 31 แต่ $\cosh, \sinh$)
+</div>
+
+<p class="src">ตรวจด้วย sympy: สมการ (1) รักษา $t^2 - x^2$ และ $\det = 1$ · $\cosh\ln 2 = \frac54$, $\sinh\ln 2 = \frac34$, $\tanh\ln 2 = \frac35$ · สมการ (2) ·
+$\chi = \ln 4$ ให้ $2$ กับ $\frac12$ · boost ไม่ unitary แต่การหมุน unitary · $u_\pm$ ตรงข้ามกัน — <code>scripts/verify/0048_boost_spinor.py</code> (17/17) ·
+อ้างอิง: Tong, <em>Quantum Field Theory</em> §4.1.1 สมการ (4.26), (4.31) · §4.4 สมการ (4.58)–(4.61) และหน้า 92 · Peskin &amp; Schroeder §3.2</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ตอบเป็นตัวเลข · เศษส่วนพิมพ์แบบ <code>3/5</code> ได้ · ทุกข้อเป็น 1+1 มิติ หรือตามแกน $z$ · มีคำถามให้พิมพ์ในแชต</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · rapidity เป็นความเร็ว &nbsp;<span class="hint">(ข้อ ② · $\chi = \ln 2$)</span></h3>
+  <p class="hint">ใช้: $e^{\ln 2} = 2$, $e^{-\ln 2} = \frac12$<br>$\cosh\chi = \frac{e^{\chi} + e^{-\chi}}{2}$ · $\sinh\chi = \frac{e^{\chi} - e^{-\chi}}{2}$ · $v = \sinh\chi / \cosh\chi$</p>
+  <ol class="steps">
+    <li data-answer="5/4" data-alt="1.25">
+      <p><strong>ขั้น 1</strong> — $\cosh\chi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{2 + \frac12}{2} = \frac54$</p>
+    </li>
+    <li data-answer="3/4" data-alt="0.75">
+      <p><strong>ขั้น 2</strong> — $\sinh\chi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{2 - \frac12}{2} = \frac34$</p>
+    </li>
+    <li data-answer="3/5" data-alt="0.6">
+      <p><strong>ขั้น 3</strong> — ความเร็ว $v$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{3/4}{5/4} = \frac35$ — 60% ของความเร็วแสง</p>
+    </li>
+  </ol>
+  <p class="fb">$\chi$ ใหญ่ ⇒ $v$ เข้าใกล้ $1$ แต่ไม่ถึง</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · boost เหตุการณ์หนึ่ง &nbsp;<span class="hint">(สมการ (1) · $\chi = \ln 2$)</span></h3>
+  <p class="hint">ใช้: $t' = \cosh\chi\; t - \sinh\chi\; x$ · $x' = -\sinh\chi\; t + \cosh\chi\; x$<br>$\cosh\chi = \frac54$ · $\sinh\chi = \frac34$ · เหตุการณ์ $(t, x) = (1, 0)$</p>
+  <ol class="steps">
+    <li data-answer="5/4" data-alt="1.25">
+      <p><strong>ขั้น 1</strong> — $t'$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac54 \cdot 1 - \frac34 \cdot 0 = \frac54$</p>
+    </li>
+    <li data-answer="-3/4" data-alt="-0.75">
+      <p><strong>ขั้น 2</strong> — $x'$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$-\frac34 \cdot 1 + \frac54 \cdot 0 = -\frac34$</p>
+    </li>
+    <li data-answer="1" data-alt="1.0">
+      <p><strong>ขั้น 3</strong> — $t'^2 - x'^2$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{25}{16} - \frac{9}{16} = 1 = t^2 - x^2$ ⇒ boost รักษาระยะกาลอวกาศ</p>
+    </li>
+  </ol>
+  <p class="fb">เวลาและตำแหน่งเปลี่ยนทั้งคู่ แต่ $t^2 - x^2$ ไม่เปลี่ยน</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · spinor รู้สึกครึ่งเดียว &nbsp;<span class="hint">(สมการ (2) · $\chi = \ln 4$)</span></h3>
+  <p class="hint">ใช้: $\;e^{\chi\sigma_3/2} = \begin{pmatrix} e^{\chi/2} & 0 \\ 0 & e^{-\chi/2}\end{pmatrix}$<br>$\ln 4 = 2\ln 2$ · $e^{\ln 2} = 2$</p>
+  <ol class="steps">
+    <li data-answer="1" data-alt="1.0">
+      <p><strong>ขั้น 1</strong> — เลขชี้กำลังของช่องบนซ้าย $\frac{\chi}{2}$ เท่ากับกี่ $\ln 2$ (ตอบตัวเลขหน้า $\ln 2$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{2\ln 2}{2} = \ln 2$ ⇒ $1$</p>
+    </li>
+    <li data-answer="2" data-alt="2.0">
+      <p><strong>ขั้น 2</strong> — ค่าของช่องบนซ้าย</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$e^{\ln 2} = 2$</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5">
+      <p><strong>ขั้น 3</strong> — ค่าของช่องล่างขวา $e^{-\chi/2}$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$e^{-\ln 2} = \frac12$</p>
+    </li>
+  </ol>
+  <p class="fb">หมุนหรือ boost spinor ก็รู้สึกครึ่งเดียวเหมือนกัน</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · ยืดหรือไม่ยืด &nbsp;<span class="hint">(ข้อ ③)</span></h3>
+  <p class="hint">ใช้: ความยาวกำลังสองของ $(a, 0)$ คือ $|a|^2$ · boost $\chi = \ln 4$ พา $(1, 0) \to (2, 0)$ · หมุน $\theta$ พา $(1, 0) \to (e^{i\theta/2}, 0)$ · $|e^{i\varphi}| = 1$</p>
+  <ol class="steps">
+    <li data-answer="4" data-alt="4.0">
+      <p><strong>ขั้น 1</strong> — ความยาวกำลังสองหลัง boost</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2^2 = 4$ — ยืดจาก $1$</p>
+    </li>
+    <li data-answer="1" data-alt="1.0">
+      <p><strong>ขั้น 2</strong> — ความยาวกำลังสองหลังหมุน</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$|e^{i\theta/2}|^2 = 1$ — ไม่ยืด</p>
+    </li>
+  </ol>
+  <p class="fb">หมุนเป็น unitary · boost ไม่ใช่</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · สองครึ่ง &nbsp;<span class="hint">(ตาราง ④ · $\chi = \ln 4$)</span></h3>
+  <p class="hint">ใช้: boost $\;u_+ \to e^{+\chi\sigma_3/2}u_+\;$ และ $\;u_- \to e^{-\chi\sigma_3/2}u_-$<br>หมุน: ทั้งสองครึ่ง $\to e^{i\theta\sigma_3/2}$ · $\sigma_3 = \begin{pmatrix}1&0\\0&-1\end{pmatrix}$ · $e^{\ln 2} = 2$</p>
+  <ol class="steps">
+    <li data-answer="2" data-alt="2.0">
+      <p><strong>ขั้น 1</strong> — boost $u_+ = (1, 0)$ · ช่องบนกลายเป็นเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$e^{+\chi/2} = e^{\ln 2} = 2$</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5">
+      <p><strong>ขั้น 2</strong> — boost $u_- = (1, 0)$ · ช่องบนกลายเป็นเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$e^{-\chi/2} = \frac12$ — ตรงข้ามกับ $u_+$</p>
+    </li>
+    <li data-answer="-1" data-alt="-1.0">
+      <p><strong>ขั้น 3</strong> — หมุน $\theta = 2\pi$ · ช่องบนของ $u_-$ คูณด้วยเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$e^{i\pi} = -1$ — เท่ากับ $u_+$ ทุกประการ</p>
+    </li>
+  </ol>
+  <p class="fb">หมุนแยกไม่ออก · boost แยกออก ⇒ เป็นของสองชนิด</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · นับช่องของ Dirac &nbsp;<span class="hint">(ข้อ ④)</span></h3>
+  <p class="hint">ใช้: $\psi = (u_+,\ u_-)$ · $u_+$ และ $u_-$ มีช่องละ $2$ · ทุกช่องเป็นจำนวนเชิงซ้อน · จำนวนเชิงซ้อนหนึ่งตัว = จำนวนจริงสองตัว</p>
+  <ol class="steps">
+    <li data-answer="4" data-alt="สี่|4.0">
+      <p><strong>ขั้น 1</strong> — $\psi$ มีกี่ช่อง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 + 2 = 4$ ⇒ เมทริกซ์ของ Dirac เป็น $4 \times 4$</p>
+    </li>
+    <li data-answer="8" data-alt="แปด|8.0">
+      <p><strong>ขั้น 2</strong> — ต้องใช้จำนวนจริงกี่ตัวถึงบอกค่า $\psi$ ที่จุดหนึ่งได้ครบ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$4 \times 2 = 8$ (Tong หน้า 92)</p>
+    </li>
+  </ol>
+  <p class="fb">อิเล็กตรอนมีมวล ⇒ ต้องมีทั้งสองครึ่ง ⇒ สี่ช่อง</p>
+</div>
+
+<div class="ask">
+  กด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา · ถ้าอ่านแล้วยังไม่เห็นภาพตรงไหน ไฮไลต์มาได้เลย
+  <div class="nav">
+    <a href="./0046-spin-half.html">← บทที่ 31 · หมุนครบรอบแล้วติดลบ</a>
+    <a href="./0004-indices.html">บทที่ 3 · ดัชนีและระยะกาลอวกาศ</a>
+  </div>
+</div>
+
+</body>
+</html>
