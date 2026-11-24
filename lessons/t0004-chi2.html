@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thesis บทที่ 4 · นับความผิดของเส้น</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+<script defer src="../assets/bayes.js"></script>
+</head>
+<body>
+
+<h1>Thesis บทที่ 4 · นับความผิดของเส้น</h1>
+<p class="meta">เส้นทาง thesis · ต่อจาก <a href="t0003-marginal.html">T3 ภูเขาสองลูกกับเงาของมัน</a> · ~25 นาที · Trotta (2008) สมการ (45) และ §5.3.1-5.3.2 · Cobaya สมการ (2) ·
+แผนที่ทั้งเส้นทางอยู่ใน <a href="../reference/thesis-roadmap.html">ชีทแผนที่ paper</a></p>
+
+<h2>⓪ ใครลากเส้นได้ดีกว่า</h2>
+
+<p>ในบทที่ 29 แบเจอกฎของ Hubble แล้ว คือยิ่งกาแล็กซีอยู่ไกล ก็ยิ่งถอยห่างจากเราเร็ว และความเร็วเป็นสัดส่วนกับระยะทาง</p>
+
+<div class="eq">$$ v = H_0\, d $$</div>
+
+<p>$d$ คือระยะทางถึงกาแล็กซี (หน่วย Mpc) $v$ คือความเร็วที่มันถอยห่าง (หน่วย km/s) และ $H_0$ คือความชันของเส้น ซึ่งเป็นพารามิเตอร์ที่อยากรู้
+<span class="src">Dodelson สมการ (1.1) · ดู <a href="0041-expanding-universe.html">บทที่ 29</a> สมการ (3)</span></p>
+
+<p>สมมติว่ากล้องวัดกาแล็กซีสี่แห่งได้ตามรูปข้างล่าง (ตัวเลขสมมติ) แต่ละจุดมีแถบบอกว่าคลาดได้เท่าไร ($\pm\sigma$)
+สามจุดแรกวัดแม่น คลาดแค่ ±100 ส่วนจุดที่สี่อยู่ไกลมาก จึงวัดได้หยาบ คลาดถึง ±600
+นักศึกษาสองคนลากเส้นผ่านจุดกำเนิดคนละเส้น เส้น A ใช้ $H_0 = 70$ และเส้น B ใช้ $H_0 = 90$</p>
+
+<!--FIG:warmup--><figure><svg role="img" aria-label="ข้อมูลสี่จุดพร้อมแถบความคลาด สามจุดแรกแถบสั้น จุดที่สี่แถบยาวมาก เส้น A ผ่านใกล้สามจุดแรก เส้น B ผ่านจุดที่สี่พอดีแต่ห่างสามจุดแรก" viewBox="0 0 400 300" xmlns="http://www.w3.org/2000/svg" style="max-width:400px"><line x1="58" y1="12" x2="58" y2="252" stroke="currentColor" opacity=".5"/><line x1="58" y1="252" x2="385" y2="252" stroke="currentColor" opacity=".5"/><text x="58.0" y="268" font-size="13" text-anchor="middle" font-family="Sarabun, sans-serif" fill="currentColor">0</text><text x="130.7" y="268" font-size="13" text-anchor="middle" font-family="Sarabun, sans-serif" fill="currentColor">10</text><text x="203.3" y="268" font-size="13" text-anchor="middle" font-family="Sarabun, sans-serif" fill="currentColor">20</text><text x="276.0" y="268" font-size="13" text-anchor="middle" font-family="Sarabun, sans-serif" fill="currentColor">30</text><text x="348.7" y="268" font-size="13" text-anchor="middle" font-family="Sarabun, sans-serif" fill="currentColor">40</text><text x="53" y="256.0" font-size="13" text-anchor="end" font-family="Sarabun, sans-serif" fill="currentColor">0</text><text x="53" y="201.5" font-size="13" text-anchor="end" font-family="Sarabun, sans-serif" fill="currentColor">1000</text><text x="53" y="146.9" font-size="13" text-anchor="end" font-family="Sarabun, sans-serif" fill="currentColor">2000</text><text x="53" y="92.4" font-size="13" text-anchor="end" font-family="Sarabun, sans-serif" fill="currentColor">3000</text><text x="53" y="37.8" font-size="13" text-anchor="end" font-family="Sarabun, sans-serif" fill="currentColor">4000</text><text x="221.5" y="292" font-size="14" text-anchor="middle" font-family="Sarabun, sans-serif" fill="currentColor">ระยะทาง d (Mpc)</text><text transform="translate(14,132.0) rotate(-90)" font-size="14" text-anchor="middle" font-family="Sarabun, sans-serif" fill="currentColor">ความเร็ว v (km/s)</text><line x1="58.0" y1="252.0" x2="385.0" y2="80.2" stroke="#3b6fb6" stroke-width="3"/><text x="239.7" y="178.5" font-size="16" font-weight="600" text-anchor="start" fill="#3b6fb6" font-family="Sarabun, sans-serif">เส้น A</text><line x1="58.0" y1="252.0" x2="385.0" y2="31.1" stroke="#c8692a" stroke-width="3" stroke-dasharray="7 5"/><text x="159.7" y="173.3" font-size="16" font-weight="600" text-anchor="end" fill="#c8692a" font-family="Sarabun, sans-serif">เส้น B</text><path d="M130.7,219.3 V208.4 M125.7,219.3 h10 M125.7,208.4 h10" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="130.7" cy="213.8" r="4.5" fill="currentColor"/><path d="M203.3,175.6 V164.7 M198.3,175.6 h10 M198.3,164.7 h10" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="203.3" cy="170.2" r="4.5" fill="currentColor"/><path d="M276.0,142.9 V132.0 M271.0,142.9 h10 M271.0,132.0 h10" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="276.0" cy="137.5" r="4.5" fill="currentColor"/><path d="M348.7,88.4 V22.9 M343.7,88.4 h10 M343.7,22.9 h10" stroke="currentColor" stroke-width="1.6" fill="none"/><circle cx="348.7" cy="55.6" r="4.5" fill="currentColor"/></svg></figure><!--/FIG:warmup-->
+
+<div class="quiz" data-warmup data-answer="0">
+  <h3>ทายก่อน (ไม่นับคะแนน) · เส้นไหนเข้ากับข้อมูลดีกว่า</h3>
+  <div class="choices">
+    <button>เส้น A เพราะผ่านใกล้จุดที่วัดแม่น</button>
+    <button>เส้น B เพราะผ่านจุดที่สี่ได้พอดี</button>
+    <button>ดีเท่ากัน เพราะต่างก็พลาดบางจุด</button>
+    <button>บอกไม่ได้ ถ้าไม่รู้ค่า $H_0$ จริง</button>
+  </div>
+  <p class="fb">เส้น A พลาดจุดที่สี่ไป 800 ก็จริง แต่จุดนั้นคลาดได้ ±600 อยู่แล้ว จึงพลาดแค่ราว 1.3 เท่าของแถบ
+  ส่วนเส้น B พลาดจุดที่สามไป 600 ทั้งที่จุดนั้นคลาดได้แค่ ±100 คือพลาดถึง 6 เท่าของแถบ
+  สิ่งที่ควรนับจึงไม่ใช่ว่าเส้นพลาดไปกี่ km/s แต่เป็นว่า<strong>พลาดไปกี่เท่าของแถบความคลาด</strong></p>
+</div>
+
+<h2>① ห่างกี่ σ</h2>
+
+<p>จากข้อทาย วิธีวัดว่าเส้นพลาดจุดหนึ่งไปมากแค่ไหน คือเอาระยะที่พลาดหารด้วยแถบความคลาดของจุดนั้น
+ถ้าจุดที่ $i$ วัดได้ $v_i \pm \sigma_i$ และทฤษฎีทายว่าควรได้ $t_i = H_0 d_i$ ตัวเลขที่ต้องการคือ</p>
+
+<div class="eq">$$ \frac{v_i - t_i}{\sigma_i} $$</div>
+
+<p>ตัวเลขนี้คือ "ห่างกี่ σ" ของจุดที่ $i$ ใช้ข้อมูลลบทฤษฎีเสมอ ถ้าจุดข้อมูลอยู่<em>เหนือ</em>เส้นจะได้ค่าบวก ถ้าอยู่<em>ใต้</em>เส้นจะได้ค่าลบ
+ตารางนี้คำนวณให้ทั้งสองเส้น</p>
+
+<table>
+<thead><tr><th>$d$</th><th>$v \pm \sigma$</th><th>เส้น A ทาย</th><th>A ห่างกี่ σ</th><th>เส้น B ทาย</th><th>B ห่างกี่ σ</th></tr></thead>
+<tbody>
+<tr><td>10</td><td>700 ± 100</td><td>700</td><td>0</td><td>900</td><td>−2</td></tr>
+<tr><td>20</td><td>1500 ± 100</td><td>1400</td><td>1</td><td>1800</td><td>−3</td></tr>
+<tr><td>30</td><td>2100 ± 100</td><td>2100</td><td>0</td><td>2700</td><td>−6</td></tr>
+<tr><td>40</td><td>3600 ± 600</td><td>2800</td><td>1.33</td><td>3600</td><td>0</td></tr>
+</tbody>
+</table>
+
+<p>ต่อไปต้องรวมทั้งสี่จุดเป็นตัวเลขเดียว ถ้าบวกกันตรง ๆ ค่าบวกกับค่าลบจะหักล้างกัน เส้นที่พลาดขึ้นจุดหนึ่งและพลาดลงอีกจุดหนึ่งจะดูเหมือนไม่พลาดเลย
+จึงยกกำลังสองก่อนแล้วค่อยบวก ผลรวมนี้ชื่อ <strong>chi-square</strong> เขียนว่า $\chi^2$ (อ่านว่า ไค-สแควร์)</p>
+
+<div class="key">
+  <div class="eq" data-eqno="1">$$ \chi^2 = \sum_i \left(\frac{v_i - t_i}{\sigma_i}\right)^2 $$</div>
+  <p style="margin-bottom:0">$\chi^2$ คือคะแนนความผิดของทฤษฎี ยิ่งน้อยยิ่งเข้ากับข้อมูล
+  เส้น A ได้ $0 + 1 + 0 + (4/3)^2 = 25/9 \approx 2.78$ ส่วนเส้น B ได้ $4 + 9 + 36 + 0 = 49$
+  ทุกจุดถูกนับด้วยหน่วยเดียวกันคือ "จำนวน σ" จุดที่วัดหยาบจึงมีเสียงน้อยไปเอง</p>
+</div>
+
+<h2>② χ² คือ likelihood ที่เขียนอีกแบบ</h2>
+
+<p>สูตร (1) ไม่ได้ถูกตั้งขึ้นมาลอย ๆ มันมาจาก likelihood ใน T1 ตรง ๆ ใน T1 ถ้าเครื่องวัดคลาดแบบระฆังขนาด $\sigma$
+likelihood ของจุดหนึ่งคือระฆังที่มีจุดกลางอยู่ที่ค่าที่ทฤษฎีทาย</p>
+
+<div class="eq">$$ \mathcal L_i \propto \exp\!\left[-\frac{(v_i - t_i)^2}{2\sigma_i^2}\right] \quad\Longrightarrow\quad -2\ln\mathcal L_i = \left(\frac{v_i - t_i}{\sigma_i}\right)^2 + \text{const} $$</div>
+
+<p>ค่าคงที่ไม่ขึ้นกับทฤษฎี จึงตัดทิ้งได้เวลาเทียบทฤษฎีสองแบบ ส่วนกรณีหลายจุดที่วัดแยกกันเป็นอิสระ
+โอกาสที่จะได้ข้อมูลทั้งชุดคือผลคูณของโอกาสแต่ละจุด เหมือนการหยิบลูกบอลหลายครั้งใน T0
+ผลคูณพอใส่ $\ln$ แล้วจะกลายเป็นผลบวก จึงได้ $-2\ln\mathcal L = \sum_i(\ldots)^2$ ซึ่งก็คือสมการ (1) ทั้งก้อน</p>
+
+<div class="key">
+  <div class="eq" data-eqno="2">$$ \chi^2 = -2\ln\mathcal L \qquad\Longleftrightarrow\qquad \mathcal L = e^{-\chi^2/2} $$</div>
+  <p style="margin-bottom:0">อ่านจากซ้ายไปขวาว่า $\chi^2$ น้อย ก็คือ likelihood มาก
+  และถ้าสองทฤษฎีมี $\chi^2$ ต่างกัน $\Delta\chi^2$ likelihood ของตัวที่แย่กว่าจะเป็น $e^{-\Delta\chi^2/2}$ เท่าของตัวที่ดีกว่า
+  เช่นเส้น B มี likelihood เป็น $e^{-(49 - 25/9)/2}$ เท่าของเส้น A ซึ่งเล็กจนแทบเป็นศูนย์</p>
+</div>
+
+<p>Trotta นิยามแบบนี้ทั้งสองทิศ หน้า 92 เขียนว่า "Defining $\chi^2 \equiv -2\ln\mathcal L$" และหน้า 86 เขียนว่า
+"Let us now define an effective $\chi^2$ through the likelihood as $\mathcal L(\theta) = \exp(-\chi^2/2)$"
+<span class="src">R. Trotta, <em>Bayes in the sky</em> หน้า 86 และ 92</span></p>
+
+<h2>③ เล่นก่อน · หมุนเส้นหา χ² ที่น้อยที่สุด</h2>
+
+<p>ของเล่นข้างล่างใช้ข้อมูลสี่จุดชุดเดิม ลากแถบเลื่อนเพื่อเปลี่ยน $H_0$ ซึ่งก็คือหมุนเส้นรอบจุดกำเนิด
+เส้นประแดงข้างจุดแต่ละจุดคือระยะที่เส้นพลาด และตารางใต้ภาพคำนวณสมการ (1) ให้ทีละจุด
+ภาพล่างวาด $\chi^2$ ของทุกค่า $H_0$ ไว้ทั้งเส้น (แกนนอนคือ $H_0$ แกนตั้งคือ $\chi^2$) จุดแดงคือ $H_0$ ที่เลือกอยู่</p>
+
+<div class="bayes-fit" data-x="10,20,30,40" data-y="700,1500,2100,3600" data-s="100,100,100,600" data-k="90" data-kmin="55" data-kmax="95"></div>
+
+<p><strong>ลองเล่นสามอย่างนี้</strong> อย่างแรก หา $H_0$ ที่ทำให้ $\chi^2$ น้อยที่สุด จะได้ 72 ซึ่งเป็นค่าที่ Dodelson ใช้ในบทที่ 29 พอดี (เพราะผมเลือกตัวเลขให้ออกมาแบบนั้น)
+อย่างที่สอง สังเกตว่าเส้น $\chi^2$ ในภาพล่างเป็นรูปพาราโบลา อย่างที่สาม เลื่อนไปทางขวาจนจุดแดงแตะเส้นประ $\Delta\chi^2 = 4$
+จะได้ $H_0$ ราว 77.3 ซึ่งห่างจาก 72 ไปราว 5.3</p>
+
+<h2>④ Δχ² = 4 คือห่างสอง σ</h2>
+
+<p>ทำไมต้องเป็นพาราโบลา คำตอบอยู่ใน T1 อีกแล้ว เมื่อมองเป็นฟังก์ชันของ $H_0$ likelihood ในของเล่นนี้เป็นระฆังพอดี
+สมมติว่าระฆังมียอดที่ $\hat H_0$ และกว้าง $\sigma_{H}$ เมื่อนำ $-2\ln$ ของระฆังมาเขียน จะได้พาราโบลาที่มีก้นอยู่ที่ยอดระฆัง</p>
+
+<div class="eq">$$ \chi^2(H_0) = \chi^2_{\min} + \left(\frac{H_0 - \hat H_0}{\sigma_H}\right)^2 $$</div>
+
+<p>ตัวที่บอกความไม่แน่นอนจึงไม่ใช่ตัว $\chi^2$ เอง แต่เป็นว่ามันสูงขึ้นจากก้นเท่าไร เรียกส่วนที่เพิ่มขึ้นนี้ว่า $\Delta\chi^2 = \chi^2 - \chi^2_{\min}$
+ถ้าขยับ $H_0$ ออกจากก้นไป $n$ เท่าของ $\sigma_H$ วงเล็บจะเท่ากับ $n$ และ $\Delta\chi^2$ จะเท่ากับ $n^2$</p>
+
+<div class="key">
+  <div class="eq" data-eqno="3">$$ \Delta\chi^2 = 1 \;\Leftrightarrow\; 1\sigma \qquad\qquad \Delta\chi^2 = 4 \;\Leftrightarrow\; 2\sigma $$</div>
+  <p style="margin-bottom:0">อ่านว่า $\chi^2$ สูงขึ้นจากก้น 1 คือห่างจากค่าที่ดีที่สุด 1σ และสูงขึ้น 4 คือห่าง 2σ · ใช้สำหรับพารามิเตอร์ตัวเดียวที่ likelihood เป็นระฆัง ในของเล่น $\sigma_H \approx 2.63$
+  จึงได้ $H_0 = 72 \pm 2.6$ ที่ 1σ และขอบของ 2σ อยู่ที่ $72 \pm 5.3$ ตรงกับที่ลองเลื่อนดูใน ③</p>
+</div>
+
+<p>Trotta เขียนกฎนี้ไว้ใน §5.3.2 หน้า 92-93 (คำว่า confidence interval เป็นศัพท์ฝั่ง frequentist ซึ่งจะเทียบกับฝั่ง Bayes ใน T8)</p>
+
+<blockquote>"a 95.4% (2σ) confidence interval for one parameter is delimited by the region where the $\chi^2 \equiv -2\log\mathcal L$
+increases by $\Delta\chi^2 = 4.00$ from its minimum value"</blockquote>
+
+<p>ประโยคถัดมาเตือนว่าค่า $\Delta\chi^2$ ขึ้นกับจำนวนพารามิเตอร์ที่หาพร้อมกันด้วย ตัวเลข 1 กับ 4 ข้างบนจึงใช้ได้เฉพาะกรณีพารามิเตอร์ตัวเดียว</p>
+
+<h2>⑤ ข้อมูลหลายชุด χ² บวกกัน</h2>
+
+<p>ในจักรวาลวิทยาจริง $H_0$ และพารามิเตอร์อื่นถูกวัดจากหลายการทดลอง เช่นแสงจาก CMB, ซูเปอร์โนวา (SN) และ gravitational lensing
+ถ้าการทดลองเหล่านี้เป็นอิสระต่อกัน เหตุผลเดียวกับใน ② ก็ใช้ได้ คือ likelihood คูณกัน แล้ว $\chi^2$ จึงบวกกัน
+Trotta เขียนไว้เป็นสมการ (45) หน้า 92</p>
+
+<div class="eq">$$ \chi^2_{\text{tot}} = \chi^2_{\text{CMB}} + \chi^2_{\text{SN}} + \chi^2_{\text{lens}} + \chi^2_{\text{LSS}} + \cdots \qquad \text{(Trotta 45)} $$</div>
+
+<p>LSS คือ large-scale structure หรือการกระจายตัวของกาแล็กซีในระดับใหญ่ ประโยคก่อนสมการขึ้นต้นว่า
+"When the observations are independent, the log-likelihoods for each observation simply add"
+และเชิงอรรถที่ 7 เตือนว่าถ้าตั้งใจศึกษาความสัมพันธ์ระหว่างข้อมูลสองชุด การบวกตรง ๆ จะใช้ไม่ได้
+Trotta ชี้ข้อดีไว้ว่า ข้อมูลแต่ละชุดมักบอกพารามิเตอร์บางทิศได้หยาบ แต่ทิศที่หยาบของแต่ละชุดไม่ตรงกัน เมื่อรวมกันจึงบอกค่าได้แคบกว่าชุดไหน ๆ
+แต่ก็เตือนอีกว่าห้ามรวมโดยไม่ดู เพราะถ้าข้อมูลสองชุดขัดกันเอง ผลรวมอาจไปเลือกบริเวณที่ไม่มีชุดไหนชอบเลย</p>
+
+<h2>⑥ อ่าน Cobaya · ทฤษฎี → เครื่องมือ → ข้อมูล</h2>
+
+<p>เปเปอร์ Cobaya เขียน likelihood แบบระฆังในรูปทั่วไปไว้ที่สมการ (2) หน้า 2</p>
+
+<div class="eq">$$ O_D \sim \mathcal N\big(\mathcal F_E(O_T),\, \Sigma_{E,T}\big) \qquad \text{(Cobaya 2)} $$</div>
+
+<p>อ่านว่า ข้อมูลที่วัดได้ $O_D$ ถูกสุ่มออกมาจากระฆัง $\mathcal N$ ที่มีจุดกลางอยู่ที่ $\mathcal F_E(O_T)$ และมีความกว้างตาม $\Sigma_{E,T}$
+แต่ละตัวในสมการตรงกับของในของเล่นแบบนี้</p>
+
+<table>
+<thead><tr><th>ในสมการ</th><th>ความหมาย</th><th>ในของเล่น</th></tr></thead>
+<tbody>
+<tr><td>$O_T$</td><td>observable ที่ทฤษฎี $T$ ทาย</td><td>$t_i = H_0 d_i$</td></tr>
+<tr><td>$\mathcal F_E$</td><td>สิ่งที่เครื่องมือ $E$ ทำกับสัญญาณก่อนเราจะเห็น</td><td>ไม่ทำอะไร ($\mathcal F_E(O) = O$)</td></tr>
+<tr><td>$\Sigma_{E,T}$</td><td>ความคลาด (covariance matrix)</td><td>$\sigma_i^2$ เรียงบนแนวทแยง</td></tr>
+<tr><td>$O_D$</td><td>ข้อมูลที่วัดได้จริง</td><td>$v_i$</td></tr>
+</tbody>
+</table>
+
+<p>ถ้า $\Sigma$ มีแต่แนวทแยง (ข้อมูลแต่ละจุดเป็นอิสระต่อกัน) $-2\ln$ ของสมการ (2) ก็คือสมการ (1) ของเรา
+เปเปอร์บอกต่อด้วยว่าการแยกส่วนทฤษฎีออกจากส่วนเครื่องมือช่วยประหยัดเวลา เพราะถ้าเปลี่ยนแค่พารามิเตอร์ของเครื่องมือ
+ไม่ต้องคำนวณคำทายของทฤษฎีใหม่ ซึ่งมักเป็นส่วนที่ช้าที่สุด
+<span class="src">R. Trotta, <em>Bayes in the sky</em> (2008) หน้า 86, 92-93 สมการ (45) และเชิงอรรถที่ 7 ·
+J. Torrado &amp; A. Lewis, <em>Cobaya</em>, arXiv:2005.05290 หน้า 2 สมการ (2)</span></p>
+
+<div class="warn">
+  <strong>ยังไม่แตะโดยตั้งใจ</strong> — covariance matrix ที่มีพจน์นอกแนวทแยง (ข้อมูลที่สัมพันธ์กัน) ·
+  $\Delta\chi^2$ ของพารามิเตอร์หลายตัวพร้อมกัน · สมการ (46)-(47) ของ Trotta ที่ถ่วงน้ำหนักข้อมูลแต่ละชุดด้วย hyperparameter ·
+  credible interval กับ confidence interval ต่างกันอย่างไร (T8)
+</div>
+
+<p class="src">ตรวจด้วย <code>sympy</code>: $-2\ln$ ของระฆังเหลือ (ห่างกี่ σ)² บวกค่าคงที่ที่ไม่ขึ้นกับทฤษฎี · ของเล่นมีก้นที่ $H_0 = 72$ พอดี $\chi^2_{\min} = 2.2$ ·
+$\chi^2$ เป็นพาราโบลาเป๊ะ ห่าง $n\sigma$ ได้ $\Delta\chi^2 = n^2$ · ตัวเลขในทุกข้อฝึก — <code>scripts/verify/t0004_chi2.py</code></p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<p class="meta">ข้อ 1-2 ใช้สมการ (1)-(2) · ข้อ 3 ใช้สมการ Trotta (45) · ข้อ 4 ใช้สมการ (3) · ข้อ 5-6 ให้เลือก ·
+"ห่างกี่ σ" คิดแบบข้อมูลลบทฤษฎีเสมอ · ตอบเป็นตัวเลข เศษส่วนพิมพ์แบบ <code>9/4</code> ได้</p>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · จุดเดียว</h3>
+  <p class="hint">วัดได้ $14 \pm 2$ ทฤษฎีหนึ่งทายว่าควรได้ $10$</p>
+  <ol class="steps">
+    <li data-answer="2">
+      <p><strong>ขั้น 1</strong> — ข้อมูลห่างจากคำทายกี่ σ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(14 - 10)/2 = 2$ · ถ้าได้ 4 แปลว่ายังไม่ได้หารด้วย σ</p>
+    </li>
+    <li data-answer="4">
+      <p><strong>ขั้น 2</strong> — $\chi^2$ ของทฤษฎีนี้</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2^2 = 4$</p>
+    </li>
+    <li data-answer="0.135" data-alt="0.14|0.1353|e^-2|e^(-2)|exp(-2)|1/e^2">
+      <p><strong>ขั้น 3</strong> — likelihood ของทฤษฎีนี้ เป็นกี่เท่าของ likelihood ของทฤษฎีที่ทายว่า $14$ พอดี</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (ทศนิยมได้)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ทฤษฎีที่ทาย 14 มี $\chi^2 = 0$ จึงต่างกัน $\Delta\chi^2 = 4$ และอัตราส่วนคือ $e^{-4/2} = e^{-2} \approx 0.135$ ·
+      ถ้าได้ $e^{-4} \approx 0.018$ แปลว่าลืมหารสองในสมการ (2)</p>
+    </li>
+  </ol>
+  <p class="fb">ห่าง 2σ ไม่ได้แปลว่าทฤษฎีผิด แค่ likelihood ลดลงเหลือราว 1 ใน 7</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · กาแล็กซีสามแห่ง</h3>
+  <p class="hint">ทฤษฎีคือ $v = H_0 d$ · ข้อมูลตามตาราง</p>
+  <table>
+  <thead><tr><th>$d$ (Mpc)</th><th>$v \pm \sigma$ (km/s)</th></tr></thead>
+  <tbody>
+  <tr><td>10</td><td>750 ± 50</td></tr>
+  <tr><td>20</td><td>1300 ± 100</td></tr>
+  <tr><td>30</td><td>2250 ± 150</td></tr>
+  </tbody>
+  </table>
+  <ol class="steps">
+    <li data-answer="1">
+      <p><strong>ขั้น 1</strong> — ถ้า $H_0 = 70$ กาแล็กซีแรกห่างจากเส้นกี่ σ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ทฤษฎีทาย $70 \times 10 = 700$ · $(750 - 700)/50 = 1$</p>
+    </li>
+    <li data-answer="-1">
+      <p><strong>ขั้น 2</strong> — ถ้า $H_0 = 70$ กาแล็กซีที่สองห่างจากเส้นกี่ σ</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ทฤษฎีทาย 1400 · $(1300 - 1400)/100 = -1$ · ติดลบเพราะจุดอยู่ใต้เส้น</p>
+    </li>
+    <li data-answer="3">
+      <p><strong>ขั้น 3</strong> — $\chi^2$ ของ $H_0 = 70$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">กาแล็กซีที่สาม $(2250 - 2100)/150 = 1$ · รวม $1^2 + (-1)^2 + 1^2 = 3$ ·
+      ถ้าได้ 1 แปลว่าบวกก่อนยกกำลังสอง ทำให้บวกกับลบหักล้างกัน</p>
+    </li>
+    <li data-answer="4">
+      <p><strong>ขั้น 4</strong> — $\chi^2$ ของ $H_0 = 75$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ทาย 750, 1500, 2250 · ห่าง $0, -2, 0$ σ · รวม $0 + 4 + 0 = 4$</p>
+    </li>
+    <li data-answer="70">
+      <p><strong>ขั้น 5</strong> — ระหว่าง 70 กับ 75 ค่า $H_0$ ไหนเข้ากับข้อมูลดีกว่า</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\chi^2$ ของ 70 น้อยกว่า ($3 < 4$) แม้ 75 จะผ่านสองจุดได้พอดี แต่พลาดจุดที่สองไปถึง 2σ</p>
+    </li>
+  </ol>
+  <p class="fb">เส้นที่ผ่านจุดได้พอดีหลายจุดไม่จำเป็นต้องดีที่สุด เพราะ $\chi^2$ ลงโทษการพลาดมากแบบกำลังสอง</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · รวมข้อมูลสองชุด (Trotta 45)</h3>
+  <p class="hint">ซูเปอร์โนวา (SN) กับ lensing วัด $H_0$ แยกกันเป็นอิสระ ได้ $\chi^2$ ของสามค่าที่ลองตามตาราง (ตัวเลขสมมติ)</p>
+  <table>
+  <thead><tr><th>$H_0$</th><th>66</th><th>70</th><th>74</th></tr></thead>
+  <tbody>
+  <tr><th>$\chi^2_{\text{SN}}$</th><td>2</td><td>5</td><td>10</td></tr>
+  <tr><th>$\chi^2_{\text{lens}}$</th><td>9</td><td>4</td><td>3</td></tr>
+  </tbody>
+  </table>
+  <ol class="steps">
+    <li data-answer="66">
+      <p><strong>ขั้น 1</strong> — ถ้าดูแค่ SN ค่า $H_0$ ไหนเข้ากับข้อมูลที่สุด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\chi^2_{\text{SN}}$ น้อยที่สุดคือ 2 ที่ $H_0 = 66$</p>
+    </li>
+    <li data-answer="74">
+      <p><strong>ขั้น 2</strong> — ถ้าดูแค่ lensing ค่า $H_0$ ไหนเข้ากับข้อมูลที่สุด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\chi^2_{\text{lens}}$ น้อยที่สุดคือ 3 ที่ $H_0 = 74$</p>
+    </li>
+    <li data-answer="9">
+      <p><strong>ขั้น 3</strong> — $\chi^2_{\text{tot}}$ ที่ $H_0 = 70$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5 + 4 = 9$ · ที่ 66 ได้ 11 และที่ 74 ได้ 13</p>
+    </li>
+    <li data-answer="70">
+      <p><strong>ขั้น 4</strong> — เมื่อใช้ข้อมูลทั้งสองชุดพร้อมกัน ค่า $H_0$ ไหนเข้ากับข้อมูลที่สุด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\chi^2_{\text{tot}} = 11, 9, 13$ · น้อยที่สุดที่ 70 ซึ่งไม่ใช่ค่าที่ชุดไหนชอบที่สุดเลย ·
+      ถ้าตอบ 66 หรือ 74 แปลว่าเลือกจากค่าต่ำสุดของชุดเดียว ไม่ได้บวกกันก่อน</p>
+    </li>
+  </ol>
+  <p class="fb">การรวมข้อมูลคือการบวก $\chi^2$ ทีละค่า $H_0$ ก่อน แล้วค่อยหาตัวต่ำสุด ไม่ใช่เอาคำตอบของแต่ละชุดมาเฉลี่ยกัน</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · อ่านความคลาดจาก Δχ² (สมการ 3)</h3>
+  <p class="hint">ข้อมูลชุดหนึ่งให้ $\chi^2$ ของ $H_0$ ห้าค่าตามตาราง และ likelihood เป็นระฆัง</p>
+  <table>
+  <thead><tr><th>$H_0$</th><th>66</th><th>68</th><th>70</th><th>72</th><th>74</th></tr></thead>
+  <tbody>
+  <tr><th>$\chi^2$</th><td>7</td><td>4</td><td>3</td><td>4</td><td>7</td></tr>
+  </tbody>
+  </table>
+  <ol class="steps">
+    <li data-answer="70">
+      <p><strong>ขั้น 1</strong> — ค่า $H_0$ ที่เข้ากับข้อมูลที่สุด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ก้นของพาราโบลาอยู่ที่ 70 ($\chi^2_{\min} = 3$)</p>
+    </li>
+    <li data-answer="2">
+      <p><strong>ขั้น 2</strong> — ที่ระดับ 1σ ค่า $H_0$ คลาดได้ ± เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\Delta\chi^2 = 1$ ที่ 68 และ 72 จึงได้ $70 \pm 2$ ·
+      ถ้าได้ 4 แปลว่าไปดูแถว $\chi^2 = 4$ ตรง ๆ แทนที่จะดูว่าสูงขึ้นจากก้นเท่าไร</p>
+    </li>
+    <li data-answer="66">
+      <p><strong>ขั้น 3</strong> — ช่วง 2σ เริ่มที่ $H_0$ เท่าไร (ขอบฝั่งค่าน้อย)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ต้องการ $\Delta\chi^2 = 4$ คือ $\chi^2 = 3 + 4 = 7$ ซึ่งเกิดที่ 66 และ 74 · ตรงกับ $70 - 2 \times 2 = 66$</p>
+    </li>
+  </ol>
+  <p class="fb">สิ่งที่บอกความคลาดคือ $\Delta\chi^2$ ไม่ใช่ $\chi^2$ เอง · ห่าง $n\sigma$ ได้ $\Delta\chi^2 = n^2$</p>
+</div>
+
+<div class="quiz" data-answer="1">
+  <h3>ข้อ 5 · ถ้ากล้องอ่านความเร็วเกินจริง 5% ทุกครั้ง ผลนี้อยู่ในส่วนไหนของ Cobaya สมการ (2)</h3>
+  <div class="choices">
+    <button>$O_T$ ค่าที่ทฤษฎีคำนวณออกมา</button>
+    <button>$\mathcal F_E$ ผลของเครื่องมือ</button>
+    <button>$\Sigma_{E,T}$ ขนาดของความคลาด</button>
+    <button>$\mathcal N$ รูปร่างของระฆัง</button>
+  </div>
+  <p class="fb">ทฤษฎีไม่ได้เปลี่ยน แต่สัญญาณผ่านเครื่องมือที่คูณ 1.05 เข้าไป จึงได้ $\mathcal F_E(O_T) = 1.05\,O_T$ ·
+  ไม่ใช่ $\Sigma$ เพราะการอ่านเกินแบบเดิมทุกครั้งทำให้จุดกลางเลื่อน ไม่ได้ทำให้ระฆังกว้างขึ้น ·
+  ถ้าไม่รู้ค่า 5% แน่นอน มันจะกลายเป็น nuisance parameter แบบพื้นหลังใน T3</p>
+</div>
+
+<div class="quiz" data-answer="2">
+  <h3>ข้อ 6 · ตาม Trotta (45) เมื่อไรจึงบวก χ² ของข้อมูลสองชุดได้ตรง ๆ</h3>
+  <div class="choices">
+    <button>เมื่อทั้งสองชุดมีจำนวนจุดเท่ากัน</button>
+    <button>เมื่อทั้งสองชุดชอบค่าพารามิเตอร์เดียวกัน</button>
+    <button>เมื่อทั้งสองชุดวัดแยกกันเป็นอิสระ</button>
+    <button>เมื่อทั้งสองชุดมีความคลาดเท่ากัน</button>
+  </div>
+  <p class="fb">"When the observations are independent" · เพราะ likelihood ของเหตุการณ์อิสระคูณกัน และ $-2\ln$ เปลี่ยนผลคูณเป็นผลบวก ·
+  ข้อ 3 เป็นตัวอย่างว่าสองชุดไม่จำเป็นต้องชอบค่าเดียวกัน ก็ยังบวกกันได้</p>
+</div>
+
+<h2>อ่านต่อ</h2>
+<p>ตอนนี้อ่าน Trotta §5.3.1 (หน้า 92 สมการ 45) ได้ทั้งหมด อ่านย่อหน้าแรกของ §5.3.2 ได้ และอ่านสมการ (2) ของ Cobaya ได้
+บทต่อไป (T5) จะเปลี่ยนจากการคำนวณ $\chi^2$ ทุกค่าบนตาราง ไปเป็นการสุ่มตัวอย่างจาก posterior ซึ่งเป็นสิ่งที่ Cobaya ทำจริง
+<span class="src">R. Trotta, <em>Bayes in the sky</em>, Contemp. Phys. 49 (2008) 71 · doi:10.1080/00107510802066753</span></p>
+
+<div class="ask">
+  ตรงไหนไม่ชัด <strong>ถามได้เลย</strong> · เสร็จแล้วกด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา
+  <div class="nav">
+    <a href="t0003-marginal.html">← T3 ภูเขาสองลูกกับเงาของมัน</a>
+    <a href="../reference/thesis-roadmap.html">🗺️ แผนที่ paper ทั้งสอง</a>
+  </div>
+</div>
+
+</body>
+</html>

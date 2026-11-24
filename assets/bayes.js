@@ -9,7 +9,7 @@
      <div class="bayes-grid" data-ra="0.3" data-rb="0.7" data-pb="0.5"></div>
      มีแถบเลื่อนปรับทั้งสามค่า (ทีละ 0.1 ⇒ ทุกจำนวนรอบเป็นจำนวนเต็มพอดี ไม่ต้องปัด)
 
-   ── ระฆัง Gaussian / Alice กับ Bob / ยืดแกน ── ดู comment ที่ bell() · duel() · stretch() · mountain() ข้างล่าง
+   ── ระฆัง Gaussian / Alice กับ Bob / ยืดแกน ── ดู comment ที่ bell() · duel() · stretch() · mountain() · fit() ข้างล่าง
 
    ⚠️ build_standalone.py ฝังไฟล์นี้ลงฉบับ build/ ให้เอง (ทุกสคริปต์ที่ชี้ไป ../assets/*.js) */
 (function () {
@@ -477,6 +477,104 @@
     draw();
   }
 
+  /* ---------- ลากเส้นผ่านจุด · χ² (T4) ----------
+     <div class="bayes-fit" data-x="10,20,30,40" data-y="700,1500,2100,3600" data-s="100,100,100,600"
+          data-k="90" data-kmin="50" data-kmax="100"></div>
+     ทฤษฎี: y = k·x (เส้นผ่านจุดกำเนิด) · ภาพบน = ข้อมูล ± σ กับเส้นทฤษฎี · ตาราง = ห่างกี่ σ ของแต่ละจุด
+     ภาพล่าง = χ²(k) ทั้งเส้น + จุดของ k ปัจจุบัน + เส้น Δχ² = 1 และ 4 */
+  function fit(root) {
+    const list = k => (root.dataset[k] || "").split(",").map(Number);
+    const xs = list("x"), ys = list("y"), ss = list("s");
+    const kmin = num(root, "kmin", 50), kmax = num(root, "kmax", 100);
+    let k = num(root, "k", (kmin + kmax) / 2);
+    const chi2 = kk => xs.reduce((a, x, i) => a + ((ys[i] - kk * x) / ss[i]) ** 2, 0);
+    // เส้นตรงผ่านจุดกำเนิด ⇒ χ² เป็นพาราโบลาใน k · จุดต่ำสุดหาได้ตรง ๆ
+    const Sxy = xs.reduce((a, x, i) => a + x * ys[i] / ss[i] ** 2, 0);
+    const Sxx = xs.reduce((a, x, i) => a + x * x / ss[i] ** 2, 0);
+    const kbest = Sxy / Sxx, cmin = chi2(kbest);
+    const xmax = Math.max(...xs) * 1.15;
+    const ymax = Math.max(...ys.map((y, i) => y + ss[i]), kmax * Math.max(...xs)) * 1.05;
+
+    const w = el("label", "bgr-slider");
+    const sl = el("input"); sl.type = "range"; sl.min = kmin; sl.max = kmax; sl.step = 0.5; sl.value = k;
+    const out = el("output");
+    sl.oninput = () => { k = parseFloat(sl.value); draw(); };
+    w.append(el("span", null, "ทฤษฎี: H₀ ="), sl, out);
+    const ctrls = el("div", "bgr-ctrls"); ctrls.append(w);
+    const top = canvasFor(root, 240), bot = canvasFor(root, 190);
+    const tab = el("table", "bf-table");
+    const res = el("div", "bgr-out");
+    root.append(ctrls, top.cv, tab, bot.cv, res);
+    const f1 = v => (Math.round(v * 10) / 10).toString();
+    const f2 = v => (Math.round(v * 100) / 100).toString();
+
+    function frame(ctx, W, H, L, B, x0, x1, y0, y1, xt, yt, xl, yl, ink) {
+      const X = v => L + (v - x0) / (x1 - x0) * (W - L - 8), Y = v => H - B - (v - y0) / (y1 - y0) * (H - B - 8);
+      ctx.strokeStyle = ink; ctx.fillStyle = ink; ctx.globalAlpha = .6; ctx.lineWidth = 1; ctx.font = "12px sans-serif";
+      ctx.beginPath(); ctx.moveTo(L, 4); ctx.lineTo(L, H - B); ctx.lineTo(W - 4, H - B); ctx.stroke();
+      ctx.textAlign = "center"; xt.forEach(t => ctx.fillText(String(t), X(t), H - B + 14));
+      ctx.textAlign = "right"; yt.forEach(t => ctx.fillText(String(t), L - 4, Y(t) + 4));
+      ctx.fillText(xl, W - 6, H - B - 6);
+      ctx.textAlign = "left"; ctx.fillText(yl, L + 6, 14);
+      ctx.globalAlpha = 1;
+      return { X, Y };
+    }
+    function draw() {
+      const ink = getComputedStyle(document.body).color || "#555";
+      out.textContent = String(k);
+      // ── ภาพบน: ข้อมูลกับเส้นทฤษฎี
+      let W = top.size(), H = 240, c = top.ctx; c.clearRect(0, 0, W, H);
+      const yt = []; for (let t = 0; t <= ymax; t += 1000) yt.push(t);
+      const xt = []; for (let t = 0; t <= xmax; t += 10) xt.push(t);
+      let { X, Y } = frame(c, W, H, 44, 20, 0, xmax, 0, ymax, xt, yt, "ระยะทาง d (Mpc)", "ความเร็ว v (km/s)", ink);
+      c.strokeStyle = COL.prior; c.lineWidth = 2.5;
+      c.beginPath(); c.moveTo(X(0), Y(0)); c.lineTo(X(xmax), Y(Math.min(k * xmax, ymax))); c.stroke();
+      xs.forEach((x, i) => {
+        c.strokeStyle = COL.like; c.setLineDash([3, 3]); c.lineWidth = 1.5;     // ระยะห่างจากเส้น
+        c.beginPath(); c.moveTo(X(x) + 6, Y(ys[i])); c.lineTo(X(x) + 6, Y(Math.min(k * x, ymax))); c.stroke(); c.setLineDash([]);
+        c.strokeStyle = ink; c.fillStyle = ink; c.lineWidth = 1.5;                 // จุดข้อมูล ± σ
+        c.beginPath(); c.moveTo(X(x), Y(ys[i] - ss[i])); c.lineTo(X(x), Y(ys[i] + ss[i]));
+        c.moveTo(X(x) - 5, Y(ys[i] - ss[i])); c.lineTo(X(x) + 5, Y(ys[i] - ss[i]));
+        c.moveTo(X(x) - 5, Y(ys[i] + ss[i])); c.lineTo(X(x) + 5, Y(ys[i] + ss[i])); c.stroke();
+        c.beginPath(); c.arc(X(x), Y(ys[i]), 4, 0, 2 * Math.PI); c.fill();
+      });
+      // ── ตาราง: ห่างกี่ σ ของแต่ละจุด
+      tab.textContent = "";
+      const hr = el("tr"); ["d", "v ± σ", "ทฤษฎี H₀·d", "ห่างกี่ σ", "(ห่าง)²"].forEach(t => hr.append(el("th", null, t)));
+      tab.append(hr);
+      xs.forEach((x, i) => {
+        const p = (ys[i] - k * x) / ss[i], tr = el("tr");
+        [x, ys[i] + " ± " + ss[i], f1(k * x), f2(p), f2(p * p)].forEach(t => tr.append(el("td", null, String(t))));
+        tab.append(tr);
+      });
+      const tr = el("tr"); tr.append(el("td", null, "")); tr.append(el("td", null, "")); tr.append(el("td", null, ""));
+      tr.append(el("th", null, "รวม = χ²")); tr.append(el("th", null, f2(chi2(k)))); tab.append(tr);
+      // ── ภาพล่าง: χ²(H₀)
+      W = bot.size(); H = 190; c = bot.ctx; c.clearRect(0, 0, W, H);
+      const cmax = cmin + 16;   // ซูมให้เห็นเส้น Δχ² = 1 กับ 4 ชัด · χ² ที่สูงกว่านี้จุดแดงจะติดขอบบน
+      const ct = []; const step = cmax > 30 ? 10 : 5; for (let t = 0; t <= cmax; t += step) ct.push(t);
+      const kt = []; for (let t = Math.ceil(kmin / 10) * 10; t <= kmax; t += 10) kt.push(t);
+      ({ X, Y } = frame(c, W, H, 44, 20, kmin, kmax, 0, cmax, kt, ct, "H₀", "χ²", ink));
+      c.save(); c.beginPath(); c.rect(44, 0, W, H - 20); c.clip();
+      c.strokeStyle = COL.post; c.lineWidth = 2.5; c.beginPath();
+      for (let i = 0; i <= 200; i++) { const kk = kmin + (kmax - kmin) * i / 200; i ? c.lineTo(X(kk), Y(chi2(kk))) : c.moveTo(X(kk), Y(chi2(kk))); }
+      c.stroke();
+      [[1, "Δχ² = 1"], [4, "Δχ² = 4"]].forEach(([d, t]) => {
+        c.strokeStyle = ink; c.globalAlpha = .55; c.setLineDash([5, 4]); c.lineWidth = 1;
+        c.beginPath(); c.moveTo(44, Y(cmin + d)); c.lineTo(W - 4, Y(cmin + d)); c.stroke(); c.setLineDash([]);
+        c.fillStyle = ink; c.textAlign = "left"; c.fillText(t, 50, Y(cmin + d) - 3); c.globalAlpha = 1;
+      });
+      c.restore();
+      const cy = chi2(k);
+      c.fillStyle = COL.like; c.beginPath(); c.arc(X(k), Y(Math.min(cy, cmax)), 5, 0, 2 * Math.PI); c.fill();
+      res.textContent = "";
+      res.append(el("p", null, "χ² ที่ H₀ = " + k + " คือ " + f2(cy) + " · ต่ำสุดที่เป็นไปได้คือ " + f2(cmin) + " ที่ H₀ = " + f1(kbest)));
+      res.append(el("p", "bgr-answer", "Δχ² = χ² − χ²ต่ำสุด = " + f2(cy - cmin)));
+    }
+    window.addEventListener("resize", draw);
+    draw();
+  }
+
   function init() {
     document.querySelectorAll(".bayes-game").forEach(game);
     document.querySelectorAll(".bayes-grid").forEach(grid);
@@ -484,6 +582,7 @@
     document.querySelectorAll(".bayes-duel").forEach(duel);
     document.querySelectorAll(".bayes-stretch").forEach(stretch);
     document.querySelectorAll(".bayes-mountain").forEach(mountain);
+    document.querySelectorAll(".bayes-fit").forEach(fit);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
