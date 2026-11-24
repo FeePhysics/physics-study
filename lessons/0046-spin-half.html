@@ -206,18 +206,28 @@ $\frac12\sigma_3$ มี eigenvalue แค่สองค่าคือ $+\frac
   <h3>ข้อ 4 · หมุนรอบแกน $z$ &nbsp;<span class="hint">(สมการ (2))</span></h3>
   <p class="hint">ใช้: spinor $\;U(\theta) = \begin{pmatrix} e^{i\theta/2} & 0 \\ 0 & e^{-i\theta/2}\end{pmatrix}$<br>ลูกศร $\;R(\theta) = \begin{pmatrix}\cos\theta & -\sin\theta\\ \sin\theta & \cos\theta\end{pmatrix}$<br>$e^{i\varphi} = \cos\varphi + i\sin\varphi$</p>
   <ol class="steps">
-    <li data-answer="i" data-alt="1i|+i|1*i">
-      <p><strong>ขั้น 1</strong> — ที่ $\theta = \pi$ (ครึ่งรอบ): $e^{i\pi/2}$</p>
-      <div class="ans"><input type="text" placeholder="เช่น 5i" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$\cos\frac\pi2 + i\sin\frac\pi2 = i$</p>
-    </li>
-    <li data-answer="-1" data-alt="-1.0">
-      <p><strong>ขั้น 2</strong> — ที่ $\theta = 2\pi$ (หนึ่งรอบ): $e^{i\pi}$</p>
+    <li data-answer="1/2" data-alt="0.5">
+      <p><strong>ขั้น 1</strong> — หมุนครึ่งรอบ $\theta = \pi$ · มุมในเลขชี้กำลังของช่องบนซ้าย $\frac{\theta}{2}$ เท่ากับกี่ $\pi$ (ตอบตัวเลขหน้า $\pi$)</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
-      <p class="fb">$-1$ · ช่องล่าง $e^{-i\pi}$ ก็ได้ $-1$ ⇒ $U(2\pi) = -1$</p>
+      <p class="fb">$\frac{\pi}{2}$ ⇒ $\frac12$ · spinor รู้สึกแค่ครึ่งมุม</p>
+    </li>
+    <li data-answer="i" data-alt="1i|+i|1*i">
+      <p><strong>ขั้น 2</strong> — ค่าของช่องบนซ้าย $e^{i\varphi}$ โดย $\varphi$ คือมุมจากขั้น 1</p>
+      <div class="ans"><input type="text" placeholder="เช่น 5i" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$e^{i\pi/2} = \cos\frac\pi2 + i\sin\frac\pi2 = 0 + i\cdot 1 = i$</p>
     </li>
     <li data-answer="1" data-alt="1.0">
-      <p><strong>ขั้น 3</strong> — ลูกศรธรรมดาที่ $\theta = 2\pi$: $\cos 2\pi$</p>
+      <p><strong>ขั้น 3</strong> — หมุนหนึ่งรอบ $\theta = 2\pi$ · มุม $\frac{\theta}{2}$ เท่ากับกี่ $\pi$</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\frac{2\pi}{2} = \pi$ ⇒ $1$</p>
+    </li>
+    <li data-answer="-1" data-alt="-1.0">
+      <p><strong>ขั้น 4</strong> — ค่าของช่องบนซ้ายที่มุมนั้น</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$e^{i\pi} = \cos\pi + i\sin\pi = -1$ · ช่องล่าง $e^{-i\pi}$ ก็ได้ $-1$ ⇒ $U(2\pi) = -1$</p>
+    </li>
+    <li data-answer="1" data-alt="1.0">
+      <p><strong>ขั้น 5</strong> — ลูกศรธรรมดาที่ $\theta = 2\pi$ ไม่หารสอง: $\cos 2\pi$</p>
       <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
       <p class="fb">$1$ — ลูกศรกลับที่เดิม แต่ spinor ติดลบ</p>
     </li>
