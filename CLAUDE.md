@@ -242,7 +242,8 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
   · ถัดไป: T5 Monte Carlo จากตัวอย่าง (Trotta (14)-(16))
 - ของเล่นใช้ซ้ำ: `assets/bayes.js` (`.bayes-game` · `.bayes-grid` · `.bayes-bell` · `.bayes-duel` · `.bayes-stretch` · `.bayes-mountain` · `.bayes-fit`) · build ฝัง `../assets/*.js` ทุกตัวให้เอง
 - ⚠️ เขียนบทผ่านสตริง Python ต้องใช้ raw string — `\times` เคยกลายเป็น TAB (`check_lessons` จับแล้ว)
-- Artifact: T1 `Wrgdh2fegJsw8aYfWrrMmF` · แผนที่ `VCojs8XZedFFWL5hSp5mWy`
+- Artifact (2026-11-27 · ส่งอาจารย์ · publish ทับ URL เดิม): T0 `WSJp5x4T3ndMEAka9E1bZ9` · T1 `J32Hidi5fRwmde2Qsq34xC` · T2 `3BZT2gtrGbb5obGc2K6j6v` · T3 `S5VgkYKEjNzBf6z2BAxnoz` · แผนที่ `VCojs8XZedFFWL5hSp5mWy`
+  · ⚠️ T1 เดิม `Wrgdh2fegJsw8aYfWrrMmF` เปิดไม่ได้แล้ว (not found) · ลิงก์ข้ามบทใน artifact ไม่ทำงาน (แต่ละบทเป็นหน้าเดี่ยว)
 
 ### เส้น QFT / cosmology
 
