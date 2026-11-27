@@ -2,6 +2,7 @@
 
 รัน: python3 scripts/verify/t0004_figs.py  → เขียน SVG ทับระหว่าง <!--FIG:x--> ... <!--/FIG:x--> ในบท
 
+  ex4     ตารางของข้อ 4 เป็นจุดบนกราฟ (ไม่มีเส้น Δχ²)
   warmup  ข้อมูลสี่จุด ± σ (ชุดเดียวกับของเล่น) + เส้น A (H0 = 70) และเส้น B (H0 = 90)
 """
 import re
@@ -43,7 +44,27 @@ def fig_warmup():
             f'xmlns="http://www.w3.org/2000/svg" style="max-width:{W}px">{body}</svg></figure>')
 
 
-FIGS = {"warmup": fig_warmup}
+def fig_ex4():
+    """ตารางข้อ 4 เป็นจุดบนกราฟ (ไม่ลากเส้น Δχ² ให้ · ไม่บอกคำตอบ)"""
+    W, H, L, B, T, R = 400, 230, 50, 46, 12, 385
+    X = lambda h: L + (h - 64) / 12 * (R - L)
+    Y = lambda c: H - B - c / 8 * (H - B - T)
+    o = [f'<line x1="{L}" y1="{T}" x2="{L}" y2="{H-B}" stroke="currentColor" opacity=".5"/>',
+         f'<line x1="{L}" y1="{H-B}" x2="{R}" y2="{H-B}" stroke="currentColor" opacity=".5"/>']
+    for h in (66, 68, 70, 72, 74):
+        o.append(f'<text x="{X(h):.1f}" y="{H-B+16}" font-size="13" text-anchor="middle" {FONT}>{h}</text>')
+    for c in (0, 2, 4, 6, 8):
+        o.append(f'<text x="{L-6}" y="{Y(c)+4:.1f}" font-size="13" text-anchor="end" {FONT}>{c}</text>')
+        o.append(f'<line x1="{L}" y1="{Y(c):.1f}" x2="{R}" y2="{Y(c):.1f}" stroke="currentColor" opacity=".12"/>')
+    o.append(f'<text x="{(L+R)/2}" y="{H-8}" font-size="14" text-anchor="middle" {FONT}>H₀ (km/s/Mpc)</text>')
+    o.append(f'<text transform="translate(16,{(T+H-B)/2}) rotate(-90)" font-size="14" text-anchor="middle" {FONT}>χ²</text>')
+    for h, c in ((66, 7), (68, 4), (70, 3), (72, 4), (74, 7)):
+        o.append(f'<circle cx="{X(h):.1f}" cy="{Y(c):.1f}" r="5" fill="{BLUE}"/>')
+    return (f'<figure><svg role="img" aria-label="จุดห้าจุดจากตาราง H0 66 68 70 72 74 มี chi-square 7 4 3 4 7 เป็นรูปพาราโบลา" '
+            f'viewBox="0 0 {W} {H}" xmlns="http://www.w3.org/2000/svg" style="max-width:{W}px">{"".join(o)}</svg></figure>')
+
+
+FIGS = {"warmup": fig_warmup, "ex4": fig_ex4}
 
 if __name__ == "__main__":
     html = LESSON.read_text(encoding="utf-8")
