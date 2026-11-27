@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ชุดฝึก T0–T4 · โจทย์ของอาจารย์</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400&display=swap">
+<link rel="stylesheet" href="../assets/lesson.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="../assets/quiz.js"></script>
+</head>
+<body>
+
+<h1>ชุดฝึก T0–T4 · โจทย์ของอาจารย์</h1>
+<p class="meta">เส้นทาง thesis · ชุดฝึกทบทวน (ไม่มีเลขบท) · หลัง <a href="t0004-chi2.html">T4 นับความผิดของเส้น</a> · ~40 นาที ·
+โจทย์ทุกข้อมาจาก [B] R. Trotta, <em>Bayesian Methods in Cosmology</em> (lecture notes, Saas-Fee 2014) ·
+แผนที่ทั้งเส้นทางอยู่ใน <a href="../reference/thesis-roadmap.html">ชีทแผนที่ paper</a></p>
+
+<p>ไฟล์ที่อาจารย์ให้มาล่าสุดเป็น lecture notes ของ Trotta คนเดียวกับ <em>Bayes in the sky</em> ท้ายแต่ละบทมีแบบฝึกพร้อมเฉลย
+ชุดนี้คัดมาเจ็ดข้อที่ทำได้ด้วยสิ่งที่เรียนใน T0–T4 แล้ว ตัวเลขทุกตัวเป็นของ [B] (ยกเว้นข้อ 4 ที่ต้นฉบับเป็นสัญลักษณ์ล้วน ผมจึงเลือกตัวเลขให้)
+และคำตอบทุกข้อตรวจกับเฉลยของ [B] แล้ว แต่ละข้อบอกว่ามาจากแบบฝึกข้อไหนหน้าไหน ถ้าอยากเปิดต้นฉบับดูทีหลัง
+ต่างจากบทปกติตรงที่ไม่มีเนื้อหาใหม่ งานของแบคือ<strong>เลือกเองว่าจะใช้เครื่องมือไหน</strong>จากกล่องข้างล่าง</p>
+
+<h2>กล่องเครื่องมือ</h2>
+
+<p>ทุกข้อในชุดนี้ใช้แค่สี่อย่างนี้ เขียนตามแบบของ [B] ซึ่งใช้ $P$ ตัวใหญ่แทน $p$</p>
+
+<div class="key">
+  <div class="eq" data-eqno="1">$$ P(A\,|\,B) = \frac{P(B\,|\,A)\,P(A)}{P(B)} $$</div>
+  <p>Bayes theorem จาก T0 · [B] สมการ (4) หน้า 6 · $A$ คือสิ่งที่อยากรู้ $B$ คือสิ่งที่เห็นแล้ว</p>
+  <div class="eq" data-eqno="2">$$ P(B) = \sum_i P(B\,|\,A_i)\,P(A_i) $$</div>
+  <p>marginalisation rule จาก T3 · [B] สมการ (5) หน้า 6 · ใช้หาตัวหารของ (1) โดยไล่ทุกกรณี $A_i$ ที่เป็นไปได้
+  (ใน T0 คือการนับลูกแดงจากทั้งกล่อง A และกล่อง B แล้วบวกกัน)</p>
+  <div class="eq" data-eqno="3">$$ \frac{1}{\tau^2} = \sum_i \frac{1}{\sigma_i^2} \qquad\qquad m = \frac{\sum_i x_i/\sigma_i^2}{\sum_i 1/\sigma_i^2} $$</div>
+  <p>กฎสองข้อจาก T1 · precision บวกกัน ($\tau$ คือความคลาดของผลรวม) และจุดกลาง $m$ คือค่าเฉลี่ยถ่วงด้วย precision · ถ้าวัด $N$ ครั้งด้วย $\sigma$ เท่ากัน
+  precision รวมคือ $N/\sigma^2$ จึงคลาด $\sigma/\sqrt N$ · prior แบบระฆังก็นับเป็นข้อมูลอีกชิ้นหนึ่งในผลรวมนี้ได้</p>
+  <div class="eq" data-eqno="4">$$ \Delta\chi^2 = 1 \;\Leftrightarrow\; 1\sigma \qquad\qquad \Delta\chi^2 = 4 \;\Leftrightarrow\; 2\sigma $$</div>
+  <p style="margin-bottom:0">จาก T4 · ช่วง 1σ คือจุดกลาง $\pm$ ความคลาด และช่วง 2σ คือจุดกลาง $\pm$ สองเท่าของความคลาด</p>
+</div>
+
+<p class="meta">ตอบเป็นตัวเลข · เศษส่วนพิมพ์แบบ <code>4/7</code> ได้ · ทศนิยมให้ถึงตำแหน่งที่บอกไว้ในข้อ</p>
+
+<h2>ลองเอง</h2>
+<div id="score"></div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 1 · ตรวจโรค Bacillum Bayesianum</h3>
+  <p class="hint">[B] แบบฝึก 3.8.1 (i) หน้า 41-42 · ใช้ (1) และ (2)</p>
+  <p>นักศึกษาเคมีทั้งรุ่นถูกตรวจหาโรค BB ซึ่งในประชากรมีคนเป็นราว 1% ถ้าป่วยจริง ชุดตรวจขึ้นผลบวก 95% ของครั้ง
+  และถ้าไม่ป่วย ชุดตรวจก็ยังขึ้นผลบวกผิด ๆ 5% ของครั้ง เพื่อนของแบไปตรวจแล้วได้ผลบวก · ในสมการเขียน BB แทน "ป่วย" และ + แทน "ผลบวก" แบบ [B]</p>
+  <ol class="steps">
+    <li data-answer="0.059" data-alt="59/1000|5.9%">
+      <p><strong>ขั้น 1</strong> — โอกาสที่คนหนึ่งตรวจแล้วได้ผลบวก ไม่ว่าจะป่วยหรือไม่</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (ทศนิยมสามตำแหน่ง)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ใช้ (2) ไล่สองกรณี: $0.95 \times 0.01 + 0.05 \times 0.99 = 0.0095 + 0.0495 = 0.059$ ·
+      ถ้าได้ 0.0095 แปลว่านับแค่คนป่วย ลืมคนไม่ป่วยที่ผลบวกผิด ซึ่งมีมากกว่าถึงห้าเท่า</p>
+    </li>
+    <li data-answer="0.161" data-alt="0.16|16%|0.1610|95/590">
+      <p><strong>ขั้น 2</strong> — โอกาสที่เพื่อนป่วยจริง เมื่อรู้ว่าผลเป็นบวก</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (ทศนิยมสองหรือสามตำแหน่ง)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ใช้ (1): $0.0095 / 0.059 \approx 0.16$ ตรงกับเฉลย [B] หน้า 50 ·
+      ถ้าตอบ 0.95 คือสับสน $P(+\,|\,\mathrm{BB})$ กับ $P(\mathrm{BB}\,|\,+)$ ซึ่งเป็นกับดักที่ข้อนี้ตั้งใจวางไว้ (BB คือป่วย) ·
+      นับแบบ T0: ใน 1000 คน ป่วย 10 คน ผลบวกจริง 9.5 คน · ไม่ป่วย 990 คน ผลบวกผิด 49.5 คน · คนผลบวก 59 คนป่วยจริงแค่ 9.5 คน</p>
+    </li>
+    <li data-answer="2">
+      <p><strong>ขั้น 3</strong> — ถ้าเป็นโรคที่หายากมาก มีคนเป็นแค่ 1 ในล้าน และสมมติว่าชุดตรวจไม่พลาดคนป่วยเลย (ป่วยแล้วผลบวก 100%)
+      แต่ยังผลบวกผิด 5% ในคนไม่ป่วยเท่าเดิม ในคนที่ผลบวก 100,000 คน จะป่วยจริงประมาณกี่คน</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (จำนวนเต็ม)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$P(\mathrm{BB}\,|\,+) = 10^{-6}/(10^{-6} + 0.05) \approx 2\times10^{-5}$ คือราว 2 คนใน 100,000 ·
+      [B] หน้า 50 สรุปว่าถ้าผลบวกผิดยังเป็น 5% <strong>ไม่มีทาง</strong>ได้ $P(\mathrm{BB}\,|\,+) = 99\%$ ต่อให้ตรวจคนป่วยไม่พลาดเลยก็ตาม
+      และแนะนำให้ตรวจเฉพาะคนที่มีอาการก่อน ซึ่งคือการยก prior ให้สูงขึ้นนั่นเอง</p>
+    </li>
+  </ol>
+  <p class="fb">posterior ขึ้นกับ prior มาก · ชุดตรวจที่ "แม่น 95%" บอกได้แค่ 16% เมื่อโรคพบได้ 1%</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 2 · ประตูสามบาน</h3>
+  <p class="hint">[B] แบบฝึก 3.8.1 (ii) หน้า 43 · ใช้ (1) และ (2)</p>
+  <p>ในเกมโชว์ มีรางวัลอยู่หลังประตูหนึ่งในสามบาน A, B, C แบเลือกประตู A จากนั้นพิธีกรซึ่ง<strong>รู้</strong>ว่ารางวัลอยู่ไหน
+  เปิดประตูบานที่เหลือบานหนึ่งที่ว่างเสมอ ถ้ารางวัลอยู่หลัง A พิธีกรสุ่มเปิด B หรือ C อย่างละครึ่ง
+  ปรากฏว่าพิธีกรเปิดประตู C ซึ่งว่าง แบจะเลือก A ต่อหรือเปลี่ยนไป B</p>
+  <table>
+  <thead><tr><th>รางวัลอยู่หลัง</th><th>A</th><th>B</th><th>C</th></tr></thead>
+  <tbody>
+  <tr><th>โอกาสก่อนเปิด</th><td>1/3</td><td>1/3</td><td>1/3</td></tr>
+  <tr><th>โอกาสที่พิธีกรเปิด C</th><td>1/2</td><td>1</td><td>0</td></tr>
+  </tbody>
+  </table>
+  <ol class="steps">
+    <li data-answer="1/2" data-alt="0.5|.5">
+      <p><strong>ขั้น 1</strong> — ก่อนรู้ว่ารางวัลอยู่ไหน โอกาสที่พิธีกรจะเปิดประตู C</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (เศษส่วน)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ใช้ (2) ไล่สามกรณี: $\tfrac12\cdot\tfrac13 + 1\cdot\tfrac13 + 0\cdot\tfrac13 = \tfrac12$</p>
+    </li>
+    <li data-answer="1/3" data-alt="0.333|0.33">
+      <p><strong>ขั้น 2</strong> — โอกาสที่รางวัลอยู่หลัง A หลังเห็นพิธีกรเปิด C</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (เศษส่วน)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(\tfrac12\cdot\tfrac13)/\tfrac12 = \tfrac13$ เท่าเดิม · ถ้าตอบ 1/2 คือคิดว่าเหลือสองบานจึงเท่ากัน
+      ซึ่งลืมว่าพิธีกรเลือกประตูโดยรู้คำตอบ</p>
+    </li>
+    <li data-answer="2/3" data-alt="0.667|0.67">
+      <p><strong>ขั้น 3</strong> — โอกาสที่รางวัลอยู่หลัง B หลังเห็นพิธีกรเปิด C</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (เศษส่วน)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(1\cdot\tfrac13)/\tfrac12 = \tfrac23$ · เปลี่ยนประตูแล้วโอกาสชนะเพิ่มเป็นสองเท่า ·
+      [B] หน้า 52 ให้ภาพช่วยคิดว่า ถ้ามี 1000 บาน แล้วพิธีกรเปิดบานว่างให้ 998 บาน จะเปลี่ยนหรือไม่</p>
+    </li>
+    <li data-answer="1/2" data-alt="0.5|.5">
+      <p><strong>ขั้น 4</strong> — เปลี่ยนกติกา: หลังเลือก A แบ<strong>สุ่มเปิดเอง</strong>หนึ่งบานจาก B กับ C ได้ C แล้วพบว่าว่าง
+      ตอนนี้โอกาสที่รางวัลอยู่หลัง B เป็นเท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (เศษส่วน)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">แถวล่างของตารางเปลี่ยนเป็น $\tfrac12, \tfrac12, 0$ (แบสุ่มเปิดโดยไม่รู้ ส่วนกรณีรางวัลหลัง C ตัดทิ้งเพราะเห็นแล้วว่าว่าง)
+      ตัวหารเป็น $\tfrac13$ และได้ $(\tfrac12\cdot\tfrac13)/\tfrac13 = \tfrac12$ · ข้อมูลที่เห็นเหมือนกันทุกอย่าง แต่ likelihood ต่างเพราะ<em>วิธีที่ได้ข้อมูลมา</em>ต่างกัน</p>
+    </li>
+  </ol>
+  <p class="fb">likelihood ไม่ได้ขึ้นกับแค่สิ่งที่เห็น แต่ขึ้นกับกระบวนการที่ทำให้เห็นมันด้วย</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 3 · นักการเมืองสองคน</h3>
+  <p class="hint">[B] แบบฝึก 3.8.1 (iii) หน้า 43 · ใช้ (1) และ (2)</p>
+  <p>ในการดีเบต นักการเมือง A ยืนยันว่าข้อความ S เป็นจริง แบเชื่อว่า A พูดความจริงด้วยโอกาส 4/5
+  จากนั้นนักการเมือง B บอกว่าเห็นด้วยกับ A ว่า S จริง แต่แบเชื่อ B น้อยกว่ามาก คิดว่า B โกหกด้วยโอกาส 3/4
+  นอกจากคำพูดของสองคนนี้ แบไม่รู้อะไรเกี่ยวกับ S เลย</p>
+  <ol class="steps">
+    <li data-answer="7/20" data-alt="0.35|.35">
+      <p><strong>ขั้น 1</strong> — หลังฟัง A แล้ว แต่ก่อนฟัง B โอกาสที่ B จะพูดว่า S จริง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (เศษส่วน)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ใช้ (2) ไล่สองกรณี: S จริงและ B พูดจริง $\tfrac45\cdot\tfrac14 = \tfrac15$ ·
+      S เท็จและ B โกหก $\tfrac15\cdot\tfrac34 = \tfrac{3}{20}$ · รวม $\tfrac{7}{20}$ ·
+      prior ของ S คือ $\tfrac45$ เพราะสิ่งเดียวที่รู้คือคำพูดของ A</p>
+    </li>
+    <li data-answer="4/7" data-alt="0.571|0.57">
+      <p><strong>ขั้น 2</strong> — โอกาสที่ S จริง หลังได้ยิน B พูดด้วย</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (เศษส่วน)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(\tfrac15)/(\tfrac{7}{20}) = \tfrac47 \approx 57\%$ ตรงกับเฉลย [B] หน้า 53 ·
+      ความเชื่อ<strong>ลดลง</strong>จาก 80% เหลือ 57% ทั้งที่ B พูดเห็นด้วย เพราะคนที่มักโกหกมาเห็นด้วย ทำให้น่าสงสัยมากขึ้น</p>
+    </li>
+  </ol>
+  <p class="fb">ข้อมูลที่ "เห็นด้วย" ไม่จำเป็นต้องเพิ่มความเชื่อ ขึ้นกับว่าแหล่งข้อมูลน่าเชื่อแค่ไหน</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 4 · prior ระฆัง กับการวัด N ครั้ง</h3>
+  <p class="hint">[B] แบบฝึก 3.8.2 (v) หน้า 44 · ใช้ (3) · ต้นฉบับเป็นสัญลักษณ์ ข้อนี้แทนตัวเลขให้</p>
+  <p>ก่อนวัด เชื่อว่าค่า $\theta$ อยู่ราว ๆ $0 \pm 3$ (prior ระฆัง จุดกลาง 0 ความกว้าง $\Sigma = 3$)
+  จากนั้นวัด $N = 4$ ครั้ง แต่ละครั้งคลาด $\sigma = 2$ ได้ค่าเฉลี่ย $\bar x = 10$
+  [B] ให้ผลไว้ว่า posterior มีจุดกลาง $\bar x\,\dfrac{\Sigma^2}{\Sigma^2 + \sigma^2/N}$ และความแปรปรวน $\left(\dfrac{1}{\Sigma^2} + \dfrac{N}{\sigma^2}\right)^{-1}$</p>
+  <ol class="steps">
+    <li data-answer="1">
+      <p><strong>ขั้น 1</strong> — ข้อมูลทั้งสี่ครั้งรวมกัน บอกค่า $\theta$ ได้คลาด ± เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sigma/\sqrt N = 2/\sqrt4 = 1$ · precision รวมของข้อมูลคือ $N/\sigma^2 = 1$</p>
+    </li>
+    <li data-answer="9">
+      <p><strong>ขั้น 2</strong> — จุดกลางของ posterior</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">สูตร [B]: $10 \cdot \tfrac{9}{9 + 1} = 9$ · ตรงกับกฎ T1: $(0\cdot\tfrac19 + 10\cdot 1)/(\tfrac19 + 1) = 9$ ·
+      prior ดึงจาก 10 ลงมานิดเดียว เพราะ prior กว้าง (precision แค่ 1/9)</p>
+    </li>
+    <li data-answer="9/10" data-alt="0.9|.9">
+      <p><strong>ขั้น 3</strong> — ความแปรปรวนของ posterior</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$(\tfrac19 + 1)^{-1} = \tfrac{9}{10}$ · ถ้าได้ 10/9 คือยังไม่ได้กลับเศษส่วน (นั่นคือ precision ไม่ใช่ความแปรปรวน)</p>
+    </li>
+    <li data-answer="10">
+      <p><strong>ขั้น 4</strong> — ถ้าวัดไปเรื่อย ๆ จน $N$ ใหญ่มาก โดยค่าเฉลี่ยยังเป็น 10 จุดกลางของ posterior จะเข้าใกล้ค่าอะไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sigma^2/N \to 0$ ทำให้เศษส่วนเข้าใกล้ 1 และจุดกลางเข้าใกล้ $\bar x = 10$ · [B] ข้อ c ให้พิสูจน์ว่า posterior ไม่ขึ้นกับ prior เมื่อ $N \to \infty$
+      ซึ่งเป็นเรื่องเดียวกับที่ Alice กับ Bob ใน T1 เข้าหากันในที่สุด</p>
+    </li>
+  </ol>
+  <p class="fb">สูตรของ [B] กับกฎสองข้อของ T1 เป็นสูตรเดียวกันที่เขียนคนละแบบ</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 5 · อุณหภูมิผิวดาวอังคาร</h3>
+  <p class="hint">[B] แบบฝึก 2.7 (i) หน้า 16 · ใช้ (3) และ (4)</p>
+  <p>ยานสำรวจวัดอุณหภูมิผิวดาวอังคาร 10 ครั้ง ได้ (หน่วย K)
+  191.9, 201.6, 206.1, 200.4, 203.2, 201.6, 196.5, 199.5, 194.1, 202.4
+  แต่ละครั้งคลาดแบบระฆังเป็นอิสระต่อกัน ความแปรปรวน $\sigma^2 = 25$ K² และไม่มี prior (ใช้แต่ likelihood)</p>
+  <ol class="steps">
+    <li data-answer="199.73" data-alt="199.7">
+      <p><strong>ขั้น 1</strong> — ค่าอุณหภูมิที่เข้ากับข้อมูลที่สุด ($T_{\text{ML}}$)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (ทศนิยมสองตำแหน่ง)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ทุกครั้งคลาดเท่ากัน จุดกลางตาม (3) จึงเป็นค่าเฉลี่ยธรรมดา $1997.3/10 = 199.73$ · [B] หน้า 19 ตอบ 199.7 K</p>
+    </li>
+    <li data-answer="1.58" data-alt="1.6|1.581">
+      <p><strong>ขั้น 2</strong> — $T_{\text{ML}}$ คลาด ± เท่าไร (1σ)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (ทศนิยมสองตำแหน่ง)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\sigma/\sqrt N = 5/\sqrt{10} \approx 1.58$ K · ถ้าได้ 0.5 คือใช้ $\sigma/N$ · ถ้าได้ 2.5 คือใช้ $\sigma^2/N$ ซึ่งเป็นความแปรปรวน ไม่ใช่ความคลาด</p>
+    </li>
+    <li data-answer="3.16" data-alt="3.2|3.162">
+      <p><strong>ขั้น 3</strong> — ช่วง 2σ (95.4%) กว้างออกจาก $T_{\text{ML}}$ ข้างละกี่ K</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (ทศนิยมสองตำแหน่ง)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$2 \times 1.58 = 3.16$ K ตาม (4) · [B] ตอบช่วง [196.5, 202.9] K</p>
+    </li>
+    <li data-answer="25">
+      <p><strong>ขั้น 4</strong> — ถ้าอยากให้ $T_{\text{ML}}$ คลาดแค่ ±1 K ต้องวัดกี่ครั้ง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (จำนวนเต็ม)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$5/\sqrt N = 1$ จึงได้ $N = 25$ ตรงกับ [B] หน้า 19 · อยากแม่นขึ้นสองเท่าต้องวัดเพิ่มสี่เท่า</p>
+    </li>
+  </ol>
+  <p class="fb">[B] เรียกช่วงพวกนี้ว่า confidence interval เพราะบทนี้ยังเป็นฝั่ง likelihood ล้วน (ยังไม่ใส่ prior) · ความต่างจาก credible interval จะเจอใน T8</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 6 · แสงเลเซอร์จากเครื่องวัดสี่เครื่อง</h3>
+  <p class="hint">[B] แบบฝึก 2.7 (vii) หน้า 18 · ใช้ (3)</p>
+  <p>วัด flux ของโฟตอนจากเลเซอร์ด้วยเครื่องสี่เครื่องที่แม่นไม่เท่ากัน ได้ (หน่วย $10^4$ โฟตอน/cm²)</p>
+  <table>
+  <thead><tr><th>เครื่อง</th><th>1</th><th>2</th><th>3</th><th>4</th></tr></thead>
+  <tbody>
+  <tr><th>ค่าที่วัดได้ ± σ</th><td>34.7 ± 5.0</td><td>28.9 ± 2.0</td><td>27.1 ± 3.0</td><td>30.6 ± 4.0</td></tr>
+  </tbody>
+  </table>
+  <ol class="steps">
+    <li data-answer="0.4636" data-alt="1669/3600|0.464|0.46">
+      <p><strong>ขั้น 1</strong> — precision รวมของทั้งสี่เครื่อง</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (ทศนิยมสี่ตำแหน่ง หรือเศษส่วน)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$\tfrac{1}{25} + \tfrac14 + \tfrac19 + \tfrac{1}{16} = 0.04 + 0.25 + 0.1111 + 0.0625 \approx 0.4636$ ·
+      เครื่องที่ 2 คนเดียวให้ precision เกินครึ่งของทั้งหมด</p>
+    </li>
+    <li data-answer="29.2" data-alt="29.20|29.198">
+      <p><strong>ขั้น 2</strong> — ค่า flux ที่เข้ากับข้อมูลที่สุด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (ทศนิยมหนึ่งตำแหน่ง)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">ค่าเฉลี่ยถ่วงด้วย precision ตาม (3): $(34.7\cdot0.04 + 28.9\cdot0.25 + 27.1\cdot0.1111 + 30.6\cdot0.0625)/0.4636 \approx 29.2$
+      ตรงกับ [B] หน้า 25 · ค่าถูกดึงเข้าหาเครื่องที่ 2 ซึ่งแม่นที่สุด</p>
+    </li>
+    <li data-answer="1.47" data-alt="1.5|1.469">
+      <p><strong>ขั้น 3</strong> — ค่านั้นคลาด ± เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (ทศนิยมสองตำแหน่ง)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$1/\sqrt{0.4636} \approx 1.47$ · [B] สรุปว่า $F = (29.2 \pm 1.5)\times10^4$ โฟตอน/cm² · ถ้าได้ 2.16 คือยังไม่ได้ถอดราก (นั่นคือความแปรปรวน)</p>
+    </li>
+    <li data-answer="30.325" data-alt="30.3|30.33|30.32">
+      <p><strong>ขั้น 4</strong> — ถ้าเฉลี่ยธรรมดาโดยไม่สนว่าเครื่องไหนแม่นกว่า จะได้เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข (ทศนิยม)" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$121.3/4 = 30.325$ · สูงกว่าค่าถ่วงไปราว 1.1 เพราะเครื่องที่ 1 ซึ่งหยาบที่สุดอ่านได้สูงสุด แล้วมีเสียงเท่าเครื่องอื่น ·
+      [B] ชี้ว่าเมื่อทุกเครื่องคลาดเท่ากัน สูตรถ่วงจะกลับเป็นค่าเฉลี่ยธรรมดาเอง</p>
+    </li>
+  </ol>
+  <p class="fb">นี่คือเกม Alice–Bob ของ T1 ที่มีคนวัดสี่คน · ข้อมูลที่หยาบควรมีเสียงน้อย</p>
+</div>
+
+<div class="quiz" data-steps>
+  <h3>ข้อ 7 · นับโฟตอนจากดาว กับแสงพื้นหลัง</h3>
+  <p class="hint">[B] แบบฝึก 2.7 (vi) หน้า 17-18 · เรื่องเดียวกับกาแล็กซีกับแสงท้องฟ้าใน T3</p>
+  <p>นักดาราศาสตร์นับโฟตอนจากดาวดวงหนึ่ง แต่โฟตอนที่นับได้มีทั้งของดาว (อัตรา $\lambda_s$ ต่อนาที) และของพื้นหลัง
+  (อัตรา $\lambda_b = 12$ ต่อนาที ซึ่งรู้แน่นอนจากการหันกล้องไปที่ว่าง ๆ) ส่องดาวนาน $t = 2$ นาที นับได้รวม $r = 30$ โฟตอน
+  [B] หาไว้แล้วว่า ถ้านับได้ $r$ โฟตอนในเวลา $t$ อัตรารวมที่เข้ากับข้อมูลที่สุดคือ $r/t$ ([B] สมการ (63) หน้า 23)
+  และอัตรารวมคือ $\lambda_s + \lambda_b$</p>
+  <ol class="steps">
+    <li data-answer="15">
+      <p><strong>ขั้น 1</strong> — อัตรารวมที่เข้ากับข้อมูลที่สุด (โฟตอนต่อนาที)</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$30/2 = 15$ ต่อนาที</p>
+    </li>
+    <li data-answer="3">
+      <p><strong>ขั้น 2</strong> — อัตราของดาว $\lambda_s$ ที่เข้ากับข้อมูลที่สุด</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$15 - 12 = 3$ ตรงกับ [B] หน้า 24 · ถ้าได้ 18 คือลบพื้นหลังก่อนหารเวลา ($30 - 12$) ซึ่งลบพื้นหลังของนาทีเดียว ทั้งที่ส่องสองนาที</p>
+    </li>
+    <li data-answer="-2">
+      <p><strong>ขั้น 3</strong> — ถ้าคราวนี้นับได้แค่ 20 โฟตอนในสองนาที วิธีเดิมจะให้ $\lambda_s$ เท่าไร</p>
+      <div class="ans"><input type="text" placeholder="พิมพ์ตัวเลข" autocomplete="off"><button type="button">ตรวจ</button></div>
+      <p class="fb">$20/2 - 12 = -2$ · ดาวส่องแสงติดลบไม่ได้ แต่ผลนี้เกิดได้จริงเมื่อจำนวนโฟตอนแกว่งลงโดยบังเอิญ ·
+      [B] หน้า 24 สรุปว่านี่เป็นข้อบกพร่องของวิธี maximum likelihood ไม่ใช่ของฟิสิกส์ และ "The solution is to use Bayes theorem instead"
+      คือใส่ prior ที่เป็นศูนย์เมื่อ $\lambda_s$ ติดลบ แบบที่ T2 ทำกับพารามิเตอร์ที่ต้องเป็นบวก</p>
+    </li>
+  </ol>
+  <p class="fb">likelihood อย่างเดียวไม่รู้ว่าอะไรเป็นไปไม่ได้ทางฟิสิกส์ ข้อมูลส่วนนั้นต้องมาจาก prior</p>
+</div>
+
+<p class="src">ตรวจด้วย <code>sympy</code> และเทียบกับเฉลยใน [B] หน้า 19-25 และ 50-54 ทุกข้อ (26 รายการ) — <code>scripts/verify/t0005_drill_b.py</code></p>
+
+<h2>อ่านต่อ</h2>
+<p>ถ้าอยากลองข้อที่เหลือใน [B] ข้อที่ทำได้แล้วด้วยเครื่องมือชุดนี้คือ 2.7 (ii)-(iii) ซึ่งเป็นแบบเดียวกับข้อ 5 และ 3.8.1 (iv) นักสืบ ซึ่งเป็นแบบเดียวกับข้อ 3
+ส่วน 2.7 (iv)-(v) เรื่องเหรียญและการนับแบบ Poisson ต้องใช้การกระจาย binomial กับ Poisson ซึ่งยังไม่ได้เรียน
+<span class="src">R. Trotta, <em>Bayesian Methods in Cosmology</em>, lecture notes, 44th Saas-Fee Advanced Course (2014) · §2.7-2.8, §3.8-3.9</span></p>
+
+<div class="ask">
+  ข้อไหนไม่ชัด <strong>ถามได้เลย</strong> · เสร็จแล้วกด <strong>📋 คัดลอกผล</strong> แล้ววางกลับมา
+  <div class="nav">
+    <a href="t0004-chi2.html">← T4 นับความผิดของเส้น</a>
+    <a href="../reference/thesis-roadmap.html">🗺️ แผนที่ paper</a>
+  </div>
+</div>
+
+</body>
+</html>

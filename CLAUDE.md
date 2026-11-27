@@ -239,7 +239,8 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
   · **T2** `lessons/t0002-prior.html` (แดง/เขียวกับสี่เหลี่ยม · ยืดแกนยาง · Jacobian · Jeffreys) · record `t0002-prior.md` — รอบแรก 3/6 → รอบสอง 6/6 แต่ "ชี้นำเกินไป" ⇒ คืนคำถามเดิม แก้แค่จุดกำกวม (กฎ 16) · รอบสามถ้าแบอยากทำ
   · **T3** `lessons/t0003-marginal.html` (กาแล็กซี + แสงท้องฟ้า · ตารางที่ maximise ≠ marginalise · ภูเขาสองมิติ · σ² บวกกัน) · record `t0003-marginal.md` — รอบแรก 3/5 → ยกสมการ/รูปมาในบท (กฎ 17) → **รอบสองผ่าน 5/5** (2026-11-24)
   · **T4** `lessons/t0004-chi2.html` (Hubble diagram · ห่างกี่ σ · χ² = −2 ln L · Δχ² = 4 ↔ 2σ · Trotta (45) · Cobaya (2)) · record `t0004-chi2.md` — **รอผล**
-  · ถัดไป: T5 Monte Carlo จากตัวอย่าง (Trotta (14)-(16))
+  · **ชุดฝึก T0–T4 · โจทย์ของอาจารย์** `lessons/t0005-drill-b.html` (เจ็ดข้อจาก [B] · ไม่มีเลขบท) · record `t0005-drill-b.md` — **รอผล**
+  · ถัดไป: T5 Monte Carlo จากตัวอย่าง (Trotta (14)-(16)) · ⚠️ ใช้ไฟล์ `t0006-*` (เลข t0005 ถูกชุดฝึกใช้แล้ว · ในบทยังเรียก T5)
 - ของเล่นใช้ซ้ำ: `assets/bayes.js` (`.bayes-game` · `.bayes-grid` · `.bayes-bell` · `.bayes-duel` · `.bayes-stretch` · `.bayes-mountain` · `.bayes-fit`) · build ฝัง `../assets/*.js` ทุกตัวให้เอง
 - ⚠️ เขียนบทผ่านสตริง Python ต้องใช้ raw string — `\times` เคยกลายเป็น TAB (`check_lessons` จับแล้ว)
 - Artifact (2026-11-27 · ส่งอาจารย์ · publish ทับ URL เดิม): T0 `WSJp5x4T3ndMEAka9E1bZ9` · T1 `J32Hidi5fRwmde2Qsq34xC` · T2 `3BZT2gtrGbb5obGc2K6j6v` · T3 `S5VgkYKEjNzBf6z2BAxnoz` · แผนที่ `VCojs8XZedFFWL5hSp5mWy`
