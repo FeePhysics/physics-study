@@ -226,8 +226,8 @@ publish ไปแล้ว **ล้นจอ 375px จริง** (487px แล�
 
 ### 🎓 เส้น thesis — เรียนขนานกับเส้น QFT (เพิ่ม 2026-11-11)
 
-- paper ของอาจารย์: Trotta 2008 *Bayes in the sky* + Cobaya (arXiv:2005.05290) · ไฟล์ที่ 3 ที่ส่งมาซ้ำกับ Cobaya (md5 ตรงกัน)
-  ⇒ **ฉบับที่ 3 ยังไม่ได้รับ** · PDF ไม่ได้ commit ⇒ session ใหม่ต้องให้แบแนบใหม่ถ้าจะอ้างหน้า
+- paper ของอาจารย์: Trotta 2008 *Bayes in the sky* [T] + Cobaya (arXiv:2005.05290) [C] + **Trotta *Bayesian Methods in Cosmology* [B]** (lecture notes Saas-Fee · 86 หน้า · มีแบบฝึก+เฉลย · ได้รับ 2026-11-27)
+  · [B] ใส่ใน `reference/thesis-roadmap.html` ทุกบทแล้ว · PDF ไม่ได้ commit ⇒ session ใหม่ต้องให้แบแนบใหม่ถ้าจะอ้างหน้า
 - ⚠️ **เลขบทแยก ห้ามปนกับเส้น QFT** — ไฟล์ขึ้นต้นด้วย `t` ทั้งหมด: `lessons/tNNNN-*.html` ·
   `learning-records/tNNNN-*.md` · `scripts/verify/tNNNN_*.py` · ในบทเรียกว่า "Thesis บทที่ N" / "TN"
   (สอง session ทำงานพร้อมกัน เลข `0035` เคยชนกันจริง)

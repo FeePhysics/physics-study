@@ -40,6 +40,13 @@ egress proxy บล็อกไว้ — ถ้าจะให้ Claude อ่
 - ใช้ตัวอย่างวงแหวน (รูป 2-4) เป็นแบบฝึกที่รันจริงได้
 - แบแนบ PDF อีกครั้ง 2026-11-22 (19 หน้า) · รูป 9 = YAML ของ §VI A (log-uniform prior บน amplitude/wavelength/centre · `As` จาก `logA`) ใช้ใน T2 ⑤ · `pip install cobaya` ในคลาวด์ยังไม่ได้ลอง
 
+### Trotta — *Bayesian Methods in Cosmology* (lecture notes · 44th Saas-Fee Advanced Course 2014 · PDF ปี 2019)
+- อาจารย์ให้อ่านเพิ่ม (ฉบับที่ 3 · แบแนบ 2026-11-27) · 86 หน้า · **หน้า PDF = เลขหน้าพิมพ์**
+- **คุณภาพ:** สูง — ผู้เขียนเดียวกับ [T] · ฉบับขยาย เริ่มจากศูนย์ · **มีแบบฝึกพร้อมเฉลย** (§2.7-2.8 · §3.8-3.9 · §4.6-4.7) ⇒ ใช้เป็นคลังโจทย์ของเส้น thesis
+- เนื้อที่ [T] ไม่มี: Gaussian linear model §3.5 (น.33) · Gibbs §3.6.3 · Hamiltonian MC §3.6.4 · importance sampling §3.6.5 · ภาคผนวกการกระจาย (uniform/binomial/Poisson/Gaussian/χ²) น.73-84
+- แบบฝึกเด่น: ตรวจโรค/ประตูสามบาน (น.42-43) · Gaussian prior + N ครั้ง (น.44 = T1) · ดาว + พื้นหลัง Poisson (น.18 = T3) · เขียน MH ฟิตเส้นตรง (น.45-46) · SN Ia 300 ดวง (น.47-48) · Eddington 1919 · ΩΛ กับ prior จาก QFT (น.68-69)
+- ⚠️ PDF ไม่ได้ commit · ไม่พบเลข arXiv ในไฟล์ (อย่าเดา) · session ใหม่ต้องให้แบแนบใหม่
+
 ## วิดีโอ / คอร์ส
 
 ### The Theoretical Minimum — Leonard Susskind (Stanford)

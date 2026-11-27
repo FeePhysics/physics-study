@@ -22,55 +22,58 @@
   Contemp. Phys. 49 (2008) 71-104 · doi:10.1080/00107510802066753 · บทความทบทวน เขียนสำหรับนักศึกษา ป.โท-เอก</p>
   <p style="margin-bottom:0"><strong>[C]</strong> J. Torrado &amp; A. Lewis, <em>Cobaya: Code for Bayesian Analysis of hierarchical physical models</em>,
   arXiv:2005.05290v2 (2021) · paper ของโปรแกรมที่ใช้ทำ MCMC จริง</p>
+  <p style="margin-bottom:0"><strong>[B]</strong> R. Trotta, <em>Bayesian Methods in Cosmology</em> · lecture notes จาก 44th Saas-Fee Advanced Course (2014) ·
+  86 หน้า · เริ่มจากศูนย์ ไปถึงระดับงานวิจัย · <strong>มีแบบฝึกพร้อมเฉลย</strong> (ได้รับ 2026-11-27)</p>
 </div>
 
-<div class="warn">ไฟล์ที่ส่งมามี 3 ไฟล์ แต่ไฟล์ Cobaya สองไฟล์<strong>เป็นไฟล์เดียวกันทุกไบต์</strong> (md5 ตรงกัน)
-⇒ ตอนนี้มี paper แค่ 2 ฉบับ · ฉบับที่ 3 ยังไม่ได้รับ</div>
 
-<p>ทั้งสองฉบับเป็นเรื่องเดียวกันที่ซูมคนละระดับ [T] อธิบายว่าคำนวณ<em>อะไร</em> และแปลผลยังไง
+<p>[B] เป็นฉบับขยายของ [T] โดยผู้เขียนคนเดียวกัน เนื้อหาเรียงเหมือนกันแต่ละเอียดกว่า และมีแบบฝึกท้ายบท
+จึงใช้เป็นคลังโจทย์ของทุกบท · หัวข้อที่ [B] มีแต่ [T] ไม่มีคือ Gaussian linear model (§3.5) · Gibbs · Hamiltonian MC (§3.6.3-3.6.4)</p>
+
+<p>ทั้ง [T] กับ [C] เป็นเรื่องเดียวกันที่ซูมคนละระดับ [T] อธิบายว่าคำนวณ<em>อะไร</em> และแปลผลยังไง
 ส่วน [C] อธิบายว่าโปรแกรมจริงคำนวณมัน<em>อย่างไร</em>ให้เร็ว · [C] สมมติว่าคนอ่านรู้เนื้อหา [T] §2-3 แล้ว
 จึงเรียน [T] ก่อน แล้วค่อยเข้า [C]</p>
 
 <h2>ช่วง 1 · การอนุมานพารามิเตอร์ <span class="hint">(อ่าน [T] §2-3 และ [C] §II ได้)</span></h2>
 <ol start="0">
 <li>✅ <strong>T0 · Bayes ด้วยกล่องสองใบ</strong> — เดิมพันของ Laplace · เกมกล่องลับ · นับ 100 รอบแทนสูตร · ตั้งชื่อ prior/likelihood/evidence/posterior · posterior ของลูกก่อนคือ prior ของลูกถัดไป
-  <span class="src">แทรกเพิ่ม 2026-11-21 (แบไม่มีพื้น Bayes มาก่อน) · <a href="../lessons/t0000-bayes-boxes.html">T0</a></span></li>
+  <span class="src">แทรกเพิ่ม 2026-11-21 (แบไม่มีพื้น Bayes มาก่อน) · <a href="../lessons/t0000-bayes-boxes.html">T0</a> · [B] §3.1 · แบบฝึก 3.8.1 (i)-(iii) ตรวจโรค · ประตูสามบาน · นักการเมือง น.42-43</span></li>
 <li>✅ <strong>T1 · กล่องนับไม่ถ้วน (Bayes กับ Gaussian)</strong> — prior · likelihood · posterior · evidence ในฐานะตัวหาร · Gaussian × Gaussian · precision บวกกัน · ข้อมูลกลบ prior
-  <span class="src">[T] §2.2-2.3 (1)-(10) · [C] (1) · <a href="../lessons/t0001-bayes-gauss.html">T1</a></span></li>
+  <span class="src">[T] §2.2-2.3 (1)-(10) · [C] (1) · <a href="../lessons/t0001-bayes-gauss.html">T1</a> · [B] §2.4-2.5 · แบบฝึก 3.8.2 (v) prior Gaussian + วัด N ครั้ง น.44 (ตรงกับ T1 ทั้งข้อ)</span></li>
 <li>✅ <strong>T2 · prior และการเปลี่ยนตัวแปร</strong> — flat prior · Jacobian · Jeffreys prior $\propto 1/\theta$ · prior บน $\log A$ ใน Cobaya (<code>logamplitude</code>)
-  <span class="src">[T] (11), §5.4 ข้อ 1-2 · [C] รูป 9 · <a href="../lessons/t0002-prior.html">T2</a></span></li>
+  <span class="src">[T] (11), §5.4 ข้อ 1-2 · [C] รูป 9 · <a href="../lessons/t0002-prior.html">T2</a> · [B] §3.3 น.29-31 · แบบฝึก 2.7 (iv)-(vi) เหรียญ · Poisson</span></li>
 <li>✅ <strong>T3 · สองพารามิเตอร์ · marginalise</strong> — Gaussian 2 มิติ · covariance matrix · nuisance parameter · marginal กับ profile (maximise) ต่างกัน
-  <span class="src">[T] (12)-(13), (16), §5.3.2 · <a href="../lessons/t0003-marginal.html">T3</a></span></li>
+  <span class="src">[T] (12)-(13), (16), §5.3.2 · <a href="../lessons/t0003-marginal.html">T3</a> · [B] §3.4 น.32 · แบบฝึก 2.7 (vi) ดาว + แสงพื้นหลังแบบ Poisson น.18</span></li>
 <li>✅ <strong>T4 · สร้าง likelihood</strong> — $\chi^2 = -2\ln\mathcal L$ · data set อิสระ ⇒ $\chi^2$ บวกกัน · $\Delta\chi^2 = 4$ คือ $2\sigma$ · ทฤษฎี → observable → การวัด
-  <span class="src">[T] (45)-(47) · [C] (2) $O_D \sim \mathcal N(\mathcal F(O_T), \Sigma)$ · <a href="../lessons/t0004-chi2.html">T4</a></span></li>
+  <span class="src">[T] (45)-(47) · [C] (2) $O_D \sim \mathcal N(\mathcal F(O_T), \Sigma)$ · <a href="../lessons/t0004-chi2.html">T4</a> · [B] §2.4-2.6 น.8-15 (MLE · confidence interval) · ภาคผนวก 5.5 การกระจาย χ² น.83 · แบบฝึก 2.7 (i)-(ii) อุณหภูมิดาวอังคาร</span></li>
 <li>⬜ <strong>T5 · Monte Carlo จากตัวอย่าง</strong> — ค่าเฉลี่ยจากตัวอย่าง · marginal = histogram ทิ้งพิกัดอื่น · ตัวอย่างมีน้ำหนัก
-  <span class="src">[T] (14)-(16)</span></li>
+  <span class="src">[T] (14)-(16) · [B] §3.6.1 · §3.6.5 importance sampling น.35, 40</span></li>
 <li>⬜ <strong>T6 · Metropolis–Hastings เขียนเอง</strong> — Markov chain · proposal · อัตรายอมรับ · ทำซ้ำรูปวงแหวนรูป 2-4 ของ [C] ด้วย Python ล้วน
-  <span class="src">[T] §3.2 · [C] §IV.C</span></li>
+  <span class="src">[T] §3.2 · [C] §IV.C · [B] §3.6.2 น.36 · แบบฝึก 3.8.2 (viii) เขียน MH ฟิตเส้นตรงสองพารามิเตอร์ น.45-46</span></li>
 <li>⬜ <strong>T7 · chain ลู่เข้าหรือยัง</strong> — burn-in · Gelman–Rubin $R - 1$ · proposal covariance · Cholesky decorrelation
-  <span class="src">[C] §IV.C, ภาคผนวก A ย่อหน้า 1-4</span></li>
+  <span class="src">[C] §IV.C, ภาคผนวก A ย่อหน้า 1-4 · [B] §3.7 น.40-41 burn-in · Gelman–Rubin · autocorrelation (107) · รูป 6</span></li>
 <li>⬜ <strong>T8 · ใช้ Cobaya + GetDist จริง</strong> — YAML · sampled / fixed / derived · <code>prior</code> <code>ref</code> <code>proposal</code> · triangle plot · contour 68/95% · credible กับ confidence interval
-  <span class="src">[C] §IV.A-D, รูป 2-4 · [T] หมายเหตุ 8</span></li>
+  <span class="src">[C] §IV.A-D, รูป 2-4 · [T] หมายเหตุ 8 · [B] แบบฝึก 3.8.2 (ix) SN Ia 300 ดวง → MCMC บน (Ωm, ΩΛ) น.47-48</span></li>
 </ol>
 
 <h2>ช่วง 2 · เทียบโมเดล <span class="hint">(อ่าน [T] §4 ได้)</span></h2>
 <ol start="9">
 <li>⬜ <strong>T9 · evidence และ Bayes factor</strong> — Occam's razor · $p(\mathcal M\,|\,d)$ · $B_{01}$ · ตัวอย่างโมเดลซ้อน (21) · Jeffreys' scale ตาราง 1
-  <span class="src">[T] §4.1-4.2 (17)-(21)</span></li>
+  <span class="src">[T] §4.1-4.2 (17)-(21) · [B] §4.1-4.2 น.55-59 · แบบฝึก 4.6 (i) เหรียญ 140/250</span></li>
 <li>⬜ <strong>T10 · Laplace · Fisher matrix · Savage–Dickey</strong> — evidence ของ Gaussian $F = L + P$ (ต่อจาก T1) · rough guide (26) รูป 3 · SDDR (23)
-  <span class="src">[T] §4.3-4.4 (22)-(26)</span></li>
+  <span class="src">[T] §4.3-4.4 (22)-(26) · [B] §4.3.3-4.3.4 น.63-64 · แบบฝึก 4.6 (iii) ΩΛ ด้วย Savage–Dickey</span></li>
 <li>⬜ <strong>T11 · คำนวณ evidence ด้วยตัวเลข</strong> — thermodynamic integration · nested sampling (หลักของ PolyChord)
-  <span class="src">[T] §4.3 ข้อ 1-2 · [C] §IV.C, ภาคผนวก A "Applicability to PolyChord"</span></li>
+  <span class="src">[T] §4.3 ข้อ 1-2 · [C] §IV.C, ภาคผนวก A "Applicability to PolyChord" · [B] §4.3.1-4.3.2 น.61-63</span></li>
 <li>⬜ <strong>T12 · p-value กับ Bayes factor</strong> — ขอบบน $\bar B = -1/(e\,\wp\ln\wp)$ · ตาราง 2 · Lindley's paradox · ใช้ข้อมูลซ้ำสองรอบ
-  <span class="src">[T] §4.5 (27), §5.4 ข้อ 3-4</span></li>
+  <span class="src">[T] §4.5 (27), §5.4 ข้อ 3-4 · [B] §4.2.3 น.59</span></li>
 <li>⬜ <strong>T13 · KL divergence · Bayesian complexity · AIC/BIC/DIC</strong>
-  <span class="src">[T] §4.6-4.7 (28)-(41)</span></li>
+  <span class="src">[T] §4.6-4.7 (28)-(41) · [B] §4.3.5 น.64</span></li>
 </ol>
 
 <h2>ช่วง 3 · ฟิสิกส์ของจักรวาลวิทยา <span class="hint">(อ่าน [T] §5-6 และ [C] §VI ได้)</span></h2>
 <ol start="14">
 <li>⬜ <strong>T14 · เอกภพที่ขยายตัว</strong> — FRW metric (42) · scale factor · redshift (43) · ระยะ comoving (44) · $\Omega$ · $H_0 = 100h$
-  <span class="src">[T] §5.1 · ใช้ดัชนีจากบทที่ 4</span></li>
+  <span class="src">[T] §5.1 · ใช้ดัชนีจากบทที่ 4 · [B] แบบฝึก 3.8.2 (ix) สมการ (117)-(122) ระยะ luminosity</span></li>
 <li>⬜ <strong>T15 · สิ่งที่วัดได้</strong> — CMB $C_\ell$ และ acoustic peak · $P(k)$ และ BAO · SN Ia · weak lensing · ทำไมต้องรวมหลาย data set
   <span class="src">[T] §5.2, §5.3.1</span></li>
 <li>⬜ <strong>T16 · ΛCDM หกพารามิเตอร์</strong> — $\omega_b$ $\omega_c$ $\Theta_s$ $\tau$ $A_s$ $n_s$ · derived parameter · nuisance · ตาราง 3 รูป 6
@@ -78,7 +81,7 @@
 <li>⬜ <strong>T17 · primordial power spectrum และ feature</strong> — $P_0(k) = A_s(k/k_*)^{n_s - 1}$ · feature (3) ของ [C] · lensing กับ delensing · degeneracy รูป 5
   <span class="src">[C] §VI.A (3), รูป 5, 7-9</span></li>
 <li>⬜ <strong>T18 · ผลเทียบโมเดลของจักรวาลวิทยา</strong> — ตาราง 4-5 · multi-model inference (48)-(49) · forecasting · PPOD (50)
-  <span class="src">[T] §6</span></li>
+  <span class="src">[T] §6 · [B] §4.4 น.65 · แบบฝึก 4.6 (iv) ค่าคงที่จักรวาลกับ prior จาก QFT ($10^{120}$)</span></li>
 </ol>
 
 <h2>ช่วง 4 · ข้างในของ Cobaya <span class="hint">(อ่าน [C] ทั้งฉบับได้)</span></h2>
@@ -87,7 +90,7 @@
   <span class="src">[C] §III, §IV.B, รูป 3, §VI</span></li>
 <li>⬜ <strong>T20 · speed hierarchy · blocking</strong> — footprint (A1) · matrix $F(\sigma)$ (A2) · $D(F) = \min(1, L^TF)$ (A3) · ต้นทุน $T(\sigma)$ (A4)-(A5) · oversampling (A6) · dragging
   <span class="src">[C] ภาคผนวก A</span></li>
-<li>⬜ <strong>T21 · เช็คพอยต์</strong> — อ่าน [T] และ [C] ตั้งแต่ต้นจนจบ ชี้ว่าแต่ละบรรทัดคือบทไหน</li>
+<li>⬜ <strong>T21 · เช็คพอยต์</strong> — อ่าน [T] [C] และ [B] ตั้งแต่ต้นจนจบ ชี้ว่าแต่ละบรรทัดคือบทไหน</li>
 </ol>
 
 <div class="warn">
