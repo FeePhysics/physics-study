@@ -72,3 +72,52 @@ check("ตัวอย่าง 14: ช่วง 1σ ปัดแล้ว 198.0
 print("   ค่าเฉลี่ยของ (39) =", float(m39))
 
 print(f"\nผ่าน {ok} ข้อ")
+
+
+# ═══ ตัวอย่างของตำราฉบับภาษาไทย (ตัวเลขของเราเอง ไม่ใช่ของ [B]) ═══
+R = sp.Rational
+ok2 = 0
+def chk(name, got, want, tol=None):
+    global ok2
+    if tol is None:
+        assert sp.simplify(got - want) == 0, f"{name}: {got} ≠ {want}"
+    else:
+        assert abs(float(got) - float(want)) <= tol, f"{name}: {float(got)} ≠ {want}"
+    ok2 += 1
+    print("✓", name, "=", got if tol is None else round(float(got), 4))
+
+# 2.1 ขนมไหม้: ร้าน A 60% ไหม้ 5% · ร้าน B 40% ไหม้ 20%
+Pb = R(6, 10) * R(5, 100) + R(4, 10) * R(20, 100)
+chk("2.1 P(ไหม้)", Pb, R(11, 100))
+chk("2.1 P(B | ไหม้)", R(4, 10) * R(20, 100) / Pb, R(8, 11))
+# 2.4 เหรียญ 5 ครั้ง หัว 1: L = 5θ(1−θ)^4 ยอดที่ 1/5
+th2 = sp.symbols("theta2", positive=True)
+Lc = 5 * th2 * (1 - th2) ** 4
+chk("2.4 ยอดของ 5θ(1−θ)^4", [r for r in sp.solve(sp.diff(Lc, th2), th2) if 0 < r < 1][0], R(1, 5))
+chk("2.4 ความสูงยอด", Lc.subs(th2, R(1, 5)), R(256, 625))
+chk("2.4 ∫L dθ ไม่เป็น 1", sp.integrate(Lc, (th2, 0, 1)), R(1, 6))
+# 2.5 แมว 4.1 4.4 4.3 σ=0.3
+cat = [R("4.1"), R("4.4"), R("4.3")]
+chk("2.5 ค่าเฉลี่ยแมว", sum(cat) / 3, R(64, 15))
+chk("2.6 ความคลาดแมว 0.3/√3", R(3, 10) / sp.sqrt(3), 0.1732, tol=1e-4)
+# 2.6 เทอร์โมมิเตอร์ 20.0±1 กับ 23.0±2
+wsum = 1 + R(1, 4)
+chk("2.6 ค่าถ่วง", (20 + R(23, 4)) / wsum, R(103, 5))
+chk("2.6 ความคลาดรวม", 1 / sp.sqrt(wsum), 0.8944, tol=1e-4)
+# 3.1 spam: 20% spam · จับ spam 90% · จับผิดจดหมายปกติ 10%
+Pf = R(2, 10) * R(9, 10) + R(8, 10) * R(1, 10)
+chk("3.1 P(ถูกจับ)", Pf, R(13, 50))
+chk("3.1 P(spam | ถูกจับ)", R(18, 100) / Pf, R(9, 13))
+# 3.3 สองคน prior ต่างกัน · วัดครั้งละ ±50 ค่าเฉลี่ย 850
+def upd(m0, s0, xbar, s, n):
+    m0, s0, xbar, s, n = map(sp.Integer, (m0, s0, xbar, s, n))
+    p = 1 / s0**2 + n / s**2
+    return (m0 / s0**2 + n * xbar / s**2) / p, 1 / sp.sqrt(p)
+mA1, sA1 = upd(750, 100, 850, 50, 1); mB1, sB1 = upd(900, 20, 850, 50, 1)
+mA100, sA100 = upd(750, 100, 850, 50, 100); mB100, sB100 = upd(900, 20, 850, 50, 100)
+chk("3.3 A หลัง 1 ครั้ง", mA1, 830)
+print("   B หลัง 1 ครั้ง ≈", float(mB1), "±", float(sB1), "· A ≈", float(mA1), "±", float(sA1))
+print("   หลัง 100 ครั้ง A ≈", float(mA100), "±", float(sA100), "· B ≈", float(mB100), "±", float(sB100))
+assert abs(float(mA100 - mB100)) < 6 and abs(float(mA1 - mB1)) > 50
+ok2 += 1; print("✓ 3.3 ห่างกัน >50 หลัง 1 ครั้ง · <6 หลัง 100 ครั้ง")
+print(f"\nตัวอย่างตำราไทย ผ่าน {ok2} ข้อ")
