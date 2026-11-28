@@ -111,7 +111,8 @@ with sync_playwright() as p:
                 # ⚠️ หายได้เงียบสนิท: quiz.js วางปุ่มไว้ใน #score ที่เดียว
                 #    ไม่มี element นั้น = หน้ายังใช้ได้ปกติ ไม่มี error อะไรฟ้อง
                 #    (เกิดจริงในบทที่ 9 · และเจอว่าบทที่ 1 กับ _template.html โดนด้วย)
-                if page.locator(".quiz").count():
+                # ข้อทาย data-warmup ไม่นับคะแนน ⇒ หน้าที่มีแต่ข้อทาย (เช่นตำราใน reference/) ไม่มีปุ่มสรุปโดยตั้งใจ
+                if page.locator(".quiz:not([data-warmup])").count():
                     page.wait_for_timeout(150)
                     st = page.evaluate("() => ({copy: !!document.querySelector('#copy'),"
                                        " again: !!document.querySelector('#again'),"
